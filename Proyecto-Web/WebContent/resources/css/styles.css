@@ -1,0 +1,389 @@
+body {
+	background: #333333 url('images/bodybg.png') repeat-x scroll top left;
+	margin:0;
+	padding:0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #444;
+}
+
+* {
+	margin:0;
+	padding:0;
+}
+
+/** element defaults **/
+table {
+	width: 100%;
+	text-align: left;
+}
+
+th, td {
+	padding: 10px 10px;
+}
+
+th {
+	color: #fff;
+	background: #333333 url(images/h4-bg.png) repeat-x scroll left bottom;
+}
+
+td {
+	background: #ddd;
+	border-bottom: 1px solid #ccc;
+}
+
+code, blockquote {
+	display: block;
+	border-left: 5px solid #222;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+code {
+	background-color: #222;
+	color:#ccc;
+	border: none;
+}
+blockquote {
+	border-left: 5px solid #222;
+}
+
+blockquote p {
+	font-style: italic;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	margin: 0;
+	color: #444;
+	height: 1%;
+}
+
+p {
+	line-height: 1.9em;
+	margin-bottom: 20px;
+}
+
+a {
+	color: #1962A5;
+}
+
+a:hover {
+	color: #FA297D;
+}
+
+a:focus {
+	outline: none;
+}
+
+fieldset {
+	display: block;
+	border: none;
+	border-top: 1px solid #ddd;
+}
+
+fieldset legend {
+	font-weight: bold;
+	font-size: 13px;
+	padding-right: 10px;
+	color: #999;
+}
+
+fieldset form {
+	padding-top: 15px;
+}
+
+fieldset p label {
+	float: left;
+	width: 150px;
+}
+
+form input, form select, form textarea {
+	padding: 5px;
+	color: #333333;
+	border: 1px solid #999;
+	border-right:1px solid #eee;
+	border-bottom:1px solid #eee;
+	background-color:#ccc;
+	color:#333;
+}
+
+form input.formbutton {
+	border: none;
+	background: #0B519A;
+	color: #ffffff;
+	font-weight: bold;
+	padding: 5px 10px;
+	font-size: 12px;
+	font-family: Tahoma, Geneva, sans-serif;
+	letter-spacing: 1px;
+	width: auto;
+	overflow: visible;
+}
+
+form.searchform p {
+	margin: 5px 0;
+}
+
+
+span.required {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #ff0000;
+}
+
+h1 {
+	color: #ccc;
+	font-size: 35px;
+}
+
+h2 {
+	color: #999;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 26px;
+	letter-spacing: 0.5px;
+	font-weight: normal;
+	padding: 0 0 5px;
+	margin: 0;
+}
+
+h3 {
+	color: #0B519A;
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+h4 {
+	padding-bottom: 10px;
+	font-size: 15px;
+	color: #999;
+}
+
+h5 {
+	padding-bottom: 10px;
+	font-size: 13px;
+	color: #999;
+}
+
+ul, ol {
+	margin: 0 0 35px 35px;
+}
+
+li {
+	padding-bottom: 5px;
+}
+
+li ol, li ul {
+	font-size: 1.0em;
+	margin-bottom: 0;
+	padding-top: 5px;
+}
+
+
+#container {
+	background: transparent url('images/corebg.png') no-repeat scroll 0 139px;
+}
+
+#outer-container {
+	background: transparent url('images/mainbg.png') repeat-y scroll 0 0;
+	width: 980px;
+	margin:0 auto;
+	padding: 0;
+}
+#header {
+	padding: 0 15px;
+	margin: 0 auto;
+	height: 145px;
+	background: transparent url('images/headerbg.png') repeat-x scroll 0 0;
+}
+
+#header h1  {
+	padding-top: 20px;
+	text-align: center;
+}
+
+#header_img  {
+	margin: 0 auto;
+	width:182px;
+	height:152x;
+}
+
+#header h1 a {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #fff;
+	font-size: 68px;
+	font-weight: normal;
+	text-decoration: none;
+	letter-spacing: -5px;
+	text-align: center;
+}
+
+#center-ul {
+	float: left;
+	left: 50%;
+	position: relative;
+}
+
+#nav {
+	background: transparent none repeat-x scroll top left;
+	height: 59px;
+	width: 950px;
+	margin: 8px 15px;
+	display: block;
+}
+
+#nav ul {
+	list-style: none;
+	padding: 0 10px;
+	margin: 0;
+	position: relative;
+	left: -50%;
+}
+
+#nav ul li {
+	float: left;
+	display: block;
+	padding: 0;
+	position: relative;
+}
+
+#nav ul li a {
+	color: #fff;
+	display: block;
+	font-size: 14px;
+	padding: 22px 20px 21px;
+	text-decoration: none;
+}
+
+#nav ul li a:hover {
+	background: #609BC8 url('images/navbg.png') repeat-x;
+}
+
+#body {
+	background: #fff;
+	padding: 0;
+	margin: 25px;
+	width: 930px;
+}
+
+#content {
+	float: left;
+	width: 620px;
+	margin: 0;
+}
+
+.sidebar {
+	width: 280px;
+	padding: 0;
+	float: right;
+}
+
+
+.sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar ul li {
+	margin-bottom: 20px;
+	line-height: 1.9em;
+}
+
+.sidebar li ul {
+	background: #ddd;
+}
+
+.sidebar li ul li {
+	display: block;
+	border-top: none;
+	padding: 6px 7px;
+	margin: 0;
+	line-height: 1.5em;
+	font-size: 13px;
+	color: #333;
+}
+
+.sidebar li ul li a {
+	font-weight: normal;
+	color: #333;
+}
+
+.sidebar li ul.blocklist li {
+	padding: 0;
+	display: inline;
+}
+
+.sidebar li ul.blocklist li a {
+	display: block;
+	padding: 9px 8px;
+	text-decoration: none;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #fff;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.sidebar li ul.blocklist li a:hover {
+	color: #000;
+}
+
+.sidebar li ul li a:hover {
+	color: #0B519A;
+}
+
+.sidebar h4 {
+	color: #eee;
+	font-family: Arial, Helvetica, sans-serif;
+	background: #333333 url('images/h4-bg.png') repeat-x scroll left bottom;
+	font-size: 12px;
+	letter-spacing: 0;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 5px 10px;
+	font-weight: bold;
+}
+
+.clear {
+	clear: both;
+}
+
+#footer {
+	width: 960px;
+	margin:0 auto;
+}
+
+.footer-content {
+	background: transparent url(images/headerbg.png) repeat-x scroll 0 0;
+	padding: 20px 5px;
+}
+
+#footer p {
+	text-align: center;
+	color: #eee;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#footer p a {
+	color: #fff;
+	font-weight: bold;
+}
+
+
+.myCalendarMovePrev {
+    background-image: url(images/calendario.png);
+}
+.myCalendarMoveNext {
+    background-image: url(images/calendario.png);
+}
+.myCalendarOpenPopup {
+	padding: 7.5px 7.5px;
+    background-image: url(images/calendario.png);
+}
+.myCalendarClosePopup {
+	padding: 7.5px 7.5px;
+    background-image: url(images/cerrar.png);
+}
+
+
+
+

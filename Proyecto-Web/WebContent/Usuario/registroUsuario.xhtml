@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>
+		<ui:insert name="title">Ejemplo configuracion JSF
+		</ui:insert>
+	</title>
+</h:head>
+
+<body> 
+	<h:form>
+		<h:panelGrid columns="4" cellpadding="5">
+			<h:outputLabel for="name" value="Name:" />
+			
+			<p:inputText id="name" value="#{testeBean.name}" />
+			
+		 	<p:commandButton value="Enviar" update="display" />
+		 	
+		 	<br/>
+		 	
+		 	<p:outputPanel id="display">
+		 		<h:outputText id="bienvenido" value="Bienvenido: #{testeBean.name}" 
+		 		rendered="#{not empty testeBean.name}"/>
+		 	</p:outputPanel>		 			 			 			 
+		
+		</h:panelGrid>
+	</h:form>
+</body>
+ 
+</html>
