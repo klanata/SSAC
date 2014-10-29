@@ -1,7 +1,6 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Donacion

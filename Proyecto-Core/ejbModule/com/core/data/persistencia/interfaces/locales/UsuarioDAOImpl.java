@@ -8,6 +8,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.UsuarioDAO;
@@ -34,10 +35,10 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 				
 				
 				em.persist(entity);
-				System.out.println("no es vacia");
+				
 			}
-			else
-				System.out.println("no llegan datos vacia");
+			
+				
 			
 			return entity;
 			
@@ -76,9 +77,15 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public List<Usuario> buscarUsuario(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario buscarUsuario(String login, String password) {
+		
+		Usuario usuario = null;
+		Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona.Nick.Pass");
+	  	consulta.setParameter("nick", login);
+	  	consulta.setParameter("pass", password);
+	   	usuario = (Usuario) consulta.getResultList().get(0);
+	  		
+		return usuario;
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.core.data.entites;
 
-import java.io.Serializable;
+
 import java.util.Date;
 
 import javax.persistence.*;
@@ -16,7 +16,7 @@ import cross_cuting.enums.sexo;
 public class Rescatista extends Persona {
 
 	
-	private static final long serialVersionUID = 1L;
+	
 
 	public Rescatista() {
 		super();

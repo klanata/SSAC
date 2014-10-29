@@ -1,6 +1,5 @@
 package com.core.data.entites;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -18,7 +17,7 @@ import javax.persistence.*;
 public class Administrador extends Persona {
 
 	
-	private static final long serialVersionUID = 1L;
+	
 
 	public Administrador() {
 		super();

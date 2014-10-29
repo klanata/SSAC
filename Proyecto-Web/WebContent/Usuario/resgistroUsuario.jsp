@@ -9,8 +9,8 @@
 </head>
 <body>
 	<h3>Registro de Usuario</h3>
-	<f:view>
-	<h:form>				
+	
+	<form>				
 			<p><label for="nick">Nick:</label>				
 			<h:inputText id="nick" value="#{userBean.txtNick}" required="true" ></h:inputText>
 			<h:message errorStyle="color:red;" for="nick"/> 
@@ -28,7 +28,7 @@
 		<h:commandButton id="comandoRegistrar" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{userBean.ingresarUsu_ON_CLICK()}">
 		</h:commandButton>
 		</p>
-	</h:form>
-	</f:view>
+	</form>
+	
 </body>
 </html>

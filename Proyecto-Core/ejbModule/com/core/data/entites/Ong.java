@@ -3,11 +3,9 @@ package com.core.data.entites;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+
 
 import javax.persistence.*;
-
-import cross_cuting.enums.TipoCatastrofe;
 
 /**
  * Entity implementation class for Entity: Ong

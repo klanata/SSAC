@@ -20,6 +20,6 @@ public interface UsuarioDAO {
 	
 	public List<Usuario> findAll();
 	
-	public List<Usuario> buscarUsuario(String login, String password);
+	public Usuario buscarUsuario(String login, String password);
 	
 }

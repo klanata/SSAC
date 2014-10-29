@@ -2,7 +2,6 @@ package com.web.beans;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.text.DateFormat;
 import java.util.Date;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

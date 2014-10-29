@@ -11,11 +11,17 @@ import javax.persistence.*;
  */
 //ceci
 @Entity
-
+@NamedQueries({
 @NamedQuery(name="Usuario.BuscarPersona", 
 query = "SELECT u "+
 		"FROM Usuario u " +
-		"WHERE u.nick = :nick")
+		"WHERE u.nick = :nick"),
+
+@NamedQuery(name="Usuario.BuscarPersona.Nick.Pass", 
+query = "SELECT u "+
+		"FROM Usuario u " +
+		"WHERE u.nick = :nick AND u.pass= :pass")
+})
 
 @Table (name = "usuario")
 public class Usuario implements Serializable {
