@@ -31,20 +31,14 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		
 		try {
 			if (entity != null)
-			{
-				
+			{			
 				
 				em.persist(entity);
-				
 			}
-			
-				
 			
 			return entity;
 			
 		} catch (Throwable e) {
-			
-			e.printStackTrace();
 			
 		}
 		
@@ -54,7 +48,12 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void update(Usuario entity) {
-		// TODO Auto-generated method stub
+		try{
+				
+			
+		}catch (Exception e){
+			
+		}
 		
 	}
 
@@ -73,6 +72,8 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Usuario> findAll() {
 		// TODO Auto-generated method stub
+		
+		
 		return null;
 	}
 

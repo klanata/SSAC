@@ -54,5 +54,91 @@ public class Catastrofe implements Serializable {
 	private Collection<Ong> catastrofes = new ArrayList<Ong>(0);
 	@OneToOne
 	private PlanDeRiesgo planDeRiesgo ;
+
+	
+	
+	public Catastrofe(String nombreEvento, String descripcion, String logo,
+			BigDecimal coordenadasX, BigDecimal coordenadasY, Boolean activa,
+			Boolean prioridad, Collection<Servicio> servicios,
+			Collection<Ong> catastrofes, PlanDeRiesgo planDeRiesgo) {
+		super();
+		this.nombreEvento = nombreEvento;
+		this.descripcion = descripcion;
+		this.logo = logo;
+		this.coordenadasX = coordenadasX;
+		this.coordenadasY = coordenadasY;
+		this.activa = activa;
+		this.prioridad = prioridad;
+		this.servicios = servicios;
+		this.catastrofes = catastrofes;
+		this.planDeRiesgo = planDeRiesgo;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getNombreEvento() {
+		return nombreEvento;
+	}
+	public void setNombreEvento(String nombreEvento) {
+		this.nombreEvento = nombreEvento;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	public BigDecimal getCoordenadasX() {
+		return coordenadasX;
+	}
+	public void setCoordenadasX(BigDecimal coordenadasX) {
+		this.coordenadasX = coordenadasX;
+	}
+	public BigDecimal getCoordenadasY() {
+		return coordenadasY;
+	}
+	public void setCoordenadasY(BigDecimal coordenadasY) {
+		this.coordenadasY = coordenadasY;
+	}
+	public Boolean getActiva() {
+		return activa;
+	}
+	public void setActiva(Boolean activa) {
+		this.activa = activa;
+	}
+	public Boolean getPrioridad() {
+		return prioridad;
+	}
+	public void setPrioridad(Boolean prioridad) {
+		this.prioridad = prioridad;
+	}
+	public Collection<Servicio> getServicios() {
+		return servicios;
+	}
+	public void setServicios(Collection<Servicio> servicios) {
+		this.servicios = servicios;
+	}
+	public Collection<Ong> getCatastrofes() {
+		return catastrofes;
+	}
+	public void setCatastrofes(Collection<Ong> catastrofes) {
+		this.catastrofes = catastrofes;
+	}
+	public PlanDeRiesgo getPlanDeRiesgo() {
+		return planDeRiesgo;
+	}
+	public void setPlanDeRiesgo(PlanDeRiesgo planDeRiesgo) {
+		this.planDeRiesgo = planDeRiesgo;
+	}
+	
    
 }

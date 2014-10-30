@@ -2,6 +2,8 @@ package com.core.data.entites;
 
 
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 /**
@@ -10,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class ImagenCatastrofe extends Imagen {
+public class ImagenCatastrofe extends Imagen implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -25,5 +27,39 @@ public class ImagenCatastrofe extends Imagen {
 	
 	@Column()
 	private String path = "";
+
+	@ManyToOne
+	private Catastrofe catastrofe;
+
+	public ImagenCatastrofe(String path, Catastrofe catastrofe) {
+		super();
+		this.path = path;
+		this.catastrofe = catastrofe;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public Catastrofe getCatastrofe() {
+		return catastrofe;
+	}
+
+	public void setCatastrofe(Catastrofe catastrofe) {
+		this.catastrofe = catastrofe;
+	}
+	
 	
 }

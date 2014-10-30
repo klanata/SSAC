@@ -97,5 +97,8 @@ public class Usuario implements Serializable {
 	public void setFechaNac(Date fechaNac) {
 		this.fechaNac = fechaNac;
 	}
+
+	
+	
 	
 }

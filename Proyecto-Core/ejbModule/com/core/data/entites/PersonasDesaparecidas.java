@@ -40,5 +40,79 @@ public class PersonasDesaparecidas implements Serializable {
 	@Column(nullable= false)
 	private Date fechNac ;
 	
+	@ManyToOne
+	private ImagenPersonaDesaparecida imagenPersonaDesaparecida;
+
+	public PersonasDesaparecidas(String nombre, String apellido,
+			String numeroContacto, EstadoPersona descripcion, Date fechNac,
+			ImagenPersonaDesaparecida imagenPersonaDesaparecida) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.numeroContacto = numeroContacto;
+		this.descripcion = descripcion;
+		this.fechNac = fechNac;
+		this.imagenPersonaDesaparecida = imagenPersonaDesaparecida;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getNumeroContacto() {
+		return numeroContacto;
+	}
+
+	public void setNumeroContacto(String numeroContacto) {
+		this.numeroContacto = numeroContacto;
+	}
+
+	public EstadoPersona getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(EstadoPersona descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Date getFechNac() {
+		return fechNac;
+	}
+
+	public void setFechNac(Date fechNac) {
+		this.fechNac = fechNac;
+	}
+
+	public ImagenPersonaDesaparecida getImagenPersonaDesaparecida() {
+		return imagenPersonaDesaparecida;
+	}
+
+	public void setImagenPersonaDesaparecida(
+			ImagenPersonaDesaparecida imagenPersonaDesaparecida) {
+		this.imagenPersonaDesaparecida = imagenPersonaDesaparecida;
+	}
+	
+	
+	
    
 }

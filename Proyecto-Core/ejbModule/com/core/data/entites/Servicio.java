@@ -36,5 +36,40 @@ public class Servicio implements Serializable {
 	
 	@ManyToMany
 	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
+
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getFuente() {
+		return fuente;
+	}
+
+	public void setFuente(String fuente) {
+		this.fuente = fuente;
+	}
+
+	public Collection<Catastrofe> getCatastrofes() {
+		return catastrofes;
+	}
+
+	public void setCatastrofes(Collection<Catastrofe> catastrofes) {
+		this.catastrofes = catastrofes;
+	}
+	
    
 }
