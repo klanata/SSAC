@@ -12,6 +12,7 @@ import javax.persistence.*;
 //ceci
 @Entity
 @NamedQueries({
+	
 @NamedQuery(name="Usuario.BuscarPersona", 
 query = "SELECT u "+
 		"FROM Usuario u " +

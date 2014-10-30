@@ -27,8 +27,8 @@ public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 
 		try {
 			
-			List<Usuario> usuarios = this.usuarioDAO.buscarUsuario(login, password);
-			return usuarios != null && usuarios.size() > 0;
+			Usuario usuario = this.usuarioDAO.buscarUsuario(login, password);
+			return (usuario != null);
 			
 		} catch (Exception e) {
 			

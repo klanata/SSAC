@@ -22,4 +22,5 @@ public interface UsuarioDAO {
 	
 	public Usuario buscarUsuario(String login, String password);
 	
+	
 }

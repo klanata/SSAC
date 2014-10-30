@@ -34,6 +34,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 			{			
 				
 				em.persist(entity);
+			
 			}
 			
 			return entity;

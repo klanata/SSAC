@@ -57,22 +57,6 @@ public class Catastrofe implements Serializable {
 
 	
 	
-	public Catastrofe(String nombreEvento, String descripcion, String logo,
-			BigDecimal coordenadasX, BigDecimal coordenadasY, Boolean activa,
-			Boolean prioridad, Collection<Servicio> servicios,
-			Collection<Ong> catastrofes, PlanDeRiesgo planDeRiesgo) {
-		super();
-		this.nombreEvento = nombreEvento;
-		this.descripcion = descripcion;
-		this.logo = logo;
-		this.coordenadasX = coordenadasX;
-		this.coordenadasY = coordenadasY;
-		this.activa = activa;
-		this.prioridad = prioridad;
-		this.servicios = servicios;
-		this.catastrofes = catastrofes;
-		this.planDeRiesgo = planDeRiesgo;
-	}
 	public Integer getId() {
 		return id;
 	}
