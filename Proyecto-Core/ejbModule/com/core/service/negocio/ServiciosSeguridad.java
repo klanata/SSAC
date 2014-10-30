@@ -1,7 +1,6 @@
 package com.core.service.negocio;
 
 import java.util.Date;
-
 import javax.ejb.Local;
 
 @Local
@@ -12,6 +11,6 @@ public interface ServiciosSeguridad {
 	public Boolean ingesarUsuraio(String login, String password, String email, String nombre, 
 			Date fechaNac);
 	
-	public String getHola();
+	public int funciona(int numero);
 	
 }

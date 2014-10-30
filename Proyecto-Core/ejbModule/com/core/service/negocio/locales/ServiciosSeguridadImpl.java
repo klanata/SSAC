@@ -1,6 +1,8 @@
 package com.core.service.negocio.locales;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -25,9 +27,8 @@ public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 
 		try {
 			
-			Usuario usuario = this.usuarioDAO.buscarUsuario(login, password);
-			
-			return( usuario != null) ;
+			List<Usuario> usuarios = this.usuarioDAO.buscarUsuario(login, password);
+			return usuarios != null && usuarios.size() > 0;
 			
 		} catch (Exception e) {
 			
@@ -54,11 +55,10 @@ public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 		return true;
 	}
 	
-
 	@Override
-	public String getHola()
-	{
-		return "Soy un String";
+	public int funciona(int numero){
+		
+		return numero+5;
 	}
 
 }

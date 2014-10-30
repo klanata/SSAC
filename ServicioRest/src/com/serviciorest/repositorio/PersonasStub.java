@@ -2,6 +2,7 @@ package com.serviciorest.repositorio;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.core.service.negocio.locales.*;
 
 import com.serviciorest.modelo.*;
 
@@ -27,5 +28,13 @@ public class PersonasStub {
 		
 		return new Persona(1,"Brian","May");
 	}
+	
+	public String funciona(String num)
+	{
+		ServiciosSeguridadImpl servicio = new ServiciosSeguridadImpl();
+		int SeisMasCinco = servicio.funciona(Integer.parseInt(num));
+		return String.valueOf(SeisMasCinco);
+	}
+	
 
 }
