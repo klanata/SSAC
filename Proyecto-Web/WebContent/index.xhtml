@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">	
+      
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <h:outputStylesheet library="css" name="templatemo_style.css" />
+    <h:outputStylesheet library="css" name="contentslider.css" />
+    <title>Sistema de Soporte ante Cátastrofes Naturales</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<script type="text/javascript" src="resources/js/contentslider.js">
+	/***********************************************
+	* Featured Content Slider- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+	* This notice MUST stay intact for legal use
+	* Visit Dynamic Drive at http://www.dynamicdrive.com/ for this script and 100s more
+	***********************************************/
+	/***********************************************
+	function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+            PF('Login').jq.effect("shake", {times:5}, 100);
+        }
+        else {
+            PF('Login').hide();
+            $('#loginLink').fadeOut();
+        }
+    }
+    ***********************************************/
+	</script>			
+</h:head>
+
+<body>
+<div id="templatemo_container">
+	
+	<div id="templatemo_header_panel">
+        <div id="templatemo_title_section">
+            Sistema de Soporte ante Cátastrofes Naturales
+        </div>
+        <div id="templatemo_top_right_section">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Site Map</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    
+     <div id="templatemo_login_banner_panel">
+
+        <div id="templatemo_banner_panel">
+        
+            <!--Inner content DIVs should always carry "contentdiv" CSS class-->
+            <!--Pagination DIV should always carry "paginate-SLIDERID" CSS class-->
+            
+            <div id="paginate-slider2" class="pagination">
+            
+            <a href="#" class="toc">&nbsp;</a> <a href="#" class="toc anotherclass">&nbsp;</a> <a href="#" class="toc">&nbsp;</a>
+            </div>
+            
+            <div id="slider2" class="sliderwrapper">
+            <div class="contentdiv"><img src="resources/images/catastrofesUruguay1.jpg" alt="image 10" /></div>
+            <div class="contentdiv"><img src="resources/images/catastrofesUruguay2.jpg" alt="image 20" /></div>
+            <div class="contentdiv"><img src="resources/images/catastrofesUruguay3.jpg" alt="image 30" /></div>
+            </div>
+            <script type="text/javascript">
+            
+            featuredcontentslider.init({
+            id: "slider2",  //id of main slider DIV
+            contentsource: ["inline", ""],  //Valid values: ["inline", ""] or ["ajax", "path_to_file"]
+            toc: "markup",  //Valid values: "#increment", "markup", ["label1", "label2", etc]
+            nextprev: ["Previous", "Next"],  //labels for "prev" and "next" links. Set to "" to hide.
+            revealtype: "click", //Behavior of pagination links to reveal the slides: "click" or "mouseover"
+            enablefade: [true, 0.2],  //[true/false, fadedegree]
+            autorotate: [true, 3000],  //[true/false, pausetime]
+            onChange: function(previndex, curindex){  //event handler fired whenever script changes slide
+            //previndex holds index of last slide viewed b4 current (1=1st slide, 2nd=2nd etc)
+            //curindex holds index of currently shown slide (1=1st slide, 2nd=2nd etc)
+            }
+            })
+            
+            </script>
+        </div>
+        
+		<div id="templatemo_login_panel">
+        	<h1>Login</h1> 
+            <h:form id="Login">      
+            
+            	<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+                                                  	    
+				<h:panelGrid columns="2" cellpadding="5">
+					<div class="form_row">
+						<label for="Nick">Nick:</label>																									
+						<p:inputText id="Nick" value="#{loginBean.txtLogin}" required="true" />																						
+					</div>
+					
+					<div class="form_row">
+						<label for="Password">Password:</label>																									
+						<p:password id="Password" value="#{loginBean.txtPassword}" required="true" />											 				
+					</div>																					 					 		 			 			 			 	
+				</h:panelGrid>
+							
+				<p:commandButton update="growl" type="submit" value="Login" actionListener="#{loginBean.ingresar_ON_CLICK}">												
+				</p:commandButton>		
+											
+			</h:form>			
+            <a href="../Usuario/registroUsuario.xhtml">Regístrarse</a>
+        </div>
+    </div> <!-- end of login and banner panel -->
+    
+    <div id="templatemo_menu">
+        <ul>
+            <li><a href="index.html"  class="current">Home</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Tutorials</a></li>
+            <li><a href="#">Members</a></li>  
+            <li><a href="#">Contests</a></li> 
+            <li><a href="#">About Us</a></li>                     
+            <li  class="last"><a href="#">Contact Us</a></li>            
+        </ul> 
+    </div>
+    
+</div>
+</body>
+</html>
