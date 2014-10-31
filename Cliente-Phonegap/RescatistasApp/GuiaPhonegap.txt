@@ -1,0 +1,15 @@
+1. Bajar node.js
+2. Bajar phonegap
+3. Bajar ant (verificar si no lo tienen ya).
+4. Bajar git (verificar si no lo tienen ya).
+5. Correr npm -g cordova en la cmd de windows.
+6. Bajar el sdk de android y cualquier plataforma a la que quieran apuntar (iOS, wp, etc)
+7. Agregar las siguientes variables de entorno: 
+ANT_HOME = C:\apache-ant-1.9.4
+ANDROID_HOME = C:\android sdk
+PATH = --lo que ya tengan en la variable + C:\Program Files\nodejs\;C:\android sdk\tools;C:\android sdk\platform-tools;C:\apache-ant-1.9.4\bin
+8. Phonegap.com recomienda usar una aplicación SPA porque cada vez que se carga una página, hay que esperar por deviceready y puede demorar. Sobre todo si la aplicación crece. -> Angular
+
+Comandos:
+cordova build -> correr dentro de la raíz del proyecto para compilar (compila para todas las plataformas a menos que se indique lo contrario)
+phonegap install android -> instala la aplicación de android compilada con phonegap en el emulador de android (me funcionó con Nexus 4 y Android 4.2.2)
