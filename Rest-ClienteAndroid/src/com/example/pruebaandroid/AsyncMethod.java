@@ -19,12 +19,13 @@ public class AsyncMethod extends AsyncTask<Void, Void, String> {
 		String data = null;
 		
 		try{
-			String uri ="http://10.0.2.2:8080/ServicioRest/catastrofe/personas/2";
+		//	String uri ="http://10.0.2.2:8080/ServicioRest/catastrofe/personas/2";
+			String uri ="http:///10.0.2.2:8080/ServicioRest/catastrofe/personas/funcionPrueba?num=4";
 			URL url = new URL(uri);
 			HttpURLConnection connection =
 			    (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod("GET");
-			connection.setRequestProperty("Accept", "application/xml");
+			connection.setRequestProperty("Accept", "application/text");
 			InputStream xml = connection.getInputStream();
 			
 			InputStreamReader is = new InputStreamReader(xml);
@@ -39,6 +40,7 @@ public class AsyncMethod extends AsyncTask<Void, Void, String> {
 			    	
 			}
 			System.out.println(sb.toString());
+			Log.i(tag,"resultado "+ sb.toString());
 			return sb.toString();
 			}
 			catch(Exception e){
