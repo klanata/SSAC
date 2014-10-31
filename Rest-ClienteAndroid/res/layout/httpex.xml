@@ -2,12 +2,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="@color/red"
+    android:orientation="vertical"
+    android:paddingLeft="15dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="49dp"
+            android:layout_height="39dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tvHttp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Login"
+            android:textSize="@dimen/activity_horizontal_margin" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tvHttp"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cargando" />
+        android:paddingLeft="15dp"
+        android:text="Nick:" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:paddingBottom="10dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="10dp" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:text="Password:" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp" />
+
+    <Button
+        android:id="@+id/button1"
+        style="@layout/activity_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:paddingLeft="10dp"
+        android:text="Ingresar"
+        android:textStyle="bold|italic" />
 
 </LinearLayout>
