@@ -2,13 +2,14 @@ package com.core.data.persistencia;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.ejb.Remote;
 
 import com.core.data.entites.Usuario;
 
 
 
 @Local
-public interface UsuarioDAO {
+public interface UsuarioDAO extends JPAService {
 
 	public Usuario insert(Usuario entity);
 	
@@ -16,7 +17,7 @@ public interface UsuarioDAO {
 	
 	public void delete(Usuario entity);
 	
-	public Usuario findById(Integer id);
+	public Usuario BuscarById(Integer id);
 	
 	public List<Usuario> findAll();
 	

@@ -11,6 +11,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.core.data.entites.Usuario;
+import com.core.data.persistencia.AbstractService;
+import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.UsuarioDAO;
 
 
@@ -18,13 +20,23 @@ import com.core.data.persistencia.UsuarioDAO;
 
 @Stateless
 
-@TransactionManagement(TransactionManagementType.CONTAINER)
-public class UsuarioDAOImpl implements UsuarioDAO{
 
+@TransactionManagement(TransactionManagementType.CONTAINER)
+public class UsuarioDAOImpl extends AbstractService implements UsuarioDAO{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@PersistenceContext
 	protected EntityManager em;
 
-	
+	@Override
+	protected EntityManager getEntityManager() {
+
+		return em;
+	}
+	private DataService dataService;
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Usuario insert(Usuario entity) {
@@ -32,7 +44,8 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		try {
 			if (entity != null)
 			{			
-				
+				//dataService.create(entity);
+				//em.create(entity);
 				em.persist(entity);
 			
 			}
@@ -64,10 +77,25 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		
 	}
 
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Usuario findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	//@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@Override
+	public Usuario BuscarById(Integer id) {
+
+		
+		///Usuario usuario = n
+
+	  	System.out.println("el usuario esta bavioooooooooooo    ");
+
+	  	
+		Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona.ID");
+//		String idString= id.toString();
+	  	consulta.setParameter("id", id);
+	  	Usuario usuario = (Usuario) consulta.getResultList().get(0);
+	  	
+	  	//Usuario usuario = find(Usuario.class, id);
+	  	
+		return usuario;
+		
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -78,7 +106,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		return null;
 	}
 
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	//@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Usuario buscarUsuario(String login, String password) {
 		
 		Usuario usuario = null;
@@ -89,5 +117,6 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	  		
 		return usuario;
 	}
+
 
 }

@@ -1,7 +1,7 @@
 package com.core.service.negocio.locales;
 
 import java.util.Date;
-import java.util.List;
+
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -11,6 +11,7 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 
 import com.core.data.entites.Usuario;
+
 import com.core.data.persistencia.UsuarioDAO;
 import com.core.service.negocio.ServiciosSeguridad;
 
@@ -21,6 +22,7 @@ public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 
 	@EJB
 	private UsuarioDAO usuarioDAO;
+	
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Boolean existeUsuario(String login, String password) {
@@ -50,6 +52,7 @@ public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 		u.setFechaNac(fechaNac);
 		u.setNombre(nombre);
 		
+		
 		usuarioDAO.insert(u);
 		
 		return true;
@@ -59,6 +62,19 @@ public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 	public int funciona(int numero){
 		
 		return numero+5;
+	}
+	
+	@Override
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	public Usuario buscarUsuario(String id)
+	{
+		System.out.println("Esto tiene el id");
+		Integer _id= new Integer(id);
+		System.out.println("Esto tiene el id"+ _id);
+		Usuario u = new Usuario();
+		u = usuarioDAO.BuscarById(_id);
+		return u;
+		
 	}
 
 }

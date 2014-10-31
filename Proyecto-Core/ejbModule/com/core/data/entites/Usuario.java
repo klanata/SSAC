@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Usuario
  *
  */
-//ceci
+
 @Entity
 @NamedQueries({
 	
@@ -21,11 +21,16 @@ query = "SELECT u "+
 @NamedQuery(name="Usuario.BuscarPersona.Nick.Pass", 
 query = "SELECT u "+
 		"FROM Usuario u " +
-		"WHERE u.nick = :nick AND u.pass= :pass")
+		"WHERE u.nick = :nick AND u.pass= :pass"),
+		
+@NamedQuery(name="Usuario.BuscarPersona.ID", 
+query = "SELECT u "+
+		"FROM Usuario u " +
+		"WHERE u.id = :id")
 })
 
 @Table (name = "usuario")
-public class Usuario implements Serializable {
+public class Usuario extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id

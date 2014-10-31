@@ -35,7 +35,7 @@
 </h:head>
 
 <body> 
-<div id="templatemo_container">
+<div id="templatemo_container_registroUsu">
 	
 	<div id="templatemo_header_panel">
         <div id="templatemo_title_section">
@@ -43,9 +43,7 @@
         </div>
         <div id="templatemo_top_right_section">
             <ul>
-              <li><a href="../Usuario/home.xhtml">Home</a></li>
-              <li><a href="#">Site Map</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="../Usuario/home.xhtml">Home</a></li>             
             </ul>
         </div>
     </div>
@@ -111,27 +109,65 @@
         </div>
     </div> <!-- end of login and banner panel -->
     
-    <div id="templatemo_menu">
+    <div id="templatemo_menu_registro">
         <ul>
-            <li><a href="../Usuario/home.xhtml"  class="current">Home</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Tutorials</a></li>
-            <li><a href="#">Members</a></li>  
-            <li><a href="#">Contests</a></li> 
-            <li><a href="#">About Us</a></li>                     
-            <li  class="last"><a href="#">Contact Us</a></li>            
+            <li><a href="../Usuario/home.xhtml"  class="current">Home</a></li>                  
         </ul> 
     </div>
     
     <!-- content -->
-    <div id="templatemo_content">
-    	<div id="templatemo_leftcolumn">        	           
-            <div class="cleaner"> &nbsp; </div>                        
-        </div> <!-- end of left column -->        
+    <div id="templatemo_content_registroUsuario">    	
+    
+    	<div id="templatemo_rightcolumn">
+	            <div id="templatemo_search_panel">
+	                 <h1>Buscar</h1>
+	               
+	            </div> <!-- end of search panel -->
+	                                  
+	            <div class="cleaner">&nbsp;</div>
+	                        	
+	    </div> <!-- end of right column --> 
+        		    	      	  
+   		<div class="templatemo_leftcolumn_registroUsuario">
+   			<br/>
+            <h1>Registro de Usuario</h1>
+            <h:form id="Registrarse">      
+            
+            	<p:growl id="growlRegistroUsu" showDetail="true" sticky="true" life="3000" />
+                                                  	    
+				<h:panelGrid columns="2" cellpadding="5" styleClass="PanelGridRegUsu">
+					<div class="form_row">
+						<label for="Nick_Registro">Nick:</label>																									
+						<p:inputText id="Nick_Registro" value="#{userBean.txtNick}" required="true" />																						
+					</div>
+					
+					<div class="form_row">
+						<label for="Nombre_Registro">Nombre:</label>																									
+						<p:inputText id="Nombre_Registro" value="#{userBean.txtNombre}" />																						
+					</div>
+					
+					<div class="form_row">
+						<label for="Password_Registro">Password:</label>																									
+						<p:password id="Password_Registro" value="#{userBean.txtPassword}" required="true" />											 				
+					</div>		
+					
+					<div class="form_row">
+						<label for="Mail_Registro">Mail:</label>																									
+						<p:inputText id="Mail_Registro" value="#{userBean.txtEmail}" />																						
+					</div>																				 					 		 			 			 			 	
+				</h:panelGrid>
+							
+				<p:commandButton styleClass="buttonPanel" update="growlRegistroUsu" type="submit" value="Login" actionListener="#{userBean.ingresarUsu_ON_CLICK()}">												
+				</p:commandButton>		
+											
+			</h:form>							
+                                            
+        </div>
+        		            	      	                  	                      
     </div>
 <!-- end of content -->
     <div id="templatemo_footer">
-        <a href="#">Home</a> | <a href="#">About Us</a> | <a href="#">Gallery</a> | <a href="#">Tutorials</a> | <a href="#">FAQs</a> | <a href="#">Contact Us</a><br />       
+        <a href="../Usuario/home.xhtml">Home</a><br />       
         <!-- Credit: www.templatemo.com -->
     </div>
 <!--  Designed by w w w . t e m p l a t e m o . c o m  -->

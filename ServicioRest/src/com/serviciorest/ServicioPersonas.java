@@ -9,6 +9,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.core.data.entites.Usuario;
+import com.core.service.negocio.locales.ServiciosSeguridadImpl;
 import com.serviciorest.modelo.Persona;
 import com.serviciorest.repositorio.PersonasStub;
 
@@ -25,14 +27,24 @@ public class ServicioPersonas {
 		return personaStub.getPersonas();
 	}
 		
-	//2
-	/*@GET
+	
+	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Path("{personaId}")
-	public Persona getPersona(@PathParam("personaId") String personaId)
+	public Persona getPersona(@PathParam("personaId") String id)
 	{
-		return personaStub.getPersona(personaId);
-	}*/
+		
+		ServiciosSeguridadImpl servicioSeguridad = new ServiciosSeguridadImpl();
+		Usuario usuario = servicioSeguridad.buscarUsuario(id);
+		Persona p = new Persona();
+		p.setId(1);
+		p.setNombre("brian");
+		p.setApellido("apellido");
+		
+		return p;
+		
+		//return personaStub.getPersona(id);
+	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

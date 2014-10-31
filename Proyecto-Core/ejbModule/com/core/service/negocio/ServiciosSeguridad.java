@@ -1,7 +1,11 @@
 package com.core.service.negocio;
 
 import java.util.Date;
+
 import javax.ejb.Local;
+import javax.ejb.Remote;
+
+import com.core.data.entites.Usuario;
 
 @Local
 public interface ServiciosSeguridad {
@@ -12,5 +16,7 @@ public interface ServiciosSeguridad {
 			Date fechaNac);
 	
 	public int funciona(int numero);
+	
+	public Usuario buscarUsuario(String id);
 	
 }

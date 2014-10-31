@@ -2,7 +2,7 @@ package com.web.beans;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.text.DateFormat;
+//import java.text.DateFormat;
 import java.util.Date;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -81,11 +81,6 @@ public class UserBean implements Serializable{
 		Date fechaNac = new Date();
 		fechaNac.getTime();
 		
-
-		System.out.println("NOMBRE ="+this.txtNombre);
-		System.out.println("PASWORD ="+ this.txtPassword);
-		System.out.println("Email ="+ this.txtEmail);
-		System.out.println("NICK = " +this.txtNick);
 		
 		servicioSeguridad.ingesarUsuraio(this.txtNick, MD5(this.txtPassword), this.txtEmail, 
 										this.txtNombre, fechaNac);
