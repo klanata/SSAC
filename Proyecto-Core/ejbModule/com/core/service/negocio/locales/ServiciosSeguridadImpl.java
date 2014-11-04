@@ -2,22 +2,18 @@ package com.core.service.negocio.locales;
 
 import java.util.Date;
 
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
+import javax.ws.rs.Path;
 
 import com.core.data.entites.Usuario;
-
 import com.core.data.persistencia.UsuarioDAO;
 import com.core.service.negocio.ServiciosSeguridad;
 
-
-@Stateless
-@TransactionManagement(TransactionManagementType.CONTAINER)
+@Path("/personas") 
+@Stateless(mappedName="ejb:Proyecto-EAR/Proyecto-Core//ServiciosSeguridadImpl!com.core.service.negocio.ServiciosSeguridad")
 public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 
 	@EJB
@@ -58,21 +54,13 @@ public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 		return true;
 	}
 	
-	@Override
-	public int funciona(int numero){
-		
-		return numero+5;
-	}
 	
-	@Override
-	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public Usuario buscarUsuario(String id)
+	////////////////////////////////////////////////////////////////////////////////////////
+	public Usuario buscarUsuario(String id) throws Exception 
 	{
-		System.out.println("Esto tiene el id");
-		Integer _id= new Integer(id);
-		System.out.println("Esto tiene el id"+ _id);
+		Long id2 = Long.parseLong(id);
 		Usuario u = new Usuario();
-		u = usuarioDAO.BuscarById(_id);
+		u = this.usuarioDAO.BuscarById(id2);
 		return u;
 		
 	}

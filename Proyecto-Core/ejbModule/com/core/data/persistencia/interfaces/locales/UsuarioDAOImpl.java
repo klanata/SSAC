@@ -9,10 +9,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import com.core.data.entites.Usuario;
-import com.core.data.persistencia.AbstractService;
-import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.UsuarioDAO;
 
 
@@ -20,23 +17,15 @@ import com.core.data.persistencia.UsuarioDAO;
 
 @Stateless
 
-
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class UsuarioDAOImpl extends AbstractService implements UsuarioDAO{
+public class UsuarioDAOImpl  implements UsuarioDAO{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	@PersistenceContext
 	protected EntityManager em;
 
-	@Override
-	protected EntityManager getEntityManager() {
-
-		return em;
-	}
-	private DataService dataService;
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Usuario insert(Usuario entity) {
@@ -44,8 +33,6 @@ public class UsuarioDAOImpl extends AbstractService implements UsuarioDAO{
 		try {
 			if (entity != null)
 			{			
-				//dataService.create(entity);
-				//em.create(entity);
 				em.persist(entity);
 			
 			}
@@ -59,7 +46,7 @@ public class UsuarioDAOImpl extends AbstractService implements UsuarioDAO{
 		return entity;
 		
 	}
-
+	////////////////////////////////////////////////////////////////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void update(Usuario entity) {
 		try{
@@ -70,43 +57,32 @@ public class UsuarioDAOImpl extends AbstractService implements UsuarioDAO{
 		}
 		
 	}
-
+	////////////////////////////////////////////////////////////////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void delete(Usuario entity) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	//@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	////////////////////////////////////////////////////////////////////////////
 	@Override
-	public Usuario BuscarById(Integer id) {
-
-		
-		///Usuario usuario = n
-
-	  	System.out.println("el usuario esta bavioooooooooooo    ");
-
-	  	
+	public Usuario BuscarById(Long id)throws Exception{
 		Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona.ID");
-//		String idString= id.toString();
 	  	consulta.setParameter("id", id);
 	  	Usuario usuario = (Usuario) consulta.getResultList().get(0);
-	  	
-	  	//Usuario usuario = find(Usuario.class, id);
-	  	
 		return usuario;
 		
 	}
-
+	////////////////////////////////////////////////////////////////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Usuario> findAll() {
-		// TODO Auto-generated method stub
+		
 		
 		
 		return null;
 	}
 
-	//@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	////////////////////////////////////////////////////////////////////////////
 	public Usuario buscarUsuario(String login, String password) {
 		
 		Usuario usuario = null;
@@ -117,6 +93,6 @@ public class UsuarioDAOImpl extends AbstractService implements UsuarioDAO{
 	  		
 		return usuario;
 	}
-
+	////////////////////////////////////////////////////////////////////////////
 
 }

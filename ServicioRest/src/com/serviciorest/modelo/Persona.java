@@ -1,46 +1,59 @@
 package com.serviciorest.modelo;
 
+import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Persona {
 	
+	private Long id;
+	private String nick;
+	private String email;
 	private String nombre;
-	private String apellido;
-	private int id;
+	private Date fechaNac;
 	
 	public Persona() {
-		this.nombre = "John";
-		this.apellido = "Doe";
-	}
-	
-	public Persona(int id, String nombre, String apellido) {
 		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getApellido() {
-		return apellido;
-	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Date getFechaNac() {
+		return fechaNac;
+	}
+
+	public void setFechaNac(Date fechaNac) {
+		this.fechaNac = fechaNac;
+	}
+
 
 }

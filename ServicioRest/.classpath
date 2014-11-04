@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry exported="true" kind="lib" path="src/javax.ws.rs-api-2.0.jar">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1 Runtime">
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jackson-core-asl-1.9.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jackson-jaxrs-1.9.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jackson-mapper-asl-1.9.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jackson-xc-1.9.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/javax.ws.rs-api-2.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jersey-client-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jersey-core-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jersey-json-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jersey-server-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jersey-servlet-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jettison-1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/Lib/jsr311-api-1.1.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Proyecto-Core"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss 7.1">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
@@ -24,6 +32,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/Proyecto-Core"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

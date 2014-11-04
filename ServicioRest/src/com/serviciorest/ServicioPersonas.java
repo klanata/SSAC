@@ -1,7 +1,11 @@
 package com.serviciorest;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.NamingException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -9,55 +13,141 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.core.data.entites.Usuario;
-import com.core.service.negocio.locales.ServiciosSeguridadImpl;
-import com.serviciorest.modelo.Persona;
-import com.serviciorest.repositorio.PersonasStub;
+import clienteutility.ClienteUtility;
 
-//personas
+import com.core.data.entites.Usuario;
+import com.core.service.negocio.ServiciosSeguridad;
+import com.serviciorest.modelo.Persona;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+
 @Path("personas") 
+@Stateless
+@LocalBean
 public class ServicioPersonas {
 	 
-	private PersonasStub personaStub = new PersonasStub();
 	
+	private ServiciosSeguridad manager;
+	
+	private Context context;
+	
+		
+	///////////////////////////////////////////////////////////////////////////
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<Persona> getPersonas()
+	public List<Persona> getPersonas() throws Exception
 	{
-		return personaStub.getPersonas();
+		manager = null;
+		context = null;
+		Persona p = new Persona();
+		long idUsuario = 1;
+		p.setId(idUsuario);
+		p.setNombre("nombre");
+		p.setEmail("email");
+		Date fechaNac = new Date();
+		p.setFechaNac(fechaNac);
+		p.setNick("nick");
+		List<Persona> listaPersona = new  ArrayList<Persona>(0);
+		listaPersona.add(p);
+		
+		try {
+            // 1. Obtaining Context
+            context = ClienteUtility.getInitialContext();
+            // 2. Generate JNDI Lookup name
+            //String lookupName = getLookupName();
+            // 3. Lookup and cast
+            manager = (ServiciosSeguridad) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//ServiciosSeguridadImpl!com.core.service.negocio.ServiciosSeguridad");
+ 
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+		return listaPersona;
 	}
 		
-	
+	///////////////////////////////////////////////////////////////////////////
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Path("{personaId}")
-	public Persona getPersona(@PathParam("personaId") String id)
+	public Persona getPersona(@PathParam("personaId") String id) throws Exception
 	{
+		manager = null;
 		
-		ServiciosSeguridadImpl servicioSeguridad = new ServiciosSeguridadImpl();
-		Usuario usuario = servicioSeguridad.buscarUsuario(id);
+		 context = null;
+		
+		//por defecto dejamos a la persona sin nada
 		Persona p = new Persona();
-		p.setId(1);
-		p.setNombre("brian");
-		p.setApellido("apellido");
+		long idUsuario = 1;
+		p.setId(idUsuario);
+		p.setNombre("nombre");
+		p.setEmail("email");
+		Date fechaNac = new Date();
+		p.setFechaNac(fechaNac);
+		p.setNick("nick");
 		
+		
+		try {
+            // 1. Obtaining Context
+            context = ClienteUtility.getInitialContext();
+            // 2. Generate JNDI Lookup name
+            //String lookupName = getLookupName();
+            // 3. Lookup and cast
+            manager = (ServiciosSeguridad) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//ServiciosSeguridadImpl!com.core.service.negocio.ServiciosSeguridad");
+ 
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+		
+		try {
+				Usuario usuario = manager.buscarUsuario(id);
+				
+				p.setId(usuario.getId());
+				p.setNombre(usuario.getNombre());
+				p.setEmail(usuario.getEmail());
+				p.setNick(usuario.getNick());
+				p.setFechaNac(usuario.getFechaNac());
+				
+		} catch (NamingException e) {
+            e.printStackTrace();
+        }
+		
+		
+				
 		return p;
 		
-		//return personaStub.getPersona(id);
 	}
-	
+	///////////////////////////////////////////////////////////////////////////
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Path("funcionPrueba")
-	public String funciona(@QueryParam("num") String numero)
+	@Path("crearUsuario")
+	public void getCrearUsuario(@QueryParam("num") String nick) throws Exception
 	{
-		return personaStub.funciona(numero);
+		manager = null;
+		context = null;
+		try {
+            // 1. Obtaining Context
+            context = ClienteUtility.getInitialContext();
+            // 2. Generate JNDI Lookup name
+            //String lookupName = getLookupName();
+            // 3. Lookup and cast
+            manager = (ServiciosSeguridad) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//ServiciosSeguridadImpl!com.core.service.negocio.ServiciosSeguridad");
+ 
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+		
+			
+			String login = nick;
+			String password ="1120212";
+			String email = "email@rest.com";
+			String nombre = "nombreResst"; 
+			Date fechaNac = new Date();
+			manager.ingesarUsuraio(login, password, email, nombre, fechaNac);
+			
+			
+		
+		
 	}
-	/*@GET
-	@Produces(MediaType.TEXT_HTML)
-	public String getPersonasHTML()
-	{
-		return "<p>Personas</p>";
-	}*/
-
+	///////////////////////////////////////////////////////////////////////////
 }

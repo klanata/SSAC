@@ -14,9 +14,6 @@ import javax.faces.bean.SessionScoped;
 import com.core.service.negocio.ServiciosSeguridad;
 
 
-
-@ManagedBean
-@SessionScoped
 public class UserBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;

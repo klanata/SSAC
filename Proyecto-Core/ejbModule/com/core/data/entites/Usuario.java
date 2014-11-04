@@ -1,7 +1,6 @@
 package com.core.data.entites;
-
-import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import javax.persistence.*;
 
@@ -30,13 +29,14 @@ query = "SELECT u "+
 })
 
 @Table (name = "usuario")
+@XmlRootElement
 public class Usuario extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 	
 	@Column(name= "nick",  nullable= false)
 	private String nick = "";
@@ -54,7 +54,7 @@ public class Usuario extends AbstractEntity {
 	private Date fechaNac;
 	
 	// GETTERS
-	public Integer getId(){
+	public Long getId(){
 		return id;
 	}
 	
@@ -80,7 +80,7 @@ public class Usuario extends AbstractEntity {
 	
 	
 	// SETTERS
-	public void setId(Integer id){
+	public void setId(Long id){
 		this.id = id;
 	}
 	

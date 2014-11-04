@@ -25,5 +25,8 @@
   <servlet-mapping>
     <servlet-name>RestServlet</servlet-name>
     <url-pattern>/catastrofe/*</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>  
+  
+
+  
 </web-app>
