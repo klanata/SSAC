@@ -1,6 +1,8 @@
-package com.core.data.persistencia.interfaces.locales;
+package com.core.data.persistencia;
 import java.util.List;
 
+import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -9,16 +11,19 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 import com.core.data.entites.Usuario;
-import com.core.data.persistencia.UsuarioDAO;
+import com.core.data.persistencia.interfaces.locales.UsuarioDAO;
+import com.core.data.persistencia.interfaces.remotas.UsuarioDAORemoto;
 
 
 
 
 @Stateless
 
-@TransactionManagement(TransactionManagementType.CONTAINER)
-public class UsuarioDAOImpl  implements UsuarioDAO{
+@Local(UsuarioDAO.class)
+@Remote(UsuarioDAORemoto.class)
+public class UsuarioDAOImpl  implements UsuarioDAO, UsuarioDAORemoto{
 
 	/**
 	 * 
@@ -76,7 +81,6 @@ public class UsuarioDAOImpl  implements UsuarioDAO{
 	////////////////////////////////////////////////////////////////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Usuario> findAll() {
-		
 		
 		
 		return null;

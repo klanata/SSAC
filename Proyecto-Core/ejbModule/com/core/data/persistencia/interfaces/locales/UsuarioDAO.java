@@ -1,4 +1,4 @@
-package com.core.data.persistencia;
+package com.core.data.persistencia.interfaces.locales;
 import java.util.List;
 
 import javax.ejb.Local;

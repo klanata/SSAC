@@ -58,23 +58,6 @@ public class Rescatista extends Persona implements Serializable {
 	private Integer celular;
 
 
-
-
-
-
-	public Rescatista(String nombre, String apellido, String nick,
-			String email, String password, Date fechaNac,
-			cross_cuting.enums.sexo sexo, Integer celular) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.nick = nick;
-		this.email = email;
-		this.password = password;
-		this.fechaNac = fechaNac;
-		this.sexo = sexo;
-		this.celular = celular;
-	}
 	public Integer getId() {
 		return id;
 	}

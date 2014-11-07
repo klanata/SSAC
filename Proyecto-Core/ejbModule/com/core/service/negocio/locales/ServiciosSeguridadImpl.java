@@ -9,7 +9,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Path;
 
 import com.core.data.entites.Usuario;
-import com.core.data.persistencia.UsuarioDAO;
+import com.core.data.persistencia.interfaces.locales.UsuarioDAO;
 import com.core.service.negocio.ServiciosSeguridad;
 
 @Path("/personas") 

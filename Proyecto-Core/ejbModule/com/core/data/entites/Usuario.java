@@ -37,7 +37,7 @@ public class Usuario extends AbstractEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id", nullable= false)
 	private Long id;
-	
+		
 	@Column(name= "nick",  nullable= false)
 	private String nick = "";
 	

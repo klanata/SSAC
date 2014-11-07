@@ -7,6 +7,7 @@ import com.core.service.negocio.ServiciosSeguridad;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIInput;
@@ -17,7 +18,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import clienteutility.ClienteUtility;
+
 
 @ManagedBean
 @SessionScoped
@@ -30,7 +31,8 @@ public class registroUsuario {
 	private String mail;
 	private String pathy = "3333";
 	
-	
+	@EJB
+	private ServiciosSeguridad servicioSeguridad;
 	public String getNick() {
 		return nick;
 	}
@@ -65,55 +67,12 @@ public class registroUsuario {
 	public String registrar(){
 		
 		
-		
-		ServiciosSeguridad manager = null;
-		
-		Context context = null;
-		
-		try {
-            // 1. Obtaining Context
-            context = ClienteUtility.getInitialContext();
-            // 2. Generate JNDI Lookup name
-            //String lookupName = getLookupName();
-            // 3. Lookup and cast
-            manager = (ServiciosSeguridad) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//ServiciosSeguridadImpl!com.core.service.negocio.ServiciosSeguridad");
- 
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-		
-		/*Properties props = new Properties();
-		
-		
-		props.put(Context.INITIAL_CONTEXT_FACTORY,"org.jboss.naming.remote.client.InitialContextFactory");
-    	props.put(Context.URL_PKG_PREFIXES,"org.jboss.ejb.client.naming");
-    	props.put(Context.PROVIDER_URL,"jnp://localhost:4447" );
-    	
-    	
-    	try{
-    		System.out.println("pasa por aca.");
-    		contexto = new InitialContext(props);	
-    		System.out.println("pasa por aca2.");
-    		manager = (UsuariosManagerRemote) contexto.lookup("ejb/UsuariosManagerJNDI");
-    			    		
-    	}catch (NamingException e){
-		
-    		e.printStackTrace();
-    	}
-    	*/
-    	
-    	try{
-    		//String img = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("avatar");	    			    		
-    		//Long res = manager.agregarUsuario(nick, nombre, apellido, password, mail);    		
-    		//nick="cecilia";
-    		//nombre = "cecilia";
-    		//apellido = "camps";
-    		//password = "ceci";
-    		//mail = "jaja";    
+		try{
+		   
     		Date fechaNac = new Date();
     		fechaNac.getTime();
     		
-    		manager.ingesarUsuraio(nick, password, mail, 
+    		servicioSeguridad.ingesarUsuraio(nick, password, mail, 
     				nombre, fechaNac);
     		
     		
