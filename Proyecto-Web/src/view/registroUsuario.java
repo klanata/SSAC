@@ -2,7 +2,7 @@ package view;
 
 
 
-import com.core.service.negocio.ServiciosSeguridad;
+import com.core.service.negocio.remote.UsuarioEBR;
 
 import java.util.Date;
 import java.util.Properties;
@@ -32,7 +32,7 @@ public class registroUsuario {
 	private String pathy = "3333";
 	
 	@EJB
-	private ServiciosSeguridad servicioSeguridad;
+	private UsuarioEBR servicioSeguridad;
 	public String getNick() {
 		return nick;
 	}

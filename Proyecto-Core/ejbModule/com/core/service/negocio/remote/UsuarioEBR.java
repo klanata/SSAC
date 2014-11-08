@@ -1,4 +1,4 @@
-package com.core.service.negocio;
+package com.core.service.negocio.remote;
 
 import java.util.Date;
 import javax.ejb.Remote;
@@ -6,7 +6,7 @@ import javax.ejb.Remote;
 import com.core.data.entites.Usuario;
 
 @Remote
-public interface ServiciosSeguridad {
+public interface UsuarioEBR {
 
 	public Boolean existeUsuario(String login, String password);
 	

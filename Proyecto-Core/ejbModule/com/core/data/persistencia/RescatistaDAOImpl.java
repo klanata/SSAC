@@ -8,8 +8,6 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.Rescatista;
 import com.core.data.persistencia.interfaces.locales.RescatistaDAO;
@@ -99,16 +97,13 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	@Override
 	public void pendienteRealizado(EstadoRescatista estadorescatista) {
 		try{
-			Integer idRescatista = estadorescatista.getId();
-			Query consulta = this.em.createNamedQuery("EstadoRescatista.FindEstadoRescatista");
-			consulta.setParameter("idEstado", idRescatista);
-			EstadoRescatista estadoGuardar = (EstadoRescatista) consulta.getResultList().get(0);
+			
+			EstadoRescatista estadoRescatistaActualizar = find(EstadoRescatista.class,estadorescatista.getId());
+			//Como esta realizado ya no esta pendiente
+			estadoRescatistaActualizar.setPendiente(false);
+			
+			dataService.update(estadoRescatistaActualizar);
 			 
-			if(estadoGuardar != null)
-			{
-				estadoGuardar.setPendiente(false);
-				this.em.merge(estadoGuardar);
-			} 
 			
 			
 		} catch (Exception excep){

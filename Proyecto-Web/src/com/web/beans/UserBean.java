@@ -11,7 +11,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.core.service.negocio.ServiciosSeguridad;
+import com.core.service.negocio.remote.UsuarioEBR;
 
 
 public class UserBean implements Serializable{
@@ -19,7 +19,7 @@ public class UserBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 //ejb
 	@EJB
-	private ServiciosSeguridad servicioSeguridad;
+	private UsuarioEBR servicioSeguridad;
 	
 	private String txtNick;
 	private String txtPassword;

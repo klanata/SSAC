@@ -16,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Usuario;
-import com.core.service.negocio.ServiciosSeguridad;
+import com.core.service.negocio.remote.UsuarioEBR;
 import com.serviciorest.modelo.Persona;
 
 import javax.ejb.LocalBean;
@@ -29,9 +29,11 @@ import javax.ejb.Stateless;
 public class ServicioPersonas {
 	 
 	
-	private ServiciosSeguridad manager;
+	private UsuarioEBR manager;
 	
 	private Context context;
+	
+	private String conexion = "ejb:Proyecto-EAR/Proyecto-Core//UsuarioEB!com.core.service.negocio.remote.UsuarioEBR";
 	
 		
 	///////////////////////////////////////////////////////////////////////////
@@ -58,7 +60,7 @@ public class ServicioPersonas {
             // 2. Generate JNDI Lookup name
             //String lookupName = getLookupName();
             // 3. Lookup and cast
-            manager = (ServiciosSeguridad) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//ServiciosSeguridadImpl!com.core.service.negocio.ServiciosSeguridad");
+            manager = (UsuarioEBR) context.lookup(conexion);
  
         } catch (NamingException e) {
             e.printStackTrace();
@@ -93,7 +95,7 @@ public class ServicioPersonas {
             // 2. Generate JNDI Lookup name
             //String lookupName = getLookupName();
             // 3. Lookup and cast
-            manager = (ServiciosSeguridad) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//ServiciosSeguridadImpl!com.core.service.negocio.ServiciosSeguridad");
+            manager = (UsuarioEBR) context.lookup(conexion);
  
         } catch (NamingException e) {
             e.printStackTrace();
@@ -131,7 +133,7 @@ public class ServicioPersonas {
             // 2. Generate JNDI Lookup name
             //String lookupName = getLookupName();
             // 3. Lookup and cast
-            manager = (ServiciosSeguridad) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//ServiciosSeguridadImpl!com.core.service.negocio.ServiciosSeguridad");
+            manager = (UsuarioEBR) context.lookup(conexion);
  
         } catch (NamingException e) {
             e.printStackTrace();

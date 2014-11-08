@@ -9,7 +9,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.core.service.negocio.ServiciosSeguridad;
+import com.core.service.negocio.remote.UsuarioEBR;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -25,7 +25,7 @@ public class LoginBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	private ServiciosSeguridad servicioSeguridad;
+	private UsuarioEBR servicioSeguridad;
 	
 	private String txtLogin;
 	private String txtPassword;

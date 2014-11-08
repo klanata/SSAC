@@ -35,7 +35,7 @@ public class EstadoRescatista  extends AbstractEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column( nullable= false)
-	private Integer id;
+	private Long id;
 	
 	public EstadoRescatista() {
 		super();
@@ -48,10 +48,10 @@ public class EstadoRescatista  extends AbstractEntity implements Serializable {
 	@ManyToOne
 	private Rescatista rescatista;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Boolean getPendiente() {

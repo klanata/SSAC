@@ -1,4 +1,4 @@
-package com.core.service.negocio.locales;
+package com.core.service.negocio;
 
 import java.util.Date;
 
@@ -9,11 +9,11 @@ import javax.ws.rs.Path;
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.UsuarioDAO;
-import com.core.service.negocio.ServiciosSeguridad;
+import com.core.service.negocio.remote.UsuarioEBR;
 
 @Path("/personas") 
-@Stateless(mappedName="ejb:Proyecto-EAR/Proyecto-Core//ServiciosSeguridadImpl!com.core.service.negocio.ServiciosSeguridad")
-public class ServiciosSeguridadImpl implements ServiciosSeguridad{
+@Stateless(mappedName="ejb:Proyecto-EAR/Proyecto-Core//UsuarioEB!com.core.service.negocio.remote.UsuarioEBR")
+public class UsuarioEB implements UsuarioEBR{
 
 	@EJB
 	private UsuarioDAO usuarioDAO;
