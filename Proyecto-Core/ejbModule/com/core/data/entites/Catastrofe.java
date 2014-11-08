@@ -13,7 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "Catastrofe")
-public class Catastrofe implements Serializable {
+public class Catastrofe  extends AbstractEntity implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;

@@ -4,11 +4,10 @@ import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Path;
 
 import com.core.data.entites.Usuario;
+import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.UsuarioDAO;
 import com.core.service.negocio.ServiciosSeguridad;
 
@@ -18,9 +17,10 @@ public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 
 	@EJB
 	private UsuarioDAO usuarioDAO;
+	@EJB
+	private DataService dataService;
 	
 	
-	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Boolean existeUsuario(String login, String password) {
 
 		try {
@@ -40,16 +40,17 @@ public class ServiciosSeguridadImpl implements ServiciosSeguridad{
 	public Boolean ingesarUsuraio(String login, String password, String email, String nombre, 
 									Date fechaNac) {
 		
-		Usuario u = new Usuario();
+			Usuario u = new Usuario();
+			
+			u.setNick(login);
+			u.setPassword(password);
+			u.setEmail(email);
+			u.setFechaNac(fechaNac);
+			u.setNombre(nombre);
+			
 		
-		u.setNick(login);
-		u.setPassword(password);
-		u.setEmail(email);
-		u.setFechaNac(fechaNac);
-		u.setNombre(nombre);
-		
-		
-		usuarioDAO.insert(u);
+			usuarioDAO.insert(u);
+			
 		
 		return true;
 	}

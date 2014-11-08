@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 
-public class Donacion implements Serializable {
+public class Donacion  extends AbstractEntity implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;

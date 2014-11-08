@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class PedidoDeAyuda implements Serializable {
+public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;

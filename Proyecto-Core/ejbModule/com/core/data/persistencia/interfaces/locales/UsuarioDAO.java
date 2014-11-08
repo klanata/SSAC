@@ -2,12 +2,14 @@ package com.core.data.persistencia.interfaces.locales;
 import java.util.List;
 
 import javax.ejb.Local;
+
 import com.core.data.entites.Usuario;
+import com.core.data.persistencia.JPAService;
 
 
 
 @Local
-public interface UsuarioDAO {
+public interface UsuarioDAO extends JPAService{
 
 	public Usuario insert(Usuario entity);
 	

@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class Ong implements Serializable {
+public class Ong  extends AbstractEntity implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;

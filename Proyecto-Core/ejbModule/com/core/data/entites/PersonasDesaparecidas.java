@@ -12,7 +12,7 @@ import cross_cuting.enums.EstadoPersona;
  */
 @Entity
 
-public class PersonasDesaparecidas implements Serializable {
+public class PersonasDesaparecidas  extends AbstractEntity implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;

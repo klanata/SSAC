@@ -1,7 +1,8 @@
 package com.core.data.entites;
+import java.io.Serializable;
 import java.util.Date;
-import javax.xml.bind.annotation.XmlRootElement;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.persistence.*;
 
 /**
@@ -30,7 +31,7 @@ query = "SELECT u "+
 
 @Table (name = "usuario")
 @XmlRootElement
-public class Usuario extends AbstractEntity {
+public class Usuario extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

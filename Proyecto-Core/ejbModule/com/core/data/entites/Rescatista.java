@@ -2,6 +2,8 @@ package com.core.data.entites;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -20,10 +22,6 @@ public class Rescatista extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-
-	
-	
-
 	public Rescatista() {
 		super();
 	}
@@ -31,7 +29,7 @@ public class Rescatista extends Persona implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long  id;
 	
 	@Column(nullable= false)
 	private String nombre = "";
@@ -56,12 +54,15 @@ public class Rescatista extends Persona implements Serializable {
 	
 	@Column(nullable= false)
 	private Integer celular;
+	
+	
+	@OneToMany
+	private Collection<EstadoRescatista> estadoRescatista = new ArrayList<EstadoRescatista>(0);
 
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -119,5 +120,11 @@ public class Rescatista extends Persona implements Serializable {
 	}
    
 	
+	public Collection<EstadoRescatista> getEstadoRescatista() {
+		return estadoRescatista;
+	}
+	public void setEstadoRescatista(Collection<EstadoRescatista> estadoRescatista) {
+		this.estadoRescatista = estadoRescatista;
+	}
 	
 }

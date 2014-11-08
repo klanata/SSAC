@@ -1,11 +1,14 @@
 package com.core.data.persistencia;
 
+/*
+ * Autor: Stephy*/
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -33,7 +36,30 @@ public abstract class AbstractService implements JPAService {
         }
         return t;
     }
-
+    
+    @Override
+    public <T extends AbstractEntity> List<T> updateAll(List<T> col) {
+    	for(T t : col){
+    		update(t);
+    	}
+    	return col;
+    }
+    
+    @Override 
+    public <T extends AbstractEntity> List<T> createAll(List<T> col) throws Exception {
+    	try {
+    		
+	    	for(T t : col) {
+	    		create(t);
+	    	}
+	    	
+    	}
+    	catch(EntityExistsException | IllegalArgumentException | TransactionRequiredException e) {
+    		throw e;
+    	}
+    	return col;
+    }
+    
     @Override
     public <T extends AbstractEntity, PK> T find(Class<T> type, PK id) {
         return getEntityManager().find(type, id);
@@ -182,6 +208,8 @@ public abstract class AbstractService implements JPAService {
         return getEntityManager().createQuery(cq).getSingleResult();
     }
     
+    
+    
     @Override
     public <T extends AbstractEntity> long countCollectionElement(Class<T> clazz, String collectionAttribute){       
         StringBuilder sb = new StringBuilder("SELECT SIZE(X.");
@@ -217,7 +245,7 @@ public abstract class AbstractService implements JPAService {
 	@Override
 	public <T extends AbstractEntity> List<T> findByParameter(Class<T> tipoEntidad, Map<String, Object> parametros) {
 		
-		String queryString = new String();
+		String queryString = "";
 		Iterator<Entry<String, Object>> entries = parametros.entrySet().iterator();		
 		queryString = queryString.concat("SELECT e FROM " + tipoEntidad.getName() + " e WHERE ");
 		
@@ -244,7 +272,7 @@ public abstract class AbstractService implements JPAService {
 	public <T extends AbstractEntity> List<T> findByParameter(Class<T> tipoEntidad, Map<String, Object> parametros,
 			Integer limiteDeResultados) {
 		
-		String queryString = new String();
+		String queryString = "";
 		Iterator<Entry<String, Object>> entries = parametros.entrySet().iterator();		
 		queryString = queryString.concat("SELECT e FROM " + tipoEntidad.getName() + " e WHERE ");
 		
@@ -266,4 +294,60 @@ public abstract class AbstractService implements JPAService {
 		
 	}
 	
+	@Override
+	public <T extends AbstractEntity, PK> void deleteAll(Class<T> clazz, List<PK> ids) {
+		for(PK pk : ids) {
+			this.delete(clazz, pk);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends AbstractEntity> T getRandomElement(Class<T> tipoEntidad) {
+		long count = countElements(tipoEntidad);
+		long minValue = 0;
+		Long row = null;
+		if(count > 0) 
+			row = ThreadLocalRandom.current().nextLong(minValue, count);
+		else 
+			return null;
+
+		Query selectQuery = getEntityManager().createQuery("SELECT r FROM " + tipoEntidad.getName() + " r");
+	    selectQuery.setFirstResult(row.intValue());
+		selectQuery.setMaxResults(1);
+		return (T) selectQuery.getSingleResult();
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends AbstractEntity> T getRandomElementWithParameters(Class<T> tipoEntidad, Map<String, Object> parametros) {
+		long count = countElements(tipoEntidad);
+		long minValue = 0;
+		Long row = null;
+		if(count > 0) {
+			row = ThreadLocalRandom.current().nextLong(minValue, count);
+		}
+		else {
+			return null;
+		}
+		String queryString = "";
+		Iterator<Entry<String, Object>> entries = parametros.entrySet().iterator();		
+		queryString = queryString.concat("SELECT e FROM " + tipoEntidad.getName() + " e WHERE ");
+		
+		while(entries.hasNext()){			
+			Entry<String, Object> entry = entries.next();			
+			queryString = queryString.concat("e." + entry.getKey().toString() + " LIKE :" + entry.getKey().toString());
+			if(entries.hasNext()){
+				queryString = queryString.concat(" AND ");
+			}
+		}
+		Query query = getEntityManager().createQuery(queryString);
+		for(Entry<String, Object> entry : parametros.entrySet()){
+			query.setParameter(entry.getKey().toString(), entry.getValue());
+		}
+		query.setFirstResult(row.intValue());
+		query.setMaxResults(1);
+		return (T) query.getSingleResult();
+	}
 }

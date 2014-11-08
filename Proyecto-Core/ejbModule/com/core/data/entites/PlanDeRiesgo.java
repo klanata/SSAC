@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class PlanDeRiesgo implements Serializable {
+public class PlanDeRiesgo  extends AbstractEntity implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;

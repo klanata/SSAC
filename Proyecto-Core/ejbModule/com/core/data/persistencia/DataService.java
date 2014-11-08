@@ -1,5 +1,7 @@
 package com.core.data.persistencia;
 
+/*
+ * Autor: Stephy*/
 import org.jboss.logging.Logger;
 
 public interface DataService extends JPAService {
