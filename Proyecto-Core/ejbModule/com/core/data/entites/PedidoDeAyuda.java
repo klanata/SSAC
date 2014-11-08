@@ -11,7 +11,12 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@NamedQueries({
+	@NamedQuery(name="PedidoDeAyuda.BuscarPedidoPorId", 
+			query = "SELECT e "+
+					"FROM PedidoDeAyuda e " +
+					"WHERE e.id = :idPedido"), 
+})
 public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 
 	
