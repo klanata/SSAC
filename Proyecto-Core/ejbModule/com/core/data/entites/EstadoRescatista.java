@@ -18,7 +18,7 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name="EstadoRescatista.FindPendientes", 
 query = "SELECT e "+
 		"FROM EstadoRescatista e, Rescatista r " +
-		"WHERE e.pendiente = :true AND r.id= :idRescatista AND e.rescatista.id = r.id"),
+		"WHERE e.pendiente = :true AND r.id = :idRescatista AND e.rescatista.id = r.id"),
 
 @NamedQuery(name="EstadoRescatista.FindEstadoRescatista", 
 query = "SELECT e "+

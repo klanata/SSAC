@@ -58,7 +58,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 		try{
 			
 			//buscamos el rescatista
-			Rescatista rescatista = find(Rescatista.class, idRescatista);
+			Rescatista rescatista =dataService.find(Rescatista.class, idRescatista);
 			//obtengo la lista de sus pendientes
 			Collection<EstadoRescatista> listaEstadoRescatista = rescatista.getEstadoRescatista();
 			listaEstadoRescatista.add(estadoRescatista);
@@ -98,7 +98,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	public void pendienteRealizado(EstadoRescatista estadorescatista) {
 		try{
 			
-			EstadoRescatista estadoRescatistaActualizar = find(EstadoRescatista.class,estadorescatista.getId());
+			EstadoRescatista estadoRescatistaActualizar = dataService.find(EstadoRescatista.class,estadorescatista.getId());
 			//Como esta realizado ya no esta pendiente
 			estadoRescatistaActualizar.setPendiente(false);
 			
