@@ -6,8 +6,11 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.persistencia.interfaces.locales.PedidoDeAyudaDAO;
 
@@ -28,6 +31,8 @@ public class PedidoDeAyudaDAOImpl extends AbstractService implements PedidoDeAyu
 	
 	@EJB
 	private DataService dataService;
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void crearPedidoDeAyuda(PedidoDeAyuda pedAyuda) throws Exception{
 		try{
 			dataService.create(pedAyuda);
@@ -36,12 +41,13 @@ public class PedidoDeAyudaDAOImpl extends AbstractService implements PedidoDeAyu
 			
 		}
     }
-	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public PedidoDeAyuda BuscarPedidoPorId (int idPedido){
 		PedidoDeAyuda pedidoAyuda = dataService.find(PedidoDeAyuda.class, idPedido);
 		return pedidoAyuda;
 	}
-	 
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Collection<PedidoDeAyuda> findAllPedidoAyuda(){
 	Collection<PedidoDeAyuda> listPed = null;
 		try{			
