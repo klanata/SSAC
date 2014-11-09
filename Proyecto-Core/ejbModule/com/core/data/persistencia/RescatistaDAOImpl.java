@@ -112,6 +112,39 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 		
 	}
 	/////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public Rescatista obtenerRescatistaConMenosPendientes() {
+		
+		Rescatista rescatistaMenosPendientes = null;
+		try{
+			
+			//obtengo todos los rescatistas en el sistema
+			
+			Collection<Rescatista> listarRescatistas = findAll(Rescatista.class);
+			//recorremos la lista y vamos viendo quien tiene menos pendientes
+			Integer pendiente = 0;
+			
+			while (listarRescatistas.isEmpty() != true)
+			{
+				Rescatista rescatista = listarRescatistas.iterator().next();
+				//veo que cantidad de pendientes tiene
+				Collection<EstadoRescatista> listaPendientes = rescatista.getEstadoRescatista();
+				Integer i = listaPendientes.size();
+				
+				//rescatista.getEstadoRescatista().
+				if ( (pendiente == 0) || (pendiente < i )  )
+				{
+					//actualizo el rescatista con menos pendientes
+					rescatistaMenosPendientes = rescatista;
+					
+					pendiente = i;
+				}
+			}
+			
+		}catch (Exception excep){throw excep;}
+		
+		return rescatistaMenosPendientes;
+	}
 	
 	
 }

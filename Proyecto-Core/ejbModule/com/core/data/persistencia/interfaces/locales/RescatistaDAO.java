@@ -22,5 +22,7 @@ public interface RescatistaDAO extends JPAService{
 	
 	public void pendienteRealizado(EstadoRescatista estadorescatista);
 	
+	public Rescatista obtenerRescatistaConMenosPendientes();
+	
 
 }
