@@ -12,21 +12,42 @@ import javax.persistence.*;
  *
  */
 @Entity
+
+@NamedQueries({
+	
+@NamedQuery(name="Catastrofe.BuscarCatastrofe.NombreEvento", 
+query = "SELECT c "+
+		"FROM Catastrofe c " +
+		"WHERE c.nombreEvento = :nombreEvento"),
+
+@NamedQuery(name="Catastrofe.BuscarCatastrofe.Id", 
+query = "SELECT c "+
+		"FROM Catastrofe c " +
+		"WHERE c.id = :id"),
+		
+@NamedQuery(name="Catastrofe.BuscarTodas", 
+query = "SELECT c "+
+		"FROM Catastrofe c "),
+
+@NamedQuery(name = "Catastrofe.BuscarCatastrofeId.NombreEvento",
+query = "SELECT c.id "+
+		"FROM Catastrofe c " +
+		"WHERE c.nombreEvento = :nombre")
+
+})
+
 @Table (name = "Catastrofe")
-public class Catastrofe  extends AbstractEntity implements Serializable {
+public class Catastrofe implements Serializable {
 
 	
-	private static final long serialVersionUID = 1L;
-
-	public Catastrofe() {
-		super();
-	}
+	private static final long serialVersionUID = 1L;	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column( nullable= false)
 	private Integer id;
 	
-	@Column(nullable= false)
+	@Column(unique=true, nullable=false)
 	private String nombreEvento = "";
 	
 	@Column( nullable= false)
@@ -51,11 +72,24 @@ public class Catastrofe  extends AbstractEntity implements Serializable {
 	private Collection<Servicio> servicios = new ArrayList<Servicio>(0);
    
 	@ManyToMany
-	private Collection<Ong> catastrofes = new ArrayList<Ong>(0);
+	private Collection<Ong> ongs = new ArrayList<Ong>(0);
+	
 	@OneToOne
 	private PlanDeRiesgo planDeRiesgo ;
 
-	
+	public Catastrofe() {
+		super();
+		this.nombreEvento = new String();
+		this.descripcion = new String();
+		this.logo = new String();
+		this.coordenadasX = new BigDecimal(0);
+		this.coordenadasY  = new BigDecimal(0);
+		this.activa = false;
+		this.prioridad = false;		
+		this.servicios = new ArrayList<Servicio>();
+		this.ongs = new ArrayList<Ong>();
+		this.planDeRiesgo = null;		
+	}	
 	
 	public Integer getId() {
 		return id;
@@ -111,11 +145,11 @@ public class Catastrofe  extends AbstractEntity implements Serializable {
 	public void setServicios(Collection<Servicio> servicios) {
 		this.servicios = servicios;
 	}
-	public Collection<Ong> getCatastrofes() {
-		return catastrofes;
+	public Collection<Ong> getOngs() {
+		return ongs;
 	}
-	public void setCatastrofes(Collection<Ong> catastrofes) {
-		this.catastrofes = catastrofes;
+	public void setOngs(Collection<Ong> catastrofes) {
+		this.ongs = catastrofes;
 	}
 	public PlanDeRiesgo getPlanDeRiesgo() {
 		return planDeRiesgo;
