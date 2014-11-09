@@ -1,6 +1,9 @@
 package com.core.data.persistencia;
 import java.util.Collection;
+
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
@@ -10,8 +13,10 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import com.core.data.entites.PedidoDeAyuda;
+import com.core.data.entites.PersonasDesaparecidas;
 import com.core.data.persistencia.interfaces.locales.PedidoDeAyudaDAO;
 
 @Stateless
@@ -48,11 +53,13 @@ public class PedidoDeAyudaDAOImpl extends AbstractService implements PedidoDeAyu
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Collection<PedidoDeAyuda> findAllPedidoAyuda(){
-	Collection<PedidoDeAyuda> listPed = null;
-		try{			
-			listPed = dataService.findAll(PedidoDeAyuda.class);
-		}catch (Exception e){}
-		return listPed;
+	public List<PedidoDeAyuda> findAllPedidoAyuda(){
+		try {
+			TypedQuery<PedidoDeAyuda> consulta = this.em.createNamedQuery("PedidoDeAyuda.findAll",PedidoDeAyuda.class);								
+			List<PedidoDeAyuda> pedido = consulta.getResultList();			
+		  	return pedido;		
+		} catch (Exception excep){			
+			throw excep;
+		}	  	
 	}
 }
