@@ -19,6 +19,7 @@
 	<class>com.core.data.entites.PlanDeRiesgo</class>
 	<class>com.core.data.entites.ImagenCatastrofe</class>
 	<class>com.core.data.entites.ImagenPersonaDesaparecida</class>	
+	<class>com.core.data.entites.EstadoRescatista</class>
 	<properties>			
 	     <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>		    
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
