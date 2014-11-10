@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cecilia2</title>
+</h:head>
+<body>
+	<h3>Registrar Catastrofe</h3>
+	<f:view>
+	<h:form id="registroCatastrofe">
+	<h:messages id="messages" for="registroCatastrofe"></h:messages>
+			<p><label for="nombreEvento">Nombre del Evento:</label>				
+			<h:inputText id="nombreEvento" value="#{catastrofeBean.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" ></h:inputText>
+			<h:message errorStyle="color:red;" for="nombreEvento"/> 
+			</p>				
+			<p><label for="descripcion">Descripción del Evento:</label>				
+			<h:inputText id="descripcion" value="#{catastrofeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria" ></h:inputText>
+			<h:message errorStyle="color:red;" for="descripcion"/> 
+			</p>
+			<p><label for="logo">Logo:</label>	
+			<!--
+			<h:inputFile id="logo" label="logo" value="#{inputBean.part}" required="true" requiredMessage="Archivo no seleccionado!!" >			
+			</h:inputFile>	
+			-->						
+			<h:message errorStyle="color:red;" for="logo"/> 
+			</p>
+			<p><label for="coordX">Coordenada X:</label>
+			<h:inputText id="coordX" value="#{catastrofeBean.coordenadasX}" required="true" requiredMessage="La coordenada X es obligatoria" ></h:inputText>	
+			<h:message errorStyle="color:red;" for="coordX"/> 
+			</p>
+			<p><label for="coordY">Coordenada Y:</label>
+			<h:inputText id="coordY" value="#{catastrofeBean.coordenadasY}" required="true" requiredMessage="La coordenada Y es obligatoria" ></h:inputText>	
+			<h:message errorStyle="color:red;" for="coordY"/> 
+			</p>	
+			<p>		
+			<h:selectBooleanCheckbox value="#{catastrofeBean.activa}"/> 
+			<label for="activa">Activa:</label>						
+			</p>	
+			<p>	
+			<h:selectBooleanCheckbox value="#{catastrofeBean.prioridad}"/> 
+			<label for="prioridad">Prioridad:</label>				
+			</p>						
+		<h:commandButton id="comandoRegistrar" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{catastrofeBean.registrarCatastrofe()}">
+		</h:commandButton>		
+		
+	</h:form>
+	</f:view>
+</body>
+</html>
