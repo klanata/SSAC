@@ -1,5 +1,6 @@
 package com.core.data.persistencia.interfaces.locales;
 import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.Local;
 
@@ -13,5 +14,5 @@ public interface PedidoDeAyudaDAO extends JPAService {
 		
 	public PedidoDeAyuda BuscarPedidoPorId (int id);
 	 
-	public Collection<PedidoDeAyuda> findAllPedidoAyuda();
+	public List<PedidoDeAyuda> findAllPedidoAyuda();
 }

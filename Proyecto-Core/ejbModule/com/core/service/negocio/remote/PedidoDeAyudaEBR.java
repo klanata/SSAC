@@ -1,12 +1,17 @@
 package com.core.service.negocio.remote;
 import java.util.Collection;
 
-import javax.ejb.Remote;
-import com.core.data.entites.PedidoDeAyuda;;
 
+import java.util.List;
+
+import javax.ejb.Remote;
+
+import com.core.data.entites.PedidoDeAyuda;
+
+@Remote
 public interface PedidoDeAyudaEBR {
 	
 	public void crearPedido(PedidoDeAyuda pedAyuda);
-	public Collection<PedidoDeAyuda> listarTodosLosPedidos();
+	public List<PedidoDeAyuda> listarTodosLosPedidos();
 	
 }
