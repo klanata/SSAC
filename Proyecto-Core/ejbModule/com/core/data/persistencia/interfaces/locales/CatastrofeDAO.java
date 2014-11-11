@@ -1,12 +1,15 @@
 package com.core.data.persistencia.interfaces.locales;
 
 import java.util.List;
+
 import javax.ejb.Local;
+
 import com.core.data.entites.Catastrofe;
+import com.core.data.persistencia.JPAService;
 
 
 @Local
-public interface CatastrofeDAO {
+public interface CatastrofeDAO extends JPAService{
 	
 	public Integer insert(Catastrofe catastrofe)  throws Exception;
 	

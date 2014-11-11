@@ -18,9 +18,13 @@ import com.core.data.entites.Catastrofe;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class CatastrofeDAOImpl implements CatastrofeDAO{
+public class CatastrofeDAOImpl extends AbstractService implements CatastrofeDAO{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@PersistenceContext
 	protected EntityManager em;
 	
@@ -95,6 +99,13 @@ public class CatastrofeDAOImpl implements CatastrofeDAO{
 		} catch (Exception excep){			
 			throw excep;
 		}	  	
+	}
+
+
+	@Override
+	protected EntityManager getEntityManager() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

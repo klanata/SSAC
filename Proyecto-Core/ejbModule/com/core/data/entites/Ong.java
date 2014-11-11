@@ -6,6 +6,8 @@ import java.util.Collection;
 
 import javax.persistence.*;
 
+import cross_cuting.enums.TipoCatastrofe;
+
 /**
  * Entity implementation class for Entity: Ong
  *
@@ -23,8 +25,15 @@ public class Ong  extends AbstractEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	@Column(nullable= false)
 	private String nombre = "";
 	
@@ -32,6 +41,7 @@ public class Ong  extends AbstractEntity implements Serializable{
 	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
 	
 	//private List<TipoCatastrofe> TiposdeCatastrofes = new ArrayList<TipoCatastrofe>(0);
+	private Collection<TipoCatastrofe> tiposdeCatastrofes = new ArrayList<TipoCatastrofe>(0);
 	
 	@OneToMany
 	private Collection<Economica> donacionesEconomicas = new ArrayList<Economica>(0);
@@ -93,6 +103,14 @@ public class Ong  extends AbstractEntity implements Serializable{
 	public void setDonacionesDeServicios(
 			Collection<DeServicios> donacionesDeServicios) {
 		this.donacionesDeServicios = donacionesDeServicios;
+	}
+
+	public Collection<TipoCatastrofe> getTiposdeCatastrofes() {
+		return tiposdeCatastrofes;
+	}
+
+	public void setTiposdeCatastrofes(Collection<TipoCatastrofe> tiposdeCatastrofes) {
+		this.tiposdeCatastrofes = tiposdeCatastrofes;
 	}
 	
 	
