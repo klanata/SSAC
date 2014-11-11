@@ -41,7 +41,7 @@ public class Ong  extends AbstractEntity implements Serializable{
 	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
 	
 	//private List<TipoCatastrofe> TiposdeCatastrofes = new ArrayList<TipoCatastrofe>(0);
-	private Collection<TipoCatastrofe> tiposdeCatastrofes = new ArrayList<TipoCatastrofe>(0);
+	
 	
 	@OneToMany
 	private Collection<Economica> donacionesEconomicas = new ArrayList<Economica>(0);
@@ -105,13 +105,13 @@ public class Ong  extends AbstractEntity implements Serializable{
 		this.donacionesDeServicios = donacionesDeServicios;
 	}
 
-	public Collection<TipoCatastrofe> getTiposdeCatastrofes() {
+	/*public Collection<TipoCatastrofe> getTiposdeCatastrofes() {
 		return tiposdeCatastrofes;
 	}
 
 	public void setTiposdeCatastrofes(Collection<TipoCatastrofe> tiposdeCatastrofes) {
 		this.tiposdeCatastrofes = tiposdeCatastrofes;
-	}
+	}*/
 	
 	
 	
