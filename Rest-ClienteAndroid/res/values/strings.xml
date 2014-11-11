@@ -6,12 +6,18 @@
     <string name="action_settings">Settings</string>
 	 <string name="TituloLogin">Login</string>
 	  <string name="textView1">Persona</string>
-	   <string name="editText1">Numero persona</string>
 	   <string name="button1">Obtener</string>
 	    <string name="persona">Persona</string>
     <string name="btnMostrarPersona">Mostrar Persona</string>
+    
+    
+   	<string name="editText1">Numero persona</string>
     <string name="pedidoAyuda_Button">Pedir ayuda</string>
     <string name="title_pedido_ayuda">Pedido ayuda</string>
+    <string name="textViewUser">Pedido a nombre de:</string>
+     <string name="editTextDescripcion">Descripcion:</string>
+       <string name="personaText">Nombre</string>
+    <string name="textMostrarNick">Nombre</string>
 
 </resources>
 	   

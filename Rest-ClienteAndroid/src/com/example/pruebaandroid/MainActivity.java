@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
     public void onCatastrofeSeleccionada(View view) {
         // Obtengo el id de la persona del input.
         String personaIdParam = personaId.getText().toString();
+        
 		// Se crea un objeto del tipo Param del Http Request y se le pasa el id.
         RequestParams params = new RequestParams();
         params.put("id", personaIdParam);
@@ -58,6 +59,7 @@ public class MainActivity extends Activity {
             //error.setText("No hay conexión");
         //}
     }
+
 
 
     
