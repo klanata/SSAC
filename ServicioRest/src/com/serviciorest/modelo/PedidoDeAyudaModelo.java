@@ -12,6 +12,8 @@ public class PedidoDeAyudaModelo {
 	private Boolean valido ;
 	private Date fechaPublicacion ;
 	private long idCatastrofe;
+	private String nombrePersona;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -47,6 +49,12 @@ public class PedidoDeAyudaModelo {
 	}
 	public void setFechaPublicacion(Date fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
+	}
+	public String getNombrePersona() {
+		return nombrePersona;
+	}
+	public void setNombrePersona(String nombrePersona) {
+		this.nombrePersona = nombrePersona;
 	}
 
 
