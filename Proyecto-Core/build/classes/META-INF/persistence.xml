@@ -5,20 +5,21 @@
 	<persistence-unit name="Proyecto-Core" transaction-type="JTA">	
 	<provider>org.hibernate.ejb.HibernatePersistence</provider>    
 	<jta-data-source>java:jboss/DataSources/postgresDS</jta-data-source>
-	<class>com.core.data.entites.Usuario</class>
-	<class>com.core.data.entites.Servicio</class>
-	<class>com.core.data.entites.Catastrofe</class>
-	<class>com.core.data.entites.PedidoDeAyuda</class>
-	<class>com.core.data.entites.PersonasDesaparecidas</class>
 	<class>com.core.data.entites.Administrador</class>
-	<class>com.core.data.entites.Rescatista</class>
-	<class>com.core.data.entites.Ong</class>
-	<class>com.core.data.entites.Economica</class>
+	<class>com.core.data.entites.Catastrofe</class>
 	<class>com.core.data.entites.DeBienes</class>
 	<class>com.core.data.entites.DeServicios</class>
-	<class>com.core.data.entites.PlanDeRiesgo</class>
+	<class>com.core.data.entites.Economica</class>
+	<class>com.core.data.entites.EstadoRescatista</class>
 	<class>com.core.data.entites.ImagenCatastrofe</class>
-	<class>com.core.data.entites.ImagenPersonaDesaparecida</class>	
+	<class>com.core.data.entites.ImagenPersonaDesaparecida</class>
+	<class>com.core.data.entites.Ong</class>
+	<class>com.core.data.entites.PedidoDeAyuda</class>
+	<class>com.core.data.entites.PersonasDesaparecidas</class>
+	<class>com.core.data.entites.PlanDeRiesgo</class>
+	<class>com.core.data.entites.Rescatista</class>
+	<class>com.core.data.entites.Servicio</class>
+	<class>com.core.data.entites.Usuario</class>
 	<properties>			
 	     <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>		    
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

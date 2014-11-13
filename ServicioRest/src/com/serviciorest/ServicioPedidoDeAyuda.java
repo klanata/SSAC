@@ -57,10 +57,10 @@ private PedidoDeAyudaEBR manager;
  
             
             //com.serviciorest.modelo.PedidoDeAyudaModelo pedidoAyudaRest = null;
-    		com.core.data.entites.PedidoDeAyuda pedidoAyuda = new PedidoDeAyuda();
+    		//com.core.data.entites.PedidoDeAyuda pedidoAyuda = new PedidoDeAyuda();
     		
     		//pedidoAyuda.setId(1);
-    		pedidoAyuda.setDescripcion(descripcion);
+    		//pedidoAyuda.setDescripcion(descripcion);
     		
     		Date fechaPublicacion = new Date();
     		fechaPublicacion.getTime();
@@ -69,7 +69,9 @@ private PedidoDeAyudaEBR manager;
     		BigDecimal coordenadasX = new BigDecimal(12);
     		BigDecimal coordenadasY = new BigDecimal(12);
     		
-    		manager.crearPedido(descripcion, coordenadasX, coordenadasY, fechaPublicacion);
+    		
+    		
+    		manager.crearPedido(Long.getLong(catastrofeId), descripcion, coordenadasX, coordenadasY, fechaPublicacion);
         } catch (NamingException e) {
             e.printStackTrace();
         }

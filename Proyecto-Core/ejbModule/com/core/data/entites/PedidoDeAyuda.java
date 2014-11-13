@@ -45,10 +45,14 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 	
 	@Column(nullable= false)
 	private Date fechaPublicacion ;
+	
+	@Column(nullable= false)
+	private Long catastrofeId ;
 
-	public PedidoDeAyuda(String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	public PedidoDeAyuda(Long catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
 			Date fechaPublicacion) {
 		super();
+		this.catastrofeId = catastrofeId;
 		this.descripcion = descripcion;
 		this.coordenadasX = coordenadasX;
 		this.coordenadasY = coordenadasY;
@@ -93,6 +97,14 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 
 	public void setFechaPublicacion(Date fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
+	}
+
+	public Long getCatastrofeId() {
+		return catastrofeId;
+	}
+
+	public void setCatastrofeId(Long catastrofeId) {
+		this.catastrofeId = catastrofeId;
 	}
 	
     

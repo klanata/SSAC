@@ -38,10 +38,11 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 	}*/
 	
 	//Stephy: Vale deberia ser asi falta setearle aca el id de la catastrofe
-	public void crearPedido(String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	public void crearPedido(Long catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
 			Date fechaPublicacion) throws Exception{
 		
 		PedidoDeAyuda pedAyuda = new PedidoDeAyuda();
+		pedAyuda.setCatastrofeId(catastrofeId);
 		pedAyuda.setCoordenadasX(coordenadasX);
 		pedAyuda.setCoordenadasY(coordenadasY);
 		pedAyuda.setDescripcion(descripcion);
