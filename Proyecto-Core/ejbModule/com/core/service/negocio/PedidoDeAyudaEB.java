@@ -1,8 +1,10 @@
 package com.core.service.negocio;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -25,14 +27,36 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 	@EJB 
 	private PedidoDeAyudaDAO pedidoayudaDAO;
 	
-	public void crearPedido(PedidoDeAyuda pedAyuda){
+	/*Esto esta mal esta capa se conecta con rest ellos nos mandaran los datos no obtejo
+	 * public void crearPedido(PedidoDeAyuda pedAyuda){
 		try {
 			pedidoayudaDAO.crearPedidoDeAyuda(pedAyuda);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}
-	}
+	}*/
+	
+	//Stephy: Vale deberia ser asi falta setearle aca el id de la catastrofe
+	public void crearPedido(String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+			Date fechaPublicacion) throws Exception{
+		
+		PedidoDeAyuda pedAyuda = new PedidoDeAyuda();
+		pedAyuda.setCoordenadasX(coordenadasX);
+		pedAyuda.setCoordenadasY(coordenadasY);
+		pedAyuda.setDescripcion(descripcion);
+		pedAyuda.setFechaPublicacion(fechaPublicacion);
+		
+		try {
+			
+		
+			pedidoayudaDAO.crearPedidoDeAyuda(pedAyuda);
+		} catch (Exception e) {
+			throw e;
+		}
+			
+			//e.printStackTrace();
+		}
 	@Override
 	public List<PedidoDeAyuda> listarTodosLosPedidos(){
 		//Obtener la lista de todos los pedidos de ayuda.
@@ -41,5 +65,6 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 		return listaPedidos;
 
  }
+	
 
 }
