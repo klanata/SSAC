@@ -27,18 +27,9 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 	@EJB 
 	private PedidoDeAyudaDAO pedidoayudaDAO;
 	
-	/*Esto esta mal esta capa se conecta con rest ellos nos mandaran los datos no obtejo
-	 * public void crearPedido(PedidoDeAyuda pedAyuda){
-		try {
-			pedidoayudaDAO.crearPedidoDeAyuda(pedAyuda);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-	}*/
-	
-	//Stephy: Vale deberia ser asi falta setearle aca el id de la catastrofe
-	public void crearPedido(Long catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+
+
+	public void crearPedido(Collection<Catastrofe> catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
 			Date fechaPublicacion) throws Exception{
 		
 		PedidoDeAyuda pedAyuda = new PedidoDeAyuda();

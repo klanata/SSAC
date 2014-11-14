@@ -12,16 +12,24 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.persistence.Column;
 
+import com.core.data.entites.Catastrofe;
+import com.core.data.entites.Ong;
+
 import clienteutility.ClienteUtility;
+
+import java.util.Collection;
+import java.util.ArrayList;
 
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.service.negocio.remote.PedidoDeAyudaEBR;
+
 @ManagedBean(name="pedidoAyudaBean")
 @SessionScoped
 public class PedidoDeAyudaBean {
 	
 	
 	private static final long serialVersionUID = 1L;
+	private Collection<Catastrofe> catastrofeId = new ArrayList<Catastrofe>();
 
 	private String descripcion = "";
 	
@@ -61,6 +69,12 @@ public class PedidoDeAyudaBean {
 	public void setFechaPublicacion(Date fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
+	public Collection<Catastrofe> getCatastrofe() {
+		return catastrofeId;
+	}
+	public void setCatastrofe(Collection<Catastrofe> catastrofeId) {
+		this.catastrofeId = catastrofeId;
+	}
 
 	public void  registrarpedidoAyuda(){				
 		
@@ -86,7 +100,7 @@ public class PedidoDeAyudaBean {
     		Date fechaPublicacion = new Date();
     		fechaPublicacion.getTime();
     		
-       		manager.crearPedido(descripcion, coordenadasX, coordenadasY, fechaPublicacion);    	
+       		manager.crearPedido(catastrofeId, descripcion, coordenadasX, coordenadasY, fechaPublicacion);    	
     		
     		
     	}catch (Exception excep){
