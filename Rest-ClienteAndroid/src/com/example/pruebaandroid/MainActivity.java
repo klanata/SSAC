@@ -1,6 +1,10 @@
 package com.example.pruebaandroid;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,88 +18,75 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-
+//pantalla en la que se elige la catastrofe
 public class MainActivity extends Activity {
 
-	private EditText personaId;
+	private EditText catastrofeId;
     private TextView error;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.catastrofe);
-		personaId = (EditText) findViewById(R.id.personaId);
+		//catastrofeId = (EditText) findViewById(R.id.catastrofeId);
+		
+		//llamo a rest para obtener toda la lista de catastrofes ni bien arranca
+		invokeWS();
+	
     }
 
-    // Cuando el usuario hace click en el botón, se llama al método AsyncTask.
-    // Primero se recomienda verificar que haya conexión a internet.
-    public void onCatastrofeSeleccionada(View view) {
+    /*
+    	public void onCatastrofeSeleccionada(View view) {
         // Obtengo el id de la persona del input.
-        String personaIdParam = personaId.getText().toString();
+        String personaIdParam = catastrofeId.getText().toString();
         
 		// Se crea un objeto del tipo Param del Http Request y se le pasa el id.
         RequestParams params = new RequestParams();
         params.put("id", personaIdParam);
-		//Para verificar que haya conexión a internet
-        try{
-        ConnectivityManager connMgr = (ConnectivityManager) 
-            getSystemService(Context.CONNECTIVITY_SERVICE);
-       NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        }
-        catch(Exception e){
-        	System.out.println("error en el conectivity manager");
-        }
-       // if (networkInfo != null && networkInfo.isConnected()) {
-            invokeWS(params);//Éste es el método que llama al servicio rest.
-       // } else {
-            //error.setText("No hay conexión");
-        //}
-    }
+    }*/
 
-
-
-    
-	 public void invokeWS(RequestParams params){
-         // Se usa el objeto AsyncHttpClient para llamar al servicio.
+	 public void invokeWS(){
+         
          AsyncHttpClient client = new AsyncHttpClient();
-         client.get("http://10.0.2.2:8080/ServicioRest/catastrofe/personas/"+ personaId.getText().toString(),new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
+         client.get("http://10.0.2.2:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
              // When the response returned by REST has Http response code '200'
              @Override
              public void onSuccess(String response) {
                  try {
+                	 
                           // JSON Object
                          JSONObject obj = new JSONObject(response);
-                         System.out.println((obj.get("nick").toString()));
+                          
+                         JSONArray arregloCat = obj.getJSONArray("catastrofe");
+                         List<String> arreglo= new ArrayList<String>();
                          
-                         // When the JSON response has status boolean value assigned with true
-                         if(obj.get("nick") != null){
-                        	 //Preparo los datos para mandar a la siguiente pantalla
-                        	 Intent pedidoAyudaIntent = new Intent(getApplicationContext(),PedidoAyudaActivity.class);
-                        	 
-                        	 String message = (obj.get("nick").toString());
-                        	 pedidoAyudaIntent.putExtra("nombrePersona", message);
+                         //LISTO CATAS en logcat se ven los nombres de las catastrofes
+                         for(int i=0;i< arregloCat.length();i++){
+                        	 Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).get("nombreEvento").toString());
+                        	 Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).get("id").toString());
 
-                        	 pedidoAyudaIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                             startActivity(pedidoAyudaIntent);
-                         } 
-                         // Else display error message
-                         else{
-                             error.setText(obj.getString("error_msg"));
-                             Toast.makeText(getApplicationContext(), obj.getString("error_msg"), Toast.LENGTH_LONG).show();
+                        	 //los agrego al JsonArray para desp listar de aca
+                        	arreglo.add(obj.getJSONArray("catastrofe").getJSONObject(i).get("nombreEvento").toString());
                          }
-                 } catch (JSONException e) {
+                         
+                         
+                 }       
+                 catch (JSONException e) {
                      // TODO Auto-generated catch block
                      Toast.makeText(getApplicationContext(), "Error Occured [Server's JSON response might be invalid]! "+ response.toString() , Toast.LENGTH_LONG).show();
                      e.printStackTrace();
- 
+
                  }
              }
              // When the response returned by REST has Http response code other than '200'
@@ -120,6 +111,68 @@ public class MainActivity extends Activity {
              }
          });
     }
+	 
+	//ACA tendria que haber un al seleccionar  de la lista o combobox, mandar al intent de abajo
+	public void onCatastrofeSeleccionada(View view) {
+	
+     //paso el id de la catastrofe a la segunda pantalla
+    // if(obj.getJSONArray("catastrofe").getJSONObject(0).get("id").toString() != null){
+     
+    	 Intent pedidoAyudaIntent = new Intent(getApplicationContext(),PedidoAyudaActivity.class);
+    	 
+    	// String message = obj.getJSONArray("catastrofe").getJSONObject(0).get("id").toString();
+    	// pedidoAyudaIntent.putExtra("catastrofeId", message);
+    	 pedidoAyudaIntent.putExtra("catastrofeId", "1");
+
+    	 pedidoAyudaIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+         startActivity(pedidoAyudaIntent);
+      
+     //} //Else display error message
+    /* else{
+         error.setText(obj.getString("error_msg"));
+         Toast.makeText(getApplicationContext(), obj.getString("error_msg"), Toast.LENGTH_LONG).show();
+    
+     }*/
+     
+     
+     
+   //  Spinner spinnerCat = (Spinner) findViewById(R.id.spinner1) 
+     //ArrayAdapter<String> dataAdapter = ArrayAdapter.createFromResource(this, arreglo, android.R.layout.simple_spinner_item);
+    //		 	ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+     //    	android.R.layout.simple_spinner_item, arreglo);
+    //     		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    		
+     
+     
+     
+     
+    // String pageName = obj.getJSONObject("catastrofes").getJSONObject("catastrofe").getString("id");
+    //JSONArray arr = obj.getJSONArray("posts");
+    // for (int i = 0; i < arr.length(); i++)
+    // {
+         //String post_id = arr.getJSONObject(i).getString("post_id");
+     
+    // }
+     
+     
+  
+    /* if(obj.get("nick") != null){
+    	 //Preparo los datos para mandar a la siguiente pantalla
+    	 Intent pedidoAyudaIntent = new Intent(getApplicationContext(),PedidoAyudaActivity.class);
+    	 
+    	 String message = (obj.get("nick").toString());
+    	 pedidoAyudaIntent.putExtra("nombrePersona", message);
+
+    	 pedidoAyudaIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+         startActivity(pedidoAyudaIntent);
+     } 
+     // Else display error message
+     else{
+         error.setText(obj.getString("error_msg"));
+         Toast.makeText(getApplicationContext(), obj.getString("error_msg"), Toast.LENGTH_LONG).show();
+     */
+//     }
+	}
 	
 	public void nuevoPedidoAyuda(View view){
         Intent pedidoAyudaIntent = new Intent(getApplicationContext(),PedidoAyudaActivity.class);

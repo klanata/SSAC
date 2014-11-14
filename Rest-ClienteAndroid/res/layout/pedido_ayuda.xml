@@ -3,21 +3,31 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/fondo" >
 
     <TextView
-        android:id="@+id/textMostrarNick"
+        android:id="@+id/textMostrarCatastrofe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/textMostrarCatastrofe" />
 
     <EditText
-        android:id="@+id/personaText"
-        android:layout_width="fill_parent"
+        android:id="@+id/idCatText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/personaText"
-        android:visibility="visible" />
+        android:hint="@string/idCatText" />
+
+    <EditText
+        android:id="@+id/descripcionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/descripcionText" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/button1"
@@ -25,7 +35,7 @@
         android:layout_height="wrap_content"
         android:onClick="onPedidoDeAyuda"
         android:text="@string/pedidoAyuda_Button"
-        android:visibility="visible" />
+         />
 
 </LinearLayout>
 
