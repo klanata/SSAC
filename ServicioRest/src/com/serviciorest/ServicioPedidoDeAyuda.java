@@ -69,9 +69,11 @@ private PedidoDeAyudaEBR manager;
     		BigDecimal coordenadasX = new BigDecimal(12);
     		BigDecimal coordenadasY = new BigDecimal(12);
     		
+    		//System.out.println("ESTO ES LO Q TIENE CATASTROFE ID: "+Long.getLong(catastrofeId));
+    		//Long.getLong(catastrofeId)
     		
     		
-    		manager.crearPedido(Long.getLong(catastrofeId), descripcion, coordenadasX, coordenadasY, fechaPublicacion);
+    		manager.crearPedido(new Long(catastrofeId), descripcion, coordenadasX, coordenadasY, fechaPublicacion);
         } catch (NamingException e) {
             e.printStackTrace();
         }

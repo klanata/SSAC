@@ -53,6 +53,7 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 		
 			pedidoayudaDAO.crearPedidoDeAyuda(pedAyuda);
 		} catch (Exception e) {
+			System.out.println("id recibido " + catastrofeId);
 			throw e;
 		}
 			
