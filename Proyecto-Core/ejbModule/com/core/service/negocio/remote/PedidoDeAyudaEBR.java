@@ -16,7 +16,7 @@ import com.core.data.entites.PedidoDeAyuda;
 public interface PedidoDeAyudaEBR {
 	
 	
-	public void crearPedido(Collection<Catastrofe> catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	public void crearPedido(Long catastrofe, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
 			Date fechaPublicacion) throws Exception;
 	public List<PedidoDeAyuda> listarTodosLosPedidos();
 	

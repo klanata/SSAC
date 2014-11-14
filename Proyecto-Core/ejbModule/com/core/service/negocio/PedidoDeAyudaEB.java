@@ -29,11 +29,12 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 	
 
 
-	public void crearPedido(Collection<Catastrofe> catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	public void crearPedido(Long catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
 			Date fechaPublicacion) throws Exception{
 		
 		PedidoDeAyuda pedAyuda = new PedidoDeAyuda();
-		pedAyuda.setCatastrofeId(catastrofeId);
+		Catastrofe catastrofe = dataService.find(Catastrofe.class, catastrofeId);
+		pedAyuda.setCatastrofe(catastrofe);
 		pedAyuda.setCoordenadasX(coordenadasX);
 		pedAyuda.setCoordenadasY(coordenadasY);
 		pedAyuda.setDescripcion(descripcion);

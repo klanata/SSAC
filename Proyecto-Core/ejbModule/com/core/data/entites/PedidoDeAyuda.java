@@ -48,14 +48,14 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 	@Column(nullable= false)
 	private Date fechaPublicacion ;
 	
-	@OneToMany
-	private Collection<Catastrofe> catastrofeId = new ArrayList<Catastrofe>(0) ;
+	@OneToOne
+	private Catastrofe catastrofe;
 
-	public PedidoDeAyuda(Catastrofe catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	public PedidoDeAyuda(Catastrofe catastrofe, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
 			Date fechaPublicacion) {
 		super();
 		
-		this.catastrofeId = new ArrayList<Catastrofe>(0);
+		this.catastrofe = catastrofe;
 		this.descripcion = descripcion;
 		this.coordenadasX = coordenadasX;
 		this.coordenadasY = coordenadasY;
@@ -102,12 +102,12 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 		this.fechaPublicacion = fechaPublicacion;
 	}
 
-	public Collection<Catastrofe> getCatastrofeId() {
-		return catastrofeId;
+	public Catastrofe getCatastrofe() {
+		return catastrofe;
 	}
 
-	public void setCatastrofeId(Collection<Catastrofe> catastrofeId) {
-		this.catastrofeId = catastrofeId;
+	public void setCatastrofe(Catastrofe catastrofe) {
+		this.catastrofe = catastrofe;
 	}
 	
     

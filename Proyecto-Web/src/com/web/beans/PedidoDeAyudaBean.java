@@ -29,7 +29,7 @@ public class PedidoDeAyudaBean {
 	
 	
 	private static final long serialVersionUID = 1L;
-	private Collection<Catastrofe> catastrofeId = new ArrayList<Catastrofe>();
+	private Long catastrofeId;
 
 	private String descripcion = "";
 	
@@ -69,10 +69,10 @@ public class PedidoDeAyudaBean {
 	public void setFechaPublicacion(Date fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
-	public Collection<Catastrofe> getCatastrofe() {
+	public Long getCatastrofe() {
 		return catastrofeId;
 	}
-	public void setCatastrofe(Collection<Catastrofe> catastrofeId) {
+	public void setCatastrofe(Long catastrofeId) {
 		this.catastrofeId = catastrofeId;
 	}
 
