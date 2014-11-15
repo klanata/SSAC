@@ -8,7 +8,7 @@
 	  <string name="textView1">Persona</string>
 	   <string name="button1">Obtener</string>
 	    <string name="persona">Persona</string>
-    <string name="btnMostrarPersona">Mostrar Persona</string>
+    <string name="btnMostrarPersona">Pedir Ayuda</string>
     
     
    	<string name="editText1">Numero persona</string>
@@ -16,8 +16,10 @@
     <string name="title_pedido_ayuda">Pedido ayuda</string>
     <string name="textViewUser">Pedido a nombre de:</string>
      <string name="editTextDescripcion">Descripcion:</string>
-       <string name="personaText">Nombre</string>
-    <string name="textMostrarNick">Nombre</string>
+       <string name="catastrofeText">Nombre</string>
+    <string name="textMostrarCatastrofe">Ingrese pedido:</string>
+      <string name="descripcionText">Descripcion</string>
+       <string name="idCatText">Id Catastrofe</string>
 
 </resources>
 	   
