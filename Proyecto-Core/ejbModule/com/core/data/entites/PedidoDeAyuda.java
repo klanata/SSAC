@@ -2,6 +2,8 @@ package com.core.data.entites;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -46,13 +48,14 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 	@Column(nullable= false)
 	private Date fechaPublicacion ;
 	
-	@Column(nullable= false)
-	private Long catastrofeId ;
+	@OneToMany
+	private Collection<Catastrofe> catastrofeId = new ArrayList<Catastrofe>(0) ;
 
-	public PedidoDeAyuda(Long catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	public PedidoDeAyuda(Catastrofe catastrofeId, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
 			Date fechaPublicacion) {
 		super();
-		this.catastrofeId = catastrofeId;
+		
+		this.catastrofeId = new ArrayList<Catastrofe>(0);
 		this.descripcion = descripcion;
 		this.coordenadasX = coordenadasX;
 		this.coordenadasY = coordenadasY;
@@ -99,11 +102,11 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 		this.fechaPublicacion = fechaPublicacion;
 	}
 
-	public Long getCatastrofeId() {
+	public Collection<Catastrofe> getCatastrofeId() {
 		return catastrofeId;
 	}
 
-	public void setCatastrofeId(Long catastrofeId) {
+	public void setCatastrofeId(Collection<Catastrofe> catastrofeId) {
 		this.catastrofeId = catastrofeId;
 	}
 	
