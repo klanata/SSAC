@@ -11,7 +11,22 @@ import cross_cuting.enums.EstadoPersona;
  *
  */
 @Entity
+@NamedQueries({
+@NamedQuery(name="PersonasDesaparecidas.BuscarPersona.Nombre.Apellido", 
+			query = "SELECT e "+
+			"FROM PersonasDesaparecidas e " +
+			"WHERE e.nombre = :nomPer AND e.apellido = :apePer"),
+					
+//@NamedQuery(name="EstadoPersona.findHalladas", 
+				//query = "SELECT c "+
+				//"FROM PersonasDesaparecidas c " +
+				//"WHERE c.id = : idPersona AND EstadoPersona = 'hallada'),
 
+@NamedQuery(name="PersonasDesaparecidas.findAll", 
+				query = "SELECT c "+
+				"FROM PersonasDesaparecidas c "),				
+	
+})
 public class PersonasDesaparecidas  extends AbstractEntity implements Serializable{
 
 	
@@ -23,7 +38,7 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 	
 	@Column(nullable= false)
 	private String nombre = "";
@@ -55,11 +70,11 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 		this.imagenPersonaDesaparecida = imagenPersonaDesaparecida;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
