@@ -15,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 
-public class Administrador extends Persona implements Serializable{
+public class Administrador  implements Serializable{
 
 	
 	

@@ -16,7 +16,7 @@ import cross_cuting.enums.sexo;
  */
 @Entity
 
-public class Rescatista extends Persona implements Serializable { 
+public class Rescatista  extends AbstractEntity implements Serializable { 
 	  
 	 
 	private static final long serialVersionUID = 1L;

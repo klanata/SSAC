@@ -48,8 +48,9 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 	@Column(nullable= false)
 	private Date fechaPublicacion ;
 	
-	@OneToOne
+	@ManyToOne
 	private Catastrofe catastrofe;
+	
 
 	public PedidoDeAyuda(Catastrofe catastrofe, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
 			Date fechaPublicacion) {

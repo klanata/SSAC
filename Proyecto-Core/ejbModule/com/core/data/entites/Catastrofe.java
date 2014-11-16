@@ -44,8 +44,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column( nullable= false)
-	private Integer id;
+	@Column Long id;
 	
 	@Column(unique=true, nullable=false)
 	private String nombreEvento = "";
@@ -74,6 +73,9 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@ManyToMany
 	private Collection<Ong> ongs = new ArrayList<Ong>(0);
 	
+	@OneToMany
+	private Collection<PedidoDeAyuda> pedidosDeAyuda =  new ArrayList<PedidoDeAyuda>(0);
+	
 	@OneToOne
 	private PlanDeRiesgo planDeRiesgo ;
 
@@ -91,10 +93,10 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.planDeRiesgo = null;		
 	}	
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNombreEvento() {

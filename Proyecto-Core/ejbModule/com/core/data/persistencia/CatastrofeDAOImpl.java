@@ -79,7 +79,7 @@ public class CatastrofeDAOImpl extends AbstractService implements CatastrofeDAO{
 		  	consulta.setParameter("nombre", nombreEvento);		  			  	
 		  	if (consulta.getResultList().isEmpty()){
 		  		catastrofe = new Catastrofe();
-		  		catastrofe.setId(new Integer(0));		  		
+		  		catastrofe.setId(new Long(0));		  		
 		  	} else {		  		
 		  		catastrofe = (Catastrofe) consulta.getResultList().get(0);
 		  	}		  	
