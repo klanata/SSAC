@@ -67,6 +67,24 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@Column(nullable= false)
 	private Boolean prioridad ;
 	
+	
+	private String tipoCatastrofe;
+	
+	public String getTipoCatastrofe() {
+		return tipoCatastrofe;
+	}
+
+	public void setTipoCatastrofe(String tipoCatastrofe) {
+		this.tipoCatastrofe = tipoCatastrofe;
+	}
+
+	public Collection<PedidoDeAyuda> getPedidosDeAyuda() {
+		return pedidosDeAyuda;
+	}
+
+	public void setPedidosDeAyuda(Collection<PedidoDeAyuda> pedidosDeAyuda) {
+		this.pedidosDeAyuda = pedidosDeAyuda;
+	}
 	@ManyToMany
 	private Collection<Servicio> servicios = new ArrayList<Servicio>(0);
    
@@ -90,7 +108,8 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.prioridad = false;		
 		this.servicios = new ArrayList<Servicio>();
 		this.ongs = new ArrayList<Ong>();
-		this.planDeRiesgo = null;		
+		this.planDeRiesgo = null;	
+		this.tipoCatastrofe= "";
 	}	
 	
 	public Long getId() {

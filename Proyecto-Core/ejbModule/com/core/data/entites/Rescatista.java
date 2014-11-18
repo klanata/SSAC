@@ -15,7 +15,20 @@ import cross_cuting.enums.sexo;
  *
  */
 @Entity
+@NamedQueries({
+	
+@NamedQuery(name="Rescatista.BuscarRescatista", 
+query = "SELECT u "+
+		"FROM Rescatista u " +
+		"WHERE u.nick = :nick"),
 
+@NamedQuery(name="Rescatista.BuscarRescatista.Nick.Pass", 
+query = "SELECT u "+
+		"FROM Rescatista u " +
+		"WHERE u.nick = :nick AND u.password= :pass")
+		
+
+})
 public class Rescatista  extends AbstractEntity implements Serializable { 
 	  
 	 
@@ -54,6 +67,7 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	
 	@Column(nullable= false)
 	private Integer celular;
+	
 	
 	
 	@OneToMany

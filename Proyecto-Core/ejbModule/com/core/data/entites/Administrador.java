@@ -14,8 +14,21 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	
+@NamedQuery(name="Administrador.BuscarAdministrador", 
+query = "SELECT u "+
+		"FROM Administrador u " +
+		"WHERE u.nick = :nick"),
 
-public class Administrador  implements Serializable{
+@NamedQuery(name="Administrador.BuscarAdministrador.Nick.Pass", 
+query = "SELECT u "+
+		"FROM Administrador u " +
+		"WHERE u.nick = :nick AND u.password= :pass")
+		
+
+})
+public class Administrador  extends AbstractEntity implements Serializable{
 
 	
 	

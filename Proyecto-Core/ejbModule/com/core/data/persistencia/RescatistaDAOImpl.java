@@ -3,11 +3,14 @@ package com.core.data.persistencia;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.Rescatista;
 import com.core.data.persistencia.interfaces.locales.RescatistaDAO;
@@ -39,17 +42,26 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	
 	/////////////////////////////////////////////////////////////////////////////////////
 	@Override
-	public void crearRescatista(Rescatista rescatista) throws Exception 
+	public Integer crearRescatista(Rescatista rescatista) throws Exception 
 	{
+		Integer id =0;
 		try{
 			
 			dataService.create(rescatista);
+			Rescatista rescatista2 = buscarUsuario(rescatista.getNick(), rescatista.getPassword());
+			if  (rescatista2!=null)
+			{
+				
+				id = rescatista2.getId().intValue();
+				
+			}
 			
 		} catch (Exception excep){
 			
 				throw excep;
 			
 		}
+		return id;
 		
 	}
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -84,7 +96,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 			//coleccion de parametros clave/valor
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("idRescatista",idRescatista);
-			listapendientes =dataService.findWithNamedQuery(EstadoRescatista.class,"EstadoRescatista.FindPendientes", parameters);
+			listapendientes = dataService.findWithNamedQuery(EstadoRescatista.class,"EstadoRescatista.FindPendientes", parameters);
 			//limpiar parametros
 			parameters.clear();
 			
@@ -145,6 +157,16 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 		
 		return rescatistaMenosPendientes;
 	}
-	
-	
+	///////////////////////////////////////////////////////////////////////////////////////
+	public Rescatista buscarUsuario(String login, String password) {
+		
+		Rescatista usuario = null;
+		Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista.Nick.Pass");
+	  	consulta.setParameter("nick", login);
+	  	consulta.setParameter("password", password);
+	   	usuario = (Rescatista) consulta.getResultList().get(0);
+	  		
+		return usuario;
+	}
+	/////////////////////////////////////////////////////////////////////////////////////
 }

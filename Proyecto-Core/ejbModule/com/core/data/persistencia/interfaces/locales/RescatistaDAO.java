@@ -14,7 +14,7 @@ import com.core.data.persistencia.JPAService;
 public interface RescatistaDAO extends JPAService{
 	
 	//Lo crea el administrador con lista de pendientes vacia
-	public void crearRescatista(Rescatista rescatista) throws Exception;
+	public Integer crearRescatista(Rescatista rescatista) throws Exception;
 	
 	public void asignarCatastrofe(EstadoRescatista estadoRescatista, Long idRescatista);
 	
@@ -23,6 +23,7 @@ public interface RescatistaDAO extends JPAService{
 	public void pendienteRealizado(EstadoRescatista estadorescatista);
 	
 	public Rescatista obtenerRescatistaConMenosPendientes();
+	public Rescatista buscarUsuario(String login, String password);
 	
 
 }

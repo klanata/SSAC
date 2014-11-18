@@ -1,7 +1,5 @@
 package com.core.data.persistencia;
 import java.util.List;
-import java.util.Map;
-
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
@@ -12,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.core.data.entites.AbstractEntity;
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.interfaces.locales.UsuarioDAO;
 import com.core.data.persistencia.interfaces.remotas.UsuarioDAORemoto;
@@ -43,16 +40,17 @@ public class UsuarioDAOImpl  extends AbstractService implements UsuarioDAO, Usua
 	
 	public Usuario insert(Usuario entity) {
 		
+		Usuario entity2 = null;
 		try {
 								
 				dataService.create(entity);
-							
+				entity2 = buscarUsuario(entity.getNick(), entity.getPassword());			
 			
 		} catch (Throwable e) {
 			
 		}
 		
-		return entity;
+		return entity2;
 		
 	}
 	////////////////////////////////////////////////////////////////////////////
@@ -81,7 +79,8 @@ public class UsuarioDAOImpl  extends AbstractService implements UsuarioDAO, Usua
 	  	Usuario usuario = (Usuario) consulta.getResultList().get(0);*/
 		//Esto funciona cada vez que quieran obetener un objeto lo pueden usar asi
 		
-		Usuario usuario = find(Usuario.class, id);
+			Usuario usuario = find(Usuario.class, id);
+			
 		return usuario;
 		
 	}
@@ -89,8 +88,9 @@ public class UsuarioDAOImpl  extends AbstractService implements UsuarioDAO, Usua
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Usuario> findAll() {
 		
+		List<Usuario> lista= dataService.findAll(Usuario.class);
 		
-		return null;
+		return lista;
 	}
 
 	////////////////////////////////////////////////////////////////////////////
@@ -104,39 +104,11 @@ public class UsuarioDAOImpl  extends AbstractService implements UsuarioDAO, Usua
 	  		
 		return usuario;
 	}
-	////////////////////////////////////////////////////////////////////////////
 	@Override
 	protected EntityManager getEntityManager() {
 		// TODO Auto-generated method stub
-		return em;
-	}
-	@Override
-	public <T extends AbstractEntity> List<T> createAll(List<T> col)
-			throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public <T extends AbstractEntity> List<T> updateAll(List<T> entidad) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public <T extends AbstractEntity, PK> void deleteAll(Class<T> clazz,
-			List<PK> ids) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public <T extends AbstractEntity> T getRandomElement(Class<T> tipoEntidad) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public <T extends AbstractEntity> T getRandomElementWithParameters(
-			Class<T> tipoEntidad, Map<String, Object> parametros) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
