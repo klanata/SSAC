@@ -38,6 +38,9 @@ public class DeBienes extends Donacion implements Serializable {
 	
 	@Column(nullable= false)
 	private Integer cantidad;
+	
+	@ManyToOne 
+	private Ong ong;
 
 	public DeBienes(String usuario, Date fechaRealizada, String nombreItem,
 			Integer cantidad) {
@@ -80,5 +83,12 @@ public class DeBienes extends Donacion implements Serializable {
 		this.cantidad = cantidad;
 	}
 	
+	public Ong getOng() {
+		return ong;
+	}
+
+	public void setOng(Ong Ong) {
+		this.ong = Ong;
+	}
 	
 }

@@ -24,7 +24,7 @@ public class DeServicios extends Donacion implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 	
 	
 	@Column()
@@ -39,6 +39,9 @@ public class DeServicios extends Donacion implements Serializable{
 	
 	@Column(nullable= false)
 	private BigDecimal cantidadHoras ;
+	
+	@ManyToOne 
+	private Ong ong;
 
 	public DeServicios(String usuario, Date fechaRealizada,
 			String areaConocimient, BigDecimal cantidadHoras) {
@@ -81,5 +84,12 @@ public class DeServicios extends Donacion implements Serializable{
 		this.cantidadHoras = cantidadHoras;
 	}
 	
+	public Ong getOng() {
+		return ong;
+	}
+
+	public void setOng(Ong Ong) {
+		this.ong = Ong;
+	}
    
 }

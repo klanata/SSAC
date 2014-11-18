@@ -5,11 +5,8 @@ import java.util.Collection;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-
-import com.core.data.entites.DeBienes;
 import com.core.data.entites.DeServicios;
 import com.core.data.entites.Ong;
-import com.core.data.persistencia.interfaces.locales.DeBienesDAO;
 import com.core.data.persistencia.interfaces.locales.DeServicioDAO;
 
 @Stateless
@@ -29,7 +26,7 @@ public class DeServicioDAOImpl extends AbstractService implements DeServicioDAO 
 	DataService dataService;
 	/////////////////////////////////////////////////////////////////////////////
 	@Override
-	public void crearBienes(DeServicios deServicio) throws Exception {
+	public void crearServicio(DeServicios deServicio) throws Exception {
 		try{
 			dataService.create(deServicio);
 		}

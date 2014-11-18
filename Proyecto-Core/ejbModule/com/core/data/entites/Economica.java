@@ -18,13 +18,11 @@ public class Economica extends Donacion implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public Economica() {
-		super();
-	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 	
 	
 	@Column()
@@ -37,13 +35,23 @@ public class Economica extends Donacion implements Serializable {
 
 	@Column()
 	private BigDecimal monto;
-
-	public Economica(String usuario, Date fechaRealizada, BigDecimal monto) {
+	
+	@ManyToOne 
+	private Ong ong;
+	
+	public Economica() {
+		super();
+		this.ong = null; 
+		this.usuario = new String();;
+		this.fechaRealizada = new Date();
+		this.monto = new BigDecimal(0);
+	}
+/*	public Economica(String usuario, Date fechaRealizada, BigDecimal monto) {
 		super();
 		this.usuario = usuario;
 		this.fechaRealizada = fechaRealizada;
 		this.monto = monto;
-	}
+	}*/
 
 	public String getUsuario() {
 		return usuario;
@@ -68,5 +76,11 @@ public class Economica extends Donacion implements Serializable {
 	public void setMonto(BigDecimal monto) {
 		this.monto = monto;
 	}
-   
+	public Ong getOng() {
+		return ong;
+	}
+
+	public void setOng(Ong Ong) {
+		this.ong = Ong;
+	}
 }

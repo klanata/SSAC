@@ -1,11 +1,5 @@
 package com.core.data.persistencia;
-import java.util.Collection;
-
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -14,9 +8,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import com.core.data.entites.PedidoDeAyuda;
-import com.core.data.entites.PersonasDesaparecidas;
 import com.core.data.persistencia.interfaces.locales.PedidoDeAyudaDAO;
 
 @Stateless

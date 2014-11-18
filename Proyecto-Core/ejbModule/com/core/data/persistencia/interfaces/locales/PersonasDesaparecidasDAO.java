@@ -1,14 +1,11 @@
 package com.core.data.persistencia.interfaces.locales;
-
 import java.util.Collection;
-
 import java.util.List;
-
+import javax.ejb.Local;
 import com.core.data.entites.PersonasDesaparecidas;
 import com.core.data.persistencia.JPAService;
 
-import cross_cuting.enums.EstadoPersona;
-
+@Local
 public interface PersonasDesaparecidasDAO extends JPAService {
 	
 	public void insert(PersonasDesaparecidas personadesaparecida)  throws Exception;

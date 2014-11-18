@@ -1,16 +1,11 @@
 package com.core.service.negocio;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
-
-
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Path;
-
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.persistencia.DataService;

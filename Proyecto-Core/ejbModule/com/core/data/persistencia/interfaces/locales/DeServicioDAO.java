@@ -6,7 +6,7 @@ import com.core.data.persistencia.JPAService;
 
 public interface DeServicioDAO  extends JPAService  {
 	
-	public void crearBienes(DeServicios deServicio) throws Exception;
+	public void crearServicio(DeServicios deServicio) throws Exception;
 	public void agregarDonacionDeServicioOng(Ong ong, DeServicios deServicio);
 
 }
