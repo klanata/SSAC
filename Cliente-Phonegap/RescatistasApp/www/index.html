@@ -17,7 +17,8 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<html>
+<html xmlns="hhtp://www.w3.org/1999/xhtml"
+      lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -26,14 +27,32 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            function init() {
+            // Get a reference to our touch-sensitive element
+            var touchzone = document.getElementById("touchzone");
+            // Add an event handler for the touchstart event
+            touchzone.addEventListener("touchstart", touchHandler, false);
+            }
+            function touchHandler(event) {
+                alert("Hola! Funciona el touch!!");
+            }
+        </script>
         <title>Hello World</title>
     </head>
-    <body ng-app="" ng-controller="rescatistaController">
-    	<div class="container-fluid">
-		 <h1>Rescatistas</h1>
-                <form role="form">
+    <body ng-app="" ng-controller="rescatistaController" id="body" style="background:#339966">
+    	<div class="container" id="mainContainer">
+        <div id="login">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1>Rescatistas</h1></div>
+        </div>
+		    <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <form role="form">
                    <div class="form-group">
                      <label for="email">Email:</label>
                      <input type="email" class="form-control" id="email" ng-model="email">
@@ -45,25 +64,61 @@
                    <div class="checkbox">
                      <label><input type="checkbox"> Recordarme</label>
                    </div>
-                   <button type="submit" class="btn btn-default" touchstart='validarRescatista()' onclick='validarRescatista()'>Ingresar</button>
+                   <button type="submit" class="btn btn-default" touchstart='validarRescatista()' ng-click="validarRescatista()" >Ingresar</button>
                 </form>
+          </div>
         </div>
-        <div>
-
-           Email prueba: <input type="text" ng-model="email"><br>
-           Pass prueba: <input type="text" ng-model="password"><br>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label for="email">Email prueba:</label> 
+            <input type="text" ng-model="email"><br>
+            <label for="pwd">Pass prueba:</label>
+            <input type="text" ng-model="password"><br>
            <br>
            <p>Probando: {{email + " " + password}}</p>
+          </div>
         </div>
-
-        <div>
-
+         <!--div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <ul>
-              <li ng-repeat="x in listaPlanes">
-                {{ x.nombre + ', ' + x.apellido }}
+              <li ng-repeat="x in planesAsignados">
+                {{ x.nombrePlan + ', ' + x.planId }}
               </li>
             </ul>
-       </div>
+          </div>
+        </div-->
+        </div> 
+        <div id="listaPendientes" style="display:none;">
+          <div class="container">
+             <h1>Planes pendientes:</h1>
+             <table class="table table-stripped table-hover table-responsive ">
+              <th><button ng-click='listar()' class="btn">Mostrar planes</button></th>
+              <tbody id="touchzone">
+                <tr ng-click='go()' id="touchzone" ng-repeat="plan in planes"><td>{{plan.nombrePlan}}</td><td>{{plan.planId}}</td></tr>
+              </tbody>
+            </table>
+            <!--div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="table table-stripped table-hover table-responsive">
+                  <li id="touchzone" ng-repeat="plan in planes">{{plan.nombrePlan}}: {{plan.planId}}</li>
+                </ul>
+              </div-->
+        </div>
+          </div>
+        </div> 
+        <div id="plan" style="display:none;">
+           <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <form role="form">
+                   <div class="form-group">
+                      <textarea class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Archivo de texto a mostrar con el plan de ejecuci&oacute;n.Archivo de texto a mostrar con el plan de ejecuci&oacute;n.Archivo de texto a mostrar con el plan de ejecuci&oacute;n.Archivo de texto a mostrar con el plan de ejecuci&oacute;n.Archivo de texto a mostrar con el plan de ejecuci&oacute;n.Archivo de texto a mostrar con el plan de ejecuci&oacute;n.Archivo de texto a mostrar con el plan de ejecuci&oacute;n.Archivo de texto a mostrar con el plan de ejecuci&oacute;n.</textarea><br>
+                    </div>
+                    <br>
+                    <button class="btn btn-danger" ng-click='cancelar()'>Cancelar</button><button type="submit" class="btn btn-success">Finalizar</button>
+              </form>
+            </div>   
+           </div>
+       
 
         <script src="js/RescatistasApp.js"></script>
         <script src="js/rescatistaController.js"></script> 
@@ -71,3 +126,7 @@
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
+<!-- <li ng-repeat="x in planes">
+                    {{ x.nombrePlan + ', ' + x.planId }}
+                    {{ key }}: {{ item }}
+                  </li>-->
