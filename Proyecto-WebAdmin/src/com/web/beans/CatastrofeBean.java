@@ -130,7 +130,7 @@ public class CatastrofeBean implements Serializable{
     	try{    	
     		InputBean inputBean = new InputBean();
     		String logo= inputBean.uploadFile(this.part);    		    		    	
-       		Integer in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, servicios, ongs, planDeRiesgo);    	
+       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, servicios, ongs, planDeRiesgo);    	
     		if (in.equals(0)){
     			System.out.println("es repetido." + in);
     			FacesContext contexto = FacesContext.getCurrentInstance(); 

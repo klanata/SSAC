@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
+import cross_cuting.enums.*;
 
 /**
  * Entity implementation class for Entity: Catastrofe
@@ -67,14 +68,15 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@Column(nullable= false)
 	private Boolean prioridad ;
 	
+	@Enumerated(EnumType.STRING)
+	private TipoCatastrofe tipoCatastrofe;
 	
-	private String tipoCatastrofe;
 	
-	public String getTipoCatastrofe() {
+	public TipoCatastrofe getTipoCatastrofe() {
 		return tipoCatastrofe;
 	}
 
-	public void setTipoCatastrofe(String tipoCatastrofe) {
+	public void setTipoCatastrofe(TipoCatastrofe tipoCatastrofe) {
 		this.tipoCatastrofe = tipoCatastrofe;
 	}
 
@@ -109,7 +111,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.servicios = new ArrayList<Servicio>();
 		this.ongs = new ArrayList<Ong>();
 		this.planDeRiesgo = null;	
-		this.tipoCatastrofe= "";
+		this.tipoCatastrofe= TipoCatastrofe.climaticas;
 	}	
 	
 	public Long getId() {

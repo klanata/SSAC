@@ -31,21 +31,21 @@ public class CatastrofeDAOImpl extends AbstractService implements CatastrofeDAO{
 	
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Integer insert(Catastrofe catastrofe)throws Exception {	
-		Integer id;
+	public Long insert(Catastrofe catastrofe)throws Exception {	
+		Long id;
 		String nombreEvento = catastrofe.getNombreEvento();
 		try {
 			if (this.existeCatastrofe(nombreEvento)){				
-				id = 0;				
+				id = (long) 0;				
 			} 
 			else 
 			{				
-				this.em.persist(catastrofe);				
-				TypedQuery<Integer> consulta = this.em.createNamedQuery("Catastrofe.BuscarCatastrofeId.NombreEvento",Integer.class);
-				consulta.setParameter("nombre", nombreEvento);
-				List<Integer> catastrofesId = consulta.getResultList();
+				this.em.persist(catastrofe);					
+				TypedQuery<Long> consulta = this.em.createNamedQuery("Catastrofe.BuscarCatastrofeId.NombreEvento",Long.class);				
+				consulta.setParameter("nombre", nombreEvento);				
+				List<Long> catastrofesId = consulta.getResultList();
 				if (catastrofesId.isEmpty()) {
-					id = 0;	
+					id = (long) 0;	
 			  	} else {
 			  		id = catastrofesId.get(0);
 			  	}					

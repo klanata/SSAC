@@ -11,7 +11,7 @@ import com.core.data.persistencia.JPAService;
 @Local
 public interface CatastrofeDAO extends JPAService{
 	
-	public Integer insert(Catastrofe catastrofe)  throws Exception;
+	public Long insert(Catastrofe catastrofe)  throws Exception;
 	
 	public boolean existeCatastrofe(String nombreEvento);
 	

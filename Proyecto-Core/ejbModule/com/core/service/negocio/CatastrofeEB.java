@@ -27,12 +27,12 @@ public class CatastrofeEB implements CatastrofeEBR{
 	private CatastrofeDAO catastrofeDAO;
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public Integer ingesarCatastrofe(String nombreEvento, String descripcion, String logo, BigDecimal coordenadasX, 
+	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, BigDecimal coordenadasX, 
 		BigDecimal coordenadasY, Boolean activa, Boolean prioridad, Collection<Servicio> servicios, Collection<Ong> ongs,
 		PlanDeRiesgo planDeRiesgo)throws Exception {
 				
 		Catastrofe c = new Catastrofe();
-		Integer id;
+		Long id;	
 		
 		c.setNombreEvento(nombreEvento);
 		c.setDescripcion(descripcion);
