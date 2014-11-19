@@ -5,12 +5,12 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <h:head>
-	<title>Registrar Catástrofes</title>
+	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />
 </h:head> 
-<body id="top">
+<body id="top"> 
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
@@ -25,8 +25,7 @@
           <input type="text" value="Email&hellip;"  onfocus="this.value=(this.value=='Email&hellip;')? '' : this.value ;" />
           <input type="submit" name="news_go" id="news_go" value="Login" />
         </fieldset>
-      </form>
-      <p></p>     
+      </form>          
     </div>
     <br class="clear" />
   </div>
@@ -38,38 +37,38 @@
         <li class="active"><a href="index.xhtml">Home</a></li>
         <li><a href="#">Administrador</a>
          <ul>
-            <li><a href="#">Alta</a></li>
-            <li><a href="#">Baja</a></li>
-            <li><a href="#">Modificación</a></li>
+            <li><a href="altaAdministrador.xhtml">Alta</a></li>
+            <li><a href="bajaAdministrador.xhtml">Baja</a></li>
+            <li><a href="modificacionAdministrador.xhtml">Modificación</a></li>
           </ul>	
         </li>
         <li><a href="#">Rescatista</a>
         <ul>
-            <li><a href="#">Alta</a></li>
-            <li><a href="#">Baja</a></li>
-            <li><a href="#">Modificación</a></li>
+            <li><a href="altaRescatista.xhtml">Alta</a></li>
+            <li><a href="bajaRescatista.xhtml">Baja</a></li>
+            <li><a href="modificacionRescatista.xhtml">Modificación</a></li>
           </ul>	        
         </li>
         <li><a href="#">ONG</a>
         <ul>
-            <li><a href="#">Alta</a></li>
-            <li><a href="#">Baja</a></li>
-            <li><a href="#">Modificación</a></li>
+            <li><a href="altaOng.xhtml">Alta</a></li>
+            <li><a href="bajaOng.xhtml">Baja</a></li>
+            <li><a href="modificacionOng.xhtml">Modificación</a></li>
           </ul>	        
         </li>
         <li><a href="#">Plan</a>
         <ul>
-            <li><a href="#">Alta de Plan de Riesgo</a></li>
-            <li><a href="#">Alta de Plan de Emergencia</a></li>            
+            <li><a href="altaPlanRiesgo.xhtml">Alta de Plan de Riesgo</a></li>
+            <li><a href="altaPlanEmergencia.xhtml">Alta de Plan de Emergencia</a></li>            
           </ul>	        
         </li>        
         <li><a href="#">Catástrofe</a>
           <ul>
             <li><a href="registrarCatastrofe.xhtml">Registrar Catástrofe</a></li>
-            <li><a href="#">Asignar ONG</a></li>
-            <li><a href="#">Asignar Imágenes</a></li>
-            <li><a href="#">Asignar Plan Riesgo</a></li>
-            <li><a href="#">Asignar Servicios</a></li>
+            <li><a href="asignarOngCatastrofe.xhtml">Asignar ONG</a></li>
+            <li><a href="asignarImagenCatastrode.xhtml">Asignar Imágenes</a></li>
+            <li><a href="asignarPlanRiesgoCatastrofe.xhtml">Asignar Plan Riesgo</a></li>
+            <li><a href="asignarServiciosCatastrofe.xhtml">Asignar Servicios</a></li>
           </ul>
         </li>
         <li><a href="#">Reporte</a>
@@ -135,15 +134,16 @@
   </div>
 </div>
 
+
+
+
+
 <div class="wrapper col7">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2011 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>
 </div>
-
-
-
-</body>
+</body> 
 </html>
