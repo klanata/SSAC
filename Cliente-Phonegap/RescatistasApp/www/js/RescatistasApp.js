@@ -1,1 +1,4 @@
-var app = angular.module("RescatistasApp", []); 
+'use strict';
+
+var app = angular.module("app", []); 
+

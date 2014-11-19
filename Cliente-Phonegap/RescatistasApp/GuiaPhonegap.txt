@@ -1,4 +1,4 @@
-1. Bajar node.js
+﻿1. Bajar node.js
 2. Bajar phonegap
 3. Bajar ant (verificar si no lo tienen ya).
 4. Bajar git (verificar si no lo tienen ya).
@@ -13,3 +13,6 @@ PATH = --lo que ya tengan en la variable + C:\Program Files\nodejs\;C:\android s
 Comandos:
 cordova build -> correr dentro de la raíz del proyecto para compilar (compila para todas las plataformas a menos que se indique lo contrario)
 phonegap install android -> instala la aplicación de android compilada con phonegap en el emulador de android (me funcionó con Nexus 4 y Android 4.2.2)
+phonegap install android --nombreDelDispositivo -> igual que el anterior pero para especificar un dispositivo (sirve para instalarlo en un cel conectado x usb)
+adb devices -> lista los dispositivos (pueden ser del emulador) que hay disponibles para correr la app
+adb logcat -> para ver la consola de android desde el cmd
