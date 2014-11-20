@@ -61,6 +61,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .col6 a{color:#2684B7; background-color:#F3F3F3;}
 .col7, .col7 a{color:#FFFFFF; background-color:#29313C;}
 
+
 /* ----------------------------------------------Generalise-------------------------------------*/
 
 #header, #topbar, #intro, #services, #breadcrumb, #container, #footer, #copyright{
@@ -145,13 +146,14 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	display:block;
 	float:left;
 	width:515px;
-	height:240px;
+	height:800px;
 	margin:0;
 	padding:30px;
 	color:#FFFFFF;
 	background-color:#2684B7;
 	}
-
+	
+	
 #intro .fl_left h2{
 	font-size:46px;
 	margin:0 0 15px 0;
@@ -159,6 +161,14 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	border:none;
 	color:#FFFFFF;
 	background-color:#2684B7;
+	}
+	
+#intro .fl_left label{
+	margin:0 0 20px 0;
+	padding:0 0 8px 0;
+	font-size:20px;
+	font-weight:normal;
+	font-family:Georgia, "Times New Roman", Times, serif;		
 	}
 
 #intro .fl_left p{
@@ -246,6 +256,22 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	}
 
 #services p.readmore a{
+	padding:8px 15px;
+	font-weight:bold;
+	color:#FFFFFF;
+	background-color:#666666;
+	}
+	
+#services p.readmore2{
+	display:block;
+	width:100%;
+	margin:15px 0 0 0;
+	padding:0;
+	text-align:right;
+	line-height:normal;
+	}
+	
+#services p.readmore2 a{
 	padding:8px 15px;
 	font-weight:bold;
 	color:#FFFFFF;
@@ -525,3 +551,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	margin:0;
 	padding:0;
 	}
+	
+
+
+
