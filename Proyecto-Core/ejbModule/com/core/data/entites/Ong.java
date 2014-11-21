@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 
@@ -20,6 +21,7 @@ query = "SELECT o "+
 		
 
 })
+@XmlRootElement
 public class Ong  extends AbstractEntity implements Serializable{
 
 	

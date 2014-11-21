@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: PedidoDeAyuda
@@ -23,6 +24,7 @@ import javax.persistence.*;
 				query = "SELECT c "+
 				"FROM PedidoDeAyuda c ")
 })
+@XmlRootElement
 public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 
 	

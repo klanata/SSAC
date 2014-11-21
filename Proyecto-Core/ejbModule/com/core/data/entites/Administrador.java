@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: Administrador
@@ -26,6 +27,7 @@ query = "SELECT u "+
 		
 
 })
+@XmlRootElement
 public class Administrador  extends AbstractEntity implements Serializable{
 
 	

@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -28,6 +29,7 @@ query = "SELECT u "+
 		
 
 })
+@XmlRootElement
 public class Rescatista  extends AbstractEntity implements Serializable { 
 	  
 	 

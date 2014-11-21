@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import cross_cuting.enums.*;
 
 /**
@@ -38,6 +40,7 @@ query = "SELECT c.id "+
 })
 
 @Table (name = "Catastrofe")
+@XmlRootElement
 public class Catastrofe extends AbstractEntity implements Serializable {
 
 	

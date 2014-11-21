@@ -5,13 +5,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: DeBienes
  *
  */
 @Entity
-
+@XmlRootElement
 public class DeBienes extends Donacion implements Serializable {
 
 	

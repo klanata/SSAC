@@ -6,13 +6,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: Economica
  *
  */
 @Entity
-
+@XmlRootElement
 public class Economica extends Donacion implements Serializable {
 
 	

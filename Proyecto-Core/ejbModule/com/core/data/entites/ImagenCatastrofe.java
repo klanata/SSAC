@@ -5,13 +5,14 @@ package com.core.data.entites;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: ImagenCatastrofe
  *
  */
 @Entity
-
+@XmlRootElement
 public class ImagenCatastrofe extends Imagen implements Serializable{
 
 	

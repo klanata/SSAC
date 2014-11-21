@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @NamedQueries({
@@ -27,7 +28,7 @@ query = "SELECT e "+
 		
 		
 })
-
+@XmlRootElement
 public class EstadoRescatista  extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

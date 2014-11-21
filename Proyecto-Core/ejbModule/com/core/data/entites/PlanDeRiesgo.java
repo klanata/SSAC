@@ -3,13 +3,14 @@ package com.core.data.entites;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: PlanDeRiesgo
  *
  */
 @Entity
-
+@XmlRootElement
 public class PlanDeRiesgo  extends AbstractEntity implements Serializable{
 
 	

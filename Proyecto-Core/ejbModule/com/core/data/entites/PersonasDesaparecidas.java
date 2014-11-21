@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import cross_cuting.enums.EstadoPersona;
 /**
@@ -27,6 +28,7 @@ import cross_cuting.enums.EstadoPersona;
 				"FROM PersonasDesaparecidas c "),				
 	
 })
+@XmlRootElement
 public class PersonasDesaparecidas  extends AbstractEntity implements Serializable{
 
 	

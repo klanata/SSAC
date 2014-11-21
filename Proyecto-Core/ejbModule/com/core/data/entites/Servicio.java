@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: Servicio
@@ -12,6 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "Servicio")
+@XmlRootElement
 public class Servicio  extends AbstractEntity implements Serializable {
 
 	

@@ -26,7 +26,7 @@
   <div id="topbar">
     <div id="topnav">
       <ul>
-        <li class="active"><a href="index22.xhtml">Home</a></li>
+        <li class="active"><a href="index.xhtml">Home</a></li>
         <li><a href="#">Administrador</a>
          <ul>
             <li><a href="altaAdministrador.xhtml">Alta</a></li>
@@ -75,46 +75,48 @@
   <div id="intro">
     <div class="fl_left">
       <h2>Alta Ong</h2>
-      <br/>	
+      
       <f:view>
 		<h:form id="registroOng" >
-						<h:messages id="messages" for="registroOng"></h:messages>	
+			<h:messages id="messages" for="registroOng"></h:messages>
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+		<h:panelGrid columns="1" cellpadding="2">		
+			
 				<p>
 				<label for="nombre">Nombre :</label>				
-					<p:inputText id="nombre" label="evento" style="margin-left: 90px;" value="#{ongBean.nombre}" required="true" requiredMessage="El nombre de la ONG es requerido" >	
+					<p:inputText id="nombre" label="evento"  value="#{ongBean.nombre}" required="true" requiredMessage="El nombre de la ONG es requerido" >	
 					</p:inputText>																																									
 				</p>
 				<br/>
 						
 				<p>
 				<label for="direccion">Dirección :</label>				
-					<p:inputText id="direccion" label="evento" style="margin-left: 90px;" value="#{ongBean.direccion}" required="true" requiredMessage="La dirección de la ONG es requerido" >	
+					<p:inputText id="direccion" label="evento" value="#{ongBean.direccion}" required="true" requiredMessage="La dirección de la ONG es requerido" >	
 					</p:inputText>																																									
 				</p>
 				<br/>
 				
 				<p>
 				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento" style="margin-left: 80px;" value="#{ongBean.telefono}"  >	
+					<p:inputText id="telefono" label="evento"  value="#{ongBean.telefono}"  >	
 					</p:inputText>																																									
 				</p>
 				<br/>
 				
 				<p>
 				<label for="email">Email :</label>				
-					<p:inputText id="email" style="margin-left: 90px;" label="evento" value="#{ongBean.email}"  >	
+					<p:inputText id="email" label="evento" value="#{ongBean.email}"  >	
 					</p:inputText>																																									
 				</p>
 				<br/>
 				
 				<p>
 				<label for="citioweb">Citio Web :</label>				
-					<p:inputText id="citioweb" style="margin-left: 90px;" label="evento" value="#{ongBean.citioWeb}"  >	
+					<p:inputText id="citioweb"  label="evento" value="#{ongBean.citioWeb}"  >	
 					</p:inputText>																																									
 				</p>
 				<br/>
-				
+				 </h:panelGrid>
 				<h4>Descripción:</h4>	
 					<h:panelGrid columns="2" border="0">																																		
 					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{ongBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
