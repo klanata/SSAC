@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.ejb.EJB;
-import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -19,8 +22,8 @@ import com.core.data.persistencia.interfaces.locales.RescatistaDAO;
 /*Autor: Stephy
  * */
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 
-@Local(RescatistaDAO.class)
 public class RescatistaDAOImpl extends AbstractService   implements RescatistaDAO{
 
 	/**
@@ -41,29 +44,51 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	
 	
 	/////////////////////////////////////////////////////////////////////////////////////
-	@Override
-	public Integer crearRescatista(Rescatista rescatista) throws Exception 
-	{
-		Integer id =0;
-		try{
-			
-			dataService.create(rescatista);
-			Rescatista rescatista2 = buscarUsuario(rescatista.getNick(), rescatista.getPassword());
-			if  (rescatista2!=null)
-			{
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Long insert(Rescatista rescatista)throws Exception {	
+		Long id;
+		String nick = rescatista.getNick();
+		try {
+			if (this.existeRescatista(nick)){				
+				id = (long) 0;				
+			} 
+			else 
+			{				
+				this.em.persist(rescatista);					
+
+				Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista");
+				consulta.setParameter("nick", nick);							
 				
-				id = rescatista2.getId().intValue();
-				
-			}
-			
-		} catch (Exception excep){
-			
-				throw excep;
-			
-		}
-		return id;
-		
+				if (consulta.getResultList().isEmpty()){
+					id = (long) 0;	
+			  	} else {
+			  		
+			  		Rescatista o = (Rescatista) consulta.getResultList().get(0);
+			  		id= o.getId();
+			  	}					
+			} 					
+			return id;		    
+		} 
+		catch (Exception excep){			
+			throw excep;
+		}	
 	}
+	////////////////////////////////////////////////////////////////
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean existeRescatista(String nick) {
+				
+				boolean existe;
+				Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista");
+				consulta.setParameter("nick", nick);							
+				if (consulta.getResultList().isEmpty()){
+			  		existe = false;
+			  	} else {
+			  		existe = true;
+			  	}
+			  	return existe;
+		}
+
 	/////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public void asignarCatastrofe(EstadoRescatista estadoRescatista,Long idRescatista) {
@@ -163,7 +188,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 		Rescatista usuario = null;
 		Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista.Nick.Pass");
 	  	consulta.setParameter("nick", login);
-	  	consulta.setParameter("pass", password);
+	  	consulta.setParameter("password", password);
 	   	usuario = (Rescatista) consulta.getResultList().get(0);
 	  		
 		return usuario;

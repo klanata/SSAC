@@ -9,7 +9,7 @@
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
 </h:head> 
 <body id="top"> 
 <div class="wrapper col1">
@@ -95,41 +95,37 @@
       <br/>	
       <f:view>
 		<h:form id="registroCatastrofe" enctype="multipart/form-data">
-			<h:messages id="messages" for="registroCatastrofe"></h:messages>			
-				
+						
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			
 				<p>
 				<label for="nombreEvento">Nombre del Evento:</label>				
-					<p:inputText id="nombreEvento" value="#{catastrofeBean.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
-					</p:inputText>																				
-					<h:message errorStyle="color:red;" for="nombreEvento"/> 																
+					<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBean.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
+					</p:inputText>																																									
 				</p>
 				<br/>
 						
 				<h4>Descripción:</h4>	
 					<h:panelGrid columns="2" border="0">																																		
-					<p:inputTextarea id="descripcion" rows="5" cols="54" autoResize="false" value="#{catastrofeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
-				</h:panelGrid>								
-					<h:message errorStyle="color:red;" for="descripcion"/>
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{catastrofeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
+				</h:panelGrid>													
 						
 				<h4>Logo:</h4>					
 				<h:panelGrid columns="2" border="0">																						
-					<h:inputFile id="logo" label="logo" value="#{catastrofeBean.part}" required="true" requiredMessage="Archivo no seleccionado" >			
+					<h:inputFile id="logo" label="logo" value="#{catastrofeBean.part}" required="true" requiredMessage="El logo es obligatorio" >			
 					</h:inputFile>					 					
-				</h:panelGrid>	
-				<h:message errorStyle="color:red;" for="logo"/>
+				</h:panelGrid>					
 																
 				<p>
 				<label for="coordX">Coordenada X:</label>
-				<p:inputText id="coordX" value="#{catastrofeBean.coordenadasX}" required="true" requiredMessage="La coordenada X es obligatoria" >
-				</p:inputText>	
-				<h:message errorStyle="color:red;" for="coordX"/> 
+				<p:inputText id="coordX" label="coordenadaX" value="#{catastrofeBean.coordenadasX}" required="true" requiredMessage="La coordenada X es obligatoria" >
+				</p:inputText>					
 				</p>
 				<br/>
 				
 				<p><label for="coordY">Coordenada Y:</label>
-				<p:inputText id="coordY" value="#{catastrofeBean.coordenadasY}" required="true" requiredMessage="La coordenada Y es obligatoria" >
-				</p:inputText>	
-				<h:message errorStyle="color:red;" for="coordY"/> 
+				<p:inputText id="coordY" label="coordenadaY" value="#{catastrofeBean.coordenadasY}" required="true" requiredMessage="La coordenada Y es obligatoria" >
+				</p:inputText>					
 				</p>	
 				<br/>
 				
@@ -143,8 +139,9 @@
 				<p:selectBooleanCheckbox value="#{catastrofeBean.prioridad}"/> 
 				<label for="prioridad">Prioridad</label>				
 				</p>	
-				<br/>					
-			<p:commandButton id="comandoRegistrar" ajax="false" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{catastrofeBean.registrarCatastrofe()}">
+				<br/>															
+				
+			<p:commandButton id="comandoRegistrar" update="growl" ajax="false" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{catastrofeBean.registrarCatastrofe()}">
 			</p:commandButton>		
 			
 		</h:form>

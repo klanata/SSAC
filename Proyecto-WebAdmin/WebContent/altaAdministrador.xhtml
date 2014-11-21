@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
 </h:head> 
 <body id="top"> 
 <div class="wrapper col1">
@@ -17,16 +18,7 @@
       <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
       <p><strong>Vista Web para Administradores</strong></p>
     </div>
-    <div id="newsletter">      
-      <form action="#" id="loginAdmin">
-        <fieldset>
-          <legend>NewsLetter</legend>
-          <input type="text" value="Name&hellip;"  onfocus="this.value=(this.value=='Name&hellip;')? '' : this.value ;" />
-          <input type="text" value="Email&hellip;"  onfocus="this.value=(this.value=='Email&hellip;')? '' : this.value ;" />
-          <input type="submit" name="news_go" id="news_go" value="Login" />
-        </fieldset>
-      </form>          
-    </div>
+    
     <br class="clear" />
   </div>
 </div>
@@ -34,7 +26,7 @@
   <div id="topbar">
     <div id="topnav">
       <ul>
-        <li class="active"><a href="index.xhtml">Home</a></li>
+        <li class="active"><a href="index22.xhtml">Home</a></li>
         <li><a href="#">Administrador</a>
          <ul>
             <li><a href="altaAdministrador.xhtml">Alta</a></li>
@@ -75,30 +67,84 @@
         </li>
       </ul>
     </div>
-    <div id="search">
-      <form action="#" method="post">
-        <fieldset>
-          <legend>Site Search</legend>
-          <input type="text" value="Search Our Website&hellip;"  onfocus="this.value=(this.value=='Search Our Website&hellip;')? '' : this.value ;" />
-          <input type="submit" name="go" id="go" value="Search" />
-        </fieldset>
-      </form>
-    </div>
+    
     <br class="clear" />
   </div>
 </div>
 <div class="wrapper col3">
   <div id="intro">
     <div class="fl_left">
-      <h2>Cursus penati saccum ut curabitur nulla.</h2>
-      <p>Cursuspenatisaccum ut curabitur nulla tellus tor ames a in curabitur pede. Idet mollisi eros dis orci congue elis et curabitur consequam intesque. Curabiturpisametur in ante.</p>
-      <p class="readmore"><a href="#">Ipsumsenterdum non velit &raquo;</a></p>
+      <h2>Dar de alta un Administradr</h2>
+      <br/>	
+      <f:view>
+		<h:form id="registroAdministrador" >
+						
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			
+				<p>
+				<label for="nick">Nick :</label>				
+					<p:inputText id="nick" style="margin-left: 90px;" label="evento" value="#{administradorBean.nick}" required="true" requiredMessage="El nick del Rescatista es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p>
+				<label for="pass">Password :</label>				
+					<p:inputText id="pass" style="margin-left: 90px;" label="evento" value="#{administradorBean.password}"  required="true" requiredMessage="El password del Rescatista es requerido">	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				<p>
+				<label for="nombre">Nombre :</label>				
+					<p:inputText id="nombre" label="evento" style="margin-left: 90px;" value="#{administradorBean.nombre}" required="true" requiredMessage="El nombre del Rescatista es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+						
+				<p>
+				<label for="apellido">Apellido :</label>				
+					<p:inputText id="apellido" label="evento" style="margin-left: 90px;" value="#{administradorBean.apellido}" required="true" requiredMessage="El apellido del Rescatista es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p>
+				<label for="telefono">Telefono :</label>				
+					<p:inputText id="telefono" label="evento" style="margin-left: 80px;" value="#{administradorBean.celular}"  >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p>
+				<label for="email">Email :</label>				
+					<p:inputText id="email" style="margin-left: 90px;" label="evento" value="#{administradorBean.email}"  >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+					<p>
+				<label for="sexo">Sexo :</label>				
+					<p:inputText id="sexo" style="margin-left: 90px;" label="evento" value="#{administradorBean.sexo}"  >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p:outputLabel for="fecha" value="Fecha:" />
+        		<p:calendar id="fecha" value="#{administradorBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />	
+				
+				<br/>
+				<br/>
+				<br/>
+			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{administradorBean.registrarAdministrador()}">
+			</p:commandButton>		
+		
+		</h:form>
+		</f:view>
     </div>
-    <div class="fl_right"><img src="resources/images/demo/380x300.gif" alt="" /></div>
+    <div class="fl_right"><img src="resources/images/demo/ADMINISTRADOR.gif" alt="" /></div>
     <br class="clear" />
   </div>
 </div>
-
 
 
 <div class="wrapper col7">
@@ -110,3 +156,8 @@
 </div>
 </body> 
 </html>
+
+
+
+
+

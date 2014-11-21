@@ -2,13 +2,13 @@ package com.core.data.entites;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
 
-import cross_cuting.enums.sexo;
 
 /**
  * Entity implementation class for Entity: Rescatista
@@ -63,10 +63,10 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	private Date fechaNac;
 	
 	@Column(nullable= false)
-	private sexo sexo;
+	private String sexo;
 	
-	@Column(nullable= false)
-	private Integer celular;
+	
+	private BigDecimal celular;
 	
 	
 	
@@ -118,18 +118,18 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	public void setFechaNac(Date fechaNac) {
 		this.fechaNac = fechaNac;
 	}
-	public sexo getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
-	public void setSexo(sexo sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public Integer getCelular() {
+	public BigDecimal getCelular() {
 		return celular;
 	}
 
 
-	public void setCelular(Integer celular) {
+	public void setCelular(BigDecimal celular) {
 		this.celular = celular;
 	}
    

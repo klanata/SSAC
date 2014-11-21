@@ -8,8 +8,10 @@ import com.core.data.persistencia.JPAService;
 @Local
 public interface  AdministradorDAO extends JPAService {
 	
-	public Integer crearAdministrador(Administrador admin) throws Exception;
+	public Long crearAdministrador(Administrador admin) throws Exception;
 	
-	public Administrador buscarAdministradorNickPass(String nick, String password);
+	public Boolean buscarAdministradorNickPass(String nick, String password);
+	
+	public boolean existeAdministrador(String nick);
 
 }

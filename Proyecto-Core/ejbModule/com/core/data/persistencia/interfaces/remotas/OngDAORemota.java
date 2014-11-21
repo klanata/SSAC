@@ -1,10 +1,12 @@
-package com.core.data.persistencia.interfaces.locales;
-import javax.ejb.Local;
+package com.core.data.persistencia.interfaces.remotas;
+
+import javax.ejb.Remote;
+
 import com.core.data.entites.Ong;
 import com.core.data.persistencia.JPAService;
 
-@Local
-public interface OngDAO extends JPAService{
+@Remote
+public interface  OngDAORemota extends JPAService{
 	
 	public Long insert(Ong ong)  throws Exception;
 	

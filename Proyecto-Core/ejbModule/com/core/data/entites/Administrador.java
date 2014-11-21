@@ -1,11 +1,10 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-
-import cross_cuting.enums.sexo;
 
 import javax.persistence.*;
 
@@ -24,7 +23,7 @@ query = "SELECT u "+
 @NamedQuery(name="Administrador.BuscarAdministrador.Nick.Pass", 
 query = "SELECT u "+
 		"FROM Administrador u " +
-		"WHERE u.nick = :nick AND u.password= :pass")
+		"WHERE u.nick = :nick AND u.password= :password")
 		
 
 })
@@ -47,7 +46,7 @@ public class Administrador  extends AbstractEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 		
 	@Column(nullable= false)
 	private String nombre = "";
@@ -58,7 +57,7 @@ public class Administrador  extends AbstractEntity implements Serializable{
 	@Column(nullable= false)
 	private String nick = "";
 	
-	@Column(nullable= false)
+	
 	private String email = "";
 	
 	@Column(nullable= false)
@@ -68,37 +67,22 @@ public class Administrador  extends AbstractEntity implements Serializable{
 	private Date fechaNac;
 	
 	@Column()
-	private sexo sexo;
+	private String sexo = "";
 	
-	@Column(nullable= false)
-	private Integer celular;
+	
+	private BigDecimal celular = BigDecimal.ZERO;
 	
 	@OneToMany
 	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
 	
 		
 	
-	public Administrador(String nombre, String apellido, String nick,
-			String email, String password, Date fechaNac,
-			cross_cuting.enums.sexo sexo, Integer celular,
-			Collection<Catastrofe> catastrofes) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.nick = nick;
-		this.email = email;
-		this.password = password;
-		this.fechaNac = fechaNac;
-		this.sexo = sexo;
-		this.celular = celular;
-		this.catastrofes = catastrofes;
-	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -150,19 +134,19 @@ public class Administrador  extends AbstractEntity implements Serializable{
 		this.fechaNac = fechaNac;
 	}
 
-	public sexo getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(sexo sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 
-	public Integer getCelular() {
+	public BigDecimal getCelular() {
 		return celular;
 	}
 
-	public void setCelular(Integer celular) {
+	public void setCelular(BigDecimal celular) {
 		this.celular = celular;
 	}
 

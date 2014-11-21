@@ -16,7 +16,7 @@ import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.RescatistaDAO;
 import com.core.service.negocio.remote.RescatistaEBR;
 
-@Path("/personas") 
+@Path("/rescatista") 
 @Stateless(mappedName="ejb:Proyecto-EAR/Proyecto-Core//RescatistaEB!com.core.service.negocio.remote.RescatistaEBR")
 
 public class RescatistaEB implements RescatistaEBR {
@@ -58,14 +58,6 @@ public class RescatistaEB implements RescatistaEBR {
 		}
 		
 	}
-
-	@Override
-	public Rescatista buscarUsuario(String login, String password){
-		Rescatista r = new Rescatista(); 
-		r = rescatistaService.buscarUsuario(login, password);
-		return r;
-	}
-
 	//////////////////////////////////////////////////////////////////////////////
 	@Override
 	public Long crearRescatista(String nombre, String nick, String apellido,
@@ -84,7 +76,6 @@ public class RescatistaEB implements RescatistaEBR {
 	}
 
 	
-
 	
 
 }
