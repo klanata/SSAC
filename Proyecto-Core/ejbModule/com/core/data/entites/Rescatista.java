@@ -24,7 +24,7 @@ query = "SELECT u "+
 @NamedQuery(name="Rescatista.BuscarRescatista.Nick.Pass", 
 query = "SELECT u "+
 		"FROM Rescatista u " +
-		"WHERE u.nick = :nick AND u.password= :pass")
+		"WHERE u.nick = :nick AND u.password= :password")
 		
 
 })
