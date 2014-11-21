@@ -74,6 +74,23 @@ public class RescatistaEB implements RescatistaEBR {
 		Long id = rescatistaService.insert(r);
 		return id;
 	}
+	
+	///////////////////////////////////////////////////////////////
+	@Override
+	public Boolean buscarUsuario(String nick, String password) {
+		
+		
+		Boolean existe = false;
+		
+		try{
+			Rescatista r = rescatistaService.buscarUsuario(nick, password);
+		
+			if(r!=null){existe = true;}
+		}	catch (Exception excep){			
+			throw excep;
+		}
+		return existe;
+	}
 
 	
 	
