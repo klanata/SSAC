@@ -1,6 +1,9 @@
 package com.core.data.persistencia;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -8,6 +11,8 @@ import javax.persistence.Query;
 import com.core.data.entites.Administrador;
 import com.core.data.persistencia.interfaces.locales.AdministradorDAO;
 
+@Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class AdministradorDAOImpl extends AbstractService implements AdministradorDAO  {
 
 	/**
@@ -30,11 +35,11 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 	@Override
 	public Integer crearAdministrador(Administrador admin) throws Exception {
 		Integer id =0;
-		try{
+		//try{
 			
 			dataService.create(admin);
-			Administrador admin2 = buscarAdministradorNickPass(admin.getNick(), admin.getPassword());
-			if  (admin2!=null)
+			//Administrador admin2 = buscarAdministradorNickPass(admin.getNick(), admin.getPassword());
+			/*if  (admin2!=null)
 			{
 				
 				id = admin2.getId().intValue();
@@ -45,26 +50,27 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 			
 				throw excep;
 			
-		}
+		}*/
 		return id;
 	
 	}
 
 	@Override
-	public Administrador buscarAdministradorNickPass(String nick,
+	public Boolean buscarAdministradorNickPass(String nick,
 			String password) {
 		
-		Administrador usuario = null;
+		//Administrador usuario = null;
+		System.out.print("password"+ password);
+		Boolean existe= false;
 		Query consulta = this.em.createNamedQuery("Administrador.BuscarAdministrador.Nick.Pass");
 	  	consulta.setParameter("nick", password);
-	  	consulta.setParameter("password", password);
-	  	
-	  	if(consulta!= null){
-	  		
-	  		usuario = (Administrador) consulta.getResultList().get(0);
-	  	}	
-	  		
-		return usuario;
+	  	consulta.setParameter("pass", password);
+	  	if (consulta.getResultList().isEmpty()){
+	  		existe = false;
+	  	} else {
+	  		existe = true;
+	  	}
+	  	return existe;
 	}
 	
 	

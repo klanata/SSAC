@@ -1,19 +1,25 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
 
-import cross_cuting.enums.TipoCatastrofe;
 
-/**
- * Entity implementation class for Entity: Ong
- *
- */
+
 @Entity
+@NamedQueries({
+	
+@NamedQuery(name="Ong.BuscarOngNombre", 
+query = "SELECT o "+
+		"FROM Ong o " +
+		"WHERE o.nombre = :nombre")
 
+		
+
+})
 public class Ong  extends AbstractEntity implements Serializable{
 
 	
@@ -40,10 +46,11 @@ public class Ong  extends AbstractEntity implements Serializable{
 	@Column(nullable= false)
 	private String direccion = "";
 	
-	@Column(nullable= false)
-	private String telefono = "";
 	
-	@Column(nullable= false)
+	private BigDecimal telefono = BigDecimal.ZERO;
+	
+	private String email= "";
+	
 	private String citioWeb = "";
 	
 	@Column(nullable= false)
@@ -62,11 +69,14 @@ public class Ong  extends AbstractEntity implements Serializable{
 	@OneToMany
 	private Collection<DeServicios> donacionesDeServicios = new ArrayList<DeServicios>(0);
 
-	
+	public String getNombre() {
+		return nombre;
+	}
 
-	
-	
-	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public String getDireccion() {
 		return direccion;
 	}
@@ -75,12 +85,20 @@ public class Ong  extends AbstractEntity implements Serializable{
 		this.direccion = direccion;
 	}
 
-	public String getTelefono() {
+	public BigDecimal getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(BigDecimal telefono) {
 		this.telefono = telefono;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getCitioWeb() {
@@ -97,14 +115,6 @@ public class Ong  extends AbstractEntity implements Serializable{
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public Collection<Catastrofe> getCatastrofes() {
@@ -140,14 +150,8 @@ public class Ong  extends AbstractEntity implements Serializable{
 		this.donacionesDeServicios = donacionesDeServicios;
 	}
 
-	/*public Collection<TipoCatastrofe> getTiposdeCatastrofes() {
-		return tiposdeCatastrofes;
-	}
-
-	public void setTiposdeCatastrofes(Collection<TipoCatastrofe> tiposdeCatastrofes) {
-		this.tiposdeCatastrofes = tiposdeCatastrofes;
-	}*/
 	
+
 	
 	
 }

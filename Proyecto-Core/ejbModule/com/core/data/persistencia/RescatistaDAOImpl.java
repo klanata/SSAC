@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,7 +21,7 @@ import com.core.data.persistencia.interfaces.locales.RescatistaDAO;
  * */
 @Stateless
 
-@Local(RescatistaDAO.class)
+//@TransactionManagement(TransactionManagementType.CONTAINER)
 public class RescatistaDAOImpl extends AbstractService   implements RescatistaDAO{
 
 	/**

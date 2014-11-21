@@ -24,7 +24,7 @@ query = "SELECT u "+
 @NamedQuery(name="Administrador.BuscarAdministrador.Nick.Pass", 
 query = "SELECT u "+
 		"FROM Administrador u " +
-		"WHERE u.nick = :nick AND u.password= :pass")
+		"WHERE u.nick = :nick AND u.password= :password")
 		
 
 })
