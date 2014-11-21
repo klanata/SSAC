@@ -8,7 +8,7 @@ import com.core.data.persistencia.JPAService;
 @Local
 public interface PersonasDesaparecidasDAO extends JPAService {
 	
-	public void insert(PersonasDesaparecidas personadesaparecida)  throws Exception;
+	public Long insert(PersonasDesaparecidas personadesaparecida)  throws Exception;
 	
 	public boolean existePersona(String nombrePersona, String apePersona);
 	

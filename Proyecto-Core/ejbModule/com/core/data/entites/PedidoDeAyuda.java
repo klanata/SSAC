@@ -12,13 +12,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Entity implementation class for Entity: PedidoDeAyuda
  *
- */
+ */ 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="PedidoDeAyuda.BuscarPedidoPorId", 
+	@NamedQuery(name="PedidoDeAyuda.BuscarPedidoid.id", 
 			query = "SELECT e "+
 					"FROM PedidoDeAyuda e " +
-					"WHERE e.id = :idPedido"),
+					"WHERE e.id = :id"),
 					
 @NamedQuery(name="PedidoDeAyuda.findAll", 
 				query = "SELECT c "+
