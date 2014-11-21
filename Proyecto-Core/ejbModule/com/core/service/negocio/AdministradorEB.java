@@ -29,7 +29,7 @@ public class AdministradorEB implements AdministradorEBR{
 
 	@Override
 	public Long crearAdministrador(String nombre, String nick, String apellido,
-			String email, String password, Date fechaNac, String sexo, BigDecimal celular) throws Exception {
+			String email, String password, Date fechaNac, String sexo, Integer celular) throws Exception {
 			
 		Administrador r = new Administrador();
 		r.setNombre(nombre);

@@ -61,7 +61,7 @@ public class RescatistaEB implements RescatistaEBR {
 	//////////////////////////////////////////////////////////////////////////////
 	@Override
 	public Long crearRescatista(String nombre, String nick, String apellido,
-			String email, String password, Date fechaNac, String sexo, BigDecimal celular) throws Exception {
+			String email, String password, Date fechaNac, String sexo, Integer celular) throws Exception {
 			
 		Rescatista r = new Rescatista();
 		r.setNombre(nombre);

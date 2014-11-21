@@ -1,7 +1,6 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -70,7 +69,7 @@ public class Administrador  extends AbstractEntity implements Serializable{
 	private String sexo = "";
 	
 	
-	private BigDecimal celular = BigDecimal.ZERO;
+	private Integer celular;
 	
 	@OneToMany
 	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
@@ -142,11 +141,11 @@ public class Administrador  extends AbstractEntity implements Serializable{
 		this.sexo = sexo;
 	}
 
-	public BigDecimal getCelular() {
+	public Integer getCelular() {
 		return celular;
 	}
 
-	public void setCelular(BigDecimal celular) {
+	public void setCelular(Integer celular) {
 		this.celular = celular;
 	}
 

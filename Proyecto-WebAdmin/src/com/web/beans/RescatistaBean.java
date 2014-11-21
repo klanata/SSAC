@@ -30,7 +30,7 @@ public class RescatistaBean {
 	private String password = "";
 	private Date fechaNac= null;
 	private String sexo;
-	private BigDecimal celular = BigDecimal.ZERO;
+	private Integer celular = new Integer(0);
 	
 	public String getNombre() {
 		return nombre;
@@ -74,10 +74,10 @@ public class RescatistaBean {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public BigDecimal getCelular() {
+	public Integer getCelular() {
 		return celular;
 	}
-	public void setCelular(BigDecimal celular) {
+	public void setCelular(Integer celular) {
 		this.celular = celular;
 	}
 	public String registrarRescatista(){				
@@ -112,6 +112,11 @@ public class RescatistaBean {
     	        contexto.addMessage("registroRescatista", messages);
     		}
     		else {    	
+    			
+    			FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        FacesMessage messages = new FacesMessage("Rescatista registrado con exito !!"); 
+    	        contexto.addMessage("registroRescatista", messages);
+    			
     			this.nombre = "";   		
         		this.apellido = "";
         		this.nick = "";

@@ -2,7 +2,6 @@ package com.core.data.entites;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -66,7 +65,7 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	private String sexo;
 	
 	
-	private BigDecimal celular;
+	private Integer celular;
 	
 	
 	
@@ -124,12 +123,12 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public BigDecimal getCelular() {
+	public Integer getCelular() {
 		return celular;
 	}
 
 
-	public void setCelular(BigDecimal celular) {
+	public void setCelular(Integer celular) {
 		this.celular = celular;
 	}
    

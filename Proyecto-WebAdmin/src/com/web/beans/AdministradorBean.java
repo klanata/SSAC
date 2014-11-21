@@ -34,7 +34,7 @@ public class AdministradorBean implements Serializable{
 	private String password = "";
 	private Date fechaNac= null;
 	private String sexo = "";
-	private BigDecimal celular = BigDecimal.ZERO;
+	private Integer celular = new Integer(0);
 	
 	public String getNombre() {
 		return nombre;
@@ -78,10 +78,10 @@ public class AdministradorBean implements Serializable{
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public BigDecimal getCelular() {
+	public Integer getCelular() {
 		return celular;
 	}
-	public void setCelular(BigDecimal celular) {
+	public void setCelular(Integer celular) {
 		this.celular = celular;
 	}
 	public String registrarAdministrador(){				
