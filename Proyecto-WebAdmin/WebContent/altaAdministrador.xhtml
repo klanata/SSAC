@@ -76,11 +76,11 @@
     <div class="fl_left">
       <h2>Alta Administrador</h2>
       <br/>	
-      <f:view>
+      
 		<h:form id="registroAdministrador" >
 						<h:messages id="messages" for="registroAdministrador"></h:messages>	
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid columns="1" cellpadding="2">	
+			<h:panelGrid columns="1" cellpadding="3">	
 				<p>
 				<label for="nick">Nick :</label>				
 					<p:inputText id="nick" label="evento" value="#{administradorBean.nick}" required="true" requiredMessage="El nick del Administrador es requerido" >	
@@ -130,16 +130,13 @@
 				<br/>
 				
 				<p:outputLabel for="fecha" value="Fecha:" />
-        		<p:calendar id="fecha" value="#{administradorBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />	
-			
-				<br/>
-				<br/>
-				<br/>
-			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{administradorBean.registrarAdministrador()}">
+        		<p:calendar id="fecha" value="#{administradorBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />
+        		</h:panelGrid>	
+			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 400px;" styleClass="formbutton" value="Registrar" action="#{administradorBean.registrarAdministrador()}">
 			</p:commandButton>		
-			</h:panelGrid>
+			
 		</h:form>
-		</f:view>
+		
 		
     </div>
     <div class="fl_right"><img src="resources/images/demo/ADMINISTRADOR.gif" alt="" /></div>

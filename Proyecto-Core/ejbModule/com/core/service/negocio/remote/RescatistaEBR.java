@@ -1,7 +1,6 @@
 package com.core.service.negocio.remote;
 /*Autor : Stephy
  * */
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.ejb.Remote;
