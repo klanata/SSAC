@@ -163,7 +163,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 		Rescatista usuario = null;
 		Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista.Nick.Pass");
 	  	consulta.setParameter("nick", login);
-	  	consulta.setParameter("password", password);
+	  	consulta.setParameter("pass", password);
 	   	usuario = (Rescatista) consulta.getResultList().get(0);
 	  		
 		return usuario;

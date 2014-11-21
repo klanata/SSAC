@@ -6,7 +6,10 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -17,6 +20,7 @@ import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Usuario;
 import com.core.service.negocio.remote.UsuarioEBR;
+import com.serviciorest.modelo.MiBoolean;
 import com.serviciorest.modelo.Persona;
 
 import javax.ejb.LocalBean;
@@ -152,4 +156,31 @@ public class ServicioPersonas {
 		
 	}
 	///////////////////////////////////////////////////////////////////////////
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("login")
+	public MiBoolean login(@QueryParam("nick") String nick, @QueryParam("pass") String pass) throws Exception
+	{
+		manager = null;
+		context = null;
+		boolean existeUsuario = false;
+		
+		try {
+            // 1. Obtaining Context
+            context = ClienteUtility.getInitialContext();
+            // 2. Generate JNDI Lookup name
+            //String lookupName = getLookupName();
+            // 3. Lookup and cast
+            manager = (UsuarioEBR) context.lookup(conexion);
+            existeUsuario = manager.existeUsuario(nick, pass);
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		
+		MiBoolean boolRest = new MiBoolean();
+		boolRest.setBooleanValue(existeUsuario);
+		return boolRest;
+	}
 }

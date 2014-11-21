@@ -66,8 +66,12 @@ public class RescatistaEB implements RescatistaEBR {
 		}
 		
 	}
-
-	
+	@Override
+	public Rescatista buscarUsuario(String login, String password){
+		Rescatista r = new Rescatista(); 
+		r = rescatistaService.buscarUsuario(login, password);
+		return r;
+	}
 	
 
 }

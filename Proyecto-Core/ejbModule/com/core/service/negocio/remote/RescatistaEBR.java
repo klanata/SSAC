@@ -12,5 +12,7 @@ public interface RescatistaEBR {
 	public void crearRescatista(Rescatista rescatista);
 	
 	public void asignarRescatistaCatastrofe(Catastrofe catastrofe);
+	
+	public Rescatista buscarUsuario(String login, String password);
 
 }
