@@ -1,7 +1,9 @@
 package com.core.service.negocio;
 /*Autor
  * Stephy*/
+import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -25,17 +27,7 @@ public class RescatistaEB implements RescatistaEBR {
 	@EJB 
 	private RescatistaDAO rescatistaService;
 	//////////////////////////////////////////////////////////////////////////////
-	@Override
-	public void crearRescatista(Rescatista rescatista) {
-		
-		try {
-			rescatistaService.crearRescatista(rescatista);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		
-	}
+	
 	//////////////////////////////////////////////////////////////////////////////
 	@Override
 	public void asignarRescatistaCatastrofe(Catastrofe catastrofe) {
@@ -66,12 +58,33 @@ public class RescatistaEB implements RescatistaEBR {
 		}
 		
 	}
+
 	@Override
 	public Rescatista buscarUsuario(String login, String password){
 		Rescatista r = new Rescatista(); 
 		r = rescatistaService.buscarUsuario(login, password);
 		return r;
 	}
+
+	//////////////////////////////////////////////////////////////////////////////
+	@Override
+	public Long crearRescatista(String nombre, String nick, String apellido,
+			String email, String password, Date fechaNac, String sexo, BigDecimal celular) throws Exception {
+			
+		Rescatista r = new Rescatista();
+		r.setNombre(nombre);
+		r.setApellido(apellido);
+		r.setCelular(celular);
+		r.setEmail(email);
+		r.setFechaNac(fechaNac);
+		r.setPassword(password);
+		r.setSexo(sexo);
+		Long id = rescatistaService.insert(r);
+		return id;
+	}
+
+	
+
 	
 
 }
