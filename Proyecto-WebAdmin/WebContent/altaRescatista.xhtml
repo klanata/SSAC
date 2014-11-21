@@ -121,18 +121,15 @@
 					<p:inputText id="email"  label="evento" value="#{rescatistaBean.email}"  >	
 					</p:inputText>																																									
 				</p>
-				<br/>
-				
-					<p>
-				<label for="sexo">Sexo :</label>				
-					<p:inputText id="sexo"  label="evento" value="#{rescatistaBean.sexo}"  >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
 				<p:outputLabel for="fecha" value="Fecha:" />
-        		<p:calendar id="fecha" value="#{rescatistaBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />	
+        		<p:calendar id="fecha" value="#{rescatistaBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />
+				<br/>	
 				</h:panelGrid>	
+				<p:outputLabel for="sexo" value="Sexo:" />
+		        <p:selectOneRadio id="sexo" value="#{rescatistaBean.sexo}">
+		            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+		            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+		         </p:selectOneRadio>
 			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 400px;" styleClass="formbutton" value="Registrar" action="#{rescatistaBean.registrarRescatista()}">
 			</p:commandButton>		
 		
