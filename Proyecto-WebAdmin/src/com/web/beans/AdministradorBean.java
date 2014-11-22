@@ -28,6 +28,8 @@ public class AdministradorBean implements Serializable{
 	/**
 	 * 
 	 */
+	private String urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/index.xhtml";
+	
 	private static final long serialVersionUID = 1L;
 	private String nombre = "";
 	private String apellido = "";
@@ -39,6 +41,13 @@ public class AdministradorBean implements Serializable{
 	private String sexo = "";
 	private Integer celular = new Integer(0);
 	
+	
+	public String getUrlLogueado() {
+		return urlLogueado;
+	}
+	public void setUrlLogueado(String urlLogueado) {
+		this.urlLogueado = urlLogueado;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -181,13 +190,14 @@ public class AdministradorBean implements Serializable{
 				outcome = "success";
 				
 				
+				
 			}else{
 				System.out.print("false");
 				FacesContext contexto = FacesContext.getCurrentInstance(); 
     	        FacesMessage messages = new FacesMessage("Password o Nick incorrectos "); 
     	        contexto.addMessage("registroAdministrador", messages);
 				outcome = "failure";
-				
+				this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/home.xhtml";
 			}
 			
 		return outcome;
