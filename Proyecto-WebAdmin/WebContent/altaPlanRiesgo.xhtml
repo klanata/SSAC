@@ -21,9 +21,10 @@
       <form action="#" id="loginAdmin">
         <fieldset>
           <legend>NewsLetter</legend>
-          <input type="text" value="Name&hellip;"  onfocus="this.value=(this.value=='Name&hellip;')? '' : this.value ;" />
-          <input type="text" value="Email&hellip;"  onfocus="this.value=(this.value=='Email&hellip;')? '' : this.value ;" />
-          <input type="submit" name="news_go" id="news_go" value="Login" />
+          <h2>
+	         <h:outputLabel value="Welcome:  " />
+	         <h:outputLabel value="#{administradorBean.nick}"  />
+       	 </h2>
         </fieldset>
       </form>          
     </div>

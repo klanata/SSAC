@@ -17,13 +17,14 @@
       <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
       <p><strong>Vista Web para Administradores</strong></p>
     </div>
-    <div id="newsletter">      
+   <div id="newsletter">      
       <form action="#" id="loginAdmin">
         <fieldset>
           <legend>NewsLetter</legend>
-          <input type="text" value="Name&hellip;"  onfocus="this.value=(this.value=='Name&hellip;')? '' : this.value ;" />
-          <input type="text" value="Email&hellip;"  onfocus="this.value=(this.value=='Email&hellip;')? '' : this.value ;" />
-          <input type="submit" name="news_go" id="news_go" value="Login" />
+          <h2>
+	         <h:outputLabel value="Welcome:  " />
+	         <h:outputLabel value="#{administradorBean.nick}"  />
+       	 </h2>
         </fieldset>
       </form>          
     </div>

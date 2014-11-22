@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Sistema de Soporte ante Catástrofes Naturales</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
+	
+	<script type="text/javascript">
+	
+	var url = "http://localhost:8080/Proyecto-WebAdmin/index.xhtml";
+	var url2 ="http://localhost:8080/Proyecto-WebAdmin/home.xhtml";
+	function redirect()
+	{
+		
+		String estado = administradorBean.LoginUsuario();
+		if(estado.equals("success"){window.location = url;}
+		else{window.location = url;}
+	}
+	
+	</script>
+	
+	
+</h:head> 
+<body id="top"> 
+<div class="wrapper col1">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
+      <p><strong>Vista Web para Administradores</strong></p>
+    </div>
+    
+       <f:view>  
+       <div id="newsletter">        
+      <h:form  id="LoginUsuario" >
+      	
+        <h:messages id="messages" for="LoginUsuario"></h:messages>
+          <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+        	<h:panelGrid columns="1" cellpadding="0">  
+          
+         
+        	<label for="nick">Nick:</label>		
+        	<p:inputText id="nick" label="nick" value="#{administradorBean.nick}" required="true" requiredMessage="El nick es requerido" >
+			</p:inputText>					
+			
+			 <h:outputText value="Password: " />
+       		 <p:password id="password" value="#{administradorBean.password}" feedback="true"  required ="true" requiredMessage="El password es requerido" />
+			
+			
+			<p:commandButton id="comandoRegistrar"  onclick = "location='http://localhost:8080/Proyecto-WebAdmin/index.xhtml'"   update="growl" type="submit" styleClass="formbutton" value="Login" action="#{administradorBean.LoginUsuario()}">
+			</p:commandButton>	
+			
+		</h:panelGrid>	
+        
+      </h:form>
+      
+      </div>
+      </f:view>    
+    <br class="clear" />
+  </div>
+</div>
+
+<div >
+<input name="TEST" value="TEST" onclick="javascript:redirect()" type="button" />
+</div>
+
+<div class="wrapper col7">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
+    <br class="clear" />
+  </div>
+</div>
+</body> 
+</html>

@@ -74,10 +74,10 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 		
 		//Administrador usuario = null;
 		System.out.print("password"+ password);
-		Boolean existe= false;
+		Boolean existe;
 		Query consulta = this.em.createNamedQuery("Administrador.BuscarAdministrador.Nick.Pass");
-	  	consulta.setParameter("nick", password);
-	  	consulta.setParameter("pass", password);
+	  	consulta.setParameter("nick", nick);
+	  	consulta.setParameter("password", password);
 	  	if (consulta.getResultList().isEmpty()){
 	  		existe = false;
 	  	} else {

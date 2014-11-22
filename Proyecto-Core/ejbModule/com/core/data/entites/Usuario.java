@@ -1,5 +1,7 @@
 package com.core.data.entites;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -53,6 +55,9 @@ public class Usuario extends AbstractEntity implements Serializable {
 	
 	@Column(name= "fecha", nullable= false)
 	private Date fechaNac;
+	
+	@OneToMany
+	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
 	
 	// GETTERS
 	public Long getId(){

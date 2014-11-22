@@ -9,7 +9,11 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+
+import org.primefaces.context.RequestContext;
+
 import clienteutility.ClienteUtility;
+
 import com.core.service.negocio.remote.OngEBR;
 
 @ManagedBean(name="ongBean")
@@ -106,6 +110,10 @@ public class OngBean implements Serializable{
         }				
     	
     	try{    	
+    		RequestContext requestContext = RequestContext.getCurrentInstance();
+            
+            requestContext.update("form:display");
+            requestContext.execute("PF('dlg').show()");
     		    	
     		Long id= manager.ingesarOng(nombre, direccion, descripcion, email, telefono, citioWeb);
     		if (id.equals(0)){

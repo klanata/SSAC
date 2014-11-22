@@ -2,6 +2,9 @@ package com.web.beans;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -141,5 +144,84 @@ public class AdministradorBean implements Serializable{
     	}    
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
+	public String LoginUsuario(){				
 	
+		
+		AdministradorEBR manager = null;		
+		
+		Context context = null;
+		String outcome = null;	
+		
+        
+		 
+		try {
+            // 1. Obtaining Context
+            context = ClienteUtility.getInitialContext();
+            // 2. Generate JNDI Lookup name
+            //String lookupName = getLookupName();
+            // 3. Lookup and cast
+            manager = (AdministradorEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//AdministradorEB!com.core.service.negocio.remote.AdministradorEBR");
+ 
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+		try{
+			RequestContext requestContext = RequestContext.getCurrentInstance();
+            
+            requestContext.update("form:display");
+            requestContext.execute("PF('dlg').show()");
+		
+			//Boolean exito=	manager.existeUsuario(txtLogin, MD5(txtPassword));
+			Boolean exito=	manager.existeUsuario(nick, password);
+			
+			if(exito==true){
+				FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        FacesMessage messages = new FacesMessage("Administrador logueado con exito !!"); 
+    	        contexto.addMessage("registroAdministrador", messages);
+				outcome = "success";
+				
+				
+			}else{
+				System.out.print("false");
+				FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        FacesMessage messages = new FacesMessage("Password o Nick incorrectos "); 
+    	        contexto.addMessage("registroAdministrador", messages);
+				outcome = "failure";
+				
+			}
+			
+		return outcome;
+		}catch(Exception e)
+		{
+			e.getMessage();
+			return "failure";
+		}
+	}
+	////
+	private String MD5(String input) {
+
+		String md5 = null;
+
+		if(null == input) return null;
+
+		try {
+
+			//Create MessageDigest object for MD5
+			MessageDigest digest = MessageDigest.getInstance("MD5");
+
+			//Update input string in message digest
+			digest.update(input.getBytes(), 0, input.length());
+
+			//Converts message digest value in base 16 (hex) 
+			md5 = new BigInteger(1, digest.digest()).toString(16);
+
+		} catch (NoSuchAlgorithmException e) {
+
+			e.printStackTrace();
+		}
+
+		return md5;
+	}
+  
+
 }
