@@ -5,6 +5,7 @@ package com.core.service.negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -12,10 +13,15 @@ import javax.ws.rs.Path;
 
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.EstadoRescatista;
+import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Rescatista;
 import com.core.data.persistencia.DataService;
+import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
+import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
 import com.core.data.persistencia.interfaces.locales.RescatistaDAO;
 import com.core.service.negocio.remote.RescatistaEBR;
+
+import cross_cuting.enums.PlanesPendientesRescatistaDTO;
 
 @Path("/rescatista") 
 @Stateless(mappedName="ejb:Proyecto-EAR/Proyecto-Core//RescatistaEB!com.core.service.negocio.remote.RescatistaEBR")
@@ -27,19 +33,51 @@ public class RescatistaEB implements RescatistaEBR {
 	
 	@EJB 
 	private RescatistaDAO rescatistaService;
+	
+	@EJB 
+	private PlanDeRiesgoDAO planDeRiesgoService;
+	
+
+	@EJB 
+	private CatastrofeDAO catastrofeService;
+	
 	//////////////////////////////////////////////////////////////////////////////
-	public Collection<EstadoRescatista> listarPendientesRescatistaPorCatastrofe(String nick, Long idCatastrofe)
+	public Collection<PlanesPendientesRescatistaDTO> listarPendientesRescatistaPorCatastrofe(String nick)
 	{
 		
-		Collection<EstadoRescatista> listapendientes =new  ArrayList<EstadoRescatista>(0);
+		Collection<PlanesPendientesRescatistaDTO> listaDTO =new  ArrayList<PlanesPendientesRescatistaDTO>(0);
 		
 		try{
-		listapendientes = rescatistaService.listarPendientesRescatista(nick, idCatastrofe);
+		       Collection<EstadoRescatista> listaEstado = rescatistaService.listarPendientesRescatista(nick);
+		       
+		       Iterator<EstadoRescatista> it = listaEstado.iterator();
+		       
+		       while(it.hasNext())
+		       {
+		    	   EstadoRescatista e = it.next();
+		    	   Long idCatastrofe = e.getCatastrofe().getId();
+		    	   Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
+		    	   Integer idPlanRiesgo = c.getPlanDeRiesgo().getId();
+		    	   //obtengo planDeRiesgo
+		    	   PlanDeRiesgo p = planDeRiesgoService.obtenerPlanDeRiesgo(idPlanRiesgo);
+		    	   
+		    	   PlanesPendientesRescatistaDTO planesDTO = new PlanesPendientesRescatistaDTO();
+		    	   planesDTO.setUrlArchivo(p.getRutaArchivo());
+		    	   planesDTO.setNombreTarea(e.getNombreTarea());
+		    	   planesDTO.setIdCatastrofe(idCatastrofe);
+		    	   planesDTO.setEstadoTarea(e.getPendiente());
+		    	   planesDTO.setIdEstadoRescatista(e.getRescatista().getId());
+		    	   
+		    	   listaDTO.add(planesDTO);
+		       }
+		       
+		       
 		}catch (Exception e )
 		{
 			e.printStackTrace();
 		}
-		return listapendientes;
+		
+		return listaDTO;
 	}
 	
 	
@@ -55,6 +93,9 @@ public class RescatistaEB implements RescatistaEBR {
 			EstadoRescatista estadoRescatista = new EstadoRescatista();
 			estadoRescatista.setPendiente(true);
 			estadoRescatista.setCatastrofe(catastrofeGuardar);
+			//FIXME: Stephy: victoria aca deje setado el nombre de la catastrofe ya que la tea no estaba pensado en todo caso 
+			//me la tienen que pasar desde la catastrofe.
+			estadoRescatista.setNombreTarea(catastrofeGuardar.getNombreEvento());
 			//busco el rescatista para asignar
 			Rescatista rescatista = rescatistaService.obtenerRescatistaConMenosPendientes();
 			estadoRescatista.setRescatista(rescatista);
@@ -106,6 +147,11 @@ public class RescatistaEB implements RescatistaEBR {
 		}
 		return existe;
 	}
+
+
+	
+	
+	
 
 	
 	

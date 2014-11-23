@@ -17,14 +17,14 @@ public interface RescatistaDAO extends JPAService{
 	
 	public void asignarCatastrofe(EstadoRescatista estadoRescatista, Long idRescatista);
 	
-	public Collection<EstadoRescatista> listarPendientesRescatista(Long idRescatista);
+	public Collection<EstadoRescatista> listarPendientesRescatistaPorID(Long idRescatista);
 	
 	public void pendienteRealizado(EstadoRescatista estadorescatista);
 	
 	public Rescatista obtenerRescatistaConMenosPendientes();
 	public Rescatista buscarUsuario(String login, String password);
 	
-	public Collection<EstadoRescatista> listarPendientesRescatista(String nick, Long idCatastrofe);
+	public Collection<EstadoRescatista> listarPendientesRescatista(String nick);
 	
 
 }

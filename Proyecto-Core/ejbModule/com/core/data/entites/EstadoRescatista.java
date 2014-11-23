@@ -48,7 +48,15 @@ public class EstadoRescatista  extends AbstractEntity implements Serializable {
 
 	@ManyToOne
 	private Rescatista rescatista;
+	
+	private String nombreTarea;
 
+	public String getNombreTarea() {
+		return nombreTarea;
+	}
+	public void setNombreTarea(String nombreTarea) {
+		this.nombreTarea = nombreTarea;
+	}
 	public Long getId() {
 		return id;
 	}

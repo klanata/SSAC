@@ -113,7 +113,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	}
 	/////////////////////////////////////////////////////////////////////////////////////
 	@Override
-	public Collection<EstadoRescatista> listarPendientesRescatista(	Long idRescatista)
+	public Collection<EstadoRescatista> listarPendientesRescatistaPorID(Long idRescatista)
 	{
 		Collection<EstadoRescatista> listapendientes = null;
 		try{
@@ -196,7 +196,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	}
 	/////////////////////////////////////////////////////////////////////////////////////
 	
-	public Collection<EstadoRescatista> listarPendientesRescatista(String nick, Long idCatastrofe)
+	public Collection<EstadoRescatista> listarPendientesRescatista(String nick)
 	{
 		Collection<EstadoRescatista> listapendientes =new  ArrayList<EstadoRescatista>(0);
 		//Collection<EstadoRescatista> lista = null;
@@ -208,19 +208,8 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 			Rescatista r = (Rescatista) consulta.getResultList().get(0);
 			Long idRescatista = r.getId();
 			//esto te da la lista de pendientes del rescatista
-			listapendientes = listarPendientesRescatista(idRescatista);
-			Iterator<EstadoRescatista> it = listapendientes.iterator();
-			 while(it.hasNext())
-			 {
-				 EstadoRescatista e= it.next();
-				 if((e!=null)&&(e.getCatastrofe().getId().compareTo(idCatastrofe) ==0))
-				 {
-					 
-					 listapendientes.add(e);
-				 }
-				 
-			 }
-			
+			listapendientes = listarPendientesRescatistaPorID(idRescatista);
+				
 			
 			
 		}catch (Exception e){}

@@ -7,7 +7,7 @@ import java.util.Date;
 import javax.ejb.Remote;
 
 import com.core.data.entites.Catastrofe;
-import com.core.data.entites.EstadoRescatista;
+import cross_cuting.enums.PlanesPendientesRescatistaDTO;
 
 
 @Remote
@@ -19,6 +19,6 @@ public interface RescatistaEBR {
 	
 	public Boolean buscarUsuario(String nick, String password);
 	
-	public Collection<EstadoRescatista> listarPendientesRescatistaPorCatastrofe(String nick, Long idCatastrofe);
+	public Collection<PlanesPendientesRescatistaDTO> listarPendientesRescatistaPorCatastrofe(String nick);
 
 }
