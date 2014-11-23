@@ -56,7 +56,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 .col1{color:#666666; background-color:#E3F1F9;}
 .col2{color:#FFFFFF; background-color:#000000;}
-.col3, .col4, .col5{color:#666666; background-color:#FFFFFF;}
+.col3, .col4, .col5{color:#666666; background-color:#29313C;}
 .col6{color:#999999; background-color:#F3F3F3;}
 .col6 a{color:#2684B7; background-color:#F3F3F3;}
 .col7, .col7 a{color:#FFFFFF; background-color:#29313C;}
@@ -74,7 +74,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 /* ----------------------------------------------Header-------------------------------------*/
 
 #header{
-	padding:30px 0;
+	padding:10px 0;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	}
 
@@ -153,6 +153,16 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	background-color:#2684B7;
 	}
 	
+#intro .carrusel{
+	display:block;
+	float:left;
+	width:515px;
+	height:910px;
+	margin:30;
+	padding:30px;
+	color:#FFFFFF;
+	background-color:#2684B7;
+	}
 	
 #intro .fl_left h2{
 	font-size:46px;
@@ -552,6 +562,12 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	padding:0;
 	}
 	
+#carrusel{
+	width:1200px;
+	height:330px;
+	margin:20;
+	padding:20;
+	}
 	
 	
 

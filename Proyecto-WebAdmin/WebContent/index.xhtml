@@ -2,13 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      > 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
+	
+
+	
 </h:head> 
 <body id="top"> 
 <div class="wrapper col1">
@@ -17,16 +22,26 @@
       <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
       <p><strong>Vista Web para Administradores</strong></p>
     </div>
-     <div id="newsletter">      
-      <form action="#" id="loginAdmin">
-        <fieldset>
+     <div id="newsletter">
+     <fieldset>
           <legend>NewsLetter</legend>
-          <h2>
-	         <h:outputLabel value="Welcome:  " />
-	         <h:outputLabel value="#{administradorBean.nick}"  />
-       	 </h2>
-        </fieldset>
-      </form>          
+          
+	<p:panelGrid columns="2">
+    <f:facet name="header">
+        <p:graphicImage name="/images/demo/ADMIN.png" />
+    </f:facet>
+ 
+    <h:outputText value="Nick:" />
+    <h:outputText value="#{administradorBean.nick}" />
+ 
+ 
+</p:panelGrid>
+          
+          
+           
+      </fieldset>
+     
+                    
     </div>
     <br class="clear" />
   </div>
@@ -81,10 +96,18 @@
   </div>
 </div>
 
+
+<div >
+	<div class="fl_left">
+	  <h:form>
+	  	<p:galleria value="#{galeriaBean.images}" var="image"  panelWidth="980" panelHeight="300" showCaption="true">
+	    <p:graphicImage name="/images/galeria/#{image}"  title="#{image}" />
+		</p:galleria>
 	
-  
-
-
+	  </h:form>
+  </div>
+	    <br class="clear" />
+</div>
 
 
 <div class="wrapper col7">
