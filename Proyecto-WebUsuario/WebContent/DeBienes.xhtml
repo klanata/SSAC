@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+ <h1>Donaciones de bienes</h1>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ 
+</h:head> 
+<body>
+
+
+
+    
+            <h:form id="deBienesBean">
+                <h:panelGroup id="display">
+                
+                    <p:panelGrid >
+                    <p>
+						<label for="idOng">Nombre :</label>				
+						<p:inputText id="idOng" label="idOng"  value="#{deBienesBean.idOng}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
+						</p:inputText>																																									
+					</p>
+					
+					   <p>
+						<label for="usuario">Usuario :</label>				
+						<p:inputText id="usuario" label="idOng"  value="#{deBienesBean.usuario}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
+						</p:inputText>																																									
+					</p>
+					
+                       
+                     <p>
+						<p:outputLabel for="fechaRealizada" value="fechaRealizada" />					
+						<p:calendar id="fechaRealizada" label="fechaRealizada"  value="#{deBienesBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />
+																																														
+					</p>
+					
+                     <p>
+						<label for="nombreItem">nombreItem :</label>				
+						<p:inputText id="nombreItem" label="nombreItem"  value="#{deBienesBean.nombreItem}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
+						</p:inputText>																																									
+					</p>
+                        
+                     <p>
+						<label for="cantidad">cantidad :</label>				
+						<p:inputText id="cantidad" label="cantidad"  value="#{deBienesBean.cantidad}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
+						</p:inputText>																																									
+					</p>
+                        
+                    </p:panelGrid>
+                   <p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 400px;" styleClass="formbutton" value="Registrar" action="#{deBienesBean.registrarDonacionDeBienes()}">
+			</p:commandButton>	
+                </h:panelGroup>
+            </h:form>
+     
+
+				
+	
+</body>
+</html>
