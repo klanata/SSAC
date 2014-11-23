@@ -3,7 +3,7 @@ package com.core.data.persistencia;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.*;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -13,6 +13,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.Rescatista;
@@ -194,4 +195,37 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 		return usuario;
 	}
 	/////////////////////////////////////////////////////////////////////////////////////
+	
+	public Collection<EstadoRescatista> listarPendientesRescatista(String nick, Long idCatastrofe)
+	{
+		Collection<EstadoRescatista> listapendientes =new  ArrayList<EstadoRescatista>(0);
+		//Collection<EstadoRescatista> lista = null;
+		try{
+			
+			
+			Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista");
+			consulta.setParameter("nick", nick);							
+			Rescatista r = (Rescatista) consulta.getResultList().get(0);
+			Long idRescatista = r.getId();
+			//esto te da la lista de pendientes del rescatista
+			listapendientes = listarPendientesRescatista(idRescatista);
+			Iterator<EstadoRescatista> it = listapendientes.iterator();
+			 while(it.hasNext())
+			 {
+				 EstadoRescatista e= it.next();
+				 if((e!=null)&&(e.getCatastrofe().getId().compareTo(idCatastrofe) ==0))
+				 {
+					 
+					 listapendientes.add(e);
+				 }
+				 
+			 }
+			
+			
+			
+		}catch (Exception e){}
+		
+		
+		return listapendientes;
+	}
 }

@@ -2,6 +2,7 @@ package com.core.service.negocio;
 /*Autor
  * Stephy*/
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -27,6 +28,20 @@ public class RescatistaEB implements RescatistaEBR {
 	@EJB 
 	private RescatistaDAO rescatistaService;
 	//////////////////////////////////////////////////////////////////////////////
+	public Collection<EstadoRescatista> listarPendientesRescatistaPorCatastrofe(String nick, Long idCatastrofe)
+	{
+		
+		Collection<EstadoRescatista> listapendientes =new  ArrayList<EstadoRescatista>(0);
+		
+		try{
+		listapendientes = rescatistaService.listarPendientesRescatista(nick, idCatastrofe);
+		}catch (Exception e )
+		{
+			e.printStackTrace();
+		}
+		return listapendientes;
+	}
+	
 	
 	//////////////////////////////////////////////////////////////////////////////
 	@Override

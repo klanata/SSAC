@@ -34,9 +34,9 @@ public class AdministradorBean implements Serializable{
 	private String nombre = "";
 	private String apellido = "";
 	
-	private String nick = "";
+	private String nick = "Ingrese Nick";
 	private String email = "";
-	private String password = "";
+	private String password = "Ingrese Password";
 	private Date fechaNac= null;
 	private String sexo = "";
 	private Integer celular = new Integer(0);

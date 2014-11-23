@@ -10,6 +10,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
+<style>
+    *{ margin: 0; padding: 0; }
+    html, body, #map{
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
+    <script type="text/javascript" src="js/map.js"></script>
 
 	
 	
@@ -23,42 +32,44 @@
     </div>
     
        <f:view>  
-       <div id="newsletter">        
+          
       <h:form  id="LoginUsuario" >
       	
         <h:messages id="messages" for="LoginUsuario"></h:messages>
           <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-        	<h:panelGrid columns="1" cellpadding="0">  
-          
-         
-        	<label for="nick">Nick:</label>		
-        	<p:inputText id="nick" label="nick" value="#{administradorBean.nick}" required="true" requiredMessage="El nick es requerido" >
+          <div id="newsletter">
+          	      
+        	
+        	<fieldset>
+          <legend>NewsLetter</legend>
+          <p:inputText id="nick" label="nick" value="#{administradorBean.nick}" required="true" requiredMessage="El nick es requerido" >
 			</p:inputText>					
-			
-			 <h:outputText value="Password: " />
+				 
        		 <p:password id="password" value="#{administradorBean.password}" feedback="true"  required ="true" requiredMessage="El password es requerido" />
-			
-			
-			<p:commandButton id="comandoRegistrar"  onclick = "location= #{administradorBean.}"   update="growl" type="submit" styleClass="formbutton" value="Login" action="#{administradorBean.LoginUsuario()}">
-			</p:commandButton>	
-			
-		</h:panelGrid>	
-        
+			<p:commandButton id="comandoRegistrar"  onclick = "location= #{administradorBean.LoginUsuario()}"   update="growl" type="submit" styleClass="formbutton" value="Login" action="#{administradorBean.LoginUsuario()}">
+			</p:commandButton>
+        </fieldset>
+        		
+		</div>
       </h:form>
       
-      </div>
+      
       </f:view>    
     <br class="clear" />
   </div>
 </div>
 
 
-<div class="wrapper col7">
-  <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+ <div id="map">
+ 	<p:gmap center="-34.917440, -56.164244" zoom="16" type="HYBRID"   
+        style="width:1350px;height:400px" />  
+        
+    <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - SSAC</p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
-  </div>
-</div>
+  </div>    
+ </div>
+
 </body> 
 </html>
