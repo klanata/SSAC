@@ -1,6 +1,8 @@
 package com.core.service.negocio.remote;
 import java.util.Date;
+
 import javax.ejb.Local;
+
 
 
 
@@ -12,9 +14,9 @@ import cross_cuting.enums.EstadoPersona;
 
 public interface PersonasDesaparecidasEBR {
 	
-	public void crearReportePersonasDesaparecidas(String nombre, String apellido,
+	public Long crearReportePersonasDesaparecidas(String nombre, String apellido,
 			String numeroContacto, EstadoPersona descripcion, Date fechNac,
-			ImagenPersonaDesaparecida imagenPersonaDesaparecida);
+			ImagenPersonaDesaparecida imagenPersonaDesaparecida)throws Exception;
 	//public List<PersonasDesaparecidas> findAllPerson();
 	//public List<PersonasDesaparecidas> findPersonasHalladas();
 	//public List<PersonasDesaparecidas> findPersonasNoHalladas();

@@ -3,9 +3,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Path;
+
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.persistencia.DataService;
@@ -23,11 +27,12 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 	private PedidoDeAyudaDAO pedidoayudaDAO;
 	
 
-
-	public void crearPedido(Long idCatastrofe, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	public Long crearPedido(Long idCatastrofe, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
 			Date fechaPublicacion) throws Exception{
 		
 		PedidoDeAyuda pedAyuda = new PedidoDeAyuda();
+		Long ID;
 		Catastrofe catastrofe = dataService.find(Catastrofe.class, idCatastrofe);
 		pedAyuda.setCatastrofe(catastrofe);
 		pedAyuda.setCoordenadasX(coordenadasX);
@@ -35,16 +40,8 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 		pedAyuda.setDescripcion(descripcion);
 		pedAyuda.setFechaPublicacion(fechaPublicacion);
 		
-		try {
-			
-		
-			pedidoayudaDAO.crearPedidoDeAyuda(pedAyuda);
-		} catch (Exception e) {
-			//System.out.println("id recibido " + catastrofeId);
-			throw e;
-		}
-			
-			//e.printStackTrace();
+		ID = pedidoayudaDAO.crearPedidoDeAyuda(pedAyuda);
+		return ID;
 		}
 	@Override
 	public List<PedidoDeAyuda> listarTodosLosPedidos(){

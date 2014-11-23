@@ -1,5 +1,6 @@
 package com.core.data.persistencia;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -7,7 +8,9 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
 import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.persistencia.interfaces.locales.PedidoDeAyudaDAO;
 
@@ -30,14 +33,47 @@ public class PedidoDeAyudaDAOImpl extends AbstractService implements PedidoDeAyu
 	private DataService dataService;
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void crearPedidoDeAyuda(PedidoDeAyuda pedAyuda) throws Exception{
-		try{
-			dataService.create(pedAyuda);
-		} catch (Exception excep){
-				throw excep;
-			
-		}
+	public Long crearPedidoDeAyuda(PedidoDeAyuda pedAyuda) throws Exception{
+		Long id;
+		Long pedido = pedAyuda.getId();
+		try {
+			if (this.existePedido(pedido)){				
+				id = (long) 0;				
+			} 
+			else 
+			{				
+				this.em.persist(pedido);					
+				TypedQuery<Long> consulta = this.em.createNamedQuery("PedidoDeAyuda.BuscarPedidoid.id",Long.class);				
+				consulta.setParameter("id", pedido);				
+				List<Long> pedID = consulta.getResultList();
+				if (pedID.isEmpty()) {
+					id = (long) 0;	
+			  	} else {
+			  		id = pedID.get(0);
+			  	}					
+			} 					
+			return id;		    
+		} 
+		catch (Exception excep){			
+			throw excep;
+		}	
     }
+	
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean existePedido(Long id) {	
+			boolean existe;
+			Query consulta = this.em.createNamedQuery("PedidoDeAyuda.BuscarPedidoid.id");
+			consulta.setParameter("id", id);														
+		  	if (consulta.getResultList().isEmpty()){
+		  		existe = false;
+		  	} else {
+		  		existe = true;
+		  	}
+		  	return existe;
+	}
+	///////////////////////////////////
+	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public PedidoDeAyuda BuscarPedidoPorId (int idPedido){
 		PedidoDeAyuda pedidoAyuda = dataService.find(PedidoDeAyuda.class, idPedido);

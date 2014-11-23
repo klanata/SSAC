@@ -1,7 +1,10 @@
 package com.core.service.negocio;
 import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Path;
 
 import com.core.data.entites.AbstractEntity;
@@ -15,7 +18,7 @@ import cross_cuting.enums.EstadoPersona;
 @Path("/personasDesaparecidas") 
 @Stateless(mappedName="ejb:Proyecto-EAR/Proyecto-Core//PersonasDesaparecidasEB!com.core.service.negocio.remote.PersonasDesaparecidasEBR")
 
-public class PersonasDesaparecidasEB  extends AbstractEntity implements PersonasDesaparecidasEBR{
+public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 	
 	@EJB
 	private DataService dataService;
@@ -23,12 +26,12 @@ public class PersonasDesaparecidasEB  extends AbstractEntity implements Personas
 	@EJB 
 	private PersonasDesaparecidasDAO personadesaparecidaDAO;
 
-	
-	public void crearReportePersonasDesaparecidas(String nombre, String apellido, String numeroContacto, EstadoPersona descripcion, Date fechNac,
-			ImagenPersonaDesaparecida imagenPersonaDesaparecida){ 
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	public Long crearReportePersonasDesaparecidas(String nombre, String apellido, String numeroContacto, EstadoPersona descripcion, Date fechNac,
+			ImagenPersonaDesaparecida imagenPersonaDesaparecida)throws Exception{ 
 		
 		PersonasDesaparecidas perdes = new PersonasDesaparecidas();
-		
+		Long id;
 		perdes.setNombre(nombre);
 		perdes.setApellido(apellido);
 		perdes.setNumeroContacto(numeroContacto);
@@ -36,12 +39,8 @@ public class PersonasDesaparecidasEB  extends AbstractEntity implements Personas
 		perdes.setFechNac(fechNac);
 		perdes.setImagenPersonaDesaparecida(imagenPersonaDesaparecida);
 		
-		try {
-			personadesaparecidaDAO.insert(perdes);
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+		id = personadesaparecidaDAO.insert(perdes);
+		return id;
 	}
 	
 	@Override
@@ -57,7 +56,6 @@ public class PersonasDesaparecidasEB  extends AbstractEntity implements Personas
 	
 	public PersonasDesaparecidas buscarPersonaDesaparecida(String nomPersona, String apePersona) throws Exception{
 			PersonasDesaparecidas perDesap = new PersonasDesaparecidas();
-			
 			perDesap = personadesaparecidaDAO.buscarPersonaDesaparecida(nomPersona, apePersona);
 			return perDesap;
 		}

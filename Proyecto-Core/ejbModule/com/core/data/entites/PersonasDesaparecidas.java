@@ -13,6 +13,12 @@ import cross_cuting.enums.EstadoPersona;
  */
 @Entity
 @NamedQueries({
+	
+@NamedQuery(name="PersonasDesaparecidas.BuscarPersona", 
+			query = "SELECT e "+
+			"FROM PersonasDesaparecidas e " +
+			"WHERE e.nombre = :nombre AND e.apellido = :apellido"),
+			
 @NamedQuery(name="PersonasDesaparecidas.BuscarPersona.Nombre.Apellido", 
 			query = "SELECT e "+
 			"FROM PersonasDesaparecidas e " +

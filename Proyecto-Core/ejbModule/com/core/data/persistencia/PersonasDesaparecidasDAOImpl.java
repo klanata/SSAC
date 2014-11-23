@@ -8,10 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.ejb.EJB;
+
 import com.core.data.entites.PersonasDesaparecidas;
 import com.core.data.persistencia.interfaces.locales.PersonasDesaparecidasDAO;
 
@@ -35,15 +38,38 @@ private static final long serialVersionUID = 1L;
 	private DataService dataService;
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void insert(PersonasDesaparecidas personadesaparecida)  throws Exception{
+	public Long insert(PersonasDesaparecidas personadesaparecida)  throws Exception{
+		Long id;
+		String nombre = personadesaparecida.getNombre();
+		String apellido = personadesaparecida.getApellido();
 			try{
-			dataService.create(personadesaparecida);
-			
-			} catch (Exception excep){
+				
+				if (this.existePersona(nombre, apellido)){				
+					id = (long) 0;				
+				} 
+				else 
+				{				
+					this.em.persist(personadesaparecida);					
+
+					Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.buscarPersona");
+					consulta.setParameter("nombre", nombre);
+					consulta.setParameter("apellido", apellido);
+					
+					if (consulta.getResultList().isEmpty()){
+						id = (long) 0;	
+				  	} else {
+				  		
+				  		PersonasDesaparecidas o = (PersonasDesaparecidas) consulta.getResultList().get(0);
+				  		id= o.getId();
+				  	}					
+				} 
+				return id;		    
+			} 
+			catch (Exception excep){			
 				throw excep;
 			}
 	}
-	
+	//////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean existePersona(String nombrePersona, String apePersona){
 		boolean existe;
