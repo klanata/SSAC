@@ -1,8 +1,11 @@
 package com.core.service.negocio.remote;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
 import javax.ejb.Remote;
+
+import com.core.data.entites.Ong;
 
 
 
@@ -10,7 +13,7 @@ import javax.ejb.Remote;
 public interface OngEBR {
 
 	public Long ingesarOng(String nombre, String direccion,String descripcion, String email,BigDecimal telefono, String citioWeb)throws Exception;
-
+	public Collection<Ong> listarTodasLasOng();
 	
 	
 	

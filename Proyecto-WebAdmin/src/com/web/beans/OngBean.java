@@ -2,6 +2,7 @@ package com.web.beans;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -14,6 +15,7 @@ import org.primefaces.context.RequestContext;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.Ong;
 import com.core.service.negocio.remote.OngEBR;
 
 @ManagedBean(name="ongBean")
@@ -144,7 +146,28 @@ public class OngBean implements Serializable{
     		
     	}    
 	}
+	////////////////////////////////////////////////////////////////
+	public Collection<Ong> listarTodasLasOng ()
+	{
+		OngEBR manager = null;		
+		Collection<Ong> lista = null;
+		Context context = null;
+		 
+		try {
+            // 1. Obtaining Context
+            context = ClienteUtility.getInitialContext();
+            // 2. Generate JNDI Lookup name
+            //String lookupName = getLookupName();
+            // 3. Lookup and cast
+            manager = (OngEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//OngEB!com.core.service.negocio.remote.OngEBR");
+ 
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }	
+		lista= manager.listarTodasLasOng(); 
+		
+		return lista;
+	}
 	
-
 
 }

@@ -34,7 +34,7 @@ public class AdministradorBean implements Serializable{
 	private String nombre = "";
 	private String apellido = "";
 	
-	private String nick = "Admin";
+	private String nick = "Ingrese Nick";
 	private String email = "";
 	private String password = "Ingrese Password";
 	private Date fechaNac= null;
@@ -141,7 +141,7 @@ public class AdministradorBean implements Serializable{
         		this.email = "";
         		this.password = "";
         		this.sexo= "";
-        		
+        		this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/index.xhtml";
     		}
     		    		    		    		
     		return "success"; 
@@ -187,6 +187,7 @@ public class AdministradorBean implements Serializable{
 				FacesContext contexto = FacesContext.getCurrentInstance(); 
     	        FacesMessage messages = new FacesMessage("Administrador logueado con exito !!"); 
     	        contexto.addMessage("registroAdministrador", messages);
+    	        this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/index.xhtml";
 				outcome = "success";
 				
 				
@@ -196,8 +197,9 @@ public class AdministradorBean implements Serializable{
 				FacesContext contexto = FacesContext.getCurrentInstance(); 
     	        FacesMessage messages = new FacesMessage("Password o Nick incorrectos "); 
     	        contexto.addMessage("registroAdministrador", messages);
+    	        this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/home.xhtml";
 				outcome = "failure";
-				this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/home.xhtml";
+				
 			}
 			
 		return outcome;
