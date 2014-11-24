@@ -20,6 +20,8 @@ import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Servicio;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.web.beans.InputBean;
+
+import cross_cuting.enums.TipoCatastrofe;
 import javax.servlet.http.Part;
 
 
@@ -29,6 +31,7 @@ public class CatastrofeBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;	
 	
+	private Long id;
 	private String nombreEvento;
 	private String descripcion;
 	private String logo;
@@ -40,8 +43,40 @@ public class CatastrofeBean implements Serializable{
 	private Collection<Ong> ongs  = new ArrayList<Ong>();
 	private PlanDeRiesgo planDeRiesgo;	
 	private Part part;
+	private TipoCatastrofe tipoCatastrofe; 
 	
 	
+	//	------------------ Constructors  --------------------------------
+	public CatastrofeBean() {	
+	}	
+	public CatastrofeBean(Long id, String nombreEvento, String descripcion, String logo, BigDecimal coordenadasX,
+			BigDecimal coordenadasY, Boolean activa, Boolean prioridad) {
+		super();
+		this.id = id;
+		this.nombreEvento = nombreEvento;
+		this.descripcion = descripcion;
+		this.logo = logo;
+		this.coordenadasX = coordenadasX;
+		this.coordenadasY = coordenadasY;
+		this.activa = activa;
+		this.prioridad = prioridad;
+	}
+		
+	
+	//	------------------ Getter and setter methods ---------------------
+		
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public TipoCatastrofe getTipoCatastrofe() {
+		return tipoCatastrofe;
+	}
+	public void setTipoCatastrofe(TipoCatastrofe tipoCatastrofe) {
+		this.tipoCatastrofe = tipoCatastrofe;
+	}
 	public String getNombreEvento() {
 		return nombreEvento;
 	}
@@ -109,12 +144,16 @@ public class CatastrofeBean implements Serializable{
 		this.part = part;
 	}
 	
+	//	------------------ Operaciones ---------------------
+		
 	public String registrarCatastrofe(){				
 		
 		CatastrofeEBR manager = null;		
 		
 		Context context = null;
-		 
+				
+		FacesMessage message = null; 
+		
 		try {
             // 1. Obtaining Context
             context = ClienteUtility.getInitialContext();
@@ -125,17 +164,17 @@ public class CatastrofeBean implements Serializable{
  
         } catch (NamingException e) {
             e.printStackTrace();
-        }				
-    	
+        }				    			
+		
     	try{    	
     		InputBean inputBean = new InputBean();
     		String logo= inputBean.uploadFile(this.part);    		    		    	
        		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, servicios, ongs, planDeRiesgo);    	
-    		if (in.equals(0)){
+    		if (in == 0){
     			System.out.println("es repetido." + in);
-    			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Ya existe un catastrofe con el mismo nombre de evento registrada en el sistema."); 
-    	        contexto.addMessage("registroCatastrofe", messages);
+    			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
+    	        //FacesMessage messages = new FacesMessage("Ya existe un catastrofe con el mismo nombre de evento registrada en el sistema."); 
+    	        //contexto.addMessage("registroCatastrofe", messages);
     		}
     		else {    	
     			this.nombreEvento = "";   		
@@ -146,16 +185,17 @@ public class CatastrofeBean implements Serializable{
         		this.activa = false;
         		this.prioridad = false;
     			System.out.println("no es repetido." + in);
-    		}
-    		    		    		    		
+    			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La catástrofe fue ingresada al sistema.");
+    		}    		    
+    		FacesContext.getCurrentInstance().addMessage(null, message);
     		return "success"; 
     		
     	}catch (Exception excep){
     		System.out.println("Excepcion en agregar catastrofe: " + excep.getMessage());      		 			       
-	        return "failure"; 
-    		
-    	}    
+	        return "failure";     		
+    	}        	    	
 	}
+		
 	
 	
 			
