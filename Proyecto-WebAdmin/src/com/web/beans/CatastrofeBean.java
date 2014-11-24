@@ -143,9 +143,9 @@ public class CatastrofeBean implements Serializable{
 	public void setPart(Part part) {
 		this.part = part;
 	}
+	
 	//	------------------ Operaciones ---------------------
-	
-	
+		
 	public String registrarCatastrofe(){				
 		
 		CatastrofeEBR manager = null;		
