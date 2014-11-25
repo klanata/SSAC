@@ -49,11 +49,9 @@ public class InputBean implements Serializable{
 		String jboss = System.getenv("JBOSS_HOME");
 		int x = new Double(Math.random() * 100).intValue();
 		
-		File outputFilePath = new File(jboss + "\\Proyecto\\imagenes.war\\" + x + fileName);		
-		String fileString = outputFilePath.toString();
-		
-		//String basePath = "C:" + File.separator + "temp" + File.separator;
-		//File outputFilePath = new File(basePath + fileName);
+		File outputFilePath = new File(x + fileName);		
+		String fileString = outputFilePath.toString();	
+		outputFilePath = new File(jboss + "\\Proyecto\\imagenes.war\\" + x + fileName);
 		
 		//Copia el archivo subido a el path destino
 		InputStream inputStream = null;

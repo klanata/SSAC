@@ -2,31 +2,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      > 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
+	
+
+	
 </h:head> 
-<body id="top"> 
+<h:body id="top"> 
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
       <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
       <p><strong>Vista Web para Administradores</strong></p>
     </div>
-    <div id="newsletter">      
-      <form action="#" id="loginAdmin">
-        <fieldset>
+     <div id="newsletter">
+     <fieldset>
           <legend>NewsLetter</legend>
-          <h2>
-	         <h:outputLabel value="Welcome:  " />
-	         <h:outputLabel value="#{administradorBean.nick}"  />
-       	 </h2>
-        </fieldset>
-      </form>          
+          
+	<p:panelGrid columns="1">
+    <f:facet name="header">
+        <p:graphicImage name="/images/demo/ADMIN.png" />
+    </f:facet>
+ 
+    
+    <h:outputText value="#{administradorBean.nick}" />
+ 	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
+      style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
+    <h:outputText value="Cerrar Seción" />
+  </p:commandLink>
+ 
+</p:panelGrid>
+                   
+           
+      </fieldset>
+     
+                    
     </div>
     <br class="clear" />
   </div>
@@ -109,5 +126,14 @@
     <br class="clear" />
   </div>
 </div>
-</body> 
+</h:body> 
+	<script type="text/javascript">
+	  //<![CDATA[
+	  function logout(xhr, status, args) {
+	    setTimeout(function() {
+	      window.location = 'home.xhtml';
+	    }, 500);
+	  }
+	//]]>
+	</script>
 </html>

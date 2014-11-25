@@ -8,19 +8,23 @@
 <h:head>
  <h1>Donaciones de bienes</h1>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
- 
+ <link rel="stylesheet" type="text/css" href="bootstrap.css" />
+ <h5> FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA FUNCIONA </h5>
 </h:head> 
 <body>
 
 
 
     
+           <f:view>
             <h:form id="deBienesBean">
-                <h:panelGroup id="display">
-                
-                    <p:panelGrid >
+               <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+               
+                <div class="wrapper col-xs-6 col-md-12">
+  				<div class="ui-grid-row">
+                    <p:panelGrid columns="1" cellpadding="2">
                     <p>
-						<label for="idOng">Nombre :</label>				
+						<label for="idOng">Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :Nombre :</label>				
 						<p:inputText id="idOng" label="idOng"  value="#{deBienesBean.idOng}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
 						</p:inputText>																																									
 					</p>
@@ -49,12 +53,16 @@
 						<p:inputText id="cantidad" label="cantidad"  value="#{deBienesBean.cantidad}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
 						</p:inputText>																																									
 					</p>
-                        
-                    </p:panelGrid>
-                   <p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 400px;" styleClass="formbutton" value="Registrar" action="#{deBienesBean.registrarDonacionDeBienes()}">
+					
+                        <p:commandButton id="registro" update="growl" type="submit" style="margin-left: 500px;" styleClass="formbutton" value="Registrar" action="#{deBienesBeans.registrarDonacionDeBienes()}">
 			</p:commandButton>	
-                </h:panelGroup>
+			 
+                    </p:panelGrid>
+                </div>
+                </div>
+			
             </h:form>
+            </f:view>
      
 
 				

@@ -141,8 +141,25 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	font-size:16px;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	}
+	
+#intro2{
+	padding:30px 0 5px 0;
+	font-size:12px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	}
 
 #intro .fl_left{
+	display:block;
+	float:left;
+	width:515px;
+	height:910px;
+	margin:0;
+	padding:30px;
+	color:#FFFFFF;
+	background-color:#2684B7;
+	}
+	
+#intro .fl_left2{
 	display:block;
 	float:left;
 	width:515px;
