@@ -60,10 +60,10 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	private String logo = "";
 	
 	@Column( nullable= false)
-	private BigDecimal coordenadasX ;
+	private double coordenadasX ;
 	
 	@Column(nullable= false)
-	private BigDecimal coordenadasY ;
+	private double coordenadasY ;
 	
 	@Column(nullable= false)
 	private Boolean activa ;
@@ -107,8 +107,8 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.nombreEvento = new String();
 		this.descripcion = new String();
 		this.logo = new String();
-		this.coordenadasX = new BigDecimal(0);
-		this.coordenadasY  = new BigDecimal(0);
+		this.coordenadasX = 0;
+		this.coordenadasY  = 0;
 		this.activa = false;
 		this.prioridad = false;		
 		this.servicios = new ArrayList<Servicio>();
@@ -141,16 +141,16 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-	public BigDecimal getCoordenadasX() {
+	public double getCoordenadasX() {
 		return coordenadasX;
 	}
-	public void setCoordenadasX(BigDecimal coordenadasX) {
+	public void setCoordenadasX(double coordenadasX) {
 		this.coordenadasX = coordenadasX;
 	}
-	public BigDecimal getCoordenadasY() {
+	public double getCoordenadasY() {
 		return coordenadasY;
 	}
-	public void setCoordenadasY(BigDecimal coordenadasY) {
+	public void setCoordenadasY(double coordenadasY) {
 		this.coordenadasY = coordenadasY;
 	}
 	public Boolean getActiva() {

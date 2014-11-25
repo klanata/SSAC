@@ -32,8 +32,8 @@ public class CatastrofeBean implements Serializable{
 	private String nombreEvento;
 	private String descripcion;
 	private String logo;
-	private BigDecimal coordenadasX;
-	private BigDecimal coordenadasY;
+	private double coordenadasX;
+	private double coordenadasY;
 	private Boolean activa;
 	private Boolean prioridad;
 	private Collection<Servicio> servicios = new ArrayList<Servicio>();
@@ -60,16 +60,16 @@ public class CatastrofeBean implements Serializable{
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-	public BigDecimal getCoordenadasX() {
+	public double getCoordenadasX() {
 		return coordenadasX;
 	}
-	public void setCoordenadasX(BigDecimal coordenadasX) {
+	public void setCoordenadasX(double coordenadasX) {
 		this.coordenadasX = coordenadasX;
 	}
-	public BigDecimal getCoordenadasY() {
+	public double getCoordenadasY() {
 		return coordenadasY;
 	}
-	public void setCoordenadasY(BigDecimal coordenadasY) {
+	public void setCoordenadasY(double coordenadasY) {
 		this.coordenadasY = coordenadasY;
 	}
 	public Boolean getActiva() {
@@ -141,8 +141,8 @@ public class CatastrofeBean implements Serializable{
     			this.nombreEvento = "";   		
         		this.descripcion = "";
         		this.part = null;
-        		this.coordenadasX = null;
-        		this.coordenadasY = null;
+        		this.coordenadasX = 0;
+        		this.coordenadasY = 0;
         		this.activa = false;
         		this.prioridad = false;
     			System.out.println("no es repetido." + in);
