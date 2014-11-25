@@ -149,9 +149,15 @@ public class RescatistaEB implements RescatistaEBR {
 	}
 
 
-	
-	
-	
+///////////////////////////////////
+	@Override
+	public void RealizadoPendiente(EstadoRescatista estadorescatista){
+		
+		
+		 rescatistaService.pendienteRealizado(estadorescatista);
+		
+		
+	}
 
 	
 	
