@@ -25,14 +25,27 @@ public class OngBean implements Serializable{
 	private static final long serialVersionUID = 1L;	
 	
 	
+	
 	private String nombre = "";
 	private String direccion = "";
 	private BigDecimal telefono = BigDecimal.ZERO;
 	private String email ="";
 	private String citioWeb = "";
 	private String descripcion = "";
+	private Long id;
+
 	
 	
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -168,6 +181,23 @@ public class OngBean implements Serializable{
 		
 		return lista;
 	}
+	////////////////////////////////////////////////////////////////
+	//Constructores
+	public OngBean(){}
 	
+	public OngBean(Long id,String nombre, String direccion, BigDecimal telefono,
+			String email, String citioWeb, String descripcion) {
+		super();
+		this.id= id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.email = email;
+		this.citioWeb = citioWeb;
+		this.descripcion = descripcion;
+	}
+	
+	
+	//////////////////////////////////////////////////////////////////////
 
 }

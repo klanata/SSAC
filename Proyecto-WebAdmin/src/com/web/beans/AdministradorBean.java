@@ -11,8 +11,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
 
@@ -40,6 +42,12 @@ public class AdministradorBean implements Serializable{
 	private Date fechaNac= null;
 	private String sexo = "";
 	private Integer celular = new Integer(0);
+	
+	private boolean logeado = false;
+
+	  public boolean estaLogeado() {
+	    return logeado;
+	  }
 	
 	
 	public String getUrlLogueado() {
@@ -142,6 +150,7 @@ public class AdministradorBean implements Serializable{
         		this.password = "";
         		this.sexo= "";
         		this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/index.xhtml";
+        		
     		}
     		    		    		    		
     		return "success"; 
@@ -153,62 +162,68 @@ public class AdministradorBean implements Serializable{
     	}    
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	public String LoginUsuario(){				
+
 	
+	public void login() 
+	{
 		
 		AdministradorEBR manager = null;		
 		
-		Context context = null;
-		String outcome = null;	
+		Context contexto = null;
 		
-        
+		
+		System.out.print(nick);
+		System.out.print(password);
 		 
 		try {
             // 1. Obtaining Context
-            context = ClienteUtility.getInitialContext();
+            contexto = ClienteUtility.getInitialContext();
             // 2. Generate JNDI Lookup name
             //String lookupName = getLookupName();
             // 3. Lookup and cast
-            manager = (AdministradorEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//AdministradorEB!com.core.service.negocio.remote.AdministradorEBR");
+            manager = (AdministradorEBR) contexto.lookup("ejb:Proyecto-EAR/Proyecto-Core//AdministradorEB!com.core.service.negocio.remote.AdministradorEBR");
  
         } catch (NamingException e) {
             e.printStackTrace();
         }
-		try{
-			RequestContext requestContext = RequestContext.getCurrentInstance();
-            
-            requestContext.update("form:display");
-            requestContext.execute("PF('dlg').show()");
 		
-			//Boolean exito=	manager.existeUsuario(txtLogin, MD5(txtPassword));
-			Boolean exito=	manager.existeUsuario(nick, password);
+		Boolean exito= false;
+		if (nick != null && password != null){
 			
-			if(exito==true){
-				FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Administrador logueado con exito !!"); 
-    	        contexto.addMessage("registroAdministrador", messages);
-    	        this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/index.xhtml";
-				outcome = "success";
-				
-				
-				
-			}else{
-				System.out.print("false");
-				FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Password o Nick incorrectos "); 
-    	        contexto.addMessage("registroAdministrador", messages);
-    	        this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/home.xhtml";
-				outcome = "failure";
-				
-			}
-			
-		return outcome;
-		}catch(Exception e)
-		{
-			e.getMessage();
-			return "failure";
+			exito=	manager.existeUsuario(nick, password);
 		}
-	}
+		
+		
+	    RequestContext context = RequestContext.getCurrentInstance();
+	    FacesMessage msg = null;
+	    if (exito==true) {
+	    	logeado = true;
+	      
+	      msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nick);
+	    } else {
+	      logeado = false;
+	      
+	      msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
+	                             "Credenciales no válidas");
+	    }
+
+	    FacesContext.getCurrentInstance().addMessage(null, msg);
+	    context.addCallbackParam("estaLogeado", logeado);
+	    if (logeado){
+	    	
+	      context.addCallbackParam("view", "index.xhtml");
+	      }
+	  }
+
+	 public void logout() {
+		   
+		 
+		 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		    session.invalidate();
+		    logeado = false;
+		  }
+
+	
 	////
 	private String MD5(String input) {
 

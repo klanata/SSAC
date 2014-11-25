@@ -23,7 +23,7 @@
 	
 	
 </h:head> 
-<body id="top"> 
+<h:body id="top"> 
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
@@ -31,45 +31,66 @@
       <p><strong>Vista Web para Administradores</strong></p>
     </div>
     
-       <f:view>  
-          
-      <h:form  id="LoginUsuario" >
-      	
-        <h:messages id="messages" for="LoginUsuario"></h:messages>
-          <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-          <div id="newsletter">
-          	      
-        	
+       
+     <p:growl id="mensajes" showDetail="true" life="2000" />
+  <h:form>
+    
+       <div id="newsletter">
         	<fieldset>
-          <legend>NewsLetter</legend>
-          <p:inputText id="nick" label="nick" value="#{administradorBean.nick}" required="true" requiredMessage="El nick es requerido" >
-			</p:inputText>					
+	        <legend>NewsLetter</legend>
+	        
+	        	<p:commandButton id="loginButton" value="Login"
+		             actionListener="#{administradorBean.login()}" update=":mensajes"
+		             oncomplete="manejarLogin(xhr, status, args)" />
+		        
+	        	 <p:inputText id="nick" label="nick" value="#{administradorBean.nick}" required="true" requiredMessage="El nick es requerido" >
+				 </p:inputText>					
 				 
-       		 <p:password id="password" value="#{administradorBean.password}" feedback="true"  required ="true" requiredMessage="El password es requerido" />
-			<p:commandButton id="comandoRegistrar"  onclick = "location= #{administradorBean.LoginUsuario()}"   update="growl" type="submit" styleClass="formbutton" value="Login" action="#{administradorBean.LoginUsuario()}">
-			</p:commandButton>
-        </fieldset>
-        		
+				     <p:password id="password"  value="#{administradorBean.password}" feedback="true" inline="true" required ="true"/>
+     
+       		 	
+			
+		          
+		        
+      		</fieldset>
 		</div>
-      </h:form>
+    
+  </h:form>     
       
+        	
+         
       
-      </f:view>    
+</div>      
+     
     <br class="clear" />
-  </div>
+  
 </div>
+
 
 
  <div id="map">
  	<p:gmap center="-34.917440, -56.164244" zoom="16" type="HYBRID"   
         style="width:1350px;height:400px" />  
+       
         
-    <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - SSAC</p>
+ 
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
-  </div>    
- </div>
+  </div>
+</div>
 
-</body> 
+</h:body> 
+<script type="text/javascript">
+  //<![CDATA[
+  function manejarLogin(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeado) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 500);
+    }
+  }
+//]]>
+</script>
 </html>
