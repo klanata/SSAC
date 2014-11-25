@@ -10,7 +10,7 @@
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />
 </h:head> 
-<body id="top"> 
+<h:body id="top"> 
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
@@ -101,7 +101,6 @@
 </div>
 
 
-
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
@@ -109,5 +108,15 @@
     <br class="clear" />
   </div>
 </div>
-</body> 
+
+</h:body> 
+	<script type="text/javascript">
+	  //<![CDATA[
+	  function logout(xhr, status, args) {
+	    setTimeout(function() {
+	      window.location = 'home.xhtml';
+	    }, 500);
+	  }
+	//]]>
+	</script>
 </html>
