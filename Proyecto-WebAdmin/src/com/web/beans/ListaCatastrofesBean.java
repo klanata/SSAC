@@ -70,8 +70,8 @@ public class ListaCatastrofesBean implements Serializable{
 	    	String nombreEvento;
 	    	String descripcion;
 	    	String logo;
-	    	BigDecimal coordenadasX;
-	    	BigDecimal coordenadasY;
+	    	double coordenadasX;
+	    	double coordenadasY;
 	    	Boolean activa;
 	    	Boolean prioridad;	    	
 			for (int i=0; i<=res.size()-1; i++){    		

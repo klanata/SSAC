@@ -49,8 +49,8 @@ public class CatastrofeBean implements Serializable{
 	//	------------------ Constructors  --------------------------------
 	public CatastrofeBean() {	
 	}	
-	public CatastrofeBean(Long id, String nombreEvento, String descripcion, String logo, BigDecimal coordenadasX,
-			BigDecimal coordenadasY, Boolean activa, Boolean prioridad) {
+	public CatastrofeBean(Long id, String nombreEvento, String descripcion, String logo, double coordenadasX,
+			double coordenadasY, Boolean activa, Boolean prioridad) {
 		super();
 		this.id = id;
 		this.nombreEvento = nombreEvento;

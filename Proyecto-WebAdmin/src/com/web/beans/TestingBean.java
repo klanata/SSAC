@@ -57,7 +57,7 @@ public class TestingBean implements Serializable{
         } catch (NamingException e) {
             e.printStackTrace();
         }				
-    		BigDecimal c = new BigDecimal(10);
+		double c = 10;
        		try {
 				Long in= manager.ingesarCatastrofe("this.nombreEvento", "this.descripcion", "logo", c,c, true, false, null, null, null);
 			} catch (Exception e) {
