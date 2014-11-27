@@ -33,8 +33,8 @@ public class Ong  extends AbstractEntity implements Serializable{
 		super();
 	}
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false, unique = true)
-	
 	private Long id;
 	
 	public  Long getId() {
