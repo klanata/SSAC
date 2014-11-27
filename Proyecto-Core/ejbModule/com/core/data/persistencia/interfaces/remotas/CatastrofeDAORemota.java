@@ -12,7 +12,9 @@ public interface CatastrofeDAORemota {
 	
 	public boolean existeCatastrofe(String nombreEvento);
 	
-	public Catastrofe buscarCatastrofe(String nombreEvento) throws Exception;
+	public Catastrofe buscarCatastrofePorNombre(String nombreEvento) throws Exception;
+	
+	public Catastrofe buscarCatastrofePorId(Long id) throws Exception;
 
 	public List<Catastrofe> listarCatastrofes() throws Exception;
 

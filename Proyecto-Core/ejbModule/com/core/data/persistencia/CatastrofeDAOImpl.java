@@ -72,12 +72,32 @@ public class CatastrofeDAOImpl extends AbstractService implements CatastrofeDAO{
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Catastrofe buscarCatastrofe(String nombreEvento) throws Exception {
+	public Catastrofe buscarCatastrofePorNombre(String nombreEvento) throws Exception {
 	  	
 		Catastrofe catastrofe;
 		try {
 			Query consulta = this.em.createNamedQuery("Catastrofe.BuscarCatastrofeId.NombreEvento",Catastrofe.class);			
 		  	consulta.setParameter("nombre", nombreEvento);		  			  	
+		  	if (consulta.getResultList().isEmpty()){
+		  		catastrofe = new Catastrofe();
+		  		catastrofe.setId(new Long(0));		  		
+		  	} else {		  		
+		  		catastrofe = (Catastrofe) consulta.getResultList().get(0);
+		  	}		  	
+		  	return catastrofe;		
+		} catch (Exception excep){			
+			throw excep;
+		}	  	
+	}
+	
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Catastrofe buscarCatastrofePorId(Long id) throws Exception {
+	  	
+		Catastrofe catastrofe;
+		try {
+			Query consulta = this.em.createNamedQuery("Catastrofe.BuscarCatastrofe.Id",Catastrofe.class);			
+		  	consulta.setParameter("id", id);		  			  	
 		  	if (consulta.getResultList().isEmpty()){
 		  		catastrofe = new Catastrofe();
 		  		catastrofe.setId(new Long(0));		  		
