@@ -3,6 +3,7 @@ package com.core.service.negocio;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -43,8 +44,8 @@ public class OngEB implements OngEBR{
 	}
 
 	@Override
-	public Collection<Ong> listarTodasLasOng() {
-		Collection<Ong> lista = null;
+	public List<Ong> listarTodasLasOng() {
+		List<Ong> lista = null;
 		
 		lista = dataService.findAll(Ong.class);
 		

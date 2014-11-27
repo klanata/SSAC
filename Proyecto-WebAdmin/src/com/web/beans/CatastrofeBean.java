@@ -2,9 +2,9 @@ package com.web.beans;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,6 +22,7 @@ import com.core.service.negocio.remote.CatastrofeEBR;
 import com.web.beans.InputBean;
 
 import cross_cuting.enums.TipoCatastrofe;
+
 import javax.servlet.http.Part;
 
 
@@ -39,8 +40,8 @@ public class CatastrofeBean implements Serializable{
 	private double coordenadasY;
 	private Boolean activa;
 	private Boolean prioridad;
-	private Collection<Servicio> servicios = new ArrayList<Servicio>();
-	private Collection<Ong> ongs  = new ArrayList<Ong>();
+	private Set<Servicio> servicios = new HashSet<Servicio>();
+	private Set<Ong> ongs  =  new HashSet<Ong>();
 	private PlanDeRiesgo planDeRiesgo;	
 	private Part part;
 	private TipoCatastrofe tipoCatastrofe; 
@@ -119,16 +120,16 @@ public class CatastrofeBean implements Serializable{
 	public void setPrioridad(Boolean prioridad) {
 		this.prioridad = prioridad;
 	}
-	public Collection<Servicio> getServicios() {
+	public Set<Servicio> getServicios() {
 		return servicios;
 	}
-	public void setServicios(Collection<Servicio> servicios) {
+	public void setServicios(Set<Servicio> servicios) {
 		this.servicios = servicios;
 	}
-	public Collection<Ong> getOngs() {
+	public Set<Ong> getOngs() {
 		return ongs;
 	}
-	public void setOngs(Collection<Ong> ongs) {
+	public void setOngs(Set<Ong> ongs) {
 		this.ongs = ongs;
 	}
 	public PlanDeRiesgo getPlanDeRiesgo() {

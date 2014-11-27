@@ -35,7 +35,7 @@ public class ListaCatastrofesBean implements Serializable{
     private List<CatastrofeBean> filtroCatastrofeBean;
     
     private CatastrofeBean selectedCatastrofe;
-    private List<CatastrofeBean> selectedCatastrofes;
+    //private List<CatastrofeBean> selectedCatastrofes;
     
     @ManagedProperty("#{catastrofeBean}")
     private CatastrofeBean catastrofeBean;
@@ -80,7 +80,7 @@ public class ListaCatastrofesBean implements Serializable{
 				nombreEvento = catastrofe.getNombreEvento();
 				descripcion = catastrofe.getDescripcion();												
 				logo = catastrofe.getLogo();																					
-				System.out.println(logo);
+				//System.out.println(logo);
 				coordenadasX = catastrofe.getCoordenadasX();
 				coordenadasY = catastrofe.getCoordenadasY();
 				activa = catastrofe.getActiva();
@@ -118,7 +118,7 @@ public class ListaCatastrofesBean implements Serializable{
 	public void setCatastrofeBean(CatastrofeBean catastrofeBean) {
 		this.catastrofeBean = catastrofeBean;
 	}
-
+	/*
 	public List<CatastrofeBean> getSelectedCatastrofes() {
 		return selectedCatastrofes;
 	}
@@ -126,14 +126,14 @@ public class ListaCatastrofesBean implements Serializable{
 	public void setSelectedCatastrofes(List<CatastrofeBean> selectedCatastrofes) {
 		this.selectedCatastrofes = selectedCatastrofes;
 	}
-    
+    */
 	
 	public void onRowSelect(SelectEvent event) {
 		
 		Long id = ((CatastrofeBean) event.getObject()).getId();
 		System.out.println("id de la catastrofe seleccionada: " + id);
 		String idEvento = id.toString();
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEvento", idEvento); 		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("asignarOngCatastrofe?faces-redirect=true");						 														
