@@ -27,7 +27,7 @@ public class PlanDeRiesgo  extends AbstractEntity implements Serializable{
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
 	private Integer id;
 	

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,7 +23,7 @@ query = "SELECT o "+
 		
 
 })
-@XmlRootElement
+
 public class Ong  extends AbstractEntity implements Serializable{
 
 	
@@ -31,15 +33,15 @@ public class Ong  extends AbstractEntity implements Serializable{
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name= "id", nullable= false)
+	@Column(name= "id", nullable= false, unique = true)
+	
 	private Long id;
 	
-	public Long getId() {
+	public  Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId( Long id) {
 		this.id = id;
 	}
 	@Column(nullable= false)
@@ -58,18 +60,19 @@ public class Ong  extends AbstractEntity implements Serializable{
 	@Column(nullable= false)
 	private String descripcion = "";
 	
-	@ManyToMany
-	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
+	@ManyToMany(mappedBy="ongs" ,cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private Set<Catastrofe> catastrofes = new HashSet<Catastrofe>(0);
 		
 	
-	@OneToMany
-	private Collection<Economica> donacionesEconomicas = new ArrayList<Economica>(0);
 	
-	@OneToMany
-	private Collection<DeBienes> donacionesDeBienes = new ArrayList<DeBienes>(0);
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "ong")
+	private Set<Economica> donacionesEconomicas = new HashSet<Economica>(0);
 	
-	@OneToMany
-	private Collection<DeServicios> donacionesDeServicios = new ArrayList<DeServicios>(0);
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "ong")
+	private Set<DeBienes> donacionesDeBienes = new HashSet<DeBienes>(0);
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "ong")
+	private Set<DeServicios> donacionesDeServicios = new HashSet<DeServicios>(0);
 
 	public String getNombre() {
 		return nombre;
@@ -119,27 +122,27 @@ public class Ong  extends AbstractEntity implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public Collection<Catastrofe> getCatastrofes() {
+	public Set<Catastrofe> getCatastrofes() {
 		return catastrofes;
 	}
 
-	public void setCatastrofes(Collection<Catastrofe> catastrofes) {
+	public void setCatastrofes(Set<Catastrofe> catastrofes) {
 		this.catastrofes = catastrofes;
 	}
 
-	public Collection<Economica> getDonacionesEconomicas() {
+	public Set<Economica> getDonacionesEconomicas() {
 		return donacionesEconomicas;
 	}
 
-	public void setDonacionesEconomicas(Collection<Economica> donacionesEconomicas) {
+	public void setDonacionesEconomicas(Set<Economica> donacionesEconomicas) {
 		this.donacionesEconomicas = donacionesEconomicas;
 	}
 
-	public Collection<DeBienes> getDonacionesDeBienes() {
+	public Set<DeBienes> getDonacionesDeBienes() {
 		return donacionesDeBienes;
 	}
 
-	public void setDonacionesDeBienes(Collection<DeBienes> donacionesDeBienes) {
+	public void setDonacionesDeBienes(Set<DeBienes> donacionesDeBienes) {
 		this.donacionesDeBienes = donacionesDeBienes;
 	}
 
@@ -148,7 +151,7 @@ public class Ong  extends AbstractEntity implements Serializable{
 	}
 
 	public void setDonacionesDeServicios(
-			Collection<DeServicios> donacionesDeServicios) {
+			Set<DeServicios> donacionesDeServicios) {
 		this.donacionesDeServicios = donacionesDeServicios;
 	}
 

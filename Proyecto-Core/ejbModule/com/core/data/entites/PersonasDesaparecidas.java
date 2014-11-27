@@ -44,7 +44,7 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

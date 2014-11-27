@@ -3,6 +3,9 @@ package com.core.data.entites;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,7 +27,7 @@ public class Servicio  extends AbstractEntity implements Serializable {
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
 	private Integer id;
 	
@@ -36,10 +39,18 @@ public class Servicio  extends AbstractEntity implements Serializable {
 	
 	//private Collection<String> filtros = new ArrayList<String>(0);
 	
-	@ManyToMany
-	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
+	@ManyToMany(mappedBy="servicios")
+	private Set<Catastrofe> catastrofes = new  HashSet<Catastrofe>(0);
 
 	
+
+	public Set<Catastrofe> getCatastrofes() {
+		return catastrofes;
+	}
+
+	public void setCatastrofes(Set<Catastrofe> catastrofes) {
+		this.catastrofes = catastrofes;
+	}
 
 	public Integer getId() {
 		return id;
@@ -65,13 +76,7 @@ public class Servicio  extends AbstractEntity implements Serializable {
 		this.fuente = fuente;
 	}
 
-	public Collection<Catastrofe> getCatastrofes() {
-		return catastrofes;
-	}
-
-	public void setCatastrofes(Collection<Catastrofe> catastrofes) {
-		this.catastrofes = catastrofes;
-	}
+	
 	
    
 }

@@ -15,6 +15,7 @@ import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Servicio;
+import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
@@ -26,11 +27,14 @@ public class CatastrofeEB implements CatastrofeEBR{
 	@EJB
 	private CatastrofeDAO catastrofeDAO;
 	
+	@EJB
+	private DataService dataService;
+	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
 			double coordenadasY, Boolean activa, Boolean prioridad, Collection<Servicio> servicios, Collection<Ong> ongs,
 		PlanDeRiesgo planDeRiesgo)throws Exception {
-				
+			/*	
 		Catastrofe c = new Catastrofe();
 		Long id;	
 		
@@ -46,6 +50,16 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setPlanDeRiesgo(planDeRiesgo);
 				
 		id = catastrofeDAO.insert(c);
+		*/
+		Catastrofe c2 = new Catastrofe();
+		c2 = catastrofeDAO.buscarCatastrofe(nombreEvento);
+		Collection<Ong> list = c2.getOngs();
+		
+		Ong o = dataService.find(Ong.class, 1) ;
+		list.add(o);
+		dataService.update(c2);
+		
+		Long id = new Long (20);
 		return id;										
 	
 	}
@@ -54,6 +68,10 @@ public class CatastrofeEB implements CatastrofeEBR{
 	public Catastrofe buscaCatastrofe(String nombreEvento) throws Exception {
 		Catastrofe c = new Catastrofe();
 		c = catastrofeDAO.buscarCatastrofe(nombreEvento);
+		Collection<Ong> list = c.getOngs();
+		
+		Ong o = dataService.find(Ong.class, 1) ;
+		list.add(o);
 		return c;
 	}
 	

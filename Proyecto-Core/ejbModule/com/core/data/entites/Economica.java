@@ -14,14 +14,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-public class Economica extends Donacion implements Serializable {
+public class Economica extends AbstractEntity implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

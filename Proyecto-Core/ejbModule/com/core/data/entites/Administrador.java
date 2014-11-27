@@ -45,7 +45,7 @@ public class Administrador  extends AbstractEntity implements Serializable{
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
 	private Long id;
 		
@@ -73,8 +73,6 @@ public class Administrador  extends AbstractEntity implements Serializable{
 	
 	private Integer celular;
 	
-	@OneToMany
-	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
 	
 		
 	
@@ -151,13 +149,7 @@ public class Administrador  extends AbstractEntity implements Serializable{
 		this.celular = celular;
 	}
 
-	public Collection<Catastrofe> getCatastrofes() {
-		return catastrofes;
-	}
-
-	public void setCatastrofes(Collection<Catastrofe> catastrofes) {
-		this.catastrofes = catastrofes;
-	}
+	
 
 	
 }

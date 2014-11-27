@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,7 +43,7 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
 	private Long  id;
 	
@@ -72,7 +74,7 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	
 	
 	@OneToMany
-	private Collection<EstadoRescatista> estadoRescatista = new ArrayList<EstadoRescatista>(0);
+	private Set<EstadoRescatista> estadoRescatista = new HashSet<EstadoRescatista>(0);
 
 	public Long getId() {
 		return id;
@@ -135,10 +137,10 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	}
    
 	
-	public Collection<EstadoRescatista> getEstadoRescatista() {
+	public Set<EstadoRescatista> getEstadoRescatista() {
 		return estadoRescatista;
 	}
-	public void setEstadoRescatista(Collection<EstadoRescatista> estadoRescatista) {
+	public void setEstadoRescatista(Set<EstadoRescatista> estadoRescatista) {
 		this.estadoRescatista = estadoRescatista;
 	}
 	

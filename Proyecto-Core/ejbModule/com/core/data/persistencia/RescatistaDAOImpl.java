@@ -1,9 +1,7 @@
 package com.core.data.persistencia;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.*;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -13,6 +11,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 
 
 import com.core.data.entites.EstadoRescatista;
@@ -98,7 +97,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 			//buscamos el rescatista
 			Rescatista rescatista =dataService.find(Rescatista.class, idRescatista);
 			//obtengo la lista de sus pendientes
-			Collection<EstadoRescatista> listaEstadoRescatista = rescatista.getEstadoRescatista();
+			Set<EstadoRescatista> listaEstadoRescatista = rescatista.getEstadoRescatista();
 			listaEstadoRescatista.add(estadoRescatista);
 			//actualizo la lista
 			rescatista.setEstadoRescatista(listaEstadoRescatista);

@@ -12,8 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @Entity
-@XmlRootElement
-public class DeBienes extends Donacion implements Serializable {
+
+public class DeBienes extends AbstractEntity  implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -22,7 +22,7 @@ public class DeBienes extends Donacion implements Serializable {
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
 	private Integer id;
 	
@@ -40,7 +40,7 @@ public class DeBienes extends Donacion implements Serializable {
 	@Column(nullable= false)
 	private Integer cantidad;
 	
-	@ManyToOne 
+	@ManyToOne
 	private Ong ong;
 
 	public DeBienes(String usuario, Date fechaRealizada, String nombreItem,

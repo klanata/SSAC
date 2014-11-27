@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,15 +42,16 @@ query = "SELECT c.id "+
 })
 
 @Table (name = "Catastrofe")
-@XmlRootElement
+
 public class Catastrofe extends AbstractEntity implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column Long id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name= "id", nullable= false, unique = true)
+	private long id;
 	
 	@Column(unique=true, nullable=false)
 	private String nombreEvento = "";
@@ -83,21 +86,21 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.tipoCatastrofe = tipoCatastrofe;
 	}
 
-	public Collection<PedidoDeAyuda> getPedidosDeAyuda() {
+	public Set<PedidoDeAyuda> getPedidosDeAyuda() {
 		return pedidosDeAyuda;
 	}
 
-	public void setPedidosDeAyuda(Collection<PedidoDeAyuda> pedidosDeAyuda) {
+	public void setPedidosDeAyuda(Set<PedidoDeAyuda> pedidosDeAyuda) {
 		this.pedidosDeAyuda = pedidosDeAyuda;
 	}
 	@ManyToMany
-	private Collection<Servicio> servicios = new ArrayList<Servicio>(0);
+	private Set<Servicio> servicios = new HashSet<Servicio>(0);
    
 	@ManyToMany
-	private Collection<Ong> ongs = new ArrayList<Ong>(0);
+	private Set<Ong> ongs = new HashSet<Ong>(0);
 	
 	@OneToMany
-	private Collection<PedidoDeAyuda> pedidosDeAyuda =  new ArrayList<PedidoDeAyuda>(0);
+	private Set<PedidoDeAyuda> pedidosDeAyuda =  new HashSet<PedidoDeAyuda>(0);
 	
 	@OneToOne
 	private PlanDeRiesgo planDeRiesgo ;
@@ -111,16 +114,16 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.coordenadasY  = 0;
 		this.activa = false;
 		this.prioridad = false;		
-		this.servicios = new ArrayList<Servicio>();
-		this.ongs = new ArrayList<Ong>();
+		this.servicios = new HashSet<Servicio>();
+		this.ongs = new HashSet<Ong>();
 		this.planDeRiesgo = null;	
 		this.tipoCatastrofe= TipoCatastrofe.climaticas;
 	}	
 	
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getNombreEvento() {
@@ -165,16 +168,14 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	public void setPrioridad(Boolean prioridad) {
 		this.prioridad = prioridad;
 	}
-	public Collection<Servicio> getServicios() {
+	public Set<Servicio> getServicios() {
 		return servicios;
 	}
-	public void setServicios(Collection<Servicio> servicios) {
-		this.servicios = servicios;
-	}
-	public Collection<Ong> getOngs() {
+	
+	public Set<Ong> getOngs() {
 		return ongs;
 	}
-	public void setOngs(Collection<Ong> catastrofes) {
+	public void setOngs(Set<Ong> catastrofes) {
 		this.ongs = catastrofes;
 	}
 	public PlanDeRiesgo getPlanDeRiesgo() {

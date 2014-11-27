@@ -37,7 +37,7 @@ public class Usuario extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
 	private Long id;
 		
@@ -56,8 +56,6 @@ public class Usuario extends AbstractEntity implements Serializable {
 	@Column(name= "fecha", nullable= false)
 	private Date fechaNac;
 	
-	@OneToMany
-	private Collection<Catastrofe> catastrofes = new ArrayList<Catastrofe>(0);
 	
 	// GETTERS
 	public Long getId(){

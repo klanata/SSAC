@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-public class DeServicios extends Donacion implements Serializable{
+public class DeServicios extends AbstractEntity  implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -23,7 +23,7 @@ public class DeServicios extends Donacion implements Serializable{
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
 	private Long id;
 	
