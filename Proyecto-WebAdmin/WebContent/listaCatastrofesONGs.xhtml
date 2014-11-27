@@ -3,47 +3,30 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      > 
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
-	
-
-	
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />
 </h:head> 
-<h:body id="top"> 
+<body id="top"> 
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
       <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
       <p><strong>Vista Web para Administradores</strong></p>
     </div>
-     <div id="newsletter">
-     <fieldset>
+    <div id="newsletter">      
+      <form action="#" id="loginAdmin">
+        <fieldset>
           <legend>NewsLetter</legend>
-          
-	<p:panelGrid columns="1">
-    <f:facet name="header">
-        <p:graphicImage name="/images/demo/ADMIN.png" />
-    </f:facet>
- 
-    
-    <h:outputText value="#{administradorBean.nick}" />
- 	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
-      style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-    <h:outputText value="Cerrar Seción" />
-  </p:commandLink>
- 
-</p:panelGrid>
-                   
-           
-      </fieldset>
-     
-                    
+          <input type="text" value="Name&hellip;"  onfocus="this.value=(this.value=='Name&hellip;')? '' : this.value ;" />
+          <input type="text" value="Email&hellip;"  onfocus="this.value=(this.value=='Email&hellip;')? '' : this.value ;" />
+          <input type="submit" name="news_go" id="news_go" value="Login" />
+        </fieldset>
+      </form>          
     </div>
     <br class="clear" />
   </div>
@@ -112,7 +95,7 @@
       <br/>	
       <f:view>      	
       	
-      	<h:form id="form">      		
+      	<h:form id="formCatastrofe">      		
       		
       		<p:growl id="msgs" showDetail="true" />
       		
@@ -129,14 +112,14 @@
 		            </p:outputPanel>
 		        </f:facet>    	
 		        
-		        <p:ajax event="rowSelect" listener="#{listaCatastrofesBean.onRowSelect}" update=":form:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesBean.onRowUnselect}" update=":form:msgs" />	        		        
+		        <p:ajax event="rowSelect" listener="#{listaCatastrofesBean.onRowSelect}" update=":formCatastrofe:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesBean.onRowUnselect}" update=":formCatastrofe:msgs" />	        		        
 		        
 		        <p:column>		        		        	
             		<p:graphicImage value="image/#{catastrofeBean.logo}" />               		         	
         		</p:column>        	     
         		
-        		<p:column headerText="Id" style="width:100px">
+        		<p:column headerText="Id" style="width:50px">
             		<h:outputText value="#{catastrofeBean.id}" />
         		</p:column>             		                  		                  		             	
         		
@@ -144,7 +127,7 @@
             		<h:outputText value="#{catastrofeBean.nombreEvento}" />
         		</p:column>
         		
-        		<p:column headerText="Descripción" style="width:200px" filterBy="#{catastrofeBean.descripcion}" filterMatchMode="contains">
+        		<p:column headerText="Descripción" style="width:350px" filterBy="#{catastrofeBean.descripcion}" filterMatchMode="contains">
             		<h:outputText value="#{catastrofeBean.descripcion}" />            		
         		</p:column>
         		
@@ -168,6 +151,7 @@
 </div>
 
 
+
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
@@ -175,14 +159,5 @@
     <br class="clear" />
   </div>
 </div>
-</h:body> 
-	<script type="text/javascript">
-	  //<![CDATA[
-	  function logout(xhr, status, args) {
-	    setTimeout(function() {
-	      window.location = 'home.xhtml';
-	    }, 500);
-	  }
-	//]]>
-	</script>
+</body> 
 </html>

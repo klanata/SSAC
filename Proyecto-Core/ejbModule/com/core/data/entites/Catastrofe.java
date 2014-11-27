@@ -1,9 +1,6 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -77,6 +74,74 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TipoCatastrofe tipoCatastrofe;
 	
+	@ManyToMany
+	private Set<Servicio> servicios = new HashSet<Servicio>(0);
+   
+	@ManyToMany
+	private Set<Ong> ongs = new HashSet<Ong>(0);
+	
+	@OneToMany
+	private Set<PedidoDeAyuda> pedidosDeAyuda =  new HashSet<PedidoDeAyuda>(0);
+	
+	@OneToOne
+	private PlanDeRiesgo planDeRiesgo ;
+	
+	
+//	------------------ Constructors  --------------------------------
+	
+	public Catastrofe() {
+		super();
+		this.nombreEvento = new String();
+		this.descripcion = new String();
+		this.logo = new String();
+		this.coordenadasX = 0;
+		this.coordenadasY  = 0;
+		this.activa = false;
+		this.prioridad = false;		
+		this.servicios = new HashSet<Servicio>();
+		this.setOngs(new HashSet<Ong>(0));
+		//this.ongs = new HashSet<Ong>(0);
+		this.planDeRiesgo = null;	
+		this.pedidosDeAyuda = new HashSet<PedidoDeAyuda>();
+		this.tipoCatastrofe= TipoCatastrofe.climaticas;
+	}		
+	
+	
+	/**
+	 * @param nombreEvento
+	 * @param descripcion
+	 * @param logo
+	 * @param coordenadasX
+	 * @param coordenadasY
+	 * @param activa
+	 * @param prioridad
+	 * @param servicios	 
+	 * @param ongs
+	 * @param pedidosDeAyuda
+	 * @param planDeRiesgo	 
+	 */
+	public Catastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX,
+		   double coordenadasY,Boolean activa, Boolean prioridad, Set<Servicio> servicios,
+		   Set<Ong> ongs, Set<PedidoDeAyuda> pedidosDeAyuda, PlanDeRiesgo planDeRiesgo) {
+		super();
+		this.nombreEvento = nombreEvento;
+		this.descripcion = descripcion;
+		this.logo = logo;
+		this.coordenadasX = coordenadasX;
+		this.coordenadasY  = coordenadasY;
+		this.activa = activa;
+		this.prioridad = prioridad;		
+		this.servicios = servicios;
+		this.setOngs(ongs);
+		//this.ongs = ongs;
+		this.pedidosDeAyuda = pedidosDeAyuda;
+		this.planDeRiesgo = planDeRiesgo;	
+		this.tipoCatastrofe= TipoCatastrofe.climaticas;
+	}
+	
+	
+	//	------------------ Getter and setter methods ---------------------
+	
 	
 	public TipoCatastrofe getTipoCatastrofe() {
 		return tipoCatastrofe;
@@ -93,32 +158,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	public void setPedidosDeAyuda(Set<PedidoDeAyuda> pedidosDeAyuda) {
 		this.pedidosDeAyuda = pedidosDeAyuda;
 	}
-	@ManyToMany
-	private Set<Servicio> servicios = new HashSet<Servicio>(0);
-   
-	@ManyToMany
-	private Set<Ong> ongs = new HashSet<Ong>(0);
-	
-	@OneToMany
-	private Set<PedidoDeAyuda> pedidosDeAyuda =  new HashSet<PedidoDeAyuda>(0);
-	
-	@OneToOne
-	private PlanDeRiesgo planDeRiesgo ;
-
-	public Catastrofe() {
-		super();
-		this.nombreEvento = new String();
-		this.descripcion = new String();
-		this.logo = new String();
-		this.coordenadasX = 0;
-		this.coordenadasY  = 0;
-		this.activa = false;
-		this.prioridad = false;		
-		this.servicios = new HashSet<Servicio>();
-		this.ongs = new HashSet<Ong>();
-		this.planDeRiesgo = null;	
-		this.tipoCatastrofe= TipoCatastrofe.climaticas;
-	}	
+		
 	
 	public long getId() {
 		return id;
@@ -170,8 +210,11 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	}
 	public Set<Servicio> getServicios() {
 		return servicios;
+	}	
+	public void setServicios(Set<Servicio> servicios) {
+		this.servicios = servicios;
 	}
-	
+
 	public Set<Ong> getOngs() {
 		return ongs;
 	}

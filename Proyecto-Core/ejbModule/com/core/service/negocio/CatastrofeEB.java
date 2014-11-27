@@ -1,9 +1,8 @@
 package com.core.service.negocio;
 
-import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -15,8 +14,8 @@ import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Servicio;
-import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
+import com.core.data.persistencia.interfaces.locales.OngDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
 
@@ -28,13 +27,13 @@ public class CatastrofeEB implements CatastrofeEBR{
 	private CatastrofeDAO catastrofeDAO;
 	
 	@EJB
-	private DataService dataService;
+	private OngDAO ongDAO;
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
-			double coordenadasY, Boolean activa, Boolean prioridad, Collection<Servicio> servicios, Collection<Ong> ongs,
+		double coordenadasY, Boolean activa, Boolean prioridad, Set<Servicio> servicios, Set<Ong> ongs,
 		PlanDeRiesgo planDeRiesgo)throws Exception {
-			/*	
+				
 		Catastrofe c = new Catastrofe();
 		Long id;	
 		
@@ -50,37 +49,34 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setPlanDeRiesgo(planDeRiesgo);
 				
 		id = catastrofeDAO.insert(c);
-		*/
-		Catastrofe c2 = new Catastrofe();
-		c2 = catastrofeDAO.buscarCatastrofe(nombreEvento);
-		Collection<Ong> list = c2.getOngs();
-		
-		Ong o = dataService.find(Ong.class, 1) ;
-		list.add(o);
-		dataService.update(c2);
-		
-		Long id = new Long (20);
-		return id;										
-	
+		return id;											
 	}
+	
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public Catastrofe buscaCatastrofe(String nombreEvento) throws Exception {
+	public Catastrofe buscaCatastrofePorNombre(String nombreEvento) throws Exception {
 		Catastrofe c = new Catastrofe();
-		c = catastrofeDAO.buscarCatastrofe(nombreEvento);
-		Collection<Ong> list = c.getOngs();
-		
-		Ong o = dataService.find(Ong.class, 1) ;
-		list.add(o);
+		c = catastrofeDAO.buscarCatastrofePorNombre(nombreEvento);
 		return c;
 	}
+	
+	
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	public Catastrofe buscaCatastrofePorId(Long id) throws Exception {
+		Catastrofe c = new Catastrofe();
+		c = catastrofeDAO.buscarCatastrofePorId(id);
+		return c;
+	}
+	
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public List<Catastrofe> listaCatastrofes() throws Exception {
 		List<Catastrofe> listCatastrofes = new ArrayList<Catastrofe>();
 		listCatastrofes = catastrofeDAO.listarCatastrofes();
 		return listCatastrofes;
-	}
+	}	
+	
+		
 	
 
 }
