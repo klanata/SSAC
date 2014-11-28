@@ -1,10 +1,7 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 

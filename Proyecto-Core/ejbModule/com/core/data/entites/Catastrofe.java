@@ -39,7 +39,7 @@ query = "SELECT c.id "+
 })
 
 @Table (name = "Catastrofe")
-
+@XmlRootElement
 public class Catastrofe extends AbstractEntity implements Serializable {
 
 	

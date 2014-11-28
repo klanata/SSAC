@@ -29,13 +29,22 @@ public class PlanDeRiesgo  extends AbstractEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
+
+	@OneToOne
+	private Catastrofe catastrofe ;
 	
-	public Integer getId() {
+	private String rutaArchivo;
+
+	
+	
+	
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -46,10 +55,6 @@ public class PlanDeRiesgo  extends AbstractEntity implements Serializable{
 	public void setCatastrofe(Catastrofe catastrofe) {
 		this.catastrofe = catastrofe;
 	}
-	@OneToOne
-	private Catastrofe catastrofe ;
-	
-	private String rutaArchivo;
 
 	public String getRutaArchivo() {
 		return rutaArchivo;

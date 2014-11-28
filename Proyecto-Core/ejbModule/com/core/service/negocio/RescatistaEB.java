@@ -57,9 +57,9 @@ public class RescatistaEB implements RescatistaEBR {
 		    	   EstadoRescatista e = it.next();
 		    	   Long idCatastrofe = e.getCatastrofe().getId();
 		    	   Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
-		    	   Integer idPlanRiesgo = c.getPlanDeRiesgo().getId();
+		    	   Long idPlanRiesgo = c.getPlanDeRiesgo().getId();
 		    	   //obtengo planDeRiesgo
-		    	   PlanDeRiesgo p = planDeRiesgoService.obtenerPlanDeRiesgo(idPlanRiesgo);
+		    	   PlanDeRiesgo p = planDeRiesgoService.obtenerPlanDeRiesgoPorID(idPlanRiesgo);
 		    	   
 		    	   PlanesPendientesRescatistaDTO planesDTO = new PlanesPendientesRescatistaDTO();
 		    	   planesDTO.setUrlArchivo(p.getRutaArchivo());

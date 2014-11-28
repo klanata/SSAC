@@ -1,5 +1,7 @@
 package com.core.data.persistencia;
 
+import java.util.Collection;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -33,7 +35,7 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 	
 	@EJB
 	private DataService dataService;
-	
+	///////////////////////////////////////////////////////////////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Long crearAdministrador(Administrador admin) throws Exception {
 		Long id;
@@ -62,34 +64,31 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 		catch (Exception excep){			
 			throw excep;
 		}	
-
-	
-	
-	
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////
 	@Override
-	public Boolean buscarAdministradorNickPass(String nick,
+	public boolean buscarAdministradorNickPass(String nick,
 			String password) {
-		
-		//Administrador usuario = null;
-		System.out.print("password"+ password);
-		Boolean existe;
-		Query consulta = this.em.createNamedQuery("Administrador.BuscarAdministrador.Nick.Pass");
-	  	consulta.setParameter("nick", nick);
-	  	consulta.setParameter("password", password);
-	  	if (consulta.getResultList().isEmpty()){
-	  		existe = false;
-	  	} else {
-	  		existe = true;
-	  	}
+	
+		Boolean existe = false;
+		try{
+			Query consulta = this.em.createNamedQuery("Administrador.BuscarAdministrador.Nick.Pass");
+		  	consulta.setParameter("nick", nick);
+		  	consulta.setParameter("password", password);
+		  	if (!consulta.getResultList().isEmpty()){
+		  		existe = true;
+		  	} 
+		}catch (Exception excep){			
+			throw excep;
+		} 	
 	  	return existe;
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean existeAdministrador(String nick) {
 				
-				boolean existe;
+				boolean existe = false;
+		try{			
 				Query consulta = this.em.createNamedQuery("Administrador.BuscarAdministrador");
 				consulta.setParameter("nick", nick);							
 				if (consulta.getResultList().isEmpty()){
@@ -97,9 +96,41 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 			  	} else {
 			  		existe = true;
 			  	}
-			  	return existe;
-		}
-
+		}catch (Exception excep){			
+			throw excep;
+		} 
+		return existe;
+	}
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public Administrador obtenerAdministrador(String nick) {
+		
+		Administrador a = null;
+		try{
+			Query consulta = this.em.createNamedQuery("Administrador.BuscarAdministrador");
+			consulta.setParameter("nick", nick);							
+			if (!consulta.getResultList().isEmpty()){
+		  		a = (Administrador)consulta.getResultList().get(0);
+			}
+		}catch (Exception excep){			
+			throw excep;
+		} 
+		return a;
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public Collection<Administrador> listarAdministradores() {
+		
+		Collection<Administrador> lista = null;
+		try{
+			lista = dataService.findAll(Administrador.class);
+			
+		}catch (Exception excep){			
+			throw excep;
+		} 
+		
+		return lista;
+	}
 	
 
 }

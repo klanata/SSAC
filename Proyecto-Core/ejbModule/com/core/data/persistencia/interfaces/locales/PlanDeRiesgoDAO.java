@@ -9,7 +9,9 @@ import com.core.data.persistencia.JPAService;
 public interface PlanDeRiesgoDAO extends JPAService {
 	
 	
-	public PlanDeRiesgo obtenerPlanDeRiesgo (Integer id);
+	public PlanDeRiesgo obtenerPlanDeRiesgoPorID (Long id);
+	public Long crearPlanDeRiesgo(PlanDeRiesgo planRiesgo) throws Exception;
+	
 	
 
 }
