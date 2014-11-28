@@ -13,6 +13,7 @@ import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Servicio;
+import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.data.persistencia.DataService;
@@ -30,8 +31,8 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
-		double coordenadasY, Boolean activa, Boolean prioridad, Set<Servicio> servicios, Set<Ong> ongs,
-		PlanDeRiesgo planDeRiesgo)throws Exception {
+		double coordenadasY, Boolean activa, Boolean prioridad, Set<ImagenCatastrofe> imagenes, 
+		Set<Servicio> servicios, Set<Ong> ongs,	PlanDeRiesgo planDeRiesgo)throws Exception {
 				
 		Catastrofe c = new Catastrofe();
 		Long id;	
@@ -43,6 +44,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setCoordenadasY(coordenadasY);
 		c.setActiva(activa);
 		c.setPrioridad(prioridad);
+		c.setImagenes(imagenes);
 		c.setServicios(servicios);
 		c.setOngs(ongs);
 		c.setPlanDeRiesgo(planDeRiesgo);

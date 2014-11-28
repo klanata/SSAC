@@ -247,7 +247,7 @@ public class ListaOngsBean implements Serializable{
 			}  
 		}
 		else{				
-			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se seleccionó ninguna ONG.");
+			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una ONG.");
 			
 		}
 		FacesContext.getCurrentInstance().addMessage(null, message);

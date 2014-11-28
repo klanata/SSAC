@@ -15,6 +15,7 @@ import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Servicio;
@@ -40,6 +41,7 @@ public class CatastrofeBean implements Serializable{
 	private double coordenadasY;
 	private Boolean activa;
 	private Boolean prioridad;
+	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>();
 	private Set<Servicio> servicios = new HashSet<Servicio>();
 	private Set<Ong> ongs  =  new HashSet<Ong>();
 	private PlanDeRiesgo planDeRiesgo;	
@@ -120,6 +122,12 @@ public class CatastrofeBean implements Serializable{
 	public void setPrioridad(Boolean prioridad) {
 		this.prioridad = prioridad;
 	}
+	public Set<ImagenCatastrofe> getImagenes() {
+		return imagenes;
+	}
+	public void setImagenes(Set<ImagenCatastrofe> imagenes) {
+		this.imagenes = imagenes;
+	}
 	public Set<Servicio> getServicios() {
 		return servicios;
 	}
@@ -170,7 +178,7 @@ public class CatastrofeBean implements Serializable{
     	try{    	
     		InputBean inputBean = new InputBean();
     		String logo= inputBean.uploadFile(this.part);    		    		    	
-       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, servicios, ongs, planDeRiesgo);    	
+       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, imagenes, servicios, ongs, planDeRiesgo);    	
     		if (in == 0){
     			System.out.println("es repetido." + in);
     			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
@@ -196,6 +204,7 @@ public class CatastrofeBean implements Serializable{
 	        return "failure";     		
     	}        	    	
 	}
+	
 		
 	
 	
