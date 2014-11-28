@@ -75,9 +75,9 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	private TipoCatastrofe tipoCatastrofe;
 	
 	@ManyToMany
-	private Set<Servicio> servicios = new HashSet<Servicio>(0);
-   
-	@ManyToMany
+	private Set<Servicio> servicios = new HashSet<Servicio>(0);   
+	
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Ong> ongs = new HashSet<Ong>(0);
 	
 	@OneToMany

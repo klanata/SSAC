@@ -23,6 +23,6 @@ public interface CatastrofeEBR {
 	
 	public List<Catastrofe> listaCatastrofes() throws Exception;
 		
-	
+	public void agregarOngALaCatastrofe(Long idCatastrofe, Long idOng) throws Exception;
 	
 }
