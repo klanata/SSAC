@@ -99,7 +99,13 @@ public class PersonasDesaparecidasBean implements Serializable {
 	public void setImagenes(Set<ImagenPersonaDesaparecida> imagenes) {
 		this.imagenes = imagenes;
 	}
-
+	public Part getPart() {
+		return part;
+	}
+	public void setPart(Part part) {
+		this.part = part;
+	}
+	
 
 
 
