@@ -24,7 +24,7 @@ import com.core.service.negocio.remote.OngEBR;;
 
 
 @ManagedBean(name="listaOngsBean")
-@ViewScoped
+@RequestScoped
 public class ListaOngsBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -229,8 +229,10 @@ public class ListaOngsBean implements Serializable{
 			for (int i=0; i<=selectedOngs.size()-1; i++){ 				
 				ongBean = selectedOngs.get(i);
 				Long idOng = ongBean.getId();			
-				//manager.agregarOngALaCatastrofe(idCatastrofe, idOng);				
-			}						
+				manager.agregarOngALaCatastrofe(idCatastrofe, idOng);				
+			}	
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
 		}catch (Exception excep){
     		System.out.println("Excepción al agregar las ONGs a la catástrofe: " + excep.getMessage());      		 			       	           	
     	}  
