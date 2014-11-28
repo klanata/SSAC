@@ -48,7 +48,8 @@ public class ListaOngsBean implements Serializable{
     
 	@PostConstruct
     public void init() {
-				
+			
+		//Recupero la catastrofe con idEventoString	
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeONG");
 		System.out.println("El id del evento: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
@@ -58,8 +59,7 @@ public class ListaOngsBean implements Serializable{
 			handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
 		}
 		else	
-		{
-			//Recupero la catastrofe con idEventoString									
+		{											
 			CatastrofeEBR managerCat = null;
 			Context contextCat = null;				
 			
