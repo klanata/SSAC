@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+</h:head> 
+<body> 
+
+
+<div class="wrapper col2">
+  <div id="intro">
+    <div class="fl_left">
+
+      <f:view>
+		<h:form id="economicaBean" >
+			<h:messages id="messages" for="economicaBean"></h:messages>
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<h:panelGrid>		
+			
+				<p>
+				<label for="ong">ong :</label>				
+					<p:inputText id="ong" label="ong"  value="#{economicaBean.ong}" required="true" requiredMessage="La catastrofe es requerida" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				
+				<p>
+				<label for="usuario">usuario :</label>				
+					<p:inputText id="usuario" label="usuario" value="#{economicaBean.usuario}" required="true" requiredMessage="El usuario es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+					<p:outputLabel for="fechaRealizada" value="fechaRealizada" />
+        		<p:calendar id="fechaRealizada" value="#{economicaBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />
+        		<br/>
+        		
+				<p>
+				<label for="monto">monto :</label>				
+					<p:inputText id="monto" label="monto"  value="#{economicaBean.monto}"  required="true" requiredMessage="El monto es requerido" >		
+					</p:inputText>																																									
+				</p>
+				<br/>
+				</h:panelGrid>	
+			<p:commandButton id="registrarDonacion" update="growl"  type="submit" style="margin-left: 150px;" Class="button" value="DONAR" action="#{economicaBean.registrarDonacionEconomica()}">
+			</p:commandButton>	
+		</h:form>
+		
+</f:view>
+ </div>
+</div>
+</div>	
+
+
+</body> 
+</html>
