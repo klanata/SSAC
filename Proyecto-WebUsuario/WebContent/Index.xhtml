@@ -1,255 +1,227 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html	xmlns="http://www.w3.org/1999/xhtml" 
-	 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	 	xmlns:f="http://java.sun.com/jsf/core"
-	 	xmlns:h="http://java.sun.com/jsf/html"
-	 	xmlns:p="http://primefaces.org/ui">
-	 
- <h:head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	
-<!-- 	<link rel="stylesheet" type="text/css" src="css/bootstrap-responsive.css" /> -->
-<!--  	<link rel="stylesheet" type="text/css" src="css/style.css" /> -->
-	<title>Project Name</title>
-	
-</h:head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"> 
 
-<h:body>
-	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="stylish-portfolio.css"/>
-	<h:outputStylesheet library="font-awesome-4.1.0/css" name="font-awesome.min.css" type="text/css"/>
-	<h:outputStylesheet library="css" name="bootstrap-responsive.css" />
-	<h:outputStylesheet library="css" name="style.css" />
-	<h:outputScript library="js" name="bootstrap.js"></h:outputScript>
-
-    <title>SSAC</title>
-
-  
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"></link>
-
-
-    
-    
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-    
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-   
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top">¡BIENVENIDO"</a>
-            </li>
-            <li>
-                <a href="#top">Home</a>
-            </li>
-            <li>
-                <a href="#services">Realizar donaciones</a>
-            </li>
-            <li>
-                <a href="#portfolio">Pedido de Ayuda</a>
-            </li>
-            <li>
-                <a href="#contact">Contáctese con nosotros!</a>
-            </li>
-        </ul>
-    </div>
-    </div>
-
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>¡Bienvendido a SSAC!</h1>
-            <h3>Sistema de Soporte ante Catástrofes</h3>
-            <br>
-            <a href="#about" class="btn btn-dark btn-lg">Conozca más</a> 
-            </br>
-        </div>
-    </header>
-
-    <!-- Services -->
-    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h2>¿Desea realizar donaciones?</h2>
-                    <hr class="small"></hr>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Donación de bienes</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Donación de Servicios</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Donación Económica</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Callout -->
-    <aside class="callout">
-        <div class="text-vertical-center">
-            <h1>Vertically Centered Text</h1>
-        </div>
-    </aside>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Our Work</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg"> </img>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg"></img>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg"></img>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg"></img>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">View More Items</a>
-                    </hr>
-                </div>
-                
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Call to Action -->
-    <aside class="call-to-action bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h3>The buttons below are impossible to resist.</h3>
-                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-                </div>
-            </div>
-        </div>
-    </aside>
-
-   
-
-    <!-- Footer -->
-    
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
+<h:head>
+		<title>SSAC</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.onvisible.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+	<script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.js'></script>
+    <script src='http://code.jquery.com/jquery-1.8.2.js'></script>
+    <script src='http://code.jquery.com/ui/1.9.0/jquery-ui.js'></script>
+    <script src='ext/jquery.ptTimeSelect.js'></script>
+    <script src='ext/jquery.validate.js'></script>
+    <script src='ext/leaflet.js'></script>
+    <script src='ext/form.js'></script>
+    <script src='js/site.js'></script>
+     <link rel='stylesheet' href='css/site.css' />
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.css' rel='stylesheet' />
+    <link rel='stylesheet' href='http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css' />
+    <link rel='stylesheet' href='ext/jquery.ptTimeSelect.css' />
     <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Scrolls to the selected menu item on the page
-    $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
-    });
+      var submitted=false;
     </script>
+		  
+		
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link rel="stylesheet" href="css/style-noscript.css" />
+		
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</h:head>
+	<body class="homepage">
 
-</h:body>
+		<!-- Header -->
+			<div id="header">
+						
+				<!-- Inner -->
+					<div class="inner">
+						<div id="header">
+							<h1><a href="Index.xhtml" id="logo">SSAC</a></h1>
+							<a><img src="images/imagen.png" alt="" /></a>
+							<hr />		
+							<center>¡Bienvenido al Sistema de Soporte ante Catástrofes!</center>
+						</div>
+						<div class="footer">
+							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>							
+						</div>
+					</div>
+				
+				<!-- Nav -->
+					<div id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="">DONACIONES</a>
+								<ul>
+									<li><a href="#">De bienes</a></li>
+									<li><a href="#">De servicios</a></li>
+									<li><a href="#">Economica</a></li>
+									<li>
+										<a href="">And a submenu &hellip;</a>
+										<ul>
+											<li><a href="#">Lorem ipsum dolor</a></li>
+											<li><a href="#">Phasellus consequat</a></li>
+											<li><a href="#">Magna phasellus</a></li>
+											<li><a href="#">Etiam dolore nisl</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Veroeros feugiat</a></li>
+								</ul>
+							</li>
+							<li><a href="left-sidebar.html">SOLICITAR AYUDA</a></li>
+							<li><a href="right-sidebar.html"></a></li>
+							<li><a href="no-sidebar.html">PERSONAS DESAPARECIDAS</a></li>
+						</ul>
+					</div>
 
+			</div>
+			
+			
+			<!-- Banner -->
+			<div class="section" id="banner">
+					<h2> <strong>¡SOLICITE AYUDA!</strong></h2>
+					
+						 <strong>		¿Se encuentra en situación de peligro? ¿Necesita ayuda? En SSAC brindamos </strong>
+						 <strong>		servicios de auxilio.</strong> 
+						 <strong>		Ingrese sus datos en el siguiente formulario y le derivaremos a un rescatista </strong>
+						 <strong>		lo antes posible.</strong>
+					
+		<div class="ui-grid">
+    <div class="ui-grid-row">
+   <div class="ui-grid-col-2"> </div>
+ <div class="ui-grid-col-4">
+
+      <f:view>
+		<h:form id="pedidoDeAyuda" >
+			<h:messages id="messages" for="pedidoDeAyuda"></h:messages>
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<h:panelGrid>		
+			
+				<p>		
+				<h4>Descripción:</h4>	
+					<h:panelGrid columns="2" border="1">																																		
+					<p:inputTextarea id="descripcion" label="descripcion" value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>	
+				</h:panelGrid>	
+				</p>
+				<br/>
+				 <div class='errorbox-good'>
+                  <div class='ss-item ss-item-required ss-text'>
+                    <div class='ss-form-entry'>
+                      <label class='ss-q-title' for='entry_5'>X
+                       <span class='ss-required-asterisk'>*</span></label>
+                      <label class='ss-q-help' for='entry_5'></label>
+                      <input type='text' name='entry.5.single' value= "#{pedidoAyudaBean.coordenadasX}" class='ss-q-short' id='entry_5' />
+                    </div>
+                  </div>
+                </div>
+                <div class='errorbox-good'>
+                  <div class='ss-item ss-item-required ss-text'>
+                    <div class='ss-form-entry'>
+                      <label class='ss-q-title' for='entry_6'>Y
+                        <span class='ss-required-asterisk'>*</span>
+                      </label>
+                      <label class='ss-q-help' for='entry_6'></label>
+                      <input type='text' name='entry.6.single' value="#{pedidoAyudaBean.coordenadasY}" class='ss-q-short' id='entry_6' />
+                    </div>
+                  </div>
+                </div>
+				</h:panelGrid>	
+			<p:commandButton id="registrarPedido" update="growl"  type="submit" style="margin-left: 150px;" Class="button" value="Registrar" action="#{pedidoAyudaBean.registrarpedidoAyuda()}">
+			</p:commandButton>	
+		</h:form>
+		
+		
+</f:view>
+</div>
+ <div class="ui-grid-col-1"> </div>
+ <div class="ui-grid-col-4">
+
+          <div id='map'></div>
+          <div class='left'>
+            <a id='geojsonLayer' ></a>
+          </div>
+		
+		</div>
+<div class="ui-grid-col-2"> </div>
+ </div>
+ 
+   </div>
+</div>  
+
+		<!-- Mision y vision -->	
+			
+			<div class="wrapper style2">
+
+				<div  id="main" class="container special">
+					<a href="#" class="image featured"><img src="images/main.jpg" alt="" /></a>
+					<div id="main">
+				
+						<h2><a href="#">Nuestra Misión y Visión</a></h2>
+						<p>
+							En SSAC contamos con una amplia gama de bla bla
+						</p>
+						
+					</div>
+					
+					<p>
+						Nuestra vision, probando como queda probando como queda probando como queda probando como queda
+						 probando como queda probando como queda probando como queda probando como queda probando como queda probando
+						  probando como queda probando como queda probando como queda probando como queda probando como queda probando como queda 
+					</p>
+					
+						<a href="#" class="button">Continue Reading</a>
+					
+				</div>
+
+			</div>
+			
+	<!-- Main -->
+			<div class="wrapper style2">
+
+				<div id="main" class="container special">
+					<a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
+					
+						<h2><a href="#">Nuestra Misión y Visión-</a></h2>
+						<p>
+							En SSAC nuestra misión se basa en En SSAC nuestra misión se basa en .
+							En SSAC nuestra misión se basa en En SSAC nuestra misión se basa en 
+						</p>
+					
+					<p>
+						En SSAC nuestra visión se basa en En SSAC nuestra visión se basa en En SSAC nuestra visión se basa en .....
+						En SSAC nuestra visión se basa en En SSAC nuestra visión se basa en 
+					</p>
+					<div class ="footer">
+						<a href="#" class="button">Continue Reading</a>
+					</div>
+				</div>
+
+			</div>
+					
+			
+			
+			
+			
+			
+			
+				
+
+		
+		
+
+	</body>
 </html>

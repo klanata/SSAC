@@ -63,8 +63,8 @@ public class EconomicaBean implements Serializable{
 	        }
 		try{    		   	    	  
     	   		
-    		//Date fechaPublicacion = new Date();
-    		//fechaPublicacion.getTime();
+    		Date fechaRealizada = new Date();
+    		fechaRealizada.getTime();
     		
        		manager.crearDonacionEconomica(ong, usuario, fechaRealizada, monto);    	
     		

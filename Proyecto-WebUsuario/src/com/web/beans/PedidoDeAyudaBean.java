@@ -81,10 +81,10 @@ public class PedidoDeAyudaBean implements Serializable {
         }				
     	
     	try{    		   	    	  
-    		//esto esta mal es solo por ahora para que ande
     		
-    		Date fechaPublicacion = new Date();
+    		Date fechaPublicacion= new Date();
     		fechaPublicacion.getTime();
+    	
     		
        		manager.crearPedido(catastrofeId, descripcion, coordenadasX, coordenadasY, fechaPublicacion);    	
     		
