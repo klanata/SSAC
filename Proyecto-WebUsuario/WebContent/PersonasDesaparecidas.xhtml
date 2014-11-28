@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
- <h1>Donaciones de bienes</h1>
+ <h1>Personas Desaparecidas</h1>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
  <link rel="stylesheet" type="text/css" href="bootstrap.css" />
  </h:head> 
@@ -23,7 +23,7 @@
   				<div class="ui-grid-row">
                     <p:panelGrid columns="1" cellpadding="2">
                     <p>
-						<label for="nombre"> :</label>				
+						<label for="nombre"> Nombre:</label>				
 						<p:inputText id="nombre" label="nombre"  value="#{personasdesaparecidasBean.nombre}" required="true" requiredMessage="El nombre es requerido" >	
 						</p:inputText>																																									
 					</p>
@@ -40,11 +40,12 @@
 						</p:inputText>																																									
 					</p>
                         
-                     <p>
-						<label for="decripcion">decripcion :</label>				
-						<p:inputText id="decripcion" label="decripcion"  value="#{personasdesaparecidasBean.decripcion}" required="true" requiredMessage="La descripcion es requerida" >	
-						</p:inputText>																																									
-					</p>
+                        <p>		
+				<p:selectBooleanCheckbox value="#{personasdesaparecidasBean.decripcion}"/> 
+				<label for="activa">Desaparecida</label>						
+				</p>	
+				<br/>
+                    
 					
 					 <p>
 						<p:outputLabel for="fechNac" value="fechNac" />					
