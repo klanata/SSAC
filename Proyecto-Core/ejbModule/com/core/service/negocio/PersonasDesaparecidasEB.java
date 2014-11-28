@@ -1,6 +1,8 @@
 package com.core.service.negocio;
 import java.util.Date;
 
+import java.util.Set;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -13,6 +15,7 @@ import com.core.data.entites.PersonasDesaparecidas;
 import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.PersonasDesaparecidasDAO;
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
+import com.core.data.entites.ImagenPersonaDesaparecida;
 
 import cross_cuting.enums.EstadoPersona;
 @Path("/personasDesaparecidas") 
@@ -27,8 +30,8 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 	private PersonasDesaparecidasDAO personadesaparecidaDAO;
 
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public Long crearReportePersonasDesaparecidas(String nombre, String apellido, String numeroContacto, EstadoPersona descripcion, Date fechNac,
-			ImagenPersonaDesaparecida imagenPersonaDesaparecida)throws Exception{ 
+	public Long crearReportePersonasDesaparecidas(String nombre, String apellido, String numeroContacto, EstadoPersona descripcion, Date fechNac, String foto,
+			Set<ImagenPersonaDesaparecida>  imagen)throws Exception{ 
 		
 		PersonasDesaparecidas perdes = new PersonasDesaparecidas();
 		Long id;
@@ -37,7 +40,8 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		perdes.setNumeroContacto(numeroContacto);
 		perdes.setDescripcion(descripcion);
 		perdes.setFechNac(fechNac);
-		perdes.setImagenPersonaDesaparecida(imagenPersonaDesaparecida);
+		perdes.setFoto(foto);
+		perdes.setImagenes(imagen);
 		
 		id = personadesaparecidaDAO.insert(perdes);
 		return id;

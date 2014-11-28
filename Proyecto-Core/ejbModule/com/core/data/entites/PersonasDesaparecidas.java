@@ -1,7 +1,10 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
+
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,10 +42,11 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 
 	
 	private static final long serialVersionUID = 1L;
-
+	
 	public PersonasDesaparecidas() {
 		super();
 	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
@@ -63,19 +67,26 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	@Column(nullable= false)
 	private Date fechNac ;
 	
-	@ManyToOne
-	private ImagenPersonaDesaparecida imagenPersonaDesaparecida;
+	@Column(nullable= false)
+	private String foto;
+	
+	@OneToMany(fetch=FetchType.EAGER)
+	private Set<ImagenPersonaDesaparecida> imagenes = new HashSet<ImagenPersonaDesaparecida>(0);
+	
+	
+	
+	
 
 	public PersonasDesaparecidas(String nombre, String apellido,
 			String numeroContacto, EstadoPersona descripcion, Date fechNac,
-			ImagenPersonaDesaparecida imagenPersonaDesaparecida) {
+			Set<ImagenPersonaDesaparecida>  imagenes) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.numeroContacto = numeroContacto;
 		this.descripcion = descripcion;
 		this.fechNac = fechNac;
-		this.imagenPersonaDesaparecida = imagenPersonaDesaparecida;
+		this.setImagenes(imagenes);
 	}
 
 	public Long getId() {
@@ -125,15 +136,21 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	public void setFechNac(Date fechNac) {
 		this.fechNac = fechNac;
 	}
-
-	public ImagenPersonaDesaparecida getImagenPersonaDesaparecida() {
-		return imagenPersonaDesaparecida;
+	
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setImagenPersonaDesaparecida(
-			ImagenPersonaDesaparecida imagenPersonaDesaparecida) {
-		this.imagenPersonaDesaparecida = imagenPersonaDesaparecida;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
+	public Set<ImagenPersonaDesaparecida> getImagenes() {
+		return imagenes;
+	}
+	public void setImagenes(Set<ImagenPersonaDesaparecida> imagenes) {
+		this.imagenes = imagenes;
+	}
+	
 	
 	
 	
