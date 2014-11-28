@@ -1,13 +1,16 @@
 package com.web.beans;
 
 import java.io.Serializable;
+
 import javax.faces.bean.ViewScoped;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
@@ -201,16 +204,17 @@ public class ListaOngsBean implements Serializable{
 		
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeONG");
 		Long idCatastrofe = new Long(idEventoString);
-		
+		/*
 		OngBean ongMyBean;		
 		for (int i=0; i<=selectedOngs.size()-1; i++){ 			
 			ongMyBean = selectedOngs.get(i);
 			Long id = ongMyBean.getId();			
 			System.out.println("El id del evento asignar: " + id);			
 		}
-		
+		*/
 		CatastrofeEBR manager = null;
-		Context context = null;				
+		Context context = null;	
+		FacesMessage message = null;
 		
 		try {
             // 1. Obtaining Context
@@ -224,21 +228,36 @@ public class ListaOngsBean implements Serializable{
             e.printStackTrace();
         }
 		
-		try{			
-			OngBean ongBean;	
-			for (int i=0; i<=selectedOngs.size()-1; i++){ 				
-				ongBean = selectedOngs.get(i);
-				Long idOng = ongBean.getId();			
-				manager.agregarOngALaCatastrofe(idCatastrofe, idOng);				
-			}	
-			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
-		}catch (Exception excep){
-    		System.out.println("Excepción al agregar las ONGs a la catástrofe: " + excep.getMessage());      		 			       	           	
-    	}  
-		
+		if (selectedOngs.size() > 0){ 				
+			try{					
+				OngBean ongBean;	
+				
+				for (int i=0; i<=selectedOngs.size()-1; i++){ 				
+					ongBean = selectedOngs.get(i);
+					Long idOng = ongBean.getId();			
+					manager.agregarOngALaCatastrofe(idCatastrofe, idOng);				
+				}				
+				//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
+				//ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+				//handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
+				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
+													
+			}catch (Exception excep){
+				System.out.println("Excepción al agregar las ONGs a la catástrofe: " + excep.getMessage());				
+			}  
+		}
+		else{				
+			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se seleccionó ninguna ONG.");
+			
+		}
+		FacesContext.getCurrentInstance().addMessage(null, message);
 		
 	}
 	
+	public void cancelar(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");		
+	}
 
 }

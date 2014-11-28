@@ -115,8 +115,8 @@
                          
         </h:form>                
       	
-      	<h:form >      	      	
-      		<p:growl id="msgs" showDetail="true" />	
+      	<h:form id="formONGs">      	      	
+      		<p:growl id="msg" showDetail="true" />	
       		
     		<p:dataTable id="ongsDT" var="ongBean" value="#{listaOngsBean.ongsBean}" widgetVar="ongsTable"
                  		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBean}"                 		  
@@ -159,8 +159,9 @@
         		
         		<f:facet name="footer">
         			<p:outputPanel style="text-align: left">
-            			<p:commandButton process="ongsDT" value="Asignar" action="#{listaOngsBean.asignarOngs()}" />
-            		</p:outputPanel>
+            			<p:commandButton process="ongsDT" update=":formONGs:msg" value="Asignar" action="#{listaOngsBean.asignarOngs()}" />
+            			<p:commandButton process="ongsDT" value="Cancelar" action="#{listaOngsBean.cancelar()}" />
+            		</p:outputPanel>            		
         		</f:facet>	     		                  		                  		             	        		        	
         		        		        		
      		</p:dataTable>     		     		
