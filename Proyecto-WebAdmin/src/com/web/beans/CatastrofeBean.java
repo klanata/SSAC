@@ -2,7 +2,6 @@ package com.web.beans;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -50,6 +49,7 @@ public class CatastrofeBean implements Serializable{
 	
 	
 	//	------------------ Constructors  --------------------------------
+	
 	public CatastrofeBean() {	
 	}	
 	public CatastrofeBean(Long id, String nombreEvento, String descripcion, String logo, double coordenadasX,

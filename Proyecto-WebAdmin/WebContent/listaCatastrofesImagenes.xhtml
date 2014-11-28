@@ -99,11 +99,11 @@
       		
       		<p:growl id="msgs" showDetail="true" />
       		
-    		<p:dataTable id="catastrofesDT" var="catastrofeBean" value="#{listaCatastrofesBean.catastrofesBean}" widgetVar="catastrofesTable"
-                 		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaCatastrofesBean.filtroCatastrofeBean}"                 		  
+    		<p:dataTable id="catastrofesDT" var="catastrofeBean" value="#{listaCatastrofesImgBean.catastrofesBean}" widgetVar="catastrofesTable"
+                 		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaCatastrofesImgBean.filtroCatastrofeBean}"                 		  
                  		 paginator="true" rows="5" 
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 		 selectionMode="single" selection="#{listaCatastrofesBean.selectedCatastrofe}" rowKey="#{catastrofeBean.id}" dblClickSelect="true">    
+                 		 selectionMode="single" selection="#{listaCatastrofesImgBean.selectedCatastrofe}" rowKey="#{catastrofeBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
@@ -112,8 +112,8 @@
 		            </p:outputPanel>
 		        </f:facet>    	
 		        
-		        <p:ajax event="rowSelect" listener="#{listaCatastrofesBean.onRowSelect}" update=":formCatastrofe:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesBean.onRowUnselect}" update=":formCatastrofe:msgs" />	        		        
+		        <p:ajax event="rowSelect" listener="#{listaCatastrofesImgBean.onRowSelect}" update=":formCatastrofe:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesImgBean.onRowUnselect}" update=":formCatastrofe:msgs" />	        		        
 		        
 		        <p:column>		        		        	
             		<p:graphicImage value="image/#{catastrofeBean.logo}" />               		         	

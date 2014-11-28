@@ -1,7 +1,6 @@
 package com.web.beans;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -34,8 +33,7 @@ public class ListaCatastrofesBean implements Serializable{
 	private ArrayList<CatastrofeBean> catastrofesBean = new ArrayList<CatastrofeBean>();    
     private List<CatastrofeBean> filtroCatastrofeBean;
     
-    private CatastrofeBean selectedCatastrofe;
-    //private List<CatastrofeBean> selectedCatastrofes;
+    private CatastrofeBean selectedCatastrofe;    
     
     @ManagedProperty("#{catastrofeBean}")
     private CatastrofeBean catastrofeBean;
@@ -92,10 +90,11 @@ public class ListaCatastrofesBean implements Serializable{
     		System.out.println("Excepción al listar las catástrofes: " + excep.getMessage());      		 			       	           	
     	}  					
 				
-    }
-		
-	
-	public ArrayList<CatastrofeBean> getCatastrofesBean() {
+    }    
+    
+    //	------------------ Getter and setter methods ---------------------
+        
+    public ArrayList<CatastrofeBean> getCatastrofesBean() {
 		return catastrofesBean;
 	}
 	
@@ -118,15 +117,18 @@ public class ListaCatastrofesBean implements Serializable{
 	public void setCatastrofeBean(CatastrofeBean catastrofeBean) {
 		this.catastrofeBean = catastrofeBean;
 	}
-	/*
-	public List<CatastrofeBean> getSelectedCatastrofes() {
-		return selectedCatastrofes;
+    
+
+	public CatastrofeBean getSelectedCatastrofe() {
+		return selectedCatastrofe;
 	}
 
-	public void setSelectedCatastrofes(List<CatastrofeBean> selectedCatastrofes) {
-		this.selectedCatastrofes = selectedCatastrofes;
+
+	public void setSelectedCatastrofe(CatastrofeBean selectedCatastrofe) {
+		this.selectedCatastrofe = selectedCatastrofe;
 	}
-    */
+    		
+	//	------------------ Operaciones ---------------------
 	
 	public void onRowSelect(SelectEvent event) {
 		
@@ -147,17 +149,5 @@ public class ListaCatastrofesBean implements Serializable{
         FacesMessage msg = new FacesMessage("Catastrofe No Seleccionada");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-    
-
-
-	public CatastrofeBean getSelectedCatastrofe() {
-		return selectedCatastrofe;
-	}
-
-
-	public void setSelectedCatastrofe(CatastrofeBean selectedCatastrofe) {
-		this.selectedCatastrofe = selectedCatastrofe;
-	}
-    	
 	
 }
