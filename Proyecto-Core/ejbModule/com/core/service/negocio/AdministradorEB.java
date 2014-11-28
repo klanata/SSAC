@@ -1,6 +1,6 @@
 package com.core.service.negocio;
 
-import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -26,7 +26,7 @@ public class AdministradorEB implements AdministradorEBR{
 	
 	@EJB
 	private AdministradorDAO administradorDao;
-
+	///////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public Long crearAdministrador(String nombre, String nick, String apellido,
 			String email, String password, Date fechaNac, String sexo, Integer celular) throws Exception {
@@ -44,21 +44,54 @@ public class AdministradorEB implements AdministradorEBR{
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////
-	@Override
-	public Boolean existeUsuario(String nick, String password) {
+	public boolean existeUsuario(String nick, String password) {
 		
-		Boolean existe = false;
-		
-		try{
-			
-			 existe= administradorDao.buscarAdministradorNickPass(nick, password);
-			
-			
-		}catch(Exception e){}
-		
-		
-		
+		boolean existe = false;
+	    existe= administradorDao.buscarAdministradorNickPass(nick, password);
 		return existe;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////
+	public Collection<Administrador> listarTodosLosAdministradores() {
+		
+		Collection<Administrador> lista = administradorDao.listarAdministradores();
+		
+		return lista;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////
+	public void modificarAdministrador(String nick,String nombre, String apellido,
+			String email, String password, Date fechaNac, String sexo,
+			Integer celular) {
+				//obtengo el usuario
+				if(!nick.isEmpty())
+				{
+					Administrador u = administradorDao.obtenerAdministrador(nick);
+					if(!password.isEmpty()) { u.setPassword(password);}
+					if(!email.isEmpty()){ u.setEmail(email);}
+					if(!nombre.isEmpty()){u.setNombre(nombre);}
+					if(fechaNac != null){ u.setFechaNac(fechaNac);}
+					if(!apellido.isEmpty()){u.setApellido(apellido);}
+					if(!sexo.isEmpty()){u.setSexo(sexo);}
+					if(celular != 0){u.setCelular(celular);}
+					
+					dataService.update(u);
+					
+				}	
+		
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////
+	public void eliminarAdministrador(String nick) {
+	
+		 if(!nick.isEmpty())
+		 {
+			 //busco si exite el administrador a borrar
+			 Administrador a = administradorDao.obtenerAdministrador(nick);
+			 dataService.delete(a);
+			 
+		 }
+		
 	}
 	
 }

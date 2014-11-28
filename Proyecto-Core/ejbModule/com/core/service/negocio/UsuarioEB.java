@@ -19,51 +19,91 @@ public class UsuarioEB implements UsuarioEBR{
 	private UsuarioDAO usuarioDAO;
 	@EJB
 	private DataService dataService;
+	////////////////////////////////////////////////////////////////////////////////
+	public boolean existeUsuario(String login, String password) {
 	
-	
-	public Boolean existeUsuario(String login, String password) {
-
+		boolean existe =false ;
+		if(login.isEmpty() && password.isEmpty())
+		{
+			existe = false;
+		}
+		else
+		{
+			existe=  usuarioDAO.existeUsuario(login, password);
+			
+		}
+		return existe;
+	}
+	////////////////////////////////////////////////////////////////////////////////
+	public boolean ingesarUsuraio(String login, String password, String email,
+			String nombre, Date fechaNac) {
+		
+		boolean ingreso = false;
+		
+		Usuario u = new Usuario();
+		u.setEmail(email);
+		u.setFechaNac(fechaNac);
+		u.setNick(login);
+		u.setNombre(nombre);
+		u.setPassword(password);
+		
 		try {
-			
-			Usuario usuario = this.usuarioDAO.buscarUsuario(login, password);
-			return (usuario != null);
-			
+			Long id = usuarioDAO.insert(u);
+			if(id != 0){ ingreso = true;}
 		} catch (Exception e) {
 			
 			e.printStackTrace();
+		}
+		
+		return ingreso;
+	}
+	////////////////////////////////////////////////////////////////////////////////
+	public Usuario buscarUsuario(String nick) throws Exception {
+		
+		Usuario u = null;
+		if(nick.isEmpty())
+		{
+			u = null;
+		}else{
+			
+			u = usuarioDAO.BuscarUsuarioNick(nick);
 			
 		}
-		return false;
-	}
-
-	@Override
-	public Boolean ingesarUsuraio(String login, String password, String email, String nombre, 
-									Date fechaNac) {
 		
-			Usuario u = new Usuario();
-			
-			u.setNick(login);
-			u.setPassword(password);
-			u.setEmail(email);
-			u.setFechaNac(fechaNac);
-			u.setNombre(nombre);
-			
-		
-			usuarioDAO.insert(u);
-			
-		
-		return true;
-	}
-	
-	
-	////////////////////////////////////////////////////////////////////////////////////////
-	public Usuario buscarUsuario(String id) throws Exception 
-	{
-		Long id2 = Long.parseLong(id);
-		Usuario u = new Usuario();
-		u = this.usuarioDAO.BuscarById(id2);
 		return u;
+	}
+	////////////////////////////////////////////////////////////////////////////////
+	public void eliminarUsuario(String nick) {
+		
+		Usuario entidad = usuarioDAO.BuscarUsuarioNick(nick);
+		if( entidad != null)
+		{
+			 
+			dataService.delete(entidad);
+			
+		}
 		
 	}
+	////////////////////////////////////////////////////////////////////////////////
+	public void modificarUsuario(String nick,String password, String email, String nombre,
+			Date fechaNac) {
+		
+		//obtengo el usuario
+		if(!nick.isEmpty())
+		{
+			Usuario u = usuarioDAO.BuscarUsuarioNick(nick);
+			if(!password.isEmpty()) { u.setPassword(password);}
+			if(!email.isEmpty()){ u.setEmail(email);}
+			if(!nombre.isEmpty()){u.setNombre(nombre);}
+			if(fechaNac != null){ u.setFechaNac(fechaNac);}
+			
+			dataService.update(u);
+			
+		}	
+		
+	}
+	
+	
+	
 
 }

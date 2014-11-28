@@ -9,8 +9,6 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Path;
-import java.util.Collection;
-
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
