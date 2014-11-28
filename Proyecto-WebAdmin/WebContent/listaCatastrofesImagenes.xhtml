@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />
 </h:head> 
 <body id="top"> 
 <div class="wrapper col1">
@@ -65,8 +66,8 @@
         <li><a href="#">Catástrofe</a>
           <ul>
             <li><a href="registrarCatastrofe.xhtml">Registrar Catástrofe</a></li>
-            <li><a href="asignarOngCatastrofe.xhtml">Asignar ONG</a></li>
-            <li><a href="asignarImagenCatastrode.xhtml">Asignar Imágenes</a></li>
+            <li><a href="listaCatastrofesONGs.xhtml">Asignar ONG</a></li>
+            <li><a href="listaCatastrofesImagenes.xhtml">Asignar Imágenes</a></li>
             <li><a href="asignarPlanRiesgoCatastrofe.xhtml">Asignar Plan Riesgo</a></li>
             <li><a href="asignarServiciosCatastrofe.xhtml">Asignar Servicios</a></li>
           </ul>
@@ -89,12 +90,62 @@
 </div>
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Cursus penati saccum ut curabitur nulla.</h2>
-      <p>Cursuspenatisaccum ut curabitur nulla tellus tor ames a in curabitur pede. Idet mollisi eros dis orci congue elis et curabitur consequam intesque. Curabiturpisametur in ante.</p>
-      <p class="readmore"><a href="#">Ipsumsenterdum non velit &raquo;</a></p>
+    <div>
+      <h3>Lista de catástrofe</h3>
+      <br/>	
+      <f:view>      	
+      	
+      	<h:form id="formCatastrofe">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="catastrofesDT" var="catastrofeBean" value="#{listaCatastrofesImgBean.catastrofesBean}" widgetVar="catastrofesTable"
+                 		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaCatastrofesImgBean.filtroCatastrofeBean}"                 		  
+                 		 paginator="true" rows="5" 
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selectionMode="single" selection="#{listaCatastrofesImgBean.selectedCatastrofe}" rowKey="#{catastrofeBean.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Catástrofe:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('catastrofesTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    	
+		        
+		        <p:ajax event="rowSelect" listener="#{listaCatastrofesImgBean.onRowSelect}" update=":formCatastrofe:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesImgBean.onRowUnselect}" update=":formCatastrofe:msgs" />	        		        
+		        
+		        <p:column>		        		        	
+            		<p:graphicImage value="image/#{catastrofeBean.logo}" />               		         	
+        		</p:column>        	     
+        		
+        		<p:column headerText="Id" style="width:50px">
+            		<h:outputText value="#{catastrofeBean.id}" />
+        		</p:column>             		                  		                  		             	
+        		
+        		<p:column headerText="Nombre de evento" style="width:200px" filterBy="#{catastrofeBean.nombreEvento}" filterMatchMode="contains">
+            		<h:outputText value="#{catastrofeBean.nombreEvento}" />
+        		</p:column>
+        		
+        		<p:column headerText="Descripción" style="width:350px" filterBy="#{catastrofeBean.descripcion}" filterMatchMode="contains">
+            		<h:outputText value="#{catastrofeBean.descripcion}" />            		
+        		</p:column>
+        		
+        		<p:column headerText="Activa">
+            		<h:outputText value="#{catastrofeBean.activa}" />            		
+        		</p:column>
+        		
+                <p:column headerText="Prioridad">
+            		<h:outputText value="#{catastrofeBean.prioridad}" />            		
+        		</p:column>        		        		 
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+      
+      </f:view>         
     </div>
-    <div class="fl_right"><img src="resources/images/demo/380x300.gif" alt="" /></div>
+    
     <br class="clear" />
   </div>
 </div>

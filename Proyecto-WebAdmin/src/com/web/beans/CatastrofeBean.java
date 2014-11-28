@@ -2,9 +2,8 @@ package com.web.beans;
 
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +14,7 @@ import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Servicio;
@@ -22,6 +22,7 @@ import com.core.service.negocio.remote.CatastrofeEBR;
 import com.web.beans.InputBean;
 
 import cross_cuting.enums.TipoCatastrofe;
+
 import javax.servlet.http.Part;
 
 
@@ -39,14 +40,16 @@ public class CatastrofeBean implements Serializable{
 	private double coordenadasY;
 	private Boolean activa;
 	private Boolean prioridad;
-	private Collection<Servicio> servicios = new ArrayList<Servicio>();
-	private Collection<Ong> ongs  = new ArrayList<Ong>();
+	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>();
+	private Set<Servicio> servicios = new HashSet<Servicio>();
+	private Set<Ong> ongs  =  new HashSet<Ong>();
 	private PlanDeRiesgo planDeRiesgo;	
 	private Part part;
 	private TipoCatastrofe tipoCatastrofe; 
 	
 	
 	//	------------------ Constructors  --------------------------------
+	
 	public CatastrofeBean() {	
 	}	
 	public CatastrofeBean(Long id, String nombreEvento, String descripcion, String logo, double coordenadasX,
@@ -119,16 +122,22 @@ public class CatastrofeBean implements Serializable{
 	public void setPrioridad(Boolean prioridad) {
 		this.prioridad = prioridad;
 	}
-	public Collection<Servicio> getServicios() {
+	public Set<ImagenCatastrofe> getImagenes() {
+		return imagenes;
+	}
+	public void setImagenes(Set<ImagenCatastrofe> imagenes) {
+		this.imagenes = imagenes;
+	}
+	public Set<Servicio> getServicios() {
 		return servicios;
 	}
-	public void setServicios(Collection<Servicio> servicios) {
+	public void setServicios(Set<Servicio> servicios) {
 		this.servicios = servicios;
 	}
-	public Collection<Ong> getOngs() {
+	public Set<Ong> getOngs() {
 		return ongs;
 	}
-	public void setOngs(Collection<Ong> ongs) {
+	public void setOngs(Set<Ong> ongs) {
 		this.ongs = ongs;
 	}
 	public PlanDeRiesgo getPlanDeRiesgo() {
@@ -169,7 +178,7 @@ public class CatastrofeBean implements Serializable{
     	try{    	
     		InputBean inputBean = new InputBean();
     		String logo= inputBean.uploadFile(this.part);    		    		    	
-       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, servicios, ongs, planDeRiesgo);    	
+       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, imagenes, servicios, ongs, planDeRiesgo);    	
     		if (in == 0){
     			System.out.println("es repetido." + in);
     			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
@@ -195,6 +204,7 @@ public class CatastrofeBean implements Serializable{
 	        return "failure";     		
     	}        	    	
 	}
+	
 		
 	
 	

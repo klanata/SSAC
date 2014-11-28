@@ -1,6 +1,5 @@
 package com.core.service.negocio;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -27,16 +26,16 @@ public class EconomicaEB implements EconomicaEBR{
 		Economica eco = new Economica();
 		Ong ong = dataService.find(Ong.class, idOng);
 		eco.setOng(ong);
+		
 		eco.setUsuario(usuario);
 		eco.setFechaRealizada(fechaRealizada);
 		eco.setMonto(monto);
 		try {
-			economicaDAO.crearDonacionEconomica(eco);
-			Collection<Economica> list = ong.getDonacionesEconomicas();
+			 Long id = economicaDAO.agregarDonacionEconomicaOng(eco);
+			/*Collection<Economica> list = ong.getDonacionesEconomicas();
 			list.add(eco);
-			dataService.update(ong);
+			dataService.update(ong);*/
 		} catch (Exception e) {
-			System.out.println("economica " + eco);
 			throw e;
 		}
 		

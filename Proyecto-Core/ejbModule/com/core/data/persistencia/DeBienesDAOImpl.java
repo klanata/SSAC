@@ -1,57 +1,76 @@
 package com.core.data.persistencia;
 
 import java.util.Collection;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
-
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import com.core.data.entites.DeBienes;
-import com.core.data.entites.Ong;
 import com.core.data.persistencia.interfaces.locales.DeBienesDAO;
 
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class DeBienesDAOImpl  extends AbstractService implements DeBienesDAO{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	@PersistenceContext
+	protected EntityManager em;
 	@Override
 	protected EntityManager getEntityManager() {
 		
-		return null;
+		return em;
 	}
 	@EJB
-	DataService dataService;
-	////////////////////////////////////////////////////////////////////////
-	@Override
-	public void crearBienes(DeBienes deBienes) {
-		try{
-			dataService.create(deBienes);
-		}
-		catch (Exception e){try {
-			throw e;
-		} catch (Exception e1) {
-			
-			e1.printStackTrace();
-		}}
-		
-	}
-	///////////////////////////////////////////////////////////////////////
-	@Override
-	public void agregarDonacionDeBienesOng(Ong ong,DeBienes deBienes) {
-		try{
-			
-			//busco ong
-			Ong ongGuardar= dataService.find(Ong.class, ong.getId());
-			Collection<DeBienes> lista = ongGuardar.getDonacionesDeBienes();
-			lista.add(deBienes);
-			dataService.update(ongGuardar);
-		}
-		catch (Exception e){throw e;}
-		
-	}
+	private DataService dataService;
 
+	////////////////////////////////////////////////////////////////////////////
+	public DeBienes buscarDonacionBinesID(Long id) {
+		
+		DeBienes donacion= null;
+		try {
+			 donacion= dataService.find(DeBienes.class, id);
+			
+								
+		} catch (Exception excep){			
+			throw excep;
+		}	
+		return donacion;
+	}
+	////////////////////////////////////////////////////////////////////////////
+	public Collection<DeBienes> listarDonacionesDeBienes(Long idOng) {
+		
+		Collection<DeBienes> lista = null;
+		try {
+			TypedQuery<DeBienes> consulta = this.em.createNamedQuery("DeBienes.BuscarDonacion.DeOng",DeBienes.class);								
+			consulta.setParameter("idOng", idOng);
+			lista = consulta.getResultList();			
+		  	
+								
+		} catch (Exception excep){			
+			throw excep;
+		}	
+		return lista;
+	}
+	////////////////////////////////////////////////////////////////////////////
+	public Long agregarDonacionDeBienesOng(DeBienes deBienes) throws Exception {
+		Long id = new Long(0);
+		
+		
+		try {
+				dataService.create(deBienes);
+				id = deBienes.getId();
+									
+			} catch (Exception excep){			
+				throw excep;
+			}					
+			return id;		    
+		
+	}
+	
 }

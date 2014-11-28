@@ -1,27 +1,20 @@
 package com.core.data.persistencia;
-import java.util.List;
+import java.util.Collection;
+
 import javax.ejb.EJB;
-import javax.ejb.Local;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.interfaces.locales.UsuarioDAO;
-import com.core.data.persistencia.interfaces.remotas.UsuarioDAORemoto;
-
-
-
 
 @Stateless
-
-@Local(UsuarioDAO.class)
-@Remote(UsuarioDAORemoto.class)
-public class UsuarioDAOImpl  extends AbstractService implements UsuarioDAO, UsuarioDAORemoto{
+@TransactionManagement(TransactionManagementType.CONTAINER)
+public class UsuarioDAOImpl  extends AbstractService implements UsuarioDAO{
 
 	/**
 	 * 
@@ -32,83 +25,104 @@ public class UsuarioDAOImpl  extends AbstractService implements UsuarioDAO, Usua
 	 */
 	@PersistenceContext
 	protected EntityManager em;
+	
+	protected EntityManager getEntityManager() {
+		
+		return em;
+	}
+	
 	//Esto para poder acceder a la funciones echas en las clases abtractas
 	@EJB
 	private DataService dataService;
-	
-	@Override
-	
-	public Usuario insert(Usuario entity) {
-		
-		Usuario entity2 = null;
+	//////////////////////////////////////////////////////////////////////////////////////
+	public Long insert(Usuario entity) throws Exception {
+		Long id;
+		String nick = entity.getNick();
 		try {
-								
+			if (this.existeUsuarioNick(nick)){				
+				id = (long) 0;				
+			} 
+			else 
+			{				
 				dataService.create(entity);
-				entity2 = buscarUsuario(entity.getNick(), entity.getPassword());			
-			
-		} catch (Throwable e) {
-			
-		}
-		
-		return entity2;
-		
+				id = entity.getId();
+		  	}					
+					    
+		} 
+		catch (Exception excep){			
+			throw excep;
+		}	
+		return id;
 	}
-	////////////////////////////////////////////////////////////////////////////
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void update(Usuario entity) {
+	/////////////////////////////////////////////////////////////////////////////
+	public Usuario BuscarUsuarioById(Long id) throws Exception {
+	
+		Usuario u = null;
 		try{
-				
-			
-		}catch (Exception e){
-			
-		}
-		
+			 u= dataService.find(Usuario.class, id);
+		}catch (Exception excep){			
+			throw excep;
+		}	
+		return u;
 	}
-	////////////////////////////////////////////////////////////////////////////
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void delete(Usuario entity) {
+	/////////////////////////////////////////////////////////////////////////////
+	public Collection<Usuario> findAllUsuarios() {
 		
-		
-	}
-
-	////////////////////////////////////////////////////////////////////////////
-	@Override
-	public Usuario BuscarById(Long id)throws Exception{
-		/*Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona.ID");
-	  	consulta.setParameter("id", id);
-	  	Usuario usuario = (Usuario) consulta.getResultList().get(0);*/
-		//Esto funciona cada vez que quieran obetener un objeto lo pueden usar asi
-		
-			Usuario usuario = find(Usuario.class, id);
+		Collection<Usuario> lista = null;
+		try{
+			lista = dataService.findAll(Usuario.class);
 			
-		return usuario;
-		
-	}
-	////////////////////////////////////////////////////////////////////////////
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public List<Usuario> findAll() {
-		
-		List<Usuario> lista= dataService.findAll(Usuario.class);
-		
+		}catch (Exception excep){			
+			throw excep;
+		}		
 		return lista;
 	}
-
-	////////////////////////////////////////////////////////////////////////////
-	public Usuario buscarUsuario(String login, String password) {
-		
-		Usuario usuario = null;
-		Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona.Nick.Pass");
-	  	consulta.setParameter("nick", login);
-	  	consulta.setParameter("pass", password);
-	   	usuario = (Usuario) consulta.getResultList().get(0);
-	  		
-		return usuario;
+	/////////////////////////////////////////////////////////////////////////////
+	public boolean existeUsuario(String login, String password) {
+			Boolean existe = false;
+			try{
+				Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona.Nick.Pass");
+			  	consulta.setParameter("nick", login);
+			  	consulta.setParameter("password", password);
+			  	if (!consulta.getResultList().isEmpty()){
+			  		existe = true;
+			  	} 
+			}catch (Exception excep){			
+				throw excep;
+			} 	
+		  	return existe;	
+			
 	}
-	@Override
-	protected EntityManager getEntityManager() {
-		// TODO Auto-generated method stub
-		return null;
+	/////////////////////////////////////////////////////////////////////////////
+	public boolean existeUsuarioNick(String nick) {
+		Boolean existe = false;
+		try{
+			Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona");
+		  	consulta.setParameter("nick", nick);
+		  	if (!consulta.getResultList().isEmpty()){
+		  		existe = true;
+		  	} 
+		}catch (Exception excep){			
+			throw excep;
+		} 	
+	  	return existe;	
+	}
+	/////////////////////////////////////////////////////////////////////////////
+	public Usuario BuscarUsuarioNick(String nick) {
+		Usuario existe = null;
+		try{
+			Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona");
+		  	consulta.setParameter("nick", nick);
+		  	if (!consulta.getResultList().isEmpty()){
+		  		existe = (Usuario) consulta.getResultList().get(0);
+		  	} 
+		}catch (Exception excep){			
+			throw excep;
+		} 	
+	  	return existe;
 	}
 	
-
+	
+	
+	
 }

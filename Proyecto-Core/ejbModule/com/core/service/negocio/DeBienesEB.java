@@ -1,9 +1,11 @@
 package com.core.service.negocio;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Path;
+
 import com.core.data.entites.DeBienes;
 import com.core.data.entites.Ong;
 import com.core.data.persistencia.DataService;
@@ -31,13 +33,13 @@ public class DeBienesEB implements DeBienesEBR{
 		db.setCantidad(cantidad);
 		
 		try {
-			debienesDAO.crearBienes(db);
-			Collection<DeBienes> list = ong.getDonacionesDeBienes();
+			Long id = debienesDAO.agregarDonacionDeBienesOng(db);
+			/**Collection<DeBienes> list = ong.getDonacionesDeBienes();
 			list.add(db);
-			dataService.update(ong);
+			dataService.update(ong);*/
 			
 		} catch (Exception e) {
-			System.out.println("deBienes " + db);
+			//System.out.println("deBienes " + db);
 			throw e;
 		}
 		//	e.printStackTrace();

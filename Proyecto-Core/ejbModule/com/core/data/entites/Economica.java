@@ -13,6 +13,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @Entity
+@NamedQueries({
+	
+@NamedQuery(name="Economica.BuscarDonacion.DeOng", 
+query = "SELECT d FROM Economica d WHERE d.ong.id = :idOng"),
+
+@NamedQuery(name="Economica.BuscarDonacion", 
+query = "SELECT d FROM Economica d WHERE d.id = :id")
+
+})
+
 @XmlRootElement
 public class Economica extends AbstractEntity implements Serializable {
 
@@ -34,25 +44,21 @@ public class Economica extends AbstractEntity implements Serializable {
 	private Date fechaRealizada;
 	
 
-	@Column()
+	@Column(nullable =false)
 	private BigDecimal monto;
 	
 	@ManyToOne 
 	private Ong ong;
-	
-	public Economica() {
-		super();
-		this.ong = null; 
-		this.usuario = new String();;
-		this.fechaRealizada = new Date();
-		this.monto = new BigDecimal(0);
+
+	public Long getId() {
+		return id;
 	}
-/*	public Economica(String usuario, Date fechaRealizada, BigDecimal monto) {
-		super();
-		this.usuario = usuario;
-		this.fechaRealizada = fechaRealizada;
-		this.monto = monto;
-	}*/
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 
 	public String getUsuario() {
 		return usuario;

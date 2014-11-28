@@ -3,47 +3,30 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      > 
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
-	
-
-	
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />
 </h:head> 
-<h:body id="top"> 
+<body id="top"> 
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
       <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
       <p><strong>Vista Web para Administradores</strong></p>
     </div>
-     <div id="newsletter">
-     <fieldset>
+    <div id="newsletter">      
+      <form action="#" id="loginAdmin">
+        <fieldset>
           <legend>NewsLetter</legend>
-          
-	<p:panelGrid columns="1">
-    <f:facet name="header">
-        <p:graphicImage name="/images/demo/ADMIN.png" />
-    </f:facet>
- 
-    
-    <h:outputText value="#{administradorBean.nick}" />
- 	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
-      style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-    <h:outputText value="Cerrar Seción" />
-  </p:commandLink>
- 
-</p:panelGrid>
-                   
-           
-      </fieldset>
-     
-                    
+          <input type="text" value="Name&hellip;"  onfocus="this.value=(this.value=='Name&hellip;')? '' : this.value ;" />
+          <input type="text" value="Email&hellip;"  onfocus="this.value=(this.value=='Email&hellip;')? '' : this.value ;" />
+          <input type="submit" name="news_go" id="news_go" value="Login" />
+        </fieldset>
+      </form>          
     </div>
     <br class="clear" />
   </div>
@@ -83,8 +66,8 @@
         <li><a href="#">Catástrofe</a>
           <ul>
             <li><a href="registrarCatastrofe.xhtml">Registrar Catástrofe</a></li>
-            <li><a href="asignarOngCatastrofe.xhtml">Asignar ONG</a></li>
-            <li><a href="asignarImagenCatastrode.xhtml">Asignar Imágenes</a></li>
+            <li><a href="listaCatastrofesONGs.xhtml">Asignar ONG</a></li>
+            <li><a href="listaCatastrofesImagenes.xhtml">Asignar Imágenes</a></li>
             <li><a href="asignarPlanRiesgoCatastrofe.xhtml">Asignar Plan Riesgo</a></li>
             <li><a href="asignarServiciosCatastrofe.xhtml">Asignar Servicios</a></li>
           </ul>
@@ -107,12 +90,87 @@
 </div>
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Cursus penati saccum ut curabitur nulla.</h2>
-      <p>Cursuspenatisaccum ut curabitur nulla tellus tor ames a in curabitur pede. Idet mollisi eros dis orci congue elis et curabitur consequam intesque. Curabiturpisametur in ante.</p>
-      <p class="readmore"><a href="#">Ipsumsenterdum non velit &raquo;</a></p>
+    <div >
+      <h2>Asignar ONGs a la catástrofe</h2>
+      
+      <f:view>  
+      	
+		<h:form columns="2" value="#{listaOngsBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+				
+			<p>			        		        
+            <p:graphicImage value="image/#{listaOngsBean.catastrofeBean.logo}" /> 
+            <h:outputText value="" style="border: transparent;"/>	              		         	        	
+			</p>			
+			
+			<p>
+			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
+            <h:outputText value="#{listaOngsBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+            </p>			
+               
+            <p>    
+           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
+            <h:outputText value="#{listaOngsBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
+            </p>
+			<br/>  
+                         
+        </h:form>                
+      	
+      	<h:form id="formONGs">      	      	
+      		<p:growl id="msg" showDetail="true" />	
+      		
+    		<p:dataTable id="ongsDT" var="ongBean" value="#{listaOngsBean.ongsBean}" widgetVar="ongsTable"
+                 		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBean}"                 		  
+                 		 paginator="true" rows="5"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selection="#{listaOngsBean.selectedOngs}" rowKey="#{ongBean.id}" style="margin-bottom:0">
+                 	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar ONG:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('ongsTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>
+		        
+		        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>    		        		               	    
+        		
+        		<p:column headerText="Id">
+            		<h:outputText value="#{ongBean.id}" />
+        		</p:column>    
+        		        		
+				<p:column headerText="Nombre" style="width:120px" filterBy="#{ongBean.nombre}" filterMatchMode="contains">
+            		<h:outputText value="#{ongBean.nombre}" />
+        		</p:column>     
+        		
+        		<p:column headerText="Direccion" style="width:200px" filterBy="#{ongBean.direccion}" filterMatchMode="contains">
+            		<h:outputText value="#{ongBean.direccion}" />
+        		</p:column>	  
+        		
+        		<p:column headerText="Télefono">
+            		<h:outputText value="#{ongBean.telefono}" />
+        		</p:column>	     
+        		
+        		<p:column headerText="Email">
+            		<h:outputText value="#{ongBean.email}" />
+        		</p:column>	 
+        		
+        		<p:column headerText="Descripción">
+            		<h:outputText value="#{ongBean.descripcion}" />
+        		</p:column>
+        		
+        		<f:facet name="footer">
+        			<p:outputPanel style="text-align: left">
+            			<p:commandButton process="ongsDT" update=":formONGs:msg" value="Asignar" action="#{listaOngsBean.asignarOngs()}" />
+            			<p:commandButton process="ongsDT" value="Cancelar" action="#{listaOngsBean.cancelar()}" />
+            		</p:outputPanel>            		
+        		</f:facet>	     		                  		                  		             	        		        	
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+      
+      </f:view>         
     </div>
-    <div class="fl_right"><img src="resources/images/demo/380x300.gif" alt="" /></div>
+    
     <br class="clear" />
   </div>
 </div>
@@ -126,14 +184,5 @@
     <br class="clear" />
   </div>
 </div>
-</h:body> 
-	<script type="text/javascript">
-	  //<![CDATA[
-	  function logout(xhr, status, args) {
-	    setTimeout(function() {
-	      window.location = 'home.xhtml';
-	    }, 500);
-	  }
-	//]]>
-	</script>
+</body> 
 </html>

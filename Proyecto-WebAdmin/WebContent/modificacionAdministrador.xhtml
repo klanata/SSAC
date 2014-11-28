@@ -48,6 +48,7 @@
     <br class="clear" />
   </div>
 </div>
+
 <div class="wrapper col2">
   <div id="topbar">
     <div id="topnav">
@@ -83,8 +84,8 @@
         <li><a href="#">Catástrofe</a>
           <ul>
             <li><a href="registrarCatastrofe.xhtml">Registrar Catástrofe</a></li>
-            <li><a href="asignarOngCatastrofe.xhtml">Asignar ONG</a></li>
-            <li><a href="asignarImagenCatastrode.xhtml">Asignar Imágenes</a></li>
+            <li><a href="listaCatastrofesONGs.xhtml">Asignar ONG</a></li>
+            <li><a href="listaCatastrofesImagenes.xhtml">Asignar Imágenes</a></li>
             <li><a href="asignarPlanRiesgoCatastrofe.xhtml">Asignar Plan Riesgo</a></li>
             <li><a href="asignarServiciosCatastrofe.xhtml">Asignar Servicios</a></li>
           </ul>
@@ -93,31 +94,86 @@
         </li>
       </ul>
     </div>
-    <div id="search">
-      <form action="#" method="post">
-        <fieldset>
-          <legend>Site Search</legend>
-          <input type="text" value="Search Our Website&hellip;"  onfocus="this.value=(this.value=='Search Our Website&hellip;')? '' : this.value ;" />
-          <input type="submit" name="go" id="go" value="Search" />
-        </fieldset>
-      </form>
-    </div>
+    
     <br class="clear" />
   </div>
 </div>
 <div class="wrapper col3">
   <div id="intro">
     <div class="fl_left">
-      <h2>Cursus penati saccum ut curabitur nulla.</h2>
-      <p>Cursuspenatisaccum ut curabitur nulla tellus tor ames a in curabitur pede. Idet mollisi eros dis orci congue elis et curabitur consequam intesque. Curabiturpisametur in ante.</p>
-      <p class="readmore"><a href="#">Ipsumsenterdum non velit &raquo;</a></p>
+      <h2>Alta Administrador</h2>
+      <br/>	
+      
+		<h:form id="registroAdministrador" >
+						<h:messages id="messages" for="registroAdministrador"></h:messages>	
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<h:panelGrid columns="1" cellpadding="3">	
+				<p>
+				<label for="nick">Nick :</label>				
+					<p:inputText id="nick" label="evento" value="#{administradorBean.nick}" required="true" requiredMessage="El nick del Administrador es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p>
+				<label for="pass">Password :</label>				
+					<p:inputText id="pass" label="evento" value="#{administradorBean.password}"  required="true" requiredMessage="El password del Administrador es requerido">	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				<p>
+				<label for="nombre">Nombre :</label>				
+					<p:inputText id="nombre" label="evento"  value="#{administradorBean.nombre}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+						
+				<p>
+				<label for="apellido">Apellido :</label>				
+					<p:inputText id="apellido" label="evento"  value="#{administradorBean.apellido}" required="true" requiredMessage="El apellido del Administrador es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p>
+				<label for="telefono">Telefono :</label>				
+					<p:inputText id="telefono" label="evento"  value="#{administradorBean.celular}"  >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p>
+				<label for="email">Email :</label>				
+					<p:inputText id="email" label="evento" value="#{administradorBean.email}"  >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+												
+				<p:outputLabel for="fecha" value="Fecha:" />
+        		<p:calendar id="fecha" value="#{administradorBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />
+        		<br/>
+        		</h:panelGrid>	
+        		<p:outputLabel for="sexo" value="Sexo:" />
+		        <p:selectOneRadio id="sexo" value="#{administradorBean.sexo}">
+		            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+		            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+		         </p:selectOneRadio>
+        		
+			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 400px;" styleClass="formbutton" value="Registrar" action="#{administradorBean.registrarAdministrador()}">
+			</p:commandButton>		
+			
+		</h:form>
+		
+		
     </div>
-    <div class="fl_right"><img src="resources/images/demo/380x300.gif" alt="" /></div>
+    <div class="fl_right"><img src="resources/images/demo/ADMINISTRADOR.gif" alt="" /></div>
     <br class="clear" />
   </div>
 </div>
 
+	    <br class="clear" />
 
+</h:body>
 
 <div class="wrapper col7">
   <div id="copyright">
@@ -126,7 +182,7 @@
     <br class="clear" />
   </div>
 </div>
-</h:body> 
+
 	<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
@@ -137,3 +193,7 @@
 	//]]>
 	</script>
 </html>
+
+
+
+

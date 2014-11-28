@@ -2,7 +2,6 @@ package com.core.data.entites;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +22,7 @@ query = "SELECT o "+
 		
 
 })
-
+@XmlRootElement
 public class Ong  extends AbstractEntity implements Serializable{
 
 	
@@ -33,8 +32,8 @@ public class Ong  extends AbstractEntity implements Serializable{
 		super();
 	}
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false, unique = true)
-	
 	private Long id;
 	
 	public  Long getId() {

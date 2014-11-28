@@ -39,7 +39,7 @@ query = "SELECT c.id "+
 })
 
 @Table (name = "Catastrofe")
-
+@XmlRootElement
 public class Catastrofe extends AbstractEntity implements Serializable {
 
 	
@@ -74,10 +74,13 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TipoCatastrofe tipoCatastrofe;
 	
+	@OneToMany
+	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>(0);
+		
 	@ManyToMany
-	private Set<Servicio> servicios = new HashSet<Servicio>(0);
-   
-	@ManyToMany
+	private Set<Servicio> servicios = new HashSet<Servicio>(0);	
+	
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Ong> ongs = new HashSet<Ong>(0);
 	
 	@OneToMany
@@ -98,6 +101,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.coordenadasY  = 0;
 		this.activa = false;
 		this.prioridad = false;		
+		this.imagenes = new HashSet<ImagenCatastrofe>();
 		this.servicios = new HashSet<Servicio>();
 		this.setOngs(new HashSet<Ong>(0));
 		//this.ongs = new HashSet<Ong>(0);
@@ -120,9 +124,9 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	 * @param pedidosDeAyuda
 	 * @param planDeRiesgo	 
 	 */
-	public Catastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX,
-		   double coordenadasY,Boolean activa, Boolean prioridad, Set<Servicio> servicios,
-		   Set<Ong> ongs, Set<PedidoDeAyuda> pedidosDeAyuda, PlanDeRiesgo planDeRiesgo) {
+	public Catastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, double coordenadasY,
+			Boolean activa, Boolean prioridad, Set<ImagenCatastrofe> imagenes, Set<Servicio> servicios,
+			Set<Ong> ongs, Set<PedidoDeAyuda> pedidosDeAyuda, PlanDeRiesgo planDeRiesgo) {
 		super();
 		this.nombreEvento = nombreEvento;
 		this.descripcion = descripcion;
@@ -130,7 +134,8 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.coordenadasX = coordenadasX;
 		this.coordenadasY  = coordenadasY;
 		this.activa = activa;
-		this.prioridad = prioridad;		
+		this.prioridad = prioridad;	
+		this.setImagenes(imagenes);
 		this.servicios = servicios;
 		this.setOngs(ongs);
 		//this.ongs = ongs;
@@ -214,7 +219,6 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	public void setServicios(Set<Servicio> servicios) {
 		this.servicios = servicios;
 	}
-
 	public Set<Ong> getOngs() {
 		return ongs;
 	}
@@ -227,6 +231,13 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	public void setPlanDeRiesgo(PlanDeRiesgo planDeRiesgo) {
 		this.planDeRiesgo = planDeRiesgo;
 	}
+	public Set<ImagenCatastrofe> getImagenes() {
+		return imagenes;
+	}
+	public void setImagenes(Set<ImagenCatastrofe> imagenes) {
+		this.imagenes = imagenes;
+	}
+	
 	
    
 }

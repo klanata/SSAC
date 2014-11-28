@@ -1,5 +1,5 @@
 package com.core.data.persistencia.interfaces.locales;
-import java.util.List;
+import java.util.Collection;
 
 import javax.ejb.Local;
 
@@ -11,17 +11,16 @@ import com.core.data.persistencia.JPAService;
 @Local
 public interface UsuarioDAO extends JPAService{
 
-	public Usuario insert(Usuario entity);
+	public Long insert(Usuario entity) throws Exception;
 	
-	public void update(Usuario entity);
+	public Usuario BuscarUsuarioById(Long id)throws Exception;
+	public Usuario BuscarUsuarioNick(String nick);
 	
-	public void delete(Usuario entity);
+	public Collection<Usuario> findAllUsuarios();
 	
-	public Usuario BuscarById(Long id)throws Exception;
+	public boolean existeUsuario(String login, String password);
 	
-	public List<Usuario> findAll();
-	
-	public Usuario buscarUsuario(String login, String password);
+	public boolean existeUsuarioNick(String nick);
 	
 	
 }

@@ -83,8 +83,8 @@
         <li><a href="#">Catástrofe</a>
           <ul>
             <li><a href="registrarCatastrofe.xhtml">Registrar Catástrofe</a></li>
-            <li><a href="asignarOngCatastrofe.xhtml">Asignar ONG</a></li>
-            <li><a href="asignarImagenCatastrode.xhtml">Asignar Imágenes</a></li>
+            <li><a href="listaCatastrofesONGs.xhtml">Asignar ONG</a></li>
+            <li><a href="listaCatastrofesImagenes.xhtml">Asignar Imágenes</a></li>
             <li><a href="asignarPlanRiesgoCatastrofe.xhtml">Asignar Plan Riesgo</a></li>
             <li><a href="asignarServiciosCatastrofe.xhtml">Asignar Servicios</a></li>
           </ul>
@@ -93,30 +93,74 @@
         </li>
       </ul>
     </div>
-    <div id="search">
-      <form action="#" method="post">
-        <fieldset>
-          <legend>Site Search</legend>
-          <input type="text" value="Search Our Website&hellip;"  onfocus="this.value=(this.value=='Search Our Website&hellip;')? '' : this.value ;" />
-          <input type="submit" name="go" id="go" value="Search" />
-        </fieldset>
-      </form>
-    </div>
+    
     <br class="clear" />
   </div>
 </div>
 <div class="wrapper col3">
   <div id="intro">
     <div class="fl_left">
-      <h2>Cursus penati saccum ut curabitur nulla.</h2>
-      <p>Cursuspenatisaccum ut curabitur nulla tellus tor ames a in curabitur pede. Idet mollisi eros dis orci congue elis et curabitur consequam intesque. Curabiturpisametur in ante.</p>
-      <p class="readmore"><a href="#">Ipsumsenterdum non velit &raquo;</a></p>
+      <h2>Alta Ong</h2>
+      
+      <f:view>
+		<h:form id="registroOng" >
+			<h:messages id="messages" for="registroOng"></h:messages>
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+		<h:panelGrid columns="1" cellpadding="2">		
+			
+				<p>
+				<label for="nombre">Nombre :</label>				
+					<p:inputText id="nombre" label="evento"  value="#{ongBean.nombre}" required="true" requiredMessage="El nombre de la ONG es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+						
+				<p>
+				<label for="direccion">Dirección :</label>				
+					<p:inputText id="direccion" label="evento" value="#{ongBean.direccion}" required="true" requiredMessage="La dirección de la ONG es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p>
+				<label for="telefono">Telefono :</label>				
+					<p:inputText id="telefono" label="evento"  value="#{ongBean.telefono}"  >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p>
+				<label for="email">Email :</label>				
+					<p:inputText id="email" label="evento" value="#{ongBean.email}"  >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				<p>
+				<label for="citioweb">Citio Web :</label>				
+					<p:inputText id="citioweb"  label="evento" value="#{ongBean.citioWeb}"  >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				 </h:panelGrid>
+				<h4>Descripción:</h4>	
+					<h:panelGrid columns="2" border="0">																																		
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{ongBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
+				</h:panelGrid>	
+																			
+				
+			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{ongBean.registrarOng()}">
+			</p:commandButton>		
+		
+		</h:form>
+		</f:view>
     </div>
-    <div class="fl_right"><img src="resources/images/demo/380x300.gif" alt="" /></div>
+    <div class="fl_right"><img src="resources/images/demo/ONGS.gif" alt="" /></div>
     <br class="clear" />
   </div>
 </div>
 
+</h:body>
 
 <div class="wrapper col7">
   <div id="copyright">
@@ -125,7 +169,7 @@
     <br class="clear" />
   </div>
 </div>
-</h:body> 
+
 	<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
@@ -136,3 +180,8 @@
 	//]]>
 	</script>
 </html>
+
+
+
+
+

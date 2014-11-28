@@ -1,11 +1,11 @@
 package com.core.service.negocio;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Path;
+
 import com.core.data.entites.Ong;
 import com.core.data.entites.DeServicios;
 import com.core.data.persistencia.DataService;
@@ -33,12 +33,12 @@ public class DeServiciosEB implements DeServiciosEBR{
 		ds.setAreaConocimient(areaConocimient);
 		ds.setCantidadHoras(cantidadHoras);
 		try {
-			deserviciosDAO.crearServicio(ds);
-			Collection<DeServicios> list = ong.getDonacionesDeServicios();
+			Long id = deserviciosDAO.agregarDonacionDeServicioOng(ds);
+			/*Collection<DeServicios> list = ong.getDonacionesDeServicios();
 			list.add(ds);
-			dataService.update(ong);
+			dataService.update(ong);*/
 		} catch (Exception e) {
-			System.out.println("deServicio " + ds);
+			//System.out.println("deServicio " + ds);
 			throw e;
 		}
 		

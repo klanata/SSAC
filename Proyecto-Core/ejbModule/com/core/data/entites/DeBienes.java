@@ -12,7 +12,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @Entity
+@NamedQueries({
+	
+@NamedQuery(name="DeBienes.BuscarDonacion.DeOng", 
+query = "SELECT d FROM DeBienes d WHERE d.ong.id = :idOng"),
 
+@NamedQuery(name="DeBienes.BuscarDonacion", 
+query = "SELECT d FROM DeBienes d WHERE d.id = :id")
+
+})
+@XmlRootElement
 public class DeBienes extends AbstractEntity  implements Serializable {
 
 	
@@ -24,7 +33,7 @@ public class DeBienes extends AbstractEntity  implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 	
 	
 	@Column()
@@ -43,13 +52,23 @@ public class DeBienes extends AbstractEntity  implements Serializable {
 	@ManyToOne
 	private Ong ong;
 
+	
 	public DeBienes(String usuario, Date fechaRealizada, String nombreItem,
-			Integer cantidad) {
+			Integer cantidad, Ong ong) {
 		super();
 		this.usuario = usuario;
 		this.fechaRealizada = fechaRealizada;
 		this.nombreItem = nombreItem;
 		this.cantidad = cantidad;
+		this.ong = ong;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getUsuario() {

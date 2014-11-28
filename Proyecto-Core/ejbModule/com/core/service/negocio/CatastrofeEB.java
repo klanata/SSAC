@@ -9,14 +9,14 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Path;
-
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Servicio;
+import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
-import com.core.data.persistencia.interfaces.locales.OngDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
+import com.core.data.persistencia.DataService;
 
 
 @Path("/catastrofes")
@@ -27,12 +27,12 @@ public class CatastrofeEB implements CatastrofeEBR{
 	private CatastrofeDAO catastrofeDAO;
 	
 	@EJB
-	private OngDAO ongDAO;
+	private DataService dataService;
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
-		double coordenadasY, Boolean activa, Boolean prioridad, Set<Servicio> servicios, Set<Ong> ongs,
-		PlanDeRiesgo planDeRiesgo)throws Exception {
+		double coordenadasY, Boolean activa, Boolean prioridad, Set<ImagenCatastrofe> imagenes, 
+		Set<Servicio> servicios, Set<Ong> ongs,	PlanDeRiesgo planDeRiesgo)throws Exception {
 				
 		Catastrofe c = new Catastrofe();
 		Long id;	
@@ -44,6 +44,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setCoordenadasY(coordenadasY);
 		c.setActiva(activa);
 		c.setPrioridad(prioridad);
+		c.setImagenes(imagenes);
 		c.setServicios(servicios);
 		c.setOngs(ongs);
 		c.setPlanDeRiesgo(planDeRiesgo);
@@ -76,7 +77,28 @@ public class CatastrofeEB implements CatastrofeEBR{
 		return listCatastrofes;
 	}	
 	
-		
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	public void agregarOngALaCatastrofe(Long idCatastrofe, Long idOng) throws Exception{			
+		Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);		
+		Ong ong = dataService.find(Ong.class, idOng) ;		
+		Set<Ong> ongs = c.getOngs();		
+		boolean esta = false;		
+		Long idO;
+		for (Ong o : ongs){
+			idO = o.getId();			
+			if(idOng == idO)
+				esta = true;
+		}				
+		if(!esta){						
+			ongs.add(ong);					
+			dataService.update(c);						
+			System.out.println("probando agregar ong.de nombre" + ong.getNombre());			
+		}
+		else
+		{
+			System.out.println("La ONG ya estaba en la catastrofe.");
+		}							
+	}
 	
 
 }

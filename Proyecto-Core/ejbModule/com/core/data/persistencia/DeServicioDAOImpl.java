@@ -5,8 +5,11 @@ import java.util.Collection;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+
 import com.core.data.entites.DeServicios;
-import com.core.data.entites.Ong;
 import com.core.data.persistencia.interfaces.locales.DeServicioDAO;
 
 @Stateless
@@ -16,38 +19,65 @@ public class DeServicioDAOImpl extends AbstractService implements DeServicioDAO 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/////////////////////////////////////////////////////////////////////////////
+	
+	@PersistenceContext
+	protected EntityManager em;
+	
 	@Override
 	protected EntityManager getEntityManager() {
 		
-		return null;
+		return em;
 	}
 	@EJB
-	DataService dataService;
+	private DataService dataService;
 	/////////////////////////////////////////////////////////////////////////////
-	@Override
-	public void crearServicio(DeServicios deServicio) throws Exception {
-		try{
-			dataService.create(deServicio);
-		}
-		catch (Exception e){
-			throw e;
-		} 
-	}
-	/////////////////////////////////////////////////////////////////////////////
-	@Override
-	public void agregarDonacionDeServicioOng(Ong ong, DeServicios deServicio) {
-		try{
+
+	public DeServicios buscarDonacionDeServicioID(Long id) {
+		DeServicios donacion= null;
+		try {
+			 donacion= dataService.find(DeServicios.class, id);
 			
-			//busco ong
-			Ong ongGuardar= dataService.find(Ong.class, ong.getId());
-			Collection<DeServicios> lista = ongGuardar.getDonacionesDeServicios();
-			lista.add(deServicio);
-			dataService.update(ongGuardar);
-		}
-		catch (Exception e){throw e;}
-		
+								
+		} catch (Exception excep){			
+			throw excep;
+		}	
+		return donacion;
 	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	public Collection<DeServicios> listarDonacionesDeServicio(Long idOng) {
+	
+		Collection<DeServicios> lista = null;
+		try {
+			TypedQuery<DeServicios> consulta = this.em.createNamedQuery("DeServicios.BuscarDonacion.DeOng",DeServicios.class);								
+			consulta.setParameter("idOng", idOng);
+			lista = consulta.getResultList();			
+		  	
+								
+		} catch (Exception excep){			
+			throw excep;
+		}	
+		return lista;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
+	public Long agregarDonacionDeServicioOng(DeServicios deServicios)
+			throws Exception {
+		
+		Long id = new Long(0);
+		
+		
+		try {
+				dataService.create(deServicios);
+				id = deServicios.getId();
+									
+			} catch (Exception excep){			
+				throw excep;
+			}					
+			return id;
+	}
+
+	
 	
 
 }
