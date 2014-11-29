@@ -1,7 +1,6 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +9,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import cross_cuting.enums.EstadoPersona;
+import cross_cuting.enums.TipoCatastrofe;
 /**
  * Entity implementation class for Entity: PersonasDesaparecidas
  *
@@ -17,12 +17,12 @@ import cross_cuting.enums.EstadoPersona;
 @Entity
 @NamedQueries({
 	
-@NamedQuery(name="PersonasDesaparecidas.BuscarPersona", 
+@NamedQuery(name="PersonasDesaparecidas.BuscarPer.Nombre.Apellido", 
 			query = "SELECT e "+
 			"FROM PersonasDesaparecidas e " +
 			"WHERE e.nombre = :nombre AND e.apellido = :apellido"),
 			
-@NamedQuery(name="PersonasDesaparecidas.BuscarPersona.Nombre.Apellido", 
+@NamedQuery(name="PersonasDesaparecidas.BuscarPorNombreyApellido.Nombre.Apellido", 
 			query = "SELECT e "+
 			"FROM PersonasDesaparecidas e " +
 			"WHERE e.nombre = :nomPer AND e.apellido = :apePer"),
@@ -42,11 +42,7 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 
 	
 	private static final long serialVersionUID = 1L;
-	
-	public PersonasDesaparecidas() {
-		super();
-	}
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
@@ -69,11 +65,22 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	
 	@Column(nullable= false)
 	private String foto;
-	
+
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<ImagenPersonaDesaparecida> imagenes = new HashSet<ImagenPersonaDesaparecida>(0);
 	
+	//////////////CONSTRUCTORES///////////////////////////////
 	
+	public PersonasDesaparecidas() {
+		super();
+		
+		this.nombre = new String();
+		this.apellido = new String();
+		this.numeroContacto = new String();
+		this.descripcion = EstadoPersona.desaparecida;
+		this.fechNac = new Date();
+		this.imagenes = new HashSet<ImagenPersonaDesaparecida>();
+	}
 	
 	
 
@@ -84,7 +91,7 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.numeroContacto = numeroContacto;
-		this.descripcion = descripcion;
+		this.descripcion = EstadoPersona.desaparecida;
 		this.fechNac = fechNac;
 		this.setImagenes(imagenes);
 	}

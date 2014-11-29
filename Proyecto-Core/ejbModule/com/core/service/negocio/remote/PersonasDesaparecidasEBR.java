@@ -1,6 +1,6 @@
 package com.core.service.negocio.remote;
 import java.util.Date;
-
+import java.util.List;
 import java.util.Set;
 
 import javax.ejb.Local;
@@ -20,5 +20,5 @@ public interface PersonasDesaparecidasEBR {
 	//public List<PersonasDesaparecidas> findPersonasHalladas();
 	//public List<PersonasDesaparecidas> findPersonasNoHalladas();
 	public PersonasDesaparecidas buscarPersonaDesaparecida(String nomPersona, String apePersona) throws Exception;
-
+	public List<PersonasDesaparecidas> listarPersonas() throws Exception;
 }

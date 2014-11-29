@@ -51,7 +51,7 @@ private static final long serialVersionUID = 1L;
 				{				
 					this.em.persist(personadesaparecida);					
 
-					Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.buscarPersona");
+					Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.BuscarPer.Nombre.Apellido");
 					consulta.setParameter("nombre", nombre);
 					consulta.setParameter("apellido", apellido);
 					
@@ -73,7 +73,7 @@ private static final long serialVersionUID = 1L;
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean existePersona(String nombrePersona, String apePersona){
 		boolean existe;
-		Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.ExistePersona.Nombre.Apellido");
+		Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.BuscarPer.Nombre.Apellido");
 		consulta.setParameter("nombre", nombrePersona);	
 		consulta.setParameter("apellido", apePersona);
 	  	if (consulta.getResultList().isEmpty()){
@@ -83,11 +83,11 @@ private static final long serialVersionUID = 1L;
 	  	}
 	  	return existe;
 	}
-	
+	//////////////////////////////////////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public PersonasDesaparecidas buscarPersonaDesaparecida(String nomPer, String apePer) {
 		PersonasDesaparecidas perDesap = null;
-		Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.BuscarPersona.Nombre.Apellido");
+		Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.BuscarPorNombreyApellido.Nombre.Apellido");
 	  	consulta.setParameter("nombre", nomPer);
 	  	consulta.setParameter("apellido", apePer);
 	   	perDesap = (PersonasDesaparecidas) consulta.getResultList().get(0);

@@ -23,7 +23,7 @@ public class ImagenPersonaDesaparecida extends Imagen implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 	
 	@Column()
 	private String path = "";
@@ -36,7 +36,13 @@ public class ImagenPersonaDesaparecida extends Imagen implements Serializable {
 		this.path = path;
 		this.personasDesaparecidas = personasDesaparecidas;
 	}
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getPath() {
 		return path;
 	}
