@@ -24,7 +24,7 @@ public class ImagenCatastrofe extends Imagen implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 	
 	@Column()
 	private String path = "";
@@ -38,11 +38,11 @@ public class ImagenCatastrofe extends Imagen implements Serializable{
 		this.catastrofe = catastrofe;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
