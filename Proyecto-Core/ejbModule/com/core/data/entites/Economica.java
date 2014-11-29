@@ -37,7 +37,7 @@ public class Economica extends AbstractEntity implements Serializable {
 
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator = "economica_sequence")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "economica_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

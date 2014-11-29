@@ -12,6 +12,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @Entity
+@SequenceGenerator(name = "servicio_sequence",
+sequenceName = "servicio_id_seq",
+initialValue=1,
+allocationSize=1)
+
 @Table (name = "Servicio")
 @XmlRootElement
 public class Servicio  extends AbstractEntity implements Serializable {
@@ -24,7 +29,7 @@ public class Servicio  extends AbstractEntity implements Serializable {
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "servicio_sequence")
 	@Column(name= "id", nullable= false)
 	private Integer id;
 	

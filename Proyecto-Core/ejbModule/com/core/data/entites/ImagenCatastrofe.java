@@ -53,7 +53,7 @@ public class ImagenCatastrofe extends Imagen implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator = "imagenCatastrofe_sequence")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "imagenCatastrofe_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

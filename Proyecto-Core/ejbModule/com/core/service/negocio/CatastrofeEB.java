@@ -1,5 +1,6 @@
 package com.core.service.negocio;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -136,6 +137,24 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}	
 		
 		
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public Collection<Ong> listaOngDeCatastrofe(Long id) {
+		
+		Collection<Ong> lista = null;
+		
+		try {
+			Catastrofe c = this.buscaCatastrofePorId(id);
+			
+			lista = c.getOngs();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }

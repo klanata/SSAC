@@ -25,7 +25,7 @@ public class ImagenPersonaDesaparecida extends Imagen implements Serializable {
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator= "imagenPersonaDesa_sequence")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "imagenPersonaDesa_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

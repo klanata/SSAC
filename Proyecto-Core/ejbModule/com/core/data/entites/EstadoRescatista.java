@@ -39,7 +39,7 @@ public class EstadoRescatista  extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator = "estadoRescatista_sequence")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "estadoRescatista_sequence")
 	@Column( nullable= false)
 	private Long id;
 	

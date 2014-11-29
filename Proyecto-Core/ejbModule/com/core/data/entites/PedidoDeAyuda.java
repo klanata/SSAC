@@ -12,6 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */ 
 @Entity
+@SequenceGenerator(name = "pedidoDeAyuda_sequence",
+sequenceName = "pedidoDeAyuda_id_seq",
+initialValue=1,
+allocationSize=1)
 @NamedQueries({
 	@NamedQuery(name="PedidoDeAyuda.BuscarPedidoid.id", 
 			query = "SELECT e "+
@@ -32,7 +36,7 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "pedidoDeAyuda_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

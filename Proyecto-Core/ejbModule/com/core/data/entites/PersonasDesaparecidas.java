@@ -15,6 +15,10 @@ import cross_cuting.enums.TipoCatastrofe;
  *
  */
 @Entity
+@SequenceGenerator(name = "personaDesaparecida_sequence",
+sequenceName = "personaDesaparecida_id_seq",
+initialValue=1,
+allocationSize=1)
 @NamedQueries({
 	
 @NamedQuery(name="PersonasDesaparecidas.BuscarPer.Nombre.Apellido", 
@@ -44,7 +48,7 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "personaDesaparecida_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 	
