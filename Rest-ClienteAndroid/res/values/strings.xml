@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    
+      <string name="textView1">Bienvenido a SSAC</string>
+      <string name="textView2">Debe seleccionar una catástrofe</string>
+    	<string name="btnMostrarPersona">Comenzar</string>
 
-    <string name="app_name">PruebaAndroid</string>
+     <string name="TextView01"></string>
+       <string name="TextView02"></string>
+       <string name="TextView03"></string>
+       <string name="TextView04"></string>
+       <string name="google_play_services_version">AIzaSyCbUuUz2_qs-J1i4Ea60bp9vdtkN585h5s</string>
+
+       
+    <string name="app_name">SSAC:PedirAyuda</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 	 <string name="TituloLogin">Login</string>
-	  <string name="textView1">Persona</string>
 	   <string name="button1">Obtener</string>
-	    <string name="persona">Persona</string>
-    <string name="btnMostrarPersona">Pedir Ayuda</string>
+    
     
     
    	<string name="editText1">Numero persona</string>
-    <string name="pedidoAyuda_Button">Pedir ayuda</string>
+    
     <string name="title_pedido_ayuda">Pedido ayuda</string>
     <string name="textViewUser">Pedido a nombre de:</string>
      <string name="editTextDescripcion">Descripcion:</string>
        <string name="catastrofeText">Nombre</string>
-    <string name="textMostrarCatastrofe">Ingrese pedido:</string>
+    <string name="textMostrarCatastrofe">Dato extra:</string>
       <string name="descripcionText">Descripcion</string>
        <string name="idCatText">Id Catastrofe</string>
+        <string name="EditText1">multii</string>
+        <string name="pedidoAyuda_Button">Pedir ayuda</string>
+      
 
+      
 </resources>
 	   
