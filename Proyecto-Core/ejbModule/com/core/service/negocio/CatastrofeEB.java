@@ -157,4 +157,22 @@ public class CatastrofeEB implements CatastrofeEBR{
 		return null;
 	}
 
+
+	@Override
+	public void eliminarOngDeCatastrofe(Long idCatastrofe, Long idOng) {
+		
+		
+		Catastrofe c= dataService.find(Catastrofe.class, idCatastrofe);
+		Ong o = dataService.find(Ong.class, idOng);
+		
+		Set<Ong> lista = c.getOngs();
+		lista.remove(o);
+		
+		c.setOngs(lista);
+		dataService.update(c);
+		
+		
+		
+	}
+
 }

@@ -11,5 +11,7 @@ public interface PlanDeRiesgoEBR {
 	
 	public PlanDeRiesgo obtenerPlanDeRiesgoPorID (Long id);
 	public Long crearPlanDeRiesgo(String rutaArchivo, Long idCatastrofe) throws Exception;
+	
+	public void modificarPlanDeRiesgo(Long idCatastrofe, String nombreArchivo);
 
 }

@@ -31,4 +31,6 @@ public interface CatastrofeEBR {
 	
 	public Collection<Ong> listaOngDeCatastrofe(Long id);
 	
+	public void eliminarOngDeCatastrofe(Long idCatastrofe, Long idOng);
+	
 }

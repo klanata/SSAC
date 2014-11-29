@@ -30,6 +30,9 @@ public class CatastrofeDAOImpl extends AbstractService implements CatastrofeDAO{
 	protected EntityManager em;
 	
 	
+	
+	
+	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Long insert(Catastrofe catastrofe)throws Exception {	
 		Long id;
@@ -128,6 +131,9 @@ public class CatastrofeDAOImpl extends AbstractService implements CatastrofeDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	
 	
 	
 

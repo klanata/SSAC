@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Path;
 
+import com.core.data.entites.Catastrofe;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
@@ -42,5 +43,20 @@ public class PlanDeRiesgoEB implements PlanDeRiesgoEBR{
 			PlanDeRiesgo plan = new PlanDeRiesgo();
 			id = planDeRiesgoDo.crearPlanDeRiesgo(plan);
 		return id;
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+	public void modificarPlanDeRiesgo(Long idCatastrofe, String nombreArchivo) {
+		
+		
+		Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
+		PlanDeRiesgo planviejo = c.getPlanDeRiesgo();
+		
+		///PlanDeRiesgo planNuevo = planDeRiesgoDo.obtenerPlanDeRiesgo(planviejo.getRutaArchivo());
+		planviejo.setRutaArchivo(nombreArchivo);
+		dataService.update(planviejo);
+		
+		
+		
 	}
 }
