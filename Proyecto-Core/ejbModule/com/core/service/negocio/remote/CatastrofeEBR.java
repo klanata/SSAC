@@ -26,4 +26,6 @@ public interface CatastrofeEBR {
 		
 	public void agregarOngALaCatastrofe(Long idCatastrofe, Long idOng) throws Exception;
 	
+	public void agregarImagenALaCatastrofe(Long idCatastrofe, String nombImagen) throws Exception;
+	
 }

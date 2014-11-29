@@ -1,7 +1,5 @@
 package com.core.data.entites;
 
-
-
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -11,16 +9,35 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Entity implementation class for Entity: ImagenCatastrofe
  *
  */
+
+@NamedQueries({
+
+@NamedQuery(name="ImagenCatastrofe.BuscarImgCatastrofe.Id", 
+query = "SELECT img "+
+		"FROM ImagenCatastrofe img " +
+		"WHERE img.id = :id"),
+		
+@NamedQuery(name="ImagenCatastrofe.BuscarTodas", 
+query = "SELECT img "+
+		"FROM ImagenCatastrofe img "),
+
+@NamedQuery(name = "ImagenCatastrofe.BuscarImgCatastrofeId.PathImg",
+query = "SELECT img.id "+
+		"FROM ImagenCatastrofe img " +
+		"WHERE img.path = :pathImg")
+
+})
+
+
+
+
 @Entity
 @XmlRootElement
 public class ImagenCatastrofe extends Imagen implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
-
-	public ImagenCatastrofe() {
-		super();
-	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
@@ -31,6 +48,12 @@ public class ImagenCatastrofe extends Imagen implements Serializable{
 
 	@ManyToOne
 	private Catastrofe catastrofe;
+	
+	public ImagenCatastrofe() {
+		super();
+		this.path = new String();
+		this.catastrofe = null;		
+	}
 
 	public ImagenCatastrofe(String path, Catastrofe catastrofe) {
 		super();

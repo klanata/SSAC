@@ -9,12 +9,14 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Path;
+
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Servicio;
 import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
+import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.data.persistencia.DataService;
 
@@ -28,6 +30,9 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	@EJB
 	private DataService dataService;
+	
+	@EJB
+	private ImagenCatastrofeDAO imagenCatastrofeDAO;
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
@@ -92,7 +97,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		if(!esta){						
 			ongs.add(ong);					
 			dataService.update(c);						
-			System.out.println("probando agregar ong.de nombre" + ong.getNombre());			
+			System.out.println("probando agregar ONG de nombre: " + ong.getNombre());			
 		}
 		else
 		{
@@ -100,5 +105,20 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}							
 	}
 	
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	public void agregarImagenALaCatastrofe(Long idCatastrofe, String nombImagen) throws Exception{
+		
+		Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);		
+		ImagenCatastrofe imgCatastrofe = new ImagenCatastrofe();
+		imgCatastrofe.setPath(nombImagen);
+		imgCatastrofe.setCatastrofe(c);
+		
+		imagenCatastrofeDAO.insert(imgCatastrofe);
+			
+		System.out.println("La imagen de la catastrofe: " + nombImagen.toString());
+		
+		
+		
+	}
 
 }

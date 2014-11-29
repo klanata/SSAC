@@ -113,7 +113,14 @@
             </p>
 			<br/>  
                          
-        </h:form>                      	
+        </h:form>               
+        
+        <h:form>
+		    <p:fileUpload fileUploadListener="#{fileUploadController.upload}" mode="advanced" dragDropSupport="false"
+		                  multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+		 
+		    <p:growl id="messages" showDetail="true" />
+		</h:form>       	
       
       </f:view>         
     </div>

@@ -1,14 +1,11 @@
 package com.web.beans;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.core.data.entites.Catastrofe;
-
 
 
 @ManagedBean(name="imagenCatastrofeBean")
