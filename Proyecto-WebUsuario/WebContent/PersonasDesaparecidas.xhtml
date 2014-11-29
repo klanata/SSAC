@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+ <h1>Personas Desaparecidas</h1>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <link rel="stylesheet" type="text/css" href="bootstrap.css" />
+ </h:head> 
+<body>
+
+
+
+    
+           <f:view>
+            <h:form id="personasdesaparecidasBean">
+               <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+               
+                <div class="wrapper col-xs-6 col-md-12">
+  				<div class="ui-grid-row">
+                    <p:panelGrid columns="1" cellpadding="2">
+                    <p>
+						<label for="nombre"> Nombre:</label>				
+						<p:inputText id="nombre" label="nombre"  value="#{personasdesaparecidasBean.nombre}" required="true" requiredMessage="El nombre es requerido" >	
+						</p:inputText>																																									
+					</p>
+					
+					   <p>
+						<label for="usuario">apellido :</label>				
+						<p:inputText id="apellido" label="apellido"  value="#{personasdesaparecidasBean.apellido}" required="true" requiredMessage="es requerido" >	
+						</p:inputText>																																									
+					</p>
+					
+                     <p>
+						<label for="numeroContacto">numeroContacto :</label>				
+						<p:inputText id="numeroContacto" label="numeroContacto"  value="#{personasdesaparecidasBean.numeroContacto}" required="true" requiredMessage="es requerido" >	
+						</p:inputText>																																									
+					</p>
+                        
+                        <p>		
+				<p:selectBooleanCheckbox value="#{personasdesaparecidasBean.decripcion}"/> 
+				<label for="activa">Desaparecida</label>						
+				</p>	
+				<br/>
+                    
+					
+					 <p>
+						<p:outputLabel for="fechNac" value="fechNac" />					
+						<p:calendar id="fechNac" label="fechNac"  value="#{personasdesaparecidasBean.fechNac}" pattern="dd-MM-yyyy" mask="true" />
+																																														
+					</p>
+					
+					<h:panelGrid columns="2" border="0">																						
+					<h:inputFile id="foto" label="logo" value="#{personasdesaparecidasBean.part}" required="true" requiredMessage="foto es obligatoria" >			
+					</h:inputFile>					 					
+					</h:panelGrid>	
+					
+                        <p:commandButton id="registro" update="growl" type="submit" style="margin-left: 500px;" styleClass="formbutton" value="Registrar" action="#{personasdesaparecidasBean.registrarPersonasDesaparecidas()}">
+			</p:commandButton>	
+			 
+                    </p:panelGrid>
+                </div>
+                </div>
+			
+            </h:form>
+            </f:view>
+     
+
+				
+	
+</body>
+</html>

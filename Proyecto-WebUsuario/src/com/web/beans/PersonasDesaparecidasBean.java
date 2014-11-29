@@ -39,6 +39,25 @@ public class PersonasDesaparecidasBean implements Serializable {
 	
 	private Part part;
 	
+	
+	/////constructores
+	
+	public PersonasDesaparecidasBean() {	
+	}	
+	public PersonasDesaparecidasBean(Long id, String nombre, String apellido, String numeroContacto, EstadoPersona descripcion, Date fechNac,String foto,
+			Set<ImagenPersonaDesaparecida>  imagen) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.numeroContacto = numeroContacto;
+		this.decripcion = descripcion;
+		this.fechNac = fechNac;
+		this.foto = foto;
+		this.imagenes = imagen;
+	}
+		
+	
 	public Long getId() {
 		return id;
 	}
@@ -99,7 +118,13 @@ public class PersonasDesaparecidasBean implements Serializable {
 	public void setImagenes(Set<ImagenPersonaDesaparecida> imagenes) {
 		this.imagenes = imagenes;
 	}
-
+	public Part getPart() {
+		return part;
+	}
+	public void setPart(Part part) {
+		this.part = part;
+	}
+	
 
 
 
