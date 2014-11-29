@@ -22,7 +22,6 @@ import com.core.service.negocio.remote.CatastrofeEBR;
 import com.web.beans.InputBean;
 
 import cross_cuting.enums.TipoCatastrofe;
-
 import javax.servlet.http.Part;
 
 
