@@ -15,6 +15,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
+import com.core.data.entites.Catastrofe;
 import com.core.data.entites.ImagenCatastrofe;
 
 @Stateless
@@ -71,6 +72,24 @@ public class ImagenCatastrofeDAOImpl extends AbstractService implements ImagenCa
 		  	return existe;
 	}
 	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public ImagenCatastrofe buscarImgCatastrofePorPath(String path) throws Exception {
+	  	
+		ImagenCatastrofe imgCatastrofe;
+		try {
+			Query consulta = this.em.createNamedQuery("ImagenCatastrofe.BuscarImgCatastrofe.PathImg",ImagenCatastrofe.class);			
+		  	consulta.setParameter("path", path);		  			  	
+		  	if (consulta.getResultList().isEmpty()){
+		  		imgCatastrofe = new ImagenCatastrofe();
+		  		imgCatastrofe.setId(new Long(0));		  		
+		  	} else {		  		
+		  		imgCatastrofe = (ImagenCatastrofe) consulta.getResultList().get(0);
+		  	}		  	
+		  	return imgCatastrofe;		
+		} catch (Exception excep){			
+			throw excep;
+		}	  	
+	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public ImagenCatastrofe buscarImgCatastrofePorId(Long id) throws Exception {

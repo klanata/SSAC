@@ -74,7 +74,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TipoCatastrofe tipoCatastrofe;
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>(0);
 		
 	@ManyToMany

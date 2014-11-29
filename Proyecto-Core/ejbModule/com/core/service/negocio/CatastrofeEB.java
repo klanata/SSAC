@@ -108,15 +108,33 @@ public class CatastrofeEB implements CatastrofeEBR{
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public void agregarImagenALaCatastrofe(Long idCatastrofe, String nombImagen) throws Exception{
 		
-		Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);		
+		Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);	
+		
 		ImagenCatastrofe imgCatastrofe = new ImagenCatastrofe();
 		imgCatastrofe.setPath(nombImagen);
-		imgCatastrofe.setCatastrofe(c);
-		
+		imgCatastrofe.setCatastrofe(c);		
 		imagenCatastrofeDAO.insert(imgCatastrofe);
-			
-		System.out.println("La imagen de la catastrofe: " + nombImagen.toString());
+		//System.out.println("La imagen de la catastrofe: " + nombImagen.toString());
 		
+		ImagenCatastrofe imgCat = imagenCatastrofeDAO.buscarImgCatastrofePorPath(nombImagen);
+		Set<ImagenCatastrofe> imagenesCat = c.getImagenes();
+		boolean esta = false;
+		Long idImgCat;
+		for (ImagenCatastrofe i : imagenesCat){
+			idImgCat = i.getId();			
+			if(idImgCat == imgCat.getId())
+				esta = true;
+		}
+		if(!esta){		
+			imagenesCat.add(imgCat);
+			//ongs.add(ong);					
+			dataService.update(c);						
+			System.out.println("probando agregar imagen de nombre: " + nombImagen);			
+		}
+		else
+		{
+			System.out.println("La imagen ya estaba en la catastrofe.");
+		}	
 		
 		
 	}

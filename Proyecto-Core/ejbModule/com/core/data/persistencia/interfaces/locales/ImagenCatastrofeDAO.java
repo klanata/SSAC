@@ -13,7 +13,9 @@ public interface ImagenCatastrofeDAO extends JPAService{
 	
 	public Long insert(ImagenCatastrofe imgCatastrofe)  throws Exception;
 	
-	public boolean existePathImagCatastrofe(String pathImg);		
+	public boolean existePathImagCatastrofe(String pathImg);
+	
+	public ImagenCatastrofe buscarImgCatastrofePorPath(String path) throws Exception;
 	
 	public ImagenCatastrofe buscarImgCatastrofePorId(Long id) throws Exception;
 

@@ -11,7 +11,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 
 @NamedQueries({
+	
+@NamedQuery(name="ImagenCatastrofe.BuscarImgCatastrofe.PathImg", 
+		query = "SELECT img "+
+				"FROM ImagenCatastrofe img " +
+				"WHERE img.path = :path"),
 
+				
 @NamedQuery(name="ImagenCatastrofe.BuscarImgCatastrofe.Id", 
 query = "SELECT img "+
 		"FROM ImagenCatastrofe img " +
