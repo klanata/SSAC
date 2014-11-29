@@ -126,8 +126,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 				esta = true;
 		}
 		if(!esta){		
-			imagenesCat.add(imgCat);
-			//ongs.add(ong);					
+			imagenesCat.add(imgCat);						
 			dataService.update(c);						
 			System.out.println("probando agregar imagen de nombre: " + nombImagen);			
 		}
