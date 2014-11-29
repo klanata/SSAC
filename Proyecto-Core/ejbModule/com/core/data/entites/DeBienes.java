@@ -12,6 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @Entity
+@SequenceGenerator(name = "deBienes_sequence",
+sequenceName = "deBienes_id_seq",
+initialValue=1,
+allocationSize=1)
 @NamedQueries({
 	
 @NamedQuery(name="DeBienes.BuscarDonacion.DeOng", 
@@ -31,7 +35,7 @@ public class DeBienes extends AbstractEntity  implements Serializable {
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator = "deBienes_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

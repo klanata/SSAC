@@ -40,10 +40,10 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 	private String descripcion = "";
 	
 	@Column( nullable= false)
-	private BigDecimal coordenadasX ;
+	private Double coordenadasX ;
 	
 	@Column(nullable= false)
-	private BigDecimal coordenadasY ;
+	private Double coordenadasY ;
 	
 	@Column(nullable= false)
 	private Date fechaPublicacion ;
@@ -52,7 +52,7 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 	private Catastrofe catastrofe;
 	
 
-	public PedidoDeAyuda(Catastrofe catastrofe, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	public PedidoDeAyuda(Catastrofe catastrofe, String descripcion, Double coordenadasX, Double coordenadasY,
 			Date fechaPublicacion) {
 		super();
 		
@@ -79,19 +79,19 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public BigDecimal getCoordenadasX() {
+	public Double getCoordenadasX() {
 		return coordenadasX;
 	}
 
-	public void setCoordenadasX(BigDecimal coordenadasX) {
+	public void setCoordenadasX(Double coordenadasX) {
 		this.coordenadasX = coordenadasX;
 	}
 
-	public BigDecimal getCoordenadasY() {
+	public Double getCoordenadasY() {
 		return coordenadasY;
 	}
 
-	public void setCoordenadasY(BigDecimal coordenadasY) {
+	public void setCoordenadasY(Double coordenadasY) {
 		this.coordenadasY = coordenadasY;
 	}
 

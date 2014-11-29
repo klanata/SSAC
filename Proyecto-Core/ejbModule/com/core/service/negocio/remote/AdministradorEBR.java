@@ -21,5 +21,12 @@ public interface AdministradorEBR {
 			String email, String password, Date fechaNac, String sexo, Integer celular);
 	
 	public void eliminarAdministrador(String nick);
+	
+	
 
+	public boolean existeAdministradorEB(String nick);
+	
+	public Administrador obtenerAdministradorEB(String nick);
+	
+	
 }

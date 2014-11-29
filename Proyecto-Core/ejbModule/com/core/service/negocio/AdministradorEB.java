@@ -93,5 +93,21 @@ public class AdministradorEB implements AdministradorEBR{
 		 }
 		
 	}
+
+	///////////////////////////////////////////////////////////////////////////////////
+	public boolean existeAdministradorEB(String nick) {
+	
+		boolean existe= administradorDao.existeAdministrador(nick);
+		
+		return existe;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////
+	public Administrador obtenerAdministradorEB(String nick) {
+		
+		Administrador admin = administradorDao.obtenerAdministrador(nick);
+		
+		return admin;
+	}
 	
 }

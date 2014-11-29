@@ -2,6 +2,7 @@ package com.core.data.entites;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -10,6 +11,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @Entity
+@SequenceGenerator(name = "administrador_sequence",
+sequenceName = "administrador_id_seq",
+initialValue=1,
+allocationSize=1)
 @NamedQueries({
 	
 @NamedQuery(name="Administrador.BuscarAdministrador", 
@@ -42,7 +47,7 @@ public class Administrador  extends AbstractEntity implements Serializable{
 	}
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator = "administrador_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 		

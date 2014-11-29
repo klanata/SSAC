@@ -11,9 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@SequenceGenerator(name = "estadoRescatista_sequence",
+sequenceName = "estadoRescatista_id_seq",
+initialValue=1,
+allocationSize=1)
 @NamedQueries({
 	
 @NamedQuery(name="EstadoRescatista.FindPendientes", 
@@ -34,7 +39,7 @@ public class EstadoRescatista  extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator = "estadoRescatista_sequence")
 	@Column( nullable= false)
 	private Long id;
 	

@@ -1,8 +1,6 @@
 package com.core.service.negocio;
 
 import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -42,14 +40,49 @@ public class OngEB implements OngEBR{
 		Long id = ongService.insert(o);
 		return id;
 	}
-
-	@Override
+	//////////////////////////////////////////////////////////////////////////////////////
+	
 	public List<Ong> listarTodasLasOng() {
 		List<Ong> lista = null;
 		
 		lista = dataService.findAll(Ong.class);
 		
 		return lista;
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////
+	public boolean existeOng_EB(String nombre) {
+		
+		boolean existe= false;
+		
+		if(!nombre.isEmpty())
+		{
+			existe = ongService.existeOng(nombre);
+			
+		}
+		
+		return existe;
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////
+	public Ong buscarOngPorID_EB(Long id) {
+		
+		Ong  o = null;
+		
+		o = ongService.buscarOngPorID(id);
+		
+		
+		return o;
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////////
+	public Ong buscarOngPorNick_EB(String nombreOng) {
+		
+		Ong o = null;
+		
+		o= ongService.buscarOngPorNick(nombreOng);
+		
+		return o;
 	}
 
 	
