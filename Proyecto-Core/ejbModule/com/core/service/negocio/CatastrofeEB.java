@@ -54,6 +54,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setServicios(servicios);
 		c.setOngs(ongs);
 		c.setPlanDeRiesgo(planDeRiesgo);
+		c.setBajaLogica(false);
 				
 		id = catastrofeDAO.insert(c);
 		return id;											

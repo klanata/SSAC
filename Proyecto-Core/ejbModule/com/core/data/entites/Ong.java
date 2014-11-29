@@ -77,6 +77,19 @@ public class Ong  extends AbstractEntity implements Serializable{
 	@OneToMany(cascade=CascadeType.ALL, mappedBy = "ong")
 	private Set<DeServicios> donacionesDeServicios = new HashSet<DeServicios>(0);
 
+	
+	private boolean bajaLogica;
+
+	public boolean getBajaLogica() {
+		return bajaLogica;
+	}
+
+	public void setBajaLogica(boolean bajaLogica) {
+		this.bajaLogica = bajaLogica;
+	}
+
+	
+	
 	public String getNombre() {
 		return nombre;
 	}

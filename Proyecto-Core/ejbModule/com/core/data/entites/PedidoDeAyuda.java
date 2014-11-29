@@ -1,3 +1,4 @@
+
 package com.core.data.entites;
 
 import java.io.Serializable;
@@ -55,6 +56,17 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 	@ManyToOne
 	private Catastrofe catastrofe;
 	
+	private boolean bajaLogica;
+
+	public boolean getBajaLogica() {
+		return bajaLogica;
+	}
+
+	public void setBajaLogica(boolean bajaLogica) {
+		this.bajaLogica = bajaLogica;
+	}
+
+	
 
 	public PedidoDeAyuda(Catastrofe catastrofe, String descripcion, Double coordenadasX, Double coordenadasY,
 			Date fechaPublicacion) {
@@ -65,6 +77,7 @@ public class PedidoDeAyuda  extends AbstractEntity implements Serializable{
 		this.coordenadasX = coordenadasX;
 		this.coordenadasY = coordenadasY;
 		this.fechaPublicacion = fechaPublicacion;
+		this.bajaLogica = false;
 	}
 
 	public Long getId() {

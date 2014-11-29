@@ -93,6 +93,15 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@OneToOne
 	private PlanDeRiesgo planDeRiesgo ;
 	
+	private boolean bajaLogica;
+	
+	public boolean getBajaLogica() {
+		return bajaLogica;
+	}
+
+	public void setBajaLogica(boolean bajaLogica) {
+		this.bajaLogica = bajaLogica;
+	}
 	
 //	------------------ Constructors  --------------------------------
 	
@@ -112,6 +121,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.planDeRiesgo = null;	
 		this.pedidosDeAyuda = new HashSet<PedidoDeAyuda>();
 		this.tipoCatastrofe= TipoCatastrofe.climaticas;
+		this.bajaLogica = false;
 	}		
 	
 	

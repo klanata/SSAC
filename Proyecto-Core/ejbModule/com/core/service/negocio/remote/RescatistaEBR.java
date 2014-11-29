@@ -15,7 +15,7 @@ import cross_cuting.enums.PlanesPendientesRescatistaDTO;
 @Remote
 public interface RescatistaEBR {
 	
-	public Long crearRescatista(String nombre, String nick, String apellido, String email,String password,Date fechaNac,String sexo, Integer celular) throws Exception;
+	public Long crearRescatista(String nombre, String nick, String apellido, String email,String password,Date fechaNac,String sexo, String celular) throws Exception;
 	
 	public void asignarRescatistaCatastrofe(Catastrofe catastrofe);
 	

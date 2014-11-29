@@ -117,7 +117,7 @@ public class RescatistaEB implements RescatistaEBR {
 	//////////////////////////////////////////////////////////////////////////////
 	@Override
 	public Long crearRescatista(String nombre, String nick, String apellido,
-			String email, String password, Date fechaNac, String sexo, Integer celular) throws Exception {
+			String email, String password, Date fechaNac, String sexo, String celular) throws Exception {
 			
 		Rescatista r = new Rescatista();
 		r.setNombre(nombre);
@@ -127,6 +127,7 @@ public class RescatistaEB implements RescatistaEBR {
 		r.setFechaNac(fechaNac);
 		r.setPassword(password);
 		r.setSexo(sexo);
+		r.setBajaLogica(false);
 		Long id = rescatistaService.insert(r);
 		return id;
 	}

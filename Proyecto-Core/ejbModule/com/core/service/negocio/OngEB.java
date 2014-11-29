@@ -36,7 +36,7 @@ public class OngEB implements OngEBR{
 		o.setEmail(email);
 		o.setTelefono(telefono);
 		o.setNombre(nombre);
-		
+		o.setBajaLogica(false);
 		Long id = ongService.insert(o);
 		return id;
 	}

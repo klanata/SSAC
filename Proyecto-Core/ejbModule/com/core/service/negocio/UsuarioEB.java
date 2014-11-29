@@ -46,6 +46,7 @@ public class UsuarioEB implements UsuarioEBR{
 		u.setNick(login);
 		u.setNombre(nombre);
 		u.setPassword(password);
+		u.setBajaLogica(false);
 		
 		try {
 			Long id = usuarioDAO.insert(u);

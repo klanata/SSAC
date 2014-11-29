@@ -29,7 +29,7 @@ public class AdministradorEB implements AdministradorEBR{
 	///////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public Long crearAdministrador(String nombre, String nick, String apellido,
-			String email, String password, Date fechaNac, String sexo, Integer celular) throws Exception {
+			String email, String password, Date fechaNac, String sexo, String celular) throws Exception {
 			
 		Administrador r = new Administrador();
 		r.setNombre(nombre);
@@ -39,6 +39,7 @@ public class AdministradorEB implements AdministradorEBR{
 		r.setFechaNac(fechaNac);
 		r.setPassword(password);
 		r.setSexo(sexo);
+		r.setBajaLogica(false);
 		Long id = administradorDao.crearAdministrador(r);
 		return id;
 	}
@@ -62,7 +63,7 @@ public class AdministradorEB implements AdministradorEBR{
 	///////////////////////////////////////////////////////////////////////////////////
 	public void modificarAdministrador(String nick,String nombre, String apellido,
 			String email, String password, Date fechaNac, String sexo,
-			Integer celular) {
+			String celular) {
 				//obtengo el usuario
 				if(!nick.isEmpty())
 				{
@@ -73,7 +74,7 @@ public class AdministradorEB implements AdministradorEBR{
 					if(fechaNac != null){ u.setFechaNac(fechaNac);}
 					if(!apellido.isEmpty()){u.setApellido(apellido);}
 					if(!sexo.isEmpty()){u.setSexo(sexo);}
-					if(celular != 0){u.setCelular(celular);}
+					u.setCelular(celular);
 					
 					dataService.update(u);
 					

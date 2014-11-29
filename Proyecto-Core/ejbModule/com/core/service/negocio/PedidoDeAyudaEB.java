@@ -39,7 +39,7 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 		pedAyuda.setCoordenadasY(coordenadasY);
 		pedAyuda.setDescripcion(descripcion);
 		pedAyuda.setFechaPublicacion(fechaPublicacion);
-		
+		pedAyuda.setBajaLogica(false);
 		ID = pedidoayudaDAO.crearPedidoDeAyuda(pedAyuda);
 		return ID;
 		}

@@ -58,6 +58,15 @@ public class Usuario extends AbstractEntity implements Serializable {
 	@Column(name= "fecha", nullable= false)
 	private Date fechaNac;
 	
+	private boolean bajaLogica;
+
+	public boolean isBajaLogica() {
+		return bajaLogica;
+	}
+
+	public void setBajaLogica(boolean bajaLogica) {
+		this.bajaLogica = bajaLogica;
+	}
 	
 	// GETTERS
 	public Long getId(){

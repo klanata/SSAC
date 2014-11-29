@@ -73,11 +73,20 @@ public class Administrador  extends AbstractEntity implements Serializable{
 	private String sexo = "";
 	
 	
-	private Integer celular;
+	private String celular;
 	
+	private boolean bajaLogica;
 	
 		
 	
+
+	public boolean getBajaLogica() {
+		return bajaLogica;
+	}
+
+	public void setBajaLogica(boolean bajaLogica) {
+		this.bajaLogica = bajaLogica;
+	}
 
 	public Long getId() {
 		return id;
@@ -143,11 +152,11 @@ public class Administrador  extends AbstractEntity implements Serializable{
 		this.sexo = sexo;
 	}
 
-	public Integer getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 
-	public void setCelular(Integer celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 
