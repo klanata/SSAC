@@ -9,7 +9,7 @@ import com.core.data.entites.PedidoDeAyuda;
 public interface PedidoDeAyudaEBR {
 	
 	
-	public Long crearPedido(Long idCatastrofe, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	public Long crearPedido(Long idCatastrofe, String descripcion, Double coordenadasX, Double coordenadasY,
 			Date fechaPublicacion) throws Exception;
 	public List<PedidoDeAyuda> listarTodosLosPedidos();
 	

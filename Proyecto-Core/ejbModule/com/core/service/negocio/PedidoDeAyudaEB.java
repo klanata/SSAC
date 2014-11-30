@@ -28,7 +28,7 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 	
 
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public Long crearPedido(Long idCatastrofe, String descripcion, BigDecimal coordenadasX, BigDecimal coordenadasY,
+	public Long crearPedido(Long idCatastrofe, String descripcion, Double coordenadasX, Double coordenadasY,
 			Date fechaPublicacion) throws Exception{
 		
 		PedidoDeAyuda pedAyuda = new PedidoDeAyuda();
@@ -39,7 +39,7 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 		pedAyuda.setCoordenadasY(coordenadasY);
 		pedAyuda.setDescripcion(descripcion);
 		pedAyuda.setFechaPublicacion(fechaPublicacion);
-		
+		pedAyuda.setBajaLogica(false);
 		ID = pedidoayudaDAO.crearPedidoDeAyuda(pedAyuda);
 		return ID;
 		}

@@ -11,6 +11,7 @@ public interface PlanDeRiesgoDAO extends JPAService {
 	
 	public PlanDeRiesgo obtenerPlanDeRiesgoPorID (Long id);
 	public Long crearPlanDeRiesgo(PlanDeRiesgo planRiesgo) throws Exception;
+	public PlanDeRiesgo obtenerPlanDeRiesgo(String rutaArchivo);
 	
 	
 

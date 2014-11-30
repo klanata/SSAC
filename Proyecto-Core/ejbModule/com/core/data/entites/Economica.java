@@ -13,6 +13,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @Entity
+
+@SequenceGenerator(name = "economica_sequence",
+sequenceName = "economica_id_seq",
+initialValue=1,
+allocationSize=1)
+
 @NamedQueries({
 	
 @NamedQuery(name="Economica.BuscarDonacion.DeOng", 
@@ -31,7 +37,7 @@ public class Economica extends AbstractEntity implements Serializable {
 
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "economica_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

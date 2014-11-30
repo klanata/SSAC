@@ -30,7 +30,7 @@ public class RescatistaBean {
 	private String password = "";
 	private Date fechaNac= null;
 	private String sexo;
-	private Integer celular = new Integer(0);
+	private String celular = "";
 	
 	public String getNombre() {
 		return nombre;
@@ -74,10 +74,10 @@ public class RescatistaBean {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public Integer getCelular() {
+	public String getCelular() {
 		return celular;
 	}
-	public void setCelular(Integer celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 	public String registrarRescatista(){				

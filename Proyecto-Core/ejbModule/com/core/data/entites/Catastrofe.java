@@ -15,6 +15,10 @@ import cross_cuting.enums.*;
  */
 @Entity
 
+@SequenceGenerator(name = "catastrofe_sequence",
+sequenceName = "catastrofe_id_seq",
+initialValue=1,
+allocationSize=1)
 @NamedQueries({
 	
 @NamedQuery(name="Catastrofe.BuscarCatastrofe.NombreEvento", 
@@ -46,8 +50,8 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name= "id", nullable= false, unique = true)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE , generator = "catastrofe_sequence")
+	@Column(name= "id", nullable= false)
 	private long id;
 	
 	@Column(unique=true, nullable=false)
@@ -89,6 +93,15 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@OneToOne
 	private PlanDeRiesgo planDeRiesgo ;
 	
+	private boolean bajaLogica;
+	
+	public boolean getBajaLogica() {
+		return bajaLogica;
+	}
+
+	public void setBajaLogica(boolean bajaLogica) {
+		this.bajaLogica = bajaLogica;
+	}
 	
 //	------------------ Constructors  --------------------------------
 	
@@ -108,6 +121,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.planDeRiesgo = null;	
 		this.pedidosDeAyuda = new HashSet<PedidoDeAyuda>();
 		this.tipoCatastrofe= TipoCatastrofe.climaticas;
+		this.bajaLogica = false;
 	}		
 	
 	

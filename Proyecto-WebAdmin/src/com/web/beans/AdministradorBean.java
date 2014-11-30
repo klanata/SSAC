@@ -41,7 +41,7 @@ public class AdministradorBean implements Serializable{
 	private String password = "Ingrese Password";
 	private Date fechaNac= null;
 	private String sexo = "";
-	private Integer celular = new Integer(0);
+	private String celular ;
 	
 	private boolean logeado = false;
 
@@ -98,10 +98,10 @@ public class AdministradorBean implements Serializable{
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public Integer getCelular() {
+	public String getCelular() {
 		return celular;
 	}
-	public void setCelular(Integer celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 	public String registrarAdministrador(){				

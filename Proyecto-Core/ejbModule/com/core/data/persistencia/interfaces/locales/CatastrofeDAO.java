@@ -20,5 +20,7 @@ public interface CatastrofeDAO extends JPAService{
 	public Catastrofe buscarCatastrofePorId(Long id) throws Exception;
 
 	public List<Catastrofe> listarCatastrofes() throws Exception;
+	
+	
 
 }

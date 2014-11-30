@@ -11,6 +11,10 @@ import javax.persistence.*;
  */
 
 @Entity
+@SequenceGenerator(name = "usuario_sequence",
+sequenceName = "usuario_id_seq",
+initialValue=1,
+allocationSize=1)
 @NamedQueries({
 	
 @NamedQuery(name="Usuario.BuscarPersona", 
@@ -35,7 +39,7 @@ public class Usuario extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator ="usuario_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 		
@@ -54,6 +58,15 @@ public class Usuario extends AbstractEntity implements Serializable {
 	@Column(name= "fecha", nullable= false)
 	private Date fechaNac;
 	
+	private boolean bajaLogica;
+
+	public boolean isBajaLogica() {
+		return bajaLogica;
+	}
+
+	public void setBajaLogica(boolean bajaLogica) {
+		this.bajaLogica = bajaLogica;
+	}
 	
 	// GETTERS
 	public Long getId(){

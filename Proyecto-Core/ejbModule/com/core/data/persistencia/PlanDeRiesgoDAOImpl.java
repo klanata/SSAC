@@ -6,6 +6,9 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import com.core.data.entites.Administrador;
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
@@ -67,6 +70,25 @@ public class PlanDeRiesgoDAOImpl extends AbstractService   implements  PlanDeRie
 		return id;
 	}
 
+
+	@Override
+	public PlanDeRiesgo obtenerPlanDeRiesgo(String rutaArchivo) {
+		
+		PlanDeRiesgo p = null;
+		try{
+			Query consulta = this.em.createNamedQuery("PlanDeRiesgo.BuscarPlanDeRiesgoArchivo");
+			consulta.setParameter("rutaArchivo", rutaArchivo);							
+			if (!consulta.getResultList().isEmpty()){
+		  		p = (PlanDeRiesgo)consulta.getResultList().get(0);
+			}
+		}catch (Exception excep){			
+			throw excep;
+		} 
+		return p;
+	}
+
+
+	
 
 
 }

@@ -1,5 +1,6 @@
 package com.core.service.negocio;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -53,6 +54,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setServicios(servicios);
 		c.setOngs(ongs);
 		c.setPlanDeRiesgo(planDeRiesgo);
+		c.setBajaLogica(false);
 				
 		id = catastrofeDAO.insert(c);
 		return id;											
@@ -134,6 +136,42 @@ public class CatastrofeEB implements CatastrofeEBR{
 		{
 			System.out.println("La imagen ya estaba en la catastrofe.");
 		}	
+		
+		
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public Collection<Ong> listaOngDeCatastrofe(Long id) {
+		
+		Collection<Ong> lista = null;
+		
+		try {
+			Catastrofe c = this.buscaCatastrofePorId(id);
+			
+			lista = c.getOngs();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
+	@Override
+	public void eliminarOngDeCatastrofe(Long idCatastrofe, Long idOng) {
+		
+		
+		Catastrofe c= dataService.find(Catastrofe.class, idCatastrofe);
+		Ong o = dataService.find(Ong.class, idOng);
+		
+		Set<Ong> lista = c.getOngs();
+		lista.remove(o);
+		
+		c.setOngs(lista);
+		dataService.update(c);
+		
 		
 		
 	}

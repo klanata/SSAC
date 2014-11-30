@@ -1,5 +1,6 @@
 package com.core.service.negocio.remote;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -27,5 +28,9 @@ public interface CatastrofeEBR {
 	public void agregarOngALaCatastrofe(Long idCatastrofe, Long idOng) throws Exception;
 	
 	public void agregarImagenALaCatastrofe(Long idCatastrofe, String nombImagen) throws Exception;
+	
+	public Collection<Ong> listaOngDeCatastrofe(Long id);
+	
+	public void eliminarOngDeCatastrofe(Long idCatastrofe, Long idOng);
 	
 }

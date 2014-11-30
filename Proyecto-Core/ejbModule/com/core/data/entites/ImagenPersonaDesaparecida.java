@@ -11,6 +11,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @Entity
+@SequenceGenerator(name = "imagenPersonaDesa_sequence",
+sequenceName = "imagenPersonaDesa_id_seq",
+initialValue=1,
+allocationSize=1)
 @XmlRootElement
 public class ImagenPersonaDesaparecida extends Imagen implements Serializable {
 
@@ -21,7 +25,7 @@ public class ImagenPersonaDesaparecida extends Imagen implements Serializable {
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "imagenPersonaDesa_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

@@ -9,6 +9,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Entity implementation class for Entity: ImagenCatastrofe
  *
  */
+@Entity
+
+@SequenceGenerator(name = "imagenCatastrofe_sequence",
+sequenceName = "imagenCatastrofe_id_seq",
+initialValue=1,
+allocationSize=1)
+
+
 
 @NamedQueries({
 	
@@ -37,7 +45,7 @@ query = "SELECT img.id "+
 
 
 
-@Entity
+
 @XmlRootElement
 public class ImagenCatastrofe extends Imagen implements Serializable{
 
@@ -45,7 +53,7 @@ public class ImagenCatastrofe extends Imagen implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "imagenCatastrofe_sequence")
 	@Column(name= "id", nullable= false)
 	private Long id;
 	

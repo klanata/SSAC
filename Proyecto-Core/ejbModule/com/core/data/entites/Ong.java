@@ -12,6 +12,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
+@SequenceGenerator(name = "ong_sequence",
+sequenceName = "ong_id_seq",
+initialValue=1,
+allocationSize=1)
 @NamedQueries({
 	
 @NamedQuery(name="Ong.BuscarOngNombre", 
@@ -32,8 +36,8 @@ public class Ong  extends AbstractEntity implements Serializable{
 		super();
 	}
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name= "id", nullable= false, unique = true)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "ong_sequence")
+	@Column(name= "id", nullable= false)
 	private Long id;
 	
 	public  Long getId() {
@@ -73,6 +77,19 @@ public class Ong  extends AbstractEntity implements Serializable{
 	@OneToMany(cascade=CascadeType.ALL, mappedBy = "ong")
 	private Set<DeServicios> donacionesDeServicios = new HashSet<DeServicios>(0);
 
+	
+	private boolean bajaLogica;
+
+	public boolean getBajaLogica() {
+		return bajaLogica;
+	}
+
+	public void setBajaLogica(boolean bajaLogica) {
+		this.bajaLogica = bajaLogica;
+	}
+
+	
+	
 	public String getNombre() {
 		return nombre;
 	}

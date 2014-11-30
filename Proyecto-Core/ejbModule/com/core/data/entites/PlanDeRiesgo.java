@@ -10,11 +10,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @Entity
+
+@NamedQueries({
+	
 @NamedQuery(name="PlanDeRiesgo.BuscarPlanDeRiesgo", 
 query = "SELECT p "+
 		"FROM PlanDeRiesgo p " +
-		"WHERE p.id = :id")
+		"WHERE p.id = :id"),
+@NamedQuery(name="PlanDeRiesgo.BuscarPlanDeRiesgoArchivo", 
+query = "SELECT p "+
+		"FROM PlanDeRiesgo p " +
+		"WHERE p.rutaArchivo = :archivo")
 
+})
 
 
 @XmlRootElement
