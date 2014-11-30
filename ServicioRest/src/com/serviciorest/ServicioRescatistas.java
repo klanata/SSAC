@@ -24,81 +24,83 @@ import com.serviciorest.modelo.MiBoolean;
 
 import cross_cuting.enums.PlanesPendientesRescatistaDTO;
 
-@Path("rescatista") 
+@Path("rescatista")
 @Stateless
 @LocalBean
 public class ServicioRescatistas {
 
-private RescatistaEBR manager;
-	
+	private RescatistaEBR manager;
+
 	private Context context;
-	
+
 	private String conexion = "ejb:Proyecto-EAR/Proyecto-Core//RescatistaEB!com.core.service.negocio.remote.RescatistaEBR";
-	
-		
-	///////////////////////////////////////////////////////////////////////////
+
+	// /////////////////////////////////////////////////////////////////////////
 	@GET
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("login")
-	public MiBoolean login(@QueryParam("nick") String nick, @QueryParam("pass") String pass) throws Exception
-	{
+	public MiBoolean login(@QueryParam("nick") String nick,
+			@QueryParam("pass") String pass) throws Exception {
 		manager = null;
 		context = null;
-		
+
 		MiBoolean existeUsuario = new MiBoolean();
-		
+
 		try {
-            // 1. Obtaining Context
-            context = ClienteUtility.getInitialContext();
-            // 2. Generate JNDI Lookup name
-            //String lookupName = getLookupName();
-            // 3. Lookup and cast
-            manager = (RescatistaEBR) context.lookup(conexion);
-            //Descomentar lo siguiente cuando esté implementado el método en core:
-            boolean b = manager.buscarUsuario(nick, pass);
-            existeUsuario.setBooleanValue(b);
-           
- 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			// 1. Obtaining Context
+			context = ClienteUtility.getInitialContext();
+			// 2. Generate JNDI Lookup name
+			// String lookupName = getLookupName();
+			// 3. Lookup and cast
+			manager = (RescatistaEBR) context.lookup(conexion);
+			// Descomentar lo siguiente cuando esté implementado el método en
+			// core:
+			boolean b = manager.buscarUsuario(nick, pass);
+			existeUsuario.setBooleanValue(b);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return existeUsuario;
 	}
-	
-	///////////////////////////////////////////////////////////////////////////
+
+	// /////////////////////////////////////////////////////////////////////////
 	@GET
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("verPendientes")
-	public List<PlanesPendientesRescatistaDTO> getPlanesPendientes(@QueryParam("nick") String nick) throws Exception
-	{
+	public List<PlanesPendientesRescatistaDTO> getPlanesPendientes(
+			@QueryParam("nick") String nick) throws Exception {
 		manager = null;
 		context = null;
-		
+
 		List<PlanesPendientesRescatistaDTO> planesPendientes = new ArrayList<PlanesPendientesRescatistaDTO>();
-		
+
 		try {
-            // 1. Obtaining Context
-            context = ClienteUtility.getInitialContext();
-            // 2. Generate JNDI Lookup name
-            //String lookupName = getLookupName();
-            // 3. Lookup and cast
-            manager = (RescatistaEBR) context.lookup(conexion);
-            //Descomentar lo siguiente cuando esté implementado el método en core:
-            //path = manager.getRutaPlan(nombreArchivo);
-           
-           Long idCatastrofe = new Long(1);//Borrar cuando se modifique el método.
-           //planesPendientes= (List<PlanesPendientesRescatistaDTO>) manager.listarPendientesRescatistaPorCatastrofe(nick);//cambiar cuando se modifique el método.
-           
- 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		
-		/*Éstos son datos de prueba*/
+			// 1. Obtaining Context
+			context = ClienteUtility.getInitialContext();
+			// 2. Generate JNDI Lookup name
+			// String lookupName = getLookupName();
+			// 3. Lookup and cast
+			manager = (RescatistaEBR) context.lookup(conexion);
+			// Descomentar lo siguiente cuando esté implementado el método en
+			// core:
+			// path = manager.getRutaPlan(nombreArchivo);
+
+			Long idCatastrofe = new Long(1);// Borrar cuando se modifique el
+											// método.
+			// planesPendientes= (List<PlanesPendientesRescatistaDTO>)
+			// manager.listarPendientesRescatistaPorCatastrofe(nick);//cambiar
+			// cuando se modifique el método.
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		/* Éstos son datos de prueba */
 		List<PlanesPendientesRescatistaDTO> listaPlanesAux = new ArrayList<PlanesPendientesRescatistaDTO>();
-		
+
 		PlanesPendientesRescatistaDTO a = new PlanesPendientesRescatistaDTO();
 		a.setIdCatastrofe(new Long(1));
 		a.setIdEstadoRescatista(new Long(1));
@@ -106,7 +108,7 @@ private RescatistaEBR manager;
 		a.setEstadoTarea(true);
 		a.setUrlArchivo("http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf");
 		listaPlanesAux.add(a);
-		
+
 		PlanesPendientesRescatistaDTO b = new PlanesPendientesRescatistaDTO();
 		b.setIdCatastrofe(new Long(2));
 		b.setIdEstadoRescatista(new Long(2));
@@ -114,7 +116,7 @@ private RescatistaEBR manager;
 		b.setEstadoTarea(true);
 		b.setUrlArchivo("http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf");
 		listaPlanesAux.add(b);
-		
+
 		PlanesPendientesRescatistaDTO c = new PlanesPendientesRescatistaDTO();
 		c.setIdCatastrofe(new Long(3));
 		c.setIdEstadoRescatista(new Long(3));
@@ -122,57 +124,85 @@ private RescatistaEBR manager;
 		c.setEstadoTarea(true);
 		c.setUrlArchivo("http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf");
 		listaPlanesAux.add(c);
-		
+
 		return listaPlanesAux;
-		
-		//return planesPendientes;
+
+		// return planesPendientes;
 	}
-	
-	///////////////////////////////////////////////////////////////////////////
+
+	// /////////////////////////////////////////////////////////////////////////
 	@GET
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("plan")
-	public String getPlan(@QueryParam("nombreArchivoPlan") String nombreArchivo) throws Exception
-	{
-			
+	public String getPlan(@QueryParam("nombreArchivoPlan") String nombreArchivo)
+			throws Exception {
+
 		String path = "";
-		
+
 		try {
-            
-           path = "/ServicioRest/WebContent/WEB-INF/content/PropuestaProyecto20140831v03.pdf";
-           //http://localhost:8080/ServicioRest/WebContent/WEB-INF/ViewerJS#../content/PropuestaProyecto20140831v03.pdf
-           
- 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+			path = "/ServicioRest/WebContent/WEB-INF/content/PropuestaProyecto20140831v03.pdf";
+			// http://localhost:8080/ServicioRest/WebContent/WEB-INF/ViewerJS#../content/PropuestaProyecto20140831v03.pdf
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return path;
 	}
-	
-    @GET
-    @Path("/pdf")
-    @Produces("application/pdf")
-    public Response getPDF() {
 
-    	String PDF_FILE = "C:\\wamp\\www\\RescatistasApp\\www\\PropuestaProyecto20140831v03.pdf";
-        File file = new File(PDF_FILE);
+	@GET
+	@Path("/pdf")
+	@Produces("application/pdf")
+	public Response getPDF() {
 
-        ResponseBuilder response = Response.ok((Object) file);
-        response.header("Content-Disposition", "attachment; filename=\"test_PDF_file.pdf\"");
-        return response.build();
+		String PDF_FILE = "C:\\wamp\\www\\RescatistasApp\\www\\PropuestaProyecto20140831v03.pdf";
+		File file = new File(PDF_FILE);
 
-    }
-    
-    @GET
-    @Path("/pdfPrueba")
-    @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response getFile() {
-      File file = new File("C:\\wamp\\www\\RescatistasApp\\www\\PropuestaProyecto20140831v03.pdf");
-      return (Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
-          .header("Content-Disposition", "attachment; filename=\"" + file.getName() + "\"" ) //optional
-          .build());
-    }
+		ResponseBuilder response = Response.ok((Object) file);
+		response.header("Content-Disposition",
+				"attachment; filename=\"test_PDF_file.pdf\"");
+		return response.build();
 
-	
+	}
+
+	@GET
+	@Path("/pdfPrueba")
+	@Produces(MediaType.APPLICATION_OCTET_STREAM)
+	public Response getFile() {
+		File file = new File(
+				"C:\\wamp\\www\\RescatistasApp\\www\\PropuestaProyecto20140831v03.pdf");
+		return (Response.ok(file, MediaType.APPLICATION_OCTET_STREAM).header(
+				"Content-Disposition",
+				"attachment; filename=\"" + file.getName() + "\"") // optional
+				.build());
+	}
+
+	// /////////////////////////////////////////////////////////////////////////
+	@GET
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Path("finalizarPlan")
+	public void finalizarPlan(@QueryParam("idEstadoRescatista") String idEstadoRescatista) throws Exception {
+		manager = null;
+		context = null;
+
+		
+		EstadoRescatista estadoRescatista = new EstadoRescatista();
+		estadoRescatista.setId(new Long(idEstadoRescatista));
+
+		try {
+			// 1. Obtaining Context
+			context = ClienteUtility.getInitialContext();
+			// 2. Generate JNDI Lookup name
+			// String lookupName = getLookupName();
+			// 3. Lookup and cast
+			manager = (RescatistaEBR) context.lookup(conexion);
+			manager.RealizadoPendiente(estadoRescatista);
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
