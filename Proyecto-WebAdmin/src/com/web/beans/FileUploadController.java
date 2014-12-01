@@ -69,7 +69,7 @@ public class FileUploadController {
 	        	Long idCatastrofe = new Long(idEventoString);
 	        	
 	        	String jboss = System.getenv("JBOSS_HOME");
-	        	int x = new Double(Math.random() * 10000).intValue();        	        	        	
+	        	int x = new Double(Math.random() * 1000000).intValue();        	        	        	
 	        	
 	        	File outputFilePath = new File(x + fileName);		
 	    		String fileString = outputFilePath.toString();
