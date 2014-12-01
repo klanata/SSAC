@@ -65,7 +65,9 @@ public class DeBienesBean implements Serializable{
 		} catch (NamingException e) {
         e.printStackTrace();
 		}
-		try{    		   	    	    		
+		try{    	
+			Date fechaRealizada = new Date();
+    		fechaRealizada.getTime();
 	
 		manager.crearDonacionDeBienes(idOng, usuario, fechaRealizada, nombreItem, cantidad);    	
 		}catch (Exception excep){
