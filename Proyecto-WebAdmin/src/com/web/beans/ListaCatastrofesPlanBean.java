@@ -1,22 +1,21 @@
 package com.web.beans;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
-
-import javax.faces.application.ConfigurableNavigationHandler;
-import javax.faces.application.FacesMessage;
 
 import clienteutility.ClienteUtility;
 
@@ -24,13 +23,14 @@ import com.core.data.entites.Catastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
 
-@ManagedBean(name="listaCatastrofesBean")
+@ManagedBean(name="listaCatastrofesPlanBean")
 @RequestScoped
-public class ListaCatastrofesBean implements Serializable{
+public class ListaCatastrofesPlanBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<CatastrofeBean> catastrofesBean = new ArrayList<CatastrofeBean>();    
+	private ArrayList<CatastrofeBean> catastrofesBean = new ArrayList<CatastrofeBean>();
+	
     private List<CatastrofeBean> filtroCatastrofeBean;
     
     private CatastrofeBean selectedCatastrofe;    
@@ -39,7 +39,7 @@ public class ListaCatastrofesBean implements Serializable{
     private CatastrofeBean catastrofeBean;
     
     
-	@PostConstruct
+    @PostConstruct
     public void init() {
     	
     	CatastrofeEBR manager = null;	
@@ -77,8 +77,7 @@ public class ListaCatastrofesBean implements Serializable{
 				id = catastrofe.getId();
 				nombreEvento = catastrofe.getNombreEvento();
 				descripcion = catastrofe.getDescripcion();												
-				logo = catastrofe.getLogo();																					
-				//System.out.println(logo);
+				logo = catastrofe.getLogo();																								
 				coordenadasX = catastrofe.getCoordenadasX();
 				coordenadasY = catastrofe.getCoordenadasY();
 				activa = catastrofe.getActiva();
@@ -88,48 +87,48 @@ public class ListaCatastrofesBean implements Serializable{
 			
     	}catch (Exception excep){
     		System.out.println("Excepción al listar las catástrofes: " + excep.getMessage());      		 			       	           	
-    	}  					
-				
-    }    
+    	}
+    	
+    	
+    }
+    
     
     //	------------------ Getter and setter methods ---------------------
-        
-    public ArrayList<CatastrofeBean> getCatastrofesBean() {
+
+    
+	public ArrayList<CatastrofeBean> getCatastrofesBean() {
 		return catastrofesBean;
 	}
-	
+
 	public void setCatastrofesBean(ArrayList<CatastrofeBean> catastrofesBean) {
 		this.catastrofesBean = catastrofesBean;
 	}
-	
+
 	public List<CatastrofeBean> getFiltroCatastrofeBean() {
 		return filtroCatastrofeBean;
 	}
-	
+
 	public void setFiltroCatastrofeBean(List<CatastrofeBean> filtroCatastrofeBean) {
 		this.filtroCatastrofeBean = filtroCatastrofeBean;
 	}
-	
-	public CatastrofeBean getCatastrofeBean() {
-		return catastrofeBean;
-	}
-	
-	public void setCatastrofeBean(CatastrofeBean catastrofeBean) {
-		this.catastrofeBean = catastrofeBean;
-	}
-    
 
 	public CatastrofeBean getSelectedCatastrofe() {
 		return selectedCatastrofe;
 	}
 
-
 	public void setSelectedCatastrofe(CatastrofeBean selectedCatastrofe) {
 		this.selectedCatastrofe = selectedCatastrofe;
 	}
-    		
+
+	public CatastrofeBean getCatastrofeBean() {
+		return catastrofeBean;
+	}
+
+	public void setCatastrofeBean(CatastrofeBean catastrofeBean) {
+		this.catastrofeBean = catastrofeBean;
+	}
 	
-	//	------------------ Operaciones ---------------------
+//	------------------ Operaciones ---------------------
 	
 	public void onRowSelect(SelectEvent event) {
 		
@@ -150,5 +149,5 @@ public class ListaCatastrofesBean implements Serializable{
         FacesMessage msg = new FacesMessage("Catastrofe No Seleccionada");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-	
+
 }

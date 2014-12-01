@@ -27,7 +27,7 @@ import com.core.service.negocio.remote.CatastrofeEBR;
 @RequestScoped
 public class ListaCatastrofesImgBean implements Serializable{
 	
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<CatastrofeBean> catastrofesBean = new ArrayList<CatastrofeBean>();
 	
@@ -110,7 +110,7 @@ private static final long serialVersionUID = 1L;
 	public void setFiltroCatastrofeBean(List<CatastrofeBean> filtroCatastrofeBean) {
 		this.filtroCatastrofeBean = filtroCatastrofeBean;
 	}
-
+	
 	public CatastrofeBean getSelectedCatastrofe() {
 		return selectedCatastrofe;
 	}
@@ -118,7 +118,7 @@ private static final long serialVersionUID = 1L;
 	public void setSelectedCatastrofe(CatastrofeBean selectedCatastrofe) {
 		this.selectedCatastrofe = selectedCatastrofe;
 	}
-
+	
 	public CatastrofeBean getCatastrofeBean() {
 		return catastrofeBean;
 	}
@@ -136,10 +136,10 @@ private static final long serialVersionUID = 1L;
 		Long id = ((CatastrofeBean) event.getObject()).getId();
 		System.out.println("id de la catastrofe seleccionada: " + id);
 		String idEvento = id.toString();
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", idEvento); 		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("asignarImagenCatastrofe?faces-redirect=true");						 														
+		handler.performNavigation("modificarImagenCatastrofe?faces-redirect=true");						 														
 		
 		//ConfigurableNavigationHandler.performNavigation("asignarOngCatastrofe?faces-redirect=true");
 		//return "asignarOngCatastrofe?faces-redirect=true";
@@ -147,7 +147,7 @@ private static final long serialVersionUID = 1L;
     }
  
     public void onRowUnselect(UnselectEvent event) {
-        FacesMessage msg = new FacesMessage("Catastrofe No Seleccionada");
+        FacesMessage msg = new FacesMessage("Catástrofe No Seleccionada");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     

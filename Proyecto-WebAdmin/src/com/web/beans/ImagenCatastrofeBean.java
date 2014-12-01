@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import com.core.data.entites.Catastrofe;
-
 
 @ManagedBean(name="imagenCatastrofeBean")
 @SessionScoped
@@ -15,8 +13,7 @@ public class ImagenCatastrofeBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private String path;	
-	private Catastrofe catastrofe;
+	private String path;		
 		
 	
 	//	------------------ Constructors  --------------------------------
@@ -24,11 +21,10 @@ public class ImagenCatastrofeBean implements Serializable{
 	
 	public ImagenCatastrofeBean() {	
 	}	
-	public ImagenCatastrofeBean(Long id, String path, Catastrofe catastrofe) {
+	public ImagenCatastrofeBean(Long id, String path) {
 		super();
 		this.id = id;
-		this.path = path;
-		this.setCatastrofe(catastrofe);
+		this.path = path;		
 		
 	}
 	
@@ -47,14 +43,6 @@ public class ImagenCatastrofeBean implements Serializable{
 	public void setPath(String path) {
 		this.path = path;
 	}
-	public Catastrofe getCatastrofe() {
-		return catastrofe;
-	}
-	public void setCatastrofe(Catastrofe catastrofe) {
-		this.catastrofe = catastrofe;
-	}
 	
 	
-		
-
 }

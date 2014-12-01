@@ -26,7 +26,7 @@ public class FileUploadController {
 	
 	
 	public void upload(FileUploadEvent event) {  
-        FacesMessage msg = new FacesMessage("Las imágenes fueron cargadas con exito.");  
+        FacesMessage msg = new FacesMessage("Las imágenes fueron ingresadas con exito.");  
         FacesContext.getCurrentInstance().addMessage(null, msg);              
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
@@ -38,13 +38,13 @@ public class FileUploadController {
 	
 	public void copyFile(String fileName, InputStream in) {	
 		
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeONG");
-		System.out.println("El id del evento: " + idEventoString);		
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeImg");
+		System.out.println("El id del evento catastrofe imagen: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
+			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");
 		}
 		else	
 		{		
@@ -69,7 +69,7 @@ public class FileUploadController {
 	        	Long idCatastrofe = new Long(idEventoString);
 	        	
 	        	String jboss = System.getenv("JBOSS_HOME");
-	        	int x = new Double(Math.random() * 100).intValue();        	        	        	
+	        	int x = new Double(Math.random() * 10000).intValue();        	        	        	
 	        	
 	        	File outputFilePath = new File(x + fileName);		
 	    		String fileString = outputFilePath.toString();
@@ -97,7 +97,17 @@ public class FileUploadController {
 	        } catch (Exception e) {
 	             System.out.println(e.getMessage());
 	        }
+	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");	
+	        
 		}
+	}
+	
+	public void cancelar(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");		
 	}
 	
 
