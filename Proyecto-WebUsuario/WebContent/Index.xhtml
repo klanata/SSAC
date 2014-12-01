@@ -7,6 +7,8 @@
 
 <h:head>
 		<title>SSAC</title>
+		
+			
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -43,7 +45,7 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</h:head>
 	<body class="homepage">
-
+	<p:inputTextarea id="descripcion" label="descripcion" value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>
 		<!-- Header -->
 			<div id="header">
 						
@@ -106,16 +108,16 @@
  <div class="ui-grid-col-4">
 
       <f:view>
-		<h:form id="pedidoDeAyuda" >
-			<h:messages id="messages" for="pedidoDeAyuda"></h:messages>
+		<h:form>
+			
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 			<h:panelGrid>		
 			
 				<p>		
-				<h4>Descripción:</h4>	
-					<h:panelGrid columns="2" border="1">																																		
+				Descripción:	
+																																						
 					<p:inputTextarea id="descripcion" label="descripcion" value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>	
-				</h:panelGrid>	
+				
 				</p>
 				<br/>
 				 <div class='errorbox-good'>

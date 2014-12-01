@@ -36,13 +36,33 @@ public class AdministradorBean implements Serializable{
 	private String nombre = "";
 	private String apellido = "";
 	
-	private String nick = "Ingrese Nick";
+	private String nick = "";
 	private String email = "";
-	private String password = "Ingrese Password";
+	private String password = "";
 	private Date fechaNac= null;
 	private String sexo = "";
 	private String celular ;
+	private Long id;
 	
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public boolean isLogeado() {
+		return logeado;
+	}
+
+
+	public void setLogeado(boolean logeado) {
+		this.logeado = logeado;
+	}
+
 	private boolean logeado = false;
 
 	  public boolean estaLogeado() {
@@ -134,6 +154,8 @@ public class AdministradorBean implements Serializable{
     			FacesContext contexto = FacesContext.getCurrentInstance(); 
     	        FacesMessage messages = new FacesMessage("Ya existe un Administrador con el mismo nick registrada en el sistema."); 
     	        contexto.addMessage("registroAdministrador", messages);
+    	        
+    	        requestContext.addCallbackParam("view", "altaAdministrador.xhtml");
     		}
     		else {    	
     			
@@ -145,7 +167,7 @@ public class AdministradorBean implements Serializable{
     			this.nombre = "";   		
         		this.apellido = "";
         		this.nick = "";
-        		this.celular = null;
+        		this.celular = "";
         		this.email = "";
         		this.password = "";
         		this.sexo= "";
@@ -214,7 +236,7 @@ public class AdministradorBean implements Serializable{
 	      context.addCallbackParam("view", "index.xhtml");
 	      }
 	  }
-
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	 public void logout() {
 		   
 		 
@@ -224,7 +246,12 @@ public class AdministradorBean implements Serializable{
 		  }
 
 	
-	////
+	 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	 
+	 
+	 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private String MD5(String input) {
 
 		String md5 = null;
@@ -248,6 +275,23 @@ public class AdministradorBean implements Serializable{
 		}
 
 		return md5;
+	}
+
+	public AdministradorBean(){}
+	
+	public AdministradorBean(Long id,String nombre, String apellido, String nick,
+			String email, String password, Date fechaNac, String sexo,
+			String celular) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.nick = nick;
+		this.email = email;
+		this.password = password;
+		this.fechaNac = fechaNac;
+		this.sexo = sexo;
+		this.celular = celular;
 	}
   
 

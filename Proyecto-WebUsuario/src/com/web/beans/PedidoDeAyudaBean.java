@@ -19,9 +19,9 @@ public class PedidoDeAyudaBean implements Serializable {
 
 	private String descripcion = "";
 	
-	private BigDecimal coordenadasX ;
+	private double coordenadasX ;
 		
-	private BigDecimal coordenadasY ;
+	private double coordenadasY ;
 	
 	private Date fechaPublicacion ;
 	public String getDescripcion() {
@@ -32,19 +32,19 @@ public class PedidoDeAyudaBean implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public BigDecimal getCoordenadasX() {
+	public double getCoordenadasX() {
 		return coordenadasX;
 	}
 
-	public void setCoordenadasX(BigDecimal coordenadasX) {
+	public void setCoordenadasX(double coordenadasX) {
 		this.coordenadasX = coordenadasX;
 	}
 
-	public BigDecimal getCoordenadasY() {
+	public double getCoordenadasY() {
 		return coordenadasY;
 	}
 
-	public void setCoordenadasY(BigDecimal coordenadasY) {
+	public void setCoordenadasY(double coordenadasY) {
 		this.coordenadasY = coordenadasY;
 	}
 

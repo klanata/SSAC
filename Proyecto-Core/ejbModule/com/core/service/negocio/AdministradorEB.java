@@ -39,6 +39,7 @@ public class AdministradorEB implements AdministradorEBR{
 		r.setFechaNac(fechaNac);
 		r.setPassword(password);
 		r.setSexo(sexo);
+		r.setNick(nick);
 		r.setBajaLogica(false);
 		Long id = administradorDao.crearAdministrador(r);
 		return id;

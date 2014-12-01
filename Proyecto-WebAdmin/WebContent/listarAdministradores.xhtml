@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Sistema de Soporte ante Catástrofes Naturales</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />
+</h:head> 
+<body id="top"> 
+<div class="wrapper col1">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
+      <p><strong>Vista Web para Administradores</strong></p>
+    </div>
+    <div id="newsletter">      
+      <form action="#" id="loginAdmin">
+        <fieldset>
+          <legend>NewsLetter</legend>
+          <input type="text" value="Name&hellip;"  onfocus="this.value=(this.value=='Name&hellip;')? '' : this.value ;" />
+          <input type="text" value="Email&hellip;"  onfocus="this.value=(this.value=='Email&hellip;')? '' : this.value ;" />
+          <input type="submit" name="news_go" id="news_go" value="Login" />
+        </fieldset>
+      </form>          
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<div class="wrapper col2">
+  <div id="topbar">
+    <div id="topnav">
+      <ul>
+        <li class="active"><a href="index.xhtml">Home</a></li>
+        <li><a href="#">Administrador</a>
+         <ul>
+            <li><a href="altaAdministrador.xhtml">Alta</a></li>
+            <li><a href="bajaAdministrador.xhtml">Baja</a></li>
+            <li><a href="modificacionAdministrador.xhtml">Modificación</a></li>
+          </ul>	
+        </li>
+        <li><a href="#">Rescatista</a>
+        <ul>
+            <li><a href="altaRescatista.xhtml">Alta</a></li>
+            <li><a href="bajaRescatista.xhtml">Baja</a></li>
+            <li><a href="modificacionRescatista.xhtml">Modificación</a></li>
+          </ul>	        
+        </li>
+        <li><a href="#">ONG</a>
+        <ul>
+            <li><a href="altaOng.xhtml">Alta</a></li>
+            <li><a href="bajaOng.xhtml">Baja</a></li>
+            <li><a href="modificacionOng.xhtml">Modificación</a></li>
+          </ul>	        
+        </li>              
+        <li><a href="#">Catástrofe</a>
+          <ul>
+            <li><a href="registrarCatastrofe.xhtml">Registrar Catástrofe</a></li>
+            <li><a href="listaCatastrofesONGs.xhtml">Asignar ONG</a></li>
+            <li><a href="listaCatastrofesImagenes.xhtml">Asignar Imágenes</a></li>
+            <li><a href="asignarPlanRiesgoCatastrofe.xhtml">Asignar Plan Riesgo</a></li>
+            <li><a href="asignarServiciosCatastrofe.xhtml">Asignar Servicios</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Reporte</a>
+        </li>
+      </ul>
+    </div>    
+    <br class="clear" />
+  </div>
+</div>
+<div class="wrapper col3">
+  <div id="intro">
+    <div>
+      <h3>Lista de administradores</h3>
+      <br/>	
+      <f:view>      	
+      	
+      	<h:form id="formAdministradores">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="catastrofesDT" var="administradorBean" widgetVar="administradorTable"
+                 		 emptyMessage="No se han encontrado administrador con ese criterio"                  		  
+                 		 paginator="true" rows="5" 
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selectionMode="single" rowKey="#{administradorBean.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Administrador:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('catastrofesTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    	
+		        
+		        
+        		<p:column headerText="Id" style="width:50px">
+            		<h:outputText value="#{administradorBean.id}" />
+        		</p:column>             		                  		                  		             	
+        		
+        		<p:column headerText="Nick" style="width:200px" >
+            		<h:outputText value="#{administradorBean.nick}" />
+        		</p:column>
+        		
+        		<p:column headerText="Nombre" style="width:350px" >
+            		<h:outputText value="#{administradorBean.nombre}" />            		
+        		</p:column>
+        		
+        		<p:column headerText="Apellido">
+            		<h:outputText value="#{administradorBean.apellido}" />            		
+        		</p:column>
+        		
+                <p:column headerText="Celular">
+            		<h:outputText value="#{administradorBean.celular}" />            		
+        		</p:column>        		        		 
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+      
+      </f:view>         
+    </div>
+    
+    <br class="clear" />
+  </div>
+</div>
+
+
+
+<div class="wrapper col7">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
+    <br class="clear" />
+  </div>
+</div>
+</body> 
+</html>

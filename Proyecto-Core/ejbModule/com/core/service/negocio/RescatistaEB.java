@@ -128,6 +128,7 @@ public class RescatistaEB implements RescatistaEBR {
 		r.setPassword(password);
 		r.setSexo(sexo);
 		r.setBajaLogica(false);
+		r.setNick(nick);
 		Long id = rescatistaService.insert(r);
 		return id;
 	}
