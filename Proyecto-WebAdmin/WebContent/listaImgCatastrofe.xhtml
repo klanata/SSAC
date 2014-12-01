@@ -56,13 +56,13 @@
             <li><a href="bajaOng.xhtml">Baja</a></li>
             <li><a href="modificacionOng.xhtml">Modificación</a></li>
           </ul>	        
-        </li>            
+        </li>       
         <li><a href="#">Servicios</a>
         <ul>
             <li><a href="">Youtube</a></li>
             <li><a href="">RSS</a></li>            
           </ul>	        
-        </li>   
+        </li>        
         <li><a href="#">Catástrofe</a>
           <ul>
             <li><a href="registrarCatastrofe.xhtml">Registrar Catástrofe</a></li>
@@ -82,62 +82,69 @@
 </div>
 <div class="wrapper col3">
   <div id="intro">
-    <div >
-      <h2>Imágenes de la Catástrofe</h2>
-      
-      <f:view>        
+    <div>
+      <h3>Quitar imágenes de la catástrofe</h3>
+      <br/>	     
+      	<f:view>        
       	
-		<h:form columns="2" value="#{imagesView.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+		<h:form columns="2" value="#{listaImgCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
 			
 			<p>			        		        
-            <p:graphicImage value="image/#{imagesView.catastrofeBean.logo}" /> 
+            <p:graphicImage value="image/#{listaImgCatastrofeBean.catastrofeBean.logo}" /> 
             <h:outputText value="" style="border: transparent;"/>	              		         	        	
 			</p>			
 			
 			<p>
 			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
-            <h:outputText value="#{imagesView.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+            <h:outputText value="#{listaImgCatastrofeBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
             </p>			
                
             <p>    
            	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-            <h:outputText value="#{imagesView.catastrofeBean.descripcion}" styleClass="outputLabel"/>
+            <h:outputText value="#{listaImgCatastrofeBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
             </p>
 			<br/>  
                          
         </h:form>
-                									        
+                									                   	      	 
+      	<h:form id="formImgCatastrofe">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="catastrofesImgDT" var="imgCatastrofeBean" value="#{listaImgCatastrofeBean.imgCatastrofesBean}" widgetVar="catastrofesTable"                 		                		 
+                 		 paginator="true" rows="1" paginatorPosition="top" style="width:700px;margin: 0;border: transparent;"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selection="#{listaImgCatastrofeBean.selectedImgsCatastrofe}" rowKey="#{imgCatastrofeBean.id}">
+                 		 
+                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>                 		                                     		                                		                                           	                 						        		       	        		      
+		        
+		        <p:column headerText="Id" style="width:10px">
+            		<h:outputText value="#{imgCatastrofeBean.id}" />
+        		</p:column> 
+		        
+		        <p:column>		        		        	
+            		<p:graphicImage value="image/#{imgCatastrofeBean.path}" />               		         	
+        		</p:column>  
+        		
+        		<f:facet name="footer">
+        			<p:outputPanel style="text-align: left">
+            			<p:commandButton process="catastrofesImgDT" update=":formImgCatastrofe:msgs" value="Quitar imagen" action="#{listaImgCatastrofeBean.quitarImagenes()}" />
+            			<p:commandButton process="catastrofesImgDT" value="Cancelar" action="#{listaImgCatastrofeBean.cancelar()}" />            			
+            		</p:outputPanel>            		
+        		</f:facet>		      	             		        		            		                  		                  		             	        		        	
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+      
       </f:view>         
     </div>
     
-	<div>
-		<f:view> 
-		<h:form>        
-        	<p>
-			<h:outputText value="Imágenes asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
-            </p>
-            
-	        <p:galleria value="#{imagesView.images}" var="imgCatastrofeBean" panelWidth="500" panelHeight="313" showCaption="true">
-			    <p:graphicImage value="image/#{imgCatastrofeBean.path}"  title="#{imgCatastrofeBean.path}"/>
-			</p:galleria>	
-			
-			<br/> 
-			 <p:outputPanel style="text-align: left">
-			 		<p:commandButton value="Agregar" action="#{imagesView.asignarImagen()}"/>         
-	            	<p:commandButton value="Quitar" action="#{imagesView.borrarImagen()}"/>
-	            	<p:commandButton value="Cancelar" action="#{imagesView.cancelar()}" />
-	         </p:outputPanel>	
-	         <br/> 		
-		 </h:form>	 	
-		 	                          
-		</f:view>       
-  	</div>  
-  	  	
     <br class="clear" />
   </div>
- 	
-  
 </div>
+
+
 
 <div class="wrapper col7">
   <div id="copyright">

@@ -102,7 +102,8 @@ public class FileUploadController {
 			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");	
 	        
 		}
-	}
+	}		
+	
 	
 	public void cancelar(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");

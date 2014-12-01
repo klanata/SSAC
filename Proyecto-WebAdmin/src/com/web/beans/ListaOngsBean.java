@@ -1,7 +1,6 @@
 package com.web.beans;
 
 import java.io.Serializable;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -278,72 +277,15 @@ public class ListaOngsBean implements Serializable{
 	public void asignarOngs(){
 		
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeONG");
-		Long idCatastrofe = new Long(idEventoString);
-		/*
-		OngBean ongMyBean;		
-		for (int i=0; i<=selectedOngs.size()-1; i++){ 			
-			ongMyBean = selectedOngs.get(i);
-			Long id = ongMyBean.getId();			
-			System.out.println("El id del evento asignar: " + id);			
+		if ((idEventoString == null) || (idEventoString == ""))
+		{	
+			System.out.println("No existe la catástrofe. "); 			
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
 		}
-		*/
-		CatastrofeEBR manager = null;
-		Context context = null;	
-		FacesMessage message = null;
-		
-		try {
-            // 1. Obtaining Context
-			context = ClienteUtility.getInitialContext();
-            // 2. Generate JNDI Lookup name
-            //String lookupName = getLookupName();
-            // 3. Lookup and cast
-			manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
- 
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-		
-		if (selectedOngs.size() > 0){ 				
-			try{					
-				OngBean ongBean;	
-				
-				for (int i=0; i<=selectedOngs.size()-1; i++){ 				
-					ongBean = selectedOngs.get(i);
-					Long idOng = ongBean.getId();			
-					manager.agregarOngALaCatastrofe(idCatastrofe, idOng);				
-				}				
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
-				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-				handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
-				//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
-				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
-													
-			}catch (Exception excep){
-				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo dar de alta algúna de las ONG.");
-				System.out.println("Excepción al agregar las ONGs a la catástrofe: " + excep.getMessage());				
-			}  
-			
-		}
-		else{				
-			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una ONG.");
-			
-		}
-		FacesContext.getCurrentInstance().addMessage(null, message);
-		
-	}
-	
-	public void cancelar(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
-		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");		
-	}
-	
-	public void quitarOngs(){
-		
-		
-			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeONG");
-			Long idCatastrofe = new Long(idEventoString);
-			
+		else	
+		{		
+			Long idCatastrofe = new Long(idEventoString);		
 			CatastrofeEBR manager = null;
 			Context context = null;	
 			FacesMessage message = null;
@@ -360,31 +302,96 @@ public class ListaOngsBean implements Serializable{
 	            e.printStackTrace();
 	        }
 			
-			if (selectedOngsCat.size() > 0){ 				
+			if (selectedOngs.size() > 0){ 				
 				try{					
 					OngBean ongBean;	
 					
-					for (int i=0; i<=selectedOngsCat.size()-1; i++){ 				
-						ongBean = selectedOngsCat.get(i);
+					for (int i=0; i<=selectedOngs.size()-1; i++){ 				
+						ongBean = selectedOngs.get(i);
 						Long idOng = ongBean.getId();			
-						manager.eliminarOngDeCatastrofe(idCatastrofe, idOng);				
+						manager.agregarOngALaCatastrofe(idCatastrofe, idOng);				
 					}				
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
 					ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 					handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
-					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación Exitosa", "Las ONGs fueron quitadas de la catástrofe al sistema.");
+					//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
+					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
 														
 				}catch (Exception excep){
-					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudieron quitar al menos alguna de las ONG.");
-					System.out.println("Excepción al quitar las ONGs a la catástrofe: " + excep.getMessage());				
+					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo dar de alta algúna de las ONG.");
+					System.out.println("Excepción al agregar las ONGs a la catástrofe: " + excep.getMessage());				
 				}  
+				
 			}
 			else{				
-				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una ONG.");				
+				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una ONG.");
+				
 			}
-			FacesContext.getCurrentInstance().addMessage(null, message);			
-			
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
 		
+	}
+	
+	public void cancelar(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");		
+	}
+	
+	public void quitarOngs(){
+		
+			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeONG");
+			if ((idEventoString == null) || (idEventoString == ""))
+    		{	
+    			System.out.println("No existe la catástrofe. "); 			
+    			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+    			handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
+    		}
+    		else	
+    		{ 
+				Long idCatastrofe = new Long(idEventoString);
+				
+				CatastrofeEBR manager = null;
+				Context context = null;	
+				FacesMessage message = null;
+				
+				try {
+		            // 1. Obtaining Context
+					context = ClienteUtility.getInitialContext();
+		            // 2. Generate JNDI Lookup name
+		            //String lookupName = getLookupName();
+		            // 3. Lookup and cast
+					manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+		 
+		        } catch (NamingException e) {
+		            e.printStackTrace();
+		        }
+				
+				if (selectedOngsCat.size() > 0){ 				
+					try{					
+						OngBean ongBean;	
+						
+						for (int i=0; i<=selectedOngsCat.size()-1; i++){ 				
+							ongBean = selectedOngsCat.get(i);
+							Long idOng = ongBean.getId();			
+							manager.eliminarOngDeCatastrofe(idCatastrofe, idOng);				
+						}				
+						FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
+						ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+						handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
+						message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación Exitosa", "Las ONGs fueron quitadas de la catástrofe al sistema.");
+															
+					}catch (Exception excep){
+						message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudieron quitar al menos alguna de las ONG.");
+						System.out.println("Excepción al quitar las ONGs a la catástrofe: " + excep.getMessage());				
+					}  
+				}
+				else{				
+					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una ONG.");				
+				}
+				FacesContext.getCurrentInstance().addMessage(null, message);	
+    		}
+					
 	}	
 
 }
