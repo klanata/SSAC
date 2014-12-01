@@ -34,26 +34,12 @@ public class PedidoDeAyudaDAOImpl extends AbstractService implements PedidoDeAyu
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Long crearPedidoDeAyuda(PedidoDeAyuda pedAyuda) throws Exception{
-		Long id;
-		Long pedido = pedAyuda.getId();
+	
 		try {
-			if (this.existePedido(pedido)){				
-				id = (long) 0;				
-			} 
-			else 
-			{				
-				this.em.persist(pedido);					
-				TypedQuery<Long> consulta = this.em.createNamedQuery("PedidoDeAyuda.BuscarPedidoid.id",Long.class);				
-				consulta.setParameter("id", pedido);				
-				List<Long> pedID = consulta.getResultList();
-				if (pedID.isEmpty()) {
-					id = (long) 0;	
-			  	} else {
-			  		id = pedID.get(0);
-			  	}					
-			} 					
-			return id;		    
-		} 
+			dataService.create(pedAyuda);
+			Long id = pedAyuda.getId();
+			return id;
+			} 	
 		catch (Exception excep){			
 			throw excep;
 		}	

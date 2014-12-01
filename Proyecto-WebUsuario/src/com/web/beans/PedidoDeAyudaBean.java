@@ -86,7 +86,7 @@ public class PedidoDeAyudaBean implements Serializable {
     		fechaPublicacion.getTime();
     	
     		
-       		manager.crearPedido(catastrofeId, descripcion, coordenadasX, coordenadasY, fechaPublicacion);    	
+       		Long id = manager.crearPedido(catastrofeId, descripcion, coordenadasX, coordenadasY, fechaPublicacion);    	
     		
     		
     	}catch (Exception excep){

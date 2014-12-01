@@ -24,6 +24,13 @@ public class DeBienesEB implements DeBienesEBR{
 	public void crearDonacionDeBienes(Long idOng, String usuario, Date fechaRealizada, String nombreItem,
 			Integer cantidad) throws Exception {
 		
+		
+		System.out.println("deBi " + idOng);
+		System.out.println("deBi " + usuario);
+		System.out.println("deBi " + fechaRealizada);
+		System.out.println("deBi " + nombreItem);
+		System.out.println("deBi " + cantidad);
+		
 		DeBienes db = new DeBienes();
 		Ong ong = dataService.find(Ong.class,idOng);
 		db.setOng(ong);
