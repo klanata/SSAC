@@ -35,4 +35,6 @@ public interface CatastrofeEBR {
 	
 	public Collection<ImagenCatastrofe> listaImagenesDeCatastrofe(Long id) throws Exception;
 	
+	public void eliminarImgDeCatastrofe(Long idCatastrofe, Long idImg) throws Exception;
+	
 }
