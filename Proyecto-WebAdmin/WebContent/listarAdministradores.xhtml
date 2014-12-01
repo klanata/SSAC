@@ -168,11 +168,11 @@
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
 		                <h:outputText value="Buscar Administrador:  " />
-		                <p:inputText id="globalFilter"   onkeyup="PF('catastrofesTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		                <p:inputText id="globalFilter"   onkeyup="PF('administradorTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
 		        </f:facet>    	
-		         <p:ajax event="rowSelect" listener="#{listaAdministradorBean.onRowSelect()}" update=":formAdministradores:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listaAdministradorBean.onRowUnselect()}" update=":formAdministradores:msgs" />	        		        
+		         <p:ajax event="rowSelect" listener="#{listaAdministradorBean.onRowSelect}" update=":formAdministradores:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaAdministradorBean.onRowUnselect}" update=":formAdministradores:msgs" />	        		        
 		    
 		        
         		<p:column headerText="Id" style="width:50px">
