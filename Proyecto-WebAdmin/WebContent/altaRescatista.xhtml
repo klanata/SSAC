@@ -12,7 +12,6 @@
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
 	
-
 	
 </h:head> 
 <h:body id="top"> 
@@ -48,56 +47,107 @@
     <br class="clear" />
   </div>
 </div>
+
 <div class="wrapper col2">
-  <div id="topbar">
-    <div id="topnav">
-      <ul>
-        <li class="active"><a href="index.xhtml">Home</a></li>
-        <li><a href="#">Administrador</a>
-         <ul>
-            <li><a href="altaAdministrador.xhtml">Alta</a></li>
-            <li><a href="bajaAdministrador.xhtml">Baja</a></li>
-            <li><a href="modificacionAdministrador.xhtml">Modificación</a></li>
-          </ul>	
-        </li>
-        <li><a href="#">Rescatista</a>
-        <ul>
-            <li><a href="altaRescatista.xhtml">Alta</a></li>
-            <li><a href="bajaRescatista.xhtml">Baja</a></li>
-            <li><a href="modificacionRescatista.xhtml">Modificación</a></li>
-          </ul>	        
-        </li>
-        <li><a href="#">ONG</a>
-        <ul>
-            <li><a href="altaOng.xhtml">Alta</a></li>
-            <li><a href="bajaOng.xhtml">Baja</a></li>
-            <li><a href="modificacionOng.xhtml">Modificación</a></li>
-          </ul>	        
-        </li>  
-        <li><a href="#">Servicios</a>
-        <ul>
-            <li><a href="">Youtube</a></li>
-            <li><a href="">RSS</a></li>            
-          </ul>	        
-        </li>              
-        <li><a href="#">Catástrofe</a>
-          <ul>
-            <li><a href="registrarCatastrofe.xhtml">Registrar Catástrofe</a></li>
-            <li><a href="listaCatastrofesONGs.xhtml">Asignar ONG</a></li>
-            <li><a href="listaCatastrofesImagenes.xhtml">Asignar Imágenes</a></li>
-            <li><a href="listaCatastrofesPlanRiesgo.xhtml">Asignar Plan Riesgo</a></li>
-            <li><a href="asignarServiciosCatastrofe.xhtml">Asignar Servicios</a></li>
-            <li><a href="">Asignar CSS</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Reporte</a>
-        </li>
-      </ul>
-    </div>
+ 
+   <h:form>
+ 
+<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
+    <p:submenu label="Home" >
+        <p:column>
+            <p:submenu label="SSCA">
+                <p:menuitem value="" url="index.xhtml" />
+           
+            </p:submenu>
+            
+        </p:column>
+ 
+                
+    </p:submenu>
+ 
+    <p:submenu label="Administrador"  >
+ 
+        <p:column>
+            <p:submenu label="ABM">
+                <p:menuitem value="Alta" url="altaAdministrador.xhtml" icon="ui-icon-check"/>
+                <p:menuitem value="Baja" url="listarAdministradores.xhtml" icon="ui-icon-close" />
+                <p:menuitem value="Modificación" url="listarAdministradores.xhtml" icon="ui-icon-pencil"/>
+                
+            </p:submenu>
+        </p:column>
+ 
+    </p:submenu>
+ 
+    <p:submenu label="Rescatista" >
+         <p:column>
+            <p:submenu label="ABM">
+                <p:menuitem value="Alta" url="altaRescatista.xhtml" icon="ui-icon-check"/>
+                <p:menuitem value="Baja" url="listarRescatistas.xhtml" icon="ui-icon-close" />
+                <p:menuitem value="Modificación" url="listarRescatistas.xhtml" icon="ui-icon-pencil"/>
+                
+            </p:submenu>
+        </p:column>
+    </p:submenu>
+ 
+    <p:submenu label="Ong" >
+         <p:column>
+            <p:submenu label="ABM">
+                <p:menuitem value="Alta" url="altaOng.xhtml" icon="ui-icon-check"/>
+                <p:menuitem value="Baja" url="listarOng.xhtml" icon="ui-icon-close" />
+                <p:menuitem value="Modificación" url="listarOng.xhtml" icon="ui-icon-pencil"/>
+                
+            </p:submenu>
+        </p:column>
+    </p:submenu>
     
+    <p:submenu label="Servicios" >
+        <p:column>
+            <p:submenu label="Servicio " icon="ui-icon-check">
+                <p:menuitem value="YouTube" url="#" />
+                <p:menuitem value="Rss" url="#" />
+            </p:submenu>
+        </p:column>
+ 	</p:submenu>
+ 	
+ 	<p:submenu label="Catástrofe" >
+        <p:column>
+            <p:submenu label="Alta " icon="ui-icon-check">
+                <p:menuitem value="Catástrofe" url="#" />
+                
+            </p:submenu>
+            <p:submenu label="Asignar">
+                <p:menuitem value="Imágenes" url="listaCatastrofesImagenes.xhtml" />
+                <p:menuitem value="Ong" url="listaCatastrofesONGs.xhtml" />
+                <p:menuitem value="Plan de Riesgo" url="listaCatastrofesPlanRiesgo.xhtml" />
+                <p:menuitem value="Servicios" url="#" />
+                <p:menuitem value="CCS" url="#" />
+            </p:submenu>
+        </p:column>
+ 
+    </p:submenu>
+    
+    <p:submenu label="Reporte" icon="ui-icon-contact">
+        <p:column>
+            <p:submenu label="Reportes">
+                <p:menuitem value="Donaciones" url="#" />
+                <p:menuitem value="Pedidos de ayuda" url="#" />
+            </p:submenu>
+            
+        </p:column>
+ 
+       
+    </p:submenu>
+       
+</p:megaMenu>
+</h:form>
+
+          
+    
+          
     <br class="clear" />
-  </div>
+  
 </div>
+
 <div class="wrapper col3">
   <div id="intro">
     <div class="fl_left">
