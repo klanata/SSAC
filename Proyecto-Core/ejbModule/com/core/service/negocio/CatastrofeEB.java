@@ -142,27 +142,22 @@ public class CatastrofeEB implements CatastrofeEBR{
 
 	////////////////////////////////////////////////////////////////////////////////////
 	@Override
-	public Collection<Ong> listaOngDeCatastrofe(Long id) {
-		
-		Collection<Ong> lista = null;
-		
+	public Collection<Ong> listaOngDeCatastrofe(Long id) {		
+		Collection<Ong> lista = null;		
 		try {
-			Catastrofe c = this.buscaCatastrofePorId(id);
-			
+			Catastrofe c = this.buscaCatastrofePorId(id);			
 			lista = c.getOngs();
 		} catch (Exception e) {
 			
 			e.printStackTrace();
-		}
-		
-		return null;
+		}		
+		return lista;
 	}
 
 
 	@Override
 	public void eliminarOngDeCatastrofe(Long idCatastrofe, Long idOng) {
-		
-		
+				
 		Catastrofe c= dataService.find(Catastrofe.class, idCatastrofe);
 		Ong o = dataService.find(Ong.class, idOng);
 		
@@ -171,9 +166,18 @@ public class CatastrofeEB implements CatastrofeEBR{
 		
 		c.setOngs(lista);
 		dataService.update(c);
-		
-		
-		
+						
 	}
-
+	
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	public Collection<ImagenCatastrofe> listaImagenesDeCatastrofe(Long id) throws Exception  {		
+		Collection<ImagenCatastrofe> lista = null;
+		try {
+			Catastrofe c = this.buscaCatastrofePorId(id);			
+			lista = c.getImagenes();
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}			
+		return lista;		
+	}
 }

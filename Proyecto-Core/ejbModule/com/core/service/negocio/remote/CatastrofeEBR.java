@@ -33,4 +33,6 @@ public interface CatastrofeEBR {
 	
 	public void eliminarOngDeCatastrofe(Long idCatastrofe, Long idOng);
 	
+	public Collection<ImagenCatastrofe> listaImagenesDeCatastrofe(Long id) throws Exception;
+	
 }
