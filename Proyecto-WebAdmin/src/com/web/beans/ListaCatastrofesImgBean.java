@@ -42,52 +42,55 @@ public class ListaCatastrofesImgBean implements Serializable{
     @PostConstruct
     public void init() {
     	
-    	CatastrofeEBR manager = null;	
-    	
-		Context context = null;
-		
-		//FacesMessage message = null;
-		
-		try {
-            // 1. Obtaining Context
-            context = ClienteUtility.getInitialContext();
-            // 2. Generate JNDI Lookup name
-            //String lookupName = getLookupName();
-            // 3. Lookup and cast
-            manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
- 
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-					
-		try{			
-			List<Catastrofe> res = new ArrayList<Catastrofe>();
-			res = manager.listaCatastrofes();    				
-			Catastrofe catastrofe;
-	    	Long id;
-	    	String nombreEvento;
-	    	String descripcion;
-	    	String logo;
-	    	double coordenadasX;
-	    	double coordenadasY;
-	    	Boolean activa;
-	    	Boolean prioridad;	    	
-			for (int i=0; i<=res.size()-1; i++){    		
-				catastrofe = res.get(i);
-				id = catastrofe.getId();
-				nombreEvento = catastrofe.getNombreEvento();
-				descripcion = catastrofe.getDescripcion();												
-				logo = catastrofe.getLogo();																								
-				coordenadasX = catastrofe.getCoordenadasX();
-				coordenadasY = catastrofe.getCoordenadasY();
-				activa = catastrofe.getActiva();
-				prioridad = catastrofe.getPrioridad();
-				catastrofesBean.add(i, new CatastrofeBean(id,nombreEvento,descripcion,logo,coordenadasX,coordenadasY,activa,prioridad));									    		
-			}	
+    	try{
+    		    		    	       
+	    	CatastrofeEBR manager = null;		    	
+			Context context = null;			
+			//FacesMessage message = null;
 			
+			try {
+	            // 1. Obtaining Context
+	            context = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+	            manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }
+						
+			try{			
+				List<Catastrofe> res = new ArrayList<Catastrofe>();
+				res = manager.listaCatastrofes();    				
+				Catastrofe catastrofe;
+		    	Long id;
+		    	String nombreEvento;
+		    	String descripcion;
+		    	String logo;
+		    	double coordenadasX;
+		    	double coordenadasY;
+		    	Boolean activa;
+		    	Boolean prioridad;	    	
+				for (int i=0; i<=res.size()-1; i++){    		
+					catastrofe = res.get(i);
+					id = catastrofe.getId();
+					nombreEvento = catastrofe.getNombreEvento();
+					descripcion = catastrofe.getDescripcion();												
+					logo = catastrofe.getLogo();																								
+					coordenadasX = catastrofe.getCoordenadasX();
+					coordenadasY = catastrofe.getCoordenadasY();
+					activa = catastrofe.getActiva();
+					prioridad = catastrofe.getPrioridad();
+					catastrofesBean.add(i, new CatastrofeBean(id,nombreEvento,descripcion,logo,coordenadasX,coordenadasY,activa,prioridad));									    		
+				}	
+				
+	    	}catch (Exception excep){
+	    		System.out.println("Excepción al listar las catástrofes Imagenes: " + excep.getMessage());      		 			       	           	
+	    	} 
     	}catch (Exception excep){
-    		System.out.println("Excepción al listar las catástrofes: " + excep.getMessage());      		 			       	           	
-    	}  					
+    		System.out.println("Excepción al listar las catástrofes Imagenes: " + excep.getMessage());      		 			       	           	
+    	} 
 				
     }
     

@@ -180,4 +180,21 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}			
 		return lista;		
 	}
+	
+	
+	public void eliminarImgDeCatastrofe(Long idCatastrofe, Long idImg) throws Exception {
+		Catastrofe c= dataService.find(Catastrofe.class, idCatastrofe);
+		ImagenCatastrofe imgCat = imagenCatastrofeDAO.buscarImgCatastrofePorId(idImg);
+		
+		Set<ImagenCatastrofe> lista = c.getImagenes();
+		lista.remove(imgCat);
+		
+		c.setImagenes(lista);
+		dataService.update(c);
+		
+		dataService.delete(imgCat);				
+		
+	}
+	
+	
 }

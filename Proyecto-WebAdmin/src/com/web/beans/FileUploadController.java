@@ -69,7 +69,7 @@ public class FileUploadController {
 	        	Long idCatastrofe = new Long(idEventoString);
 	        	
 	        	String jboss = System.getenv("JBOSS_HOME");
-	        	int x = new Double(Math.random() * 10000).intValue();        	        	        	
+	        	int x = new Double(Math.random() * 1000000).intValue();        	        	        	
 	        	
 	        	File outputFilePath = new File(x + fileName);		
 	    		String fileString = outputFilePath.toString();
@@ -97,17 +97,18 @@ public class FileUploadController {
 	        } catch (Exception e) {
 	             System.out.println(e.getMessage());
 	        }
-	        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
+	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");	
+			handler.performNavigation("modificarImagenCatastrofe?faces-redirect=true");	
 	        
 		}
-	}
+	}		
+	
 	
 	public void cancelar(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");		
+		handler.performNavigation("modificarImagenCatastrofe?faces-redirect=true");		
 	}
 	
 
