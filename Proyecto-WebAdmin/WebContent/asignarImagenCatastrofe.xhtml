@@ -78,43 +78,69 @@
     <div >
       <h2>Asignar Imágenes a la catástrofe</h2>
       
-      <f:view>  
+      <f:view>        
       	
-		<h:form columns="2" value="#{listaOngsBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
-				
+		<h:form columns="2" value="#{imagesView.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+			
 			<p>			        		        
-            <p:graphicImage value="image/#{listaOngsBean.catastrofeBean.logo}" /> 
+            <p:graphicImage value="image/#{imagesView.catastrofeBean.logo}" /> 
             <h:outputText value="" style="border: transparent;"/>	              		         	        	
 			</p>			
 			
 			<p>
 			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
-            <h:outputText value="#{listaOngsBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+            <h:outputText value="#{imagesView.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
             </p>			
                
             <p>    
            	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-            <h:outputText value="#{listaOngsBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
+            <h:outputText value="#{imagesView.catastrofeBean.descripcion}" styleClass="outputLabel"/>
             </p>
 			<br/>  
                          
-        </h:form>               
+        </h:form>
+                									        
+      </f:view>         
+    </div>
+    
+	<div class="fl_right">
+		<f:view> 
+		<h:form>        
+        	<p>
+			<h:outputText value="Imágenes asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
+            </p>
+            
+	        <p:galleria value="#{imagesView.images}" var="imgCatastrofeBean" panelWidth="500" panelHeight="313" showCaption="true">
+			    <p:graphicImage value="image/#{imgCatastrofeBean.path}"  title="#{imgCatastrofeBean.path}"/>
+			</p:galleria>	
+		 </h:form>	 	
+		 <br/> 
+		 <p:outputPanel style="text-align: left">
+            	<p:commandButton value="Quitar" />
+            	<p:commandButton value="Cancelar" />
+         </p:outputPanel>	
+         <br/> 			                          
+		</f:view>       
+  	</div>  
+  	
+  	<div>
+  		<h:form>        	
+        	<p>
+			<h:outputText value="Seleccione las imágenes que van a ser asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
+            </p>
         
-        <h:form>
 		    <p:fileUpload fileUploadListener="#{fileUploadController.upload}" mode="advanced" dragDropSupport="false"
 		                  multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 		 
 		    <p:growl id="messages" showDetail="true" />
-		</h:form>       	
-      
-      </f:view>         
-    </div>
-    
+		</h:form> 
+  	</div>   	  	
+  	  	  	
     <br class="clear" />
   </div>
+ 	
+  
 </div>
-
-
 
 <div class="wrapper col7">
   <div id="copyright">

@@ -98,14 +98,77 @@
             </p>
 			<br/>  
                          
-        </h:form>                
+        </h:form>   
+
+		<h:form id="formONGsCatastrofe">      	      	
+      		<p:growl id="msgOngsCat" showDetail="true" />	
+      		
+      		<p>
+			<h:outputText value="ONGs asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
+            </p>	
+      		
+    		<p:dataTable id="ongsCatDT" var="ongBeanCat" value="#{listaOngsBean.ongsBeanCat}" widgetVar="ongsCatTable"
+                 		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBeanCat}"                 		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selection="#{listaOngsBean.selectedOngsCat}" rowKey="#{ongBeanCat.id}" style="margin-bottom:0">
+                 	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar ONG:  " />
+		                <p:inputText id="globalFilterCat"   onkeyup="PF('ongsCatTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>
+		        
+		        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>    		        		               	    
+        		
+        		<p:column headerText="Id">
+            		<h:outputText value="#{ongBeanCat.id}" />
+        		</p:column>    
+        		        		
+				<p:column headerText="Nombre" style="width:120px" filterBy="#{ongBeanCat.nombre}" filterMatchMode="contains">
+            		<h:outputText value="#{ongBeanCat.nombre}" />
+        		</p:column>     
+        		
+        		<p:column headerText="Direccion" style="width:200px" filterBy="#{ongBeanCat.direccion}" filterMatchMode="contains">
+            		<h:outputText value="#{ongBeanCat.direccion}" />
+        		</p:column>	  
+        		
+        		<p:column headerText="Télefono">
+            		<h:outputText value="#{ongBeanCat.telefono}" />
+        		</p:column>	     
+        		
+        		<p:column headerText="Email">
+            		<h:outputText value="#{ongBeanCat.email}" />
+        		</p:column>	 
+        		
+        		<p:column headerText="Descripción">
+            		<h:outputText value="#{ongBeanCat.descripcion}" />
+        		</p:column>        
+        		
+        		<f:facet name="footer">
+        			<p:outputPanel style="text-align: left">
+            			<p:commandButton process="ongsCatDT" update=":formONGsCatastrofe:msgOngsCat" value="Quitar ONG" action="#{listaOngsBean.quitarOngs()}" />            			
+            		</p:outputPanel>            		
+        		</f:facet>			     		                  		                  		             	        		        
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+		
+		<br class="clear" />
+		<br class="clear" />		            
       	
       	<h:form id="formONGs">      	      	
-      		<p:growl id="msg" showDetail="true" />	
+      		<p:growl id="msg" showDetail="true" />
+      		
+      		<p>
+			<h:outputText value="Seleccione las ONGs que van a ser asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
+            </p>	
       		
     		<p:dataTable id="ongsDT" var="ongBean" value="#{listaOngsBean.ongsBean}" widgetVar="ongsTable"
                  		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBean}"                 		  
-                 		 paginator="true" rows="5"
+                 		 paginator="true" rows="5" paginatorPosition="top"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  		 selection="#{listaOngsBean.selectedOngs}" rowKey="#{ongBean.id}" style="margin-bottom:0">
                  	                 	
