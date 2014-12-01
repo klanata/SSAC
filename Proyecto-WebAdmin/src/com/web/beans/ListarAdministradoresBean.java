@@ -16,7 +16,6 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
-import javax.persistence.Column;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -24,10 +23,8 @@ import org.primefaces.event.UnselectEvent;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Administrador;
-import com.core.data.entites.Catastrofe;
-import com.core.data.entites.EstadoRescatista;
 import com.core.service.negocio.remote.AdministradorEBR;
-import com.core.service.negocio.remote.CatastrofeEBR;
+
 
 
 @ManagedBean(name="listaAdministradorBean")
@@ -39,7 +36,7 @@ public class ListarAdministradoresBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
-	private ArrayList<AdministradorBean> AdministradoresBean = new ArrayList<AdministradorBean>();    
+	private ArrayList<AdministradorBean> administradoresBean = new ArrayList<AdministradorBean>();    
 
 	private List<AdministradorBean> filtroAdministradorBean;
     
@@ -69,7 +66,7 @@ public class ListarAdministradoresBean implements Serializable {
         }		
 					
 		try{			
-			//List<Catastrofe> res = new ArrayList<Catastrofe>();
+			//
 			Collection<Administrador> res = new ArrayList<Administrador>();
 			res = manager.listarTodosLosAdministradores();
 			//Administrador administrador;
@@ -98,9 +95,9 @@ public class ListarAdministradoresBean implements Serializable {
 				  fechaNac = a.getFechaNac();
 				  sexo = a.getSexo();
 				  celular = a.getCelular();
-				  AdministradoresBean.add(i, new AdministradorBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular));
+				  administradoresBean.add(i, new AdministradorBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular));
 				  i++;
-		     
+				  System.out.println("obtengo administradores: " + i);      	
 		     
 		     }
 			
@@ -135,17 +132,23 @@ public class ListarAdministradoresBean implements Serializable {
 		this.selectedAdministrador = selectedAdministrador;
 	}
 
-	public void setCatastrofeBean(AdministradorBean administradorBean) {
-		this.administradorBean = administradorBean;
-	}   
+	
 	
 	public ArrayList<AdministradorBean> getAdministradoresBean() {
-		return AdministradoresBean;
+		return administradoresBean;
 	}
 
 	public void setAdministradoresBean(
 			ArrayList<AdministradorBean> administradoresBean) {
-		AdministradoresBean = administradoresBean;
+		this.administradoresBean = administradoresBean;
+	}
+
+	public AdministradorBean getAdministradorBean() {
+		return administradorBean;
+	}
+
+	public void setAdministradorBean(AdministradorBean administradorBean) {
+		this.administradorBean = administradorBean;
 	}
 
 
@@ -153,21 +156,19 @@ public class ListarAdministradoresBean implements Serializable {
 	
 	public void onRowSelect(SelectEvent event) {
 		
-		Long id = ((CatastrofeBean) event.getObject()).getId();
-		System.out.println("id de la catastrofe seleccionada: " + id);
+		Long id = ((AdministradorBean) event.getObject()).getId();
+		System.out.println("id del Administrador seleccionada: " + id);
 		String idEvento = id.toString();
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", idEvento); 		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoAdministrador", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("asignarOngCatastrofe?faces-redirect=true");						 														
-		
-		//ConfigurableNavigationHandler.performNavigation("asignarOngCatastrofe?faces-redirect=true");
-		//return "asignarOngCatastrofe?faces-redirect=true";
+		handler.performNavigation("modificacionAdministrador?faces-redirect=true");						 														
+
 		            
     }
  
     public void onRowUnselect(UnselectEvent event) {
-        FacesMessage msg = new FacesMessage("Catastrofe No Seleccionada");
+        FacesMessage msg = new FacesMessage("Administrador No Seleccionada");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 	

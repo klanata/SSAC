@@ -111,5 +111,11 @@ public class AdministradorEB implements AdministradorEBR{
 		
 		return admin;
 	}
+
+	@Override
+	public Administrador obetenrAdministradorPorNick(Long id) {
+		Administrador a = dataService.find(Administrador.class, id);
+		return a;
+	}
 	
 }

@@ -28,5 +28,7 @@ public interface AdministradorEBR {
 	
 	public Administrador obtenerAdministradorEB(String nick);
 	
+	public Administrador obetenrAdministradorPorNick(Long id);
+	
 	
 }

@@ -91,11 +91,11 @@
       		
       		<p:growl id="msgs" showDetail="true" />
       		
-    		<p:dataTable id="catastrofesDT" var="administradorBean" widgetVar="administradorTable"
+    		<p:dataTable id="administradorDT" var="administradorBean" widgetVar="administradorTable" value = "#{listaAdministradorBean.administradoresBean}"
                  		 emptyMessage="No se han encontrado administrador con ese criterio"                  		  
                  		 paginator="true" rows="5" 
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 		 selectionMode="single" rowKey="#{administradorBean.id}" dblClickSelect="true">    
+                 		 selectionMode="single" selection="#{listaAdministradorBean.selectedAdministrador}"  rowKey="#{administradorBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
@@ -103,7 +103,9 @@
 		                <p:inputText id="globalFilter"   onkeyup="PF('catastrofesTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
 		        </f:facet>    	
-		        
+		         <p:ajax event="rowSelect" listener="#{listaAdministradorBean.onRowSelect()}" update=":formAdministradores:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaAdministradorBean.onRowUnselect()}" update=":formAdministradores:msgs" />	        		        
+		    
 		        
         		<p:column headerText="Id" style="width:50px">
             		<h:outputText value="#{administradorBean.id}" />
