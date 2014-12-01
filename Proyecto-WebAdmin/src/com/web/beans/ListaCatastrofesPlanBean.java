@@ -138,7 +138,7 @@ public class ListaCatastrofesPlanBean implements Serializable{
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("asignarOngCatastrofe?faces-redirect=true");						 														
+		handler.performNavigation("asignarPlanRiesgoCatastrofe?faces-redirect=true");						 														
 		
 		//ConfigurableNavigationHandler.performNavigation("asignarOngCatastrofe?faces-redirect=true");
 		//return "asignarOngCatastrofe?faces-redirect=true";
