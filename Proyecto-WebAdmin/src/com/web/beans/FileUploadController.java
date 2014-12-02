@@ -99,7 +99,7 @@ public class FileUploadController {
 	        }
 	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("modificarImagenCatastrofe?faces-redirect=true");	
+			handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");	
 	        
 		}
 	}		
@@ -108,7 +108,7 @@ public class FileUploadController {
 	public void cancelar(){
 		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("modificarImagenCatastrofe?faces-redirect=true");		
+		handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");		
 	}
 	
 

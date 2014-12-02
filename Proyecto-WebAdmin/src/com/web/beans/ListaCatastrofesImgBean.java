@@ -142,7 +142,7 @@ public class ListaCatastrofesImgBean implements Serializable{
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("modificarImagenCatastrofe?faces-redirect=true");						 														
+		handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");						 														
 		
 		//ConfigurableNavigationHandler.performNavigation("asignarOngCatastrofe?faces-redirect=true");
 		//return "asignarOngCatastrofe?faces-redirect=true";

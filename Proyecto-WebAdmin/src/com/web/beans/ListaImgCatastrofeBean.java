@@ -202,7 +202,7 @@ public class ListaImgCatastrofeBean implements Serializable{
 					}				
 					//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
 					ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-					handler.performNavigation("modificarImagenCatastrofe?faces-redirect=true");
+					handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");
 					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación Exitosa", "Las imagenes fueron quitadas de la catástrofe al sistema.");
 														
 				}catch (Exception excep){
@@ -220,7 +220,7 @@ public class ListaImgCatastrofeBean implements Serializable{
 	
 	public void cancelar(){				
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("modificarImagenCatastrofe?faces-redirect=true");				
+		handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");				
 	}	
 
 	
