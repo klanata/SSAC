@@ -23,10 +23,9 @@ import com.core.data.entites.Catastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.service.negocio.remote.OngEBR;;
 
-
 @ManagedBean(name="listaOngsBean")
 @RequestScoped
-public class ListaOngsBean implements Serializable{
+public class ListaOngsCatastrofeBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
