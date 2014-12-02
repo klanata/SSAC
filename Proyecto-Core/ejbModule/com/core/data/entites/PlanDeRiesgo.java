@@ -30,10 +30,7 @@ public class PlanDeRiesgo  extends AbstractEntity implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
-
-	public PlanDeRiesgo() {
-		super();
-	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "id", nullable= false)
@@ -42,10 +39,12 @@ public class PlanDeRiesgo  extends AbstractEntity implements Serializable{
 	@OneToOne
 	private Catastrofe catastrofe ;
 	
-	private String rutaArchivo;
+	private String rutaArchivo;		
 
 	
-	
+	public PlanDeRiesgo() {
+		super();
+	}
 	
 	
 	public Long getId() {
