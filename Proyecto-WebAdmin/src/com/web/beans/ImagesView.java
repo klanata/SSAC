@@ -153,7 +153,7 @@ public class ImagesView implements Serializable{
 		}
 		*/		
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("listaImgCatastrofe?faces-redirect=true");
+		handler.performNavigation("quitarImagenCatastrofe?faces-redirect=true");
 		
 	}
 	

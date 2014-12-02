@@ -106,7 +106,7 @@ public class ListarAdministradoresBean implements Serializable {
 			
 			
     	}catch (Exception excep){
-    		System.out.println("Excepción al listar los administradores: " + excep.getMessage());      		 			       	           	
+    		System.out.println("Excepciï¿½n al listar los administradores: " + excep.getMessage());      		 			       	           	
     	}  					
 				
     }    

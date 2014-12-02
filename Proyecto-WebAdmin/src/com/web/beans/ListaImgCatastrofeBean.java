@@ -167,7 +167,7 @@ public class ListaImgCatastrofeBean implements Serializable{
 		{	
 			System.out.println("No existe la catástrofe. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
+			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");
 		}
 		else	
 		{ 
