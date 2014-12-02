@@ -42,7 +42,10 @@ private PedidoDeAyudaEBR manager;
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Path("pedirAyuda")
-	public void pedirAyuda(@QueryParam("catId") String catastrofeId, @QueryParam("des") String descripcion) throws Exception
+	//public void pedirAyuda(@QueryParam("catId") String catastrofeId, @QueryParam("des") String descripcion) throws Exception
+	public void pedirAyuda(@QueryParam("catId") String catastrofeId, @QueryParam("des") String descripcion,
+			@QueryParam("coordX") String coordenadasX, @QueryParam("coordY") String coordenadasY, @QueryParam("time") String fechaPublicacion) throws Exception
+
 	{
 		
 		manager = null;
@@ -62,18 +65,21 @@ private PedidoDeAyudaEBR manager;
     		//pedidoAyuda.setId(1);
     		//pedidoAyuda.setDescripcion(descripcion);
     		
-    		Date fechaPublicacion = new Date();
-    		fechaPublicacion.getTime();
+    		Date fechaPublicacionDate = new Date();
+		fechaPublicacionDate.getTime();
     		//dejo seteada la fecha de publicacion
     		
-    		BigDecimal coordenadasX = new BigDecimal(12);
-    		BigDecimal coordenadasY = new BigDecimal(12);
     		
-    		//System.out.println("ESTO ES LO Q TIENE CATASTROFE ID: "+Long.getLong(catastrofeId));
+    		
+    		System.out.println("ESTO ES LO Q TIENE CATASTROFE ID: "+Long.getLong(catastrofeId));
     		//Long.getLong(catastrofeId)
     		
+    		double x =  Double.parseDouble(coordenadasX);
+    		double y =  Double.parseDouble(coordenadasY);
+    		//Long f = Long.parseLong(fechaPublicacion);
     		
-    		manager.crearPedido(new Long(catastrofeId), descripcion, coordenadasX, coordenadasY, fechaPublicacion);
+    		
+    		manager.crearPedido(new Long(catastrofeId), descripcion, x, y, fechaPublicacionDate);
         } catch (NamingException e) {
             e.printStackTrace();
         }
