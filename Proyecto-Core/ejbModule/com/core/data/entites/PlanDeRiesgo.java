@@ -36,7 +36,7 @@ public class PlanDeRiesgo  extends AbstractEntity implements Serializable{
 	@Column(name= "id", nullable= false)
 	private Long id;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	private Catastrofe catastrofe ;
 	
 	private String rutaArchivo;		

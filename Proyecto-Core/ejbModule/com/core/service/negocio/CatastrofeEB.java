@@ -18,6 +18,7 @@ import com.core.data.entites.Servicio;
 import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
+import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.data.persistencia.DataService;
 
@@ -34,6 +35,9 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	@EJB
 	private ImagenCatastrofeDAO imagenCatastrofeDAO;
+	
+	@EJB
+	private PlanDeRiesgoDAO planDeRiesgoDO;
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
@@ -130,11 +134,11 @@ public class CatastrofeEB implements CatastrofeEBR{
 		if(!esta){		
 			imagenesCat.add(imgCat);						
 			dataService.update(c);						
-			System.out.println("probando agregar imagen de nombre: " + nombImagen);			
+			//System.out.println("probando agregar imagen de nombre: " + nombImagen);			
 		}
 		else
 		{
-			System.out.println("La imagen ya estaba en la catastrofe.");
+			//System.out.println("La imagen ya estaba en la catastrofe.");
 		}	
 		
 		
@@ -194,6 +198,39 @@ public class CatastrofeEB implements CatastrofeEBR{
 		
 		dataService.delete(imgCat);				
 		
+	}
+	
+	public void agregarPlanDeRiesgoALaCatastrofe(Long idCatastrofe, String nombArchivo) throws Exception {
+		
+		try {
+			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);	
+			
+			PlanDeRiesgo planRiesgo = new PlanDeRiesgo();
+			planRiesgo.setRutaArchivo(nombArchivo);
+			planRiesgo.setCatastrofe(c);
+						
+			Long idPlan = planDeRiesgoDO.crearPlanDeRiesgo(planRiesgo);
+			Long id;
+			
+			System.out.println("llegar aca. ");
+			PlanDeRiesgo planCatastrofe = c.getPlanDeRiesgo();
+			if (planCatastrofe != null){
+				id = planCatastrofe.getId();
+				if (idPlan == id){
+					System.out.println("Nunca deberia llegar aca. ");			
+				}
+				else {			
+					c.setPlanDeRiesgo(planRiesgo);						
+					dataService.update(c);			
+				}	
+			}
+			else{
+				c.setPlanDeRiesgo(planRiesgo);						
+				dataService.update(c);					
+			}																									
+		}catch (Exception e) {			
+			e.printStackTrace();
+		}									
 	}
 	
 	

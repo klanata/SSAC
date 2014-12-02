@@ -75,6 +75,7 @@ public class fileUploadControllerPlan {
 	    		
 	    		try {
 	    			//manager.agregarImagenALaCatastrofe(idCatastrofe, fileString);
+	    			manager.agregarPlanDeRiesgoALaCatastrofe(idCatastrofe, fileString);
 	    			outputFilePath = new File(jboss + "\\Proyecto\\imagenes.war\\" + x + fileName);
 		    		OutputStream out = new FileOutputStream(outputFilePath);                        
 		           
