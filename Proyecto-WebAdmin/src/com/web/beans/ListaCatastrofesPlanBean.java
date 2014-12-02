@@ -133,9 +133,9 @@ public class ListaCatastrofesPlanBean implements Serializable{
 	public void onRowSelect(SelectEvent event) {
 		
 		Long id = ((CatastrofeBean) event.getObject()).getId();
-		System.out.println("id de la catastrofe seleccionada: " + id);
+		System.out.println("id de la catastrofe seleccionada en el plan de riesgo: " + id);
 		String idEvento = id.toString();
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", idEvento); 		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofePlanDeRiesgo", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("asignarPlanRiesgoCatastrofe?faces-redirect=true");						 														

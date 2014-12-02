@@ -14,11 +14,10 @@ import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
-import com.core.data.entites.Catastrofe;
-import com.core.data.entites.ImagenCatastrofe;
-
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.Catastrofe;
+import com.core.data.entites.ImagenCatastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
 @ManagedBean(name="imagesView")

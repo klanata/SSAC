@@ -134,31 +134,70 @@
             </p:submenu>
             
         </p:column>
- 
-       
-    </p:submenu>
-       
+        
+    </p:submenu>       
 </p:megaMenu>
-</h:form>
-
-          
-    
-          
-    <br class="clear" />
-  
+</h:form>              
+<br class="clear" />  
 </div>
 
 <div class="wrapper col3">
   <div id="intro">
     <div >
-    
-    
+    <h2>Asignar Plan de Riesgo a la Catástrofe</h2>
       
-    </div>    
+      <f:view>        
+      	
+		<h:form columns="2" value="#{planDeRiesgoBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+			
+			<p>			        		        
+            <p:graphicImage value="image/#{planDeRiesgoBean.catastrofeBean.logo}" /> 
+            <h:outputText value="" style="border: transparent;"/>	              		         	        	
+			</p>			
+			
+			<p>
+			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
+            <h:outputText value="#{planDeRiesgoBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+            </p>			
+               
+            <p>    
+           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
+            <h:outputText value="#{planDeRiesgoBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
+            </p>
+			<br/>  
+                         
+        </h:form>
+                									        
+      </f:view>         
+    </div>
+    
+    <div>
+  		<h:form>      
+ 	
+        	<p>
+			<h:outputText value="Seleccione el plan de riesgo que va a ser asignado a la catástrofe" style="width:100px;border: transparent;"/>			            
+            </p>
+            <p>
+			<h:outputText value="(El archivo debe estar en formato pdf)" style="width:100px;border: transparent;"/>			            
+            </p>
+                    
+		    <p:fileUpload fileUploadListener="#{fileUploadControllerPlan.upload}" mode="advanced" dragDropSupport="false"
+		                  multiple="false" fileLimit="1" update="messages" allowTypes="/(\.|\/)(pdf)$/" />
+		 
+		    <p:growl id="messages" showDetail="true" />
+		    
+		    <br/>
+		    
+		    <p:outputPanel style="text-align: left">			 		
+	        	<p:commandButton value="Cancelar" action="#{fileUploadControllerPlan.cancelar()}" />
+	        </p:outputPanel>
+		</h:form> 
+  	</div>   
+    
+             
     <br class="clear" />
   </div>
 </div>
-
 
 
 <div class="wrapper col7">
