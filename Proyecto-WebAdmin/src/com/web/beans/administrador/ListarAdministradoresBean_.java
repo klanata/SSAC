@@ -161,14 +161,14 @@ public class ListarAdministradoresBean_ implements Serializable {
 		System.out.println("id del Administrador seleccionada: " + id);
 		//Pasarlo a string cuando lo mandemos por sesion
 		String idEvento = id.toString();
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoAdministrador", idEvento); 		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoAdministradorEliminar", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("eliminarAdmin?faces-redirect=true");						 														
 
 		            
     }
-	public void eliminar(){}
+	
  
     public void onRowUnselect(UnselectEvent event) {
         FacesMessage msg = new FacesMessage("Administrador No Seleccionada");

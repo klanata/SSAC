@@ -1,10 +1,7 @@
 package com.web.beans.administrador;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -18,22 +15,17 @@ import javax.naming.NamingException;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Administrador;
-import com.core.data.entites.Catastrofe;
 import com.core.service.negocio.remote.AdministradorEBR;
 
 
-@ManagedBean(name="modificarAdminBean")
+@ManagedBean(name="eliminarAdmBean")
 @RequestScoped
-public class ModificaAdministradorBean implements Serializable {
-	
-	
-	/**
+public class EliminarAdministradoresBean implements Serializable {/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
-   @ManagedProperty("#{administradorBean}")
+  @ManagedProperty("#{administradorBean}")
    private AdministradorBean administradorBean = new AdministradorBean();
 	
 	
@@ -43,10 +35,7 @@ public class ModificaAdministradorBean implements Serializable {
 	public void setAdministradorBean(AdministradorBean administradorBean) {
 		this.administradorBean = administradorBean;
 	}
-	/*-------------- get and set --------------------------*/
 	
-
-	/*-------------------------------------------------------------------------------------*/
 	@PostConstruct
     public void init() {
     	
@@ -68,7 +57,7 @@ public class ModificaAdministradorBean implements Serializable {
 					
 		try{			
 			
-			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoAdministrador");
+			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoAdministradorEliminar");
             if ((idEventoString == null) || (idEventoString == ""))
     		{	
     			System.out.println("No existe administrador "); 			
@@ -109,8 +98,9 @@ public class ModificaAdministradorBean implements Serializable {
 		
 		
     }    
+	/*--------------------------------------------------------------------------------------------------------------------------------------------*/
 	/*---------------------------------------------------------------------------------------------------------*/
-	public void editar(){
+	public void eliminar(){
 			
 		AdministradorEBR manager = null;		
 		
@@ -128,32 +118,38 @@ public class ModificaAdministradorBean implements Serializable {
             e.printStackTrace();
         }		
 					
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoAdministrador");
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoAdministradorEliminar");
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe administrador "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listarAdministrador?faces-redirect=true");
+			handler.performNavigation("listarAdministrador_?faces-redirect=true");
 		}
 		else	
 		{
-			String nombre = administradorBean.getNombre();
-			String apellido= administradorBean.getApellido();
-			String nick =administradorBean.getNick();
-			String email = administradorBean.getEmail();
-			String password = administradorBean.getPassword() ;
-			Date fechaNac = administradorBean.getFechaNac();
-			String sexo = administradorBean.getSexo() ;
-			String celular = administradorBean.getCelular();
-		
-			manager.modificarAdministrador(nick, nombre, apellido, email, password, fechaNac, sexo, celular);
+			//busco al administrador con es id
+			Long idAdministrador = new Long(idEventoString);
+			
+			Administrador a = new Administrador();
+			a = manager.obetenrAdministradorPorNick(idAdministrador);
+			
+			manager.eliminarAdministrador(a.getNick());
 			
 
 
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listarAdministradores?faces-redirect=true");
+			handler.performNavigation("listarAdministradores_?faces-redirect=true");
 		}
 	
 	}
-	/*-------------------------------------------------------------------------------------------------------*/
+	/*----------------------------------------------------------------------------------------------------------------------------------*/
+	public void cancelar(){
+	
+
+
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("listarAdministradores_?faces-redirect=true");
+		
+	
+	}
 }
