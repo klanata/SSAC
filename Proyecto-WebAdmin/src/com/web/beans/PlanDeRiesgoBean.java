@@ -29,8 +29,7 @@ public class PlanDeRiesgoBean implements Serializable{
 	
 	@ManagedProperty("#{catastrofeBean}")
     private CatastrofeBean catastrofeBean = new CatastrofeBean();
-	
-	
+		
 	
 	@PostConstruct
     public void init() {
