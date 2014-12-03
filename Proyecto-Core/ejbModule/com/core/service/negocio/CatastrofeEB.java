@@ -119,8 +119,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		ImagenCatastrofe imgCatastrofe = new ImagenCatastrofe();
 		imgCatastrofe.setPath(nombImagen);
 		imgCatastrofe.setCatastrofe(c);		
-		imagenCatastrofeDAO.insert(imgCatastrofe);
-		//System.out.println("La imagen de la catastrofe: " + nombImagen.toString());
+		imagenCatastrofeDAO.insert(imgCatastrofe);		
 		
 		ImagenCatastrofe imgCat = imagenCatastrofeDAO.buscarImgCatastrofePorPath(nombImagen);
 		Set<ImagenCatastrofe> imagenesCat = c.getImagenes();
@@ -241,7 +240,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		
 		dataService.delete(plan);	
 		
-	}
+	}	
 	
 	
 }

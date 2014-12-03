@@ -43,9 +43,6 @@ query = "SELECT img.id "+
 })
 
 
-
-
-
 @XmlRootElement
 public class ImagenCatastrofe extends Imagen implements Serializable{
 
@@ -63,6 +60,9 @@ public class ImagenCatastrofe extends Imagen implements Serializable{
 	@ManyToOne
 	private Catastrofe catastrofe;
 	
+	
+	//	------------------ Constructors  --------------------------------
+	
 	public ImagenCatastrofe() {
 		super();
 		this.path = new String();
@@ -74,6 +74,8 @@ public class ImagenCatastrofe extends Imagen implements Serializable{
 		this.path = path;
 		this.catastrofe = catastrofe;
 	}
+	
+	//	------------------ Getter and setter methods ---------------------
 
 	public Long getId() {
 		return id;

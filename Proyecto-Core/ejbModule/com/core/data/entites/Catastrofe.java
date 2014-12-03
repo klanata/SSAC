@@ -103,7 +103,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.bajaLogica = bajaLogica;
 	}
 	
-//	------------------ Constructors  --------------------------------
+	//	------------------ Constructors  --------------------------------
 	
 	public Catastrofe() {
 		super();
