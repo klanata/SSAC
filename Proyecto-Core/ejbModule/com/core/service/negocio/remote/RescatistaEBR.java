@@ -33,5 +33,7 @@ public interface RescatistaEBR {
 	public Rescatista obtenerRescatistaNik(String nick);
 	
 	public Collection<Rescatista> listarTodosLosRescatistasActivos();
+	
+	public Rescatista obtenerRescatistaID(Long id);
 
 }

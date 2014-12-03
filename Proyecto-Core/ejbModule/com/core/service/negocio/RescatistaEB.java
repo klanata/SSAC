@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.ws.rs.Path;
 
 
+
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.PlanDeRiesgo;
@@ -241,6 +242,15 @@ public class RescatistaEB implements RescatistaEBR {
 	public Rescatista obtenerRescatistaNik(String nick) {
 		
 		Rescatista r = rescatistaService.buscarUsuarioNick(nick);
+		
+		return r;
+	}
+
+
+	@Override
+	public Rescatista obtenerRescatistaID(Long id) {
+		
+		Rescatista r =  dataService.find(Rescatista.class, id);
 		
 		return r;
 	}
