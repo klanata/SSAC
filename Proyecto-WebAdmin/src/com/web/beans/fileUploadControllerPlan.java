@@ -17,8 +17,9 @@ import org.primefaces.event.FileUploadEvent;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.Catastrofe;
+import com.core.data.entites.PlanDeRiesgo;
 import com.core.service.negocio.remote.CatastrofeEBR;
-
 
 
 @ManagedBean(name="fileUploadControllerPlan")
@@ -74,7 +75,17 @@ public class fileUploadControllerPlan {
 	    		String fileString = outputFilePath.toString();
 	    		
 	    		try {
-	    			//manager.agregarImagenALaCatastrofe(idCatastrofe, fileString);
+	    			
+	    			Catastrofe c = manager.buscaCatastrofePorId(idCatastrofe);
+	    			PlanDeRiesgo plan = c.getPlanDeRiesgo();
+	    			
+	    			if (plan != null){
+	    				Long idPlan = plan.getId();
+	    				String nombPlan = plan.getRutaArchivo();
+	    				borrarPlanRiesgoCatastrofe(nombPlan);
+	    				manager.eliminarPlanDeRiesgoCatastrofe(idCatastrofe, idPlan);	    				
+	    			}	  
+	    			
 	    			manager.agregarPlanDeRiesgoALaCatastrofe(idCatastrofe, fileString);
 	    			outputFilePath = new File(jboss + "\\Proyecto\\imagenes.war\\" + x + fileName);
 		    		OutputStream out = new FileOutputStream(outputFilePath);                        
@@ -99,7 +110,7 @@ public class fileUploadControllerPlan {
 	        }
 	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("vistaPlanRiesgoCatastrofe?faces-redirect=true");	
+			handler.performNavigation("listaCatastrofesPlanRiesgo?faces-redirect=true");	
 	        
 		}
 	}		
@@ -108,7 +119,19 @@ public class fileUploadControllerPlan {
 	public void cancelar(){
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofePlanDeRiesgo", "");
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("vistaPlanRiesgoCatastrofe?faces-redirect=true");		
+		handler.performNavigation("listaCatastrofesPlanRiesgo?faces-redirect=true");		
 	}
+	
+	public void borrarPlanRiesgoCatastrofe(String path){	
+		
+		String jboss = System.getenv("JBOSS_HOME");		
+		File file = new File(jboss + "\\Proyecto\\imagenes.war\\" + path);		
+		if(file.delete()){
+			System.out.println(file.getName() + " fue elimindada!");
+		}else{
+			System.out.println("La operación de eliminación falló.");
+		}
+	}
+	
 
 }

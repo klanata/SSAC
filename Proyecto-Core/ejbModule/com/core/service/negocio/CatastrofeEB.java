@@ -211,8 +211,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 						
 			Long idPlan = planDeRiesgoDO.crearPlanDeRiesgo(planRiesgo);
 			Long id;
-			
-			System.out.println("llegar aca. ");
+						
 			PlanDeRiesgo planCatastrofe = c.getPlanDeRiesgo();
 			if (planCatastrofe != null){
 				id = planCatastrofe.getId();
@@ -231,6 +230,17 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}catch (Exception e) {			
 			e.printStackTrace();
 		}									
+	}
+	
+	public void eliminarPlanDeRiesgoCatastrofe(Long idCatastrofe, Long idPlan) throws Exception{
+		Catastrofe c= dataService.find(Catastrofe.class, idCatastrofe);
+		PlanDeRiesgo plan= planDeRiesgoDO.find(PlanDeRiesgo.class, idPlan);
+		
+		c.setPlanDeRiesgo(null);
+		dataService.update(c);
+		
+		dataService.delete(plan);	
+		
 	}
 	
 	
