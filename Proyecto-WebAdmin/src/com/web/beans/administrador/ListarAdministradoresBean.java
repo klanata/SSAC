@@ -1,4 +1,4 @@
-package com.web.beans;
+package com.web.beans.administrador;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -156,8 +156,10 @@ public class ListarAdministradoresBean implements Serializable {
 	
 	public void onRowSelect(SelectEvent event) {
 		
+		///Obtenego el string con el id del objeto
 		Long id = ((AdministradorBean) event.getObject()).getId();
 		System.out.println("id del Administrador seleccionada: " + id);
+		//Pasarlo a string cuando lo mandemos por sesion
 		String idEvento = id.toString();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoAdministrador", idEvento); 		
 					
@@ -166,10 +168,11 @@ public class ListarAdministradoresBean implements Serializable {
 
 		            
     }
+	
  
     public void onRowUnselect(UnselectEvent event) {
         FacesMessage msg = new FacesMessage("Administrador No Seleccionada");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-	
+    	
 }

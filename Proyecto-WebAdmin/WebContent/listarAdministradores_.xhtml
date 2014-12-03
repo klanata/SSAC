@@ -151,28 +151,28 @@
 <div class="wrapper col3">
   <div id="intro">
     <div>
-      <h3>Modificar administradores</h3>
+      <h3>Eliminar Administrador</h3>
       <br/>	
       <f:view>      	
       	
-      	<h:form id="formAdministradores">      		
+      	<h:form id="formAdmin">      		
       		
       		<p:growl id="msgs" showDetail="true" />
       		
-    		<p:dataTable id="administradorDT" var="administradorBean" widgetVar="administradorTable" value = "#{listaAdministradorBean.administradoresBean}"
-                 		 emptyMessage="No se han encontrado administrador con ese criterio"  filteredValue="#{listaAdministradorBean.filtroAdministradorBean}"               		  
+    		<p:dataTable id="adminDT" var="administradorBean" widgetVar="administradorTable" value = "#{listaAdmBean.administradoresBean}"
+                 		 emptyMessage="No se han encontrado administrador con ese criterio"  filteredValue="#{listaAdmBean.filtroAdministradorBean}"               		  
                  		 paginator="true" rows="5" paginatorPosition="top"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
-                 		 selectionMode="single" selection="#{listaAdministradorBean.selectedAdministrador}"  rowKey="#{administradorBean.id}" dblClickSelect="true">    
+                 		 selectionMode="single" selection="#{listaAdmBean.selectedAdministrador}"  rowKey="#{administradorBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
 		                <h:outputText value="Buscar Administrador:  " />
-		                <p:inputText id="globalFilter"   onkeyup="PF('administradorTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		                <p:inputText id="globalFilter"   onkeyup="PF('administrador2Table').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
 		        </f:facet>    	
-		         <p:ajax event="rowSelect" listener="#{listaAdministradorBean.onRowSelect}" update=":formAdministradores:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listaAdministradorBean.onRowUnselect}" update=":formAdministradores:msgs" />	        		        
+		         <p:ajax event="rowSelect" listener="#{listaAdmBean.onRowSelect}" update=":formAdmin:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaAdmBean.onRowUnselect}" update=":formAdmin:msgs" />	        		        
 		    
 		        
         		<p:column headerText="Id" style="width:50px">
@@ -190,10 +190,7 @@
         		<p:column headerText="Apellido" filterBy="#{administradorBean.apellido}" filterMatchMode="contains">
             		<h:outputText value="#{administradorBean.apellido}" />            		
         		</p:column>
-        		
-                <p:column headerText="Celular">
-            		<h:outputText value="#{administradorBean.celular}" />            		
-        		</p:column>        		        		 
+        	       		        		 
         		        		        		
      		</p:dataTable>     		     		
      		

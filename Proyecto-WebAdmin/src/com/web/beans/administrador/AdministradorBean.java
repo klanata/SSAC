@@ -1,4 +1,4 @@
-package com.web.beans;
+package com.web.beans.administrador;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
