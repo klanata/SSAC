@@ -165,9 +165,10 @@
 				<br/>
 				
 				<p>
-				<label for="pass">Password :</label>				
-					<p:inputText id="pass" label="evento" value="#{administradorBean.password}"  required="true" requiredMessage="El password del Administrador es requerido">	
-					</p:inputText>																																									
+				<label for="pass">Password :</label>
+				 <p:password id="pass" value="#{administradorBean.password}" feedback="true" />				
+						
+																																										
 				</p>
 				<br/>
 				<p>

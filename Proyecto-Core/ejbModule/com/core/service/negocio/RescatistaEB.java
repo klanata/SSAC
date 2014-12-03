@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Path;
 
+
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.PlanDeRiesgo;
@@ -159,6 +160,89 @@ public class RescatistaEB implements RescatistaEBR {
 		 rescatistaService.pendienteRealizado(estadorescatista);
 		
 		
+	}
+
+
+	/****************************************************************************/
+	public void modificarRescatista(String nombre, String nick, String apellido, String email,String password,Date fechaNac,String sexo, String celular) {
+		if(!nick.isEmpty())
+		{
+			Rescatista u = rescatistaService.buscarUsuarioNick(nick);
+			if(!password.isEmpty()) { u.setPassword(password);}
+			if(!email.isEmpty()){ u.setEmail(email);}
+			if(!nombre.isEmpty()){u.setNombre(nombre);}
+			if(fechaNac != null){ u.setFechaNac(fechaNac);}
+			if(!apellido.isEmpty()){u.setApellido(apellido);}
+			if(!sexo.isEmpty()){u.setSexo(sexo);}
+			u.setCelular(celular);
+			
+			dataService.update(u);
+			
+		}	
+		
+	}
+
+
+	/****************************************************************************/
+	public Boolean eliminarRescatista(String nick) {
+		
+		Boolean eliminar =  false;
+		Rescatista r = obtenerRescatistaNik(nick);
+		//pregunto si tiene pendientes
+		Collection<PlanesPendientesRescatistaDTO> pendientes = listarPendientesRescatistaPorCatastrofe(nick);
+		if(pendientes == null)
+		{
+			//obtengo rescartista
+			
+			dataService.delete(r);
+			eliminar = true;
+		}
+		else{
+			
+				//obtengo lista de sus pendientes
+			Collection<EstadoRescatista> listaPendientesUsuarioBorrar =  r.getEstadoRescatista();
+			Rescatista rescatistaAsignar = rescatistaService.obtenerRescatistaConMenosPendientes();
+			//obtengo su colleccion de pendientes
+			
+			Collection<EstadoRescatista> lista = rescatistaAsignar.getEstadoRescatista();
+			
+			Iterator<EstadoRescatista> it = listaPendientesUsuarioBorrar.iterator();
+			
+			while(it.hasNext())
+			{
+				
+				EstadoRescatista e = it.next();
+				lista.add(e);
+				
+			}
+			
+			dataService.update(rescatistaAsignar);
+			dataService.delete(r);
+			
+			
+		}		
+		
+		
+		return eliminar;
+	}
+
+
+	/****************************************************************************/
+	public Collection<Rescatista> listarTodosLosRescatistasActivos() {
+		
+		
+		Collection<Rescatista> listar = dataService.findAll(Rescatista.class);
+		
+		return listar;
+	}
+
+
+	/****************************************************************************/
+	public Rescatista obtenerRescatistaNik(String nick) {
+		
+		Rescatista r = rescatistaService.buscarUsuarioNick(nick);
+		
+		return r;
 	}
 
 	

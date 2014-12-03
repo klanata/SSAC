@@ -1,6 +1,5 @@
-package com.web.beans;
+package com.web.beans.rescatista;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -21,7 +20,7 @@ import com.core.service.negocio.remote.RescatistaEBR;
 public class RescatistaBean {
 
 	
-
+	private Long id;
 	private String nombre = "";
 	private String apellido = "";
 	
@@ -32,6 +31,14 @@ public class RescatistaBean {
 	private String sexo;
 	private String celular = "";
 	
+	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -110,23 +117,26 @@ public class RescatistaBean {
     			FacesContext contexto = FacesContext.getCurrentInstance(); 
     	        FacesMessage messages = new FacesMessage("Ya existe una Rescatista con el mismo nick registrada en el sistema."); 
     	        contexto.addMessage("registroRescatista", messages);
+    	        
     		}
     		else {    	
-    			
-    			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Rescatista registrado con exito !!"); 
-    	        contexto.addMessage("registroRescatista", messages);
     			
     			this.nombre = "";   		
         		this.apellido = "";
         		this.nick = "";
-        		this.celular = null;
+        		this.celular = "";
         		this.email = "";
         		this.password = "";
         		this.sexo= "";
         		
+    			FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        FacesMessage messages = new FacesMessage("Rescatista registrado con exito !!"); 
+    	        contexto.addMessage("registroRescatista", messages);
+    			
+    	        FacesContext.getCurrentInstance().addMessage(null, messages); 
+        		
     		}
-    		    		    		    		
+    		   		    		    		
     		return "success"; 
     		
     	}catch (Exception excep){
@@ -135,5 +145,23 @@ public class RescatistaBean {
     		
     	}    
 	}
+	/**************************************************************/
+	public RescatistaBean(){}
+	
+	public RescatistaBean(Long id, String nombre, String apellido, String nick,
+			String email, String password, Date fechaNac, String sexo,
+			String celular) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.nick = nick;
+		this.email = email;
+		this.password = password;
+		this.fechaNac = fechaNac;
+		this.sexo = sexo;
+		this.celular = celular;
+	}
+	
 	
 }

@@ -14,6 +14,7 @@ import javax.persistence.Query;
 
 
 
+
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.Rescatista;
 import com.core.data.persistencia.interfaces.locales.RescatistaDAO;
@@ -215,5 +216,14 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 		
 		
 		return listapendientes;
+	}
+	@Override
+	public Rescatista buscarUsuarioNick(String nick) {
+		Rescatista usuario = null;
+		Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista");
+	  	consulta.setParameter("nick", nick);
+	  	usuario = (Rescatista) consulta.getResultList().get(0);
+	  		
+		return usuario;
 	}
 }

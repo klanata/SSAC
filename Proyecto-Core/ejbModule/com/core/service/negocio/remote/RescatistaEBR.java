@@ -8,6 +8,7 @@ import javax.ejb.Remote;
 
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.EstadoRescatista;
+import com.core.data.entites.Rescatista;
 
 import cross_cuting.enums.PlanesPendientesRescatistaDTO;
 
@@ -24,5 +25,13 @@ public interface RescatistaEBR {
 	public Collection<PlanesPendientesRescatistaDTO> listarPendientesRescatistaPorCatastrofe(String nick);
 	
 	public void RealizadoPendiente(EstadoRescatista estadorescatista);
+	
+	public void modificarRescatista (String nombre, String nick, String apellido, String email,String password,Date fechaNac,String sexo, String celular);
+	
+	public Boolean eliminarRescatista(String nick);
+	
+	public Rescatista obtenerRescatistaNik(String nick);
+	
+	public Collection<Rescatista> listarTodosLosRescatistasActivos();
 
 }

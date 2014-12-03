@@ -23,6 +23,7 @@ public interface RescatistaDAO extends JPAService{
 	
 	public Rescatista obtenerRescatistaConMenosPendientes();
 	public Rescatista buscarUsuario(String login, String password);
+	public Rescatista buscarUsuarioNick(String nick);
 	
 	public Collection<EstadoRescatista> listarPendientesRescatista(String nick);
 	
