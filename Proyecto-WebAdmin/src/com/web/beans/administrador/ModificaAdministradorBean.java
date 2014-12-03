@@ -1,10 +1,8 @@
 package com.web.beans.administrador;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
+
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -18,7 +16,7 @@ import javax.naming.NamingException;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Administrador;
-import com.core.data.entites.Catastrofe;
+
 import com.core.service.negocio.remote.AdministradorEBR;
 
 

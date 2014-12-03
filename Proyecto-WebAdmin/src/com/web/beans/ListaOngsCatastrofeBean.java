@@ -21,7 +21,8 @@ import clienteutility.ClienteUtility;
 import com.core.data.entites.Ong;
 import com.core.data.entites.Catastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
-import com.core.service.negocio.remote.OngEBR;;
+import com.core.service.negocio.remote.OngEBR;
+import com.web.beans.ong.OngBean;
 
 @ManagedBean(name="listaOngsBean")
 @RequestScoped
@@ -133,7 +134,7 @@ public class ListaOngsCatastrofeBean implements Serializable{
 						Long idOngCat;
 				    	String nombreOngCat;
 				    	String direccionOngCat;
-				    	BigDecimal telefonoOngCat;
+				    	String telefonoOngCat;
 				    	String emailOngCat;
 				    	String citioWebOngCat;
 				    	String descripcionOngCat;
@@ -181,7 +182,7 @@ public class ListaOngsCatastrofeBean implements Serializable{
 			    	Long id;
 			    	String nombre;
 			    	String direccion;
-			    	BigDecimal telefono;
+			    	String telefono;
 			    	String email;
 			    	String citioWeb;
 			    	String descripcion;

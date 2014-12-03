@@ -1,7 +1,6 @@
-package com.web.beans;
+package com.web.beans.ong;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 
 import javax.faces.application.FacesMessage;
@@ -28,7 +27,7 @@ public class OngBean implements Serializable{
 	
 	private String nombre = "";
 	private String direccion = "";
-	private BigDecimal telefono = BigDecimal.ZERO;
+	private String telefono = "";
 	private String email ="";
 	private String citioWeb = "";
 	private String descripcion = "";
@@ -66,12 +65,12 @@ public class OngBean implements Serializable{
 	}
 
 
-	public BigDecimal getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
 
-	public void setTelefono(BigDecimal telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
@@ -185,7 +184,7 @@ public class OngBean implements Serializable{
 	//Constructores
 	public OngBean(){}
 	
-	public OngBean(Long id,String nombre, String direccion, BigDecimal telefono,
+	public OngBean(Long id,String nombre, String direccion, String telefono,
 			String email, String citioWeb, String descripcion) {
 		super();
 		this.id= id;

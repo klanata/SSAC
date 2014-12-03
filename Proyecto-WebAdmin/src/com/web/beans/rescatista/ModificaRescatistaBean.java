@@ -19,7 +19,7 @@ import com.core.data.entites.Rescatista;
 import com.core.service.negocio.remote.RescatistaEBR;
 
 
-@ManagedBean(name="modificarAdminBean")
+@ManagedBean(name="modificarRescatistaBean")
 @RequestScoped
 public class ModificaRescatistaBean implements Serializable {
 	

@@ -1,7 +1,6 @@
 package com.core.data.persistencia;
 
 import java.util.Collection;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -11,6 +10,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import com.core.data.entites.Ong;
 import com.core.data.persistencia.interfaces.locales.OngDAO;
@@ -103,10 +103,17 @@ public class OngDAOImpl extends AbstractService   implements OngDAO{
 	 
 		Collection<Ong> lista = null;
 		try{
-				lista= dataService.findAll(Ong.class);
+				//lista= dataService.findAll(Ong.class);
+			System.out.print("entra 11");
+			TypedQuery<Ong> consulta = this.em.createNamedQuery("Ong.ListarONGBajaLogicaFalse",Ong.class);
+											
+			System.out.print("lista");
+				
+			lista = consulta.getResultList(); 
 			
 		}catch (Exception excep){			
-			throw excep;
+			
+			System.out.print("muere en obtener la coleccion");
 		}
 		
 		return lista;

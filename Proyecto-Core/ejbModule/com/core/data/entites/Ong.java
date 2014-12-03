@@ -1,7 +1,6 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +20,12 @@ allocationSize=1)
 @NamedQuery(name="Ong.BuscarOngNombre", 
 query = "SELECT o "+
 		"FROM Ong o " +
-		"WHERE o.nombre = :nombre")
+		"WHERE o.nombre = :nombre"),
+
+@NamedQuery(name="Ong.ListarONGBajaLogicaFalse", 
+query = "SELECT o "+
+		"FROM Ong o " +
+		"WHERE o.bajaLogica = false")
 
 		
 
@@ -54,7 +58,7 @@ public class Ong  extends AbstractEntity implements Serializable{
 	private String direccion = "";
 	
 	
-	private BigDecimal telefono = BigDecimal.ZERO;
+	private String telefono ="";
 	
 	private String email= "";
 	
@@ -106,11 +110,11 @@ public class Ong  extends AbstractEntity implements Serializable{
 		this.direccion = direccion;
 	}
 
-	public BigDecimal getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(BigDecimal telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

@@ -1,5 +1,6 @@
 package com.web.beans.rescatista;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -17,9 +18,13 @@ import com.core.service.negocio.remote.RescatistaEBR;
 
 @ManagedBean(name="rescatistaBean")
 @SessionScoped
-public class RescatistaBean {
+public class RescatistaBean implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String nombre = "";
 	private String apellido = "";

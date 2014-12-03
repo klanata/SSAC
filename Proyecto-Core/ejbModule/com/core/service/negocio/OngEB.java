@@ -1,6 +1,5 @@
 package com.core.service.negocio;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -26,7 +25,7 @@ public class OngEB implements OngEBR{
 	private DataService dataService;
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarOng(String nombre, String direccion, String descripcion,
-			String email, BigDecimal telefono, String citioWeb)
+			String email, String telefono, String citioWeb)
 			throws Exception {
 		
 		Ong o= new Ong();
@@ -83,6 +82,37 @@ public class OngEB implements OngEBR{
 		o= ongService.buscarOngPorNick(nombreOng);
 		
 		return o;
+	}
+
+	@Override
+	public void modificarOng(String nombre, String direccion,
+			String descripcion, String email, String telefono, String citioWeb) {
+		
+		//obtengo la ong
+		Ong o =ongService.buscarOngPorNick(nombre);
+		o.setCitioWeb(citioWeb);
+		o.setDescripcion(descripcion);
+		o.setDireccion(direccion);
+		o.setEmail(email);
+		o.setTelefono(telefono);
+		//o.setNombre(nombre); politicas de la empresa el nombre no se modifica
+		dataService.update(o);
+		
+		
+		
+		
+		
+	}
+
+	@Override
+	public void EliminarONG(Long id) {
+		
+		//buscamos ong para darle baja logica
+		Ong o =dataService.find(Ong.class, id);
+		o.setBajaLogica(true);
+		dataService.update(o);
+		
+		
 	}
 
 	
