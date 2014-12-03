@@ -26,6 +26,11 @@ allocationSize=1)
 			"FROM PersonasDesaparecidas e " +
 			"WHERE e.nombre = :nombre AND e.apellido = :apellido"),
 			
+@NamedQuery(name="PersonasDesaparecidas.BuscarPersona.Id", 
+			query = "SELECT c "+
+					"FROM PersonasDesaparecidas c " +
+					"WHERE c.id = :id"),
+			
 @NamedQuery(name="PersonasDesaparecidas.BuscarPorNombreyApellido.Nombre.Apellido", 
 			query = "SELECT e "+
 			"FROM PersonasDesaparecidas e " +
@@ -60,16 +65,22 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	
 	@Column(nullable= false)
 	private String numeroContacto = "";
-	
-	@Column(nullable= false)
-	private EstadoPersona descripcion ;
-	
+		
 	@Column(nullable= false)
 	private Date fechNac ;
 	
 	@Column(nullable= false)
+	private String desc;
+	
+	@Column(nullable= false)
 	private String foto;
+	
+	@Column(nullable= true)
+	private Boolean hallada ;
+	
+	
 
+	
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<ImagenPersonaDesaparecida> imagenes = new HashSet<ImagenPersonaDesaparecida>(0);
 	
@@ -81,23 +92,26 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 		this.nombre = new String();
 		this.apellido = new String();
 		this.numeroContacto = new String();
-		this.descripcion = EstadoPersona.desaparecida;
 		this.fechNac = new Date();
+		this.desc = new String();
 		this.imagenes = new HashSet<ImagenPersonaDesaparecida>();
+		this.hallada = false;
+		
 	}
 	
 	
 
 	public PersonasDesaparecidas(String nombre, String apellido,
-			String numeroContacto, EstadoPersona descripcion, Date fechNac,
-			Set<ImagenPersonaDesaparecida>  imagenes) {
+			String numeroContacto, Boolean hallada, Date fechNac,
+			Set<ImagenPersonaDesaparecida>  imagenes, String desc) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.numeroContacto = numeroContacto;
-		this.descripcion = EstadoPersona.desaparecida;
 		this.fechNac = fechNac;
+		this.desc = desc;
 		this.setImagenes(imagenes);
+		this.hallada = hallada;
 	}
 
 	public Long getId() {
@@ -132,13 +146,19 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 		this.numeroContacto = numeroContacto;
 	}
 
-	public EstadoPersona getDescripcion() {
-		return descripcion;
+	
+
+	public Boolean getHallada() {
+		return hallada;
 	}
 
-	public void setDescripcion(EstadoPersona descripcion) {
-		this.descripcion = descripcion;
+
+
+	public void setHallada(Boolean hallada) {
+		this.hallada = hallada;
 	}
+
+
 
 	public Date getFechNac() {
 		return fechNac;
@@ -155,6 +175,7 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+	
 	public Set<ImagenPersonaDesaparecida> getImagenes() {
 		return imagenes;
 	}
@@ -163,7 +184,15 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	}
 	
 	
-	
+	public String getDesc() {
+		return desc;
+	}
+
+
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 	
    
 }

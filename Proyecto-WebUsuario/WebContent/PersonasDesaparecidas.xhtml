@@ -40,23 +40,33 @@
 						</p:inputText>																																									
 					</p>
                         
-                        <p>		
-				<p:selectBooleanCheckbox value="#{personasdesaparecidasBean.decripcion}"/> 
-				<label for="activa">Desaparecida</label>						
-				</p>	
+                  
 				<br/>
-                    
+				
 					
 					 <p>
 						<p:outputLabel for="fechNac" value="fechNac" />					
 						<p:calendar id="fechNac" label="fechNac"  value="#{personasdesaparecidasBean.fechNac}" pattern="dd-MM-yyyy" mask="true" />
 																																														
 					</p>
+					 <p>
+						<label for="desc">Descripcion :</label>				
+						<p:inputText id="desc" label="decripcion"  value="#{personasdesaparecidasBean.desc}" required="true" requiredMessage="es requerido" >	
+						</p:inputText>																																									
+					</p>
+					
+					
 					
 					<h:panelGrid columns="2" border="0">																						
 					<h:inputFile id="foto" label="logo" value="#{personasdesaparecidasBean.part}" required="true" requiredMessage="foto es obligatoria" >			
 					</h:inputFile>					 					
 					</h:panelGrid>	
+					
+					<p>		
+				<p:selectBooleanCheckbox value="#{personasdesaparecidasBean.hallada}"/> 
+				<label for="hallada">¿Hallada?</label>						
+				</p>	
+				<br/>
 					
                         <p:commandButton id="registro" update="growl" type="submit" style="margin-left: 500px;" styleClass="formbutton" value="Registrar" action="#{personasdesaparecidasBean.registrarPersonasDesaparecidas()}">
 			</p:commandButton>	

@@ -1,6 +1,8 @@
 package com.web.beans;
 
 import java.io.File;
+
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +20,7 @@ import org.primefaces.event.FileUploadEvent;
 
 import clienteutility.ClienteUtility;
 
-import com.core.service.negocio.remote.CatastrofeEBR;
+import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
 
 @ManagedBean(name="fileUploadController")
 public class FileUploadController {	
@@ -38,17 +40,17 @@ public class FileUploadController {
 	
 	public void copyFile(String fileName, InputStream in) {	
 		
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeONG");
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idNombre");
 		System.out.println("El id del evento: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
-			System.out.println("No existe la catástrofe. "); 			
+			System.out.println("No existe la persona. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
+			handler.performNavigation("listaPersona?faces-redirect=true");
 		}
 		else	
 		{		
-			CatastrofeEBR manager = null;				
+			PersonasDesaparecidasEBR manager = null;				
 			Context context = null;				
 			//FacesMessage message = null; 
 			
@@ -58,7 +60,7 @@ public class FileUploadController {
 	            // 2. Generate JNDI Lookup name
 	            //String lookupName = getLookupName();
 	            // 3. Lookup and cast
-	            manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	            manager = (PersonasDesaparecidasEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//PersonasDesaparecidasEB!com.core.service.negocio.remote.PersonasDesaparecidasEBR");
 	 
 	        } catch (NamingException e) {
 	            e.printStackTrace();
@@ -66,7 +68,7 @@ public class FileUploadController {
 			
 	        try {
 	        	 
-	        	Long idCatastrofe = new Long(idEventoString);
+	        	Long idPersona = new Long(idEventoString);
 	        	
 	        	String jboss = System.getenv("JBOSS_HOME");
 	        	int x = new Double(Math.random() * 100).intValue();        	        	        	
@@ -75,7 +77,7 @@ public class FileUploadController {
 	    		String fileString = outputFilePath.toString();
 	    		
 	    		try {
-	    			manager.agregarImagenALaCatastrofe(idCatastrofe, fileString);
+	    			manager.agregarImagenAlReporte(idPersona, fileString);
 	    			outputFilePath = new File(jboss + "\\Proyecto\\imagenes.war\\" + x + fileName);
 		    		OutputStream out = new FileOutputStream(outputFilePath);                        
 		           
@@ -92,7 +94,7 @@ public class FileUploadController {
 		           
 		             System.out.println("Nuevo archivo creado!");   	    		
 		        }catch (Exception excep){
-					System.out.println("Excepción al obtener la catástrofe: " + excep.getMessage());      		 			       	           	
+					System.out.println("Excepción al crear : " + excep.getMessage());      		 			       	           	
 				}	    			    			    		        	      
 	        } catch (Exception e) {
 	             System.out.println(e.getMessage());

@@ -12,8 +12,8 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		
-		<script src="js/jquery.min.js"></script>
+			<script src="js/jquery.min.js"></script>
+	
 		<script src="js/jquery.dropotron.min.js"></script>
 		<script src="js/jquery.scrolly.min.js"></script>
 		<script src="js/jquery.onvisible.min.js"></script>
@@ -45,7 +45,7 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</h:head>
 	<body class="homepage">
-	<p:inputTextarea id="descripcion" label="descripcion" value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>
+	
 		<!-- Header -->
 			<div id="header">
 						
@@ -66,24 +66,8 @@
 					<div id="nav">
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li>
-								<a href="">DONACIONES</a>
-								<ul>
-									<li><a href="#">De bienes</a></li>
-									<li><a href="#">De servicios</a></li>
-									<li><a href="#">Economica</a></li>
-									<li>
-										<a href="">And a submenu &hellip;</a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Phasellus consequat</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li><a href="#">Etiam dolore nisl</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Veroeros feugiat</a></li>
-								</ul>
-							</li>
+							<li><a href="Donaciones.xhtml">DONACIONES</a></li>
+							
 							<li><a href="left-sidebar.html">SOLICITAR AYUDA</a></li>
 							<li><a href="right-sidebar.html"></a></li>
 							<li><a href="no-sidebar.html">PERSONAS DESAPARECIDAS</a></li>
@@ -112,12 +96,17 @@
 			
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 			<h:panelGrid>		
-			
-				<p>		
-				Descripción:	
-																																						
-					<p:inputTextarea id="descripcion" label="descripcion" value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>	
+				<p>
+				<label for="catastrofeId">catastrofeId :</label>				
+					<p:inputText id="catastrofeId" label="catastrofeId"  value="#{pedidoAyudaBean.catastrofe}" required="true" requiredMessage="La ong es requerida" >	
+					</p:inputText>																																									
+				</p>
 				
+				<br/>
+				<p>
+				<label for="descripcion">descripcion :</label>				
+					<p:inputText id="descripcion" label="descripcion"  value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La ong es requerida" >	
+					</p:inputText>																																									
 				</p>
 				<br/>
 				 <div class='errorbox-good'>

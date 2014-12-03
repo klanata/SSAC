@@ -1,5 +1,6 @@
 package com.core.data.persistencia;
 import java.util.List;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 
+import com.core.data.entites.Catastrofe;
 import com.core.data.entites.PersonasDesaparecidas;
 import com.core.data.persistencia.interfaces.locales.PersonasDesaparecidasDAO;
 
@@ -39,31 +41,11 @@ private static final long serialVersionUID = 1L;
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Long insert(PersonasDesaparecidas personadesaparecida)  throws Exception{
-		Long id;
-		String nombre = personadesaparecida.getNombre();
-		String apellido = personadesaparecida.getApellido();
-			try{
-				
-				if (this.existePersona(nombre, apellido)){				
-					id = (long) 0;				
-				} 
-				else 
-				{				
-					this.em.persist(personadesaparecida);					
 
-					Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.BuscarPer.Nombre.Apellido");
-					consulta.setParameter("nombre", nombre);
-					consulta.setParameter("apellido", apellido);
-					
-					if (consulta.getResultList().isEmpty()){
-						id = (long) 0;	
-				  	} else {
-				  		
-				  		PersonasDesaparecidas o = (PersonasDesaparecidas) consulta.getResultList().get(0);
-				  		id= o.getId();
-				  	}					
-				} 
-				return id;		    
+			try{
+				dataService.create(personadesaparecida);
+				Long id = personadesaparecida.getId();
+				return id;
 			} 
 			catch (Exception excep){			
 				throw excep;
@@ -78,6 +60,7 @@ private static final long serialVersionUID = 1L;
 		consulta.setParameter("apellido", apePersona);
 	  	if (consulta.getResultList().isEmpty()){
 	  		existe = false;
+	  		
 	  	} else {
 	  		existe = true;
 	  	}
@@ -119,6 +102,30 @@ private static final long serialVersionUID = 1L;
 		return listaPersonasHalladas;
 		
 	}
+	
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public 	PersonasDesaparecidas buscarPersonaPorId(Long id) throws Exception {
+	  	
+		PersonasDesaparecidas persona;
+		try {
+			Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.BuscarPersona.Id",PersonasDesaparecidas.class);			
+		  	consulta.setParameter("id", id);		  			  	
+		  	if (consulta.getResultList().isEmpty()){
+		  		persona = new PersonasDesaparecidas();
+		  		persona.setId(new Long(0));		  		
+		  	} else {		  		
+		  		persona = (PersonasDesaparecidas) consulta.getResultList().get(0);
+		  	}		  	
+		  	return persona;		
+		} catch (Exception excep){			
+			throw excep;
+		}	  	
+	}
+	
+	
+	
+	
 	
 	public Collection<PersonasDesaparecidas> listarPersonasDesaparecidas(Long idPersona) throws Exception{
 		Collection<PersonasDesaparecidas> listaPersonasNoHalladas = null;

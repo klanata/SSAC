@@ -32,31 +32,32 @@ public class PersonasDesaparecidasBean implements Serializable {
 	private String nombre;
 	private String apellido ;
 	private String numeroContacto ;	
-	private EstadoPersona decripcion ;	
 	private Date fechNac;
+	private String desc ;
 	private String foto;
 	private Set<ImagenPersonaDesaparecida> imagenes = new HashSet<ImagenPersonaDesaparecida>();
+	private Boolean hallada;
 	
 	private Part part;
 	
 	
-	/////constructores
+	/////Constructores
 	
 	public PersonasDesaparecidasBean() {	
 	}	
-	public PersonasDesaparecidasBean(Long id, String nombre, String apellido, String numeroContacto, EstadoPersona descripcion, Date fechNac,String foto,
-			Set<ImagenPersonaDesaparecida>  imagen) {
+	public PersonasDesaparecidasBean(Long id, String nombre, String apellido, String numeroContacto, Date fechNac, String desc, String foto,
+			 Boolean hallada) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.numeroContacto = numeroContacto;
-		this.decripcion = descripcion;
+		this.numeroContacto = numeroContacto;		
 		this.fechNac = fechNac;
+		this.desc = desc;
 		this.foto = foto;
-		this.imagenes = imagen;
+		this.hallada = hallada;
 	}
-		
+		//////////////// Getters and Setters
 	
 	public Long getId() {
 		return id;
@@ -87,8 +88,6 @@ public class PersonasDesaparecidasBean implements Serializable {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-
-
 	public String getNumeroContacto() {
 		return numeroContacto;
 	}
@@ -97,13 +96,12 @@ public class PersonasDesaparecidasBean implements Serializable {
 		this.numeroContacto = numeroContacto;
 	}
 
-	public EstadoPersona getDecripcion() {
-		return decripcion;
+	public String getDesc() {
+		return desc;
 	}
-	public void setDecripcion(EstadoPersona decripcion) {
-		this.decripcion = decripcion;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
-
 	public Date getFechNac() {
 		return fechNac;
 	}
@@ -125,20 +123,22 @@ public class PersonasDesaparecidasBean implements Serializable {
 		this.part = part;
 	}
 	
-
-
-
+	public Boolean getHallada() {
+		return hallada;
+	}
+	public void setHallada(Boolean hallada) {
+		this.hallada = hallada;
+	}
 	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
-
-	public String  registrarPersonasDesaparecidas(){				
+	public String registrarPersonasDesaparecidas(){				
 		
 		PersonasDesaparecidasEBR manager = null;
 		
 		Context context = null;
 		
 		FacesMessage message = null; 
-		
 		try {
             // 1. Obtaining Context
             context = ClienteUtility.getInitialContext();
@@ -154,21 +154,21 @@ public class PersonasDesaparecidasBean implements Serializable {
     	try{    		   	    	     		
     		InputBean inputBean = new InputBean();
     		String foto= inputBean.uploadFile(this.part); 
-    		Long in = manager.crearReportePersonasDesaparecidas(nombre, apellido, numeroContacto, decripcion, fechNac,foto, imagenes);   
-       		if (in == 0){
+    		Long in = manager.crearReportePersonasDesaparecidas(this.nombre, this.apellido, this.numeroContacto, this.fechNac, this.desc, foto, imagenes, this.hallada);   
+    		if (in == 0){
     			System.out.println("es repetido." + in);
-    			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "ya existe  la persona ingresada.");
-    	       
+    			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe .");
+    	      
     		}
-       		else {    	
+    		else {    	
     			this.nombre = "";   		
         		this.apellido = "";
-        		this.numeroContacto= "";
-        		this.decripcion = EstadoPersona.hallada;
-        		
+        		this.numeroContacto = "";
+        		this.desc = "";
+        		this.hallada = false;
         		
     			System.out.println("no es repetido." + in);
-    			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Se creo el reporte");
+    			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Persona ingresada.");
     		}    		    
     		FacesContext.getCurrentInstance().addMessage(null, message);
     		return "success"; 
@@ -176,8 +176,10 @@ public class PersonasDesaparecidasBean implements Serializable {
     	}catch (Exception excep){
     		System.out.println("Excepcion en agregar catastrofe: " + excep.getMessage());      		 			       
 	        return "failure";     		
-    	}
+    	}        	    	
 	}
+	
+		
 }
        		
     	

@@ -10,21 +10,17 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
 		<script src="js/jquery.dropotron.min.js"></script>
 		<script src="js/jquery.scrolly.min.js"></script>
 		<script src="js/jquery.onvisible.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
-		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 			<link rel="stylesheet" href="css/style-noscript.css" />
-		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	
 	</h:head>
 	
 	<body class="left-sidebar">
@@ -42,28 +38,9 @@
 					<!-- Nav -->
 					<div id="nav">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li>
-								<a href="">Dropdown</a>
-								<ul>
-									<li><a href="#">Lorem ipsum dolor</a></li>
-									<li><a href="#">Magna phasellus</a></li>
-									<li><a href="#">Etiam dolore nisl</a></li>
-									<li>
-										<a href="">And a submenu &hellip;</a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Phasellus consequat</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li><a href="#">Etiam dolore nisl</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Veroeros feugiat</a></li>
-								</ul>
-							</li>
-							<li><a href="left-sidebar.html">Left Sidebar</a></li>
-							<li><a href="right-sidebar.html">Right Sidebar</a></li>
-							<li><a href="no-sidebar.html">No Sidebar</a></li>
+							<li><a href="Index.xhtml">Volver a la pagina principal</a></li>
+							<li><a href="">Pedido de ayuda</a>	</li>
+							
 						</ul>
 					</div>
 			</div>
@@ -169,7 +146,50 @@
 									<p>
 									 Por favor, ingrese los campos en el formulario que se presenta a continuación.
 									</p>
-					  
+					  <div class="wrapper col2">
+  <div id="intro">
+    <div class="fl_left">
+
+      <f:view>
+		<h:form id="economicaBean" >
+			<h:messages id="messages" for="economicaBean"></h:messages>
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<h:panelGrid>		
+			
+				<p>
+				<label for="ong">ong :</label>				
+					<p:inputText id="ong" label="ong"  value="#{economicaBean.ong}" required="true" requiredMessage="La ong es requerida" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+				
+				<p>
+				<label for="usuario">usuario :</label>				
+					<p:inputText id="usuario" label="usuario" value="#{economicaBean.usuario}" required="true" requiredMessage="El usuario es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				
+					<p:outputLabel for="fechaRealizada" value="fechaRealizada" />
+        		<p:calendar id="fechaRealizada" value="#{economicaBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />
+        		<br/>
+        		
+				<p>
+				<label for="monto">monto :</label>				
+					<p:inputText id="monto" label="monto"  value="#{economicaBean.monto}"  required="true" requiredMessage="El monto es requerido" >		
+					</p:inputText>																																									
+				</p>
+				<br/>
+				</h:panelGrid>	
+			<p:commandButton id="registrarDonacion" update="growl"  type="submit" style="margin-left: 150px;" Class="button" value="DONAR" action="#{economicaBean.registrarDonacionEconomica()}">
+			</p:commandButton>	
+		</h:form>
+		
+</f:view>
+ </div>
+</div>
+</div>	
 							</div>
 						</div>
 					</div>
