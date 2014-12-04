@@ -71,11 +71,11 @@ public class FileUploadControllerCSS {
 	        	int x = new Double(Math.random() * 1000000).intValue();        	        	        	
 	        	
 	        	File outputFilePath = new File(x + fileName);		
-	    		String fileString = outputFilePath.toString();
+	    		String css = outputFilePath.toString();
 	    		
 	    		try {
 	    			
-	    			Catastrofe c = manager.buscaCatastrofePorId(idCatastrofe);
+	    			//Catastrofe c = manager.buscaCatastrofePorId(idCatastrofe);
 	    			
 	    			/*
 	    			PlanDeRiesgo plan = c.getPlanDeRiesgo();
@@ -88,10 +88,10 @@ public class FileUploadControllerCSS {
 	    			}	  
 	    			
 	    			manager.agregarPlanDeRiesgoALaCatastrofe(idCatastrofe, fileString);
-	    			
-	    			
-	    			
+	    				    			    			
 	    			*/
+	    			
+	    			manager.agregarCSSALaCatastrofe(idCatastrofe, css);
 	    			outputFilePath = new File(jboss + "\\Proyecto\\imagenes.war\\" + x + fileName);
 		    		OutputStream out = new FileOutputStream(outputFilePath);                        
 		           

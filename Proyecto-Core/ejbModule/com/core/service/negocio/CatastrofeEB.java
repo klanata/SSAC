@@ -243,5 +243,15 @@ public class CatastrofeEB implements CatastrofeEBR{
 		
 	}	
 	
+	public void agregarCSSALaCatastrofe(Long idCatastrofe, String css) throws Exception{
+		try {
+			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);							
+			c.setCss(css);
+			dataService.update(c);																										
+		}catch (Exception e) {			
+			e.printStackTrace();
+		}				
+	}
+	
 	
 }
