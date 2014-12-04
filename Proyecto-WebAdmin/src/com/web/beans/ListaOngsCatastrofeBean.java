@@ -149,7 +149,7 @@ public class ListaOngsCatastrofeBean implements Serializable{
 							citioWebOngCat = ongCatastrofe.getCitioWeb();
 							descripcionOngCat = ongCatastrofe.getDescripcion();				
 							ongsBeanCat.add(iOngCat, new OngBean(idOngCat,nombreOngCat,direccionOngCat,telefonoOngCat,emailOngCat,citioWebOngCat,descripcionOngCat));
-							iOngCat = iOngCat + 1;					
+										
 						}		    	
 					}
 					else

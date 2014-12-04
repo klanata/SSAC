@@ -59,16 +59,20 @@ public class RescatistaEB implements RescatistaEBR {
 		       while(it.hasNext())
 		       {
 		    	   EstadoRescatista e = it.next();
-		    	   Long idCatastrofe = e.getPedidoAyuda().getId();
-		    	   Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
-		    	   Long idPlanRiesgo = c.getPlanDeRiesgo().getId();
-		    	   //obtengo planDeRiesgo
-		    	   PlanDeRiesgo p = planDeRiesgoService.obtenerPlanDeRiesgoPorID(idPlanRiesgo);
+		    	   Long idpedidoAyuda = e.getPedidoAyuda().getId();
+		    	   PedidoDeAyuda pedido = dataService.find(PedidoDeAyuda.class,idpedidoAyuda);
+		    	   //obtengo la catastrofeç
+		    	   PlanDeRiesgo p = pedido.getCatastrofe().getPlanDeRiesgo();
 		    	   
+		    	   //obtengo planDeRiesgo
+		    	   		    	   
 		    	   PlanesPendientesRescatistaDTO planesDTO = new PlanesPendientesRescatistaDTO();
 		    	   planesDTO.setUrlArchivo(p.getRutaArchivo());
 		    	   planesDTO.setNombreTarea(e.getNombreTarea());
-		    	   planesDTO.setIdCatastrofe(idCatastrofe);
+		    	   planesDTO.setIdPedidoDeAyuda(idpedidoAyuda);
+		    	   planesDTO.setCoordenadaX(pedido.getCoordenadasX());
+		    	   planesDTO.setCoordenaday(pedido.getCoordenadasY());
+		    	   planesDTO.setDescripcion(pedido.getDescripcion());
 		    	   planesDTO.setEstadoTarea(e.getPendiente());
 		    	   planesDTO.setIdEstadoRescatista(e.getRescatista().getId());
 		    	   

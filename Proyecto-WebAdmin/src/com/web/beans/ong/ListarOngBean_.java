@@ -3,7 +3,6 @@ package com.web.beans.ong;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,7 +22,6 @@ import org.primefaces.event.UnselectEvent;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Ong;
-
 import com.core.service.negocio.remote.OngEBR;
 
 
@@ -82,10 +80,10 @@ public class ListarOngBean_ implements Serializable{
 	@PostConstruct
     public void init() {
     	
-		OngEBR manager = null;		
-		Collection<Ong> lista = new ArrayList<Ong>();
-		Context context = null;
-		 
+		//Creo la lista de todas las ONGs
+		OngEBR manager = null;	    	
+		Context context = null;			
+		
 		try {
             // 1. Obtaining Context
             context = ClienteUtility.getInitialContext();
@@ -96,26 +94,35 @@ public class ListarOngBean_ implements Serializable{
  
         } catch (NamingException e) {
             e.printStackTrace();
-        }	
-		lista= manager.listarTodasLasOng(); 
+        }
+					
+		try{			
+			List<Ong> res = new ArrayList<Ong>();
+			res = manager.listarTodasLasOng();   				
+			Ong ong;
+	    	Long id;
+	    	String nombre;
+	    	String direccion;
+	    	String telefono;
+	    	String email;
+	    	String citioWeb;
+	    	String descripcion;
+			for (int i=0; i<=res.size()-1; i++){    		
+				ong = res.get(i);
+				id = ong.getId();
+				nombre = ong.getNombre();
+				direccion = ong.getDireccion();												
+				telefono = ong.getTelefono();																					
+				email = ong.getEmail();
+				citioWeb = ong.getCitioWeb();
+				descripcion = ong.getDescripcion();				
+				listaOngBean2.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion));	
+				
+			}	
 			
-		Iterator<Ong> it = lista.iterator();
-		int i= 0;
-		while(it.hasNext())
-		{
-			
-			Ong res = it.next();
-			Long id = res.getId();
-			String nombre =  res.getNombre();   		
-    		String descripcion = res.getDescripcion();
-    		String citioWeb = res.getCitioWeb();
-    		String telefono = res.getTelefono();
-    		String email = res.getEmail();
-    		String direccion = res.getDescripcion();
-    		listaOngBean2.add(i, new OngBean(id, nombre, direccion, telefono, email, citioWeb, descripcion));
-			i++;
-		}													    		
-			
+    	}catch (Exception excep){
+    		System.out.println("Excepción al listar las ONGs: " + excep.getMessage());      		 			       	           	
+    	}	
 				
     }    
 	
