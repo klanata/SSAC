@@ -23,7 +23,7 @@ import com.core.service.negocio.remote.CatastrofeEBR;
 
 
 @ManagedBean(name="fileUploadControllerPlan")
-public class fileUploadControllerPlan {
+public class FileUploadControllerPlan {
 	
 	public void upload(FileUploadEvent event) {  
         FacesMessage msg = new FacesMessage("El plan de riesgo fue ingresado con exito.");  
