@@ -144,7 +144,7 @@ public class OngBean implements Serializable{
     			this.nombre = "";   		
         		this.descripcion = "";
         		this.citioWeb = "";
-        		this.telefono = null;
+        		this.telefono = "";
         		this.email = "";
         		this.direccion = "";
         		

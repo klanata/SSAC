@@ -71,27 +71,18 @@ public class FileUploadControllerCSS {
 	        	int x = new Double(Math.random() * 1000000).intValue();        	        	        	
 	        	
 	        	File outputFilePath = new File(x + fileName);		
-	    		String fileString = outputFilePath.toString();
+	    		String css = outputFilePath.toString();
 	    		
-	    		try {
-	    			
+	    		try {	    				    		
 	    			Catastrofe c = manager.buscaCatastrofePorId(idCatastrofe);
+	    			String nombCSS = c.getCss();
 	    			
-	    			/*
-	    			PlanDeRiesgo plan = c.getPlanDeRiesgo();
-	    			
-	    			if (plan != null){
-	    				Long idPlan = plan.getId();
-	    				String nombPlan = plan.getRutaArchivo();
-	    				borrarPlanRiesgoCatastrofe(nombPlan);
-	    				manager.eliminarPlanDeRiesgoCatastrofe(idCatastrofe, idPlan);	    				
-	    			}	  
-	    			
-	    			manager.agregarPlanDeRiesgoALaCatastrofe(idCatastrofe, fileString);
-	    			
-	    			
-	    			
-	    			*/
+	    			if ((nombCSS != null) && (nombCSS != "")){
+	    				manager.eliminarCSSDeLaCatastrofe(idCatastrofe);
+	    				borrarCSSCatastrofe(nombCSS);
+	    			}
+	    				    				    			
+	    			manager.agregarCSSALaCatastrofe(idCatastrofe, css);
 	    			outputFilePath = new File(jboss + "\\Proyecto\\imagenes.war\\" + x + fileName);
 		    		OutputStream out = new FileOutputStream(outputFilePath);                        
 		           

@@ -151,7 +151,7 @@
 <div class="wrapper col3">
   <div id="intro">
     <div class="fl_left">
-      <h2>Alta Ong</h2>
+      <h2>Editar  Ong</h2>
       
       <f:view>
 		<h:form id="registroOng" >
@@ -160,47 +160,46 @@
 		<h:panelGrid columns="1" cellpadding="2">		
 			
 				<p>
-				<label for="nombre">Nombre :</label>				
-					<p:inputText id="nombre" label="evento"  value="#{ongBean.nombre}" required="true" requiredMessage="El nombre de la ONG es requerido" >	
-					</p:inputText>																																									
+				<label for="nombre">Nombre : #{modificarOngBean.ongBean.nombre} </label>				
+																																														
 				</p>
 				<br/>
 						
 				<p>
 				<label for="direccion">Dirección :</label>				
-					<p:inputText id="direccion" label="evento" value="#{ongBean.direccion}" required="true" requiredMessage="La dirección de la ONG es requerido" >	
+					<p:inputText id="direccion" label="evento" value="#{modificarOngBean.ongBean.direccion}" required="true" requiredMessage="La dirección de la ONG es requerido" >	
 					</p:inputText>																																									
 				</p>
 				<br/>
 				
 				<p>
 				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento"  value="#{ongBean.telefono}"  >	
+					<p:inputText id="telefono" label="evento"  value="#{modificarOngBean.ongBean.telefono}"  >	
 					</p:inputText>																																									
 				</p>
 				<br/>
 				
 				<p>
 				<label for="email">Email :</label>				
-					<p:inputText id="email" label="evento" value="#{ongBean.email}"  >	
+					<p:inputText id="email" label="evento" value="#{modificarOngBean.ongBean.email}"  >	
 					</p:inputText>																																									
 				</p>
 				<br/>
 				
 				<p>
 				<label for="citioweb">Citio Web :</label>				
-					<p:inputText id="citioweb"  label="evento" value="#{ongBean.citioWeb}"  >	
+					<p:inputText id="citioweb"  label="evento" value="#{modificarOngBean.ongBean.citioWeb}"  >	
 					</p:inputText>																																									
 				</p>
 				<br/>
 				 </h:panelGrid>
 				<h4>Descripción:</h4>	
 					<h:panelGrid columns="2" border="0">																																		
-					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{ongBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{modificarOngBean.ongBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
 				</h:panelGrid>	
 																			
 				
-			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{ongBean.registrarOng()}">
+			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Modificar" action="#{modificarOngBean.editar()}">
 			</p:commandButton>		
 		
 		</h:form>
@@ -211,7 +210,7 @@
   </div>
 </div>
 
-</h:body>
+
 
 <div class="wrapper col7">
   <div id="copyright">
@@ -230,6 +229,7 @@
 	  }
 	//]]>
 	</script>
+	</h:body>
 </html>
 
 

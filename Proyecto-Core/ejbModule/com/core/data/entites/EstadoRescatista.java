@@ -49,8 +49,14 @@ public class EstadoRescatista  extends AbstractEntity implements Serializable {
 	@Column( nullable= false)
 	private Boolean pendiente;
 	@Column( nullable= false)
-	private Catastrofe catastrofe;
+	private PedidoDeAyuda pedidoAyuda;
 
+	public PedidoDeAyuda getPedidoAyuda() {
+		return pedidoAyuda;
+	}
+	public void setPedidoAyuda(PedidoDeAyuda pedidoAyuda) {
+		this.pedidoAyuda = pedidoAyuda;
+	}
 	@ManyToOne
 	private Rescatista rescatista;
 	
@@ -74,12 +80,7 @@ public class EstadoRescatista  extends AbstractEntity implements Serializable {
 	public void setPendiente(Boolean pendiente) {
 		this.pendiente = pendiente;
 	}
-	public Catastrofe getCatastrofe() {
-		return catastrofe;
-	}
-	public void setCatastrofe(Catastrofe catastrofe) {
-		this.catastrofe = catastrofe;
-	}
+	
 	public Rescatista getRescatista() {
 		return rescatista;
 	}

@@ -13,8 +13,10 @@ import javax.ws.rs.Path;
 
 
 
+
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.EstadoRescatista;
+import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Rescatista;
 import com.core.data.persistencia.DataService;
@@ -57,7 +59,7 @@ public class RescatistaEB implements RescatistaEBR {
 		       while(it.hasNext())
 		       {
 		    	   EstadoRescatista e = it.next();
-		    	   Long idCatastrofe = e.getCatastrofe().getId();
+		    	   Long idCatastrofe = e.getPedidoAyuda().getId();
 		    	   Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
 		    	   Long idPlanRiesgo = c.getPlanDeRiesgo().getId();
 		    	   //obtengo planDeRiesgo
@@ -85,19 +87,19 @@ public class RescatistaEB implements RescatistaEBR {
 	
 	//////////////////////////////////////////////////////////////////////////////
 	@Override
-	public void asignarRescatistaCatastrofe(Catastrofe catastrofe) {
+	public void asignarRescatistaCatastrofe(PedidoDeAyuda pedido) {
 		
 		try{
 		
-			Long id = new Long (catastrofe.getId());
+			Long id = new Long (pedido.getId());
 			//obtengo objeto catastrofe
-			Catastrofe catastrofeGuardar = dataService.find(Catastrofe.class, id);
+			PedidoDeAyuda pedidoGuardar = dataService.find(PedidoDeAyuda.class, id);
 			EstadoRescatista estadoRescatista = new EstadoRescatista();
 			estadoRescatista.setPendiente(true);
-			estadoRescatista.setCatastrofe(catastrofeGuardar);
+			estadoRescatista.setPedidoAyuda(pedidoGuardar);
 			//FIXME: Stephy: victoria aca deje setado el nombre de la catastrofe ya que la tea no estaba pensado en todo caso 
 			//me la tienen que pasar desde la catastrofe.
-			estadoRescatista.setNombreTarea(catastrofeGuardar.getNombreEvento());
+			estadoRescatista.setNombreTarea(pedidoGuardar.getDescripcion());
 			//busco el rescatista para asignar
 			Rescatista rescatista = rescatistaService.obtenerRescatistaConMenosPendientes();
 			estadoRescatista.setRescatista(rescatista);

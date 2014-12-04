@@ -3,6 +3,7 @@ package com.web.beans.ong;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,18 +23,20 @@ import org.primefaces.event.UnselectEvent;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Ong;
+
 import com.core.service.negocio.remote.OngEBR;
 
-@ManagedBean(name="listarOngBean")
+
+@ManagedBean(name="listarOngBean2")
 @SessionScoped
-public class ListarOngBean implements Serializable{
+public class ListarOngBean_ implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<OngBean> listaOngBean = new ArrayList<OngBean>();    
+	private ArrayList<OngBean> listaOngBean2 = new ArrayList<OngBean>();    
 
 	private List<OngBean> filtroOngBean;
     
@@ -44,11 +47,11 @@ public class ListarOngBean implements Serializable{
     
     /*-----------------------*/
 	public ArrayList<OngBean> getListaOngBean() {
-		return listaOngBean;
+		return listaOngBean2;
 	}
 
 	public void setListaOngBean(ArrayList<OngBean> listaOngBean) {
-		this.listaOngBean = listaOngBean;
+		this.listaOngBean2 = listaOngBean;
 	}
 
 	public List<OngBean> getFiltroOngBean() {
@@ -79,10 +82,10 @@ public class ListarOngBean implements Serializable{
 	@PostConstruct
     public void init() {
     	
-		//Creo la lista de todas las ONGs
-		OngEBR manager = null;	    	
-		Context context = null;			
-		
+		OngEBR manager = null;		
+		Collection<Ong> lista = new ArrayList<Ong>();
+		Context context = null;
+		 
 		try {
             // 1. Obtaining Context
             context = ClienteUtility.getInitialContext();
@@ -93,38 +96,28 @@ public class ListarOngBean implements Serializable{
  
         } catch (NamingException e) {
             e.printStackTrace();
-        }
-					
-		try{			
-			List<Ong> res = new ArrayList<Ong>();
-			res = manager.listarTodasLasOng();   				
-			Ong ong;
-	    	Long id;
-	    	String nombre;
-	    	String direccion;
-	    	String telefono;
-	    	String email;
-	    	String citioWeb;
-	    	String descripcion;
-			for (int i=0; i<=res.size()-1; i++){    		
-				ong = res.get(i);
-				id = ong.getId();
-				nombre = ong.getNombre();
-				direccion = ong.getDireccion();												
-				telefono = ong.getTelefono();																					
-				email = ong.getEmail();
-				citioWeb = ong.getCitioWeb();
-				descripcion = ong.getDescripcion();				
-				listaOngBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion));									    		
-			}	
+        }	
+		lista= manager.listarTodasLasOng(); 
 			
-    	}catch (Exception excep){
-    		System.out.println("Excepción al listar las ONGs: " + excep.getMessage());      		 			       	           	
-    	}  	
-	}
-
+		Iterator<Ong> it = lista.iterator();
+		int i= 0;
+		while(it.hasNext())
+		{
+			
+			Ong res = it.next();
+			Long id = res.getId();
+			String nombre =  res.getNombre();   		
+    		String descripcion = res.getDescripcion();
+    		String citioWeb = res.getCitioWeb();
+    		String telefono = res.getTelefono();
+    		String email = res.getEmail();
+    		String direccion = res.getDescripcion();
+    		listaOngBean2.add(i, new OngBean(id, nombre, direccion, telefono, email, citioWeb, descripcion));
+			i++;
+		}													    		
+			
 				
-     
+    }    
 	
 	public void onRowSelect(SelectEvent event) {
 		
@@ -133,10 +126,10 @@ public class ListarOngBean implements Serializable{
 		System.out.println("id del ong seleccionada: " + id);
 		//Pasarlo a string cuando lo mandemos por sesion
 		String idEvento = id.toString();
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoOngEditar", idEvento); 		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoOngEliminar", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("modificacionOng?faces-redirect=true");						 														
+		handler.performNavigation("bajaOng?faces-redirect=true");						 														
 
 		            
     }
