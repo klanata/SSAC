@@ -53,7 +53,7 @@ public class CatastrofeBean implements Serializable{
 	public CatastrofeBean() {	
 	}	
 	public CatastrofeBean(Long id, String nombreEvento, String descripcion, String logo, double coordenadasX,
-			double coordenadasY, Boolean activa, Boolean prioridad) {
+			double coordenadasY, Boolean activa, Boolean prioridad, String css) {
 		super();
 		this.id = id;
 		this.nombreEvento = nombreEvento;
@@ -63,6 +63,7 @@ public class CatastrofeBean implements Serializable{
 		this.coordenadasY = coordenadasY;
 		this.activa = activa;
 		this.prioridad = prioridad;
+		this.css = css;
 	}
 		
 	
@@ -183,7 +184,8 @@ public class CatastrofeBean implements Serializable{
 		
     	try{    	
     		InputBean inputBean = new InputBean();
-    		String logo= inputBean.uploadFile(this.part);    		    		    	
+    		String logo= inputBean.uploadFile(this.part);   
+    		String css = null;
        		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, servicios, ongs, planDeRiesgo);    	
     		if (in == 0){
     			System.out.println("es repetido." + in);

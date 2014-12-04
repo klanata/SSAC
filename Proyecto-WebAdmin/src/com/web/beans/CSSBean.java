@@ -66,6 +66,7 @@ public class CSSBean implements Serializable{
 		    	double coordenadasY;
 		    	Boolean activa;
 		    	Boolean prioridad;
+		    	String css;
 		    	
 				nombreEvento = catastrofe.getNombreEvento();
 				descripcionCatastrofe = catastrofe.getDescripcion();												
@@ -74,10 +75,11 @@ public class CSSBean implements Serializable{
 				coordenadasY = catastrofe.getCoordenadasY();
 				activa = catastrofe.getActiva();
 				prioridad = catastrofe.getPrioridad();
+				css = catastrofe.getCss();
 							
 				//setCatastrofeBean(new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad));
 				
-				catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad);
+				catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad,css);
 			
 			}catch (Exception excep){
 				System.out.println("Excepción al obtener la catástrofe en el plan de riesgo: " + excep.getMessage());      		 			       	           	

@@ -71,7 +71,8 @@ public class ListaCatastrofesPlanBean implements Serializable{
 	    	double coordenadasX;
 	    	double coordenadasY;
 	    	Boolean activa;
-	    	Boolean prioridad;	    	
+	    	Boolean prioridad;	
+	    	String css;
 			for (int i=0; i<=res.size()-1; i++){    		
 				catastrofe = res.get(i);
 				id = catastrofe.getId();
@@ -82,7 +83,8 @@ public class ListaCatastrofesPlanBean implements Serializable{
 				coordenadasY = catastrofe.getCoordenadasY();
 				activa = catastrofe.getActiva();
 				prioridad = catastrofe.getPrioridad();
-				catastrofesBean.add(i, new CatastrofeBean(id,nombreEvento,descripcion,logo,coordenadasX,coordenadasY,activa,prioridad));									    		
+				css = catastrofe.getCss();
+				catastrofesBean.add(i, new CatastrofeBean(id,nombreEvento,descripcion,logo,coordenadasX,coordenadasY,activa,prioridad,css));									    		
 			}	
 			
     	}catch (Exception excep){
