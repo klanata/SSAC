@@ -16,3 +16,9 @@ phonegap install android -> instala la aplicación de android compilada con phon
 phonegap install android --nombreDelDispositivo -> igual que el anterior pero para especificar un dispositivo (sirve para instalarlo en un cel conectado x usb)
 adb devices -> lista los dispositivos (pueden ser del emulador) que hay disponibles para correr la app
 adb logcat -> para ver la consola de android desde el cmd
+
+-------------------------------------------------
+PLUGINS
+-------------------------------------------------
+
+cordova plugin add org.apache.cordova.geolocation

@@ -21,6 +21,7 @@ import clienteutility.ClienteUtility;
 import com.core.data.entites.EstadoRescatista;
 import com.core.service.negocio.remote.RescatistaEBR;
 import com.serviciorest.modelo.MiBoolean;
+import com.serviciorest.modelo.PlanesPendientesRescatistaRest;
 
 import cross_cuting.enums.PlanesPendientesRescatistaDTO;
 
@@ -70,12 +71,12 @@ public class ServicioRescatistas {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("verPendientes")
-	public List<PlanesPendientesRescatistaDTO> getPlanesPendientes(
+	public List<PlanesPendientesRescatistaRest> getPlanesPendientes(
 			@QueryParam("nick") String nick) throws Exception {
 		manager = null;
 		context = null;
 
-		List<PlanesPendientesRescatistaDTO> planesPendientes = new ArrayList<PlanesPendientesRescatistaDTO>();
+		List<PlanesPendientesRescatistaRest> planesPendientes = new ArrayList<PlanesPendientesRescatistaRest>();
 
 		try {
 			// 1. Obtaining Context
@@ -99,29 +100,29 @@ public class ServicioRescatistas {
 		}
 
 		/* Éstos son datos de prueba */
-		List<PlanesPendientesRescatistaDTO> listaPlanesAux = new ArrayList<PlanesPendientesRescatistaDTO>();
+		List<PlanesPendientesRescatistaRest> listaPlanesAux = new ArrayList<PlanesPendientesRescatistaRest>();
 
-		PlanesPendientesRescatistaDTO a = new PlanesPendientesRescatistaDTO();
-		a.setIdCatastrofe(new Long(1));
+		PlanesPendientesRescatistaRest a = new PlanesPendientesRescatistaRest();
 		a.setIdEstadoRescatista(new Long(1));
-		a.setNombreTarea("Inundacion");
-		a.setEstadoTarea(true);
+		a.setDescripcion("Ayuda!!");
+		a.setCoordPedidoAyudaX(-34.58400);
+		a.setCoordPedidoAyudaY(-55.2541);
 		a.setUrlArchivo("http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf");
 		listaPlanesAux.add(a);
 
-		PlanesPendientesRescatistaDTO b = new PlanesPendientesRescatistaDTO();
-		b.setIdCatastrofe(new Long(2));
+		PlanesPendientesRescatistaRest b = new PlanesPendientesRescatistaRest();
 		b.setIdEstadoRescatista(new Long(2));
-		b.setNombreTarea("IncendioForestal");
-		b.setEstadoTarea(true);
+		b.setDescripcion("Ayuda por favor!!");
+		b.setCoordPedidoAyudaX(-33.58400);
+		b.setCoordPedidoAyudaY(-55.2541);
 		b.setUrlArchivo("http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf");
 		listaPlanesAux.add(b);
 
-		PlanesPendientesRescatistaDTO c = new PlanesPendientesRescatistaDTO();
-		c.setIdCatastrofe(new Long(3));
+		PlanesPendientesRescatistaRest c = new PlanesPendientesRescatistaRest();
 		c.setIdEstadoRescatista(new Long(3));
-		c.setNombreTarea("Dengue");
-		c.setEstadoTarea(true);
+		c.setDescripcion("Estoy en Av Italia y Propios!!");
+		c.setCoordPedidoAyudaX(-33.58400);
+		c.setCoordPedidoAyudaY(-55.2541);
 		c.setUrlArchivo("http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf");
 		listaPlanesAux.add(c);
 
