@@ -17,8 +17,7 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<html xmlns="hhtp://www.w3.org/1999/xhtml"
-      lang="en">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -28,6 +27,7 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-3.3.1-dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/themes/AndroidHoloDarkLight.min.css" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" />
         <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
@@ -35,7 +35,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <title>Hello World</title>
+        <title>Rescatistas</title>
     </head>
     <body ng-app="" ng-controller="rescatistaController" id="body">
       <div class="container" id="mainContainer">
@@ -46,18 +46,18 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <form role="form">
-                   <div class="form-group">
+                   <div class="form-group col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
                      <label for="nick">Nick</label>
                      <input type="text" class="form-control" id="nick" ng-model="nick">
                    </div>
-                   <div class="form-group">
+                   <div class="form-group col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
                      <label for="password">Password</label>
                      <input type="password" class="form-control" id="password" ng-model="password">
                     </div>
-                   <div class="checkbox">
-                     <label><input type="checkbox"> Recordarme</label>
-                   </div>
-                   <button type="submit" class="btn btn-default" touchstart='validarRescatista()' ng-click='validarRescatista()'>Ingresar</button>
+                     <div class="form-group col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+                     <button type="submit" class="btn btn-default" touchstart='validarRescatista()' ng-click='validarRescatista()'>Ingresar</button>
+                    </div>
+                   
             </form>
           </div>
         </div>
@@ -88,13 +88,10 @@
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                      <div class="form-group">
-                       <input type="text" class="form-control" id="idPedidoAyudaActual" ng-model="idPlanActual">
+                       <input type="hidden" class="form-control" id="idPedidoAyudaActual" ng-model="idPlanActual">
                        <label for="descripcion">Descripcion</label>
-                       <textarea class="form-control" rows="6" id="descripcion" ng-model="descripcion"></textarea>
+                       <textarea class="form-control" rows="7" id="descripcion" ng-model="descripcion"></textarea>
                      </div>
-                     <!--button type="button" class="btn btn-warning" touchstart='verMapa()' ng-click='verMapa()'>Mapa</button>
-                     <button type="button" class="btn btn-info" touchstart='verMapa()' ng-click='verMapa()'>Ver plan</button>
-                     <button type="button" class="btn btn-success" touchstart='verMapa()' ng-click='verMapa()'>Finalizar plan</button-->
             </div>
           </div>
           <div class="row">
@@ -111,7 +108,7 @@
           <br>
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <button class="btn btn-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" touchstart='listarPlanes()' ng-click='listarPlanes()'>Finalizar</button>
+              <button class="btn btn-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" touchstart='finalizar()' ng-click='finalizar()'>Finalizar</button>
             </div>
           </div>
         </div> 

@@ -191,8 +191,8 @@ function rescatistaController($scope) {
 
    $scope.volver = function () {
     $scope.volver = function () {
-        document.getElementById("listaPendientes").style.display = 'initial';
-        document.getElementById("pedidoAyudaDetalle").style.display = 'none';
+        document.getElementById("pedidoAyudaDetalle").style.display = 'initial';
+        document.getElementById("plan").style.display = 'none';
     }
   }
 
