@@ -10,7 +10,7 @@
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
 	
 	
 </h:head> 
@@ -134,29 +134,70 @@
             </p:submenu>
             
         </p:column>
- 
-       
-    </p:submenu>
-       
+        
+    </p:submenu>       
 </p:megaMenu>
-</h:form>
-                 
-    <br class="clear" />
-  
+</h:form>              
+<br class="clear" />  
 </div>
 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Cursus penati saccum ut curabitur nulla.</h2>
-      <p>Cursuspenatisaccum ut curabitur nulla tellus tor ames a in curabitur pede. Idet mollisi eros dis orci congue elis et curabitur consequam intesque. Curabiturpisametur in ante.</p>
-      <p class="readmore"><a href="#">Ipsumsenterdum non velit &raquo;</a></p>
+    <div >
+    <h2>Asignar CSS a la Catástrofe</h2>
+      
+      <f:view>        
+      	
+		<h:form columns="2" value="#{cssBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+			
+			<p>			        		        
+            <p:graphicImage value="image/#{cssBean.catastrofeBean.logo}" /> 
+            <h:outputText value="" style="border: transparent;"/>	              		         	        	
+			</p>			
+			
+			<p>
+			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
+            <h:outputText value="#{cssBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+            </p>			
+               
+            <p>    
+           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
+            <h:outputText value="#{cssBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
+            </p>
+			<br/>  
+                         
+        </h:form>
+                									        
+      </f:view>         
     </div>
-    <div class="fl_right"><img src="resources/images/demo/380x300.gif" alt="" /></div>
+    
+    <div>
+  		<h:form>      
+ 	
+        	<p>
+			<h:outputText value="Seleccione el archivo CSS que va a ser asignado a la catástrofe" style="width:100px;border: transparent;"/>			            
+            </p>
+            <p>
+			<h:outputText value="(El archivo debe estar en formato css)" style="width:100px;border: transparent;"/>			            
+            </p>
+                    
+		    <p:fileUpload fileUploadListener="#{fileUploadControllerCSS.upload}" mode="advanced" dragDropSupport="false"
+		                  multiple="false" fileLimit="1" update="messages" allowTypes="/(\.|\/)(css)$/" />
+		 
+		    <p:growl id="messages" showDetail="true" />
+		    
+		    <br/>
+		    
+		    <p:outputPanel style="text-align: left">			 		
+	        	<p:commandButton value="Cancelar" action="#{fileUploadControllerCSS.cancelar()}" />
+	        </p:outputPanel>
+		</h:form> 
+  	</div>   
+    
+             
     <br class="clear" />
   </div>
 </div>
-
 
 
 <div class="wrapper col7">
