@@ -106,6 +106,7 @@ var mapa = {
                         //alert(window.localStorage.getItem("IdPedidoAyudaActual"));
                         
                         document.getElementById("descripcion").value = descripcionActual;
+                        document.getElementById("idPedidoAyudaActual").value = IdActual;
                         document.getElementById("listaPendientes").style.display = 'none';
                         document.getElementById("pedidoAyudaDetalle").style.display = 'initial';
                     });
