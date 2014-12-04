@@ -41,7 +41,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
-		double coordenadasY, Boolean activa, Boolean prioridad, Set<ImagenCatastrofe> imagenes, 
+		double coordenadasY, Boolean activa, Boolean prioridad, String css, Set<ImagenCatastrofe> imagenes, 
 		Set<Servicio> servicios, Set<Ong> ongs,	PlanDeRiesgo planDeRiesgo)throws Exception {
 				
 		Catastrofe c = new Catastrofe();
@@ -54,6 +54,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setCoordenadasY(coordenadasY);
 		c.setActiva(activa);
 		c.setPrioridad(prioridad);
+		c.setCss(css);
 		c.setImagenes(imagenes);
 		c.setServicios(servicios);
 		c.setOngs(ongs);
