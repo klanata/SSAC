@@ -17,6 +17,7 @@ import org.primefaces.event.FileUploadEvent;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.Catastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
 
@@ -73,7 +74,14 @@ public class FileUploadControllerCSS {
 	    		String css = outputFilePath.toString();
 	    		
 	    		try {	    				    		
+	    			Catastrofe c = manager.buscaCatastrofePorId(idCatastrofe);
+	    			String nombCSS = c.getCss();
 	    			
+	    			if ((nombCSS != null) && (nombCSS != "")){
+	    				manager.eliminarCSSDeLaCatastrofe(idCatastrofe);
+	    				borrarCSSCatastrofe(nombCSS);
+	    			}
+	    				    				    			
 	    			manager.agregarCSSALaCatastrofe(idCatastrofe, css);
 	    			outputFilePath = new File(jboss + "\\Proyecto\\imagenes.war\\" + x + fileName);
 		    		OutputStream out = new FileOutputStream(outputFilePath);                        

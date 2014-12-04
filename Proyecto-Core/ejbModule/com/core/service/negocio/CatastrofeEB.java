@@ -253,5 +253,18 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}				
 	}
 	
+	public void eliminarCSSDeLaCatastrofe(Long idCatastrofe) throws Exception{				
+		try {
+			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);							
+			String css = c.getCss();
+			if ((css != null) && (css != "")){
+				c.setCss(null);
+				dataService.update(c);				
+			}																														
+		}catch (Exception e) {			
+			e.printStackTrace();
+		}																																
+	}
+	
 	
 }

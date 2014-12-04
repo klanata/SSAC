@@ -39,8 +39,10 @@ public interface CatastrofeEBR {
 	
 	public void agregarPlanDeRiesgoALaCatastrofe(Long idCatastrofe, String nombArchivo) throws Exception;
 	
-	public void eliminarPlanDeRiesgoCatastrofe(Long idCatastrofe, Long idPlan) throws Exception;
+	public void eliminarPlanDeRiesgoCatastrofe(Long idCatastrofe, Long idPlan) throws Exception;	
 	
 	public void agregarCSSALaCatastrofe(Long idCatastrofe, String css) throws Exception;
+	
+	public void eliminarCSSDeLaCatastrofe(Long idCatastrofe) throws Exception;
 	
 }
