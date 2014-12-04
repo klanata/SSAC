@@ -134,81 +134,71 @@
             </p:submenu>
             
         </p:column>
- 
-       
-    </p:submenu>
-       
+        
+    </p:submenu>       
 </p:megaMenu>
-</h:form>
-
-          
-    
-          
-    <br class="clear" />
-  
+</h:form>              
+<br class="clear" />  
 </div>
 
 <div class="wrapper col3">
   <div id="intro">
-    <div>
-      <h3>Lista de catástrofe</h3>
-      <br/>	
-      <f:view>      	
-      	
-      	<h:form id="formCatastrofe">      		
-      		
-      		<p:growl id="msgs" showDetail="true" />
-      		
-    		<p:dataTable id="catastrofesDT" var="catastrofeBean" value="#{listaCatastrofesImgBean.catastrofesBean}" widgetVar="catastrofesTable"
-                 		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaCatastrofesImgBean.filtroCatastrofeBean}"                 		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
-                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 		 selectionMode="single" selection="#{listaCatastrofesImgBean.selectedCatastrofe}" rowKey="#{catastrofeBean.id}" dblClickSelect="true">    
-                 		                                		                                           	                 	
-				<f:facet name="header">
-		            <p:outputPanel style="text-align: right">
-		                <h:outputText value="Buscar Catástrofe:  " />
-		                <p:inputText id="globalFilter"   onkeyup="PF('catastrofesTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
-		            </p:outputPanel>
-		        </f:facet>    	
-		        
-		        <p:ajax event="rowSelect" listener="#{listaCatastrofesImgBean.onRowSelect}" update=":formCatastrofe:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesImgBean.onRowUnselect}" update=":formCatastrofe:msgs" />	        		        
-		        
-		        <p:column>		        		        	
-            		<p:graphicImage value="image/#{catastrofeBean.logo}" />               		         	
-        		</p:column>        	     
-        		
-        		<p:column headerText="Id" style="width:50px">
-            		<h:outputText value="#{catastrofeBean.id}" />
-        		</p:column>             		                  		                  		             	
-        		
-        		<p:column headerText="Nombre de evento" style="width:200px" filterBy="#{catastrofeBean.nombreEvento}" filterMatchMode="contains">
-            		<h:outputText value="#{catastrofeBean.nombreEvento}" />
-        		</p:column>
-        		
-        		<p:column headerText="Descripción" style="width:350px" filterBy="#{catastrofeBean.descripcion}" filterMatchMode="contains">
-            		<h:outputText value="#{catastrofeBean.descripcion}" />            		
-        		</p:column>
-        		
-        		<p:column headerText="Activa">
-            		<h:outputText value="#{catastrofeBean.activa}" />            		
-        		</p:column>
-        		
-                <p:column headerText="Prioridad">
-            		<h:outputText value="#{catastrofeBean.prioridad}" />            		
-        		</p:column>        		        		 
-        		        		        		
-     		</p:dataTable>     		     		
-     		
-		</h:form>
+    <div >
+    <h2>Asignar CSS a la Catástrofe</h2>
       
+      <f:view>        
+      	
+		<h:form columns="2" value="#{cssBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+			
+			<p>			        		        
+            <p:graphicImage value="image/#{cssBean.catastrofeBean.logo}" /> 
+            <h:outputText value="" style="border: transparent;"/>	              		         	        	
+			</p>			
+			
+			<p>
+			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
+            <h:outputText value="#{cssBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+            </p>			
+               
+            <p>    
+           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
+            <h:outputText value="#{cssBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
+            </p>
+			<br/>  
+                         
+        </h:form>
+                									        
       </f:view>         
     </div>
     
+    <div>
+  		<h:form>      
+ 	
+        	<p>
+			<h:outputText value="Seleccione el archivo CSS que va a ser asignado a la catástrofe" style="width:100px;border: transparent;"/>			            
+            </p>
+            <p>
+			<h:outputText value="(El archivo debe estar en formato css)" style="width:100px;border: transparent;"/>			            
+            </p>
+                    
+		    <p:fileUpload fileUploadListener="#{fileUploadControllerCSS.upload}" mode="advanced" dragDropSupport="false"
+		                  multiple="false" fileLimit="1" update="messages" allowTypes="/(\.|\/)(css)$/" />
+		 
+		    <p:growl id="messages" showDetail="true" />
+		    
+		    <br/>
+		    
+		    <p:outputPanel style="text-align: left">			 		
+	        	<p:commandButton value="Cancelar" action="#{fileUploadControllerCSS.cancelar()}" />
+	        </p:outputPanel>
+		</h:form> 
+  	</div>   
+    
+             
     <br class="clear" />
   </div>
 </div>
+
 
 <div class="wrapper col7">
   <div id="copyright">
@@ -218,4 +208,13 @@
   </div>
 </div>
 </h:body> 
+	<script type="text/javascript">
+	  //<![CDATA[
+	  function logout(xhr, status, args) {
+	    setTimeout(function() {
+	      window.location = 'home.xhtml';
+	    }, 500);
+	  }
+	//]]>
+	</script>
 </html>

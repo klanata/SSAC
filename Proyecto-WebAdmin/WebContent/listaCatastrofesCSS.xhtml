@@ -134,20 +134,15 @@
             </p:submenu>
             
         </p:column>
- 
-       
+        
     </p:submenu>
        
 </p:megaMenu>
-</h:form>
-
-          
-    
+</h:form>          
           
     <br class="clear" />
   
 </div>
-
 <div class="wrapper col3">
   <div id="intro">
     <div>
@@ -159,11 +154,11 @@
       		
       		<p:growl id="msgs" showDetail="true" />
       		
-    		<p:dataTable id="catastrofesDT" var="catastrofeBean" value="#{listaCatastrofesImgBean.catastrofesBean}" widgetVar="catastrofesTable"
-                 		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaCatastrofesImgBean.filtroCatastrofeBean}"                 		  
+    		<p:dataTable id="catastrofesDT" var="catastrofeBean" value="#{listaCatastrofesCSSBean.catastrofesBean}" widgetVar="catastrofesTable"
+                 		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaCatastrofesCSSBean.filtroCatastrofeBean}"                 		  
                  		 paginator="true" rows="5" paginatorPosition="top"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 		 selectionMode="single" selection="#{listaCatastrofesImgBean.selectedCatastrofe}" rowKey="#{catastrofeBean.id}" dblClickSelect="true">    
+                 		 selectionMode="single" selection="#{listaCatastrofesCSSBean.selectedCatastrofe}" rowKey="#{catastrofeBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
@@ -172,8 +167,8 @@
 		            </p:outputPanel>
 		        </f:facet>    	
 		        
-		        <p:ajax event="rowSelect" listener="#{listaCatastrofesImgBean.onRowSelect}" update=":formCatastrofe:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesImgBean.onRowUnselect}" update=":formCatastrofe:msgs" />	        		        
+		        <p:ajax event="rowSelect" listener="#{listaCatastrofesCSSBean.onRowSelect}" update=":formCatastrofe:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesCSSBean.onRowUnselect}" update=":formCatastrofe:msgs" />	        		        
 		        
 		        <p:column>		        		        	
             		<p:graphicImage value="image/#{catastrofeBean.logo}" />               		         	
@@ -209,6 +204,7 @@
     <br class="clear" />
   </div>
 </div>
+</h:body>
 
 <div class="wrapper col7">
   <div id="copyright">
@@ -217,5 +213,14 @@
     <br class="clear" />
   </div>
 </div>
-</h:body> 
+
+	<script type="text/javascript">
+	  //<![CDATA[
+	  function logout(xhr, status, args) {
+	    setTimeout(function() {
+	      window.location = 'home.xhtml';
+	    }, 500);
+	  }
+	//]]>
+	</script>
 </html>
