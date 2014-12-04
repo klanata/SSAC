@@ -1,6 +1,8 @@
 package com.core.data.persistencia;
 
 import java.util.Collection;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -99,15 +101,15 @@ public class OngDAOImpl extends AbstractService   implements OngDAO{
 	}
 	////////////////////////////////////////////////////////////////
 	@Override
-	public Collection<Ong> listarONGS() {
+	public  List<Ong> listarONGS() {
 	 
-		Collection<Ong> lista = null;
+		 List<Ong> lista = null;
 		try{
 				//lista= dataService.findAll(Ong.class);
-			System.out.print("entra 11");
+			
 			TypedQuery<Ong> consulta = this.em.createNamedQuery("Ong.ListarONGBajaLogicaFalse",Ong.class);
 											
-			System.out.print("lista");
+			
 				
 			lista = consulta.getResultList(); 
 			
@@ -136,6 +138,7 @@ public class OngDAOImpl extends AbstractService   implements OngDAO{
 		
 		return o;
 	}
+	
 	
 	
 

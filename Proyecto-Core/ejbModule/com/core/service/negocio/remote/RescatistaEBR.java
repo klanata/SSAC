@@ -8,6 +8,7 @@ import javax.ejb.Remote;
 
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.EstadoRescatista;
+import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.entites.Rescatista;
 
 import cross_cuting.enums.PlanesPendientesRescatistaDTO;
@@ -18,7 +19,7 @@ public interface RescatistaEBR {
 	
 	public Long crearRescatista(String nombre, String nick, String apellido, String email,String password,Date fechaNac,String sexo, String celular) throws Exception;
 	
-	public void asignarRescatistaCatastrofe(Catastrofe catastrofe);
+	public void asignarRescatistaCatastrofe(PedidoDeAyuda pedido);
 	
 	public Boolean buscarUsuario(String nick, String password);
 	

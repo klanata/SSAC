@@ -1,5 +1,6 @@
 package com.core.data.persistencia.interfaces.locales;
-import java.util.Collection;
+
+import java.util.List;
 
 import javax.ejb.Local;
 
@@ -15,9 +16,11 @@ public interface OngDAO extends JPAService{
 	
 	public Ong buscarOngPorID(Long id);
 	
-	public Collection<Ong> listarONGS();
+	public  List<Ong> listarONGS();
 	
 	public Ong buscarOngPorNick(String nombreOng);
+	
+	
 	
 	
 

@@ -44,7 +44,8 @@ public class OngEB implements OngEBR{
 	public List<Ong> listarTodasLasOng() {
 		List<Ong> lista = null;
 		
-		lista = dataService.findAll(Ong.class);
+		//lista = dataService.findAll(Ong.class);
+		lista = ongService.listarONGS();
 		
 		return lista;
 	}
