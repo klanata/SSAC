@@ -15,7 +15,11 @@ import javax.persistence.Query;
 
 
 
+
+import javax.persistence.TypedQuery;
+
 import com.core.data.entites.EstadoRescatista;
+import com.core.data.entites.Ong;
 import com.core.data.entites.Rescatista;
 import com.core.data.persistencia.interfaces.locales.RescatistaDAO;
 
@@ -225,5 +229,15 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	  	usuario = (Rescatista) consulta.getResultList().get(0);
 	  		
 		return usuario;
+	}
+	@Override
+	public Collection<Rescatista> listarRescatistas() {
+		
+		 Collection<Rescatista> lista = null;
+		 TypedQuery<Rescatista> consulta = this.em.createNamedQuery("Rescatista.ListarRescatistaBajaLogicaFalse",Rescatista.class);
+		 lista = consulta.getResultList(); 
+		
+		
+		return lista;
 	}
 }

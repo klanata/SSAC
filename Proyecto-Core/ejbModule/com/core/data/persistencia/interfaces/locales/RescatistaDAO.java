@@ -27,5 +27,7 @@ public interface RescatistaDAO extends JPAService{
 	
 	public Collection<EstadoRescatista> listarPendientesRescatista(String nick);
 	
+	public Collection<Rescatista> listarRescatistas();
+	
 
 }

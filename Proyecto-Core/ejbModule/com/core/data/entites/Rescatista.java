@@ -25,8 +25,14 @@ query = "SELECT u "+
 @NamedQuery(name="Rescatista.BuscarRescatista.Nick.Pass", 
 query = "SELECT u "+
 		"FROM Rescatista u " +
-		"WHERE u.nick = :nick AND u.password= :password")
-		
+		"WHERE u.nick = :nick AND u.password= :password"),
+
+@NamedQuery(name="Rescatista.ListarRescatistaBajaLogicaFalse", 
+query = "SELECT o "+
+		"FROM Rescatista o " +
+		"WHERE o.bajaLogica = false")
+
+	
 
 })
 @XmlRootElement

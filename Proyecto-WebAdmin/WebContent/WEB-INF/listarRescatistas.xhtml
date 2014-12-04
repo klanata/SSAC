@@ -53,7 +53,7 @@
    <h:form>
  
 <p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
-    <p:submenu label="Home" >
+    <p:submenu label="Home"  >
         <p:column>
             <p:submenu label="SSCA">
                 <p:menuitem value="" url="index.xhtml" />
@@ -150,59 +150,61 @@
 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Eliminar Rescatista</h2>
+    <div>
+      <h3>Modificar rescatistas</h3>
       <br/>	
-      
-      
-		<h:form id="eliminarRescatista" >
-						
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid columns="1" cellpadding="3">	
-				<p>
-					<p:outputLabel> Nick : #{eliminarRescatista.rescatistaBean.nick} </p:outputLabel>	
-																																													
-				</p>
-				<br/>
-				
-				<p>
-				
-					<p:outputLabel> Nombre: #{eliminarRescatista.rescatistaBean.nombre} </p:outputLabel>	
-																																										
-				</p>
-				<br/>
-						
-				<p>
-					<p:outputLabel> Apellido : #{eliminarRescatista.rescatistaBean.apellido} </p:outputLabel>	
-																																					
-				</p>
-				<br/>
-				
-								
-				<p>
-				<p:outputLabel> Email: #{eliminarRescatista.rescatistaBean.email} </p:outputLabel>
-					  
-																																													
-				</p>
-				<br/>
-				<p:outputPanel style="text-align: left">
-			 		<p:commandButton value="Eliminar" update="growl"  type="submit"     action="#{eliminarRescatista.eliminar()}"/>         
-	            	<p:commandButton value="Cancelar" update="growl"  type="submit"  action="#{eliminarRescatista.cancelar()}" />
-	         	</p:outputPanel>								
-				
-				
-			
-			</h:panelGrid>
+      <f:view>      	
+      	
+      	<h:form id="formRescatistas">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="rescatistaDT" var="rescatistaBean" widgetVar="rescatistaTable" value = "#{listaRescatistaBean.rescatistasBean}"
+                 		 emptyMessage="No se han encontrado rescatista con ese criterio"  filteredValue="#{listaRescatistaBean.filtroRescatistaBean}"               		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                 		 selectionMode="single" selection="#{listaRescatistaBean.selectedRescatista}"  rowKey="#{rescatistaBean.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Rescatista:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('rescatistaTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    	
+		         <p:ajax event="rowSelect" listener="#{listaRescatistaBean.onRowSelect}" update=":formRescatistas:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaRescatistaBean.onRowUnselect}" update=":formRescatistas:msgs" />	        		        
+		    
+		        
+        		<p:column headerText="Id" style="width:50px">
+            		<h:outputText value="#{rescatistaBean.id}" />
+        		</p:column>             		                  		                  		             	
+        		
+        		<p:column headerText="Nick" style="width:200px" filterBy="#{rescatistaBean.nick}" filterMatchMode="contains" >
+            		<h:outputText value="#{rescatistaBean.nick}" />
+        		</p:column>
+        		
+        		<p:column headerText="Nombre" style="width:350px" filterBy="#{rescatistaBean.nombre}" filterMatchMode="contains" >
+            		<h:outputText value="#{rescatistaBean.nombre}" />            		
+        		</p:column>
+        		
+        		<p:column headerText="Apellido" filterBy="#{rescatistaBean.apellido}" filterMatchMode="contains">
+            		<h:outputText value="#{rescatistaBean.apellido}" />            		
+        		</p:column>
+        		
+                <p:column headerText="Celular">
+            		<h:outputText value="#{rescatistaBean.celular}" />            		
+        		</p:column>        		        		 
+        		        		        		
+     		</p:dataTable>     		     		
+     		
 		</h:form>
-		
-		
+      
+      </f:view>         
     </div>
-  
+    
     <br class="clear" />
   </div>
 </div>
-
-	    <br class="clear" />
 
 
 
@@ -213,17 +215,5 @@
     <br class="clear" />
   </div>
 </div>
-
-	<script type="text/javascript">
-	  //<![CDATA[
-	  function logout(xhr, status, args) {
-	    setTimeout(function() {
-	      window.location = 'home.xhtml';
-	    }, 500);
-	  }
-	//]]>
-	</script>
-	</h:body>
+</h:body> 
 </html>
-
-

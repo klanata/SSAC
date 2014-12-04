@@ -117,7 +117,7 @@ public class EliminarRescatistaBean implements Serializable {/**
         } catch (NamingException e) {
             e.printStackTrace();
         }			
-					
+		boolean eliminado =false;			
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoRescatistaEliminar");
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
@@ -133,7 +133,8 @@ public class EliminarRescatistaBean implements Serializable {/**
 			Rescatista a = new Rescatista();
 			a = manager.obtenerRescatistaID(idRescatista);
 			
-			manager.eliminarRescatista(a.getNick());
+			String nick = a.getNick();
+					eliminado= manager.eliminarRescatista(nick);
 			
 
 

@@ -131,6 +131,7 @@ public class RescatistaEB implements RescatistaEBR {
 		r.setSexo(sexo);
 		r.setBajaLogica(false);
 		r.setNick(nick);
+		r.setEstadoRescatista(null);
 		Long id = rescatistaService.insert(r);
 		return id;
 	}
@@ -187,8 +188,16 @@ public class RescatistaEB implements RescatistaEBR {
 	/****************************************************************************/
 	public Boolean eliminarRescatista(String nick) {
 		
+		Rescatista r = obtenerRescatistaNik(nick);
+		r.setBajaLogica(true);
+		dataService.update(r);
+		
+		
+		/** problemas al borrar
 		Boolean eliminar =  false;
 		Rescatista r = obtenerRescatistaNik(nick);
+		
+		r.getEstadoRescatista();
 		//pregunto si tiene pendientes
 		Collection<PlanesPendientesRescatistaDTO> pendientes = listarPendientesRescatistaPorCatastrofe(nick);
 		if(pendientes == null)
@@ -218,13 +227,14 @@ public class RescatistaEB implements RescatistaEBR {
 			}
 			
 			dataService.update(rescatistaAsignar);
-			dataService.delete(r);
+			r.setBajaLogica(true);
+			dataService.update(r);
 			
 			
 		}		
 		
-		
-		return eliminar;
+		*/
+		return true;
 	}
 
 
@@ -232,7 +242,7 @@ public class RescatistaEB implements RescatistaEBR {
 	public Collection<Rescatista> listarTodosLosRescatistasActivos() {
 		
 		
-		Collection<Rescatista> listar = dataService.findAll(Rescatista.class);
+		Collection<Rescatista> listar = rescatistaService.listarRescatistas();
 		
 		return listar;
 	}
