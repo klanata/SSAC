@@ -1,87 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
-
-<h:head>
-	<title>Sistema de Soporte ante Catástrofes Naturales</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
-<style>
-    *{ margin: 0; padding: 0; }
-    html, body, #map{
-        width: 100%;
-        height: 100%;
-    }
-    </style>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
-    <script type="text/javascript" src="js/map.js"></script>
-
-	
-	
-</h:head> 
-<h:body id="top"> 
-<div class="wrapper col1">
-  <div id="header">
-    <div id="logo">
-      <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
-      <p><strong>Vista Web para Administradores</strong></p>
-    </div>
-    
-       
-     <p:growl id="mensajes" showDetail="true" life="2000" />
-  <h:form>
-    
-       <div id="newsletter">
-        	<fieldset>
-	        <legend>NewsLetter</legend>
-	        
-	        	<p:commandButton id="loginButton" value="Login"
-		             actionListener="#{administradorBean.login()}" update=":mensajes"
-		             oncomplete="manejarLogin(xhr, status, args)" />
-		        
-	        	 <p:inputText id="nick" label="nick" value="#{administradorBean.nick}" required="true" requiredMessage="El nick es requerido" >
-				 </p:inputText>					
-				 
-				     <p:password id="password"  value="#{administradorBean.password}" feedback="true" inline="true" required ="true"/>
-     
-       		 	
-			
-		          
-		        
-      		</fieldset>
-		</div>
-    
-  </h:form>     
-      
-        	
-         
-      
-</div>      
-     
-    <br class="clear" />
-  
-</div>
-
-
-
- <div id="map">
- 	<p:gmap center="-34.917440, -56.164244" zoom="16" type="HYBRID"   
-        style="width:1350px;height:400px" />  
-       
-        
- 
-  <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
-    <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
-    <br class="clear" />
-  </div>
-</div>
-
-</h:body> 
+<html xmlns="http://www.w3c.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+<h:head> </h:head> <h:body style="text-align:center">
+    <p:growl id="mensajes" showDetail="true" life="2000" />
+   <h:form>
+      <p:panel header="Login" style="width:300px">
+        <h:panelGrid columns="2" cellpadding="5">
+          <h:outputLabel for="username" value="Usuario:" />
+          <p:inputText value="#{loginBean.nombre}" id="username"
+             required="true" label="username" />
+          <h:outputLabel for="password" value="Clave:" />
+        <p:password value="#{loginBean.clave}" id="password" required="true"
+           label="password" />
+        <f:facet name="footer">
+          <p:commandButton id="loginButton" value="Login"
+             actionListener="#{loginBean.login}" update=":mensajes"
+             oncomplete="manejarLogin(xhr, status, args)" />
+        </f:facet>
+      </h:panelGrid>
+    </p:panel>
+  </h:form>
+</h:body>
 <script type="text/javascript">
   //<![CDATA[
   function manejarLogin(xhr, status, args) {
