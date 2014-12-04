@@ -50,11 +50,11 @@ function cargar(position){
                         var IdActual = this.get('IdPedidoAyudaActual');
                         var descripcionActual = this.get('descripcionPedidoAyudaActual');
                         //alert(descripcionActual);
-                        //window.localStorage.setItem("IdPedidoAyudaActual", IdActual);
-                        //window.localStorage.setItem("descripcionPedidoAyudaActual", descripcionActual);
+                        window.localStorage.setItem("IdPedidoAyudaActual", IdActual);
+                        window.localStorage.setItem("descripcionPedidoAyudaActual", descripcionActual);
                         //alert(window.localStorage.getItem("IdPedidoAyudaActual"));
                         
-                        //document.getElementById("descripcion").value = descripcionActual;
+                        document.getElementById("descripcionPedidoAyuda").value = descripcionActual;
                         //document.getElementById("idPedidoAyudaActual").value = IdActual;
                         //document.getElementById("listaPendientes").style.display = 'none';
                         //document.getElementById("pedidoAyudaDetalle").style.display = 'initial';
@@ -104,3 +104,8 @@ function validarRescatista(){
         });
        
       }
+
+function verPlan(){
+	window.location.replace("http://localhost:8080/ServicioRest/catastrofe/rescatista/pdf");
+	
+}

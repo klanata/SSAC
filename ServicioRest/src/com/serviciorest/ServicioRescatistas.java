@@ -140,10 +140,12 @@ public class ServicioRescatistas {
 			throws Exception {
 
 		String path = "";
+		String nombre = nombreArchivo;
 
 		try {
 
 			path = "/ServicioRest/WebContent/WEB-INF/content/PropuestaProyecto20140831v03.pdf";
+			//path = "/ServicioRest/WebContent/WEB-INF/content/"+nombre;
 			// http://localhost:8080/ServicioRest/WebContent/WEB-INF/ViewerJS#../content/PropuestaProyecto20140831v03.pdf
 
 		} catch (Exception e) {

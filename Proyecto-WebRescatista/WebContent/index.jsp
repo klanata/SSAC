@@ -181,12 +181,29 @@
                         <div class="panel-body">
                            
                             <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">Ver Plan</a>
+                            <a href="#" class="btn btn-default btn-block" onclick='verPlan()'>Ver Plan</a>
 							<a href="#" class="btn btn-default btn-block">Finalizar pedido</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
+                    
+                    <div class="panel panel-default">
+                        
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <embed width="100%" height="70%" name="plugin" src = "http://localhost:8080/ServicioRest/catastrofe/rescatista/pdf" type="application/pdf">
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
 				
+				   <div class="panel panel-default">
+                        
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <textarea id="descripcionPedidoAyuda" class="form-control" rows="7"></textarea>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
                     
                     <!-- /.panel .chat-panel -->
                 </div>
