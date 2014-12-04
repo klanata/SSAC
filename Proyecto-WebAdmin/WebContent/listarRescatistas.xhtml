@@ -53,7 +53,7 @@
    <h:form>
  
 <p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
-    <p:submenu label="Home" >
+    <p:submenu label="Home"  >
         <p:column>
             <p:submenu label="SSCA">
                 <p:menuitem value="" url="index.xhtml" />
@@ -150,74 +150,62 @@
 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Modificar Rescatista</h2>
+    <div>
+      <h3>Modificar rescatistas</h3>
       <br/>	
-      <f:view>
-		<h:form id="registroRescatista" >
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid columns="1" cellpadding="3">				
-			
-			
-				<p>
-				<label for="nick">Nick : #{modificarRescatistaBean.rescatistaBean.nick}</label>				
-						
-																																														
-				</p>
-				<br/>
-				
-				<p>
-				<label for="pass">Password :</label>				
-				<p:password id="pass" value="#{modificarRescatistaBean.rescatistaBean.password}" feedback="true" />
-						
-																																						
-				</p>
-				<br/>
-				<p>
-				<label for="nombre">Nombre :</label>				
-					<p:inputText id="nombre" label="evento"  value="#{modificarRescatistaBean.rescatistaBean.nombre}" required="true" requiredMessage="El nombre del Rescatista es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-						
-				<p>
-				<label for="apellido">Apellido :</label>				
-					<p:inputText id="apellido" label="evento" value="#{modificarRescatistaBean.rescatistaBean.apellido}" required="true" requiredMessage="El apellido del Rescatista es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				<p>
-				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento"  value="#{modificarRescatistaBean.rescatistaBean.celular}"  >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				<p>
-				<label for="email">Email :</label>				
-					<p:inputText id="email"  label="evento" value="#{modificarRescatistaBean.rescatistaBean.email}"  >	
-					</p:inputText>																																									
-				</p>
-				<p:outputLabel for="fecha" value="Fecha:" />
-        		<p:calendar id="fecha" value="#{modificarRescatistaBean.rescatistaBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />
-				<br/>	
-				</h:panelGrid>	
-				<p:outputLabel for="sexo" value="Sexo:" />
-		        <p:selectOneRadio id="sexo" value="#{modificarRescatistaBean.rescatistaBean.sexo}">
-		            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
-		            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
-		         </p:selectOneRadio>
-			<p:commandButton id="comandoModificar" update="growl"  type="submit" style="margin-left: 400px;" styleClass="formbutton" value="Editar" action="#{modificarRescatistaBean.editar()}">
-			</p:commandButton>		
-		
+      <f:view>      	
+      	
+      	<h:form id="formRescatistas">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="rescatistaDT" var="rescatistaBean" widgetVar="rescatistaTable" value = "#{listaRescatistaBean.rescatistasBean}"
+                 		 emptyMessage="No se han encontrado rescatista con ese criterio"  filteredValue="#{listaRescatistaBean.filtroRescatistaBean}"               		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                 		 selectionMode="single" selection="#{listaRescatistaBean.selectedRescatista}"  rowKey="#{rescatistaBean.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Rescatista:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('rescatistaTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    	
+		         <p:ajax event="rowSelect" listener="#{listaRescatistaBean.onRowSelect}" update=":formRescatistas:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaRescatistaBean.onRowUnselect}" update=":formRescatistas:msgs" />	        		        
+		    
+		        
+        		<p:column headerText="Id" style="width:50px">
+            		<h:outputText value="#{rescatistaBean.id}" />
+        		</p:column>             		                  		                  		             	
+        		
+        		<p:column headerText="Nick" style="width:200px" filterBy="#{rescatistaBean.nick}" filterMatchMode="contains" >
+            		<h:outputText value="#{rescatistaBean.nick}" />
+        		</p:column>
+        		
+        		<p:column headerText="Nombre" style="width:350px" filterBy="#{rescatistaBean.nombre}" filterMatchMode="contains" >
+            		<h:outputText value="#{rescatistaBean.nombre}" />            		
+        		</p:column>
+        		
+        		<p:column headerText="Apellido" filterBy="#{rescatistaBean.apellido}" filterMatchMode="contains">
+            		<h:outputText value="#{rescatistaBean.apellido}" />            		
+        		</p:column>
+        		
+                <p:column headerText="Celular">
+            		<h:outputText value="#{rescatistaBean.celular}" />            		
+        		</p:column>        		        		 
+        		        		        		
+     		</p:dataTable>     		     		
+     		
 		</h:form>
-		</f:view>
+      
+      </f:view>         
     </div>
-    <div class="fl_right"><img src="resources/images/demo/RESCATISTA.gif" alt="" /></div>
+    
     <br class="clear" />
   </div>
 </div>
+
 
 
 <div class="wrapper col7">
@@ -228,15 +216,4 @@
   </div>
 </div>
 </h:body> 
-	<script type="text/javascript">
-	  //<![CDATA[
-	  function logout(xhr, status, args) {
-	    setTimeout(function() {
-	      window.location = 'home.xhtml';
-	    }, 500);
-	  }
-	//]]>
-	</script>
 </html>
-
-

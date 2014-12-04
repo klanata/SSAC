@@ -72,36 +72,42 @@ public class ListarRescatistaBean implements Serializable {
 			//
 			Collection<Rescatista> res = new ArrayList<Rescatista>();
 			res = manager.listarTodosLosRescatistasActivos();
-			//Administrador administrador;
+		
 			
-			Long id;
-			String nombre;
-			String apellido;
-			String nick ;
-			String email;
-			String password ;
-			Date fechaNac;
-			String sexo ;
-			String celular;
-			Rescatista a;
-			Iterator< Rescatista> it = res.iterator();
-			int i = 0;
-			 while(it.hasNext())
-		     {
-				  a  = it.next();
-				  id = a.getId();
-				  nombre= a.getNombre();
-				  apellido= a.getApellido();
-				  nick = a.getNick();
-				  email = a.getEmail();
-				  password = a.getPassword();
-				  fechaNac = a.getFechaNac();
-				  sexo = a.getSexo();
-				  celular = a.getCelular();
-				  rescatistasBean.add(i, new RescatistaBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular));
-				  i++;
-				  System.out.println("obtengo administradores: " + i);      	
-		     
+			if(res == null){}
+			else{
+			
+			
+				//Administrador administrador;
+				
+				Long id;
+				String nombre;
+				String apellido;
+				String nick ;
+				String email;
+				String password ;
+				Date fechaNac;
+				String sexo ;
+				String celular;
+				Rescatista a;
+				Iterator< Rescatista> it = res.iterator();
+				int i = 0;
+				 while(it.hasNext())
+			     {
+					  a  = it.next();
+					  id = a.getId();
+					  nombre= a.getNombre();
+					  apellido= a.getApellido();
+					  nick = a.getNick();
+					  email = a.getEmail();
+					  password = a.getPassword();
+					  fechaNac = a.getFechaNac();
+					  sexo = a.getSexo();
+					  celular = a.getCelular();
+					  rescatistasBean.add(i, new RescatistaBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular));
+					  i++;
+					  System.out.println("obtengo administradores: " + i);      	
+			    } 
 		     }
 			
 		
