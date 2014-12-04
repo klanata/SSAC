@@ -14,6 +14,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+
 import java.io.File;
 
 import clienteutility.ClienteUtility;
@@ -82,6 +83,7 @@ public class ListaImgCatastrofeBean implements Serializable{
 			    	double coordenadasY;
 			    	Boolean activa;
 			    	Boolean prioridad;
+			    	String css;
 			    	
 					nombreEvento = catastrofe.getNombreEvento();
 					descripcionCatastrofe = catastrofe.getDescripcion();												
@@ -90,7 +92,9 @@ public class ListaImgCatastrofeBean implements Serializable{
 					coordenadasY = catastrofe.getCoordenadasY();
 					activa = catastrofe.getActiva();
 					prioridad = catastrofe.getPrioridad(); 
-					catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad);					
+					css = catastrofe.getCss();
+					
+					catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad,css);					
     				    				
     				Collection<ImagenCatastrofe> res = new ArrayList<ImagenCatastrofe>();
     				res = manager.listaImagenesDeCatastrofe(idCatastrofe);				

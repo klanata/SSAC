@@ -75,6 +75,7 @@ public class ImagesView implements Serializable{
 			    	double coordenadasY;
 			    	Boolean activa;
 			    	Boolean prioridad;
+			    	String css;			    	
 			    	
 					nombreEvento = catastrofe.getNombreEvento();
 					descripcionCatastrofe = catastrofe.getDescripcion();												
@@ -82,8 +83,9 @@ public class ImagesView implements Serializable{
 					coordenadasX = catastrofe.getCoordenadasX();
 					coordenadasY = catastrofe.getCoordenadasY();
 					activa = catastrofe.getActiva();
-					prioridad = catastrofe.getPrioridad();    				
-					catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad);
+					prioridad = catastrofe.getPrioridad();  
+					css = null;
+					catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad,css);
     				    				
     				Collection<ImagenCatastrofe> res = new ArrayList<ImagenCatastrofe>();
     				res = manager.listaImagenesDeCatastrofe(idCatastrofe);				

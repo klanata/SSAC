@@ -71,12 +71,12 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	
 	@Column(nullable= false)
 	private Boolean activa ;
-	
+		
 	@Column(nullable= false)
 	private Boolean prioridad ;
 	
-	@Enumerated(EnumType.STRING)
-	private TipoCatastrofe tipoCatastrofe;
+	@Column
+	private String css = "";	
 	
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>(0);
@@ -95,13 +95,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	
 	private boolean bajaLogica;
 	
-	public boolean getBajaLogica() {
-		return bajaLogica;
-	}
-
-	public void setBajaLogica(boolean bajaLogica) {
-		this.bajaLogica = bajaLogica;
-	}
+	
 	
 	//	------------------ Constructors  --------------------------------
 	
@@ -114,13 +108,13 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.coordenadasY  = 0;
 		this.activa = false;
 		this.prioridad = false;		
+		this.css = new String();
 		this.imagenes = new HashSet<ImagenCatastrofe>();
 		this.servicios = new HashSet<Servicio>();
 		this.setOngs(new HashSet<Ong>(0));
 		//this.ongs = new HashSet<Ong>(0);
 		this.planDeRiesgo = null;	
-		this.pedidosDeAyuda = new HashSet<PedidoDeAyuda>();
-		this.tipoCatastrofe= TipoCatastrofe.climaticas;
+		this.pedidosDeAyuda = new HashSet<PedidoDeAyuda>();		
 		this.bajaLogica = false;
 	}		
 	
@@ -139,7 +133,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	 * @param planDeRiesgo	 
 	 */
 	public Catastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, double coordenadasY,
-			Boolean activa, Boolean prioridad, Set<ImagenCatastrofe> imagenes, Set<Servicio> servicios,
+			Boolean activa, Boolean prioridad, String css, Set<ImagenCatastrofe> imagenes, Set<Servicio> servicios,
 			Set<Ong> ongs, Set<PedidoDeAyuda> pedidosDeAyuda, PlanDeRiesgo planDeRiesgo) {
 		super();
 		this.nombreEvento = nombreEvento;
@@ -149,36 +143,18 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.coordenadasY  = coordenadasY;
 		this.activa = activa;
 		this.prioridad = prioridad;	
+		this.css = css;
 		this.setImagenes(imagenes);
 		this.servicios = servicios;
 		this.setOngs(ongs);
 		//this.ongs = ongs;
 		this.pedidosDeAyuda = pedidosDeAyuda;
-		this.planDeRiesgo = planDeRiesgo;	
-		this.tipoCatastrofe= TipoCatastrofe.climaticas;
+		this.planDeRiesgo = planDeRiesgo;			
 	}
 	
 	
 	//	------------------ Getter and setter methods ---------------------
-	
-	
-	public TipoCatastrofe getTipoCatastrofe() {
-		return tipoCatastrofe;
-	}
-
-	public void setTipoCatastrofe(TipoCatastrofe tipoCatastrofe) {
-		this.tipoCatastrofe = tipoCatastrofe;
-	}
-
-	public Set<PedidoDeAyuda> getPedidosDeAyuda() {
-		return pedidosDeAyuda;
-	}
-
-	public void setPedidosDeAyuda(Set<PedidoDeAyuda> pedidosDeAyuda) {
-		this.pedidosDeAyuda = pedidosDeAyuda;
-	}
-		
-	
+			
 	public long getId() {
 		return id;
 	}
@@ -227,6 +203,12 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	public void setPrioridad(Boolean prioridad) {
 		this.prioridad = prioridad;
 	}
+	public String getCss() {
+		return css;
+	}
+	public void setCss(String css) {
+		this.css = css;
+	}
 	public Set<Servicio> getServicios() {
 		return servicios;
 	}	
@@ -251,7 +233,20 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	public void setImagenes(Set<ImagenCatastrofe> imagenes) {
 		this.imagenes = imagenes;
 	}
-	
+	public Set<PedidoDeAyuda> getPedidosDeAyuda() {
+		return pedidosDeAyuda;
+	}
+
+	public void setPedidosDeAyuda(Set<PedidoDeAyuda> pedidosDeAyuda) {
+		this.pedidosDeAyuda = pedidosDeAyuda;
+	}
+	public boolean getBajaLogica() {
+		return bajaLogica;
+	}
+
+	public void setBajaLogica(boolean bajaLogica) {
+		this.bajaLogica = bajaLogica;
+	}
 	
    
 }

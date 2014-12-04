@@ -58,7 +58,7 @@ public class TestingBean implements Serializable{
         }				
 		double c = 10;
        		try {
-				Long in= manager.ingesarCatastrofe("this.nombreEvento", "this.descripcion", "logo", c,c, true, false,null, null, null, null);
+				Long in= manager.ingesarCatastrofe("this.nombreEvento", "this.descripcion", "logo", c,c, true, false, "css", null, null, null, null);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

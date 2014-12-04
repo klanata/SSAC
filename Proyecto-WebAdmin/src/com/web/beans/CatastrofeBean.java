@@ -39,6 +39,7 @@ public class CatastrofeBean implements Serializable{
 	private double coordenadasY;
 	private Boolean activa;
 	private Boolean prioridad;
+	private String css;
 	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>();
 	private Set<Servicio> servicios = new HashSet<Servicio>();
 	private Set<Ong> ongs  =  new HashSet<Ong>();
@@ -52,7 +53,7 @@ public class CatastrofeBean implements Serializable{
 	public CatastrofeBean() {	
 	}	
 	public CatastrofeBean(Long id, String nombreEvento, String descripcion, String logo, double coordenadasX,
-			double coordenadasY, Boolean activa, Boolean prioridad) {
+			double coordenadasY, Boolean activa, Boolean prioridad, String css) {
 		super();
 		this.id = id;
 		this.nombreEvento = nombreEvento;
@@ -62,6 +63,7 @@ public class CatastrofeBean implements Serializable{
 		this.coordenadasY = coordenadasY;
 		this.activa = activa;
 		this.prioridad = prioridad;
+		this.css = css;
 	}
 		
 	
@@ -121,6 +123,12 @@ public class CatastrofeBean implements Serializable{
 	public void setPrioridad(Boolean prioridad) {
 		this.prioridad = prioridad;
 	}
+	public String getCss() {
+		return css;
+	}
+	public void setCss(String css) {
+		this.css = css;
+	}
 	public Set<ImagenCatastrofe> getImagenes() {
 		return imagenes;
 	}
@@ -176,8 +184,9 @@ public class CatastrofeBean implements Serializable{
 		
     	try{    	
     		InputBean inputBean = new InputBean();
-    		String logo= inputBean.uploadFile(this.part);    		    		    	
-       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, imagenes, servicios, ongs, planDeRiesgo);    	
+    		String logo= inputBean.uploadFile(this.part);   
+    		String css = null;
+       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, servicios, ongs, planDeRiesgo);    	
     		if (in == 0){
     			System.out.println("es repetido." + in);
     			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
@@ -203,6 +212,7 @@ public class CatastrofeBean implements Serializable{
 	        return "failure";     		
     	}        	    	
 	}
+	
 	
 		
 	
