@@ -119,13 +119,13 @@ function rescatistaController($scope) {
     
  }
 
- $scope.abrirPlan = function (plan) {
-    $scope.abrirPlan = function (plan) {
+ $scope.abrirPlan = function () {
+    $scope.abrirPlan = function () {
         //$scope.nombreArchivoPlan = nombrePlan;
         $scope.nombreArchivoPlan = "PropuestaProyecto20140831v03.pdf";//Esto es de prueba. Borrar despues que este implementado el metodo.
-        $scope.idPlanActual = plan.idEstadoRescatista;
+        //$scope.idPlanActual = plan.idEstadoRescatista;
         //console.log($scope.rutaViewerJS + $scope.nombreArchivoPlan);
-        alert('ok');
+        //alert('ok');
         //alert(window.location.protocol + window.location.host + window.location.pathname);
         //window.open('http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf', '_system', 'location=yes');
         //window.open('http://10.0.2.2:8080/ServicioRest/WEB-INF/lib/ViewerJS/#../PropuestaProyecto20140831v03.pdf', '_system', 'location=yes');
@@ -142,7 +142,7 @@ function rescatistaController($scope) {
             type:"get"
         });*/
         
-        document.getElementById("listaPendientes").style.display = 'none';
+        document.getElementById("pedidoAyudaDetalle").style.display = 'none';
         document.getElementById("plan").style.display = 'initial';
     }
   }
@@ -174,6 +174,7 @@ function rescatistaController($scope) {
         //$.ajax({url:"http://localhost/RescatistasApp/www/planesEmergenciaDB.js",//Web - llamada de prueba
             success:function(response) {
                 alert("Plan finalizado");
+                volver();
             },
             error:function (request, status, error) {
                 alert("Error al finalizar plan.");
@@ -190,8 +191,8 @@ function rescatistaController($scope) {
 
    $scope.volver = function () {
     $scope.volver = function () {
-        document.getElementById("listaPendientes").style.display = 'none';
-        document.getElementById("login").style.display = 'initial';
+        document.getElementById("listaPendientes").style.display = 'initial';
+        document.getElementById("pedidoAyudaDetalle").style.display = 'none';
     }
   }
 
