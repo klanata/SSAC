@@ -151,7 +151,7 @@
 <div class="wrapper col3">
   <div id="intro">
     <div>
-      <h3>Listar Ongs a Modificar</h3>
+      <h3>Listar Ongs a Eliminar</h3>
       <br/>	
       <f:view>      	
       	
@@ -159,11 +159,11 @@
       		
       		<p:growl id="msgs" showDetail="true" />
       		
-    		<p:dataTable id="listarOngDT2" var="ongBean" widgetVar="ongTable" value = "#{listaEliminarOngBean.listaOngBeanEliminar}"
-                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{listaEliminarOngBean.filtroOngBeanEliminar}"               		  
+    		<p:dataTable id="listarOngDT2" var="ongBean" widgetVar="ongTable" value = "#{listarOngBean2.listaOngBean}"
+                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{listarOngBean2.filtroOngBean}"               		  
                  		 paginator="true" rows="5" paginatorPosition="top"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
-                 		 selectionMode="single" selection="#{listaEliminarOngBean.selectedOngEliminar}"  rowKey="#{ongBean.id}" dblClickSelect="true">    
+                 		 selectionMode="single" selection="#{listarOngBean2.selectedOng}"  rowKey="#{ongBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
@@ -171,8 +171,8 @@
 		                <p:inputText id="globalFilter"   onkeyup="PF('ongTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
 		        </f:facet>    	
-		         <p:ajax event="rowSelect" listener="#{listaEliminarOngBean.onRowSelect}" update=":formOng1:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listaEliminarOngBean.onRowUnselect}" update=":formOng1:msgs" />	        		        
+		         <p:ajax event="rowSelect" listener="#{listarOngBean2.onRowSelect}" update=":formOng1:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listarOngBean2.onRowUnselect}" update=":formOng1:msgs" />	        		        
 		    
 		        
         		<p:column headerText="Id" style="width:50px">
