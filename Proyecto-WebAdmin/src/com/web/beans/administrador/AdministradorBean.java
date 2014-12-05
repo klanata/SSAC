@@ -9,6 +9,7 @@ import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -23,7 +24,7 @@ import clienteutility.ClienteUtility;
 import com.core.service.negocio.remote.AdministradorEBR;
 
 @ManagedBean(name="administradorBean")
-@SessionScoped
+@RequestScoped
 public class AdministradorBean implements Serializable{
 
 

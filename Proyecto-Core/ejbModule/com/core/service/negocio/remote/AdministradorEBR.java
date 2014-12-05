@@ -6,6 +6,9 @@ import java.util.Date;
 import javax.ejb.Remote;
 
 import com.core.data.entites.Administrador;
+import com.core.data.entites.DeBienes;
+import com.core.data.entites.DeServicios;
+import com.core.data.entites.Economica;
 
 @Remote
 public interface AdministradorEBR {
@@ -29,6 +32,12 @@ public interface AdministradorEBR {
 	public Administrador obtenerAdministradorEB(String nick);
 	
 	public Administrador obetenrAdministradorPorNick(Long id);
+	
+	/*********************/
+	public Collection<DeBienes> listaDeBienesEnTiempo(Date fechaInicio, Date fechaFinal);
+	public Collection<DeServicios> listaDeServiciosEnTiempo(Date fechaInicio, Date fechaFinal);
+	public Collection<Economica> listaDeEconomicaEnTiempo(Date fechaInicio, Date fechaFinal);
+	
 	
 	
 }

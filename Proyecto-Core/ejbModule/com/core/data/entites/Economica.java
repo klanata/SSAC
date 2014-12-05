@@ -25,7 +25,11 @@ allocationSize=1)
 query = "SELECT d FROM Economica d WHERE d.ong.id = :idOng"),
 
 @NamedQuery(name="Economica.BuscarDonacion", 
-query = "SELECT d FROM Economica d WHERE d.id = :id")
+query = "SELECT d FROM Economica d WHERE d.id = :id"),
+
+
+@NamedQuery(name="Economica.ReporteEconomica", 
+query = "SELECT d FROM Economica d WHERE d.fechaRealizada BETWEEN :fechaInicio AND :fechaFinal")
 
 })
 

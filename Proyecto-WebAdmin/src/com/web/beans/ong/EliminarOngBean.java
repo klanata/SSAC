@@ -3,25 +3,26 @@ package com.web.beans.ong;
 import java.io.Serializable;
 
 
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
-import com.core.data.entites.Ong;
 
+import com.core.data.entites.Ong;
 import com.core.service.negocio.remote.OngEBR;
 
 
 
 
 @ManagedBean(name="eliminarOngBean")
-@SessionScoped
+@RequestScoped
 public class EliminarOngBean implements Serializable{
 	
 	

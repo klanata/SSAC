@@ -24,7 +24,12 @@ allocationSize=1)
 query = "SELECT d FROM DeServicios d WHERE d.ong.id = :idOng"),
 
 @NamedQuery(name="DeServicios.BuscarDonacion", 
-query = "SELECT d FROM DeServicios d WHERE d.id = :id")
+query = "SELECT d FROM DeServicios d WHERE d.id = :id"),
+
+
+@NamedQuery(name="DeServicios.ReporteDeServicios", 
+query = "SELECT d FROM DeServicios d WHERE d.fechaRealizada BETWEEN :fechaInicio AND :fechaFinal")
+
 
 })
 

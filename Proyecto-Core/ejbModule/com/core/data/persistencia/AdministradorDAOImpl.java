@@ -1,6 +1,9 @@
 package com.core.data.persistencia;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -11,8 +14,12 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import com.core.data.entites.Administrador;
+import com.core.data.entites.DeBienes;
+import com.core.data.entites.DeServicios;
+import com.core.data.entites.Economica;
 import com.core.data.persistencia.interfaces.locales.AdministradorDAO;
 
 @Stateless
@@ -128,6 +135,45 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 		}catch (Exception excep){			
 			throw excep;
 		} 
+		
+		return lista;
+	}
+	@Override
+	public Collection<DeBienes> listaDeBienes(Date fechaInicio, Date fechaFinal) {
+		
+		
+		Collection<DeBienes> lista = null;					
+		
+		TypedQuery<DeBienes> consulta = this.em.createNamedQuery("DeBienes.ReporteDonacion",DeBienes.class);				
+		consulta.setParameter("fechaInicio", fechaInicio );
+		consulta.setParameter("fechaFinal", fechaInicio );
+		lista = consulta.getResultList();
+		
+		return lista;
+	}
+	@Override
+	public Collection<DeServicios> listaDeServicios(Date fechaInicio,
+			Date fechaFinal) {
+		
+		Collection<DeServicios> lista = null;					
+		
+		TypedQuery<DeServicios> consulta = this.em.createNamedQuery("DeServicios.ReporteDeServicios",DeServicios.class);				
+		consulta.setParameter("fechaInicio", fechaInicio );
+		consulta.setParameter("fechaFinal", fechaInicio );
+		lista = consulta.getResultList();
+		
+		return lista;
+	}
+	@Override
+	public Collection<Economica> listaEconomica(Date fechaInicio,
+			Date fechaFinal) {
+
+		Collection<Economica> lista = null;					
+		
+		TypedQuery<Economica> consulta = this.em.createNamedQuery("Economica.ReporteEconomica",Economica.class);				
+		consulta.setParameter("fechaInicio", fechaInicio );
+		consulta.setParameter("fechaFinal", fechaInicio );
+		lista = consulta.getResultList();
 		
 		return lista;
 	}

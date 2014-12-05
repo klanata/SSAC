@@ -11,6 +11,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
+	<style>
+    *{ margin: 0; padding: 0; }
+    html, body, #map{
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
+    <script type="text/javascript" src="js/map.js"></script>
 	
 	
 </h:head> 
@@ -129,7 +138,7 @@
     <p:submenu label="Reporte" icon="ui-icon-contact">
         <p:column>
             <p:submenu label="Reportes">
-                <p:menuitem value="Donaciones" url="#" />
+                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
                 <p:menuitem value="Pedidos de ayuda" url="#" />
             </p:submenu>
             

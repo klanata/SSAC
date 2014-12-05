@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
@@ -17,7 +18,7 @@ import clienteutility.ClienteUtility;
 import com.core.service.negocio.remote.RescatistaEBR;
 
 @ManagedBean(name="rescatistaBean")
-@SessionScoped
+@RequestScoped
 public class RescatistaBean implements Serializable {
 
 	
