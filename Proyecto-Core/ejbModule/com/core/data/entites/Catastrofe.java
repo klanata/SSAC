@@ -7,8 +7,6 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import cross_cuting.enums.*;
-
 /**
  * Entity implementation class for Entity: Catastrofe
  *
@@ -33,7 +31,8 @@ query = "SELECT c "+
 		
 @NamedQuery(name="Catastrofe.BuscarTodas", 
 query = "SELECT c "+
-		"FROM Catastrofe c "),
+		"FROM Catastrofe c "+
+		"WHERE c.bajaLogica = :bajaLogica"),
 
 @NamedQuery(name = "Catastrofe.BuscarCatastrofeId.NombreEvento",
 query = "SELECT c.id "+
@@ -131,10 +130,11 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	 * @param ongs
 	 * @param pedidosDeAyuda
 	 * @param planDeRiesgo	 
+	 * @param bajaLogica	
 	 */
 	public Catastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, double coordenadasY,
 			Boolean activa, Boolean prioridad, String css, Set<ImagenCatastrofe> imagenes, Set<Servicio> servicios,
-			Set<Ong> ongs, Set<PedidoDeAyuda> pedidosDeAyuda, PlanDeRiesgo planDeRiesgo) {
+			Set<Ong> ongs, Set<PedidoDeAyuda> pedidosDeAyuda, PlanDeRiesgo planDeRiesgo, boolean bajaLogica) {
 		super();
 		this.nombreEvento = nombreEvento;
 		this.descripcion = descripcion;
@@ -149,7 +149,8 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.setOngs(ongs);
 		//this.ongs = ongs;
 		this.pedidosDeAyuda = pedidosDeAyuda;
-		this.planDeRiesgo = planDeRiesgo;			
+		this.planDeRiesgo = planDeRiesgo;		
+		this.bajaLogica = bajaLogica;
 	}
 	
 	
