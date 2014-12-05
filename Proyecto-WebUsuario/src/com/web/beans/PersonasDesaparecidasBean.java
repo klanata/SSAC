@@ -152,25 +152,25 @@ public class PersonasDesaparecidasBean implements Serializable {
         }				
     	
     	try{    		   	    	     		
-    		InputBean inputBean = new InputBean();
-    		String foto= inputBean.uploadFile(this.part); 
-    		Long in = manager.crearReportePersonasDesaparecidas(this.nombre, this.apellido, this.numeroContacto, this.fechNac, this.desc, foto, imagenes, this.hallada);   
-    		if (in == 0){
-    			System.out.println("es repetido." + in);
-    			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe .");
-    	      
-    		}
-    		else {    	
-    			this.nombre = "";   		
-        		this.apellido = "";
-        		this.numeroContacto = "";
-        		this.desc = "";
-        		this.hallada = false;
-        		
-    			System.out.println("no es repetido." + in);
-    			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Persona ingresada.");
-    		}    		    
-    		FacesContext.getCurrentInstance().addMessage(null, message);
+//    		InputBean inputBean = new InputBean();
+//    		String foto= inputBean.uploadFile(this.part); 
+//    		Long in = manager.crearReportePersonasDesaparecidas(this.nombre, this.apellido, this.numeroContacto, this.fechNac, this.desc, foto, imagenes, this.hallada);   
+//    		if (in == 0){
+//    			System.out.println("es repetido." + in);
+//    			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe .");
+//    	      
+//    		}
+//    		else {    	
+//    			this.nombre = "";   		
+//        		this.apellido = "";
+//        		this.numeroContacto = "";
+//        		this.desc = "";
+//        		this.hallada = false;
+//        		
+//    			System.out.println("no es repetido." + in);
+//    			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Persona ingresada.");
+//    		}    		    
+//    		FacesContext.getCurrentInstance().addMessage(null, message);
     		return "success"; 
     		
     	}catch (Exception excep){

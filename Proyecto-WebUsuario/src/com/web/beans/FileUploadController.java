@@ -77,7 +77,7 @@ public class FileUploadController {
 	    		String fileString = outputFilePath.toString();
 	    		
 	    		try {
-	    			manager.agregarImagenAlReporte(idPersona, fileString);
+	    			//manager.agregarImagenAlReporte(idPersona, fileString);
 	    			outputFilePath = new File(jboss + "\\Proyecto\\imagenes.war\\" + x + fileName);
 		    		OutputStream out = new FileOutputStream(outputFilePath);                        
 		           
