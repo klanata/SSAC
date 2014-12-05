@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.naming.Context;
@@ -32,6 +33,7 @@ import com.core.data.entites.DeServicios;
 import com.core.data.entites.Economica;
 import com.core.service.negocio.remote.AdministradorEBR;
 import com.web.beans.administrador.AdministradorBean;
+import com.web.beans.ong.OngBean;
 
 
 @ManagedBean(name="ReporteDonacion")
@@ -50,7 +52,7 @@ public class ReporteDonacionesBean implements Serializable {
 	
 	
 	
-	@ManagedProperty("#{DeBienesBean}")
+	@ManagedProperty("#{DonacionesDeBienesBean}")
 	private DonacionesDeBienesBean deBienesBean;
 	
 	public String TipoDonacion;
@@ -67,6 +69,19 @@ public class ReporteDonacionesBean implements Serializable {
 	private Integer cantidadDE;
 	
 	
+	private List<DeBienes> filtroDeBienes;
+    
+    //private OngBean selectedOng;   
+	
+	
+	public List<DeBienes> getFiltroDeBienes() {
+		return filtroDeBienes;
+	}
+
+	public void setFiltroDeBienes(List<DeBienes> filtroDeBienes) {
+		this.filtroDeBienes = filtroDeBienes;
+	}
+
 	public Integer getCantidadDB() {
 		return cantidadDB;
 	}

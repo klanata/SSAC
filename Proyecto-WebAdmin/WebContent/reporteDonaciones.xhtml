@@ -146,22 +146,55 @@
 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
     
     
-    <h:form id ="form">   
     
-    <h1> Cantidad de Donaciones de Bienes :</h1>
-   
-    <br/>
-    
-	
-		    
-
-    
-    
-   </h:form>
-   
+   <h3>Listar Donacion de Bienes</h3>
+      <br/>	
+      <f:view>      	
+      	
+      	<h:form id="formdonacion1">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="listarOngDT2" var="deBienesBean" widgetVar="donacionBTable" value = "#{ReporteDonacion.listaDeBienes}"
+                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{ReporteDonacion.filtroDeBienes}"               		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                 		 rowKey="#{deBienesBean.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Donacion de Bienes:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('donacionBTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    	
+		       
+		        
+        		         		                  		                  		             	
+        		
+        		<p:column headerText="Fecha Realizado" style="width:200px" filterBy="#{deBienesBean.fechaRealizada}" filterMatchMode="contains" >
+            		<h:outputText value="#{deBienesBean.fechaRealizada}" />
+        		</p:column>
+        		
+        		<p:column headerText="Descripcion" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean.nombreItem}" />
+        		</p:column>
+        	    
+        	    <p:column headerText="Monto donado" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean.cantidad}" />
+        		</p:column>
+        	    
+        	      <p:column headerText="Persona" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean.usuario}" />
+        		</p:column>
+        	       		     		 
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+      
+      </f:view>         
     </div>
     
     
@@ -169,8 +202,9 @@
     
     
     
+    
     <br class="clear" />
-  </div>
+  
 </div>
 
 
