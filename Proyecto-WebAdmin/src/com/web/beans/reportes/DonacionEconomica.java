@@ -6,8 +6,7 @@ import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
+
 
 import com.core.data.entites.Ong;
 
@@ -90,12 +89,12 @@ public class DonacionEconomica implements Serializable {
 	}
 	
 	public DonacionEconomica(String usuario, Date fechaRealizada,
-			BigDecimal monto, Ong ong) {
+			BigDecimal monto) {
 		super();
 		this.usuario = usuario;
 		this.fechaRealizada = fechaRealizada;
 		this.monto = monto;
-		this.ong = ong;
+		
 	}
 	
 

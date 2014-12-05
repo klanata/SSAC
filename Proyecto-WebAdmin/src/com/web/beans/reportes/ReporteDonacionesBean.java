@@ -8,6 +8,7 @@ import javax.faces.bean.RequestScoped;
 import javax.annotation.PostConstruct;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -39,10 +40,6 @@ import com.web.beans.ong.OngBean;
 @ManagedBean(name="ReporteDonacion")
 @RequestScoped
 public class ReporteDonacionesBean implements Serializable { 
-
- 
-
-
  
     /**
 	 * 
@@ -55,21 +52,69 @@ public class ReporteDonacionesBean implements Serializable {
 	@ManagedProperty("#{DonacionesDeBienesBean}")
 	private DonacionesDeBienesBean deBienesBean;
 	
+	
+
+	@ManagedProperty("#{DonacionDeServicioBean}")
+	private DonacionDeServicioBean deServicios;
+	
+	
+
+	@ManagedProperty("#{DonacionEconomica}")
+	private DonacionEconomica deEconomica;
+	
 	public String TipoDonacion;
 
 	private Date fechaInicio;
 	private Date fechaFinal;
 	
 	private ArrayList<DeBienes> listaDeBienes = new ArrayList<DeBienes>();
-	private ArrayList<DeServicios> listaDeServicios = new ArrayList<DeServicios>();
-	private ArrayList<Economica> listaEconomica =  new ArrayList<Economica>();
+	private ArrayList<DonacionDeServicioBean> listaDeServicios = new ArrayList<DonacionDeServicioBean>();
+	private ArrayList<DonacionEconomica> listaEconomica =  new ArrayList<DonacionEconomica>();
     
-	private Integer cantidadDB;
-	private Integer cantidadDS;
-	private Integer cantidadDE;
+
 	
 	
+	
+	
+	public DonacionDeServicioBean getDeServicios() {
+		return deServicios;
+	}
+
+	public void setDeServicios(DonacionDeServicioBean deServicios) {
+		this.deServicios = deServicios;
+	}
+
+	public DonacionEconomica getDeEconomica() {
+		return deEconomica;
+	}
+
+	public void setDeEconomica(DonacionEconomica deEconomica) {
+		this.deEconomica = deEconomica;
+	}
+
+	public List<DeServicios> getFiltroDeServicios() {
+		return filtroDeServicios;
+	}
+
+	public void setFiltroDeServicios(List<DeServicios> filtroDeServicios) {
+		this.filtroDeServicios = filtroDeServicios;
+	}
+
+	public List<Economica> getFiltroEconomica() {
+		return filtroEconomica;
+	}
+
+	public void setFiltroEconomica(List<Economica> filtroEconomica) {
+		this.filtroEconomica = filtroEconomica;
+	}
+
+
+
 	private List<DeBienes> filtroDeBienes;
+	
+	private List<DeServicios> filtroDeServicios;
+	
+	private List<Economica> filtroEconomica;
     
     //private OngBean selectedOng;   
 	
@@ -82,29 +127,7 @@ public class ReporteDonacionesBean implements Serializable {
 		this.filtroDeBienes = filtroDeBienes;
 	}
 
-	public Integer getCantidadDB() {
-		return cantidadDB;
-	}
-
-	public void setCantidadDB(Integer cantidadDB) {
-		this.cantidadDB = cantidadDB;
-	}
-
-	public Integer getCantidadDS() {
-		return cantidadDS;
-	}
-
-	public void setCantidadDS(Integer cantidadDS) {
-		this.cantidadDS = cantidadDS;
-	}
-
-	public Integer getCantidadDE() {
-		return cantidadDE;
-	}
-
-	public void setCantidadDE(Integer cantidadDE) {
-		this.cantidadDE = cantidadDE;
-	}
+	
 
 	public DonacionesDeBienesBean getDeBienesBean() {
 		return deBienesBean;
@@ -122,19 +145,21 @@ public class ReporteDonacionesBean implements Serializable {
 		this.listaDeBienes = listaDeBienes;
 	}
 
-	public ArrayList<DeServicios> getListaDeServicios() {
+
+	public ArrayList<DonacionDeServicioBean> getListaDeServicios() {
 		return listaDeServicios;
 	}
 
-	public void setListaDeServicios(ArrayList<DeServicios> listaDeServicios) {
+	public void setListaDeServicios(
+			ArrayList<DonacionDeServicioBean> listaDeServicios) {
 		this.listaDeServicios = listaDeServicios;
 	}
 
-	public ArrayList<Economica> getListaEconomica() {
+	public ArrayList<DonacionEconomica> getListaEconomica() {
 		return listaEconomica;
 	}
 
-	public void setListaEconomica(ArrayList<Economica> listaEconomica) {
+	public void setListaEconomica(ArrayList<DonacionEconomica> listaEconomica) {
 		this.listaEconomica = listaEconomica;
 	}
 
@@ -199,21 +224,42 @@ public class ReporteDonacionesBean implements Serializable {
     			
     		}
     		
-			cantidadDB = listaDB.size();
 			
-			/*Collection<Economica> listaDE = new ArrayList<Economica>();
+			
+			Collection<Economica> listaDE = new ArrayList<Economica>();
 			listaDE = manager.listaDeEconomicaEnTiempo(fechaInicio, fechaFinal);
+			Iterator<Economica> it2 = listaDE.iterator();
+    		int i2= 0;
+    		while(it2.hasNext())
+    		{
+    			Economica e = it2.next();
+    			listaEconomica.add(i2, new DonacionEconomica(e.getUsuario(), e.getFechaRealizada(),
+    					e.getMonto()));
+    			
+    			i2++;
+    			
+    		}
 			
-			cantidadDE = listaDE.size();
+			
+			
+			
+			//cantidadDE = listaDE.size();
 			
 			Collection<DeServicios> listaDS = new ArrayList<DeServicios>();
 			listaDS = manager.listaDeServiciosEnTiempo(fechaInicio, fechaFinal);
-			cantidadDS = listaDS.size();*/
+			Iterator<DeServicios> it3 = listaDS.iterator();
+    		int i3 = 0;
+    		while(it3.hasNext())
+    		{
+    			DeServicios d = it3.next();
+    			listaDeServicios.add(i3, new DonacionDeServicioBean(d.getUsuario(), d.getFechaRealizada(), d.getAreaConocimient(), d.getCantidadHoras()));
+    			i3++;
+    			
+    		}
 			
-			
+			}
     	
    
 	}
 	///////////////////
 	 
-}

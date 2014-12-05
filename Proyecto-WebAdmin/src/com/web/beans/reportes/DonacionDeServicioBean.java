@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 
-import com.core.data.entites.Ong;
+
 @ManagedBean(name="DonacionDeServicioBean")
 @RequestScoped
 public class DonacionDeServicioBean implements Serializable{
@@ -30,7 +30,7 @@ public class DonacionDeServicioBean implements Serializable{
 	private BigDecimal cantidadHoras ;
 	
 	 
-	private Ong ong;
+	
 
 
 	public Long getId() {
@@ -83,24 +83,17 @@ public class DonacionDeServicioBean implements Serializable{
 	}
 
 
-	public Ong getOng() {
-		return ong;
-	}
-
-
-	public void setOng(Ong ong) {
-		this.ong = ong;
-	}
+	
 
 
 	public DonacionDeServicioBean(String usuario, Date fechaRealizada,
-			String areaConocimient, BigDecimal cantidadHoras, Ong ong) {
+			String areaConocimient, BigDecimal cantidadHoras) {
 		super();
 		this.usuario = usuario;
 		this.fechaRealizada = fechaRealizada;
 		this.areaConocimient = areaConocimient;
 		this.cantidadHoras = cantidadHoras;
-		this.ong = ong;
+		
 	}
 	
 	public DonacionDeServicioBean() {

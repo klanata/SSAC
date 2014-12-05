@@ -5,7 +5,7 @@ import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.persistence.Column;
+
 
 @ManagedBean(name="DonacionesDeBienesBean")
 @RequestScoped
