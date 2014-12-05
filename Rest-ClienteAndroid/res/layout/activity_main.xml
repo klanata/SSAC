@@ -31,14 +31,6 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
     
-        <Button
-            android:id="@+id/btnMostrarPersona"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="#5858FA"
-            android:onClick="onBotonInicial"
-            android:text="@string/btnMostrarPersona"
-            android:textColor="#fff" />
+        
 
 </LinearLayout>
