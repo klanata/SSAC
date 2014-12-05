@@ -117,7 +117,9 @@ public class CatastrofeDAOImpl extends AbstractService implements CatastrofeDAO{
 	public List<Catastrofe> listarCatastrofes() throws Exception {
 	  	
 		try {
-			TypedQuery<Catastrofe> consulta = this.em.createNamedQuery("Catastrofe.BuscarTodas",Catastrofe.class);								
+			TypedQuery<Catastrofe> consulta = this.em.createNamedQuery("Catastrofe.BuscarTodas",Catastrofe.class);
+			boolean bajaLogica = false;
+			consulta.setParameter("bajaLogica", bajaLogica);
 			List<Catastrofe> catastrofes = consulta.getResultList();			
 		  	return catastrofes;		
 		} catch (Exception excep){			
@@ -131,10 +133,6 @@ public class CatastrofeDAOImpl extends AbstractService implements CatastrofeDAO{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-	
-	
 	
 
 }

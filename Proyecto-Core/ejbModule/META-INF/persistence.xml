@@ -20,6 +20,7 @@
 	<class>com.core.data.entites.Rescatista</class>
 	<class>com.core.data.entites.Servicio</class>
 	<class>com.core.data.entites.Usuario</class>
+	<class>com.core.data.entites.Filtro</class>
 	<properties>			
 	     <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>		    
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

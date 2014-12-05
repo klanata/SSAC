@@ -10,7 +10,7 @@
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout.css" />	
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
 	
 	
 </h:head> 
@@ -53,7 +53,7 @@
    <h:form>
  
 <p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
-    <p:submenu label="Home"  >
+    <p:submenu label="Home" >
         <p:column>
             <p:submenu label="SSCA">
                 <p:menuitem value="" url="index.xhtml" />
@@ -129,81 +129,46 @@
     <p:submenu label="Reporte" icon="ui-icon-contact">
         <p:column>
             <p:submenu label="Reportes">
-                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
+                <p:menuitem value="Donaciones" url="#" />
                 <p:menuitem value="Pedidos de ayuda" url="#" />
             </p:submenu>
             
         </p:column>
- 
-       
+        
     </p:submenu>
        
 </p:megaMenu>
 </h:form>
-
-          
-    
-          
+                       
     <br class="clear" />
   
 </div>
 
 <div class="wrapper col3">
   <div id="intro">
-    <div>
-      <h3>Eliminar Administrador</h3>
+    <div class="fl_left">
+      <h2>Registrar Filtro Youtube</h2>
       <br/>	
-      <f:view>      	
-      	
-      	<h:form id="formAdmin">      		
-      		
-      		<p:growl id="msgs" showDetail="true" />
-      		
-    		<p:dataTable id="adminDT" var="administradorBean" widgetVar="administradorTable" value = "#{listaAdmBean.administradoresBean}"
-                 		 emptyMessage="No se han encontrado administrador con ese criterio"  filteredValue="#{listaAdmBean.filtroAdministradorBean}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
-                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
-                 		 selectionMode="single" selection="#{listaAdmBean.selectedAdministrador}"  rowKey="#{administradorBean.id}" dblClickSelect="true">    
-                 		                                		                                           	                 	
-				<f:facet name="header">
-		            <p:outputPanel style="text-align: right">
-		                <h:outputText value="Buscar Administrador:  " />
-		                <p:inputText id="globalFilter"   onkeyup="PF('administrador2Table').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
-		            </p:outputPanel>
-		        </f:facet>    	
-		         <p:ajax event="rowSelect" listener="#{listaAdmBean.onRowSelect}" update=":formAdmin:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listaAdmBean.onRowUnselect}" update=":formAdmin:msgs" />	        		        
-		    
-		        
-        		<p:column headerText="Id" style="width:50px">
-            		<h:outputText value="#{administradorBean.id}" />
-        		</p:column>             		                  		                  		             	
-        		
-        		<p:column headerText="Nick" style="width:200px" filterBy="#{administradorBean.nick}" filterMatchMode="contains" >
-            		<h:outputText value="#{administradorBean.nick}" />
-        		</p:column>
-        		
-        		<p:column headerText="Nombre" style="width:350px" filterBy="#{administradorBean.nombre}" filterMatchMode="contains" >
-            		<h:outputText value="#{administradorBean.nombre}" />            		
-        		</p:column>
-        		
-        		<p:column headerText="Apellido" filterBy="#{administradorBean.apellido}" filterMatchMode="contains">
-            		<h:outputText value="#{administradorBean.apellido}" />            		
-        		</p:column>
-        	       		        		 
-        		        		        		
-     		</p:dataTable>     		     		
-     		
+      <f:view>
+		<h:form id="registroFiltroYoutube">
+						
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />							
+						
+				<h4>Descripción:</h4>	
+					<h:panelGrid columns="2" border="0">																																		
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{filtroYoutubeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
+				</h:panelGrid>																							
+				<br/>
+																											
+			<p:commandButton id="comandoRegistrar" update="growl" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{filtroYoutubeBean.registrarFiltroYoutube()}">
+			</p:commandButton>		
+			
 		</h:form>
-      
-      </f:view>         
-    </div>
-    
+		</f:view>
+    </div>    
     <br class="clear" />
   </div>
 </div>
-
-
 
 <div class="wrapper col7">
   <div id="copyright">
@@ -212,14 +177,5 @@
     <br class="clear" />
   </div>
 </div>
-<script type="text/javascript">
-	  //<![CDATA[
-	  function logout(xhr, status, args) {
-	    setTimeout(function() {
-	      window.location = 'home.xhtml';
-	    }, 500);
-	  }
-	//]]>
-	</script>
 </h:body> 
 </html>

@@ -11,12 +11,9 @@ public class Catastrofe {
 	private String nombreEvento;
 	private String descripcion = "";
 	private Boolean activa ;
-
 	private double coordenadasX ;
-	
-
 	private double coordenadasY ;
-	
+	private String urlCSS;
 	
 	public Long getId() {
 		return id;
@@ -30,8 +27,6 @@ public class Catastrofe {
 	public void setNombreEvento(String nombreEvento) {
 		this.nombreEvento = nombreEvento;
 	}
-	
-
 	
 	public String getDescripcion() {
 		return descripcion;
@@ -58,4 +53,11 @@ public class Catastrofe {
 	public void setActiva(Boolean activa) {
 		this.activa = activa;
 	}
+	public String getUrlCSS() {
+		return urlCSS;
+	}
+	public void setUrlCSS(String urlCSS) {
+		this.urlCSS = urlCSS;
+	}
+	
 }

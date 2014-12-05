@@ -17,21 +17,42 @@ sequenceName = "servicio_id_seq",
 initialValue=1,
 allocationSize=1)
 
+
+@NamedQueries({
+	
+@NamedQuery(name="Servicio.BuscarServicio.Fuente", 
+query = "SELECT s "+
+		"FROM Servicio s " +
+		"WHERE s.fuente = :fuente"),
+
+@NamedQuery(name="Servicio.BuscarServicio.Id", 
+query = "SELECT s "+
+		"FROM Servicio s " +
+		"WHERE s.id = :id"),
+		
+@NamedQuery(name="Servicio.BuscarTodos", 
+query = "SELECT s "+
+		"FROM Servicio s "),
+
+@NamedQuery(name = "Servicio.BuscarServicioId.Fuente",
+query = "SELECT s.id "+
+		"FROM Servicio s " +
+		"WHERE s.fuente = :fuente"),
+
+})
+
+
 @Table (name = "Servicio")
 @XmlRootElement
 public class Servicio  extends AbstractEntity implements Serializable {
 
 	
-	private static final long serialVersionUID = 1L;
-
-	public Servicio() {
-		super();
-	}
+	private static final long serialVersionUID = 1L;	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "servicio_sequence")
 	@Column(name= "id", nullable= false)
-	private Integer id;
+	private Long id;
 	
 	@Column(name= "url",  nullable= false)
 	private String url = "";
@@ -43,9 +64,32 @@ public class Servicio  extends AbstractEntity implements Serializable {
 	
 	@ManyToMany(mappedBy="servicios")
 	private Set<Catastrofe> catastrofes = new  HashSet<Catastrofe>(0);
-
 	
-
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Set<Filtro> filtros = new  HashSet<Filtro>(0);
+	
+	
+	
+	//	------------------ Constructors  --------------------------------
+	public Servicio() {
+		super();
+		this.url = new String();
+		this.fuente = new String();
+		this.catastrofes = new HashSet<Catastrofe>();		
+		this.filtros = new HashSet<Filtro>();		
+	}
+	
+	public Servicio(String url, String fuente,  Set<Catastrofe> catastrofes, Set<Filtro> filtros) {
+		super();
+		this.url = url;
+		this.fuente = fuente;
+		this.catastrofes = catastrofes;
+		this.filtros = filtros;
+	}
+	
+	
+	//	------------------ Getter and setter methods ---------------------
+	
 	public Set<Catastrofe> getCatastrofes() {
 		return catastrofes;
 	}
@@ -54,11 +98,11 @@ public class Servicio  extends AbstractEntity implements Serializable {
 		this.catastrofes = catastrofes;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -78,6 +122,14 @@ public class Servicio  extends AbstractEntity implements Serializable {
 		this.fuente = fuente;
 	}
 
+	public Set<Filtro> getFiltros() {
+		return filtros;
+	}
+
+	public void setFiltros(Set<Filtro> filtros) {
+		this.filtros = filtros;
+	}
+	
 	
 	
    

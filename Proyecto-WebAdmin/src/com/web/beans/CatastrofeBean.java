@@ -21,7 +21,6 @@ import com.core.data.entites.Servicio;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.web.beans.InputBean;
 
-import cross_cuting.enums.TipoCatastrofe;
 import javax.servlet.http.Part;
 
 
@@ -44,8 +43,7 @@ public class CatastrofeBean implements Serializable{
 	private Set<Servicio> servicios = new HashSet<Servicio>();
 	private Set<Ong> ongs  =  new HashSet<Ong>();
 	private PlanDeRiesgo planDeRiesgo;	
-	private Part part;
-	private TipoCatastrofe tipoCatastrofe; 
+	private Part part;	
 	
 	
 	//	------------------ Constructors  --------------------------------
@@ -74,13 +72,7 @@ public class CatastrofeBean implements Serializable{
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public TipoCatastrofe getTipoCatastrofe() {
-		return tipoCatastrofe;
-	}
-	public void setTipoCatastrofe(TipoCatastrofe tipoCatastrofe) {
-		this.tipoCatastrofe = tipoCatastrofe;
-	}
+	}	
 	public String getNombreEvento() {
 		return nombreEvento;
 	}
@@ -211,11 +203,6 @@ public class CatastrofeBean implements Serializable{
     		System.out.println("Excepcion en agregar catastrofe: " + excep.getMessage());      		 			       
 	        return "failure";     		
     	}        	    	
-	}
-	
-	
-		
-	
-	
+	}	
 			
 }
