@@ -2,6 +2,7 @@ package com.web.beans;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
@@ -10,6 +11,7 @@ import javax.naming.NamingException;
 import clienteutility.ClienteUtility;
 
 import com.core.service.negocio.remote.CatastrofeEBR;
+import com.core.service.negocio.remote.RescatistaEBR;
 
 
 @ManagedBean(name="testingBean")
@@ -25,23 +27,10 @@ public class TestingBean implements Serializable{
 	
 	
 	
-	public void CargarDatos()
-	{
-		/////////////////////////////////////////////////////////////////////////
-		//CARGAR CONECCION CON CATASTROFE
-		cargarCatastrofe();	
-		
-		/////////////////////////////////////////////////////////////////////////
-		//CARGAR CONECCION CON RESCATISTA
-		
-		
-		////////////////////////////////////////////////////////////////////////
-		//CARGAR CONECCION CON PLAN DE RIESGO
-		
-	}
-    public void cargarCatastrofe()
-    {
-    	CatastrofeEBR manager = null;		
+	@PostConstruct
+    public void init() {
+    	
+		RescatistaEBR manager = null;		
 		
 		Context context = null;
 		 
@@ -51,27 +40,20 @@ public class TestingBean implements Serializable{
             // 2. Generate JNDI Lookup name
             //String lookupName = getLookupName();
             // 3. Lookup and cast
-            manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+            manager = (RescatistaEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//RescatistaEB!com.core.service.negocio.remote.RescatistaEBR");
  
         } catch (NamingException e) {
             e.printStackTrace();
         }				
-		double c = 10;
-       		try {
-				Long in= manager.ingesarCatastrofe("this.nombreEvento", "this.descripcion", "logo", c,c, true, false, "css", null, null, null, null);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}    	
-    	
-    
-    	}
-	
-    public void cargarRescatista()
-    {
-    	
-    	
-    }
-    
+			///VICTORIA CREATE EN BASE Y HARKODEA ACA LOS VALORES PARA PODER PROBAR LEVANTAR ESTADOrESCATSTA
+			//PRIMERO CREATE EN LA BASE UN RESCATISTA EJEMPLO RESCATISTA (1, PEDRO,....)
+			//CREATE PEDIDO DE AYUDA (10,PEDIDO,....)
+			//LLAMA A Entra a esta pagina TestingBean.xhtml y ahi te carga en la base de datos en la tabla 
+			Long idRescatista = new Long(1);
+			Long idPEdidoAyuda = new Long(10);
+			manager.asignarRescatistaPedidoDeAyuda(idRescatista, idPEdidoAyuda);
+		
+ 					
+	}
 
 }

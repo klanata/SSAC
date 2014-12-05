@@ -36,5 +36,7 @@ public interface RescatistaEBR {
 	public Collection<Rescatista> listarTodosLosRescatistasActivos();
 	
 	public Rescatista obtenerRescatistaID(Long id);
+	
+	public void asignarRescatistaPedidoDeAyuda(Long idRescatista, Long idPedidoAyuda);
 
 }

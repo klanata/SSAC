@@ -148,7 +148,18 @@
   <div id="intro">
     <div class="fl_left">
     
-    <h:form>   
+    
+    <h:form id ="form">   
+    
+    <h1> Cantidad de Donaciones de Bienes :</h1>
+    <label>#{ReporteDonacion.cantidadDB} </label>
+    <br/>
+    
+	
+		    
+
+    
+    
    </h:form>
    
     </div>
@@ -171,12 +182,7 @@
         		<p:calendar id="fechafinal" value="#{ReporteDonacion.fechaFinal}" pattern="dd-MM-yyyy" mask="true" />
         		<br/>
         		<br/>
-        		<p:outputLabel for="TipoDonacion" value="Tipo Donacion:" />
-		        <p:selectOneRadio id="sexo" value="#{ReporteDonacion.tipoDonacion}">
-		            <f:selectItem itemLabel="Femenino" itemValue="De_Bienes" />
-		            <f:selectItem itemLabel="Masculino" itemValue="De_Servicios" />
-		            <f:selectItem itemLabel="Masculino" itemValue="Economicas" />
-		         </p:selectOneRadio>
+        		
         		<br/>
         		<br/>
         		<p:commandButton id="comandoReportar"   type="submit"  styleClass="formbutton" value="Obtener Reportar" action="#{ReporteDonacion.obtenerReporteEnelTiempo()}">

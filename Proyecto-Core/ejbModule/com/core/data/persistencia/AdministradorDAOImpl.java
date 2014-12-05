@@ -1,9 +1,10 @@
 package com.core.data.persistencia;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+
+
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -14,6 +15,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 import com.core.data.entites.Administrador;
@@ -144,10 +146,19 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 		
 		Collection<DeBienes> lista = null;					
 		
-		TypedQuery<DeBienes> consulta = this.em.createNamedQuery("DeBienes.ReporteDonacion",DeBienes.class);				
-		consulta.setParameter("fechaInicio", fechaInicio );
-		consulta.setParameter("fechaFinal", fechaInicio );
-		lista = consulta.getResultList();
+		TypedQuery<DeBienes> consulta = this.em.createNamedQuery("DeBienes.ReporteDonacion",DeBienes.class);
+		//r(entry.getKey(), (Date) entry.getValue(), TemporalType.TIMESTAMP);
+		consulta.setParameter("fechaInicio",(Date) fechaInicio,TemporalType.TIMESTAMP );
+		System.out.print("paso de cargar fecha inicio");
+		consulta.setParameter("fechaFinal", (Date)fechaInicio,TemporalType.TIMESTAMP );
+		System.out.print("paso de cargar fecha inicio");
+		try{
+			lista = consulta.getResultList();
+		}catch (Exception e)
+		{
+			System.out.print("se muere al cargar la lista con las fechas");
+			
+		}	
 		
 		return lista;
 	}
