@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+
+<div>
+  		<h:form>      
+ 	
+        	<p>
+			<h:outputText value="Seleccione las imágenes   " style="width:100px;border: transparent;"/>			            
+            </p>
+                    
+		    <p:fileUpload fileUploadListener="#{fileUploadController.upload}" mode="advanced" dragDropSupport="false"
+		                  multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+		 
+		    <p:growl id="messages" showDetail="true" />
+		    
+		    <br/>
+		    
+		    <p:outputPanel style="text-align: left">			 		
+	        	<p:commandButton value="Cancelar" action="#{fileUploadController.cancelar()}" />
+	        </p:outputPanel>
+		</h:form> 
+  	</div>   
+</body> 
+</html>

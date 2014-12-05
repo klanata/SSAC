@@ -1,5 +1,6 @@
 package com.core.service.negocio;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +11,6 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Path;
 
-import com.core.data.entites.AbstractEntity;
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.entites.ImagenPersonaDesaparecida;
@@ -19,9 +19,7 @@ import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.ImagenPersonaDesaparecidaDAO;
 import com.core.data.persistencia.interfaces.locales.PersonasDesaparecidasDAO;
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
-import com.core.data.entites.ImagenPersonaDesaparecida;
 
-import cross_cuting.enums.EstadoPersona;
 @Path("/personasDesaparecidas") 
 @Stateless(mappedName="ejb:Proyecto-EAR/Proyecto-Core//PersonasDesaparecidasEB!com.core.service.negocio.remote.PersonasDesaparecidasEBR")
 
@@ -35,39 +33,31 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 	
 	@EJB 
 	private ImagenPersonaDesaparecidaDAO imagenpersonaDAO;
-
+	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public Long crearReportePersonasDesaparecidas(String nombre, String apellido, String numeroContacto, EstadoPersona descripcion, Date fechNac, String foto,
-			Set<ImagenPersonaDesaparecida>  imagen)throws Exception{ 
-		
+	public Long crearReportePersonasDesaparecidas(Long idCatastrofe, String nombre, String apellido, String numeroContacto, String descripcion, Date fechNac,
+			Set<ImagenPersonaDesaparecida> imagenes, boolean hallada)throws Exception{ 
+	System.out.println("aca estoyyyyyy");
 		PersonasDesaparecidas perdes = new PersonasDesaparecidas();
 		Long id;
+		Catastrofe catastrofe = dataService.find(Catastrofe.class, idCatastrofe);
+		perdes.setCatastrofe(catastrofe);
 		perdes.setNombre(nombre);
 		perdes.setApellido(apellido);
 		perdes.setNumeroContacto(numeroContacto);
 		perdes.setDescripcion(descripcion);
 		perdes.setFechNac(fechNac);
-		perdes.setFoto(foto);
-		perdes.setImagenes(imagen);
+		perdes.setImagenes(imagenes);
+		perdes.setHallada(hallada);
 		
 		id = personadesaparecidaDAO.insert(perdes);
 		return id;
 	}
 	
-	@Override
-	/*public List<PersonasDesaparecidas> findAllPerson(){ 
-		List<PersonasDesaparecidas> listaPer = new ArrayList<PersonasDesaparecidas>();
-	//	listaPer = personadesaparecidaDAO.listarTodasLasPersonas();
-		return listaPer;
-		
-	}*/
-	//public List<PersonasDesaparecidas> findPersonasHalladas(){return null;}
 	
-//	public List<PersonasDesaparecidas> findPersonasNoHalladas(){return null;}
-	
-	public PersonasDesaparecidas buscarPersonaDesaparecida(String nomPersona, String apePersona) throws Exception{
+	public PersonasDesaparecidas buscarPersonaDesaparecida(Long idCatastrofe, String nomPersona, String apePersona) throws Exception{
 			PersonasDesaparecidas perDesap = new PersonasDesaparecidas();
-			perDesap = personadesaparecidaDAO.buscarPersonaDesaparecida(nomPersona, apePersona);
+			perDesap = personadesaparecidaDAO.buscarPersonaDesaparecida(idCatastrofe, nomPersona, apePersona);
 			return perDesap;
 		}
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -76,14 +66,30 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		listPersonas = personadesaparecidaDAO.listarTodasLasPersonas();
 		return listPersonas;
 	}	
-	
-	
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	public PersonasDesaparecidas buscaPersonaPorId(Long id) throws Exception{
+		
+		PersonasDesaparecidas c = new PersonasDesaparecidas();
+		c = personadesaparecidaDAO.buscarPersonaPorId(id);
+		return c;
+	}
+	////////////////////////////////////////////////////
+	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+	public Collection<ImagenPersonaDesaparecida> listaImagenesDePersona(Long id) throws Exception{
+		Collection<ImagenPersonaDesaparecida> lista = null;
+		try {
+			PersonasDesaparecidas c = this.buscaPersonaPorId(id);	
+			lista = c.getImagenes();
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}			
+		return lista;		
+	}
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public void agregarImagenAPersonaDesaparecida(String nomPer, String apePer, String nombImagen) throws Exception{
+	public void agregarImagenAPersonaDesaparecida(Long idPersona, String nombImagen) throws Exception{
 		
-		PersonasDesaparecidas c = personadesaparecidaDAO.buscarPersonaDesaparecida(nomPer, apePer);
-		
+		PersonasDesaparecidas c = personadesaparecidaDAO.buscarPersonaPorId(idPersona);
 		ImagenPersonaDesaparecida imgPerDesap = new ImagenPersonaDesaparecida();
 		imgPerDesap.setPath(nombImagen);
 		imgPerDesap.setPersonasDesaparecidas(c);		
@@ -104,7 +110,7 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		}
 		else
 		{
-			System.out.println("La imagen ya estaba en la catastrofe.");
+			System.out.println("La imagen.");
 		}	
 		
 		
