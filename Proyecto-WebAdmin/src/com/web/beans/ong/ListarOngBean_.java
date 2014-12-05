@@ -2,8 +2,6 @@ package com.web.beans.ong;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +9,7 @@ import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -26,7 +24,7 @@ import com.core.service.negocio.remote.OngEBR;
 
 
 @ManagedBean(name="listarOngBean2")
-@SessionScoped
+@RequestScoped
 public class ListarOngBean_ implements Serializable{
 
 	/**
@@ -34,7 +32,7 @@ public class ListarOngBean_ implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<OngBean> listaOngBean2 = new ArrayList<OngBean>();    
+	private ArrayList<OngBean> listaOngBean = new ArrayList<OngBean>();    
 
 	private List<OngBean> filtroOngBean;
     
@@ -45,11 +43,11 @@ public class ListarOngBean_ implements Serializable{
     
     /*-----------------------*/
 	public ArrayList<OngBean> getListaOngBean() {
-		return listaOngBean2;
+		return listaOngBean;
 	}
 
 	public void setListaOngBean(ArrayList<OngBean> listaOngBean) {
-		this.listaOngBean2 = listaOngBean;
+		this.listaOngBean = listaOngBean;
 	}
 
 	public List<OngBean> getFiltroOngBean() {
@@ -116,15 +114,23 @@ public class ListarOngBean_ implements Serializable{
 				email = ong.getEmail();
 				citioWeb = ong.getCitioWeb();
 				descripcion = ong.getDescripcion();				
-				listaOngBean2.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion));	
+				listaOngBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion));	
 				
 			}	
 			
     	}catch (Exception excep){
     		System.out.println("Excepción al listar las ONGs: " + excep.getMessage());      		 			       	           	
-    	}	
-				
-    }    
+    	}  	
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void onRowSelect(SelectEvent event) {
 		

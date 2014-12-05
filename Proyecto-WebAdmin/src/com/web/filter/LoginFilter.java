@@ -56,7 +56,7 @@ public class LoginFilter implements Filter {
 		  
 		  //El usuario no está logueado
 		  if (loginBean == null || !loginBean.estaLogeado()) {
-		    res.sendRedirect(req.getContextPath() + "/login.xhtml");
+		    res.sendRedirect(req.getContextPath() + "/home.xhtml");
 		    return;
 		  }
 		 

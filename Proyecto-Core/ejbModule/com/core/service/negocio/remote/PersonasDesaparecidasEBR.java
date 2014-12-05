@@ -14,9 +14,8 @@ import cross_cuting.enums.EstadoPersona;
 public interface PersonasDesaparecidasEBR {
 	
 	public Long crearReportePersonasDesaparecidas(String nombre, String apellido,
-			String numeroContacto, Date fechNac, String desc, String foto,
-			Set<ImagenPersonaDesaparecida>  imagen, Boolean hallada)throws Exception;
-	public void agregarImagenAlReporte(Long idPersona, String nombImagen) throws Exception;
+			String numeroContacto, EstadoPersona descripcion, Date fechNac,String foto,
+			Set<ImagenPersonaDesaparecida>  imagen)throws Exception;
 	//public List<PersonasDesaparecidas> findAllPerson();
 	//public List<PersonasDesaparecidas> findPersonasHalladas();
 	//public List<PersonasDesaparecidas> findPersonasNoHalladas();

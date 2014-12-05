@@ -37,20 +37,18 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 	private ImagenPersonaDesaparecidaDAO imagenpersonaDAO;
 
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public Long crearReportePersonasDesaparecidas(String nombre, String apellido, String numeroContacto, Date fechNac,  String desc, String foto,
-			Set<ImagenPersonaDesaparecida>  imagen, Boolean hallada)throws Exception{ 
+	public Long crearReportePersonasDesaparecidas(String nombre, String apellido, String numeroContacto, EstadoPersona descripcion, Date fechNac, String foto,
+			Set<ImagenPersonaDesaparecida>  imagen)throws Exception{ 
 		
 		PersonasDesaparecidas perdes = new PersonasDesaparecidas();
 		Long id;
 		perdes.setNombre(nombre);
 		perdes.setApellido(apellido);
 		perdes.setNumeroContacto(numeroContacto);
+		perdes.setDescripcion(descripcion);
 		perdes.setFechNac(fechNac);
-		perdes.setDesc(desc);
 		perdes.setFoto(foto);
 		perdes.setImagenes(imagen);
-		perdes.setHallada(hallada);
-		
 		
 		id = personadesaparecidaDAO.insert(perdes);
 		return id;
@@ -79,39 +77,7 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		return listPersonas;
 	}	
 	
-	////////////////////////////////////////////
-	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public void agregarImagenAlReporte(Long idPersona, String nombImagen) throws Exception{
-		
-		PersonasDesaparecidas c = personadesaparecidaDAO.buscarPersonaPorId(idPersona);	
-		
-		ImagenPersonaDesaparecida imgPersona = new ImagenPersonaDesaparecida();
-	imgPersona.setPath(nombImagen);
-	imgPersona.setPersonasDesaparecidas(c);
-	imagenpersonaDAO.insert(imgPersona);
-		//System.out.println("La imagen de la catastrofe: " + nombImagen.toString());
-		
-	ImagenPersonaDesaparecida imgCat = imagenpersonaDAO.buscarImgPersonaPorPath(nombImagen);
-		Set<ImagenPersonaDesaparecida> imagenesCat = c.getImagenes();
-		boolean esta = false;
-		Long idImgCat;
-		for (ImagenPersonaDesaparecida i : imagenesCat){
-			idImgCat = i.getId();			
-			if(idImgCat == imgCat.getId())
-				esta = true;
-		}
-		if(!esta){		
-			imagenesCat.add(imgCat);						
-			dataService.update(c);						
-			//System.out.println("probando agregar imagen de nombre: " + nombImagen);			
-		}
-		else
-		{
-			//System.out.println("La imagen ya estaba en la catastrofe.");
-		}	
-		
-		
-	}
+	
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public void agregarImagenAPersonaDesaparecida(String nomPer, String apePer, String nombImagen) throws Exception{
