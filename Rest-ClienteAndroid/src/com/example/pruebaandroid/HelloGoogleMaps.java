@@ -3,6 +3,8 @@ package com.example.pruebaandroid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,17 +32,19 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
 
 public class HelloGoogleMaps extends Activity {
-	
+	Handler mHandler = new Handler();
 	private static final long LOCATION_REFRESH_TIME = 0;
 	private final LatLng LOCATION_SURRREY = new LatLng(49.27645, -122.917587);
 	private final LatLng LOCATION_BURNABY = new LatLng(49.27645, -122.917587);
 	private GoogleMap map;
 	public HashMap<String,String> hashCatastrofes = new HashMap() ;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,7 +77,21 @@ public class HelloGoogleMaps extends Activity {
 		//map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 		
-		invokeWS();
+		
+		/////////////////////////////////////
+		
+		Handler handler = new Handler();
+
+	    handler.postDelayed(new Runnable() {
+	    @Override
+	    public void run() {
+	    	invokeWS();
+
+	    }
+	    }, 10000);
+		
+		//////////////////////////////////////
+		//invokeWS();
 		map.setOnMarkerClickListener(new OnMarkerClickListener(){
 
 			@Override
@@ -94,7 +112,7 @@ public class HelloGoogleMaps extends Activity {
 			
 			
 		});
-		
+		// YA SELECCIONO LA CATASTROFE
 	  	map.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 			@Override
 			public void onInfoWindowClick(Marker arg0) {
@@ -156,12 +174,17 @@ public class HelloGoogleMaps extends Activity {
 	}
 	
 	//***************************************************************************//
+	
 	public void invokeWS(){
 		Log.i("Entro al invoke","Entro al invoke");
         AsyncHttpClient client = new AsyncHttpClient();
        //client.get("http://10.0.2.2:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
         client.get("http://192.168.43.91:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
            
+        	
+        	
+        	
+        	
         	// When the response returned by REST has Http response code '200'
             @Override
             public void onSuccess(String response) {
