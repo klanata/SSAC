@@ -161,10 +161,6 @@ public class AdministradorBean implements Serializable{
     		else {    	
     			
 
-    			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Administrador registrado con exito !!"); 
-    	        contexto.addMessage("registroAdministrador", messages);
-    			
     			this.nombre = "";   		
         		this.apellido = "";
         		this.nick = "";
@@ -173,6 +169,11 @@ public class AdministradorBean implements Serializable{
         		this.password = "";
         		this.sexo= "";
         		this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/index.xhtml";
+    			FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        FacesMessage messages = new FacesMessage("Administrador registrado con exito !!"); 
+    	        contexto.addMessage("registroAdministrador", messages);
+    			
+    			
         		
     		}
     		    		    		    		

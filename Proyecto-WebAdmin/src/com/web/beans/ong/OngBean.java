@@ -139,15 +139,17 @@ public class OngBean implements Serializable{
     		}
     		else {    	
     			
-    			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Ong registrada con exito !!"); 
-    	        contexto.addMessage("registroOng", messages);
+    			
     			this.nombre = "";   		
         		this.descripcion = "";
         		this.citioWeb = "";
         		this.telefono = "";
         		this.email = "";
         		this.direccion = "";
+    			FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        FacesMessage messages = new FacesMessage("Ong registrada con exito !!"); 
+    	        contexto.addMessage("registroOng", messages);
+    			
         		
     		}
     		    		    		    		

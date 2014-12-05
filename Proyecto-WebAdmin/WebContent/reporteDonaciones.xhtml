@@ -152,7 +152,7 @@
     <h:form id ="form">   
     
     <h1> Cantidad de Donaciones de Bienes :</h1>
-    <label>#{ReporteDonacion.cantidadDB} </label>
+   
     <br/>
     
 	
@@ -170,25 +170,9 @@
     
     <div class="fl_right">
     	
-    	<h:form>
-    	
-    	<br/>
-				<h1>Reporte de Donaciones </h1>
-				<p:outputLabel for="fechainicio" value="Fecha Inicial:" />
-        		<p:calendar id="fechainicio" value="#{ReporteDonacion.fechaInicio}" pattern="dd-MM-yyyy" mask="true" />
-        		<br/>
-        		<br/>
-        		<p:outputLabel for="fechafinal" value="Fecha Final:" />
-        		<p:calendar id="fechafinal" value="#{ReporteDonacion.fechaFinal}" pattern="dd-MM-yyyy" mask="true" />
-        		<br/>
-        		<br/>
-        		
-        		<br/>
-        		<br/>
-        		<p:commandButton id="comandoReportar"   type="submit"  styleClass="formbutton" value="Obtener Reportar" action="#{ReporteDonacion.obtenerReporteEnelTiempo()}">
-				</p:commandButton>
-    	
-    	</h:form>
+    	<h1> Cantidad de Donaciones de Servicios: </h1>
+    	<h:outputLabel value="#{ReporteDonacion.cantidadDB}" />  
+    <br/>
     
     </div>
     <br class="clear" />

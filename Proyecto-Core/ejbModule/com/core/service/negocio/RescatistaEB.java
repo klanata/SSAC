@@ -14,6 +14,8 @@ import javax.ws.rs.Path;
 
 
 
+
+
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.PedidoDeAyuda;
@@ -269,6 +271,35 @@ public class RescatistaEB implements RescatistaEBR {
 		Rescatista r =  dataService.find(Rescatista.class, id);
 		
 		return r;
+	}
+
+
+	@Override
+	public void asignarRescatistaPedidoDeAyuda(Long idRescatista,
+			Long idPedidoAyuda) {
+		
+		Rescatista r = dataService.find(Rescatista.class, idRescatista);
+		PedidoDeAyuda p = dataService.find(PedidoDeAyuda.class, idPedidoAyuda);
+		
+		EstadoRescatista estadoRescatista = new EstadoRescatista();
+		estadoRescatista.setPendiente(true);
+		estadoRescatista.setPedidoAyuda(p);
+	
+		estadoRescatista.setNombreTarea(p.getDescripcion());
+		estadoRescatista.setRescatista(r);
+		try {
+			dataService.create(estadoRescatista);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//obtenemos la lista de pendientes del rescatista 
+		Collection<EstadoRescatista> listaEstado= r.getEstadoRescatista();
+		listaEstado.add(estadoRescatista);
+		dataService.update(r);
+		
+		
 	}
 
 	

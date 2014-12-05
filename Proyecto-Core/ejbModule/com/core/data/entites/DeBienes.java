@@ -26,7 +26,7 @@ query = "SELECT d FROM DeBienes d WHERE d.id = :id"),
 
 
 @NamedQuery(name="DeBienes.ReporteDonacion", 
-query = "SELECT d FROM DeBienes d WHERE d.fechaRealizada >= :fechaInicio ")
+query = "SELECT d FROM DeBienes d WHERE d.fechaRealizada BETWEEN :fechaInicio AND :fechaFinal ")
 
 
 })

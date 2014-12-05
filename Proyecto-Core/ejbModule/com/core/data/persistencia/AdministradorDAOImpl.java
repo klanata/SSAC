@@ -167,10 +167,10 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 			Date fechaFinal) {
 		
 		Collection<DeServicios> lista = null;					
-		
+		//  query.setParameter(entry.getKey(), (Date) entry.getValue(), TemporalType.TIMESTAMP);
 		TypedQuery<DeServicios> consulta = this.em.createNamedQuery("DeServicios.ReporteDeServicios",DeServicios.class);				
-		consulta.setParameter("fechaInicio", fechaInicio );
-		consulta.setParameter("fechaFinal", fechaInicio );
+		consulta.setParameter("fechaInicio", fechaInicio,TemporalType.TIMESTAMP );
+		consulta.setParameter("fechaFinal", fechaInicio,TemporalType.TIMESTAMP );
 		lista = consulta.getResultList();
 		
 		return lista;

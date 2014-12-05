@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -15,7 +16,7 @@ import com.core.service.negocio.remote.RescatistaEBR;
 
 
 @ManagedBean(name="testingBean")
-@SessionScoped
+@RequestScoped
 public class TestingBean implements Serializable{
 
 	/**
@@ -50,7 +51,7 @@ public class TestingBean implements Serializable{
 			//CREATE PEDIDO DE AYUDA (10,PEDIDO,....)
 			//LLAMA A Entra a esta pagina TestingBean.xhtml y ahi te carga en la base de datos en la tabla 
 			Long idRescatista = new Long(1);
-			Long idPEdidoAyuda = new Long(10);
+			Long idPEdidoAyuda = new Long(1);
 			manager.asignarRescatistaPedidoDeAyuda(idRescatista, idPEdidoAyuda);
 		
  					
