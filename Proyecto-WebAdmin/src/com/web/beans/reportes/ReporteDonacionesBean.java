@@ -19,6 +19,8 @@ import javax.naming.NamingException;
 
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.CartesianChartModel;
+import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
@@ -48,7 +50,7 @@ public class ReporteDonacionesBean implements Serializable {
 	
 	
 	
-	 @ManagedProperty("#{DeBienesBean}")
+	// @ManagedProperty("#{DeBienesBean}")
 	 private DonacionesDeBienesBean deBienesBean;
 	
 	public String TipoDonacion;
@@ -59,9 +61,36 @@ public class ReporteDonacionesBean implements Serializable {
 	private Collection<DeBienes> listaDeBienes = new ArrayList<DeBienes>();
 	private Collection<DeServicios> listaDeServicios = new ArrayList<DeServicios>();
 	private Collection<Economica> listaEconomica =  new ArrayList<Economica>();
-     
+    
+	private Integer cantidadDB;
+	private Integer cantidadDS;
+	private Integer cantidadDE;
 	
 	
+	public Integer getCantidadDB() {
+		return cantidadDB;
+	}
+
+	public void setCantidadDB(Integer cantidadDB) {
+		this.cantidadDB = cantidadDB;
+	}
+
+	public Integer getCantidadDS() {
+		return cantidadDS;
+	}
+
+	public void setCantidadDS(Integer cantidadDS) {
+		this.cantidadDS = cantidadDS;
+	}
+
+	public Integer getCantidadDE() {
+		return cantidadDE;
+	}
+
+	public void setCantidadDE(Integer cantidadDE) {
+		this.cantidadDE = cantidadDE;
+	}
+
 	public DonacionesDeBienesBean getDeBienesBean() {
 		return deBienesBean;
 	}
@@ -118,14 +147,9 @@ public class ReporteDonacionesBean implements Serializable {
 		this.fechaFinal = fechaFinal;
 	}
 
-	
 
-	
-    @PostConstruct
-    public void init() {
-       
-    }
     
+	  @PostConstruct
 	public void  obtenerReporteEnelTiempo(){
     	
     	AdministradorEBR manager = null;		
@@ -144,34 +168,54 @@ public class ReporteDonacionesBean implements Serializable {
             e.printStackTrace();
         }	
 		
-		
-    	if (TipoDonacion.equals("De_Bienes")){
-    		
-    		Collection<DeBienes> lista = new ArrayList<DeBienes>();
-    				
-			lista = manager.listaDeBienesEnTiempo(fechaInicio, fechaFinal);
-			
-			
-			Iterator<DeBienes> it = lista.iterator();
-			
-			while(it.hasNext())
-			{
-				//DonacionesDeBienesBean
-			}
-			
-			
-    	}
-    	else if (TipoDonacion.equals("De_Servicios")) {
-			
-    		
-		} else {
-			
-			Collection<Economica> lista = new ArrayList<Economica>();
-			lista = manager.listaDeEconomicaEnTiempo(fechaInicio, fechaFinal);
-
-		}
+		Date fechaInicio2 = new Date();
+		fechaInicio2.getTime();
+		//Date fechaFinal2.getTime();
     	
-    }
+    		
+    		Collection<DeBienes> listaDB = new ArrayList<DeBienes>();
+    		listaDB = manager.listaDeBienesEnTiempo(fechaInicio2, fechaInicio2);
+			
+			cantidadDB = listaDB.size();
+			
+			/*Collection<Economica> listaDE = new ArrayList<Economica>();
+			listaDE = manager.listaDeEconomicaEnTiempo(fechaInicio, fechaFinal);
+			
+			cantidadDE = listaDE.size();
+			
+			Collection<DeServicios> listaDS = new ArrayList<DeServicios>();
+			listaDS = manager.listaDeServiciosEnTiempo(fechaInicio, fechaFinal);
+			cantidadDS = listaDS.size();*/
+			
+			
+    	
    
-     
+	}
+	///////////////////
+	 private CartesianChartModel viviendas;  
+	 
+	    public CartesianChartModel getViviendas() {
+	        return viviendas;
+	    }
+	 
+	  
+	    public void init(){
+	        viviendas = new CartesianChartModel();
+	         
+	        final ChartSeries venta  = new ChartSeries("Venta");
+	        venta.set("2008", 800);
+	        venta.set("2009", 1300);
+	        venta.set("2010", 700);
+	        venta.set("2011", 500);
+	         
+	        final ChartSeries alquiler  = new ChartSeries("Alquiler");
+	        alquiler.set("2008", 1200);
+	        alquiler.set("2009", 1100);
+	        alquiler.set("2010", 1700);
+	        alquiler.set("2011", 1900);
+	         
+	        viviendas.addSeries(venta);
+	        viviendas.addSeries(alquiler);
+	 
+	    }
 }
