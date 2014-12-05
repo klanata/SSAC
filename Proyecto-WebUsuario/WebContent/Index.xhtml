@@ -27,24 +27,33 @@
     <script src='ext/leaflet.js'></script>
     <script src='ext/form.js'></script>
     <script src='js/site.js'></script>
-    <link rel='stylesheet' href='css/site.css' />
+    <link rel='stylesheet' href='css/2site.css' />
     <link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.6/mapbox.css' rel='stylesheet' />
     <link rel='stylesheet' href='http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css' />
     <link rel='stylesheet' href='ext/jquery.ptTimeSelect.css' />
     <script>
       var submitted=false;
     </script>
+    <link rel="stylesheet" href="css/2skel.css" />
+			<link id="cssPrincipal" rel="stylesheet" href="css/2style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link rel="stylesheet" href="css/style-noscript.css" />
     <script>
 		  //alert(window.localStorage.getItem("IdCatastrofe"));
 		  var css = window.localStorage.getItem("urlCSS");
-		  //alert(window.localStorage.getItem("urlCSS"));
-		  document.getElementById("j_idt5:catastrofeId").value = id;
+		  var cssFinal = "css/"+ css +".css"; 
+		  alert("Css final: "+cssFinal);
+		  alert(window.localStorage.getItem("urlCSS"));
+		  //document.getElementById("j_idt5:catastrofeId").value = id;
+		  function cambiarCSS() { 
+				$("#cssPrincipal").attr("href",cssFinal);
+				alert("cambie el css");
+				return false;
+		  }
+		  cambiarCSS();
 	</script>	
 		
-			<link id="cssPrincipal" rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
-			<link rel="stylesheet" href="css/style-noscript.css" />
+			
 		
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</h:head>

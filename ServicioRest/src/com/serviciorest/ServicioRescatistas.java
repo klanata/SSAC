@@ -71,12 +71,12 @@ public class ServicioRescatistas {
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Path("verPendientes")
-	public List<PlanesPendientesRescatistaRest> getPlanesPendientes(
+	public List<PlanesPendientesRescatistaDTO> getPlanesPendientes(
 			@QueryParam("nick") String nick) throws Exception {
 		manager = null;
 		context = null;
 
-		List<PlanesPendientesRescatistaRest> planesPendientes = new ArrayList<PlanesPendientesRescatistaRest>();
+		List<PlanesPendientesRescatistaDTO> planesPendientes = new ArrayList<PlanesPendientesRescatistaDTO>();
 
 		try {
 			// 1. Obtaining Context
@@ -91,9 +91,10 @@ public class ServicioRescatistas {
 
 			Long idCatastrofe = new Long(1);// Borrar cuando se modifique el
 											// método.
-			// planesPendientes= (List<PlanesPendientesRescatistaDTO>)
-			// manager.listarPendientesRescatistaPorCatastrofe(nick);//cambiar
+			planesPendientes= (List<PlanesPendientesRescatistaDTO>)
+			manager.listarPendientesRescatistaPorCatastrofe(nick);//cambiar
 			// cuando se modifique el método.
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -126,9 +127,9 @@ public class ServicioRescatistas {
 		c.setUrlArchivo("http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf");
 		listaPlanesAux.add(c);
 
-		return listaPlanesAux;
+		//return listaPlanesAux;
 
-		// return planesPendientes;
+		return planesPendientes;
 	}
 
 	// /////////////////////////////////////////////////////////////////////////
