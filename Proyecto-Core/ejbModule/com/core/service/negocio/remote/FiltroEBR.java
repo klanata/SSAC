@@ -1,12 +1,9 @@
 package com.core.service.negocio.remote;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.ejb.Remote;
-
 import com.core.data.entites.Filtro;
-import com.core.data.entites.Servicio;
 
 
 @Remote

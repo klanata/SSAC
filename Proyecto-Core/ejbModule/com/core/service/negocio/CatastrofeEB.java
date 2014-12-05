@@ -19,6 +19,7 @@ import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
+import com.core.data.persistencia.interfaces.locales.ServicioDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.data.persistencia.DataService;
 
@@ -38,6 +39,9 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	@EJB
 	private PlanDeRiesgoDAO planDeRiesgoDO;
+	
+	@EJB
+	private ServicioDAO servicioDAO;
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
@@ -264,6 +268,22 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}catch (Exception e) {			
 			e.printStackTrace();
 		}																																
+	}
+	
+	public void asignarServicioALaCatastrofe(Long idCatastrofe, Long idServicio) throws Exception{
+		try {
+			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);							
+			Servicio servicio = servicioDAO.buscarServicioPorId(idServicio);
+			
+			Set<Servicio> servicios = c.getServicios();
+			servicios.add(servicio);
+			dataService.update(c);
+			
+			
+		}catch (Exception e) {			
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

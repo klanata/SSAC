@@ -31,6 +31,34 @@ public class ServicioDAOImpl extends AbstractService implements ServicioDAO{
 	
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Long insert(Servicio servicio)throws Exception {	
+		Long id;
+		String fuente = servicio.getFuente();
+		try {
+			if (this.existeServicio(fuente)){				
+				id = (long) 0;				
+			} 
+			else 
+			{				
+				this.em.persist(servicio);					
+				TypedQuery<Long> consulta = this.em.createNamedQuery("Servicio.BuscarServicioId.Fuente",Long.class);				
+				consulta.setParameter("fuente", fuente);				
+				List<Long> servicioId = consulta.getResultList();
+				if (servicioId.isEmpty()) {
+					id = (long) 0;	
+			  	} else {
+			  		id = servicioId.get(0);
+			  	}					
+			} 					
+			return id;		    
+		} 
+		catch (Exception excep){			
+			throw excep;
+		}	
+	}
+	
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public boolean existeServicio(String fuente) {	
 			boolean existe;
 			Query consulta = this.em.createNamedQuery("Servicio.BuscarServicioId.Fuente");
@@ -48,8 +76,7 @@ public class ServicioDAOImpl extends AbstractService implements ServicioDAO{
 	public Servicio buscarServicioPorFuente(String fuente) throws Exception {
 		
 		Servicio servicio = new Servicio();
-		try {
-			System.out.println("probando agregar servicio de nombre: " + fuente );
+		try {			
 			Query consulta = this.em.createNamedQuery("Servicio.BuscarServicio.Fuente",Servicio.class);						
 		  	consulta.setParameter("fuente", fuente);		  			  	
 		  	if (consulta.getResultList().isEmpty()){
@@ -101,10 +128,5 @@ public class ServicioDAOImpl extends AbstractService implements ServicioDAO{
 	protected EntityManager getEntityManager() {	
 		return null;
 	}
-
-
-	
-	
-	
 
 }
