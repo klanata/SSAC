@@ -1,25 +1,8 @@
 package com.serviciorest.modelo;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.core.data.entites.Ong;
-import com.core.data.entites.PedidoDeAyuda;
-import com.core.data.entites.PlanDeRiesgo;
-import com.core.data.entites.Servicio;
-
-import cross_cuting.enums.TipoCatastrofe;
 
 @XmlRootElement
 public class Catastrofe {
