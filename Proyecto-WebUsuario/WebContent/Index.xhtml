@@ -41,13 +41,13 @@
     <script>
 		  //alert(window.localStorage.getItem("IdCatastrofe"));
 		  var css = window.localStorage.getItem("urlCSS");
-		  var cssFinal = "css/"+ css +".css"; 
-		  alert("Css final: "+cssFinal);
-		  alert(window.localStorage.getItem("urlCSS"));
+		  var cssFinal = "css/"+ css; 
+		  //alert("Css final: "+cssFinal);
+		  //alert(window.localStorage.getItem("urlCSS"));
 		  //document.getElementById("j_idt5:catastrofeId").value = id;
 		  function cambiarCSS() { 
 				$("#cssPrincipal").attr("href",cssFinal);
-				alert("cambie el css");
+				//alert("cambie el css");
 				return false;
 		  }
 		  cambiarCSS();
@@ -128,7 +128,7 @@
                       <label class='ss-q-title' for='entry_5'>X
                        <span class='ss-required-asterisk'>*</span></label>
                       <label class='ss-q-help' for='entry_5'></label>
-                      <input type='text' name='entry.5.single' value= "#{pedidoAyudaBean.coordenadasX}" class='ss-q-short' id='entry_5' />
+                      <p:inputText name='entry.5.single' value= "#{pedidoAyudaBean.coordenadasX}" class='ss-q-short' id='entry_5' />
                     </div>
                   </div>
                 </div>
@@ -139,7 +139,7 @@
                         <span class='ss-required-asterisk'>*</span>
                       </label>
                       <label class='ss-q-help' for='entry_6'></label>
-                      <input type='text' name='entry.6.single' value="#{pedidoAyudaBean.coordenadasY}" class='ss-q-short' id='entry_6' />
+                      <p:inputText name='entry.6.single' value="#{pedidoAyudaBean.coordenadasY}" class='ss-q-short' id='entry_6' />
                     </div>
                   </div>
                 </div>

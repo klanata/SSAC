@@ -54,8 +54,8 @@ public class RescatistaEB implements RescatistaEBR {
 		Collection<PlanesPendientesRescatistaDTO> listaDTO =new  ArrayList<PlanesPendientesRescatistaDTO>(0);
 		
 		try{
-		       Collection<EstadoRescatista> listaEstado = rescatistaService.listarPendientesRescatista(nick);
-		       
+				Rescatista r = rescatistaService.buscarUsuarioNick(nick);
+		       Collection<EstadoRescatista> listaEstado = r.getEstadoRescatista();
 		       Iterator<EstadoRescatista> it = listaEstado.iterator();
 		       
 		       while(it.hasNext())

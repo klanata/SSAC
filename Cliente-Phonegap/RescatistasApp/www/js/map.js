@@ -45,8 +45,8 @@ var mapa = {
     onSuccess: function(position){
 
         var listaPedidosPendientes = new Array();
-        $.ajax({url:"http://192.168.0.100:8080/ServicioRest/catastrofe/rescatista/verPendientes", //Emulador Android - llamada al rest
-        //$.ajax({url:"http://192.168.7.245:8080/ServicioRest/catastrofe/rescatista/verPendientes", //Utu
+        //$.ajax({url:"http://192.168.0.100:8080/ServicioRest/catastrofe/rescatista/verPendientes", //Emulador Android - llamada al rest
+        $.ajax({url:"http://172.16.102.89:8080/ServicioRest/catastrofe/rescatista/verPendientes", //Utu
         //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/verPendientes", //Emulador Android - llamada al rest
         //$.ajax({url:"http://10.0.2.2/RescatistasApp/www/planesEmergenciaDB.js",//Emulador Android - llamada de prueba
         //$.ajax({url:"http://192.168.0.104/RescatistasApp/www/planesEmergenciaDB.js",//Android nativo, red local - llamada de prueba

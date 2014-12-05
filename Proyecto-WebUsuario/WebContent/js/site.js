@@ -125,7 +125,7 @@ $(function () {
         m.addLayer(point);
 
         // Here put the coordinates in field Latitud dan Longitud
-        $('#entry_5').attr('value', l.lat.toFixed(5));
-        $('#entry_6').attr('value', l.lon.toFixed(5));
+        $('#j_idt5:entry_5').attr('value', l.lat.toFixed(5));
+        $('#j_idt5:entry_6').attr('value', l.lon.toFixed(5));
     }
 });
