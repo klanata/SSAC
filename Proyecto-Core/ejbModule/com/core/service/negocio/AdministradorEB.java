@@ -8,6 +8,9 @@ import javax.ejb.Stateless;
 import javax.ws.rs.Path;
 
 import com.core.data.entites.Administrador;
+import com.core.data.entites.DeBienes;
+import com.core.data.entites.DeServicios;
+import com.core.data.entites.Economica;
 import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.AdministradorDAO;
 import com.core.service.negocio.remote.AdministradorEBR;
@@ -116,6 +119,33 @@ public class AdministradorEB implements AdministradorEBR{
 	public Administrador obetenrAdministradorPorNick(Long id) {
 		Administrador a = dataService.find(Administrador.class, id);
 		return a;
+	}
+	/********************************************************************************/
+	@Override
+	public Collection<DeBienes> listaDeBienesEnTiempo(Date fechaInicio,
+			Date fechaFinal) {
+		
+		Collection<DeBienes> lista = administradorDao.listaDeBienes(fechaInicio, fechaFinal);
+		
+		return lista;
+	}
+
+	
+	public Collection<DeServicios> listaDeServiciosEnTiempo(Date fechaInicio,
+			Date fechaFinal) {
+		
+		Collection<DeServicios> lista = administradorDao.listaDeServicios(fechaInicio, fechaFinal);
+		
+		return lista;
+	}
+
+	@Override
+	public Collection<Economica> listaDeEconomicaEnTiempo(Date fechaInicio,
+			Date fechaFinal) {
+	
+		Collection<Economica> lista = administradorDao.listaEconomica(fechaInicio, fechaFinal);
+		
+		return lista;
 	}
 	
 }

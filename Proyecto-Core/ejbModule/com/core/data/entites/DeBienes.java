@@ -22,7 +22,12 @@ allocationSize=1)
 query = "SELECT d FROM DeBienes d WHERE d.ong.id = :idOng"),
 
 @NamedQuery(name="DeBienes.BuscarDonacion", 
-query = "SELECT d FROM DeBienes d WHERE d.id = :id")
+query = "SELECT d FROM DeBienes d WHERE d.id = :id"),
+
+
+@NamedQuery(name="DeBienes.ReporteDonacion", 
+query = "SELECT d FROM DeBienes d WHERE d.fechaRealizada BETWEEN :fechaInicio AND :fechaFinal")
+
 
 })
 @XmlRootElement

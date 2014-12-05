@@ -120,7 +120,7 @@
                 <p:menuitem value="Ong" url="listaCatastrofesONGs.xhtml" />
                 <p:menuitem value="Plan de Riesgo" url="listaCatastrofesPlanRiesgo.xhtml" />
                 <p:menuitem value="Servicios" url="#" />
-                <p:menuitem value="CCS" url="#" />
+                <p:menuitem value="CCS" url="listaCatastrofesCSS.xhtml" />
             </p:submenu>
         </p:column>
  
@@ -135,66 +135,56 @@
             
         </p:column>
         
-    </p:submenu>       
+    </p:submenu>
+       
 </p:megaMenu>
-</h:form>              
-<br class="clear" />  
+</h:form>
+                    
+    <br class="clear" />
+  
 </div>
 
 <div class="wrapper col3">
   <div id="intro">
-    <div >
-    <h2>Asignar Plan de Riesgo a la Catástrofe</h2>
-      
-      <f:view>        
-      	
-		<h:form columns="2" value="#{planDeRiesgoBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
-			
-			<p>			        		        
-            <p:graphicImage value="image/#{planDeRiesgoBean.catastrofeBean.logo}" /> 
-            <h:outputText value="" style="border: transparent;"/>	              		         	        	
-			</p>			
-			
-			<p>
-			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
-            <h:outputText value="#{planDeRiesgoBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
-            </p>			
-               
-            <p>    
-           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-            <h:outputText value="#{planDeRiesgoBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
-            </p>
-			<br/>  
-                         
-        </h:form>
-                									        
-      </f:view>         
+    <div class="fl_left">
+    
+    <h:form>   
+   </h:form>
+   
     </div>
     
-    <div>
-  		<h:form>      
- 	
-        	<p>
-			<h:outputText value="Seleccione el plan de riesgo que va a ser asignado a la catástrofe" style="width:100px;border: transparent;"/>			            
-            </p>
-            <p>
-			<h:outputText value="(El archivo debe estar en formato pdf)" style="width:100px;border: transparent;"/>			            
-            </p>
-                    
-		    <p:fileUpload fileUploadListener="#{fileUploadControllerPlan.upload}" mode="advanced" dragDropSupport="false"
-		                  multiple="false" fileLimit="1" update="messages" allowTypes="/(\.|\/)(pdf)$/" />
-		 
-		    <p:growl id="messages" showDetail="true" />
-		    
-		    <br/>
-		    
-		    <p:outputPanel style="text-align: left">			 		
-	        	<p:commandButton value="Cancelar" action="#{fileUploadControllerPlan.cancelar()}" />
-	        </p:outputPanel>
-		</h:form> 
-  	</div>   
     
-             
+    
+    
+    
+    <div class="fl_right">
+    	
+    	<h:form>
+    	
+    	<br/>
+				<h1>Reporte de Donaciones </h1>
+				<p:outputLabel for="fechainicio" value="Fecha Inicial:" />
+        		<p:calendar id="fechainicio" value="#{ReporteDonacion.fechaInicio}" pattern="dd-MM-yyyy" mask="true" />
+        		<br/>
+        		<br/>
+        		<p:outputLabel for="fechafinal" value="Fecha Final:" />
+        		<p:calendar id="fechafinal" value="#{ReporteDonacion.fechaFinal}" pattern="dd-MM-yyyy" mask="true" />
+        		<br/>
+        		<br/>
+        		<p:outputLabel for="TipoDonacion" value="Tipo Donacion:" />
+		        <p:selectOneRadio id="sexo" value="#{ReporteDonacion.tipoDonacion}">
+		            <f:selectItem itemLabel="Femenino" itemValue="De_Bienes" />
+		            <f:selectItem itemLabel="Masculino" itemValue="De_Servicios" />
+		            <f:selectItem itemLabel="Masculino" itemValue="Economicas" />
+		         </p:selectOneRadio>
+        		<br/>
+        		<br/>
+        		<p:commandButton id="comandoReportar"   type="submit"  styleClass="formbutton" value="Obtener Reportar" action="#{ReporteDonacion.obtenerReporteEnelTiempo()}">
+				</p:commandButton>
+    	
+    	</h:form>
+    
+    </div>
     <br class="clear" />
   </div>
 </div>
@@ -207,8 +197,7 @@
     <br class="clear" />
   </div>
 </div>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {
@@ -217,5 +206,5 @@
 	  }
 	//]]>
 	</script>
-	</h:body> 
+</h:body> 
 </html>
