@@ -49,20 +49,25 @@ public class EstadoRescatista  extends AbstractEntity implements Serializable {
 	}
 	@Column( nullable= false)
 	private Boolean pendiente;
-	@Column( nullable= false)
-	private PedidoDeAyuda pedidoAyuda;
+	
+	
+	private Long idPedidoAyuda;
 
-	public PedidoDeAyuda getPedidoAyuda() {
-		return pedidoAyuda;
-	}
-	public void setPedidoAyuda(PedidoDeAyuda pedidoAyuda) {
-		this.pedidoAyuda = pedidoAyuda;
-	}
+	
 	@ManyToOne
 	private Rescatista rescatista;
 	
 	private String nombreTarea;
 
+	
+	
+	
+	public Long getIdPedidoAyuda() {
+		return idPedidoAyuda;
+	}
+	public void setIdPedidoAyuda(Long idPedidoAyuda) {
+		this.idPedidoAyuda = idPedidoAyuda;
+	}
 	public String getNombreTarea() {
 		return nombreTarea;
 	}

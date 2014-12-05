@@ -61,7 +61,7 @@ public class RescatistaEB implements RescatistaEBR {
 		       while(it.hasNext())
 		       {
 		    	   EstadoRescatista e = it.next();
-		    	   Long idpedidoAyuda = e.getPedidoAyuda().getId();
+		    	  Long idpedidoAyuda = e.getIdPedidoAyuda();
 		    	   PedidoDeAyuda pedido = dataService.find(PedidoDeAyuda.class,idpedidoAyuda);
 		    	   //obtengo la catastrofeç
 		    	   PlanDeRiesgo p = pedido.getCatastrofe().getPlanDeRiesgo();
@@ -102,7 +102,7 @@ public class RescatistaEB implements RescatistaEBR {
 			PedidoDeAyuda pedidoGuardar = dataService.find(PedidoDeAyuda.class, id);
 			EstadoRescatista estadoRescatista = new EstadoRescatista();
 			estadoRescatista.setPendiente(true);
-			estadoRescatista.setPedidoAyuda(pedidoGuardar);
+			estadoRescatista.setIdPedidoAyuda(id);
 			//FIXME: Stephy: victoria aca deje setado el nombre de la catastrofe ya que la tea no estaba pensado en todo caso 
 			//me la tienen que pasar desde la catastrofe.
 			estadoRescatista.setNombreTarea(pedidoGuardar.getDescripcion());
@@ -283,7 +283,7 @@ public class RescatistaEB implements RescatistaEBR {
 		
 		EstadoRescatista estadoRescatista = new EstadoRescatista();
 		estadoRescatista.setPendiente(true);
-		estadoRescatista.setPedidoAyuda(p);
+		estadoRescatista.setIdPedidoAyuda(idPedidoAyuda);
 	
 		estadoRescatista.setNombreTarea(p.getDescripcion());
 		estadoRescatista.setRescatista(r);

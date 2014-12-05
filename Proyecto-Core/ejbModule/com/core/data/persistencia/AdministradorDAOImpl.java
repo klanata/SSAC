@@ -146,7 +146,7 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 		
 		Collection<DeBienes> lista = null;					
 		
-		TypedQuery<DeBienes> consulta = this.em.createNamedQuery("DeBienes.ReporteDonacion",DeBienes.class);
+	/*	TypedQuery<DeBienes> consulta = this.em.createNamedQuery("DeBienes.ReporteDonacion",DeBienes.class);
 		//r(entry.getKey(), (Date) entry.getValue(), TemporalType.TIMESTAMP);
 		consulta.setParameter("fechaInicio",(Date) fechaInicio,TemporalType.TIMESTAMP );
 		System.out.print("paso de cargar fecha inicio");
@@ -158,7 +158,8 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 		{
 			System.out.print("se muere al cargar la lista con las fechas");
 			
-		}	
+		}*/
+		lista = dataService.findAll(DeBienes.class);
 		
 		return lista;
 	}
@@ -167,11 +168,12 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 			Date fechaFinal) {
 		
 		Collection<DeServicios> lista = null;					
-		//  query.setParameter(entry.getKey(), (Date) entry.getValue(), TemporalType.TIMESTAMP);
+		/*//  query.setParameter(entry.getKey(), (Date) entry.getValue(), TemporalType.TIMESTAMP);
 		TypedQuery<DeServicios> consulta = this.em.createNamedQuery("DeServicios.ReporteDeServicios",DeServicios.class);				
 		consulta.setParameter("fechaInicio", fechaInicio,TemporalType.TIMESTAMP );
 		consulta.setParameter("fechaFinal", fechaInicio,TemporalType.TIMESTAMP );
-		lista = consulta.getResultList();
+		lista = consulta.getResultList();*/
+		lista = dataService.findAll(DeServicios.class);
 		
 		return lista;
 	}
@@ -181,10 +183,11 @@ public class AdministradorDAOImpl extends AbstractService implements Administrad
 
 		Collection<Economica> lista = null;					
 		
-		TypedQuery<Economica> consulta = this.em.createNamedQuery("Economica.ReporteEconomica",Economica.class);				
+		/*TypedQuery<Economica> consulta = this.em.createNamedQuery("Economica.ReporteEconomica",Economica.class);				
 		consulta.setParameter("fechaInicio", fechaInicio );
 		consulta.setParameter("fechaFinal", fechaInicio );
-		lista = consulta.getResultList();
+		lista = consulta.getResultList();*/
+		lista = dataService.findAll(Economica.class);
 		
 		return lista;
 	}

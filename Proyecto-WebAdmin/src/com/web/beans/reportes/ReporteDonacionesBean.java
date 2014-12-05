@@ -50,17 +50,17 @@ public class ReporteDonacionesBean implements Serializable {
 	
 	
 	
-	// @ManagedProperty("#{DeBienesBean}")
-	 private DonacionesDeBienesBean deBienesBean;
+	@ManagedProperty("#{DeBienesBean}")
+	private DonacionesDeBienesBean deBienesBean;
 	
 	public String TipoDonacion;
 
 	private Date fechaInicio;
 	private Date fechaFinal;
 	
-	private Collection<DeBienes> listaDeBienes = new ArrayList<DeBienes>();
-	private Collection<DeServicios> listaDeServicios = new ArrayList<DeServicios>();
-	private Collection<Economica> listaEconomica =  new ArrayList<Economica>();
+	private ArrayList<DeBienes> listaDeBienes = new ArrayList<DeBienes>();
+	private ArrayList<DeServicios> listaDeServicios = new ArrayList<DeServicios>();
+	private ArrayList<Economica> listaEconomica =  new ArrayList<Economica>();
     
 	private Integer cantidadDB;
 	private Integer cantidadDS;
@@ -99,27 +99,27 @@ public class ReporteDonacionesBean implements Serializable {
 		this.deBienesBean = deBienesBean;
 	}
 
-	public Collection<DeBienes> getListaDeBienes() {
+	public ArrayList<DeBienes> getListaDeBienes() {
 		return listaDeBienes;
 	}
 
-	public void setListaDeBienes(Collection<DeBienes> listaDeBienes) {
+	public void setListaDeBienes(ArrayList<DeBienes> listaDeBienes) {
 		this.listaDeBienes = listaDeBienes;
 	}
 
-	public Collection<DeServicios> getListaDeServicios() {
+	public ArrayList<DeServicios> getListaDeServicios() {
 		return listaDeServicios;
 	}
 
-	public void setListaDeServicios(Collection<DeServicios> listaDeServicios) {
+	public void setListaDeServicios(ArrayList<DeServicios> listaDeServicios) {
 		this.listaDeServicios = listaDeServicios;
 	}
 
-	public Collection<Economica> getListaEconomica() {
+	public ArrayList<Economica> getListaEconomica() {
 		return listaEconomica;
 	}
 
-	public void setListaEconomica(Collection<Economica> listaEconomica) {
+	public void setListaEconomica(ArrayList<Economica> listaEconomica) {
 		this.listaEconomica = listaEconomica;
 	}
 
@@ -149,7 +149,7 @@ public class ReporteDonacionesBean implements Serializable {
 
 
     
-	  @PostConstruct
+	@PostConstruct
 	public void  obtenerReporteEnelTiempo(){
     	
     	AdministradorEBR manager = null;		
@@ -168,14 +168,22 @@ public class ReporteDonacionesBean implements Serializable {
             e.printStackTrace();
         }	
 		
-		Date fechaInicio2 = new Date();
-		fechaInicio2.getTime();
-		//Date fechaFinal2.getTime();
+		
     	
     		
     		Collection<DeBienes> listaDB = new ArrayList<DeBienes>();
-    		listaDB = manager.listaDeBienesEnTiempo(fechaInicio2, fechaInicio2);
+    		listaDB = manager.listaDeBienesEnTiempo(fechaInicio, fechaInicio);
 			
+    		Iterator<DeBienes> it = listaDB.iterator();
+    		int i= 0;
+    		while(it.hasNext())
+    		{
+    			DeBienes d = it.next();
+    			listaDeBienes.add(i, new DeBienes(d.getUsuario(), d.getFechaRealizada(), d.getNombreItem(), d.getCantidad(), d.getOng()) );
+    			i++;
+    			
+    		}
+    		
 			cantidadDB = listaDB.size();
 			
 			/*Collection<Economica> listaDE = new ArrayList<Economica>();
@@ -192,30 +200,5 @@ public class ReporteDonacionesBean implements Serializable {
    
 	}
 	///////////////////
-	 private CartesianChartModel viviendas;  
 	 
-	    public CartesianChartModel getViviendas() {
-	        return viviendas;
-	    }
-	 
-	  
-	    public void init(){
-	        viviendas = new CartesianChartModel();
-	         
-	        final ChartSeries venta  = new ChartSeries("Venta");
-	        venta.set("2008", 800);
-	        venta.set("2009", 1300);
-	        venta.set("2010", 700);
-	        venta.set("2011", 500);
-	         
-	        final ChartSeries alquiler  = new ChartSeries("Alquiler");
-	        alquiler.set("2008", 1200);
-	        alquiler.set("2009", 1100);
-	        alquiler.set("2010", 1700);
-	        alquiler.set("2011", 1900);
-	         
-	        viviendas.addSeries(venta);
-	        viviendas.addSeries(alquiler);
-	 
-	    }
 }
