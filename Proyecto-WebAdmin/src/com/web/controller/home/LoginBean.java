@@ -8,9 +8,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.naming.Context;
+import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
+
+import clienteutility.ClienteUtility;
+
+import com.core.service.negocio.remote.AdministradorEBR;
 
 
 
@@ -38,7 +44,29 @@ public class LoginBean implements Serializable {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
 		
-		if (nombre != null && nombre.equals("admin") && clave != null && clave.equals("admin")) 
+		//////
+		AdministradorEBR manager = null;		
+		
+		Context contexto = null;
+		 
+		try {
+            // 1. Obtaining Context
+            contexto = ClienteUtility.getInitialContext();
+            // 2. Generate JNDI Lookup name
+            //String lookupName = getLookupName();
+            // 3. Lookup and cast
+            manager = (AdministradorEBR) contexto.lookup("ejb:Proyecto-EAR/Proyecto-Core//AdministradorEB!com.core.service.negocio.remote.AdministradorEBR");
+ 
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+		
+		
+		////
+		Boolean exito =	manager.existeUsuario(nombre, clave);
+		
+		
+		if (exito ==  true) 
 		{
 			logeado = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nombre);

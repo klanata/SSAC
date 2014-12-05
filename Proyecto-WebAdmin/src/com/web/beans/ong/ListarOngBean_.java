@@ -2,8 +2,7 @@ package com.web.beans.ong;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +10,8 @@ import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
+
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -25,8 +25,8 @@ import com.core.data.entites.Ong;
 import com.core.service.negocio.remote.OngEBR;
 
 
-@ManagedBean(name="listarOngBean2")
-@SessionScoped
+@ManagedBean(name="listaEliminarOngBean")
+@RequestScoped
 public class ListarOngBean_ implements Serializable{
 
 	/**
@@ -34,48 +34,19 @@ public class ListarOngBean_ implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<OngBean> listaOngBean2 = new ArrayList<OngBean>();    
+	private ArrayList<OngBean> listaOngBeanEliminar = new ArrayList<OngBean>();    
 
-	private List<OngBean> filtroOngBean;
+	private List<OngBean> filtroOngBeanEliminar;
     
-    private OngBean selectedOng;    
+    private OngBean selectedOngEliminar;    
     
     @ManagedProperty("#{ongBean}")
     private OngBean ongBean;
     
     /*-----------------------*/
-	public ArrayList<OngBean> getListaOngBean() {
-		return listaOngBean2;
-	}
-
-	public void setListaOngBean(ArrayList<OngBean> listaOngBean) {
-		this.listaOngBean2 = listaOngBean;
-	}
-
-	public List<OngBean> getFiltroOngBean() {
-		return filtroOngBean;
-	}
-
-	public void setFiltroOngBean(List<OngBean> filtroOngBean) {
-		this.filtroOngBean = filtroOngBean;
-	}
-
-	public OngBean getSelectedOng() {
-		return selectedOng;
-	}
-
-	public void setSelectedOng(OngBean selectedOng) {
-		this.selectedOng = selectedOng;
-	}
-
-	public OngBean getOngBean() {
-		return ongBean;
-	}
-
-	public void setOngBean(OngBean ongBean) {
-		this.ongBean = ongBean;
-	}
-	/*---------------------------------------------------------------------------------*/
+	
+    
+    /*---------------------------------------------------------------------------------*/
 	
 	@PostConstruct
     public void init() {
@@ -116,7 +87,7 @@ public class ListarOngBean_ implements Serializable{
 				email = ong.getEmail();
 				citioWeb = ong.getCitioWeb();
 				descripcion = ong.getDescripcion();				
-				listaOngBean2.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion));	
+				listaOngBeanEliminar.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion));	
 				
 			}	
 			
@@ -126,6 +97,38 @@ public class ListarOngBean_ implements Serializable{
 				
     }    
 	
+	public ArrayList<OngBean> getListaOngBeanEliminar() {
+		return listaOngBeanEliminar;
+	}
+
+	public void setListaOngBeanEliminar(ArrayList<OngBean> listaOngBeanEliminar) {
+		this.listaOngBeanEliminar = listaOngBeanEliminar;
+	}
+
+	public List<OngBean> getFiltroOngBeanEliminar() {
+		return filtroOngBeanEliminar;
+	}
+
+	public void setFiltroOngBeanEliminar(List<OngBean> filtroOngBeanEliminar) {
+		this.filtroOngBeanEliminar = filtroOngBeanEliminar;
+	}
+
+	public OngBean getSelectedOngEliminar() {
+		return selectedOngEliminar;
+	}
+
+	public void setSelectedOngEliminar(OngBean selectedOngEliminar) {
+		this.selectedOngEliminar = selectedOngEliminar;
+	}
+
+	public OngBean getOngBeanEliminar() {
+		return ongBean;
+	}
+
+	public void setOngBeanEliminar(OngBean ongBeanEliminar) {
+		this.ongBean = ongBeanEliminar;
+	}
+
 	public void onRowSelect(SelectEvent event) {
 		
 		///Obtenego el string con el id del objeto

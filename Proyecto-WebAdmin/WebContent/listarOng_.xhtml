@@ -151,47 +151,47 @@
 <div class="wrapper col3">
   <div id="intro">
     <div>
-      <h3>Listar Ongs a Eliminar</h3>
+      <h3>Listar Ongs a Modificar</h3>
       <br/>	
       <f:view>      	
       	
-      	<h:form id="formOng2">      		
+      	<h:form id="formOng1">      		
       		
       		<p:growl id="msgs" showDetail="true" />
       		
-    		<p:dataTable id="listarOngDT2" var="ongBean2" widgetVar="ongTable2" value = "#{listarOngBean2.listaOngBean}"
-                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{listarOngBean2.filtroOngBean}"               		  
+    		<p:dataTable id="listarOngDT2" var="ongBean" widgetVar="ongTable" value = "#{listaEliminarOngBean.listaOngBeanEliminar}"
+                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{listaEliminarOngBean.filtroOngBeanEliminar}"               		  
                  		 paginator="true" rows="5" paginatorPosition="top"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
-                 		 selectionMode="single" selection="#{listarOngBean2.selectedOng}"  rowKey="#{ongBean2.id}" dblClickSelect="true">    
+                 		 selectionMode="single" selection="#{listaEliminarOngBean.selectedOngEliminar}"  rowKey="#{ongBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
 		                <h:outputText value="Buscar Ong:  " />
-		                <p:inputText id="globalFilter"   onkeyup="PF('ongTable2').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		                <p:inputText id="globalFilter"   onkeyup="PF('ongTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
 		        </f:facet>    	
-		         <p:ajax event="rowSelect" listener="#{listarOngBean2.onRowSelect}" update=":formOng2:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listarOngBean2.onRowUnselect}" update=":formOng2:msgs" />	        		        
+		         <p:ajax event="rowSelect" listener="#{listaEliminarOngBean.onRowSelect}" update=":formOng1:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaEliminarOngBean.onRowUnselect}" update=":formOng1:msgs" />	        		        
 		    
 		        
         		<p:column headerText="Id" style="width:50px">
-            		<h:outputText value="#{ongBean2.id}" />
+            		<h:outputText value="#{ongBean.id}" />
         		</p:column>             		                  		                  		             	
         		
-        		<p:column headerText="Nombre" style="width:200px" filterBy="#{ongBean2.nombre}" filterMatchMode="contains" >
-            		<h:outputText value="#{ongBean2.nombre}" />
+        		<p:column headerText="Nombre" style="width:200px" filterBy="#{ongBean.nombre}" filterMatchMode="contains" >
+            		<h:outputText value="#{ongBean.nombre}" />
         		</p:column>
         		
-        		<p:column headerText="Direccion" style="width:350px" filterBy="#{ongBean2.direccion}" filterMatchMode="contains" >
-            		<h:outputText value="#{ongBean2.direccion}" />            		
+        		<p:column headerText="Direccion" style="width:350px" filterBy="#{ongBean.direccion}" filterMatchMode="contains" >
+            		<h:outputText value="#{ongBean.direccion}" />            		
         		</p:column>
         		
         		<p:column headerText="Telefono">
-            		<h:outputText value="#{ongBean2.telefono}" />            		
+            		<h:outputText value="#{ongBean.telefono}" />            		
         		</p:column>
         		
-                <p:column headerText="Email"  filterBy="#{ongBean2.email}" filterMatchMode="contains">
+                <p:column headerText="Email"  filterBy="#{ongBean.email}" filterMatchMode="contains">
             		<h:outputText value="#{ongBean.email}" />            		
         		</p:column>        		        		 
         		        		        		

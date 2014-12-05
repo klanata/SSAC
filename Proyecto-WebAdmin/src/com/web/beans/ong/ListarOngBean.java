@@ -11,6 +11,7 @@ import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
@@ -25,7 +26,7 @@ import com.core.data.entites.Ong;
 import com.core.service.negocio.remote.OngEBR;
 
 @ManagedBean(name="listarOngBean")
-@SessionScoped
+@RequestScoped
 public class ListarOngBean implements Serializable{
 
 	/**
