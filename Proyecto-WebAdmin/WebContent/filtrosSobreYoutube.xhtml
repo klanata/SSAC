@@ -138,76 +138,64 @@
     </p:submenu>
        
 </p:megaMenu>
-</h:form>
-                       
+</h:form>          
+          
     <br class="clear" />
   
 </div>
-
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Registrar Catástrofe</h2>
+    <div>
+      <h3>Filtros de datos sobre Youtube</h3>
       <br/>	
-      <f:view>
-		<h:form id="registroCatastrofe" enctype="multipart/form-data">
-						
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			
-				<p>
-				<label for="nombreEvento">Nombre del Evento:</label>				
-					<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBean.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-						
-				<h4>Descripción:</h4>	
-					<h:panelGrid columns="2" border="0">																																		
-					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{catastrofeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
-				</h:panelGrid>													
-						
-				<h4>Logo:</h4>					
-				<h:panelGrid columns="2" border="0">																						
-					<h:inputFile id="logo" label="logo" value="#{catastrofeBean.part}" required="true" requiredMessage="El logo es obligatorio" >			
-					</h:inputFile>					 					
-				</h:panelGrid>					
-																
-				<p>
-				<label for="coordX">Coordenada X:</label>
-				<p:inputText id="coordX" label="coordenadaX" value="#{catastrofeBean.coordenadasX}" required="true" requiredMessage="La coordenada X es obligatoria" >
-				</p:inputText>					
-				</p>
-				<br/>
-				
-				<p><label for="coordY">Coordenada Y:</label>
-				<p:inputText id="coordY" label="coordenadaY" value="#{catastrofeBean.coordenadasY}" required="true" requiredMessage="La coordenada Y es obligatoria" >
-				</p:inputText>					
-				</p>	
-				<br/>
-				
-				<p>		
-				<p:selectBooleanCheckbox value="#{catastrofeBean.activa}"/> 
-				<label for="activa">Activa</label>						
-				</p>	
-				<br/>
-				
-				<p>	
-				<p:selectBooleanCheckbox value="#{catastrofeBean.prioridad}"/> 
-				<label for="prioridad">Prioridad</label>				
-				</p>	
-				<br/>															
-				
-			<p:commandButton id="comandoRegistrar" update="growl" ajax="false" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{catastrofeBean.registrarCatastrofe()}">
-			</p:commandButton>		
-			
+      <f:view>      	
+      	
+      	<h:form id="formFiltroYoutube">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="catastrofesDT" var="filtroYoutubeBean" value="#{listaFiltrosYoutubeBean.filtrosYoutubeBean}" widgetVar="youtubeTable"
+                 		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaFiltrosYoutubeBean.filtroTablaFiltroYoutubeBean}"                 		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selectionMode="single" selection="#{listaFiltrosYoutubeBean.selectedFiltroYoutubeBean}" rowKey="#{filtroYoutubeBean.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar descripción del filtro:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('youtubeTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    			       		               		      		        		                	    
+        		
+        		<p:column headerText="Id" style="width:50px">
+            		<h:outputText value="#{filtroYoutubeBean.id}" />
+        		</p:column>             		                  		                  		             	        		        		
+        		
+        		<p:column headerText="Descripción" style="width:700px" filterBy="#{filtroYoutubeBean.descripcion}" filterMatchMode="contains">
+            		<h:outputText value="#{filtroYoutubeBean.descripcion}" />            		
+        		</p:column>        		        		
+        		
+                <p:column headerText="Baja">
+            		<h:outputText value="#{filtroYoutubeBean.bajaLogica}" />            		
+        		</p:column>        		        		 
+        		        		        		
+     		</p:dataTable> 
+     		
+     		<br/> 
+			 <p:outputPanel style="text-align: left">
+			 		<p:commandButton value="Agregar" action="#{listaFiltrosYoutubeBean.asignarFiltro()}"/>         
+	            	<p:commandButton value="Quitar" action="#{listaFiltrosYoutubeBean.borrarFiltro()}"/>	            	
+	         </p:outputPanel>	
+	         <br/> 		    		     		
+     		
 		</h:form>
-		</f:view>
+      
+      </f:view>         
     </div>
-    <div class="fl_right"><img src="resources/images/demo/380x300.gif" alt="" /></div>
+    
     <br class="clear" />
   </div>
 </div>
-
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>

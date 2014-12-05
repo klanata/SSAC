@@ -144,19 +144,9 @@ public class ImagesView implements Serializable{
 		handler.performNavigation("asignarImgCatastrofe?faces-redirect=true");			
 	}
 	
-	public void borrarImagen(){	
-		/*
-		String jboss = System.getenv("JBOSS_HOME");		
-		File file = new File(jboss + "\\Proyecto\\imagenes.war\\" + "1887catastrofesUruguay1.jpg");		
-		if(file.delete()){
-			System.out.println(file.getName() + " fue elimindada!");
-		}else{
-			System.out.println("La operación de eliminación falló.");
-		}
-		*/		
+	public void borrarImagen(){			
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("quitarImagenCatastrofe?faces-redirect=true");
-		
+		handler.performNavigation("quitarImagenCatastrofe?faces-redirect=true");		
 	}
 	
 	public void cancelar(){

@@ -147,63 +147,25 @@
 <div class="wrapper col3">
   <div id="intro">
     <div class="fl_left">
-      <h2>Registrar Catástrofe</h2>
+      <h2>Registrar Filtro Youtube</h2>
       <br/>	
       <f:view>
-		<h:form id="registroCatastrofe" enctype="multipart/form-data">
+		<h:form id="registroFiltroYoutube">
 						
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			
-				<p>
-				<label for="nombreEvento">Nombre del Evento:</label>				
-					<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBean.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />							
 						
 				<h4>Descripción:</h4>	
 					<h:panelGrid columns="2" border="0">																																		
-					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{catastrofeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
-				</h:panelGrid>													
-						
-				<h4>Logo:</h4>					
-				<h:panelGrid columns="2" border="0">																						
-					<h:inputFile id="logo" label="logo" value="#{catastrofeBean.part}" required="true" requiredMessage="El logo es obligatorio" >			
-					</h:inputFile>					 					
-				</h:panelGrid>					
-																
-				<p>
-				<label for="coordX">Coordenada X:</label>
-				<p:inputText id="coordX" label="coordenadaX" value="#{catastrofeBean.coordenadasX}" required="true" requiredMessage="La coordenada X es obligatoria" >
-				</p:inputText>					
-				</p>
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{filtroYoutubeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
+				</h:panelGrid>																							
 				<br/>
-				
-				<p><label for="coordY">Coordenada Y:</label>
-				<p:inputText id="coordY" label="coordenadaY" value="#{catastrofeBean.coordenadasY}" required="true" requiredMessage="La coordenada Y es obligatoria" >
-				</p:inputText>					
-				</p>	
-				<br/>
-				
-				<p>		
-				<p:selectBooleanCheckbox value="#{catastrofeBean.activa}"/> 
-				<label for="activa">Activa</label>						
-				</p>	
-				<br/>
-				
-				<p>	
-				<p:selectBooleanCheckbox value="#{catastrofeBean.prioridad}"/> 
-				<label for="prioridad">Prioridad</label>				
-				</p>	
-				<br/>															
-				
-			<p:commandButton id="comandoRegistrar" update="growl" ajax="false" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{catastrofeBean.registrarCatastrofe()}">
+																											
+			<p:commandButton id="comandoRegistrar" update="growl" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{filtroYoutubeBean.registrarFiltroYoutube()}">
 			</p:commandButton>		
 			
 		</h:form>
 		</f:view>
-    </div>
-    <div class="fl_right"><img src="resources/images/demo/380x300.gif" alt="" /></div>
+    </div>    
     <br class="clear" />
   </div>
 </div>
