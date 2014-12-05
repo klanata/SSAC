@@ -51,17 +51,21 @@ public class RescatistaEB implements RescatistaEBR {
 	public Collection<PlanesPendientesRescatistaDTO> listarPendientesRescatistaPorCatastrofe(String nick)
 	{
 		
+		//
+		Rescatista r = rescatistaService.buscarUsuarioNick(nick);
+		
+		
 		Collection<PlanesPendientesRescatistaDTO> listaDTO =new  ArrayList<PlanesPendientesRescatistaDTO>(0);
 		
 		try{
-		       Collection<EstadoRescatista> listaEstado = rescatistaService.listarPendientesRescatista(nick);
+		       Collection<EstadoRescatista> listaEstado = r.getEstadoRescatista();
 		       
 		       Iterator<EstadoRescatista> it = listaEstado.iterator();
 		       
 		       while(it.hasNext())
 		       {
 		    	   EstadoRescatista e = it.next();
-		    	  Long idpedidoAyuda = e.getIdPedidoAyuda();
+		    	   Long idpedidoAyuda = e.getIdPedidoAyuda();
 		    	   PedidoDeAyuda pedido = dataService.find(PedidoDeAyuda.class,idpedidoAyuda);
 		    	   //obtengo la catastrofeç
 		    	   PlanDeRiesgo p = pedido.getCatastrofe().getPlanDeRiesgo();
@@ -79,6 +83,8 @@ public class RescatistaEB implements RescatistaEBR {
 		    	   planesDTO.setIdEstadoRescatista(e.getRescatista().getId());
 		    	   
 		    	   listaDTO.add(planesDTO);
+		    	   
+		    	   System.out.print("la lista no esta vacia");
 		       }
 		       
 		       
