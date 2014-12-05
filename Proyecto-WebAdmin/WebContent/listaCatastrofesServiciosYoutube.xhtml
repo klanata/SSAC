@@ -119,7 +119,7 @@
                 <p:menuitem value="Imágenes" url="listaCatastrofesImagenes.xhtml" />
                 <p:menuitem value="Ong" url="listaCatastrofesONGs.xhtml" />
                 <p:menuitem value="Plan de Riesgo" url="listaCatastrofesPlanRiesgo.xhtml" />
-                <p:menuitem value="Servicios" url="listaCatastrofesServiciosYoutube.xhtml" />
+                <p:menuitem value="Servicios" url="#" />
                 <p:menuitem value="CCS" url="listaCatastrofesCSS.xhtml" />
             </p:submenu>
         </p:column>
@@ -154,11 +154,11 @@
       		
       		<p:growl id="msgs" showDetail="true" />
       		
-    		<p:dataTable id="catastrofesDT" var="catastrofeBean" value="#{listaCatastrofesBean.catastrofesBean}" widgetVar="catastrofesTable"
-                 		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaCatastrofesBean.filtroCatastrofeBean}"                 		  
+    		<p:dataTable id="catastrofesDT" var="catastrofeBean" value="#{listaCatastrofesServYoutubeBean.catastrofesYoutbeBean}" widgetVar="catastrofesTable"
+                 		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaCatastrofesServYoutubeBean.filtroCatastrofeYoutubeBean}"                 		  
                  		 paginator="true" rows="5" paginatorPosition="top"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                 		 selectionMode="single" selection="#{listaCatastrofesBean.selectedCatastrofe}" rowKey="#{catastrofeBean.id}" dblClickSelect="true">    
+                 		 selectionMode="single" selection="#{listaCatastrofesServYoutubeBean.selectedCatastrofe}" rowKey="#{catastrofeBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
@@ -167,8 +167,8 @@
 		            </p:outputPanel>
 		        </f:facet>    	
 		        
-		        <p:ajax event="rowSelect" listener="#{listaCatastrofesBean.onRowSelect}" update=":formCatastrofe:msgs" />
-        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesBean.onRowUnselect}" update=":formCatastrofe:msgs" />	        		        
+		        <p:ajax event="rowSelect" listener="#{listaCatastrofesServYoutubeBean.onRowSelect}" update=":formCatastrofe:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaCatastrofesServYoutubeBean.onRowUnselect}" update=":formCatastrofe:msgs" />	        		        
 		        
 		        <p:column>		        		        	
             		<p:graphicImage value="image/#{catastrofeBean.logo}" />               		         	
