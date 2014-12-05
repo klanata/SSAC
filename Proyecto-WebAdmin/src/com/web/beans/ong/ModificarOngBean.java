@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
@@ -22,7 +23,7 @@ import com.web.beans.administrador.AdministradorBean;
 
 
 @ManagedBean(name="modificarOngBean")
-@SessionScoped
+@RequestScoped
 public class ModificarOngBean implements Serializable{
 	
 	
