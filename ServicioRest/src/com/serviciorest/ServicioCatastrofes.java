@@ -56,6 +56,11 @@ private CatastrofeEBR manager;
         	   com.serviciorest.modelo.Catastrofe catastrofeAux = new Catastrofe();
         	   catastrofeAux.setId((long)catastrofesCore.get(i).getId());
         	   catastrofeAux.setNombreEvento((catastrofesCore.get(i).getNombreEvento()));
+        	   catastrofeAux.setCoordenadasX(catastrofesCore.get(i).getCoordenadasX());
+        	   catastrofeAux.setCoordenadasY(catastrofesCore.get(i).getCoordenadasY());
+        	   catastrofeAux.setDescripcion(catastrofesCore.get(i).getDescripcion());
+        	   catastrofeAux.setActiva(catastrofesCore.get(i).getActiva());
+        	  
         	   catastrofesRest.add(catastrofeAux);
 		}
             
