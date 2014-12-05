@@ -60,7 +60,7 @@ private CatastrofeEBR manager;
         	   catastrofeAux.setCoordenadasY(catastrofesCore.get(i).getCoordenadasY());
         	   catastrofeAux.setDescripcion(catastrofesCore.get(i).getDescripcion());
         	   catastrofeAux.setActiva(catastrofesCore.get(i).getActiva());
-        	  
+        	   catastrofeAux.setUrlCSS(catastrofesCore.get(i).getCss());
         	   catastrofesRest.add(catastrofeAux);
 		}
             
