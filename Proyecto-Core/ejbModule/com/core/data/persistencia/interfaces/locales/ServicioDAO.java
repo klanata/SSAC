@@ -10,6 +10,8 @@ import com.core.data.persistencia.JPAService;
 
 @Local
 public interface ServicioDAO extends JPAService{
+	
+	public Long insert(Servicio servicio)throws Exception;
 		
 	public boolean existeServicio(String fuente);
 	
@@ -22,3 +24,4 @@ public interface ServicioDAO extends JPAService{
 	
 
 }
+

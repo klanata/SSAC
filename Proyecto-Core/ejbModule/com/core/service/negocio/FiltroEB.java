@@ -1,6 +1,5 @@
 package com.core.service.negocio;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -79,7 +78,20 @@ public class FiltroEB implements FiltroEBR{
 	
 	public void asignarServicioFiltro(String descripcion,String fuente) throws Exception{		
 		try{
-			Servicio servicio = servicioDAO.buscarServicioPorFuente(fuente);							
+			Servicio servicio = new Servicio();
+			if (servicioDAO.existeServicio(fuente)){				
+				servicio = servicioDAO.buscarServicioPorFuente(fuente);
+			}
+			else
+			{							
+				String url = "www.youtube.com";				
+				servicio.setFuente(fuente);
+				servicio.setUrl(url);
+				
+				Long idServicio = servicioDAO.insert(servicio);
+								
+				System.out.println("probando agregar idServicio: " + idServicio );
+			}				
 			
 			Long id = ingesarFiltro(descripcion);				
 			Filtro filtro = filtroDAO.buscarFiltroPorId(id);
