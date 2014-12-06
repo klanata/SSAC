@@ -1,6 +1,7 @@
 package com.example.pruebaandroid;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -38,7 +40,7 @@ public class HelloGoogleMaps extends Activity {
 	private final LatLng LOCATION_SURRREY = new LatLng(49.27645, -122.917587);
 	private final LatLng LOCATION_BURNABY = new LatLng(49.27645, -122.917587);
 	private GoogleMap map;
-	
+	public HashMap<String,String> hashCatastrofes = new HashMap() ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -63,6 +65,7 @@ public class HelloGoogleMaps extends Activity {
 			//drawMarker(posGps);	
 			CameraUpdate update = CameraUpdateFactory.newLatLngZoom(new LatLng(posGps.getLatitude(),posGps.getLongitude()), 9);
 			map.animateCamera(update);
+		
 		}
 		
 		map.addMarker(new MarkerOptions().position(LOCATION_SURRREY).title("Centro de Soporte"));
@@ -71,17 +74,46 @@ public class HelloGoogleMaps extends Activity {
 		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 		
 		invokeWS();
+		map.setOnMarkerClickListener(new OnMarkerClickListener(){
+
+			@Override
+			public boolean onMarkerClick(Marker arg0) {
+				
+				// TODO Auto-generated method stub
+				
+				 String idSnippet = arg0.getSnippet();
+				 if (arg0.getSnippet().compareTo("")!=0)
+				 {
+					 hashCatastrofes.put(arg0.getId(),idSnippet);
+					 arg0.setSnippet("");
+				 }
+				 arg0.showInfoWindow();
+				
+				return true;
+			}
+			
+			
+		});
 		
 	  	map.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 			@Override
 			public void onInfoWindowClick(Marker arg0) {
 				// TODO Auto-generated method stub
-				
+				 String idCatastrofe = hashCatastrofes.get(arg0.getId());
 				//va a la siguiente pantalla y le pasa el idCatastrofe y las coord gps
 				 Intent pedidoAyudaIntent = new Intent(getApplicationContext(),PedidoAyudaActivity.class);
-				 pedidoAyudaIntent.putExtra("catastrofeId", "9");
-				 pedidoAyudaIntent.putExtra("coordX", "-34.909654");
-				 pedidoAyudaIntent.putExtra("coordY", "-56.202349");
+				 pedidoAyudaIntent.putExtra("catastrofeId", idCatastrofe);
+				 Location location = map.getMyLocation();
+				 if (location!=null)
+				 {
+				 pedidoAyudaIntent.putExtra("coordX", String.valueOf(location.getLatitude()));
+				 pedidoAyudaIntent.putExtra("coordY", String.valueOf(location.getLongitude()));
+				 }
+				 else
+				 {
+					 pedidoAyudaIntent.putExtra("coordX", "0.001");
+					 pedidoAyudaIntent.putExtra("coordY", "0.001");
+				 }
 				 /*//chancho
 				 pedidoAyudaIntent.putExtra("catastrofeId", "9");
 				 pedidoAyudaIntent.putExtra("coordX", "-34.909654");
@@ -100,17 +132,19 @@ public class HelloGoogleMaps extends Activity {
 		if(location!=null){
 		map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 		map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(),location.getLongitude())).title(titulo));
-		
+	    
 		}
 	}
 	
 	//marca las catastrofes
-	public void drawMarkerLatLong(String latitudX, String longitudY, String titulo) {
+	public void drawMarkerLatLong(String latitudX, String longitudY, String titulo, String idCatastrofe) {
 		if (longitudY!= null && latitudX!=null){
 			if (longitudY.compareTo("")!=0 && latitudX.compareTo("")!=0){
 				map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 				try {
-				map.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(latitudX),Double.parseDouble(longitudY))).title(titulo));
+			    MarkerOptions markerOption = new MarkerOptions().position(new LatLng(Double.parseDouble(latitudX),Double.parseDouble(longitudY))).title(titulo).snippet(idCatastrofe);
+				 
+			    map.addMarker(markerOption);
 				
 				}
 				catch(Exception e)
@@ -126,7 +160,7 @@ public class HelloGoogleMaps extends Activity {
 		Log.i("Entro al invoke","Entro al invoke");
         AsyncHttpClient client = new AsyncHttpClient();
        //client.get("http://10.0.2.2:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
-        client.get("http://192.168.1.43:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
+        client.get("http://192.168.43.91:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
            
         	// When the response returned by REST has Http response code '200'
             @Override
@@ -153,7 +187,7 @@ public class HelloGoogleMaps extends Activity {
                        	 Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).get("coordenadasX").toString());
                        	 Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).get("coordenadasY").toString());
                        	 
-                       	 HelloGoogleMaps.this.drawMarkerLatLong(latitudX,longitudY,titulo);
+                       	 HelloGoogleMaps.this.drawMarkerLatLong(latitudX,longitudY,titulo,idCatastrofe);
                        	 ////
                      
 

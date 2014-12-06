@@ -22,8 +22,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/descripcionText"
-        android:textSize="25sp" >
-
+        android:textSize="25sp" 
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:gravity="top">
+		
         <requestFocus />
     </EditText>
 
