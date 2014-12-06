@@ -1,24 +1,23 @@
 package com.core.service.negocio.remote;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
-import javax.ejb.Local;
-
+import javax.ejb.Remote;
 import com.core.data.entites.ImagenPersonaDesaparecida;
 import com.core.data.entites.PersonasDesaparecidas;
 
-import cross_cuting.enums.EstadoPersona;
-@Local
+
+@Remote
 
 public interface PersonasDesaparecidasEBR {
 	
-	public Long crearReportePersonasDesaparecidas(String nombre, String apellido,
-			String numeroContacto, EstadoPersona descripcion, Date fechNac,String foto,
-			Set<ImagenPersonaDesaparecida>  imagen)throws Exception;
-	//public List<PersonasDesaparecidas> findAllPerson();
-	//public List<PersonasDesaparecidas> findPersonasHalladas();
-	//public List<PersonasDesaparecidas> findPersonasNoHalladas();
-	public PersonasDesaparecidas buscarPersonaDesaparecida(String nomPersona, String apePersona) throws Exception;
+	public Long crearReportePersonasDesaparecidas(Long idCatastrofe, String nombre, String apellido, String numeroContacto, String descripcion, Date fechNac,
+			Set<ImagenPersonaDesaparecida> imagenes, boolean hallada)throws Exception;
+
+	public void agregarImagenAPersonaDesaparecida(Long idPersona, String nombImagen) throws Exception;
+	public Collection<ImagenPersonaDesaparecida> listaImagenesDePersona(Long id) throws Exception;
+	public PersonasDesaparecidas buscaPersonaPorId(Long id) throws Exception;
+	public PersonasDesaparecidas buscarPersonaDesaparecida(Long idCatastrofe, String nomPersona, String apePersona) throws Exception;
 	public List<PersonasDesaparecidas> listarPersonas() throws Exception;
 }
