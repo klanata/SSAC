@@ -119,7 +119,7 @@
                 <p:menuitem value="Imágenes" url="listaCatastrofesImagenes.xhtml" />
                 <p:menuitem value="Ong" url="listaCatastrofesONGs.xhtml" />
                 <p:menuitem value="Plan de Riesgo" url="listaCatastrofesPlanRiesgo.xhtml" />
-                <p:menuitem value="Servicios" url="listaCatastrofesServiciosYoutube.xhtml" />
+                <p:menuitem value="Servicios" url="#" />
                 <p:menuitem value="CCS" url="listaCatastrofesCSS.xhtml" />
             </p:submenu>
         </p:column>
@@ -134,78 +134,74 @@
             </p:submenu>
             
         </p:column>
-        
+ 
+       
     </p:submenu>
        
 </p:megaMenu>
 </h:form>
-                       
+          
     <br class="clear" />
   
 </div>
 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Registrar Catástrofe</h2>
-      <br/>	
-      <f:view>
-		<h:form id="registroCatastrofe" enctype="multipart/form-data">
-						
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+    <div >
+      <h2>Asignar videos de Youtube a la catástrofe</h2>
+      
+      <f:view>        
+      	
+		<h:form columns="2" value="#{youtubeBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+		
 			
-				<p>
-				<label for="nombreEvento">Nombre del Evento:</label>				
-					<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBean.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-						
-				<h4>Descripción:</h4>	
-					<h:panelGrid columns="2" border="0">																																		
-					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{catastrofeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
-				</h:panelGrid>													
-						
-				<h4>Logo:</h4>					
-				<h:panelGrid columns="2" border="0">																						
-					<h:inputFile id="logo" label="logo" value="#{catastrofeBean.part}" required="true" requiredMessage="El logo es obligatorio" >			
-					</h:inputFile>					 					
-				</h:panelGrid>					
-																
-				<p>
-				<label for="coordX">Coordenada X:</label>
-				<p:inputText id="coordX" label="coordenadaX" value="#{catastrofeBean.coordenadasX}" required="true" requiredMessage="La coordenada X es obligatoria" >
-				</p:inputText>					
-				</p>
-				<br/>
-				
-				<p><label for="coordY">Coordenada Y:</label>
-				<p:inputText id="coordY" label="coordenadaY" value="#{catastrofeBean.coordenadasY}" required="true" requiredMessage="La coordenada Y es obligatoria" >
-				</p:inputText>					
-				</p>	
-				<br/>
-				
-				<p>		
-				<p:selectBooleanCheckbox value="#{catastrofeBean.activa}"/> 
-				<label for="activa">Activa</label>						
-				</p>	
-				<br/>
-				
-				<p>	
-				<p:selectBooleanCheckbox value="#{catastrofeBean.prioridad}"/> 
-				<label for="prioridad">Prioridad</label>				
-				</p>	
-				<br/>															
-				
-			<p:commandButton id="comandoRegistrar" update="growl" ajax="false" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{catastrofeBean.registrarCatastrofe()}">
-			</p:commandButton>		
 			
-		</h:form>
-		</f:view>
-    </div>
-    
+			<p>			        		        
+            <p:graphicImage value="image/#{youtubeBean.catastrofeBean.logo}" /> 
+            <h:outputText value="" style="border: transparent;"/>	              		         	        	
+			</p>			
+			
+			<p>
+			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
+            <h:outputText value="#{youtubeBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+            </p>			
+               
+            <p>    
+           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
+            <h:outputText value="#{youtubeBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
+            </p>
+            
+            <p>                           	
+           	<p:outputLabel for="filtros" value="Filtros:"  />
+            	<p:selectOneMenu id="filtros" value="#{youtubeBean.filtroYoutubeBean}" panelStyle="width:180px"
+                         effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
+		            <f:selectItems value="#{youtubeBean.filtroYoutubes}" var="filtroYoutubeBean" itemLabel="#{filtroYoutubeBean.descripcion}" itemValue="#{filtroYoutubeBean}" />
+		 
+		            <p:column style="width:10%">
+		                <h:outputText styleClass="ui-theme ui-theme-#{t.descripcion}" />
+		            </p:column>
+		 
+		            <p:column>
+		                <h:outputText value="#{t.descripcion}" />
+		            </p:column>
+		        </p:selectOneMenu>		   
+            </p>
+            
+			<br/> 
+			 <p:outputPanel style="text-align: left">
+			 		<p:commandButton id="comandoRegistrar" type="submit" value="Registrar" action="#{youtubeBean.asignarServicios()}">
+					</p:commandButton>         	            		            	
+	         </p:outputPanel>	 
+                         
+        </h:form>
+                									        
+      </f:view>         
+    </div>    	  	  	  
+  	  	  	
     <br class="clear" />
   </div>
+ 	
+  
 </div>
 
 <div class="wrapper col7">
@@ -215,7 +211,7 @@
     <br class="clear" />
   </div>
 </div>
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {

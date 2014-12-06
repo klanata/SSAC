@@ -104,7 +104,7 @@
         <p:column>
             <p:submenu label="Servicio " icon="ui-icon-check">
                 <p:menuitem value="YouTube" url="filtrosSobreYoutube.xhtml" />
-                <p:menuitem value="Rss" url="#" />
+                
             </p:submenu>
         </p:column>
  	</p:submenu>
@@ -146,32 +146,154 @@
 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
     
     
-    <h:form id ="form">   
     
-    <h1> Cantidad de Donaciones de Bienes :</h1>
-   
-    <br/>
-    
-	
-		    
-
-    
-    
-   </h:form>
-   
+   <h3>Listar Donacion de Bienes</h3>
+      <br/>	
+      <f:view>      	
+      	
+      	<h:form id="formdonacion1">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="listarOngDT2" var="deBienesBean" widgetVar="donacionBTable" value = "#{ReporteDonacion.listaDeBienes}"
+                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{ReporteDonacion.filtroDeBienes}"               		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                 		 rowKey="#{deBienesBean.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Donacion de Bienes:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('donacionBTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    	
+		       
+		        
+        		         		                  		                  		             	
+        		
+        		<p:column headerText="Fecha Realizado" style="width:200px" filterBy="#{deBienesBean.fechaRealizada}" filterMatchMode="contains" >
+            		<h:outputText value="#{deBienesBean.fechaRealizada}" />
+        		</p:column>
+        		
+        		<p:column headerText="Descripcion" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean.nombreItem}" />
+        		</p:column>
+        	    
+        	    <p:column headerText="Monto donado" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean.cantidad}" />
+        		</p:column>
+        	    
+        	      <p:column headerText="Persona" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean.usuario}" />
+        		</p:column>
+        	       		     		 
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+      
+      </f:view>         
     </div>
     
     
+    <div id="intro">
+    <h3>Listar Donacion de Servicios</h3>
+      <br/>	
+      <f:view>      	
+      	
+      	<h:form id="formdonacion2">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="listarOngDT2" var="deBienesBean2" widgetVar="donacionBTable2" value = "#{ReporteDonacion.listaDeServicios}"
+                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{ReporteDonacion.filtroDeServicios}"               		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                 		 rowKey="#{deBienesBean2.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Donacion de Bienes:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('donacionBTable2').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    	
+		       
+		        
+        		         		                  		                  		             	
+        		
+        		<p:column headerText="Fecha Realizado" style="width:200px" filterBy="#{deBienesBean2.fechaRealizada}" filterMatchMode="contains" >
+            		<h:outputText value="#{deBienesBean2.fechaRealizada}" />
+        		</p:column>
+        		
+        		<p:column headerText="Area de Conocimiento" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean2.areaConocimient}" />
+        		</p:column>
+        	    
+        	    <p:column headerText="Cantidad de Horas" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean2.cantidadHoras}" />
+        		</p:column>
+        	    
+        	      <p:column headerText="Persona" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean2.usuario}" />
+        		</p:column>
+        	       		     		 
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+      
+      </f:view>         
+    </div>
     
     
+    <div id="intro">
+    <h3>Listar Donacion de Economica</h3>
+      <br/>	
+      <f:view>      	
+      	
+      	<h:form id="formdonacion3">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="listarOngDT3" var="deBienesBean3" widgetVar="donacionBTable3" value = "#{ReporteDonacion.listaEconomica}"
+                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{ReporteDonacion.filtroEconomica}"               		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                 		 rowKey="#{deBienesBean3.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Donacion Economica:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('donacionBTable3').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    	
+		       
+		        
+        		         		                  		                  		             	
+        		
+        		<p:column headerText="Fecha Realizado" style="width:200px" filterBy="#{deBienesBean3.fechaRealizada}" filterMatchMode="contains" >
+            		<h:outputText value="#{deBienesBean3.fechaRealizada}" />
+        		</p:column>
+        		
+        		
+        	    
+        	      <p:column headerText="Monto" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean3.monto}" />
+        		</p:column>
+        	       		     		 
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+      
+      </f:view>         
+    </div>    
     
     
-    <br class="clear" />
   </div>
-</div>
+
 
 
 <div class="wrapper col7">
