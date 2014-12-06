@@ -100,7 +100,7 @@ public class ListarRescatistaBean_ implements Serializable {
 				  celular = a.getCelular();
 				  rescatistasBean.add(i, new RescatistaBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular));
 				  i++;
-				  System.out.println("obtengo administradores: " + i);      	
+				
 		     
 		     }
 			

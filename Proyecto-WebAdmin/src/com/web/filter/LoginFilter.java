@@ -46,7 +46,7 @@ public class LoginFilter implements Filter {
 		  //Proceso la URL que está requiriendo el cliente
 		  String urlStr = req.getRequestURL().toString().toLowerCase();
 		  boolean noProteger = noProteger(urlStr);
-		  System.out.println(urlStr + " - desprotegido=[" + noProteger + "]");
+		 
 		  
 		  //Si no requiere protección continúo normalmente.
 		  if (noProteger(urlStr)) {
@@ -83,7 +83,7 @@ public class LoginFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

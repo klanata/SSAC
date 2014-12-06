@@ -65,7 +65,7 @@ public class ModificarOngBean implements Serializable{
 			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoOngEditar");
             if ((idEventoString == null) || (idEventoString == ""))
     		{	
-    			System.out.println("No existe ong "); 			
+    					
     			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
     			handler.performNavigation("listarOng?faces-redirect=true");
     		}
@@ -91,7 +91,7 @@ public class ModificarOngBean implements Serializable{
 				
 				ongBean =  new OngBean(id, nombre, direccion, telefono, email, citioWeb, descripcion);
 				 
-				  System.out.println("obtengo ong ");      	
+				      	
 		     
 		     }
 				
@@ -124,7 +124,7 @@ OngEBR manager = null;
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoOngEditar");
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
-			System.out.println("No existe ong"); 			
+			 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listarOng?faces-redirect=true");
 		}

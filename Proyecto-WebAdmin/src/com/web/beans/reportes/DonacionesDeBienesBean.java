@@ -5,9 +5,9 @@ import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.persistence.Column;
 
-@ManagedBean(name="DeBienesBean")
+
+@ManagedBean(name="DonacionesDeBienesBean")
 @RequestScoped
 public class DonacionesDeBienesBean implements Serializable{
 
@@ -47,6 +47,11 @@ public class DonacionesDeBienesBean implements Serializable{
 		this.cantidad = cantidad;
 	}
 
+	
+	public DonacionesDeBienesBean() {
+		super();
+		
+	}
 	public DonacionesDeBienesBean(Date fechaRealizada, String nombreItem,
 			Integer cantidad) {
 		super();
@@ -55,9 +60,6 @@ public class DonacionesDeBienesBean implements Serializable{
 		this.cantidad = cantidad;
 	}
 	
-	public DonacionesDeBienesBean() {
-		super();
-		
-	}
+	
 
 }

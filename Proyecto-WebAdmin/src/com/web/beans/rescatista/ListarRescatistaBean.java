@@ -106,7 +106,7 @@ public class ListarRescatistaBean implements Serializable {
 					  celular = a.getCelular();
 					  rescatistasBean.add(i, new RescatistaBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular));
 					  i++;
-					  System.out.println("obtengo administradores: " + i);      	
+					      	
 			    } 
 		     }
 			
@@ -163,7 +163,7 @@ public class ListarRescatistaBean implements Serializable {
 		
 		///Obtenego el string con el id del objeto
 		Long id = ((RescatistaBean) event.getObject()).getId();
-		System.out.println("id del Rescatista seleccionada: " + id);
+		
 		//Pasarlo a string cuando lo mandemos por sesion
 		String idEvento = id.toString();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoRescatista", idEvento); 		

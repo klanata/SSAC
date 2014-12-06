@@ -69,7 +69,7 @@ public class ModificaRescatistaBean implements Serializable {
 			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoRescatista");
             if ((idEventoString == null) || (idEventoString == ""))
     		{	
-    			System.out.println("No existe rescatista "); 			
+    						
     			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
     			handler.performNavigation("listarRescatistas?faces-redirect=true");
     		}
@@ -96,7 +96,7 @@ public class ModificaRescatistaBean implements Serializable {
 				
 				rescatistaBean = new RescatistaBean(idAdministrador, nombre, apellido, nick, email, password, fechaNac, sexo, celular);
 				 
-				  System.out.println("obtengo rescatista ");      	
+				 	
 		     
 		     }
 				
@@ -129,7 +129,7 @@ public class ModificaRescatistaBean implements Serializable {
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoRescatista");
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
-			System.out.println("No existe rescatista "); 			
+						
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listarRescatistas?faces-redirect=true");
 		}

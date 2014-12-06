@@ -84,7 +84,7 @@ public class RescatistaEB implements RescatistaEBR {
 		    	   
 		    	   listaDTO.add(planesDTO);
 		    	   
-		    	   System.out.print("la lista no esta vacia");
+		    	   
 		       }
 		       
 		       
@@ -109,8 +109,7 @@ public class RescatistaEB implements RescatistaEBR {
 			EstadoRescatista estadoRescatista = new EstadoRescatista();
 			estadoRescatista.setPendiente(true);
 			estadoRescatista.setIdPedidoAyuda(id);
-			//FIXME: Stephy: victoria aca deje setado el nombre de la catastrofe ya que la tea no estaba pensado en todo caso 
-			//me la tienen que pasar desde la catastrofe.
+			
 			estadoRescatista.setNombreTarea(pedidoGuardar.getDescripcion());
 			//busco el rescatista para asignar
 			Rescatista rescatista = rescatistaService.obtenerRescatistaConMenosPendientes();
@@ -204,50 +203,7 @@ public class RescatistaEB implements RescatistaEBR {
 		
 		Rescatista r = obtenerRescatistaNik(nick);
 		r.setBajaLogica(true);
-		dataService.update(r);
 		
-		
-		/** problemas al borrar
-		Boolean eliminar =  false;
-		Rescatista r = obtenerRescatistaNik(nick);
-		
-		r.getEstadoRescatista();
-		//pregunto si tiene pendientes
-		Collection<PlanesPendientesRescatistaDTO> pendientes = listarPendientesRescatistaPorCatastrofe(nick);
-		if(pendientes == null)
-		{
-			//obtengo rescartista
-			
-			dataService.delete(r);
-			eliminar = true;
-		}
-		else{
-			
-				//obtengo lista de sus pendientes
-			Collection<EstadoRescatista> listaPendientesUsuarioBorrar =  r.getEstadoRescatista();
-			Rescatista rescatistaAsignar = rescatistaService.obtenerRescatistaConMenosPendientes();
-			//obtengo su colleccion de pendientes
-			
-			Collection<EstadoRescatista> lista = rescatistaAsignar.getEstadoRescatista();
-			
-			Iterator<EstadoRescatista> it = listaPendientesUsuarioBorrar.iterator();
-			
-			while(it.hasNext())
-			{
-				
-				EstadoRescatista e = it.next();
-				lista.add(e);
-				
-			}
-			
-			dataService.update(rescatistaAsignar);
-			r.setBajaLogica(true);
-			dataService.update(r);
-			
-			
-		}		
-		
-		*/
 		return true;
 	}
 
@@ -296,7 +252,6 @@ public class RescatistaEB implements RescatistaEBR {
 		try {
 			dataService.create(estadoRescatista);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

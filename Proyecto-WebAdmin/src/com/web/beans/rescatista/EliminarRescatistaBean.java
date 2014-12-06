@@ -59,7 +59,7 @@ public class EliminarRescatistaBean implements Serializable {/**
 			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoRescatistaEliminar");
             if ((idEventoString == null) || (idEventoString == ""))
     		{	
-    			System.out.println("No existe administrador "); 			
+    						
     			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
     			handler.performNavigation("listarAdministrador?faces-redirect=true");
     		}
@@ -87,7 +87,7 @@ public class EliminarRescatistaBean implements Serializable {/**
 				rescatistaBean = new RescatistaBean(id, nombre, apellido, nick, email, password, fechaNac, sexo, celular);
 				
 				 
-				  System.out.println("obtengo rescatista ");      	
+				   	
 		     
 		     }
 				
@@ -121,7 +121,7 @@ public class EliminarRescatistaBean implements Serializable {/**
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoRescatistaEliminar");
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
-			System.out.println("No existe rescatista"); 			
+						
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listarRescatistas_?faces-redirect=true");
 		}
@@ -134,7 +134,7 @@ public class EliminarRescatistaBean implements Serializable {/**
 			a = manager.obtenerRescatistaID(idRescatista);
 			
 			String nick = a.getNick();
-					eliminado= manager.eliminarRescatista(nick);
+			eliminado= manager.eliminarRescatista(nick);
 			
 
 

@@ -136,7 +136,7 @@ public class ListarOngBean_ implements Serializable{
 		
 		///Obtenego el string con el id del objeto
 		Long id = ((OngBean) event.getObject()).getId();
-		System.out.println("id del ong seleccionada: " + id);
+	
 		//Pasarlo a string cuando lo mandemos por sesion
 		String idEvento = id.toString();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoOngEliminar", idEvento); 		
