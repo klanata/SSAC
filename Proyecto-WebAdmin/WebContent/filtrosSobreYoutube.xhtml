@@ -104,7 +104,7 @@
         <p:column>
             <p:submenu label="Servicio " icon="ui-icon-check">
                 <p:menuitem value="YouTube" url="filtrosSobreYoutube.xhtml" />
-                <p:menuitem value="Rss" url="#" />
+                
             </p:submenu>
         </p:column>
  	</p:submenu>
@@ -129,7 +129,7 @@
     <p:submenu label="Reporte" icon="ui-icon-contact">
         <p:column>
             <p:submenu label="Reportes">
-                <p:menuitem value="Donaciones" url="#" />
+                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
                 <p:menuitem value="Pedidos de ayuda" url="#" />
             </p:submenu>
             
@@ -183,8 +183,7 @@
      		
      		<br/> 
 			 <p:outputPanel style="text-align: left">
-			 		<p:commandButton value="Agregar" action="#{listaFiltrosYoutubeBean.asignarFiltro()}"/>         
-	            	<p:commandButton value="Quitar" action="#{listaFiltrosYoutubeBean.borrarFiltro()}"/>	            	
+			 		<p:commandButton value="Agregar" action="#{listaFiltrosYoutubeBean.asignarFiltro()}"/>         	            		            
 	         </p:outputPanel>	
 	         <br/> 		    		     		
      		
@@ -196,6 +195,7 @@
     <br class="clear" />
   </div>
 </div>
+
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
@@ -203,5 +203,15 @@
     <br class="clear" />
   </div>
 </div>
-</h:body> 
+
+	<script type="text/javascript">
+	  //<![CDATA[
+	  function logout(xhr, status, args) {
+	    setTimeout(function() {
+	      window.location = 'home.xhtml';
+	    }, 500);
+	  }
+	//]]>
+	</script>
+	</h:body> 
 </html>

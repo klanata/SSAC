@@ -104,7 +104,7 @@
         <p:column>
             <p:submenu label="Servicio " icon="ui-icon-check">
                 <p:menuitem value="YouTube" url="filtrosSobreYoutube.xhtml" />
-                <p:menuitem value="Rss" url="#" />
+                
             </p:submenu>
         </p:column>
  	</p:submenu>
@@ -156,12 +156,15 @@
 						
 				<h4>Descripción:</h4>	
 					<h:panelGrid columns="2" border="0">																																		
-					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{filtroYoutubeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{filtroYoutubeBean.descripcion}" required="true" requiredMessage="La descripción del filtro es obligatoria"/>								 					
 				</h:panelGrid>																							
 				<br/>
-																											
-			<p:commandButton id="comandoRegistrar" update="growl" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{filtroYoutubeBean.registrarFiltroYoutube()}">
-			</p:commandButton>		
+							
+			<br/> 
+			 <p:outputPanel style="text-align: left">
+			 		<p:commandButton id="comandoRegistrar" update="growl" type="submit" value="Registrar" action="#{filtroYoutubeBean.registrarFiltroYoutube()}">
+					</p:commandButton>         	            		            	
+	         </p:outputPanel>																																
 			
 		</h:form>
 		</f:view>
@@ -177,5 +180,15 @@
     <br class="clear" />
   </div>
 </div>
-</h:body> 
+
+	<script type="text/javascript">
+	  //<![CDATA[
+	  function logout(xhr, status, args) {
+	    setTimeout(function() {
+	      window.location = 'home.xhtml';
+	    }, 500);
+	  }
+	//]]>
+	</script>
+	</h:body> 
 </html>
