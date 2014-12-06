@@ -46,24 +46,21 @@
 
             var listaPedidosPendientes = new Array();
             var nick = window.localStorage.getItem("usuarioNick");
-            alert("Nick Storaged: "+ nick);
+            //alert("Nick Storaged: "+ nick);
             //$.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Emulador Android - llamada al rest
             $.ajax({url:"http://172.16.102.91:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Utu
             //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Utu
             //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Emulador Android - llamada al rest
                 success:function(response) {
                     //useReturnData(response);
-                    if(response === Array){
-                        listaPedidosPendientes = response.planesPendientesRescatistaDTOes;
-                    }
-                    else{
-                        listaPedidosPendientes = response.planesPendientesRescatistaDTO;
-                    }
+                    
+                    listaPedidosPendientes = response.planesPendientesRescatistaDTO;
+                  
                     window.localStorage.setItem("listaPedidosStorage", listaPedidosPendientes);
-                    alert(response.toString());
-                    alert("listaPedidosPendientes guardado: "+ listaPedidosPendientes);
-                    alert("listaPedidosPendientes length: "+ listaPedidosPendientes.length);
-                    alert("listaPedidosPendientes cero: "+ listaPedidosPendientes[0]);
+                    //alert(response.toString());
+                    //alert("listaPedidosPendientes guardado: "+ listaPedidosPendientes);
+                    //alert("listaPedidosPendientes length: "+ listaPedidosPendientes.length);
+                    //alert("listaPedidosPendientes cero: "+ listaPedidosPendientes[0]);
                     //alert(window.localStorage.getItem("listaPedidosStorage"));
                     //listaPedidosPendientes = response.planesPendientesRescatistaRests;
                     //console.log(listaPedidosPendientes);
@@ -94,8 +91,8 @@
 
                     //cargar las ubicaciones de los pedidos de ayuda en el mapa
                     var marcador="";
-                    if(listaPedidosPendientes === Array){
-                        alert("if");
+                    if(listaPedidosPendientes.lenght > 1){
+                        //alert("if");
                          for (var i = 0; i < listaPedidosPendientes.length; i++) {  
                             marcador = new google.maps.Marker({
                             position: new google.maps.LatLng(listaPedidosPendientes[i].coordenadaX, listaPedidosPendientes[i].coordenaday),
@@ -122,8 +119,8 @@
                             });
                          }
                     }else{
-                            alert("else");
-                            alert(listaPedidosPendientes);
+                            //alert("else");
+                            //alert(listaPedidosPendientes);
                             marcador = new google.maps.Marker({
                             position: new google.maps.LatLng([listaPedidosPendientes][0].coordenadaX, [listaPedidosPendientes][0].coordenaday),
                             map: map
