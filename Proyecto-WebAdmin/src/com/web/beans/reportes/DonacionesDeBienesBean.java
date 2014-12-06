@@ -55,6 +55,9 @@ public class DonacionesDeBienesBean implements Serializable{
 		this.cantidad = cantidad;
 	}
 	
-	
+	public DonacionesDeBienesBean() {
+		super();
+		
+	}
 
 }
