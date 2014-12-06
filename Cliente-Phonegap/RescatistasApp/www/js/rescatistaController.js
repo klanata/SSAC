@@ -42,8 +42,9 @@ function rescatistaController($scope) {
         */
         
         //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Android emulador
-        //$.ajax({url:"http://192.168.0.100:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Android nativo - red local Victoria 
-        $.ajax({url:"http://172.16.102.89:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing  
+        //$.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Android nativo - red local Victoria 
+        //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing 
+        $.ajax({url:"http://172.16.102.91:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing 
         //$.ajax({url:"http://192.168.7.245:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Utu 
         //$.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Web - desde WAMP no se puede por CORS
             success:function(response) {
@@ -51,6 +52,7 @@ function rescatistaController($scope) {
                 if(response.booleanValue === 'true')
                 {
                     alert('ok');
+                    window.localStorage.setItem("usuarioNick", $scope.nick);
                     $scope.listarPlanes();
                     $scope.nick = "";
                     $scope.password = "";
@@ -166,11 +168,12 @@ function rescatistaController($scope) {
         //llama a funcion del rest que finaliza la ejecucion del plan y le pasa $scope.idPlanActual
 
         //$.ajax({url:"http://192.168.0.100:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Android nativo - red local
-        $.ajax({url:"http://172.16.102.89:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Utu
+        //$.ajax({url:"http://172.16.102.89:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Utu
+        //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Utu
         //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Emulador Android - llamada al rest
         //$.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Emulador Android - llamada al rest
         //$.ajax({url:"http://10.0.2.2/RescatistasApp/www/planesEmergenciaDB.js",//Emulador Android - llamada de prueba
-        //$.ajax({url:"http://192.168.0.104/RescatistasApp/www/planesEmergenciaDB.js",//Android nativo, red local - llamada de prueba
+        $.ajax({url:"http://172.16.102.91/RescatistasApp/www/planesEmergenciaDB.js",//Android nativo, red local - llamada de prueba
         //$.ajax({url:"http://localhost/RescatistasApp/www/planesEmergenciaDB.js",//Web - llamada de prueba
             success:function(response) {
                 alert("Plan finalizado");

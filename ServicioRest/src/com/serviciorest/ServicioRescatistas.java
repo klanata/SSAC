@@ -70,35 +70,9 @@ public class ServicioRescatistas {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	@Path("verPendientes")
-	public List<PlanesPendientesRescatistaDTO> getPlanesPendientes(
+	@Path("verPendientesAux")
+	public List<PlanesPendientesRescatistaRest> getPlanesPendientesAux(
 			@QueryParam("nick") String nick) throws Exception {
-		manager = null;
-		context = null;
-
-		List<PlanesPendientesRescatistaDTO> planesPendientes = new ArrayList<PlanesPendientesRescatistaDTO>();
-
-		try {
-			// 1. Obtaining Context
-			context = ClienteUtility.getInitialContext();
-			// 2. Generate JNDI Lookup name
-			// String lookupName = getLookupName();
-			// 3. Lookup and cast
-			manager = (RescatistaEBR) context.lookup(conexion);
-			// Descomentar lo siguiente cuando esté implementado el método en
-			// core:
-			// path = manager.getRutaPlan(nombreArchivo);
-
-			Long idCatastrofe = new Long(1);// Borrar cuando se modifique el
-											// método.
-			planesPendientes= (List<PlanesPendientesRescatistaDTO>)
-			manager.listarPendientesRescatistaPorCatastrofe(nick);//cambiar
-			// cuando se modifique el método.
-			
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
 		/* Éstos son datos de prueba */
 		List<PlanesPendientesRescatistaRest> listaPlanesAux = new ArrayList<PlanesPendientesRescatistaRest>();
@@ -122,17 +96,49 @@ public class ServicioRescatistas {
 		PlanesPendientesRescatistaRest c = new PlanesPendientesRescatistaRest();
 		c.setIdEstadoRescatista(new Long(3));
 		c.setDescripcion("Estoy en Av Italia y Propios!!");
-		c.setCoordPedidoAyudaX(-33.58400);
+		c.setCoordPedidoAyudaX(-36.58400);
 		c.setCoordPedidoAyudaY(-55.2541);
 		c.setUrlArchivo("http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf");
 		listaPlanesAux.add(c);
 
-		//return listaPlanesAux;
-
-		return planesPendientes;
+		return listaPlanesAux;
 	}
 
-	// /////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+		@GET
+		@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+		@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+		@Path("verPendientes")
+		public List<PlanesPendientesRescatistaDTO> getPlanesPendientes(
+				@QueryParam("nick") String nick) throws Exception {
+			manager = null;
+			context = null;
+
+			List<PlanesPendientesRescatistaDTO> planesPendientes = new ArrayList<PlanesPendientesRescatistaDTO>();
+
+			try {
+				// 1. Obtaining Context
+				context = ClienteUtility.getInitialContext();
+				// 2. Generate JNDI Lookup name
+				// String lookupName = getLookupName();
+				// 3. Lookup and cast
+				manager = (RescatistaEBR) context.lookup(conexion);
+				// path = manager.getRutaPlan(nombreArchivo);
+
+				planesPendientes= (List<PlanesPendientesRescatistaDTO>)
+				manager.listarPendientesRescatistaPorCatastrofe(nick);
+				
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+
+			return planesPendientes;
+		}
+
+		// /////////////////////////////////////////////////////////////////////////
+		
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
