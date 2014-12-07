@@ -80,8 +80,8 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>(0);
 		
-	@ManyToMany
-	private Set<Servicio> servicios = new HashSet<Servicio>(0);	
+	@ManyToMany(mappedBy="catastrofes")
+	private Set<Filtro> filtros = new HashSet<Filtro>(0);	
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Ong> ongs = new HashSet<Ong>(0);
@@ -90,7 +90,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	private Set<PedidoDeAyuda> pedidosDeAyuda =  new HashSet<PedidoDeAyuda>(0);
 	
 	@OneToOne
-	private PlanDeRiesgo planDeRiesgo ;
+	private PlanDeRiesgo planDeRiesgo;
 	
 	private boolean bajaLogica;
 	
@@ -109,7 +109,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.prioridad = false;		
 		this.css = new String();
 		this.imagenes = new HashSet<ImagenCatastrofe>();
-		this.servicios = new HashSet<Servicio>();
+		this.filtros = new HashSet<Filtro>();
 		this.setOngs(new HashSet<Ong>(0));
 		//this.ongs = new HashSet<Ong>(0);
 		this.planDeRiesgo = null;	
@@ -133,7 +133,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	 * @param bajaLogica	
 	 */
 	public Catastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, double coordenadasY,
-			Boolean activa, Boolean prioridad, String css, Set<ImagenCatastrofe> imagenes, Set<Servicio> servicios,
+			Boolean activa, Boolean prioridad, String css, Set<ImagenCatastrofe> imagenes, Set<Filtro> filtros,
 			Set<Ong> ongs, Set<PedidoDeAyuda> pedidosDeAyuda, PlanDeRiesgo planDeRiesgo, boolean bajaLogica) {
 		super();
 		this.nombreEvento = nombreEvento;
@@ -145,7 +145,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.prioridad = prioridad;	
 		this.css = css;
 		this.setImagenes(imagenes);
-		this.servicios = servicios;
+		this.filtros = filtros;
 		this.setOngs(ongs);
 		//this.ongs = ongs;
 		this.pedidosDeAyuda = pedidosDeAyuda;
@@ -209,12 +209,12 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	}
 	public void setCss(String css) {
 		this.css = css;
-	}
-	public Set<Servicio> getServicios() {
-		return servicios;
 	}	
-	public void setServicios(Set<Servicio> servicios) {
-		this.servicios = servicios;
+	public Set<Filtro> getFiltros() {
+		return filtros;
+	}
+	public void setFiltros(Set<Filtro> filtros) {
+		this.filtros = filtros;
 	}
 	public Set<Ong> getOngs() {
 		return ongs;

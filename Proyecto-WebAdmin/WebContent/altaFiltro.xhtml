@@ -10,10 +10,9 @@
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
-	
-	
-</h:head> 
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />		
+</h:head>
+ 
 <h:body id="top"> 
 <div class="wrapper col1">
   <div id="header">
@@ -88,13 +87,24 @@
             </p:submenu>
         </p:column>
     </p:submenu>
- 
+     
     <p:submenu label="Ong" >
          <p:column>
             <p:submenu label="ABM">
                 <p:menuitem value="Alta" url="altaOng.xhtml" icon="ui-icon-check"/>
                 <p:menuitem value="Baja" url="listarOng_.xhtml" icon="ui-icon-close" />
                 <p:menuitem value="Modificación" url="listarOng.xhtml" icon="ui-icon-pencil"/>
+                
+            </p:submenu>
+        </p:column>
+    </p:submenu>
+    
+    <p:submenu label="Filtro" >
+         <p:column>
+            <p:submenu label="ABM">
+                <p:menuitem value="Alta" url="altaFiltro.xhtml" icon="ui-icon-check"/>
+                <p:menuitem value="Baja" url="" icon="ui-icon-close" />
+                <p:menuitem value="Modificación" url="" icon="ui-icon-pencil"/>
                 
             </p:submenu>
         </p:column>
@@ -129,7 +139,7 @@
     <p:submenu label="Reporte" icon="ui-icon-contact">
         <p:column>
             <p:submenu label="Reportes">
-                <p:menuitem value="Donaciones" url="#" />
+                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
                 <p:menuitem value="Pedidos de ayuda" url="#" />
             </p:submenu>
             
@@ -147,24 +157,26 @@
 <div class="wrapper col3">
   <div id="intro">
     <div class="fl_left">
-      <h2>Asignar Filtros sobre Youtube</h2>
+      <h2>Registrar Filtro</h2>
       <br/>	
       <f:view>
-		<h:form id="registroFiltroYoutube">
+		<h:form id="registroFiltro">
 						
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />							
-						
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			
+				<h4>Descripción:</h4>	
+					<h:panelGrid columns="2" border="0">																																		
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{filtroBean.descripcion}" required="true" requiredMessage="La descripción del filtro es obligatoria"/>								 					
+				</h:panelGrid>																							
+				<br/>															
 				
-							
-			<br/> 
-			 <p:outputPanel style="text-align: left">
-			 		<p:commandButton id="comandoRegistrar" update="growl" type="submit" value="Registrar" action="#{filtroYoutubeBean.registrarFiltroYoutube()}">
-					</p:commandButton>         	            		            	
-	         </p:outputPanel>																																
+			<p:commandButton id="comandoRegistrar" update="growl" ajax="false" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{filtroBean.registrar()}">
+			</p:commandButton>		
 			
 		</h:form>
 		</f:view>
-    </div>    
+    </div>               
+    
     <br class="clear" />
   </div>
 </div>
@@ -176,7 +188,6 @@
     <br class="clear" />
   </div>
 </div>
-
 	<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
@@ -186,5 +197,5 @@
 	  }
 	//]]>
 	</script>
-	</h:body> 
+</h:body> 
 </html>

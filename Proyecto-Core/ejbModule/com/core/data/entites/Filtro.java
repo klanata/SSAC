@@ -60,11 +60,14 @@ public class Filtro extends AbstractEntity implements Serializable {
 	@Column(name= "id", nullable= false)
 	private long id;		
 	
-	@Column( nullable= false)
+	@Column(unique=true, nullable= false)
 	private String descripcion = "";				
 		
 	@ManyToMany(mappedBy="filtros")
-	private Set<Servicio> servicios = new HashSet<Servicio>(0);			
+	private Set<Servicio> servicios = new HashSet<Servicio>(0);	
+	
+	@ManyToMany
+	private Set<Catastrofe> catastrofes = new HashSet<Catastrofe>(0);
 	
 	private boolean bajaLogica;
 	

@@ -17,11 +17,16 @@ import clienteutility.ClienteUtility;
 import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
-import com.core.data.entites.Servicio;
+import com.core.data.entites.Filtro;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.web.beans.InputBean;
 
 import javax.servlet.http.Part;
+
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 
 
 @ManagedBean(name="catastrofeBean")
@@ -40,10 +45,18 @@ public class CatastrofeBean implements Serializable{
 	private Boolean prioridad;
 	private String css;
 	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>();
-	private Set<Servicio> servicios = new HashSet<Servicio>();
+	private Set<Filtro> filtros = new HashSet<Filtro>();
 	private Set<Ong> ongs  =  new HashSet<Ong>();
 	private PlanDeRiesgo planDeRiesgo;	
 	private Part part;	
+	
+	private MapModel emptyModel;
+    
+    private String title;
+      
+    private double lat;
+      
+    private double lng;
 	
 	
 	//	------------------ Constructors  --------------------------------
@@ -126,12 +139,12 @@ public class CatastrofeBean implements Serializable{
 	}
 	public void setImagenes(Set<ImagenCatastrofe> imagenes) {
 		this.imagenes = imagenes;
+	}	
+	public Set<Filtro> getFiltros() {
+		return filtros;
 	}
-	public Set<Servicio> getServicios() {
-		return servicios;
-	}
-	public void setServicios(Set<Servicio> servicios) {
-		this.servicios = servicios;
+	public void setFiltros(Set<Filtro> filtros) {
+		this.filtros = filtros;
 	}
 	public Set<Ong> getOngs() {
 		return ongs;
@@ -151,10 +164,37 @@ public class CatastrofeBean implements Serializable{
 	public void setPart(Part part) {
 		this.part = part;
 	}
+	public MapModel getEmptyModel() {
+		return emptyModel;
+	}
+	public void setEmptyModel(MapModel emptyModel) {
+		this.emptyModel = emptyModel;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public double getLat() {
+		return lat;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	public double getLng() {
+		return lng;
+	}
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
 	
 	//	------------------ Operaciones ---------------------
 		
-	public String registrarCatastrofe(){				
+	
+	public String registrarCatastrofe(){
+		
+		emptyModel = new DefaultMapModel();
 		
 		CatastrofeEBR manager = null;		
 		
@@ -178,7 +218,7 @@ public class CatastrofeBean implements Serializable{
     		InputBean inputBean = new InputBean();
     		String logo= inputBean.uploadFile(this.part);   
     		String css = null;
-       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, servicios, ongs, planDeRiesgo);    	
+       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo);    	
     		if (in == 0){
     			System.out.println("es repetido." + in);
     			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
@@ -204,5 +244,15 @@ public class CatastrofeBean implements Serializable{
 	        return "failure";     		
     	}        	    	
 	}	
+	
+	public void addMarker() {
+		System.out.println("Excepcion en agregar catastrofe1: " );
+        Marker marker = new Marker(new LatLng(lat, lng), title);
+        //nombreEvento = title;
+        System.out.println("Excepcion en agregar catastrofe2: " );
+        emptyModel.addOverlay(marker);
+          
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Added", "Lat:" + lat + ", Lng:" + lng));
+    }
 			
 }
