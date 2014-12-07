@@ -101,6 +101,13 @@ public class UsuarioEB implements UsuarioEBR{
 	  	return usuario;
 		
 	}
+	@Override
+	public Usuario buscarUsuario(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
 	
 	
 	

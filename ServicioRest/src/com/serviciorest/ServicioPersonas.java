@@ -105,18 +105,13 @@ public class ServicioPersonas {
             e.printStackTrace();
         }
 		
-		try {
-				Usuario usuario = manager.buscarUsuario(id);
-				
-				p.setId(usuario.getId());
-				p.setNombre(usuario.getNombre());
-				p.setEmail(usuario.getEmail());
-				p.setNick(usuario.getNick());
-				p.setFechaNac(usuario.getFechaNac());
-				
-		} catch (NamingException e) {
-            e.printStackTrace();
-        }
+		Usuario usuario = manager.buscarUsuario(id);
+		
+		p.setId(usuario.getId());
+		p.setNombre(usuario.getNombre());
+		p.setEmail(usuario.getEmail());
+		p.setNick(usuario.getNick());
+		p.setFechaNac(usuario.getFechaNac());
 		
 		
 				
@@ -149,7 +144,7 @@ public class ServicioPersonas {
 			String email = "email@rest.com";
 			String nombre = "nombreResst"; 
 			Date fechaNac = new Date();
-			manager.ingesarUsuraio(login, password, email, nombre, fechaNac);
+		//	manager.ingesarUsuraio(login, password, email, nombre, fechaNac);
 			
 			
 		

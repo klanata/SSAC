@@ -19,6 +19,7 @@ public interface UsuarioEBR {
 	public void registroUsuarioPlataforma(String nick, String pass, String mail, String nombre,Date fecha,long idCatastrofe);
 	
 	public Usuario obtenerUsuario(String nick);
+	public Usuario buscarUsuario(String id);
 	
 	
 	
