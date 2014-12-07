@@ -58,12 +58,7 @@ public class Servicio  extends AbstractEntity implements Serializable {
 	private String url = "";
 	
 	@Column(name= "fuente",  nullable= false)
-	private String fuente = "";
-	
-	//private Collection<String> filtros = new ArrayList<String>(0);
-	
-	@ManyToMany(mappedBy="servicios")
-	private Set<Catastrofe> catastrofes = new  HashSet<Catastrofe>(0);
+	private String fuente = "";		
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Filtro> filtros = new  HashSet<Filtro>(0);
@@ -74,30 +69,20 @@ public class Servicio  extends AbstractEntity implements Serializable {
 	public Servicio() {
 		super();
 		this.url = new String();
-		this.fuente = new String();
-		this.catastrofes = new HashSet<Catastrofe>();		
+		this.fuente = new String();		
 		this.filtros = new HashSet<Filtro>();		
 	}
 	
-	public Servicio(String url, String fuente,  Set<Catastrofe> catastrofes, Set<Filtro> filtros) {
+	public Servicio(String url, String fuente, Set<Filtro> filtros) {
 		super();
 		this.url = url;
-		this.fuente = fuente;
-		this.catastrofes = catastrofes;
+		this.fuente = fuente;		
 		this.filtros = filtros;
 	}
 	
 	
 	//	------------------ Getter and setter methods ---------------------
-	
-	public Set<Catastrofe> getCatastrofes() {
-		return catastrofes;
-	}
-
-	public void setCatastrofes(Set<Catastrofe> catastrofes) {
-		this.catastrofes = catastrofes;
-	}
-
+		
 	public Long getId() {
 		return id;
 	}

@@ -14,12 +14,11 @@ import javax.ws.rs.Path;
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
-import com.core.data.entites.Servicio;
+import com.core.data.entites.Filtro;
 import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
-import com.core.data.persistencia.interfaces.locales.ServicioDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.data.persistencia.DataService;
 
@@ -39,14 +38,12 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	@EJB
 	private PlanDeRiesgoDAO planDeRiesgoDO;
-	
-	@EJB
-	private ServicioDAO servicioDAO;
+
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
 		double coordenadasY, Boolean activa, Boolean prioridad, String css, Set<ImagenCatastrofe> imagenes, 
-		Set<Servicio> servicios, Set<Ong> ongs,	PlanDeRiesgo planDeRiesgo)throws Exception {
+		Set<Filtro> filtros, Set<Ong> ongs,	PlanDeRiesgo planDeRiesgo)throws Exception {
 				
 		Catastrofe c = new Catastrofe();
 		Long id;	
@@ -60,7 +57,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setPrioridad(prioridad);
 		c.setCss(css);
 		c.setImagenes(imagenes);
-		c.setServicios(servicios);
+		c.setFiltros(filtros);
 		c.setOngs(ongs);
 		c.setPlanDeRiesgo(planDeRiesgo);
 		c.setBajaLogica(false);
@@ -272,13 +269,14 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	public void asignarServicioALaCatastrofe(Long idCatastrofe, Long idServicio) throws Exception{
 		try {
+			/*
 			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);							
 			Servicio servicio = servicioDAO.buscarServicioPorId(idServicio);
 			
 			Set<Servicio> servicios = c.getServicios();
 			servicios.add(servicio);
 			dataService.update(c);
-			
+			*/
 			
 		}catch (Exception e) {			
 			e.printStackTrace();
