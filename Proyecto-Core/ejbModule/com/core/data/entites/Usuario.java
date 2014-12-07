@@ -1,6 +1,8 @@
 package com.core.data.entites;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.persistence.*;
@@ -59,6 +61,29 @@ public class Usuario extends AbstractEntity implements Serializable {
 	private Date fechaNac;
 	
 	private boolean bajaLogica;
+	
+	@OneToMany(fetch=FetchType.EAGER)
+	private Set<Catastrofe> catastrofesRegistradas = new HashSet<Catastrofe>(0);
+	
+
+	
+	
+	
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
+	public Set<Catastrofe> getCatastrofesRegistradas() {
+		return catastrofesRegistradas;
+	}
+
+	public void setCatastrofesRegistradas(Set<Catastrofe> catastrofesRegistradas) {
+		this.catastrofesRegistradas = catastrofesRegistradas;
+	}
 
 	public boolean isBajaLogica() {
 		return bajaLogica;

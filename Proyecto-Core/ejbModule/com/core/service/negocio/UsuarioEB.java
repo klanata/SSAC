@@ -1,11 +1,17 @@
 package com.core.service.negocio;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Path;
 
+import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.UsuarioDAO;
@@ -19,90 +25,83 @@ public class UsuarioEB implements UsuarioEBR{
 	private UsuarioDAO usuarioDAO;
 	@EJB
 	private DataService dataService;
-	////////////////////////////////////////////////////////////////////////////////
-	public boolean existeUsuario(String login, String password) {
 	
-		boolean existe =false ;
-		if(login.isEmpty() && password.isEmpty())
-		{
-			existe = false;
-		}
-		else
-		{
-			existe=  usuarioDAO.existeUsuario(login, password);
-			
-		}
-		return existe;
+	@PersistenceContext
+	protected EntityManager em;
+	
+	protected EntityManager getEntityManager() {
+		
+		return em;
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	public boolean ingesarUsuraio(String login, String password, String email,
-			String nombre, Date fechaNac) {
+	@Override
+	public boolean existeUsuario(String nick, String pass) {
 		
-		boolean ingreso = false;
+		boolean existe =false ;
 		
+		
+			existe=  usuarioDAO.existeUsuario(nick, pass);
+			
+		
+		return existe;
+	}
+	@Override
+	public boolean estaRegistradoCatastrofe(String nick, 
+			long idCatastrofe) {
+		
+		//
+		
+		
+		return false;
+	}
+	@Override
+	public void registrarACatastrofe(String nick, String pass, long idCatastrofe) {
+		
+		
+	}
+	@Override
+	public void registroUsuarioPlataforma(String nick, String pass,
+			String mail, String nombre, Date fecha, long idCatastrofe) {
+		
+		//se ejecuta solo una vez
+		Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
 		Usuario u = new Usuario();
-		u.setEmail(email);
-		u.setFechaNac(fechaNac);
-		u.setNick(login);
+		u.setEmail(mail);
+		u.setFechaNac(fecha);
+		u.setNick(nick);
 		u.setNombre(nombre);
-		u.setPassword(password);
+		u.setPassword(pass);
 		u.setBajaLogica(false);
+		Set<Catastrofe> lista = u.getCatastrofesRegistradas();
+		lista.add(c);
+		u.setCatastrofesRegistradas(lista);
 		
 		try {
 			Long id = usuarioDAO.insert(u);
-			if(id != 0){ ingreso = true;}
+			
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}
 		
-		return ingreso;
 	}
-	////////////////////////////////////////////////////////////////////////////////
-	public Usuario buscarUsuario(String nick) throws Exception {
+	@Override
+	public Usuario obtenerUsuario(String nick) {
 		
-		Usuario u = null;
-		if(nick.isEmpty())
-		{
-			u = null;
-		}else{
-			
-			u = usuarioDAO.BuscarUsuarioNick(nick);
-			
-		}
-		
-		return u;
-	}
-	////////////////////////////////////////////////////////////////////////////////
-	public void eliminarUsuario(String nick) {
-		
-		Usuario entidad = usuarioDAO.BuscarUsuarioNick(nick);
-		if( entidad != null)
-		{
-			 
-			dataService.delete(entidad);
-			
-		}
+		Usuario usuario = null;
+		try{
+			Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona");
+		  	consulta.setParameter("nick", nick);
+		  	if (!consulta.getResultList().isEmpty()){
+		  		usuario = (Usuario) consulta.getResultList().get(0);
+		  	} 
+		}catch (Exception excep){			
+			throw excep;
+		} 	
+	  	return usuario;
 		
 	}
-	////////////////////////////////////////////////////////////////////////////////
-	public void modificarUsuario(String nick,String password, String email, String nombre,
-			Date fechaNac) {
-		
-		//obtengo el usuario
-		if(!nick.isEmpty())
-		{
-			Usuario u = usuarioDAO.BuscarUsuarioNick(nick);
-			if(!password.isEmpty()) { u.setPassword(password);}
-			if(!email.isEmpty()){ u.setEmail(email);}
-			if(!nombre.isEmpty()){u.setNombre(nombre);}
-			if(fechaNac != null){ u.setFechaNac(fechaNac);}
-			
-			dataService.update(u);
-			
-		}	
-		
-	}
+	
 	
 	
 	

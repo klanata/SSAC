@@ -3,6 +3,7 @@ import java.util.Collection;
 
 import javax.ejb.Local;
 
+import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.JPAService;
 
@@ -21,6 +22,10 @@ public interface UsuarioDAO extends JPAService{
 	public boolean existeUsuario(String login, String password);
 	
 	public boolean existeUsuarioNick(String nick);
+	
+	/*------------------------*/
+	
+	public boolean usuarioRegistrador(String nick, String pass, long idCatastrofe);
 	
 	
 }

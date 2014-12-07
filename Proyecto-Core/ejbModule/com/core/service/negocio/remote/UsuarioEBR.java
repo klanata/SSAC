@@ -1,17 +1,27 @@
 package com.core.service.negocio.remote;
 
 import java.util.Date;
+
 import javax.ejb.Remote;
 
 import com.core.data.entites.Usuario;
 
+
+
+
 @Remote
 public interface UsuarioEBR {
 
-	public boolean existeUsuario(String login, String password);
-	public boolean ingesarUsuraio(String login, String password, String email, String nombre,Date fechaNac);
-	public Usuario buscarUsuario(String nick) throws Exception;
-	public void eliminarUsuario(String nick);
-	public void modificarUsuario(String nick,String password, String email, String nombre,Date fechaNac);
+	public boolean existeUsuario(String nick, String pass);
+	public boolean estaRegistradoCatastrofe(String nick, long idCatastrofe);
+	//agrega a la coleccion de catastrofes que tiene
+	public void registrarACatastrofe(String nick, String pass, long idCatastrofe);
+	public void registroUsuarioPlataforma(String nick, String pass, String mail, String nombre,Date fecha,long idCatastrofe);
+	
+	public Usuario obtenerUsuario(String nick);
+	
+	
+	
+	
 	
 }

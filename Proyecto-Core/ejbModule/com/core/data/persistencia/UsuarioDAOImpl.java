@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.interfaces.locales.UsuarioDAO;
 
@@ -40,11 +41,14 @@ public class UsuarioDAOImpl  extends AbstractService implements UsuarioDAO{
 		String nick = entity.getNick();
 		try {
 			if (this.existeUsuarioNick(nick)){				
-				id = (long) 0;				
+				id = (long) 0;	
+				
 			} 
 			else 
-			{				
+			{	
+				
 				dataService.create(entity);
+				
 				id = entity.getId();
 		  	}					
 					    
@@ -122,6 +126,36 @@ public class UsuarioDAOImpl  extends AbstractService implements UsuarioDAO{
 	  	return existe;
 	}
 	
+	/////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public boolean usuarioRegistrador(String nick, String pass, long idCatastrofe) {
+		
+		//me dice si esta registrado a la catastrofe lo dejo ingresar sino lo mando a que se registre
+		boolean estaRegistrado = false;
+		
+		Usuario usuario = null;
+		try{
+			Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona.Nick.Pass");
+		  	consulta.setParameter("nick", nick);
+		  	consulta.setParameter("password", pass);
+		  	
+		  	if (!consulta.getResultList().isEmpty()){
+		  		usuario = (Usuario) consulta.getResultList().get(0);
+		  	} 
+		  	//obtengo la coleccion de catastrofe
+		  	Collection<Catastrofe>lista = usuario.getCatastrofesRegistradas();
+		  	Catastrofe objCatastrofe = dataService.find(Catastrofe.class, idCatastrofe);
+		  	//si esta registrado a esa catastrofe me dara true
+		  	estaRegistrado = lista.contains(objCatastrofe);
+		  	
+		  	
+		}catch (Exception excep){			
+			throw excep;
+		} 	
+	  	return estaRegistrado;
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
