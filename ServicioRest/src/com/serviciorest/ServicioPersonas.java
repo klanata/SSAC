@@ -73,7 +73,7 @@ public class ServicioPersonas {
 	}
 		
 	///////////////////////////////////////////////////////////////////////////
-	@GET
+	/*@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Path("{personaId}")
 	public Persona getPersona(@PathParam("personaId") String id) throws Exception
@@ -93,7 +93,7 @@ public class ServicioPersonas {
 		p.setNick("nick");
 		
 		
-		try {
+		/*try {
             // 1. Obtaining Context
             context = ClienteUtility.getInitialContext();
             // 2. Generate JNDI Lookup name
@@ -105,7 +105,7 @@ public class ServicioPersonas {
             e.printStackTrace();
         }
 		
-		Usuario usuario = manager.buscarUsuario(id);
+		//Usuario usuario = manager.buscarUsuario(id);
 		
 		p.setId(usuario.getId());
 		p.setNombre(usuario.getNombre());
@@ -115,9 +115,9 @@ public class ServicioPersonas {
 		
 		
 				
-		return p;
+		return p;*/
 		
-	}
+	//}*/
 	///////////////////////////////////////////////////////////////////////////
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

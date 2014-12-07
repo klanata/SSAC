@@ -20,6 +20,7 @@ import javax.persistence.TypedQuery;
 
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.Ong;
+import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.entites.Rescatista;
 import com.core.data.persistencia.interfaces.locales.RescatistaDAO;
 
@@ -146,7 +147,13 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 			
 			dataService.update(estadoRescatistaActualizar);
 			 
+			//bajalogica pedido de ayuda en true.
 			
+			 
+				Long idPedidoAyuda	=estadoRescatistaActualizar.getIdPedidoAyuda();
+				PedidoDeAyuda pedido = dataService.find(PedidoDeAyuda.class, idPedidoAyuda);
+				pedido.setBajaLogica(true);
+				dataService.update(pedido);
 			
 		} catch (Exception excep){
 			throw excep;
@@ -170,7 +177,10 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 			{
 				Rescatista rescatista = listarRescatistas.iterator().next();
 				//veo que cantidad de pendientes tiene
-				Collection<EstadoRescatista> listaPendientes = rescatista.getEstadoRescatista();
+				//Collection<EstadoRescatista> listaPendientes = rescatista.getEstadoRescatista();
+				Long idRescatista = rescatista.getId();
+				Collection<EstadoRescatista> listaPendientes = listarPendientesRescatistaPorID(idRescatista);
+				
 				Integer i = listaPendientes.size();
 				
 				//rescatista.getEstadoRescatista().

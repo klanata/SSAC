@@ -1,6 +1,6 @@
 package com.core.service.negocio;
 
-import java.util.Collection;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -37,7 +37,7 @@ public class UsuarioEB implements UsuarioEBR{
 	@Override
 	public boolean existeUsuario(String nick, String pass) {
 		
-		boolean existe =false ;
+		boolean existe = false ;
 		
 		
 			existe=  usuarioDAO.existeUsuario(nick, pass);
@@ -86,25 +86,29 @@ public class UsuarioEB implements UsuarioEBR{
 		
 	}
 	@Override
-	public Usuario obtenerUsuario(String nick) {
+	public Usuario obtenerUsuarioPorNick(String nick) {
 		
-		Usuario usuario = null;
-		try{
-			Query consulta = this.em.createNamedQuery("Usuario.BuscarPersona");
-		  	consulta.setParameter("nick", nick);
-		  	if (!consulta.getResultList().isEmpty()){
-		  		usuario = (Usuario) consulta.getResultList().get(0);
-		  	} 
-		}catch (Exception excep){			
-			throw excep;
-		} 	
+		Usuario usuario =  usuarioDAO.BuscarUsuarioNick(nick);
+	
 	  	return usuario;
 		
 	}
+	
 	@Override
-	public Usuario buscarUsuario(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Usuario buscarUsuarioPorID(Long id) {
+		Usuario u = null;
+		
+			try {
+				u= usuarioDAO.BuscarUsuarioById(id);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
+			
+		
+		
+		return u;
 	}
 	
 
