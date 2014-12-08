@@ -33,7 +33,7 @@
     <h:outputText value="#{administradorBean.nick}" />
  	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
       style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-    <h:outputText value="Cerrar Seción" />
+    <h:outputText value="Cerrar Sesión" />
   </p:commandLink>
  
 </p:panelGrid>
@@ -140,7 +140,7 @@
         <p:column>
             <p:submenu label="Reportes">
                 <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
-                <p:menuitem value="Pedidos de ayuda" url="#" />
+               <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
             </p:submenu>
             
         </p:column>

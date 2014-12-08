@@ -11,7 +11,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
-	
+	<style>
+    *{ margin: 0; padding: 0; }
+    html, body, #map{
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+  
 	
 </h:head> 
 <h:body id="top"> 
@@ -34,7 +41,7 @@
     <h:outputText value="#{administradorBean.nick}" />
  	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
       style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-    <h:outputText value="Cerrar Seción" />
+    <h:outputText value="Cerrar Sesión" />
   </p:commandLink>
  
 </p:panelGrid>
@@ -87,7 +94,7 @@
                 
             </p:submenu>
         </p:column>
-    </p:submenu>
+    </p:submenu>   
  
     <p:submenu label="Ong" >
          <p:column>
@@ -141,7 +148,7 @@
         <p:column>
             <p:submenu label="Reportes">
                 <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
-                <p:menuitem value="Pedidos de ayuda" url="#" />
+                <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
             </p:submenu>
             
         </p:column>
@@ -150,7 +157,7 @@
        
 </p:megaMenu>
 </h:form>
-                      
+                       
     <br class="clear" />
   
 </div>

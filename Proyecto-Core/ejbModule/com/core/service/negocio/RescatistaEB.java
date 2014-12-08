@@ -85,7 +85,7 @@ public class RescatistaEB implements RescatistaEBR {
 		    	   planesDTO.setCoordenaday(pedido.getCoordenadasY());
 		    	   planesDTO.setDescripcion(pedido.getDescripcion());
 		    	   planesDTO.setEstadoTarea(e.getPendiente());
-		    	   planesDTO.setIdEstadoRescatista(e.getRescatista().getId());
+		    	   planesDTO.setIdEstadoRescatista(e.getId());
 		    	   
 		    	   listaDTO.add(planesDTO);
 		    	   
