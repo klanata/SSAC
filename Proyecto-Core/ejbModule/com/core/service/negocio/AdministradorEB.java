@@ -11,6 +11,7 @@ import com.core.data.entites.Administrador;
 import com.core.data.entites.DeBienes;
 import com.core.data.entites.DeServicios;
 import com.core.data.entites.Economica;
+import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.persistencia.DataService;
 import com.core.data.persistencia.interfaces.locales.AdministradorDAO;
 import com.core.service.negocio.remote.AdministradorEBR;
@@ -144,6 +145,15 @@ public class AdministradorEB implements AdministradorEBR{
 			Date fechaFinal) {
 	
 		Collection<Economica> lista = administradorDao.listaEconomica(fechaInicio, fechaFinal);
+		
+		return lista;
+	}
+
+	@Override
+	public Collection<PedidoDeAyuda> listaPedidosAyuda(Date fechaInicio,
+			Date fechaFinal) {
+		
+		Collection<PedidoDeAyuda> lista =  dataService.findAll(PedidoDeAyuda.class);
 		
 		return lista;
 	}
