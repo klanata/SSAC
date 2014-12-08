@@ -31,6 +31,8 @@ query = "SELECT u "+
 query = "SELECT o "+
 		"FROM Rescatista o " +
 		"WHERE o.bajaLogica = false")
+		
+		
 
 	
 

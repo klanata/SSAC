@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+ <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
+ 
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        width:100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    
+</h:head> 
+<body> 
+
+<p:layout style="min-width:1100px;min-height:400px;">
+    <p:layoutUnit position="west" resizable="true" size="100" minSize="400" maxSize="2000">
+ 
+ 
+
+<f:view>
+		<h:form id="pedidoAyudaBean" >
+			<h:messages id="messages" for="pedidoAyudaBean"></h:messages>
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<h:panelGrid>		
+			
+			<p>
+				<label for="catastrofeId"><p:spacer width="100" height="10" />catastrofeId :</label>				
+					<p:inputText id="catastrofeId" label="catastrofeId"  value="#{pedidoAyudaBean.catastrofe}" required="true" requiredMessage="La ong es requerida" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+			
+				<p>
+				<label for="descripcion">Descripcion :</label>				
+					<p:inputTextarea rows="6" cols="33" id="descripcion" label="descripcion"  value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La ong es requerida" >	
+					</p:inputTextarea>																																									
+				</p>
+				<br/>
+				
+				
+				<p>
+				<label for="coordenadasX">coordenadasX :</label>				
+					<p:inputText id="coordenadasX" label="coordenadasX" value="#{pedidoAyudaBean.coordenadasX}" required="true" requiredMessage="El usuario es requerido" >	
+					</p:inputText>																																									
+				</p>
+				<br/>
+				<label for="coordenadasX">coordenadasY :</label>				
+					<p:inputText id="coordenadasY" label="coordenadasY" value="#{pedidoAyudaBean.coordenadasY}" required="true" requiredMessage="El usuario es requerido" >	
+					</p:inputText>																																									
+				
+				<br/>
+				
+	
+				</h:panelGrid>	
+			<p:commandButton id="registrarpedido" update="growl"  type="submit" style="margin-left: 150px;" Class="button" value="reg" action="#{pedidoAyudaBean.registrarpedidoAyuda()}">
+			</p:commandButton>	
+		</h:form>
+		</f:view>
+	   </p:layoutUnit>
+ 
+    <p:layoutUnit position="center">
+    <div id="map-canvas"></div>
+          
+		
+	    </p:layoutUnit>
+</p:layout>	
+			
+
+
+
+<script>
+    var map = null;
+    var infoWindow = null;
+     
+    function openInfoWindow(marker) {
+        var markerLatLng = marker.getPosition();
+        document.getElementById('pedidoAyudaBean:coordenadasX').value = markerLatLng.lat();
+        document.getElementById('pedidoAyudaBean:coordenadasY').value = markerLatLng.lng();
+        infoWindow.setContent([
+            '&lt;b&gt;La posicion del marcador es:&lt;/b&gt;&lt;br/&gt;',
+             markerLatLng.lat(),
+            ', ',
+            markerLatLng.lng(),
+           
+        ].join(''));
+        infoWindow.open(map, marker);
+    }
+     
+    function initialize() {
+    	var myLatlng = new google.maps.LatLng(-34.86691801575849,-56.15112292968752);
+    		  var mapOptions = {
+    		    zoom: 8,
+    		    center: myLatlng,
+    		  };
+     
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+        	      mapOptions);
+     
+        infoWindow = new google.maps.InfoWindow();
+     
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            draggable: true,
+            map: map,
+         
+        });
+     
+        google.maps.event.addListener(marker, 'click', function(){
+            openInfoWindow(marker);
+        });
+    }
+     
+    $(document).ready(function() {
+        initialize();
+    });
+
+    </script>
+ 
+
+
+
+
+
+
+
+</body> 
+
+
+</html>

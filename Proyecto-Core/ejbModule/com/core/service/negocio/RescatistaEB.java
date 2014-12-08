@@ -16,6 +16,7 @@ import javax.ws.rs.Path;
 
 
 
+
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.PedidoDeAyuda;
@@ -58,7 +59,11 @@ public class RescatistaEB implements RescatistaEBR {
 		Collection<PlanesPendientesRescatistaDTO> listaDTO =new  ArrayList<PlanesPendientesRescatistaDTO>(0);
 		
 		try{
-		       Collection<EstadoRescatista> listaEstado = r.getEstadoRescatista();
+				Long idRescatista = r.getId();
+		       Collection<EstadoRescatista> listaEstado = rescatistaService.listarPendientesRescatistaPorID(idRescatista);
+		       
+		        
+		       
 		       
 		       Iterator<EstadoRescatista> it = listaEstado.iterator();
 		       
@@ -99,16 +104,17 @@ public class RescatistaEB implements RescatistaEBR {
 	
 	//////////////////////////////////////////////////////////////////////////////
 	@Override
-	public void asignarRescatistaCatastrofe(PedidoDeAyuda pedido) {
+	//FIXME: Vale tenes que usar esto para pedido de ayuda cuando lo crees
+	public void asignarRescatistaCatastrofe(long pedido) {
 		
 		try{
 		
-			Long id = new Long (pedido.getId());
+			
 			//obtengo objeto catastrofe
-			PedidoDeAyuda pedidoGuardar = dataService.find(PedidoDeAyuda.class, id);
+			PedidoDeAyuda pedidoGuardar = dataService.find(PedidoDeAyuda.class, pedido);
 			EstadoRescatista estadoRescatista = new EstadoRescatista();
 			estadoRescatista.setPendiente(true);
-			estadoRescatista.setIdPedidoAyuda(id);
+			estadoRescatista.setIdPedidoAyuda(pedido);
 			
 			estadoRescatista.setNombreTarea(pedidoGuardar.getDescripcion());
 			//busco el rescatista para asignar

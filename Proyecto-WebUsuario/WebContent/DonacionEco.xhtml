@@ -3,24 +3,27 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"> 
-      
+       xmlns:p="http://primefaces.org/ui"> 
+
 <h:head>
-		<title>BIENVENIDO A SSAC</title>
+		<title>SSAC</title>
+		
+			
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+	
 		<script src="js/jquery.dropotron.min.js"></script>
 		<script src="js/jquery.scrolly.min.js"></script>
 		<script src="js/jquery.onvisible.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/2skel.css" />
+			<link id="cssPrincipal" rel="stylesheet" href="css/2style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 			<link rel="stylesheet" href="css/style-noscript.css" />
-	
+
 	</h:head>
 	
 	<body class="left-sidebar">
@@ -36,10 +39,10 @@
 					</div>
 					
 					<!-- Nav -->
-					<div id="nav">
+						<div id="nav">
 						<ul>
 							<li><a href="Index.xhtml">Volver a la pagina principal</a></li>
-							<li><a href="">Pedido de ayuda</a>	</li>
+							<li><a href="">Pedido de ayuda</a></li>
 							
 						</ul>
 					</div>
@@ -54,7 +57,7 @@
 							<hr class="first" />
 							<div class="section">
 								<div id="header">
-								<h3><a href="#">ÚLTIMAS NOVEDADES</a></h3>
+										<h3><a href="#">ÚLTIMAS NOVEDADES</a></h3>
 								</div>
 						
 								<p>
@@ -142,22 +145,22 @@
 						<div class="8u important(collapse)" id="content">
 							<div class="article" id="main">
 								
-									<h2><a href="#"> DONACIONES ECONOMICA</a></h2>
+									<h2><a href="#"> DONACION ECONOMICA</a></h2>
 									<p>
 									 Por favor, ingrese los campos en el formulario que se presenta a continuación.
 									</p>
-					  <div class="wrapper col2">
-  <div id="intro">
-    <div class="fl_left">
-
-      <f:view>
-		<h:form id="economicaBean" >
-			<h:messages id="messages" for="economicaBean"></h:messages>
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid>		
+									
+ <div class="ui-grid">
+   		 <div class="ui-grid-row">	
+   		 <div class="ui-grid-col-1"></div>	
+   		  <div class="ui-grid-col-6">
+		   <f:view>
+            <h:form id="economicaBean">   
+                <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+                  <h:panelGrid>		
 			
 				<p>
-				<label for="ong">ong :</label>				
+				<label for="ong">ONG A DONAR :</label>				
 					<p:inputText id="ong" label="ong"  value="#{economicaBean.ong}" required="true" requiredMessage="La ong es requerida" >	
 					</p:inputText>																																									
 				</p>
@@ -165,31 +168,37 @@
 				
 				
 				<p>
-				<label for="usuario">usuario :</label>				
+				<label for="usuario">NOMBRE :</label>				
 					<p:inputText id="usuario" label="usuario" value="#{economicaBean.usuario}" required="true" requiredMessage="El usuario es requerido" >	
 					</p:inputText>																																									
 				</p>
 				<br/>
 				
-					<p:outputLabel for="fechaRealizada" value="fechaRealizada" />
+					<label for="fechaRealizada"> FECHA :</label>
         		<p:calendar id="fechaRealizada" value="#{economicaBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />
         		<br/>
         		
 				<p>
-				<label for="monto">monto :</label>				
+				<label for="monto">MONTO :</label>				
 					<p:inputText id="monto" label="monto"  value="#{economicaBean.monto}"  required="true" requiredMessage="El monto es requerido" >		
 					</p:inputText>																																									
 				</p>
 				<br/>
-				</h:panelGrid>	
-			<p:commandButton id="registrarDonacion" update="growl"  type="submit" style="margin-left: 150px;" Class="button" value="DONAR" action="#{economicaBean.registrarDonacionEconomica()}">
+				
+			<p:commandButton id="registrarDonacion" update="growl"  type="submit"  Class="button" value="DONAR" action="#{economicaBean.registrarDonacionEconomica()}">
 			</p:commandButton>	
-		</h:form>
-		
-</f:view>
- </div>
-</div>
-</div>	
+			</h:panelGrid>	
+              
+			
+            </h:form>
+            </f:view>
+            
+            </div>	
+            </div>	
+            </div>	
+            
+            
+            
 							</div>
 						</div>
 					</div>
@@ -199,6 +208,7 @@
 
 			
 </div>
+
 
 <div id="footer">
 				<ul class="icons">
@@ -216,3 +226,4 @@
 
 </body> 
 </html>
+

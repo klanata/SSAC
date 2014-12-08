@@ -19,7 +19,7 @@ public interface RescatistaEBR {
 	
 	public Long crearRescatista(String nombre, String nick, String apellido, String email,String password,Date fechaNac,String sexo, String celular) throws Exception;
 	
-	public void asignarRescatistaCatastrofe(PedidoDeAyuda pedido);
+	public void asignarRescatistaCatastrofe(long pedido);
 	
 	public Boolean buscarUsuario(String nick, String password);
 	
