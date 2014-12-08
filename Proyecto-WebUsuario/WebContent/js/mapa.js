@@ -50,7 +50,7 @@ function cargar(position){
                         //alert(window.localStorage.getItem("IdPedidoAyudaActual"));
                         //alert("Me hiciste click!");
                         document.getElementById("idCatastrofe").value = IdActual;
-                        window.location.replace("Index.xhtml?id="+ IdActual);
+                        window.location.replace("Index.xhtml?id="+ IdActual+"&c="+ pathCSS);
                         
                         //document.getElementById("idPedidoAyudaActual").value = IdActual;
                         //document.getElementById("listaPendientes").style.display = 'none';

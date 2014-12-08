@@ -7,7 +7,7 @@ function cargarMapa(position){
 
         var listaPedidosPendientes = [];
         var nick = window.localStorage.getItem("usuarioNick");
-        $.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
+        $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
             success:function(response) {
                 // alert("Success");
                 // useReturnData(response);
@@ -115,7 +115,7 @@ function validarRescatista(){
 	Nick = document.getElementById("nickText").value;
 	var Pass = document.getElementById("passText").value;
 
-        $.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/login?nick="+Nick.toString()+"&pass="+Pass.toString(),// NO
+        $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/login?nick="+Nick.toString()+"&pass="+Pass.toString(),// NO
 																																	// ANDA
 																																	// CON
 																																	// 127.0.0.1
@@ -144,9 +144,9 @@ function validarRescatista(){
       }
 
 function verPlan(){
-	//window.location.replace("http://localhost:8080/ServicioRest/catastrofe/rescatista/pdf");
-	$("#panelPdf").empty();
-	$("#panelPdf").append('<iframe src="http://docs.google.com/gview?url=http://localhost:8080/ServicioRest/catastrofe/rescatista/pdf.pdf&embedded=true"style="width:600px; height:500px;" frameborder="0"></iframe>');
+	window.location.replace("http://localhost:8080/ServicioRest/catastrofe/rescatista/pdf");
+	//$("#panelPdf").empty();
+	//$("#panelPdf").append('<iframe src="http://docs.google.com/gview?url=http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/pdf.pdf&embedded=true"style="width:600px; height:500px;" frameborder="0"></iframe>');
 }
 
 function finalizar(){
@@ -162,7 +162,7 @@ function finalizar(){
 	alert(idEstadoRescatista);
 	
 	//llama a funcion del rest que finaliza la ejecucion del plan
-    $.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?idEstadoRescatista=" + idEstadoRescatista,
+    $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?idEstadoRescatista=" + idEstadoRescatista,
         success:function(response) {
             alert("Plan finalizado");
             //cargar mapa de nuevo con los marcadores incluidos

@@ -188,15 +188,7 @@
                         <!-- /.panel-body -->
                     </div>
                     
-                    <div class="panel panel-default">
-                        
-                        <!-- /.panel-heading -->
-                        <div id="panelPdf" class="panel-body">
-                            <embed width="100%" height="70%" name="plugin" src = "http://localhost:8080/ServicioRest/catastrofe/rescatista/pdf" type="application/pdf">
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-				
+                    				
 				   <div class="panel panel-default">
                         
                         <!-- /.panel-heading -->
