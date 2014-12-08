@@ -7,9 +7,7 @@
     l = unescape(temp[1]);
     //temp = parameters[1].split("=");
     //p = unescape(temp[1]);
-    //var id = window.localStorage.getItem("IdCatastrofe");
-	  //alert(window.localStorage.getItem("urlCSS"));
-	  document.getElementById("j_idt5:catastrofeId").value = l;
+	  document.getElementById("pedidoAyudaBean:catastrofeId").value = l;
     alert(l);
   }
 
