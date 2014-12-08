@@ -5,12 +5,54 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
        xmlns:p="http://primefaces.org/ui"> 
 
-<h:head></h:head> 
-<body> 
+<h:head>
+		<title>SSAC</title>
+		
+			
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+	
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.onvisible.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+    <link rel="stylesheet" href="css/2skel.css" />
+			<link id="cssPrincipal" rel="stylesheet" href="css/2style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link rel="stylesheet" href="css/style-noscript.css" />
 
-<div>
-  		<h:form>      
- 	
+	</h:head>
+<body class="left-sidebar">
+
+		<!-- Header -->
+			<div id="header">
+
+				<!-- Inner -->
+					<div class="inner">
+						<div id="header">
+							<h1><a href="index.html" id="logo">EN SSAC NOS GUSTA AYUDAR</a></h1>
+						</div>
+					</div>
+					
+					<!-- Nav -->
+						<div id="nav">
+						<ul>
+							<li><a href="Index.xhtml">Volver a la pagina principal</a></li>
+							<li><a href="">Pedido de ayuda</a></li>
+							
+						</ul>
+					</div>
+			</div>
+
+ <div class="ui-grid">
+   		 <div class="ui-grid-row">	
+   		 <div class="ui-grid-col-1"></div>	
+   		  <div class="ui-grid-col-10">
+  		<h:form>  
+  		    <h:panelGrid>	 
         	<p>
 			<h:outputText value="Seleccione las imágenes   " style="width:100px;border: transparent;"/>			            
             </p>
@@ -25,7 +67,32 @@
 		    <p:outputPanel style="text-align: left">			 		
 	        	<p:commandButton value="Cancelar" action="#{fileUploadController.cancelar()}" />
 	        </p:outputPanel>
+	            </h:panelGrid>	
 		</h:form> 
+		 <div class="ui-grid-col-1"></div>
+  	</div>  
   	</div>   
+  	</div>  
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+<div id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>GRUPO 5</li>
+				</ul>
+			</div>
+
 </body> 
 </html>

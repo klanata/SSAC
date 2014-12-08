@@ -48,8 +48,8 @@
             var nick = window.localStorage.getItem("usuarioNick");
             //alert("Nick Storaged: "+ nick);
             //$.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Emulador Android - llamada al rest
-            $.ajax({url:"http://172.16.102.91:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Utu
-            //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Utu
+            //$.ajax({url:"http://172.16.102.91:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Utu
+            $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Utu
             //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Emulador Android - llamada al rest
                 success:function(response) {
                     //useReturnData(response);
@@ -91,7 +91,7 @@
 
                     //cargar las ubicaciones de los pedidos de ayuda en el mapa
                     var marcador="";
-                    if(listaPedidosPendientes.lenght > 1){
+                    if(Object.prototype.toString.call(listaPedidosPendientes) === '[object Array]'){
                         //alert("if");
                          for (var i = 0; i < listaPedidosPendientes.length; i++) {  
                             marcador = new google.maps.Marker({

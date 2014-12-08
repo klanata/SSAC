@@ -182,7 +182,8 @@
                            
                             <!-- /.list-group -->
                             <a href="#" class="btn btn-default btn-block" onclick='verPlan()'>Ver Plan</a>
-							<a href="#" class="btn btn-default btn-block">Finalizar pedido</a>
+							<a href="#" class="btn btn-default btn-block" onclick='finalizar()'>Finalizar pedido</a>
+							<input id="idEstadoRescatista" type="hidden">
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -190,7 +191,7 @@
                     <div class="panel panel-default">
                         
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <div id="panelPdf" class="panel-body">
                             <embed width="100%" height="70%" name="plugin" src = "http://localhost:8080/ServicioRest/catastrofe/rescatista/pdf" type="application/pdf">
                         </div>
                         <!-- /.panel-body -->

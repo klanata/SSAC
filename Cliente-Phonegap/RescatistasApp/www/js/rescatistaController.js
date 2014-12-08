@@ -12,7 +12,7 @@ function rescatistaController($scope) {
     
     //Funciones:
     $scope.validarRescatista = function(){
-        
+        $scope.verMapa();
         //Llamar a la funcion de login con POST
         /*
         $http({
@@ -44,8 +44,8 @@ function rescatistaController($scope) {
         //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Android emulador
         //$.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Android nativo - red local Victoria 
         //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing 
-        $.ajax({url:"http://172.16.102.91:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing 
-        //$.ajax({url:"http://192.168.7.245:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Utu 
+        //$.ajax({url:"http://172.16.102.91:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing 
+        $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Utu 
         //$.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Web - desde WAMP no se puede por CORS
             success:function(response) {
                 //console.log(response);
@@ -53,7 +53,7 @@ function rescatistaController($scope) {
                 {
                     alert('ok');
                     window.localStorage.setItem("usuarioNick", $scope.nick);
-                    $scope.listarPlanes();
+                    $scope.listarPlanes.call($scope.verMapa());
                     $scope.nick = "";
                     $scope.password = "";
                 }
@@ -74,34 +74,6 @@ function rescatistaController($scope) {
 
    $scope.listarPlanes = function() {
     
-    /*$http.get("http://localhost:8080/ServicioRest/catastrofe/catastrofes")
-    .success(function(response) {$scope.tareas = response;}).
-    error(function(response) {
-          console.log("OnError" + response);
-        });*/
-         // Commentar mientras no está implementado el metodo 
-        /*$.ajax({url:"http://192.168.0.100:8080/ServicioRest/catastrofe/rescatista/verPendientes", //Emulador Android - llamada al rest
-        //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/verPendientes", //Emulador Android - llamada al rest
-        //$.ajax({url:"http://10.0.2.2/RescatistasApp/www/planesEmergenciaDB.js",//Emulador Android - llamada de prueba
-        //$.ajax({url:"http://192.168.0.104/RescatistasApp/www/planesEmergenciaDB.js",//Android nativo, red local - llamada de prueba
-        //$.ajax({url:"http://localhost/RescatistasApp/www/planesEmergenciaDB.js",//Web - llamada de prueba
-            success:function(response) {
-                //alert("Success");
-                //useReturnData(response);
-                console.log(response.planesPendientesRescatistaRests);
-                $scope.planes = response.planesPendientesRescatistaRests;
-                //document.getElementById("login").style.display = 'none';
-               // document.getElementById("listaPendientes").style.display = 'initial';
-                //scope.$apply();
-               
-            },
-            error:function (request, status, error) {
-                alert("Error" + request.responseText);
-            },
-            dataType:"json",
-            type:"get"
-        });*/
-        
         //var map = new GoogleMap();
         //map.initialize();
         //console.log(map);
@@ -166,29 +138,30 @@ function rescatistaController($scope) {
   $scope.finalizar = function () {
     $scope.finalizar = function () {
         //llama a funcion del rest que finaliza la ejecucion del plan y le pasa $scope.idPlanActual
-
-        //$.ajax({url:"http://192.168.0.100:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Android nativo - red local
+        $scope.idPlanActual = document.getElementById("idPedidoAyudaActual").value;
+        alert("Id plan actual: " + $scope.idPlanActual);
+        $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?idEstadoRescatista="+$scope.idPlanActual, //Android nativo - red local
         //$.ajax({url:"http://172.16.102.89:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Utu
         //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Utu
         //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Emulador Android - llamada al rest
         //$.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Emulador Android - llamada al rest
         //$.ajax({url:"http://10.0.2.2/RescatistasApp/www/planesEmergenciaDB.js",//Emulador Android - llamada de prueba
-        $.ajax({url:"http://172.16.102.91/RescatistasApp/www/planesEmergenciaDB.js",//Android nativo, red local - llamada de prueba
+        //$.ajax({url:"http://172.16.103.203/RescatistasApp/www/planesEmergenciaDB.js",//Android nativo, red local - llamada de prueba
         //$.ajax({url:"http://localhost/RescatistasApp/www/planesEmergenciaDB.js",//Web - llamada de prueba
             success:function(response) {
                 alert("Plan finalizado");
-                volver();
+                $scope.listarPlanes.call($scope.verMapa());
             },
             error:function (request, status, error) {
-                alert("Error al finalizar plan.");
+                alert("Error al finalizar plan. Por favor, vuelva a intentar");
             },
             dataType:"json",
             type:"get"
         });
         
-
-        document.getElementById("plan").style.display = 'none';
-        document.getElementById("listaPendientes").style.display = 'initial';
+       
+        //document.getElementById("pedidoAyudaDetalle").style.display = 'none';
+        //document.getElementById("listaPendientes").style.display = 'initial';
     }
   }
 
@@ -206,6 +179,8 @@ function rescatistaController($scope) {
         document.getElementById("login").style.display = 'initial';
     }
   }
+
+ 
 
  /*var onSuccess = function(position){
     var longitud = position.coords.longitude;
