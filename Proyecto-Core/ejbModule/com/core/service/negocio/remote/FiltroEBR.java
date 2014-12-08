@@ -3,6 +3,7 @@ package com.core.service.negocio.remote;
 import java.util.List;
 
 import javax.ejb.Remote;
+
 import com.core.data.entites.Filtro;
 
 
@@ -22,6 +23,9 @@ public interface FiltroEBR {
 	public List<Filtro> listaFiltrosYoutube() throws Exception;
 	//Lista los filtros de Youtube
 	
-	public void asignarServicioFiltro(String descripcion,String fuente) throws Exception;
+	public void asignarFiltroServicio(Long idFiltro,String fuente) throws Exception;
+		
+	public List<Filtro> listaFiltrosNoAsignadosAYoutube() throws Exception;
+	//Lista los filtros que no estan asignados a Youtube
 	
 }

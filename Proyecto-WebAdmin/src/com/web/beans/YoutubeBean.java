@@ -20,6 +20,7 @@ import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Filtro;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.service.negocio.remote.FiltroEBR;
+import com.web.beans.ong.OngBean;
 
 @ManagedBean(name="youtubeBean")
 @RequestScoped
@@ -30,9 +31,14 @@ public class YoutubeBean implements Serializable{
 	@ManagedProperty("#{catastrofeBean}")
     private CatastrofeBean catastrofeBean = new CatastrofeBean();
 	
+	@ManagedProperty("#{filtroYoutubeBean}")
 	FiltroYoutubeBean filtroYoutubeBean;
 	
-	private List<FiltroYoutubeBean> filtroYoutubes = new ArrayList<FiltroYoutubeBean>();
+	private List<FiltroYoutubeBean> filtrosYoutube = new ArrayList<FiltroYoutubeBean>();
+	
+	private List<FiltroYoutubeBean> filtroFiltroYoutubeBean;
+    
+    private List<FiltroYoutubeBean> selectedFiltroYoutubeBean;
 	
 	
 	@PostConstruct
@@ -122,7 +128,7 @@ public class YoutubeBean implements Serializable{
 					id = filtro.getId();
 					descripcion = filtro.getDescripcion();
 					bajaLogica = filtro.isBajaLogica();
-					filtroYoutubes.add(i, new FiltroYoutubeBean(id,descripcion,bajaLogica));																	    		
+					filtrosYoutube.add(i, new FiltroYoutubeBean(id,descripcion,bajaLogica));																	    		
 				}				
 				
 			}catch (Exception excep){
@@ -143,12 +149,12 @@ public class YoutubeBean implements Serializable{
 		this.catastrofeBean = catastrofeBean;
 	}
 
-	public List<FiltroYoutubeBean> getFiltroYoutubes() {
-		return filtroYoutubes;
+	public List<FiltroYoutubeBean> getFiltrosYoutube() {
+		return filtrosYoutube;
 	}
 
-	public void setFiltroYoutubes(List<FiltroYoutubeBean> filtroYoutubes) {
-		this.filtroYoutubes = filtroYoutubes;
+	public void setFiltrosYoutube(List<FiltroYoutubeBean> filtrosYoutube) {
+		this.filtrosYoutube = filtrosYoutube;
 	}
 
 	public FiltroYoutubeBean getFiltroYoutubeBean() {
@@ -159,8 +165,29 @@ public class YoutubeBean implements Serializable{
 		this.filtroYoutubeBean = filtroYoutubeBean;
 	}
 	
+	public List<FiltroYoutubeBean> getFiltroFiltroYoutubeBean() {
+		return filtroFiltroYoutubeBean;
+	}
+
+
+	public void setFiltroFiltroYoutubeBean(List<FiltroYoutubeBean> filtroFiltroYoutubeBean) {
+		this.filtroFiltroYoutubeBean = filtroFiltroYoutubeBean;
+	}
+
+
+	public List<FiltroYoutubeBean> getSelectedFiltroYoutubeBean() {
+		return selectedFiltroYoutubeBean;
+	}
+
+
+	public void setSelectedFiltroYoutubeBean(
+			List<FiltroYoutubeBean> selectedFiltroYoutubeBean) {
+		this.selectedFiltroYoutubeBean = selectedFiltroYoutubeBean;
+	}
+	
 	//	------------------ Operaciones ---------------------
 	
+	/*
 	public void asignarServicios(){
 		
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeYoutube");
@@ -206,6 +233,75 @@ public class YoutubeBean implements Serializable{
 	    	}
 		}
 	}
+	*/
+	
+	public void asignarFiltroCatastrofe(){
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeYoutube");
+		if ((idEventoString == null) || (idEventoString == ""))
+		{	
+			System.out.println("No existe la catástrofe. "); 			
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("listaCatastrofesServiciosYoutube?faces-redirect=true");
+		}
+		else	
+		{		
+			Long idCatastrofe = new Long(idEventoString);		
+			CatastrofeEBR manager = null;
+			Context context = null;	
+			FacesMessage message = null;
+			
+			try {
+	            // 1. Obtaining Context
+				context = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+				manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }
+			
+			if (selectedFiltroYoutubeBean.size() > 0){ 				
+				try{					
+					FiltroYoutubeBean filtroYoutubeBean;	
+					
+					for (int i=0; i<=selectedFiltroYoutubeBean.size()-1; i++){ 				
+						filtroYoutubeBean = selectedFiltroYoutubeBean.get(i);
+						Long idFiltro = filtroYoutubeBean.getId();			
+						//manager.agregarOngALaCatastrofe(idCatastrofe, idOng);	
+						manager.asignarFiltroYoutubeALaCatastrofe(idCatastrofe, idFiltro);
+					}			
+					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Los filtros fueron ingresadas a la catástrofe.");
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeYoutube", "");
+					//ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+					//handler.performNavigation("listaCatastrofesServiciosYoutube?faces-redirect=true");
+					//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
+					
+														
+				}catch (Exception excep){
+					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo dar de alta alguno de los filtros.");
+					System.out.println("Excepción al agregar las filtros a la catástrofe: " + excep.getMessage());				
+				}  
+				
+			}
+			else{				
+				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una filtro.");
+				
+			}
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+		
+	}
+	
+	public void cancelar(){
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeYoutube", "");
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("listaCatastrofesServiciosYoutube?faces-redirect=true");
+		
+	}
+
+	
 	
 
 }

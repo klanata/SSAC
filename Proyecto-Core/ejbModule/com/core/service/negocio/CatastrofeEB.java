@@ -19,6 +19,7 @@ import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
+import com.core.data.persistencia.interfaces.locales.FiltroDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.data.persistencia.DataService;
 
@@ -37,7 +38,10 @@ public class CatastrofeEB implements CatastrofeEBR{
 	private ImagenCatastrofeDAO imagenCatastrofeDAO;
 	
 	@EJB
-	private PlanDeRiesgoDAO planDeRiesgoDO;
+	private PlanDeRiesgoDAO planDeRiesgoDAO;
+	
+	@EJB
+	private FiltroDAO filtroDAO;
 
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -210,7 +214,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 			planRiesgo.setRutaArchivo(nombArchivo);
 			planRiesgo.setCatastrofe(c);
 						
-			Long idPlan = planDeRiesgoDO.crearPlanDeRiesgo(planRiesgo);
+			Long idPlan = planDeRiesgoDAO.crearPlanDeRiesgo(planRiesgo);
 			Long id;
 						
 			PlanDeRiesgo planCatastrofe = c.getPlanDeRiesgo();
@@ -235,7 +239,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	public void eliminarPlanDeRiesgoCatastrofe(Long idCatastrofe, Long idPlan) throws Exception{
 		Catastrofe c= dataService.find(Catastrofe.class, idCatastrofe);
-		PlanDeRiesgo plan= planDeRiesgoDO.find(PlanDeRiesgo.class, idPlan);
+		PlanDeRiesgo plan= planDeRiesgoDAO.find(PlanDeRiesgo.class, idPlan);
 		
 		c.setPlanDeRiesgo(null);
 		dataService.update(c);
@@ -267,22 +271,24 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}																																
 	}
 	
-	public void asignarServicioALaCatastrofe(Long idCatastrofe, Long idServicio) throws Exception{
+	public void asignarFiltroYoutubeALaCatastrofe(Long idCatastrofe, Long idFiltro) throws Exception{
 		try {
-			/*
-			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);							
-			Servicio servicio = servicioDAO.buscarServicioPorId(idServicio);
 			
-			Set<Servicio> servicios = c.getServicios();
-			servicios.add(servicio);
-			dataService.update(c);
-			*/
+			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);
+			Filtro filtro = dataService.find(Filtro.class, idFiltro);
+			
+			Set<Filtro> filtros = c.getFiltros();
+			filtros.add(filtro);
+			dataService.update(filtro);
+			
+			//System.out.println("llega a asignar filtro youtube en catastrofe." + idFiltro);
 			
 		}catch (Exception e) {			
 			e.printStackTrace();
 		}
 		
 	}
+	
 	
 	
 }

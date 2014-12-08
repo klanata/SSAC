@@ -129,7 +129,7 @@
     <p:submenu label="Reporte" icon="ui-icon-contact">
         <p:column>
             <p:submenu label="Reportes">
-                <p:menuitem value="Donaciones" url="#" />
+                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
                 <p:menuitem value="Pedidos de ayuda" url="#" />
             </p:submenu>
             
@@ -138,36 +138,74 @@
     </p:submenu>
        
 </p:megaMenu>
-</h:form>
-                       
+</h:form>              
+          
     <br class="clear" />
   
 </div>
 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Asignar Filtros sobre Youtube</h2>
-      <br/>	
-      <f:view>
-		<h:form id="registroFiltroYoutube">
-						
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />							
-						
-				
-							
-			<br/> 
-			 <p:outputPanel style="text-align: left">
-			 		<p:commandButton id="comandoRegistrar" update="growl" type="submit" value="Registrar" action="#{filtroYoutubeBean.registrarFiltroYoutube()}">
-					</p:commandButton>         	            		            	
-	         </p:outputPanel>																																
-			
+    <div >
+      <h2>Asignar filtro de datos a Youtube</h2>
+      
+      <f:view>     		 
+
+		<h:form id="formFiltroYoutube">      	      	
+      		<p:growl id="msg" showDetail="true" />	
+      		
+      		<p>
+			<h:outputText value="Filtros registrados no asignados a Youtube " style="width:100px;border: transparent;"/>			            
+            </p>	
+      		
+    		<p:dataTable id="filtrosYoutubeDT" var="filtroBean" value="#{listaFiltroBean.filtrosBean}" widgetVar="filtrosTable"
+                 		 emptyMessage="No se han encontrado filtro con ese criterio" filteredValue="#{listaFiltroBean.filtroFiltroBean}"                 		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selection="#{listaFiltroBean.selectedFiltro}" rowKey="#{filtroBean.id}" style="margin-bottom:0">
+                 	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Filtro:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('filtrosTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>
+		        
+		        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>    		        		               	    
+        		
+        		<p:column headerText="Id" style="width:50px">
+            		<h:outputText value="#{filtroBean.id}" />
+        		</p:column>            		        					
+        		
+        		<p:column headerText="Descripcion" style="width:700px"  filterBy="#{filtroBean.descripcion}" filterMatchMode="contains">
+            		<h:outputText value="#{filtroBean.descripcion}" />
+        		</p:column>	  
+        		
+        		<p:column headerText="Baja">
+            		<h:outputText value="#{filtroBean.bajaLogica}" />
+        		</p:column>	             		        		      
+        		
+        		<f:facet name="footer">
+        			<p:outputPanel style="text-align: left">
+            			<p:commandButton process="filtrosYoutubeDT" update=":formFiltroYoutube:msg" value="Agregar" action="#{listaFiltroBean.asignar()}" />
+            			<p:commandButton process="filtrosYoutubeDT" value="Cancelar" action="#{listaFiltroBean.cancelar()}" />            			
+            		</p:outputPanel>            		
+        		</f:facet>			     		                  		                  		             	        		        
+        		        		        		
+     		</p:dataTable>     		     		
+     		
 		</h:form>
-		</f:view>
-    </div>    
+		
+		<br class="clear" />			                     
+      
+      </f:view>         
+    </div>
+    
     <br class="clear" />
   </div>
 </div>
+
+
 
 <div class="wrapper col7">
   <div id="copyright">
@@ -176,8 +214,7 @@
     <br class="clear" />
   </div>
 </div>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {
@@ -186,5 +223,5 @@
 	  }
 	//]]>
 	</script>
-	</h:body> 
+</h:body> 
 </html>

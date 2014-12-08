@@ -7,7 +7,7 @@ import java.util.Set;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -30,7 +30,7 @@ import org.primefaces.model.map.Marker;
 
 
 @ManagedBean(name="catastrofeBean")
-@SessionScoped
+@RequestScoped
 public class CatastrofeBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;	

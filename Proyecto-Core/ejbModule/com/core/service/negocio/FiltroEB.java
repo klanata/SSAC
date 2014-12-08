@@ -76,6 +76,8 @@ public class FiltroEB implements FiltroEBR{
 		return listaFiltrosYoutube;
 	}
 	
+	
+	/*
 	public void asignarServicioFiltro(String descripcion,String fuente) throws Exception{		
 		try{
 			Servicio servicio = new Servicio();
@@ -107,6 +109,79 @@ public class FiltroEB implements FiltroEBR{
 			
 		
 	}
+	*/
 	
+	public void asignarFiltroServicio(Long idFiltro,String fuente) throws Exception{
+		
+		try{
+			Servicio servicio = new Servicio();
+			if (servicioDAO.existeServicio(fuente)){				
+				servicio = servicioDAO.buscarServicioPorFuente(fuente);
+			}
+			else
+			{							
+				String url = "www.youtube.com";				
+				servicio.setFuente(fuente);
+				servicio.setUrl(url);
+				
+				Long idServicio = servicioDAO.insert(servicio);
+								
+				System.out.println("probando agregar idServicio: " + idServicio );
+			}				
+										
+			Filtro filtro = filtroDAO.buscarFiltroPorId(idFiltro);
+					
+			Set<Filtro> filtros = servicio.getFiltros();
+			filtros.add(filtro);						
+			dataService.update(servicio);	
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}	
+		
+	}
+	
+	
+	public List<Filtro> listaFiltrosNoAsignadosAYoutube() throws Exception{
+		
+		List<Filtro> listaFiltrosNoAsigYoutube = new ArrayList<Filtro>();			
+		List<Filtro> listaAllFiltros = filtroDAO.listarFiltros();
+		List<Filtro> listaYoutubeFiltros = filtroDAO.listarFiltrosYoutube();
+		List<Long> listaId = new ArrayList<Long>();
+		Filtro filtro;
+		Filtro filtro2;
+		Long id;
+		Long id2;
+		boolean esta;
+		boolean baja;
+		
+		for (int i=0; i<=listaAllFiltros.size()-1; i++){
+			filtro = listaAllFiltros.get(i);
+			id = filtro.getId();
+			esta = false;
+			baja = false;
+			for (int j=0; j<=listaYoutubeFiltros.size()-1; j++){
+				filtro2 = listaYoutubeFiltros.get(j);
+				baja = filtro2.isBajaLogica();
+				id2 = filtro2.getId();
+				if (id == id2){
+					esta = true;					
+				}
+			}			
+			if ((esta == false) && (baja == false)){
+				listaId.add(id);				
+			}			
+		}
+		
+		Filtro filtroRes;
+		Long idRes;
+		for (int k=0; k<=listaId.size()-1; k++){
+			idRes = listaId.get(k);
+			filtroRes = filtroDAO.buscarFiltroPorId(idRes);
+			listaFiltrosNoAsigYoutube.add(filtroRes);
+		}		
+		return listaFiltrosNoAsigYoutube;
+	}
 	
 }

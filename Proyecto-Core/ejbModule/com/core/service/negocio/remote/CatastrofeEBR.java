@@ -45,6 +45,6 @@ public interface CatastrofeEBR {
 	
 	public void eliminarCSSDeLaCatastrofe(Long idCatastrofe) throws Exception;
 	
-	public void asignarServicioALaCatastrofe(Long idCatastrofe, Long idServicio) throws Exception;
+	public void asignarFiltroYoutubeALaCatastrofe(Long idCatastrofe, Long idFiltro) throws Exception;
 	
 }

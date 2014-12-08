@@ -66,7 +66,7 @@ public class Filtro extends AbstractEntity implements Serializable {
 	@ManyToMany(mappedBy="filtros")
 	private Set<Servicio> servicios = new HashSet<Servicio>(0);	
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="filtrosCatastrofes" ,cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<Catastrofe> catastrofes = new HashSet<Catastrofe>(0);
 	
 	private boolean bajaLogica;
@@ -123,6 +123,12 @@ public class Filtro extends AbstractEntity implements Serializable {
 	}
 	public void setBajaLogica(boolean bajaLogica) {
 		this.bajaLogica = bajaLogica;
+	}
+	public Set<Catastrofe> getCatastrofes() {
+		return catastrofes;
+	}
+	public void setCatastrofes(Set<Catastrofe> catastrofes) {
+		this.catastrofes = catastrofes;
 	}	
 	
 	

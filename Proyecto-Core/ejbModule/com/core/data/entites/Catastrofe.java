@@ -80,8 +80,8 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>(0);
 		
-	@ManyToMany(mappedBy="catastrofes")
-	private Set<Filtro> filtros = new HashSet<Filtro>(0);	
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Set<Filtro> filtrosCatastrofes = new HashSet<Filtro>(0);	
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Ong> ongs = new HashSet<Ong>(0);
@@ -109,7 +109,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.prioridad = false;		
 		this.css = new String();
 		this.imagenes = new HashSet<ImagenCatastrofe>();
-		this.filtros = new HashSet<Filtro>();
+		this.filtrosCatastrofes = new HashSet<Filtro>();
 		this.setOngs(new HashSet<Ong>(0));
 		//this.ongs = new HashSet<Ong>(0);
 		this.planDeRiesgo = null;	
@@ -126,7 +126,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	 * @param coordenadasY
 	 * @param activa
 	 * @param prioridad
-	 * @param servicios	 
+	 * @param filtros	 
 	 * @param ongs
 	 * @param pedidosDeAyuda
 	 * @param planDeRiesgo	 
@@ -145,7 +145,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.prioridad = prioridad;	
 		this.css = css;
 		this.setImagenes(imagenes);
-		this.filtros = filtros;
+		this.filtrosCatastrofes = filtros;
 		this.setOngs(ongs);
 		//this.ongs = ongs;
 		this.pedidosDeAyuda = pedidosDeAyuda;
@@ -211,10 +211,10 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.css = css;
 	}	
 	public Set<Filtro> getFiltros() {
-		return filtros;
+		return filtrosCatastrofes;
 	}
 	public void setFiltros(Set<Filtro> filtros) {
-		this.filtros = filtros;
+		this.filtrosCatastrofes = filtros;
 	}
 	public Set<Ong> getOngs() {
 		return ongs;

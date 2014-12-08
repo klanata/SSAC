@@ -148,14 +148,12 @@
 <div class="wrapper col3">
   <div id="intro">
     <div >
-      <h2>Asignar videos de Youtube a la catástrofe</h2>
+      <h2>Asignar filtros de Youtube a la catástrofe</h2>
       
       <f:view>        
       	
 		<h:form columns="2" value="#{youtubeBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
-		
-			
-			
+							
 			<p>			        		        
             <p:graphicImage value="image/#{youtubeBean.catastrofeBean.logo}" /> 
             <h:outputText value="" style="border: transparent;"/>	              		         	        	
@@ -171,32 +169,69 @@
             <h:outputText value="#{youtubeBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
             </p>
             
-            <p>                           	
-           	<p:outputLabel for="filtros" value="Filtros:"  />
-            	<p:selectOneMenu id="filtros" value="#{youtubeBean.filtroYoutubeBean}" panelStyle="width:180px"
-                         effect="fade" var="t" style="width:160px" filter="true" filterMatchMode="startsWith">
-		            <f:selectItems value="#{youtubeBean.filtroYoutubes}" var="filtroYoutubeBean" itemLabel="#{filtroYoutubeBean.descripcion}" itemValue="#{filtroYoutubeBean}" />
-		 
-		            <p:column style="width:10%">
-		                <h:outputText styleClass="ui-theme ui-theme-#{t.descripcion}" />
-		            </p:column>
-		 
-		            <p:column>
-		                <h:outputText value="#{t.descripcion}" />
-		            </p:column>
-		        </p:selectOneMenu>		   
-            </p>
+       	</h:form>
+       	</f:view> 
             
-			<br/> 
-			 <p:outputPanel style="text-align: left">
-			 		<p:commandButton id="comandoRegistrar" type="submit" value="Registrar" action="#{youtubeBean.asignarServicios()}">
-					</p:commandButton>         	            		            	
-	         </p:outputPanel>	 
+        <f:view>  
+            
+        <br class="clear" />	   		 
+
+		<h:form id="formFiltroYoutube">      	      	
+      		<p:growl id="msg" showDetail="true" />	
+      		
+      		<p>
+			<h:outputText value="Filtros asignados a Youtube " style="width:100px;border: transparent;"/>			            
+            </p>	
+      		
+    		<p:dataTable id="filtrosYoutubeDT" var="FiltroYoutubeBean" value="#{youtubeBean.filtrosYoutube}" widgetVar="filtrosTable"
+                 		 emptyMessage="No se han encontrado filtro con ese criterio" filteredValue="#{youtubeBean.filtroFiltroYoutubeBean}"                 		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selection="#{youtubeBean.selectedFiltroYoutubeBean}" rowKey="#{FiltroYoutubeBean.id}" style="margin-bottom:0">
+                 	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Filtro:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('filtrosTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>
+		        
+		        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>    		        		               	    
+        		
+        		<p:column headerText="Id" style="width:50px">
+            		<h:outputText value="#{FiltroYoutubeBean.id}" />
+        		</p:column>            		        					
+        		
+        		<p:column headerText="Descripcion"   filterBy="#{FiltroYoutubeBean.descripcion}" style="width:700px" filterMatchMode="contains">
+            		<h:outputText value="#{FiltroYoutubeBean.descripcion}" />
+        		</p:column>	  
+        		
+        		<p:column headerText="Baja">
+            		<h:outputText value="#{FiltroYoutubeBean.bajaLogica}" />
+        		</p:column>	             		        		      
+        		
+        		<f:facet name="footer">
+        			<p:outputPanel style="text-align: left">
+            			<p:commandButton process="filtrosYoutubeDT" update=":formFiltroYoutube:msg" value="Asignar" action="#{youtubeBean.asignarFiltroCatastrofe()}" />
+            			<p:commandButton process="filtrosYoutubeDT" value="Cancelar" action="#{youtubeBean.cancelar()}" />
+            		</p:outputPanel>            		
+        		</f:facet>			     		                  		                  		             	        		        
+        		 		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+		
+		<br class="clear" />			                     
+      
+      </f:view>   
+            
+	<br/> 
+			 
                          
-        </h:form>
+  
                 									        
-      </f:view>         
-    </div>    	  	  	  
+          
+   </div>    	  	  	  
   	  	  	
     <br class="clear" />
   </div>
