@@ -2,6 +2,7 @@ package com.web.controller.home;
 
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +18,7 @@ import org.primefaces.context.RequestContext;
 import clienteutility.ClienteUtility;
 
 import com.core.service.negocio.remote.AdministradorEBR;
+
 
 
 
@@ -62,6 +64,14 @@ public class LoginBean implements Serializable {
         }
 		
 		
+		Date fechaNac = new Date();
+		try {
+			Long id= manager.crearAdministrador("Administrador", "admin", "Sistema", "admin@ssac.com.uy", "admin", fechaNac, "Femenino", "1523639");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		////
 		Boolean exito =	manager.existeUsuario(nombre, clave);
 		

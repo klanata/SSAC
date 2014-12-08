@@ -73,12 +73,12 @@
 								</p>
 								<p>
 									<label for="nombre"> Clave:</label>	
-									<p:password value="#{loginBean.clave}" id="password" required="true"  label="password1" />			
+									<p:password value="#{loginBean.clave1}" id="password" required="true"  label="password1" />			
 										
 									
 							    </p>
 							    <p:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" update=":mensajes"
-            										 oncomplete="manejarLogin(xhr, status, args)" />
+            										  />
 							    
 							    </h:form>
 								
@@ -238,6 +238,7 @@
 		      console.log('Successful login for: ' + response.name);
 		      document.getElementById('status').innerHTML =
 		        'Thanks for logging in, ' + response.name + '!' ;
+		      window.location.replace("PerDesaparecidas.xhtml");
 		    });
 		  }
 </script>

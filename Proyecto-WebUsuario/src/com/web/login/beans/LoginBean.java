@@ -136,15 +136,12 @@ public class LoginBean implements Serializable {
         }
 		
 		
-		System.out.print("clave1" + clave1);
-		System.out.print("nick1" + nick1);
+		//System.out.print("clave1" + clave1);
+		//System.out.print("nick1" + nick1);
 		////veo si el usuario esta registrado
 		Boolean exito =	manager.existeUsuario(nick1, clave1);
 		
-		if(exito==true){
-			
-			System.out.print("exito == true existe usuario");
-		}
+		
 	
 		//veo si esta registrado a esa catastrofe
 		Boolean registrado = manager.estaRegistradoCatastrofe(nick1, idCatastrofe1);
@@ -209,6 +206,7 @@ public class LoginBean implements Serializable {
 		nombre="";
 		//fechaNacimiento = null;
 		//idCatastrofe= //
+		context.addCallbackParam("view", "PerDesaparecidas.xhtml");
 	}
 	public void logout() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);

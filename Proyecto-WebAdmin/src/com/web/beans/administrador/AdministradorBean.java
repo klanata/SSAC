@@ -211,6 +211,7 @@ public class AdministradorBean implements Serializable{
             e.printStackTrace();
         }
 		
+		
 		Boolean exito= false;
 		if (nick != null && password != null){
 			
