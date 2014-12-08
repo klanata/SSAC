@@ -77,8 +77,8 @@
 										
 									
 							    </p>
-							    <p:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" update=":mensajes"
-            										  />
+							    <p:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" update=":mensajes"   oncomplete="manejarLogin(xhr, status, args)" />
+            										
 							    
 							    </h:form>
 								
@@ -106,7 +106,7 @@
 									 Por favor, ingrese los campos para registrarse a la catastrofe
 									</p>
 					 <f:view>
-					 <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+					 <p:growl id="growl" showDetail="true" sticky="true" life="2000" />
 		<h:form id="login2" >
 			
 			
@@ -154,7 +154,7 @@
 					
 				<br/>
 					
-                      <p:commandButton id="registrarButton" value="Registrar" actionListener="#{loginBean.registro}" update=":growl"
+                      <p:commandButton id="registrarButton" value="Registrar" actionListener="#{loginBean.registro}" update=":growl"   oncomplete="manejarLogin(xhr, status, args)" />
             										  />	 
 				  
 				    </p:panelGrid>      
@@ -238,10 +238,23 @@
 		      console.log('Successful login for: ' + response.name);
 		      document.getElementById('status').innerHTML =
 		        'Thanks for logging in, ' + response.name + '!' ;
-		      window.location.replace("PerDesaparecidas.xhtml");
+		      
 		    });
 		  }
 </script>
+
+<script type="text/javascript">
+  //<![CDATA[
+  function manejarLogin(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeado) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 500);
+    }
+  }
+//]]>
+</script>
+
 
 </body> 
 </html>
