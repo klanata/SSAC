@@ -62,7 +62,7 @@ public class Usuario extends AbstractEntity implements Serializable {
 	
 	private boolean bajaLogica;
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Catastrofe> catastrofesRegistradas = new HashSet<Catastrofe>(0);
 	
 

@@ -19,7 +19,7 @@
 		 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
+			
 			<link rel="stylesheet" href="css/style-noscript.css" />
 	
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
@@ -59,16 +59,16 @@
 										<h3><a href="#">INGRESAR A LA CATASTROFE</a></h3>
 								</div>
 								<p:growl id="mensajes" showDetail="true" life="2000" />
-								<h:form id= "formularioIngreso">
+								<h:form id= "formularioIngreso1">
 								
 								 <p>
-						<label for="catastrofeId"> cat:</label>				
-						<p:inputText id="catastrofeId" label="catastrofeId"  value="#{loginBean.idCatastrofe1}" required="true" requiredMessage="El nombre es requerido" >	
+						<label for="catastrofeId1"> cat:</label>				
+						<p:inputText id="catastrofeId1" label="catastrofeId1"  value="#{loginBean.idCatastrofe1}"  >	
 						</p:inputText>																																									
 					</p>  
 								<p>
-									<label for="nombre"> Nombre:</label>				
-									<p:inputText id="nombre" label="nombre"  value="#{loginBean.nick1}" required="true" requiredMessage="El nombre es requerido" >	
+									<label for="nick1"> Nick:</label>				
+									<p:inputText id="nick1" label="nick1"  value="#{loginBean.nick1}" required="true" requiredMessage="El nick es requerido" >	
 									</p:inputText>	
 								</p>
 								<p>
@@ -106,9 +106,10 @@
 									 Por favor, ingrese los campos para registrarse a la catastrofe
 									</p>
 					 <f:view>
-		<h:form id="personasdesaparecidasBean" >
+					 <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+		<h:form id="login2" >
 			
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			
 			
 			
 			 <div class="wrapper col-xs-6 col-md-12">
@@ -153,8 +154,8 @@
 					
 				<br/>
 					
-                      <p:commandButton id="registrarButton" value="Registrar" actionListener="#{loginBean.registro}" update=":mensajes"
-            										 oncomplete="manejarLogin(xhr, status, args)" />	 
+                      <p:commandButton id="registrarButton" value="Registrar" actionListener="#{loginBean.registro}" update=":growl"
+            										  />	 
 				  
 				    </p:panelGrid>      
                  </div>
