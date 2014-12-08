@@ -2,7 +2,7 @@
 function cargar(position){
 	   //alert("Entre al cargar");
         var listaCatastrofes = new Array();
-        $.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/catastrofes",
+        $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/catastrofes",
         //$.ajax({url:"http://172.16.102.89:8080/ServicioRest/catastrofe/catastrofes",
             success:function(response) {
             	
@@ -49,8 +49,9 @@ function cargar(position){
                         //window.localStorage.setItem("descripcionPedidoAyudaActual", descripcionActual);
                         //alert(window.localStorage.getItem("IdPedidoAyudaActual"));
                         //alert("Me hiciste click!");
-                        window.location.replace("Index.xhtml");
-                        //document.getElementById("descripcionPedidoAyuda").value = descripcionActual;
+                        document.getElementById("idCatastrofe").value = IdActual;
+                        window.location.replace("Index.xhtml?id="+ IdActual);
+                        
                         //document.getElementById("idPedidoAyudaActual").value = IdActual;
                         //document.getElementById("listaPendientes").style.display = 'none';
                         //document.getElementById("pedidoAyudaDetalle").style.display = 'initial';

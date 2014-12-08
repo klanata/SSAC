@@ -87,7 +87,13 @@
 						</div>
 						<div class="8u important(collapse)" id="content">
 							<div class="article" id="main">
+							<p:commandLink id="mapaWraper">
 							<div id="mapa">Mapa</div>
+							<p:ajax id="aj2" listener="#{homeBean.mouseClicked}"/>
+							</p:commandLink>
+							<form action="Index.xhtml">
+							<input type="hidden" id="idCatastrofe" value=""></input>
+							</form>
 							</div>
 						</div>
 					</div>
