@@ -174,7 +174,47 @@
             
         <f:view>  
             
-        <br class="clear" />	   		 
+        <br class="clear" />
+        
+        <h:form id="formFiltroServicioYoutube">      	      	
+      		<p:growl id="msgss" showDetail="true" />	
+      		
+      		<p>
+			<h:outputText value="Filtros asignados a la Catástrofe " style="width:100px;border: transparent;"/>			            
+            </p>	
+      		
+    		<p:dataTable id="filtrosServicioYoutubeDT" var="filtroServicioBean" value="#{youtubeBean.listaFiltrosServicioBean}" widgetVar="filtrosServicioTable"
+                 		 emptyMessage="No se han encontrado filtro con ese criterio" filteredValue="#{youtubeBean.filtroFiltroServicioBean}"                 		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selection="#{youtubeBean.selectedFiltroServicioBean}" rowKey="#{filtroServicioBean.id}" style="margin-bottom:0">
+                 	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar Filtro:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('filtrosServicioTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>
+		        
+		        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>    		        		               	    
+        		
+        		<p:column headerText="Id" style="width:50px">
+            		<h:outputText value="#{filtroServicioBean.id}" />
+        		</p:column>            		        					
+        		
+        		<p:column headerText="Descripcion"   filterBy="#{filtroServicioBean.descripcion}" style="width:700px" filterMatchMode="contains">
+            		<h:outputText value="#{filtroServicioBean.descripcion}" />
+        		</p:column>	  
+        		
+        		<p:column headerText="Fuente">
+            		<h:outputText value="#{filtroServicioBean.fuente}" />
+        		</p:column>	             		        		              		        		     		                  		                  		             	        		       
+        		 		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>	 
+		
+		<br class="clear" />  		 
 
 		<h:form id="formFiltroYoutube">      	      	
       		<p:growl id="msg" showDetail="true" />	
@@ -226,11 +266,7 @@
       </f:view>   
             
 	<br/> 
-			 
-                         
-  
-                									        
-          
+			                                            									                
    </div>    	  	  	  
   	  	  	
     <br class="clear" />

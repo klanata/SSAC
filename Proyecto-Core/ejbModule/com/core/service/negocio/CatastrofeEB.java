@@ -1,6 +1,7 @@
 package com.core.service.negocio;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -16,10 +17,12 @@ import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Filtro;
 import com.core.data.entites.ImagenCatastrofe;
+import com.core.data.entites.Servicio;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
 import com.core.data.persistencia.interfaces.locales.FiltroDAO;
+import com.core.data.persistencia.interfaces.locales.ServicioDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.data.persistencia.DataService;
 
@@ -42,6 +45,9 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	@EJB
 	private FiltroDAO filtroDAO;
+	
+	@EJB
+	private ServicioDAO servicioDAO;
 
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -289,6 +295,55 @@ public class CatastrofeEB implements CatastrofeEBR{
 		
 	}
 	
+	public List<Filtro> filtrosAsingadosACatastrofe(Long idCatastrofe, String fuente) throws Exception{
+		
+		List<Filtro> res = new ArrayList<Filtro>();
+		Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);	
+		Set<Filtro> filtros = c.getFiltros();
+		Servicio servicio = servicioDAO.buscarServicioPorFuente(fuente);
+		Long idServcio = servicio.getId();
+		Set<Servicio> servicosF = new HashSet<Servicio>();
+		Long idS;
+		int i = 0;
+		
+		for (Filtro f : filtros){
+			servicosF = f.getServicios();
+			for (Servicio s : servicosF){
+				idS = s.getId();			
+				if(idServcio == idS){
+					res.add(i, f);
+					i = i + 1;
+				}					
+			}			 
+		}								
+		return res;		
+		
+	}
+	
+	public List<String> BusquedaAsingadasACatastrofe(Long idCatastrofe, String fuente) throws Exception{
+		
+		List<String> res = new ArrayList<String>();
+		Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);	
+		Set<Filtro> filtros = c.getFiltros();
+		Servicio servicio = servicioDAO.buscarServicioPorFuente(fuente);
+		Long idServcio = servicio.getId();
+		Set<Servicio> servicosF = new HashSet<Servicio>();
+		Long idS;
+		String descripcionF;
+		
+		for (Filtro f : filtros){
+			servicosF = f.getServicios();
+			descripcionF = f.getDescripcion();
+			for (Servicio s : servicosF){
+				idS = s.getId();			
+				if(idServcio == idS){
+					res.add(descripcionF);						
+				}					
+			}			
+		}								
+		return res;
+		
+	}
 	
 	
 }

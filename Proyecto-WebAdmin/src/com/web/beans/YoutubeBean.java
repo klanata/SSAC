@@ -20,7 +20,7 @@ import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Filtro;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.service.negocio.remote.FiltroEBR;
-import com.web.beans.ong.OngBean;
+
 
 @ManagedBean(name="youtubeBean")
 @RequestScoped
@@ -30,6 +30,19 @@ public class YoutubeBean implements Serializable{
 	
 	@ManagedProperty("#{catastrofeBean}")
     private CatastrofeBean catastrofeBean = new CatastrofeBean();
+	
+	
+	@ManagedProperty("#{filtroServicioBean}")
+	FiltroServicioBean filtroServicioBean;
+	
+	private List<FiltroServicioBean> listaFiltrosServicioBean = new ArrayList<FiltroServicioBean>();
+	
+	private List<FiltroServicioBean> filtroFiltroServicioBean;
+    
+    private List<FiltroServicioBean> selectedFiltroServicioBean;
+    
+    
+	
 	
 	@ManagedProperty("#{filtroYoutubeBean}")
 	FiltroYoutubeBean filtroYoutubeBean;
@@ -94,46 +107,90 @@ public class YoutubeBean implements Serializable{
 					css = null;
 					catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad,css);    				    														         			
     		    }catch (Exception excep){
-    				System.out.println("Excepción en ImagenesView: " + excep.getMessage());      		 			       	            	
+    				System.out.println("Excepción en Youtube Bean al ver los datos de la catastrofe: " + excep.getMessage());      		 			       	            	
     			}  
+    			
+    			//lista todos los filtros en youtube asignados a la catastrofe
+    			CatastrofeEBR manager2 = null;				
+    			Context context2 = null;			
+    			//FacesMessage message = null; 
+    			
+    			try {
+    	            // 1. Obtaining Context
+    	            context2 = ClienteUtility.getInitialContext();
+    	            // 2. Generate JNDI Lookup name
+    	            //String lookupName = getLookupName();
+    	            // 3. Lookup and cast
+    	            manager2 = (CatastrofeEBR) context2.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+    	 
+    	        } catch (NamingException e) {
+    	            e.printStackTrace();
+    	        }
+    		
+    			try{
+    				Long idCat = new Long(idEventoString);
+    				
+    				List<Filtro> lista = new ArrayList<Filtro>();
+    				String fuenteCat = "Youtube";
+    				lista = manager2.filtrosAsingadosACatastrofe(idCat, fuenteCat);
+    				Filtro filtroCat;
+    		    	Long idF;
+    		    	String descripcionF;
+    		    	    		    	
+    		    	for (int i=0; i<=lista.size()-1; i++){    	
+    		    		
+    		    		filtroCat = lista.get(i);
+    		    		idF = filtroCat.getId();
+    		    		descripcionF = filtroCat.getDescripcion();
+    		    		listaFiltrosServicioBean.add(i, new FiltroServicioBean(idF,descripcionF,fuenteCat));    		    		    				
+    				}	
+    												 																		    						    				    														         		
+    		    }catch (Exception excep){
+    				System.out.println("Excepción en Youtube Bean al ver los datos de la catastrofe: " + excep.getMessage());      		 			       	            	
+    			}  
+    			    			
+    			
+    			// listo los filtros que tiene youtube
+                FiltroEBR managerF = null;				
+    			Context contextF = null;			
+    			//FacesMessage message = null; 
+    			
+    			try {
+    	            // 1. Obtaining Context
+    	            contextF = ClienteUtility.getInitialContext();
+    	            // 2. Generate JNDI Lookup name
+    	            //String lookupName = getLookupName();
+    	            // 3. Lookup and cast
+    	            managerF = (FiltroEBR) contextF.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroEB!com.core.service.negocio.remote.FiltroEBR");
+    	 
+    	        } catch (NamingException e) {
+    	            e.printStackTrace();
+    	        }
+                
+    			try{				
+    				List<Filtro> listaFiltro = new ArrayList<Filtro>();
+    				listaFiltro = managerF.listaFiltrosYoutube();
+    				Filtro filtro;
+    		    	Long id;
+    		    	String descripcion;
+    		    	boolean bajaLogica;
+    		    	
+    		    	for (int i=0; i<=listaFiltro.size()-1; i++){    							
+    					filtro = listaFiltro.get(i);
+    					id = filtro.getId();
+    					descripcion = filtro.getDescripcion();
+    					bajaLogica = filtro.isBajaLogica();
+    					filtrosYoutube.add(i, new FiltroYoutubeBean(id,descripcion,bajaLogica));																	    		
+    				}				
+    				
+    			}catch (Exception excep){
+    	    		System.out.println("Excepción al listar todas las catástrofes youtube: " + excep.getMessage());      		 			       	           	
+    	    	}
+    			
+    			
     		}  
             
-            // listo los filtros que tiene youtube
-            FiltroEBR managerF = null;				
-			Context contextF = null;			
-			//FacesMessage message = null; 
-			
-			try {
-	            // 1. Obtaining Context
-	            contextF = ClienteUtility.getInitialContext();
-	            // 2. Generate JNDI Lookup name
-	            //String lookupName = getLookupName();
-	            // 3. Lookup and cast
-	            managerF = (FiltroEBR) contextF.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroEB!com.core.service.negocio.remote.FiltroEBR");
-	 
-	        } catch (NamingException e) {
-	            e.printStackTrace();
-	        }
-            
-			try{				
-				List<Filtro> listaFiltro = new ArrayList<Filtro>();
-				listaFiltro = managerF.listaFiltrosYoutube();
-				Filtro filtro;
-		    	Long id;
-		    	String descripcion;
-		    	boolean bajaLogica;
-		    	
-		    	for (int i=0; i<=listaFiltro.size()-1; i++){    							
-					filtro = listaFiltro.get(i);
-					id = filtro.getId();
-					descripcion = filtro.getDescripcion();
-					bajaLogica = filtro.isBajaLogica();
-					filtrosYoutube.add(i, new FiltroYoutubeBean(id,descripcion,bajaLogica));																	    		
-				}				
-				
-			}catch (Exception excep){
-	    		System.out.println("Excepción al listar las catástrofes youtube: " + excep.getMessage());      		 			       	           	
-	    	} 			                                    
+                                               
                         
     }
 	
@@ -183,6 +240,48 @@ public class YoutubeBean implements Serializable{
 	public void setSelectedFiltroYoutubeBean(
 			List<FiltroYoutubeBean> selectedFiltroYoutubeBean) {
 		this.selectedFiltroYoutubeBean = selectedFiltroYoutubeBean;
+	}
+	
+	public FiltroServicioBean getFiltroServicioBean() {
+		return filtroServicioBean;
+	}
+
+
+	public void setFiltroServicioBean(FiltroServicioBean filtroServicioBean) {
+		this.filtroServicioBean = filtroServicioBean;
+	}
+
+
+	public List<FiltroServicioBean> getListaFiltrosServicioBean() {
+		return listaFiltrosServicioBean;
+	}
+
+
+	public void setListaFiltrosServicioBean(
+			List<FiltroServicioBean> listaFiltrosServicioBean) {
+		this.listaFiltrosServicioBean = listaFiltrosServicioBean;
+	}
+
+
+	public List<FiltroServicioBean> getFiltroFiltroServicioBean() {
+		return filtroFiltroServicioBean;
+	}
+
+
+	public void setFiltroFiltroServicioBean(
+			List<FiltroServicioBean> filtroFiltroServicioBean) {
+		this.filtroFiltroServicioBean = filtroFiltroServicioBean;
+	}
+
+
+	public List<FiltroServicioBean> getSelectedFiltroServicioBean() {
+		return selectedFiltroServicioBean;
+	}
+
+
+	public void setSelectedFiltroServicioBean(
+			List<FiltroServicioBean> selectedFiltroServicioBean) {
+		this.selectedFiltroServicioBean = selectedFiltroServicioBean;
 	}
 	
 	//	------------------ Operaciones ---------------------
@@ -235,6 +334,9 @@ public class YoutubeBean implements Serializable{
 	}
 	*/
 	
+	
+
+
 	public void asignarFiltroCatastrofe(){
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeYoutube");
 		if ((idEventoString == null) || (idEventoString == ""))
