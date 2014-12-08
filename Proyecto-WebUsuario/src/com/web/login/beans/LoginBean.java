@@ -161,7 +161,7 @@ public class LoginBean implements Serializable {
 		{
 			//si esta registrado en la plataforma pero no a la catastrofe
 			
-			manager.registrarACatastrofe(nick1, clave1, idCatastrofe);
+			manager.registrarACatastrofe(nick1, clave1, idCatastrofe1);
 			logeado = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@","Se ha registrado a la catástrofe");
 			context.addCallbackParam("view", "PerDesaparecidas.xhtml");

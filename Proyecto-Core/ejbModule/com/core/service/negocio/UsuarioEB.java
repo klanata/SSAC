@@ -50,13 +50,29 @@ public class UsuarioEB implements UsuarioEBR{
 	public boolean estaRegistradoCatastrofe(String nick, 
 			long idCatastrofe) {
 		
-		//
+		boolean existe = false;
+		
+		//Obtengo el usuario
+		Usuario usuario =  usuarioDAO.BuscarUsuarioNick(nick);
+		Set<Catastrofe> lista = usuario.getCatastrofesRegistradas();
+		Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
+		existe = lista.contains(c);
+				
+				
 		
 		
-		return false;
+		return existe;
 	}
 	@Override
 	public void registrarACatastrofe(String nick, String pass, long idCatastrofe) {
+		
+
+		Usuario usuario =  usuarioDAO.BuscarUsuarioNick(nick);
+		Set<Catastrofe> lista = usuario.getCatastrofesRegistradas();
+		Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
+		lista.add(c);
+		dataService.update(usuario);
+		
 		
 		
 	}

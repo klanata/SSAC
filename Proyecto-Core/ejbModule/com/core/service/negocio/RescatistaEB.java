@@ -63,35 +63,38 @@ public class RescatistaEB implements RescatistaEBR {
 		       Collection<EstadoRescatista> listaEstado = rescatistaService.listarPendientesRescatistaPorID(idRescatista);
 		       
 		        
+		       if(listaEstado != null){
+		    	   
+		    
 		       
 		       
 		       Iterator<EstadoRescatista> it = listaEstado.iterator();
 		       
-		       while(it.hasNext())
-		       {
-		    	   EstadoRescatista e = it.next();
-		    	   Long idpedidoAyuda = e.getIdPedidoAyuda();
-		    	   PedidoDeAyuda pedido = dataService.find(PedidoDeAyuda.class,idpedidoAyuda);
-		    	   //obtengo la catastrofeç
-		    	   PlanDeRiesgo p = pedido.getCatastrofe().getPlanDeRiesgo();
-		    	   
-		    	   //obtengo planDeRiesgo
-		    	   		    	   
-		    	   PlanesPendientesRescatistaDTO planesDTO = new PlanesPendientesRescatistaDTO();
-		    	   planesDTO.setUrlArchivo(p.getRutaArchivo());
-		    	   planesDTO.setNombreTarea(e.getNombreTarea());
-		    	   planesDTO.setIdPedidoDeAyuda(idpedidoAyuda);
-		    	   planesDTO.setCoordenadaX(pedido.getCoordenadasX());
-		    	   planesDTO.setCoordenaday(pedido.getCoordenadasY());
-		    	   planesDTO.setDescripcion(pedido.getDescripcion());
-		    	   planesDTO.setEstadoTarea(e.getPendiente());
-		    	   planesDTO.setIdEstadoRescatista(e.getId());
-		    	   
-		    	   listaDTO.add(planesDTO);
-		    	   
-		    	   
+				       while(it.hasNext())
+				       {
+				    	   EstadoRescatista e = it.next();
+				    	   Long idpedidoAyuda = e.getIdPedidoAyuda();
+				    	   PedidoDeAyuda pedido = dataService.find(PedidoDeAyuda.class,idpedidoAyuda);
+				    	   //obtengo la catastrofeç
+				    	   PlanDeRiesgo p = pedido.getCatastrofe().getPlanDeRiesgo();
+				    	   
+				    	   //obtengo planDeRiesgo
+				    	   		    	   
+				    	   PlanesPendientesRescatistaDTO planesDTO = new PlanesPendientesRescatistaDTO();
+				    	   planesDTO.setUrlArchivo(p.getRutaArchivo());
+				    	   planesDTO.setNombreTarea(e.getNombreTarea());
+				    	   planesDTO.setIdPedidoDeAyuda(idpedidoAyuda);
+				    	   planesDTO.setCoordenadaX(pedido.getCoordenadasX());
+				    	   planesDTO.setCoordenaday(pedido.getCoordenadasY());
+				    	   planesDTO.setDescripcion(pedido.getDescripcion());
+				    	   planesDTO.setEstadoTarea(e.getPendiente());
+				    	   planesDTO.setIdEstadoRescatista(e.getId());
+				    	   
+				    	   listaDTO.add(planesDTO);
+				    	   
+				    	   
+				       }
 		       }
-		       
 		       
 		}catch (Exception e )
 		{
