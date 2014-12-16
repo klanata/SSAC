@@ -36,9 +36,16 @@ public class RescatistaBean implements Serializable {
 	private Date fechaNac= null;
 	private String sexo;
 	private String celular = "";
+	private String imagen="";
 	
 	
 	
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -116,8 +123,9 @@ public class RescatistaBean implements Serializable {
             
             requestContext.update("form:display");
             requestContext.execute("PF('dlg').show()");
+            
     		
-    		Long id= manager.crearRescatista(nombre, nick, apellido, email, password, fechaNac, sexo, celular);
+    		Long id= manager.crearRescatista(nombre, nick, apellido, email, password, fechaNac, sexo, celular,imagen);
     		if (id.equals(0)){
     			
     			FacesContext contexto = FacesContext.getCurrentInstance(); 
@@ -156,7 +164,7 @@ public class RescatistaBean implements Serializable {
 	
 	public RescatistaBean(Long id, String nombre, String apellido, String nick,
 			String email, String password, Date fechaNac, String sexo,
-			String celular) {
+			String celular,String imagen) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -167,6 +175,7 @@ public class RescatistaBean implements Serializable {
 		this.fechaNac = fechaNac;
 		this.sexo = sexo;
 		this.celular = celular;
+		this.imagen = imagen;
 	}
 	
 	

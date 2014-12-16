@@ -66,9 +66,19 @@ public class Usuario extends AbstractEntity implements Serializable {
 	private Set<Catastrofe> catastrofesRegistradas = new HashSet<Catastrofe>(0);
 	
 
+	private String imagen;
 	
 	
 	
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	public String getPass() {
 		return pass;
 	}

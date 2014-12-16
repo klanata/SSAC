@@ -83,8 +83,9 @@ public class EliminarRescatistaBean implements Serializable {/**
 				Date fechaNac = a.getFechaNac();
 				String sexo = a.getSexo() ;
 				String celular = a.getCelular();
+				String imagen = a.getImagen();
 				
-				rescatistaBean = new RescatistaBean(id, nombre, apellido, nick, email, password, fechaNac, sexo, celular);
+				rescatistaBean = new RescatistaBean(id, nombre, apellido, nick, email, password, fechaNac, sexo, celular, imagen);
 				
 				 
 				   	

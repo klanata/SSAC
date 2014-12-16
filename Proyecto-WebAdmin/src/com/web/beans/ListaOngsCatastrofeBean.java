@@ -138,6 +138,7 @@ public class ListaOngsCatastrofeBean implements Serializable{
 				    	String emailOngCat;
 				    	String citioWebOngCat;
 				    	String descripcionOngCat;
+				    	String imagen;
 				    	int iOngCat = 0;
 						for (Ong ongCatastrofe : resOngCat){   					
 							idOngCat = ongCatastrofe.getId();
@@ -147,8 +148,9 @@ public class ListaOngsCatastrofeBean implements Serializable{
 							telefonoOngCat = ongCatastrofe.getTelefono();																					
 							emailOngCat = ongCatastrofe.getEmail();
 							citioWebOngCat = ongCatastrofe.getCitioWeb();
-							descripcionOngCat = ongCatastrofe.getDescripcion();				
-							ongsBeanCat.add(iOngCat, new OngBean(idOngCat,nombreOngCat,direccionOngCat,telefonoOngCat,emailOngCat,citioWebOngCat,descripcionOngCat));
+							descripcionOngCat = ongCatastrofe.getDescripcion();		
+							imagen = ongCatastrofe.getImagen(); 
+							ongsBeanCat.add(iOngCat, new OngBean(idOngCat,nombreOngCat,direccionOngCat,telefonoOngCat,emailOngCat,citioWebOngCat,descripcionOngCat,imagen));
 										
 						}		    	
 					}
@@ -186,6 +188,7 @@ public class ListaOngsCatastrofeBean implements Serializable{
 			    	String email;
 			    	String citioWeb;
 			    	String descripcion;
+			    	String imagen;
 					for (int i=0; i<=res.size()-1; i++){    		
 						ong = res.get(i);
 						id = ong.getId();
@@ -194,8 +197,9 @@ public class ListaOngsCatastrofeBean implements Serializable{
 						telefono = ong.getTelefono();																					
 						email = ong.getEmail();
 						citioWeb = ong.getCitioWeb();
-						descripcion = ong.getDescripcion();				
-						ongsBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion));									    		
+						descripcion = ong.getDescripcion();	
+						imagen = ong.getImagen();
+						ongsBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion,imagen));									    		
 					}	
 					
 		    	}catch (Exception excep){

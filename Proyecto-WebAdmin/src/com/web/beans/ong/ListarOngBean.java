@@ -107,6 +107,7 @@ public class ListarOngBean implements Serializable{
 	    	String email;
 	    	String citioWeb;
 	    	String descripcion;
+	    	String imagen;
 			for (int i=0; i<=res.size()-1; i++){    		
 				ong = res.get(i);
 				id = ong.getId();
@@ -115,8 +116,9 @@ public class ListarOngBean implements Serializable{
 				telefono = ong.getTelefono();																					
 				email = ong.getEmail();
 				citioWeb = ong.getCitioWeb();
-				descripcion = ong.getDescripcion();				
-				listaOngBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion));	
+				descripcion = ong.getDescripcion();			
+				imagen = ong.getImagen();
+				listaOngBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion,imagen));	
 				
 			}	
 			

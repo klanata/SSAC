@@ -1,16 +1,12 @@
 package com.core.service.negocio;
 
-
 import java.util.Date;
 import java.util.Set;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.ws.rs.Path;
-
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.DataService;
@@ -58,9 +54,6 @@ public class UsuarioEB implements UsuarioEBR{
 		Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
 		existe = lista.contains(c);
 				
-				
-		
-		
 		return existe;
 	}
 	@Override
@@ -78,7 +71,7 @@ public class UsuarioEB implements UsuarioEBR{
 	}
 	@Override
 	public void registroUsuarioPlataforma(String nick, String pass,
-			String mail, String nombre, Date fecha, long idCatastrofe) {
+			String mail, String nombre, Date fecha, long idCatastrofe, String imagen) {
 		
 		//se ejecuta solo una vez
 		Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
@@ -89,6 +82,7 @@ public class UsuarioEB implements UsuarioEBR{
 		u.setNombre(nombre);
 		u.setPassword(pass);
 		u.setBajaLogica(false);
+		u.setImagen(imagen);
 		Set<Catastrofe> lista = u.getCatastrofesRegistradas();
 		lista.add(c);
 		u.setCatastrofesRegistradas(lista);

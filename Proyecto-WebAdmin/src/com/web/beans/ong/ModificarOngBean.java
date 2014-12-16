@@ -87,9 +87,10 @@ public class ModificarOngBean implements Serializable{
 				String citioWeb =  a.getCitioWeb();
 				String email = a.getEmail();
 				String telefono = a.getTelefono();
+				String imagen = a.getImagen();
 				
 				
-				ongBean =  new OngBean(id, nombre, direccion, telefono, email, citioWeb, descripcion);
+				ongBean =  new OngBean(id, nombre, direccion, telefono, email, citioWeb, descripcion,imagen);
 				 
 				      	
 		     
@@ -136,7 +137,8 @@ OngEBR manager = null;
 			String citioWeb =  ongBean.getCitioWeb();
 			String email = ongBean.getEmail();
 			String telefono = ongBean.getTelefono();
-			manager.modificarOng(nombre, direccion, descripcion, email, telefono, citioWeb);
+			String imagen = ongBean.getImagen();
+			manager.modificarOng(nombre, direccion, descripcion, email, telefono, citioWeb,imagen);
 			
 			
 

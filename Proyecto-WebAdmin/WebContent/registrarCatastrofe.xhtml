@@ -18,8 +18,8 @@
         height: 100%;
     }
     </style>
-  
-	
+  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
+    <script type="text/javascript" src="js/map.js"></script>    
 </h:head> 
 <h:body id="top"> 
 <div class="wrapper col1">
@@ -162,90 +162,78 @@
   
 </div>
 
-<div class="wrapper col3">
-  <div id="intro">
-    <div class="fl_left">
-      <h2>Registrar Catástrofe</h2>
-      <br/>	
-      <f:view>
-		<h:form id="registroFiltro" enctype="multipart/form-data">
-						
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			
-				<p>
-				<label for="nombreEvento">Nombre del Evento:</label>				
-					<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBean.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-						
-				<h4>Descripción:</h4>	
-					<h:panelGrid columns="2" border="0">																																		
-					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{catastrofeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
-				</h:panelGrid>													
-						
-				<h4>Logo:</h4>					
-				<h:panelGrid columns="2" border="0">																						
-					<h:inputFile id="logo" label="logo" value="#{catastrofeBean.part}" required="true" requiredMessage="El logo es obligatorio" >			
-					</h:inputFile>					 					
-				</h:panelGrid>					
-																
-				<p>
-				<label for="coordX">Coordenada X:</label>
-				<p:inputText id="coordX" label="coordenadaX" value="#{catastrofeBean.coordenadasX}" required="true" requiredMessage="La coordenada X es obligatoria" >
-				</p:inputText>					
-				</p>
-				<br/>
-				
-				<p><label for="coordY">Coordenada Y:</label>
-				<p:inputText id="coordY" label="coordenadaY" value="#{catastrofeBean.coordenadasY}" required="true" requiredMessage="La coordenada Y es obligatoria" >
-				</p:inputText>					
-				</p>	
-				<br/>
-				
-				<p>		
-				<p:selectBooleanCheckbox value="#{catastrofeBean.activa}"/> 
-				<label for="activa">Activa</label>						
-				</p>	
-				<br/>
-				
-				<p>	
-				<p:selectBooleanCheckbox value="#{catastrofeBean.prioridad}"/> 
-				<label for="prioridad">Prioridad</label>				
-				</p>	
-				<br/>															
-				
-			<p:commandButton id="comandoRegistrar" update="growl" ajax="false" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{catastrofeBean.registrarCatastrofe()}">
-			</p:commandButton>		
-			
-		</h:form>
-		</f:view>
-    </div>
-    
-   
+<div >
+  <div >
     
     <div id="mapa">        
 		
 		<p:growl id="messages" showDetail="true" />
  
-		<p:gmap id="gmap" center="-34.917440, -56.164244" zoom="15" type="HYBRID" style="width:381px;height:650px;left:60px"
+		<p:gmap id="gmap" center="-34.917440, -56.164244" zoom="15" type="HYBRID" style="width:1350px;height:400px"
     		model="#{catastrofeBean.emptyModel}" onPointClick="handlePointClick(event);" widgetVar="map" />
 		
 		<p:dialog widgetVar="dlg" showEffect="fade">
-    		<h:form prependId="false">
-        		<h:panelGrid columns="2">
-            		<h:outputLabel for="title" value="Nombre del Evento:" />
-            		<p:inputText id="title" value="#{catastrofeBean.title}" />
- 
+			
+			<div class="wrapper col3">
+  <div >
+    <div >
+      <h2>Registrar Catástrofe</h2>
+      <br/>	
+      <f:view>
+            				
+    		<h:form prependId="false" id="registroFiltro" enctype="multipart/form-data">  
+    		
+    			<h:panelGrid columns="1" >  		    		
+        		  		
+            		
+					<label for="nombreEvento">Nombre del Evento:</label>				
+						<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBean.title}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
+						</p:inputText>																																									
+										
+					
+					<label for="descripcion">Descripción:</label>	
+					<h:panelGrid columns="2" border="0">																																		
+						<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{catastrofeBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
+					</h:panelGrid>													
+							
+					<label for="logo">Logo:</label>					
+					<h:panelGrid columns="1" border="0">																						
+						<h:inputFile id="logo" label="logo" value="#{catastrofeBean.part}" required="true" requiredMessage="El logo es obligatorio" >			
+						</h:inputFile>					 					
+					</h:panelGrid>	
+            		
+            		<p>
+					<p:selectBooleanCheckbox value="#{catastrofeBean.activa}"/> 
+					<label for="activa">Activa</label>	
+					</p>
+					
+					<p>
+					<p:selectBooleanCheckbox value="#{catastrofeBean.prioridad}"/> 
+					<label for="prioridad">Prioridad</label>						
+					</p>
+											            	
             		<f:facet name="footer">
-                		<p:commandButton value="Agregar" actionListener="#{catastrofeBean.addMarker}" update=":messages" oncomplete="markerAddComplete()" />
+                		<p:commandButton value="Agregar" ajax="false" actionListener="#{catastrofeBean.addMarker}" update=":messages" oncomplete="markerAddComplete()" />
                 		<p:commandButton value="Cancelar" onclick="return cancel()" />
             		</f:facet>
-        		</h:panelGrid>
- 
+            		
+            		</h:panelGrid>
+        			
+ 					 
         		<h:inputHidden id="lat" value="#{catastrofeBean.lat}" />
         		<h:inputHidden id="lng" value="#{catastrofeBean.lng}" />
+        		        		        	        		       
     		</h:form>
+    		
+    		 
+    		    				
+		</f:view>
+    </div> 
+    
+    <br class="clear" />
+  </div>
+</div>
+    		
 		</p:dialog>
  
 		<script type="text/javascript">
@@ -270,6 +258,7 @@
 		        var title = document.getElementById('title');
 		        currentMarker.setTitle(title.value);
 		        title.value = "";
+		       
 		 
 		        currentMarker = null;
 		        PF('dlg').hide();
@@ -283,13 +272,8 @@
 		        return false;
 		    }
 		</script>
-		
-   	
-    	
-	</div>
-    
-    
-    
+		    	
+	</div>    
     
     <br class="clear" />
   </div>

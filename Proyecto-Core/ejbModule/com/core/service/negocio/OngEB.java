@@ -25,7 +25,7 @@ public class OngEB implements OngEBR{
 	private DataService dataService;
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarOng(String nombre, String direccion, String descripcion,
-			String email, String telefono, String citioWeb)
+			String email, String telefono, String citioWeb, String imagen)
 			throws Exception {
 		
 		Ong o= new Ong();
@@ -36,6 +36,7 @@ public class OngEB implements OngEBR{
 		o.setTelefono(telefono);
 		o.setNombre(nombre);
 		o.setBajaLogica(false);
+		o.setImagen(imagen);
 		Long id = ongService.insert(o);
 		return id;
 	}
@@ -87,7 +88,7 @@ public class OngEB implements OngEBR{
 
 	@Override
 	public void modificarOng(String nombre, String direccion,
-			String descripcion, String email, String telefono, String citioWeb) {
+			String descripcion, String email, String telefono, String citioWeb, String imagen) {
 		
 		//obtengo la ong
 		Ong o =ongService.buscarOngPorNick(nombre);
@@ -96,6 +97,7 @@ public class OngEB implements OngEBR{
 		o.setDireccion(direccion);
 		o.setEmail(email);
 		o.setTelefono(telefono);
+		o.setImagen(imagen);
 		//o.setNombre(nombre); politicas de la empresa el nombre no se modifica
 		dataService.update(o);
 		

@@ -33,9 +33,20 @@ public class OngBean implements Serializable{
 	private String citioWeb = "";
 	private String descripcion = "";
 	private Long id;
+	private String imagen = "";
 
 	
 	
+	public String getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -130,7 +141,7 @@ public class OngBean implements Serializable{
             requestContext.update("form:display");
             requestContext.execute("PF('dlg').show()");
     		    	
-    		Long id= manager.ingesarOng(nombre, direccion, descripcion, email, telefono, citioWeb);
+    		Long id= manager.ingesarOng(nombre, direccion, descripcion, email, telefono, citioWeb, imagen);
     		if (id.equals(0)){
     			
     			FacesContext contexto = FacesContext.getCurrentInstance(); 
@@ -188,7 +199,7 @@ public class OngBean implements Serializable{
 	public OngBean(){}
 	
 	public OngBean(Long id,String nombre, String direccion, String telefono,
-			String email, String citioWeb, String descripcion) {
+			String email, String citioWeb, String descripcion, String imagen) {
 		super();
 		this.id= id;
 		this.nombre = nombre;
@@ -197,6 +208,7 @@ public class OngBean implements Serializable{
 		this.email = email;
 		this.citioWeb = citioWeb;
 		this.descripcion = descripcion;
+		this.imagen = imagen;
 	}
 	
 	

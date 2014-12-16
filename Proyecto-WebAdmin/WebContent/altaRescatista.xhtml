@@ -212,7 +212,13 @@
 				<p:outputLabel for="fecha" value="Fecha:" />
         		<p:calendar id="fecha" value="#{rescatistaBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />
 				<br/>	
-				</h:panelGrid>	
+				</h:panelGrid>
+				<label for="logo">Imagen:</label>					
+																									
+						<h:inputFile id="Imagen" label="Imagen" value="#{rescatistaBean.imagen}" required="true"  >			
+						</h:inputFile>					 					
+					
+					
 				<p:outputLabel for="sexo" value="Sexo:" />
 		        <p:selectOneRadio id="sexo" value="#{rescatistaBean.sexo}">
 		            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />

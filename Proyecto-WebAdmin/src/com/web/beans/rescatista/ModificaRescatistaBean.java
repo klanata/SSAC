@@ -93,8 +93,9 @@ public class ModificaRescatistaBean implements Serializable {
 				Date fechaNac = a.getFechaNac();
 				String sexo = a.getSexo() ;
 				String celular = a.getCelular();
+				String imagen = a.getImagen();
 				
-				rescatistaBean = new RescatistaBean(idAdministrador, nombre, apellido, nick, email, password, fechaNac, sexo, celular);
+				rescatistaBean = new RescatistaBean(idAdministrador, nombre, apellido, nick, email, password, fechaNac, sexo, celular,imagen);
 				 
 				 	
 		     
@@ -143,8 +144,8 @@ public class ModificaRescatistaBean implements Serializable {
 			Date fechaNac = rescatistaBean.getFechaNac();
 			String sexo = rescatistaBean.getSexo() ;
 			String celular = rescatistaBean.getCelular();
-		
-			manager.modificarRescatista(nombre, nick, apellido, email, password, fechaNac, sexo, celular);
+			String imagen = "tomarla";
+			manager.modificarRescatista(nombre, nick, apellido, email, password, fechaNac, sexo, celular, imagen);
 			
 
 

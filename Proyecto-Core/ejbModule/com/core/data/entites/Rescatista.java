@@ -74,11 +74,21 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	@Column(nullable= false)
 	private String sexo;
 	
-	
+	private String imagen;
 	private String celular;
 	
 	private boolean bajaLogica;
 	
+	
+	
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	public boolean getBajaLogica() {
 		return bajaLogica;
 	}

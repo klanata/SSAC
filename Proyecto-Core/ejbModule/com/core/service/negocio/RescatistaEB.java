@@ -17,6 +17,8 @@ import javax.ws.rs.Path;
 
 
 
+
+
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.PedidoDeAyuda;
@@ -141,7 +143,7 @@ public class RescatistaEB implements RescatistaEBR {
 	//////////////////////////////////////////////////////////////////////////////
 	@Override
 	public Long crearRescatista(String nombre, String nick, String apellido,
-			String email, String password, Date fechaNac, String sexo, String celular) throws Exception {
+			String email, String password, Date fechaNac, String sexo, String celular,String imagen) throws Exception {
 			
 		Rescatista r = new Rescatista();
 		r.setNombre(nombre);
@@ -153,6 +155,7 @@ public class RescatistaEB implements RescatistaEBR {
 		r.setSexo(sexo);
 		r.setBajaLogica(false);
 		r.setNick(nick);
+		r.setImagen(imagen);
 		r.setEstadoRescatista(null);
 		Long id = rescatistaService.insert(r);
 		return id;
@@ -188,7 +191,7 @@ public class RescatistaEB implements RescatistaEBR {
 
 
 	/****************************************************************************/
-	public void modificarRescatista(String nombre, String nick, String apellido, String email,String password,Date fechaNac,String sexo, String celular) {
+	public void modificarRescatista(String nombre, String nick, String apellido, String email,String password,Date fechaNac,String sexo, String celular,String imagen) {
 		if(!nick.isEmpty())
 		{
 			Rescatista u = rescatistaService.buscarUsuarioNick(nick);
@@ -199,6 +202,7 @@ public class RescatistaEB implements RescatistaEBR {
 			if(!apellido.isEmpty()){u.setApellido(apellido);}
 			if(!sexo.isEmpty()){u.setSexo(sexo);}
 			u.setCelular(celular);
+			u.setImagen(imagen);
 			
 			dataService.update(u);
 			

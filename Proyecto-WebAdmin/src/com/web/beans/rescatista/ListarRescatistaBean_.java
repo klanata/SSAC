@@ -83,6 +83,7 @@ public class ListarRescatistaBean_ implements Serializable {
 			Date fechaNac;
 			String sexo ;
 			String celular;
+			String imagen;
 			Rescatista a;
 			Iterator< Rescatista> it = res.iterator();
 			int i = 0;
@@ -98,7 +99,8 @@ public class ListarRescatistaBean_ implements Serializable {
 				  fechaNac = a.getFechaNac();
 				  sexo = a.getSexo();
 				  celular = a.getCelular();
-				  rescatistasBean.add(i, new RescatistaBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular));
+				  imagen = a.getImagen();
+				  rescatistasBean.add(i, new RescatistaBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular,imagen));
 				  i++;
 				
 		     

@@ -199,7 +199,8 @@ public class LoginBean implements Serializable {
         } catch (NamingException e) {
             e.printStackTrace();
         }
-		manager.registroUsuarioPlataforma(nick, clave, email, nombre, fechaNacimiento, idCatastrofe);
+		String imagen = "null";
+		manager.registroUsuarioPlataforma(nick, clave, email, nombre, fechaNacimiento, idCatastrofe,imagen);
 		nick="";
 		clave="";
 		email="";

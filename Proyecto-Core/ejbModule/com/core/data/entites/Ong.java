@@ -83,6 +83,18 @@ public class Ong  extends AbstractEntity implements Serializable{
 
 	
 	private boolean bajaLogica;
+	
+	private String imagen;
+	
+	
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 
 	public boolean getBajaLogica() {
 		return bajaLogica;

@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.annotation.PostConstruct; 
 
 import clienteutility.ClienteUtility;
 
@@ -192,9 +193,12 @@ public class CatastrofeBean implements Serializable{
 	//	------------------ Operaciones ---------------------
 		
 	
-	public String registrarCatastrofe(){
-		
-		emptyModel = new DefaultMapModel();
+	@PostConstruct
+	public void init() {
+	        emptyModel = new DefaultMapModel();
+	}
+	
+	public void registrarCatastrofe(){		
 		
 		CatastrofeEBR manager = null;		
 		
@@ -218,7 +222,7 @@ public class CatastrofeBean implements Serializable{
     		InputBean inputBean = new InputBean();
     		String logo= inputBean.uploadFile(this.part);   
     		String css = null;
-       		Long in= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo);    	
+       		Long in= manager.ingesarCatastrofe(this.title, this.descripcion, logo, this.lat, this.lng, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo);    	
     		if (in == 0){
     			System.out.println("es repetido." + in);
     			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
@@ -226,33 +230,35 @@ public class CatastrofeBean implements Serializable{
     	        //contexto.addMessage("registroCatastrofe", messages);
     		}
     		else {    	
-    			this.nombreEvento = "";   		
+    			this.nombreEvento = ""; 
+    			this.title = "";
         		this.descripcion = "";
         		this.part = null;
         		this.coordenadasX = 0;
         		this.coordenadasY = 0;
         		this.activa = false;
         		this.prioridad = false;
+        		this.lat = 0;
+        		this.lng = 0;
     			System.out.println("no es repetido." + in);
     			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La catástrofe fue ingresada al sistema.");
     		}    		    
     		FacesContext.getCurrentInstance().addMessage(null, message);
-    		return "success"; 
+    		//return "success"; 
     		
     	}catch (Exception excep){
     		System.out.println("Excepcion en agregar catastrofe: " + excep.getMessage());      		 			       
-	        return "failure";     		
+	        //return "failure";     		
     	}        	    	
 	}	
 	
-	public void addMarker() {
-		System.out.println("Excepcion en agregar catastrofe1: " );
-        Marker marker = new Marker(new LatLng(lat, lng), title);
-        //nombreEvento = title;
-        System.out.println("Excepcion en agregar catastrofe2: " );
-        emptyModel.addOverlay(marker);
-          
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Added", "Lat:" + lat + ", Lng:" + lng));
+	public void addMarker() {		
+        Marker marker = new Marker(new LatLng(lat, lng), title);            
+        emptyModel.addOverlay(marker); 
+        
+        registrarCatastrofe();
+        
+        //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marca agregada", "Lat:" + lat + ", Lng:" + lng));
     }
 			
 }
