@@ -10,12 +10,15 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.servlet.http.Part;
 
-import org.primefaces.context.RequestContext;
+
+
 
 import clienteutility.ClienteUtility;
 
 import com.core.service.negocio.remote.RescatistaEBR;
+import com.web.beans.InputBean;
 
 @ManagedBean(name="rescatistaBean")
 @RequestScoped
@@ -37,9 +40,19 @@ public class RescatistaBean implements Serializable {
 	private String sexo;
 	private String celular = "";
 	private String imagen="";
+	private Part auxPart;	
 	
 	
 	
+	
+	
+	
+	public Part getAuxPart() {
+		return auxPart;
+	}
+	public void setAuxPart(Part auxPart) {
+		this.auxPart = auxPart;
+	}
 	public String getImagen() {
 		return imagen;
 	}
@@ -100,10 +113,10 @@ public class RescatistaBean implements Serializable {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
-	public String registrarRescatista(){				
+	public void registrarRescatista(){				
 		
 		RescatistaEBR manager = null;		
-		
+		FacesMessage message = null; 
 		Context context = null;
 		 
 		try {
@@ -119,18 +132,21 @@ public class RescatistaBean implements Serializable {
         }				
     	
     	try{    	
-    		RequestContext requestContext = RequestContext.getCurrentInstance();
-            
+    		//RequestContext requestContext = RequestContext.getCurrentInstance();
+           /* 
             requestContext.update("form:display");
-            requestContext.execute("PF('dlg').show()");
+            requestContext.execute("PF('dlg').show()");*/
             
-    		
+            
+            InputBean inputBean = new InputBean();
+    		String imagen= "no me carga" ;//inputBean.uploadFile(this.auxPart);  
+            
     		Long id= manager.crearRescatista(nombre, nick, apellido, email, password, fechaNac, sexo, celular,imagen);
     		if (id.equals(0)){
     			
-    			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Ya existe una Rescatista con el mismo nick registrada en el sistema."); 
-    	        contexto.addMessage("registroRescatista", messages);
+    		//	FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	     message = new FacesMessage("Ya existe una Rescatista con el mismo nick registrada en el sistema."); 
+    	       // contexto.addMessage("registroRescatista", message);
     	        
     		}
     		else {    	
@@ -142,20 +158,21 @@ public class RescatistaBean implements Serializable {
         		this.email = "";
         		this.password = "";
         		this.sexo= "";
+        		this.auxPart = null;
         		
     			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Rescatista registrado con exito !!"); 
-    	        contexto.addMessage("registroRescatista", messages);
+    	       message = new FacesMessage("Rescatista registrado con exito !!"); 
+    	        contexto.addMessage("registroRescatista", message);
     			
-    	        FacesContext.getCurrentInstance().addMessage(null, messages); 
+    	       // FacesContext.getCurrentInstance().addMessage(null, messages); 
         		
     		}
-    		   		    		    		
-    		return "success"; 
+    		FacesContext.getCurrentInstance().addMessage(null, message);   		    		    		
+    		//return "success"; 
     		
     	}catch (Exception excep){
-    		//System.out.println("Excepcion en agregar ong: " + excep.getMessage());      		 			       
-	        return "failure"; 
+    		System.out.println("Excepcion en agregar rescatista: " + excep.getMessage());      		 			       
+	     //   return "failure"; 
     		
     	}    
 	}

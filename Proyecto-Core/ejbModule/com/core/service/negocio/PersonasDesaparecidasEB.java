@@ -12,7 +12,6 @@ import javax.ejb.TransactionAttributeType;
 import javax.ws.rs.Path;
 
 import com.core.data.entites.Catastrofe;
-import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.entites.ImagenPersonaDesaparecida;
 import com.core.data.entites.PersonasDesaparecidas;
 import com.core.data.persistencia.DataService;
@@ -115,6 +114,23 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		
 		
 	}
+	/**************************************************************************/
+
+	public void ActualizarEstadoPersonaDesaparecida(String apellido,
+			String descripcion, Date fechaNacimiento, boolean hallada,
+			String nombre, String telefono, long idCatastrofe) {
+		
+		
+		PersonasDesaparecidas persona= personadesaparecidaDAO.buscarPersonaDesaparecida(idCatastrofe, nombre, apellido);
+		if(!descripcion.isEmpty()){persona.setDescripcion(descripcion);}
+		if(!telefono.isEmpty()){persona.setNumeroContacto(telefono);}
+		persona.setHallada(hallada);
+		if(fechaNacimiento!=null){persona.setFechNac(fechaNacimiento);}
+		
+		dataService.update(persona);
+		
+	}
+	
 		
 }
 

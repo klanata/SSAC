@@ -11,8 +11,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
-	
-	
+	<style>
+    *{ margin: 0; padding: 0; }
+    html, body, #map{
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
+    <script type="text/javascript" src="js/map.js"></script>    
 </h:head> 
 <h:body id="top"> 
 <div class="wrapper col1">
@@ -87,7 +94,7 @@
                 
             </p:submenu>
         </p:column>
-    </p:submenu>
+    </p:submenu>   
  
     <p:submenu label="Ong" >
          <p:column>
@@ -140,13 +147,12 @@
     <p:submenu label="Reporte" icon="ui-icon-contact">
         <p:column>
             <p:submenu label="Reportes">
-                 <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
-               <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
+                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
+                <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
             </p:submenu>
             
         </p:column>
- 
-       
+        
     </p:submenu>
        
 </p:megaMenu>
@@ -163,11 +169,11 @@
   <div id="intro">
     <div class="fl_left">
       <h2>Alta Rescatista</h2>
-      <br/>	
+      
       <f:view>
-		<h:form id="registroRescatista" >
+		<h:form id="registroRescatista" enctype="multipart/form-data"> 
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid columns="1" cellpadding="3">				
+			<h:panelGrid columns="0" cellpadding="2">				
 			
 			
 				<p>
@@ -211,12 +217,14 @@
 				</p>
 				<p:outputLabel for="fecha" value="Fecha:" />
         		<p:calendar id="fecha" value="#{rescatistaBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />
-				<br/>	
-				</h:panelGrid>
-				<label for="logo">Imagen:</label>					
+				
+					<label for="imagen">Imagen:</label>					
 																									
-						<h:inputFile id="Imagen" label="Imagen" value="#{rescatistaBean.imagen}" required="true"  >			
-						</h:inputFile>					 					
+						<h:inputFile id="Imagen" label="Imagen" value="#{rescatistaBean.auxPart}" required="true"  >			
+						</h:inputFile>		
+				
+				</h:panelGrid>
+				
 					
 					
 				<p:outputLabel for="sexo" value="Sexo:" />
@@ -224,7 +232,10 @@
 		            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
 		            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
 		         </p:selectOneRadio>
-			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 400px;" styleClass="formbutton" value="Registrar" action="#{rescatistaBean.registrarRescatista()}">
+		         
+		        
+		         
+			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" style="margin-left: 400px;" styleClass="formbutton" value="Registrar" action="#{rescatistaBean.registrarRescatista}">
 			</p:commandButton>		
 		
 		</h:form>
