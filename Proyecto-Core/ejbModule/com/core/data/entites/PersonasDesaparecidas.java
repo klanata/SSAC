@@ -174,16 +174,18 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	}
 
 
+	
+
+
+
 	public boolean isHallada() {
 		return hallada;
 	}
 
 
-
 	public void setHallada(boolean hallada) {
 		this.hallada = hallada;
 	}
-
 
 
 	public Set<ImagenPersonaDesaparecida> getImagenes() {
