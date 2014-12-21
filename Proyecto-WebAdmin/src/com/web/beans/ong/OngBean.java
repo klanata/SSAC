@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.servlet.http.Part;
 
 import org.primefaces.context.RequestContext;
 
@@ -17,6 +18,7 @@ import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Ong;
 import com.core.service.negocio.remote.OngEBR;
+import com.web.beans.InputBean;
 
 @ManagedBean(name="ongBean")
 @RequestScoped
@@ -34,9 +36,21 @@ public class OngBean implements Serializable{
 	private String descripcion = "";
 	private Long id;
 	private String imagen = "";
+	private Part auxPart;	
+	
+	
+	
+	
+	public Part getAuxPart() {
+		return auxPart;
+	}
 
-	
-	
+
+	public void setAuxPart(Part auxPart) {
+		this.auxPart = auxPart;
+	}
+
+
 	public String getImagen() {
 		return imagen;
 	}
@@ -140,7 +154,9 @@ public class OngBean implements Serializable{
             
             requestContext.update("form:display");
             requestContext.execute("PF('dlg').show()");
-    		    	
+            
+            InputBean inputBean = new InputBean();
+    		String imagen= inputBean.uploadFile(this.auxPart); 
     		Long id= manager.ingesarOng(nombre, direccion, descripcion, email, telefono, citioWeb, imagen);
     		if (id.equals(0)){
     			

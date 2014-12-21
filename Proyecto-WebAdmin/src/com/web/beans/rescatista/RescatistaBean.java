@@ -15,6 +15,9 @@ import javax.servlet.http.Part;
 
 
 
+
+import org.primefaces.context.RequestContext;
+
 import clienteutility.ClienteUtility;
 
 import com.core.service.negocio.remote.RescatistaEBR;
@@ -132,14 +135,14 @@ public class RescatistaBean implements Serializable {
         }				
     	
     	try{    	
-    		//RequestContext requestContext = RequestContext.getCurrentInstance();
-           /* 
+    		RequestContext requestContext = RequestContext.getCurrentInstance();
+           
             requestContext.update("form:display");
-            requestContext.execute("PF('dlg').show()");*/
+            requestContext.execute("PF('dlg').show()");
             
             
             InputBean inputBean = new InputBean();
-    		String imagen= "no me carga" ;//inputBean.uploadFile(this.auxPart);  
+    		String imagen= inputBean.uploadFile(this.auxPart);  
             
     		Long id= manager.crearRescatista(nombre, nick, apellido, email, password, fechaNac, sexo, celular,imagen);
     		if (id.equals(0)){

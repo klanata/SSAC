@@ -164,7 +164,7 @@
       <h2>Alta Ong</h2>
       
       <f:view>
-		<h:form id="registroOng" >
+		<h:form id="registroOng" enctype="multipart/form-data">
 			<h:messages id="messages" for="registroOng"></h:messages>
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 		<h:panelGrid columns="1" cellpadding="2">		
@@ -203,15 +203,23 @@
 					</p:inputText>																																									
 				</p>
 				<br/>
+				<label for="imagen">Logo:</label>					
+																									
+						<h:inputFile id="Imagen" label="Imagen" value="#{ongBean.auxPart}" required="true" requiredMessage="El logo es obligatorio" >			
+						</h:inputFile>
 				 </h:panelGrid>
 				<h4>Descripción:</h4>	
 					<h:panelGrid columns="2" border="0">																																		
 					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{ongBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
+				
+				
+				
 				</h:panelGrid>	
 																			
 				
-			<p:commandButton id="comandoRegistrar" update="growl"  type="submit" ajax="false"   style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{ongBean.registrarOng()}">
-			</p:commandButton>		
+			 <h:commandButton id="submit" update="growl"
+		                 action="#{ongBean.registrarOng}"
+			             value="Registrar" />	
 		
 		</h:form>
 		</f:view>

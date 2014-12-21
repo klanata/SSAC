@@ -149,6 +149,11 @@ public class AdministradorBean implements Serializable{
             requestContext.update("form:display");
             requestContext.execute("PF('dlg').show()");
     		
+            //controlamos que el correo tenga un @
+            
+            
+            
+            
     		Long id= manager.crearAdministrador(nombre, nick, apellido, email, password, fechaNac, sexo, celular);
     		if (id.equals(0)){
     			
