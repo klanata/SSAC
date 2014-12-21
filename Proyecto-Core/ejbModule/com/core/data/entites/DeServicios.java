@@ -51,6 +51,7 @@ public class DeServicios extends AbstractEntity  implements Serializable{
 	
 
 	@Column(nullable =false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaRealizada;
 	
 	@Column(nullable= false)

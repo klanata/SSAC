@@ -186,15 +186,19 @@
         		<p:ajax event="rowUnselect" listener="#{listaResBean.onRowUnselect}" update=":formRescatistas:msgs" />	        		        
 		    
 		        
+		        <p:column>		        		        	
+            		<p:graphicImage value="image/#{rescatistaBean.imagen}" width="100" height="100"/>               		         	
+        		</p:column>
+		        
         		<p:column headerText="Id" style="width:50px">
             		<h:outputText value="#{rescatistaBean.id}" />
         		</p:column>             		                  		                  		             	
         		
-        		<p:column headerText="Nick" style="width:200px" filterBy="#{rescatistaBean.nick}" filterMatchMode="contains" >
+        		<p:column headerText="Nick"  filterBy="#{rescatistaBean.nick}" filterMatchMode="contains" >
             		<h:outputText value="#{rescatistaBean.nick}" />
         		</p:column>
         		
-        		<p:column headerText="Nombre" style="width:350px" filterBy="#{rescatistaBean.nombre}" filterMatchMode="contains" >
+        		<p:column headerText="Nombre"  filterBy="#{rescatistaBean.nombre}" filterMatchMode="contains" >
             		<h:outputText value="#{rescatistaBean.nombre}" />            		
         		</p:column>
         		

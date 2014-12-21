@@ -185,14 +185,20 @@
 				
 				<p>
 				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento"  value="#{modificarOngBean.ongBean.telefono}"  >	
+					<p:inputText id="telefono" label="evento"  value="#{modificarOngBean.ongBean.telefono}"  validatorMessage="Formato de Telefono invalido, debe contener números 0..9" >	
+					
+					 <f:validateRegex pattern="[0-9]*" />		
 					</p:inputText>																																									
 				</p>
 				<br/>
 				
 				<p>
 				<label for="email">Email :</label>				
-					<p:inputText id="email" label="evento" value="#{modificarOngBean.ongBean.email}"  >	
+					<p:inputText id="email" label="evento" value="#{modificarOngBean.ongBean.email}"  	
+					
+					validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com"  >
+						<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 					</p:inputText>																																									
 				</p>
 				<br/>

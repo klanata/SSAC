@@ -185,16 +185,21 @@
 		         <p:ajax event="rowSelect" listener="#{listarOngBean2.onRowSelect}" update=":formOng1:msgs" />
         		<p:ajax event="rowUnselect" listener="#{listarOngBean2.onRowUnselect}" update=":formOng1:msgs" />	        		        
 		    
+		    
+		    	 <p:column>		        		        	
+            		<p:graphicImage value="image/#{ongBean.imagen}" width="100" height="100"/>               		         	
+        		</p:column>
+		        
 		        
         		<p:column headerText="Id" style="width:50px">
             		<h:outputText value="#{ongBean.id}" />
         		</p:column>             		                  		                  		             	
         		
-        		<p:column headerText="Nombre" style="width:200px" filterBy="#{ongBean.nombre}" filterMatchMode="contains" >
+        		<p:column headerText="Nombre" filterBy="#{ongBean.nombre}" filterMatchMode="contains" >
             		<h:outputText value="#{ongBean.nombre}" />
         		</p:column>
         		
-        		<p:column headerText="Direccion" style="width:350px" filterBy="#{ongBean.direccion}" filterMatchMode="contains" >
+        		<p:column headerText="Direccion"  filterBy="#{ongBean.direccion}" filterMatchMode="contains" >
             		<h:outputText value="#{ongBean.direccion}" />            		
         		</p:column>
         		

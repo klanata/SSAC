@@ -204,7 +204,9 @@
 				
 				<p>
 				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento"  value="#{modificarAdminBean.administradorBean.celular}"  >	
+					<p:inputText id="telefono" label="evento"  value="#{modificarAdminBean.administradorBean.celular}"  validatorMessage="Formato de Telefono invalido, debe contener números 0..9" >	
+					
+					 <f:validateRegex pattern="[0-9]*" />	
 					</p:inputText>																																									
 				</p>
 				<br/>

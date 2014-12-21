@@ -213,7 +213,9 @@
 				
 				<p>
 				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento"  value="#{rescatistaBean.celular}"  >	
+					<p:inputText id="telefono" label="evento"  value="#{rescatistaBean.celular}"  validatorMessage="Formato de Telefono invalido, debe contener números 0..9" >	
+					
+					 <f:validateRegex pattern="[0-9]*" />
 					</p:inputText>																																									
 				</p>
 				<br/>
@@ -245,7 +247,7 @@
 		            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
 		         </p:selectOneRadio>
 		         
-		        <h:commandButton id="submit" 
+		        <h:commandButton id="submit" style="margin-left: 400px;" 
 		                 action="#{rescatistaBean.registrarRescatista}"
 			             value="Registrar" />
                 	
