@@ -179,7 +179,7 @@
                  		                                		                                           	                 	
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
-		                <h:outputText value="Buscar Rescatista:  " />
+		                <h:outputText value="Buscar Personas Desaparecidas:  " />
 		                <p:inputText id="globalFilter"   onkeyup="PF('personaTable2').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
 		        </f:facet>    	
@@ -189,7 +189,7 @@
 		        
 		        
 		        
-        		<p:column headerText="Id" style="width:50px">
+        		<p:column headerText="Hallada" style="width:50px">
             		<h:outputText value="#{personasBean.hallada}" />
         		</p:column>             		                  		                  		             	
         		
@@ -205,7 +205,7 @@
             		<h:outputText value="#{personasBean.numeroContacto}" />            		
         		</p:column>
         		
-                <p:column headerText="Nombre Catastrofe" filterBy="#{personasBean.nombreCatastrofe}" filterMatchMode="contains">
+                <p:column headerText="Nombre Catastrofe" filterBy="#{personasBean.nombreCatastrofe}" filterMatchMode="contains" >
             		<h:outputText value="#{personasBean.nombreCatastrofe}" />            		
         		</p:column>        		        		 
         		        		        		

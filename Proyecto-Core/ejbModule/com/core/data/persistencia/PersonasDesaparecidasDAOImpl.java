@@ -16,6 +16,7 @@ import java.util.Map;
 
 import javax.ejb.EJB;
 
+import com.core.data.entites.Administrador;
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.PersonasDesaparecidas;
 import com.core.data.persistencia.interfaces.locales.PersonasDesaparecidasDAO;
@@ -83,11 +84,20 @@ private static final long serialVersionUID = 1L;
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public PersonasDesaparecidas buscarPersonaDesaparecida(Long idCatastrofe, String nomPer, String apePer) {
 		PersonasDesaparecidas perDesap = null;
-		Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.BuscarPorNombreyApellido.Nombre.Apellido.Cat");
-		consulta.setParameter("catastrofe", idCatastrofe);
-	  	consulta.setParameter("nombre", nomPer);
-	  	consulta.setParameter("apellido", apePer);
-	   	perDesap = (PersonasDesaparecidas) consulta.getResultList().get(0);
+		
+		
+		try{
+			Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.BuscarPorNombreyApellido.Nombre.Apellido.Cat");
+			consulta.setParameter("idCatastrofe", idCatastrofe);
+		  	consulta.setParameter("nomPer", nomPer);
+		  	consulta.setParameter("apePer", apePer);
+		   		if (!consulta.getResultList().isEmpty()){
+		  		perDesap = (PersonasDesaparecidas)consulta.getResultList().get(0);
+			}
+		}catch (Exception excep){			
+			throw excep;
+		} 
+		
 		return perDesap;
 	}
 	

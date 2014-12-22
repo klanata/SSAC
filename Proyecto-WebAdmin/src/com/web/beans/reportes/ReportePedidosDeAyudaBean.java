@@ -16,9 +16,7 @@ import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
 
-import com.core.data.entites.DeBienes;
-import com.core.data.entites.DeServicios;
-import com.core.data.entites.Economica;
+
 import com.core.data.entites.PedidoDeAyuda;
 import com.core.service.negocio.remote.AdministradorEBR;
 

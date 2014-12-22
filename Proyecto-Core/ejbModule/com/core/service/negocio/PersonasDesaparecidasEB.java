@@ -122,7 +122,7 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		
 		
 		PersonasDesaparecidas persona= personadesaparecidaDAO.buscarPersonaDesaparecida(idCatastrofe, nombre, apellido);
-		if(!descripcion.isEmpty()){persona.setDescripcion(descripcion);}
+		
 		if(!telefono.isEmpty()){persona.setNumeroContacto(telefono);}
 		persona.setHallada(hallada);
 		if(fechaNacimiento!=null){persona.setFechNac(fechaNacimiento);}

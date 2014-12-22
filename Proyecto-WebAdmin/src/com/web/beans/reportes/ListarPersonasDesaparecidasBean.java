@@ -121,7 +121,7 @@ private static final long serialVersionUID = 1L;
 			String descripcion ;
 			Boolean hallada;
 			String imagen;
-			
+			Long idCatastrofe ;
 			PersonasDesaparecidas a;
 			Iterator<PersonasDesaparecidas> it = res.iterator();
 			int i = 0;
@@ -136,10 +136,12 @@ private static final long serialVersionUID = 1L;
 				  fechNac = a.getFechNac();
 				  descripcion = a.getDescripcion();
 				  hallada = a.isHallada();
+				  idCatastrofe = a.getCatastrofe().getId();
+				  imagen = "ver de hallarla";
 				 /* Set<ImagenPersonaDesaparecida> lista =  a.getImagenes();
 				  Iterator<ImagenPersonaDesaparecida> it = lista.iterator();
 				  imagen = it.next();*/
-				  personasBean.add(i, new PersonasDesaparecidasBean(nombreCatastrofe, nombre, apellido, numeroContacto, fechNac, descripcion, hallada));
+				  personasBean.add(i, new PersonasDesaparecidasBean(nombreCatastrofe, id, idCatastrofe, nombre, apellido, numeroContacto, fechNac, descripcion, hallada, imagen));
 				  
 				  i++;
 				

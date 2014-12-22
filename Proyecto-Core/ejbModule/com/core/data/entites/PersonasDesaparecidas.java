@@ -1,3 +1,4 @@
+
 package com.core.data.entites;
 
 import java.io.Serializable;
@@ -27,7 +28,7 @@ allocationSize=1)
 @NamedQuery(name="PersonasDesaparecidas.BuscarPorNombreyApellido.Nombre.Apellido.Cat", 
 			query = "SELECT e "+
 			"FROM PersonasDesaparecidas e " +
-			"WHERE e.nombre = :nomPer AND e.apellido = :apePer AND e.catastrofe = :idCatastrofe"),
+			"WHERE e.nombre = :nomPer AND e.apellido = :apePer AND e.catastrofe.id = :idCatastrofe"),
 					
 @NamedQuery(name="PersonasDesaparecidas.BuscarPersona.Id", 
 				query = "SELECT c "+

@@ -13,6 +13,7 @@ public class PersonasDesaparecidasBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String nombreCatastrofe;
 	private Long id;
+	private Long idCatastrofe;
 	private String nombre;
 	private String apellido ;
 	private String numeroContacto ;	
@@ -23,6 +24,12 @@ public class PersonasDesaparecidasBean implements Serializable{
 	
 	
 	
+	public Long getIdCatastrofe() {
+		return idCatastrofe;
+	}
+	public void setIdCatastrofe(Long idCatastrofe) {
+		this.idCatastrofe = idCatastrofe;
+	}
 	public String getImagen() {
 		return imagen;
 	}
@@ -81,18 +88,23 @@ public class PersonasDesaparecidasBean implements Serializable{
 	}
 	
 	
-	public PersonasDesaparecidasBean(String nombreCatastrofe, String nombre,
-			String apellido, String numeroContacto, Date fechNac,
-			String descripcion, Boolean hallada) {
+	
+	
+	public PersonasDesaparecidasBean(String nombreCatastrofe, Long id,
+			Long idCatastrofe, String nombre, String apellido,
+			String numeroContacto, Date fechNac, String descripcion,
+			Boolean hallada, String imagen) {
 		super();
 		this.nombreCatastrofe = nombreCatastrofe;
+		this.id = id;
+		this.idCatastrofe = idCatastrofe;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.numeroContacto = numeroContacto;
 		this.fechNac = fechNac;
 		this.descripcion = descripcion;
 		this.hallada = hallada;
-		
+		this.imagen = imagen;
 	}
 	public PersonasDesaparecidasBean() {
 		super();}
