@@ -9,10 +9,13 @@ import java.util.Set;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+
+
 
 
 
@@ -28,7 +31,7 @@ import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
 
 
 @ManagedBean(name="personasdesaparecidasBean")
-@SessionScoped
+@RequestScoped
 public class PersonasDesaparecidasBean implements Serializable {
 	
 	
@@ -46,7 +49,24 @@ public class PersonasDesaparecidasBean implements Serializable {
 	
 
 		//////////////// Getters and Setters
+	public PersonasDesaparecidasBean(){}
 	
+	
+	public PersonasDesaparecidasBean(Long id, String nombre,
+			String apellido, String numeroContacto, String descripcion,
+			Date fechnac, Set<ImagenPersonaDesaparecida> imagenes,
+			Boolean hallada) {
+		super();
+		this.id=id;
+		this.nombre=nombre;
+		this.apellido=apellido;
+		this.numeroContacto=numeroContacto;
+		this.descripcion=descripcion;
+		this.fechNac=fechnac;
+		this.imagenes=imagenes;
+		this.hallada=hallada;
+		
+	}
 	public Long getId() {
 		return id;
 	}
