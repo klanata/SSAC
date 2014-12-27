@@ -55,48 +55,79 @@ public class filtroUrl implements Filter {
 				  
 			//obtengo la URL que ingresa un usuario
 			String urlStr = req.getRequestURL().toString().toLowerCase();
-			
+			 boolean noProteger = noProteger(urlStr);
+			 System.out.print(urlStr+"protegido: ");
+			 System.out.print(noProteger);
+			  
+			  //Si no requiere protección continúo normalmente.
+			  if (noProteger(urlStr)) {
+				 // res.sendRedirect(req.getContextPath() + "/Index.xhtml");
+			   chain.doFilter(request, response);
+			    return;
+			  }
+			  
+			  	String index="http://localhost:8080/proyecto-webusuario/index.xhtml" ;	
+				if(urlStr.compareTo(index)==0) 
+				{
+					 res.sendRedirect(req.getContextPath() + "/Index.xhtml");
+					
+				}
+				
+				Catastrofe existeURL = existeCatastrofeURL(urlStr);
+				 //si no es null obtengo los datos de la catastrofe y los guardo en variables
+				if (existeURL != null)  {
+					res.sendRedirect(req.getContextPath() + "/Index.xhtml");
+					
+			  }else { res.sendRedirect(req.getContextPath() + "/Error.xhtml");}
+			 
+			  //El recurso requiere protección, pero el usuario ya está logueado.
+			  chain.doFilter(request, response);
+		}
+		
+			//
+	
+	
+	
+	
+	
+	private boolean noProteger(String urlStr) {
+
 		String index="http://localhost:8080/proyecto-webusuario/index.xhtml" ;	
 		if(urlStr.compareTo(index)==0)
 		{
-			  res.sendRedirect(req.getContextPath() + "/Index.xhtml");
-			     return;
+			 // res.sendRedirect(req.getContextPath() + "/Index.xhtml");
+			     return true;
 			
 			
 		}
-		else{
+		
 			Catastrofe existeURL = existeCatastrofeURL(urlStr);
 		  //si no es null obtengo los datos de la catastrofe y los guardo en variables
 			if (existeURL != null) {
 			  
 			  //copio los datos de la catastrofe X
-			  String logoCatastrofe = existeURL.getLogo();
+			  String logoCatastrofe = existeURL.getLogo().toString();
 			  Long id= existeURL.getId();
 			  String  idCatastrofe = id.toString();
-			  String  cssCatastrofe = existeURL.getCss();
-			  String descripcionCatastrofe = existeURL.getDescripcion();
-			  
-			  FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("logoCatastrofe",logoCatastrofe ); 		
+			  String  cssCatastrofe = existeURL.getCss().toString();
+			  String descripcionCatastrofe = existeURL.getDescripcion().toString();
+			 
+			/*  FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("logoCatastrofe",logoCatastrofe ); 		
 			  FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idCatastrofe",idCatastrofe );
 			  FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cssCatastrofe",cssCatastrofe);
 			  FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("descripcionCatastrofe",descripcionCatastrofe);
-			 
-			 // ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			//	handler.performNavigation("Index?faces-redirect=true");	
-			  res.sendRedirect(req.getContextPath() + "/Index.xhtml");
-		     return;
+			 */
+			  urlStr = index;
+		     return false;
 		  }
-		 
-		  else{
-		//	 ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			//handler.performNavigation("Index?faces-redirect=true");	
-			res.sendRedirect(req.getContextPath() + "/Error.xhtml");
-			 return;
-			  
-		  }
+			
+			
+			  if (urlStr.indexOf("/javax.faces.resource/") != -1)
+				    return true;
+		  
+		 return false;
 		}
-			//chain.doFilter(request, response); 
-	}
+	
 
 	private Catastrofe existeCatastrofeURL(String urlStr) {
 
