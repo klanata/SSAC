@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+		<title>SSAC</title>
+		
+			
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+	
+		<script src="js/jquery.dropotron.min.js"></script>
+		<script src="js/jquery.scrolly.min.js"></script>
+		<script src="js/jquery.onvisible.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
+    <link rel="stylesheet" href="css/2skel.css" />
+			<link id="cssPrincipal" rel="stylesheet" href="css/2style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link rel="stylesheet" href="css/style-noscript.css" />
+
+	</h:head>
+	
+	<body class="left-sidebar">
+
+		<!-- Header -->
+			<div id="header">
+
+				<!-- Inner -->
+					<div class="inner">
+						<div id="header">
+							<h1><a href="Index.xhtml" id="logo">EN SSAC NOS GUSTA AYUDAR</a></h1>
+						</div>
+					</div>
+					
+					<!-- Nav -->
+						<div id="nav">
+						<ul>
+							<li><a href="Index.xhtml">Volver a la pagina principal</a></li>
+							<li><a href="">Pedido de ayuda</a></li>
+							
+						</ul>
+					</div>
+			</div>
+
+
+<div class="ui-grid">
+<div class="ui-grid-row">
+<div class="ui-grid-col-1"></div>
+<div class="ui-grid-col-11">
+<h:form id="formPersona">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="perDT" var="personaBean" widgetVar="personaTable" value = "#{listapersonaBean.personasBean}"
+                 		 emptyMessage="No se han encontrado administrador con ese criterio"  filteredValue="#{listapersonaBean.filtroPersonafeBean}"               		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                 		 selectionMode="single" selection="#{listapersonaBean.selectedPersona}"  rowKey="{personaBean.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		              
+		                <p:inputText id="globalFilter"   onkeyup="PF('personaTable').filter()" style="width:300px" placeholder="Ingrese el nombre"/>		                
+		            </p:outputPanel>
+		        </f:facet>    	
+		         <p:ajax event="rowSelect" listener="#{listapersonaBean.onRowSelect}" update=":formPersona:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listapersonaBean.onRowUnselect}" update=":formPersona:msgs" />	        		        
+		    
+		        
+        		<p:column headerText="Id" filterBy="#{personaBean.id}" filterMatchMode="contains" >
+            		<h:outputText value="#{personaBean.id}" />
+        		</p:column>             		                  		                  		             	
+        		
+        		<p:column headerText="Nombre"  filterBy="#{personaBean.nombre}" filterMatchMode="contains" >
+            		<h:outputText value="#{personaBean.nombre}" />
+        		</p:column>
+        		
+        		<p:column headerText="Apellido" filterBy="#{personaBean.apellido}" filterMatchMode="contains" >
+            		<h:outputText value="#{personaBean.apellido}" />            		
+        		</p:column>
+        		
+        		<p:column headerText="Contacto" filterBy="#{personaBean.numeroContacto}" filterMatchMode="contains">
+            		<h:outputText value="#{personaBean.numeroContacto}" />            		
+        		</p:column>
+        		
+        		        		
+        		<p:column headerText="Descripcion" filterMatchMode="contains">
+            		<h:outputText value="#{personaBean.descripcion}" />            		
+        		</p:column>
+        		
+        		<p:column headerText="Imagen" filterMatchMode="contains">
+            		<h:graphicImage value="image/#{personaBean.imagenes}" />            		
+        		</p:column>
+        		
+        		<p:column headerText="¿Hallada?" filterBy="#{personaBean.hallada}" filterMatchMode="contains">
+            		<h:outputText value="#{personaBean.hallada}" />            		
+        		</p:column>
+                      		         		
+     		</p:dataTable>     		     		
+    </h:form>
+</div>
+<div class="ui-grid-col-1"></div>
+</div>
+</div>
+
+<div id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>GRUPO 5</li>
+				</ul>
+			</div>
+
+</body> 
+</html>
