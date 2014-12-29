@@ -36,6 +36,17 @@
 				return false;
 		  }
 		  cambiarCSS();
+			function obtenerNombre(){
+				HttpServletRequest req = (HttpServletRequest) request;
+				String urlStr = req.getRequestURL().toString().toLowerCase();
+				
+				alert(urlStr);
+				
+				
+
+				}
+
+		 
 	</script>	
 <style>
 			#map-canvas {

@@ -158,9 +158,11 @@ public class filtroUrl implements Filter , Serializable {
 				 //si no es null obtengo los datos de la catastrofe y los guardo en variables
 				if (existeURL != null)  {
 					
-				///	HttpSession objetoCat= req.getSession(true);
-					///objetoCat.setAttribute("producto","valor");
-					res.sendRedirect(req.getContextPath() + "/Index.xhtml");
+				HttpSession objetoCat= req.getSession(true);
+				objetoCat.setAttribute("nombreCatastrofeUsuario",existeURL.getNombreEvento());
+				
+				
+				res.sendRedirect(req.getContextPath() + "/Index.xhtml");
 					
 					
 			  }//else { res.sendRedirect(req.getContextPath() + "/Error.xhtml");}
@@ -254,7 +256,7 @@ public class filtroUrl implements Filter , Serializable {
 					 encontre = true;
 					 catastrofe = c;
 				}
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("logoCatastrofe",c.getLogo() ); 		
+			///	FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("logoCatastrofe",c.getLogo() ); 		
 				
 			}
 			
