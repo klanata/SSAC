@@ -68,13 +68,12 @@
 					<div class="inner">
 						<div id="header">
 							<h1><a href="Index.xhtml" id="logo">SSAC</a></h1>
-							<h2> </h2>
-							<h2> "#{filtroBean.logoCatastrofe}"</h2>
 							<hr />		
 							<center>¡Bienvenido al Sistema de Soporte ante Catástrofes!</center>
 						</div>
 						<div class="footer">
-							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>							
+							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>		
+												
 						</div>
 					</div>
 				
@@ -82,11 +81,11 @@
 					<div id="nav">
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li><a href="Donaciones.xhtml">DONACIONES</a></li>
+							<li><a href="#donaciones">DONACIONES</a></li>
 							
 							<li><a href="left-sidebar.html">SOLICITAR AYUDA</a></li>
 							<li><a href="right-sidebar.html"></a></li>
-							<li><a href="no-sidebar.html">PERSONAS DESAPARECIDAS</a></li>
+							<li><a href="#">PERSONAS DESAPARECIDAS</a></li>
 						</ul>
 					</div>
 
@@ -162,7 +161,7 @@
 
 		<!-- Mision y vision -->	
 			
-	<div class="wrapper style2">
+	<div class="wrapper style2" id="donaciones">
 
 				<div  id="main" class="container special">
 					<div id="main">
@@ -173,17 +172,17 @@
 									 haciendo click en las imágenes que se encuentran a continuación.
 									</p>
 					  <h:outputText value="DE BIENES" />
-					<a href="DonacionDB.xhtml" class="image featured"><img src="images/fru1.jpg" alt="" /></a>
+					<a href="#donaciondb" class="image featured"><img src="images/fru1.jpg" alt="" /></a>
 								<p>
 									Las donaciones de bienes consisten en bla bla bla
 								</p>
 						  <h:outputText value="DE SERVICIOS" />
-					<a href="DonacionDS.xhtml" class="image featured"><img src="images/servicio.jpg" alt="" /></a>
+					<a href="#donacionds" class="image featured"><img src="images/servicio.jpg" alt="" /></a>
 								<p>
 									Las donaciones de servicios consisten en bla bla
 								</p>
 					<h:outputText value="ECONOMICA" />
-					<a href="DonacionEco.xhtml" class="image featured"><img src="images/visa.jpg" alt="" /></a>
+					<a href="#donacioneco" class="image featured"><img src="images/visa.jpg" alt="" /></a>
 								<p>
 									Las donaciones de servicios consisten en bla bla
 								</p>
@@ -194,7 +193,7 @@
 			</div>
 				
 					<!-- donacion de bienes -->
-					<div class="ui-grid">
+					<div class="ui-grid" id="donaciondb">
    		 <div class="ui-grid-row">	
    		 <div class="ui-grid-col-1"></div>	
    		  <div class="ui-grid-col-6">
@@ -240,7 +239,7 @@
             
      <!-- DE SERVICIOS -->
      
-     <div class="ui-grid">
+     <div class="ui-grid" id="donacionds">
    		 <div class="ui-grid-row">	
    		 <div class="ui-grid-col-1"></div>	
    		  <div class="ui-grid-col-6">
@@ -289,7 +288,7 @@
             
         <!-- ECONOMICA -->
         
-        <div class="ui-grid">
+        <div class="ui-grid" id="donacioneco">
    		 <div class="ui-grid-row">	
    		 <div class="ui-grid-col-1"></div>	
    		  <div class="ui-grid-col-6">
@@ -323,7 +322,6 @@
 					</p:inputText>																																									
 				</p>
 				<br/>
-				
 			<p:commandButton id="registrarDonacion" update="growl"  type="submit"  Class="button" value="DONAR" action="#{economicaBean.registrarDonacionEconomica()}">
 			</p:commandButton>	
 			</h:panelGrid>	
@@ -337,7 +335,7 @@
             </div>	
 	<!-- ALTA DE PERSONAS DESAPARECIDAS -->
 	
-<div class="ui-grid">
+<div class="ui-grid" id="personasdesap">
    		 <div class="ui-grid-row">	
    		 <div class="ui-grid-col-1"></div>	
    		  <div class="ui-grid-col-6">
@@ -363,6 +361,7 @@
 						<p:inputText id="apellido" label="apellido"  value="#{personasdesaparecidasBean.apellido}" required="true" requiredMessage="es requerido" >	
 						</p:inputText>																																									
 					</p>
+					
 					
                      <p>
 						<label for="numeroContacto">NUMERO DE CONTACTO :</label>				
