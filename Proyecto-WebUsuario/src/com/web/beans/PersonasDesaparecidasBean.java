@@ -156,6 +156,7 @@ public void registrarPersonasDesaparecidas(){
     		Date fechaPublicacion= new Date();
     		fechaPublicacion.getTime();
     		
+    		hallada = false;
     		Long in =manager.crearReportePersonasDesaparecidas(catastrofeId, nombre, apellido, numeroContacto, descripcion, fechaPublicacion, imagenes, hallada);
     		String idP = in.toString();
     		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idP", idP); 

@@ -89,6 +89,32 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@OneToMany
 	private Set<PedidoDeAyuda> pedidosDeAyuda =  new HashSet<PedidoDeAyuda>(0);
 	
+	@OneToMany
+	private Set<PersonasDesaparecidas> personasDesaparecidas =  new HashSet<PersonasDesaparecidas>(0);
+	
+	
+	
+	
+	public Set<Filtro> getFiltrosCatastrofes() {
+		return filtrosCatastrofes;
+	}
+
+
+	public void setFiltrosCatastrofes(Set<Filtro> filtrosCatastrofes) {
+		this.filtrosCatastrofes = filtrosCatastrofes;
+	}
+
+
+	public Set<PersonasDesaparecidas> getPersonasDesaparecidas() {
+		return personasDesaparecidas;
+	}
+
+
+	public void setPersonasDesaparecidas(
+			Set<PersonasDesaparecidas> personasDesaparecidas) {
+		this.personasDesaparecidas = personasDesaparecidas;
+	}
+
 	@OneToOne
 	private PlanDeRiesgo planDeRiesgo;
 	
@@ -114,6 +140,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		//this.ongs = new HashSet<Ong>(0);
 		this.planDeRiesgo = null;	
 		this.pedidosDeAyuda = new HashSet<PedidoDeAyuda>();		
+		this.personasDesaparecidas = new HashSet<PersonasDesaparecidas>();
 		this.bajaLogica = false;
 	}		
 	

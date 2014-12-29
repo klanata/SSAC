@@ -34,6 +34,18 @@ public class ActualizarPersonaBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	 
+	
+	
+	private String encontrada;
+	
+	
+	public String getEncontrada() {
+		return encontrada;
+	}
+
+	public void setEncontrada(String encontrada) {
+		this.encontrada = encontrada;
+	}
 	@ManagedProperty("#{personasdesaparecidasBean}")
 	private PersonasDesaparecidasBean personasdesaparecidasBean = new PersonasDesaparecidasBean();
 

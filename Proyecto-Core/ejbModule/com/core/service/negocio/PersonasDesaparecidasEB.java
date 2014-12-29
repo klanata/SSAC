@@ -49,7 +49,16 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		perdes.setImagenes(imagenes);
 		perdes.setHallada(hallada);
 		
+	
+		//FIXME: agregue esto vale
 		id = personadesaparecidaDAO.insert(perdes);
+		/*if(id!=0){
+		Set<PersonasDesaparecidas> lista=catastrofe.getPersonasDesaparecidas();
+		lista.add(perdes);
+		catastrofe.setPersonasDesaparecidas(lista);
+		dataService.update(catastrofe);*/
+			
+	//	}
 		return id;
 	}
 	
@@ -93,6 +102,9 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		imgPerDesap.setPath(nombImagen);
 		imgPerDesap.setPersonasDesaparecidas(c);		
 		imagenpersonaDAO.insert(imgPerDesap);
+		
+		
+		
 		ImagenPersonaDesaparecida imgPer = imagenpersonaDAO.buscarImgPersonaPorPath(nombImagen);
 		Set<ImagenPersonaDesaparecida> imagenesPer = c.getImagenes();
 		boolean esta = false;
@@ -122,10 +134,8 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		
 		
 		PersonasDesaparecidas persona= personadesaparecidaDAO.buscarPersonaDesaparecida(idCatastrofe, nombre, apellido);
+		persona.setHallada(true);
 		
-		if(!telefono.isEmpty()){persona.setNumeroContacto(telefono);}
-		persona.setHallada(hallada);
-		if(fechaNacimiento!=null){persona.setFechNac(fechaNacimiento);}
 		
 		dataService.update(persona);
 		

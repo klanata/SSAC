@@ -184,20 +184,22 @@
 				
 				
 				<p>
-				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento"  value="#{actualizarPersonaBean.personasdesaparecidasBean.numeroContacto}" validatorMessage="Formato de Telefono invalido, debe contener números 0..9" >	
-					
-					 <f:validateRegex pattern="[0-9]*" />
-					</p:inputText>																																									
+				<label for="telefono">Telefono : #{actualizarPersonaBean.personasdesaparecidasBean.numeroContacto}</label>				
+																																														
 				</p>
 				<br/>
-				<p:outputLabel for="fecha" value="Fecha:" />
-        		<p:calendar id="fecha" value="#{actualizarPersonaBean.personasdesaparecidasBean.fechNac}" pattern="dd-MM-yyyy" mask="true" />
+				<label for="telefono">Telefono : #{actualizarPersonaBean.personasdesaparecidasBean.fechNac}</label>
+				
+				
 				 </h:panelGrid>
-				<p>
-					<p:selectBooleanCheckbox value="#{actualizarPersonaBean.personasdesaparecidasBean.hallada}"/> 
-					<label for="hallada">Hallada ?</label>						
-					</p>															
+				
+				<p:outputLabel for="encontrada" value="Hallada ?:"  />
+		        <p:selectOneRadio id="encontrada" value="#{actualizarPersonaBean.encontrada}">
+		            <f:selectItem itemLabel="True" itemValue="True" />
+		            <f:selectItem itemLabel="False" itemValue="False" />
+		         </p:selectOneRadio>
+											
+																			
 				
 			<p:commandButton id="comandoActualizar" update="growl"  type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Actualizar" action="#{actualizarPersonaBean.editar()}">
 			</p:commandButton>		
