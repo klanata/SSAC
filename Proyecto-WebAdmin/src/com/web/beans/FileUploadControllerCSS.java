@@ -25,8 +25,8 @@ import com.core.service.negocio.remote.CatastrofeEBR;
 public class FileUploadControllerCSS {
 	
 	public void upload(FileUploadEvent event) {  
-        FacesMessage msg = new FacesMessage("El CSS fue ingresado con exito.");  
-        FacesContext.getCurrentInstance().addMessage(null, msg);              
+        //FacesMessage msg = new FacesMessage("El CSS fue ingresado con exito.");  
+        //FacesContext.getCurrentInstance().addMessage(null, msg);              
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
         } catch (IOException e) {
@@ -37,13 +37,13 @@ public class FileUploadControllerCSS {
 	
 	public void copyFile(String fileName, InputStream in) {	
 		
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeCSS");		
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");		
 		System.out.println("El id del evento catastrofe CSS: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesCSS?faces-redirect=true");
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
 		}
 		else	
 		{		
@@ -105,8 +105,8 @@ public class FileUploadControllerCSS {
 	             System.out.println(e.getMessage());
 	        }
 	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
-			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesCSS?faces-redirect=true");	
+			//ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			//handler.performNavigation("listaCatastrofesCSS?faces-redirect=true");	
 	        
 		}
 	}		
@@ -127,6 +127,71 @@ public class FileUploadControllerCSS {
 		}else{
 			System.out.println("La operación de eliminación falló.");
 		}
+	}
+	
+	public void finalizar(){
+		
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");		
+		System.out.println("El id del evento catastrofe CSS: " + idEventoString);		
+		if ((idEventoString == null) || (idEventoString == ""))
+		{	
+			System.out.println("No existe la catástrofe. "); 			
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+		}
+		else	
+		{		
+			CatastrofeEBR manager = null;				
+			Context context = null;				
+			FacesMessage message = null; 
+			
+			try {
+	            // 1. Obtaining Context
+	            context = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+	            manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }				
+			
+	        try {
+	        	 
+	        	Long idCatastrofe = new Long(idEventoString);	       	        	
+	    		
+	    		try {	    				    		
+	    			Catastrofe c = manager.buscaCatastrofePorId(idCatastrofe);
+	    			String nombCSS = c.getCss();
+	    			
+	    			if  ((nombCSS != null) && (nombCSS != "")){
+	    				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La catástrofe fue ingresada al sistema.");
+	    				FacesContext.getCurrentInstance().addMessage(null, message);
+	    				
+	    				FacesContext contexto = FacesContext.getCurrentInstance();
+	    				contexto.getExternalContext().getFlash().setKeepMessages(true);
+	    				
+	    				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+	    				handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+	    				
+	    			}
+	    			else {	    				    					    				
+	    				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe ingresar el archivo css.");
+	    				FacesContext.getCurrentInstance().addMessage(null, message);
+	    			}
+	    				    				    			
+	    				    		
+		        }catch (Exception excep){
+					System.out.println("Excepción al obtener la catástrofe al finalizar: " + excep.getMessage());      		 			       	           	
+				}	    			    			    		        	      
+	        } catch (Exception e) {
+	             System.out.println(e.getMessage());
+	        }
+	       
+	        
+		}
+							
 	}
 	
 

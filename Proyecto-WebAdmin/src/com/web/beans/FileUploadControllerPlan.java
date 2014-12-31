@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import javax.faces.application.ConfigurableNavigationHandler;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
@@ -26,8 +25,8 @@ import com.core.service.negocio.remote.CatastrofeEBR;
 public class FileUploadControllerPlan {
 	
 	public void upload(FileUploadEvent event) {  
-        FacesMessage msg = new FacesMessage("El plan de riesgo fue ingresado con exito.");  
-        FacesContext.getCurrentInstance().addMessage(null, msg);              
+        //FacesMessage msg = new FacesMessage("El plan de riesgo fue ingresado con exito.");  
+        //FacesContext.getCurrentInstance().addMessage(null, msg);              
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
         } catch (IOException e) {
@@ -38,13 +37,13 @@ public class FileUploadControllerPlan {
 	
 	public void copyFile(String fileName, InputStream in) {	
 		
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofePlanDeRiesgo");		
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");		
 		System.out.println("El id del evento catastrofe plan de riesgo: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
-			System.out.println("No existe la catástrofe. "); 			
+			System.out.println("No existe la catástrofe al subir el plan. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesPlanRiesgo?faces-redirect=true");
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
 		}
 		else	
 		{		
@@ -110,7 +109,7 @@ public class FileUploadControllerPlan {
 	        }
 	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesPlanRiesgo?faces-redirect=true");	
+			handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");	
 	        
 		}
 	}		

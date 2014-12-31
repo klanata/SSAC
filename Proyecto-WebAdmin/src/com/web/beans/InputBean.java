@@ -44,7 +44,7 @@ public class InputBean implements Serializable{
 		
 		//Extrae la parte de la cabezera del archivo desde el content-disposition
 		String fileName = getFileName(part);
-		System.out.println("***** fileName: " + fileName);
+		//System.out.println("***** fileName: " + fileName);
 		
 		String jboss = System.getenv("JBOSS_HOME");
 		int x = new Double(Math.random() * 1000000).intValue();
@@ -69,7 +69,7 @@ public class InputBean implements Serializable{
 			statusMessage = "Archivo subido exitoso !!";
 		} catch (IOException e) {
 			e.printStackTrace();
-			statusMessage = "Archivo subido no exitoso !!";
+			statusMessage = "Archivo no subido !!";
 		} finally {
 			if (outputStream != null) {
 				outputStream.close();
@@ -84,8 +84,8 @@ public class InputBean implements Serializable{
 	
 	// Extrae la parte de la cabezera del archivo desde el content-disposition
 	private String getFileName(Part part) {
-		final String partHeader = part.getHeader("content-disposition");
-		System.out.println("***** partHeader: " + partHeader);
+		//final String partHeader = part.getHeader("content-disposition");
+		//System.out.println("***** partHeader: " + partHeader);
 		for (String content : part.getHeader("content-disposition").split(";")) {
 			if (content.trim().startsWith("filename")) {
 				return content.substring(content.indexOf('=') + 1).trim()

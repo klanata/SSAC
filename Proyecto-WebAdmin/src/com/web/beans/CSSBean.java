@@ -29,13 +29,13 @@ public class CSSBean implements Serializable{
     
 	@PostConstruct
     public void init() {
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeCSS");
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
 		//System.out.println("El id del evento: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe en el plan de riesgo. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesCSS?faces-redirect=true");
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
 		}
 		else	
 		{											
@@ -97,5 +97,8 @@ public class CSSBean implements Serializable{
 	public void setCatastrofeBean(CatastrofeBean catastrofeBean) {
 		this.catastrofeBean = catastrofeBean;
 	}
+	
+	
+	
 
 }

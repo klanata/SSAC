@@ -57,12 +57,12 @@ public class YoutubeBean implements Serializable{
 	@PostConstruct
     public void init() {
 		
-    		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeYoutube");
+    		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
             if ((idEventoString == null) || (idEventoString == ""))
     		{	
-    			System.out.println("No existe la catástrofe. "); 			
+    			System.out.println("No existe la catástrofe en youtubeBean. "); 			
     			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-    			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");
+    			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
     		}
     		else	
     		{        
@@ -110,7 +110,7 @@ public class YoutubeBean implements Serializable{
     				System.out.println("Excepción en Youtube Bean al ver los datos de la catastrofe: " + excep.getMessage());      		 			       	            	
     			}  
     			
-    			//lista todos los filtros en youtube asignados a la catastrofe
+    			//Lista todos los filtros en youtube asignados a la catastrofe
     			CatastrofeEBR manager2 = null;				
     			Context context2 = null;			
     			//FacesMessage message = null; 
@@ -150,7 +150,7 @@ public class YoutubeBean implements Serializable{
     			}  
     			    			
     			
-    			// listo los filtros que tiene youtube
+    			// Listo los filtros que tiene youtube
                 FiltroEBR managerF = null;				
     			Context contextF = null;			
     			//FacesMessage message = null; 
@@ -338,12 +338,12 @@ public class YoutubeBean implements Serializable{
 
 
 	public void asignarFiltroCatastrofe(){
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeYoutube");
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesServiciosYoutube?faces-redirect=true");
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
 		}
 		else	
 		{		
@@ -374,24 +374,22 @@ public class YoutubeBean implements Serializable{
 						//manager.agregarOngALaCatastrofe(idCatastrofe, idOng);	
 						manager.asignarFiltroYoutubeALaCatastrofe(idCatastrofe, idFiltro);
 					}			
-					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Los filtros fueron ingresadas a la catástrofe.");
-					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeYoutube", "");
-					//ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-					//handler.performNavigation("listaCatastrofesServiciosYoutube?faces-redirect=true");
-					//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
-					
-														
+					//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Los filtros fueron ingresadas a la catástrofe.");
+					//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeYoutube", "");
+					ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+	    			handler.performNavigation("asignarCSSCatastrofe?faces-redirect=true");
+	    			
 				}catch (Exception excep){
-					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo dar de alta alguno de los filtros.");
+					//message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo dar de alta alguno de los filtros.");
 					System.out.println("Excepción al agregar las filtros a la catástrofe: " + excep.getMessage());				
 				}  
 				
 			}
 			else{				
 				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una filtro.");
-				
+				FacesContext.getCurrentInstance().addMessage(null, message);
 			}
-			FacesContext.getCurrentInstance().addMessage(null, message);
+			
 		}
 		
 	}

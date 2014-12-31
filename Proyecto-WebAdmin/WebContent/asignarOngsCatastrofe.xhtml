@@ -10,7 +10,8 @@
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />
+	
 	<style>
       html, body, #map-canvas {
         height: 100%;
@@ -42,6 +43,7 @@
 				
 		//]]>
 	</script>	
+		
 </h:head> 
 <h:body id="top"> 
 <div class="wrapper col1">
@@ -155,7 +157,7 @@
                 <p:menuitem value="Catástrofe" url="registrarCatastrofe.xhtml" />
                 
             </p:submenu>
-            <p:submenu label="Asignar" >
+            <p:submenu label="Asignar">
                 <p:menuitem value="Imágenes" url="listaCatastrofesImagenes.xhtml" />
                 <p:menuitem value="Ong" url="listaCatastrofesONGs.xhtml" />
                 <p:menuitem value="Plan de Riesgo" url="listaCatastrofesPlanRiesgo.xhtml" />
@@ -174,69 +176,97 @@
             </p:submenu>
             
         </p:column>
-        
-    </p:submenu>       
+ 
+       
+    </p:submenu>
+       
 </p:megaMenu>
-</h:form>              
-<br class="clear" />  
+</h:form>           
+          
+    <br class="clear" />
+  
 </div>
 
-<div id="map-canvas" style="width:36%; float:right;margin-top:62px;"></div>
+<div id="map-canvas" style="width:38%; float:right;margin-top:62px;"></div>
 
 <div class="wrapper col3">
   <div id="intro">
     <div >
-    <h2>Asignar Plan de Riesgo a la Catástrofe</h2>
+      <h2>Asignar ONGs a la catástrofe</h2>
       
-      <f:view>        
+      <f:view>  
       	
-		<h:form columns="2" value="#{planDeRiesgoBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
-			
+		<h:form columns="2" value="#{listaOngsBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+				
 			<p>			        		        
-            <p:graphicImage value="image/#{planDeRiesgoBean.catastrofeBean.logo}" /> 
+            <p:graphicImage value="image/#{listaOngsBean.catastrofeBean.logo}" /> 
             <h:outputText value="" style="border: transparent;"/>	              		         	        	
 			</p>			
 			
 			<p>
 			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
-            <h:outputText value="#{planDeRiesgoBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+            <h:outputText value="#{listaOngsBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
             </p>			
                
             <p>    
            	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-            <h:outputText value="#{planDeRiesgoBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
+            <h:outputText value="#{listaOngsBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
             </p>
 			<br/>  
                          
-        </h:form>
-                									        
+        </h:form>   				           
+      	
+      	<h:form id="formONGs">      	      	
+      		<p:growl id="msg" showDetail="true" />
+      		
+      		<p>
+			<h:outputText value="Seleccione las ONGs que van a ser asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
+            </p>	
+      		
+    		<p:dataTable id="ongsDT" var="ongBean" value="#{listaOngsBean.ongsBean}" widgetVar="ongsTable"
+                 		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBean}"                 		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selection="#{listaOngsBean.selectedOngs}" rowKey="#{ongBean.id}" style="margin-bottom:0;width:600px">
+                 	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar ONG:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('ongsTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>
+		        
+		        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>    		        		               	    
+        		
+        		<p:column headerText="Id" style="width:6px">
+            		<h:outputText value="#{ongBean.id}" />
+        		</p:column>    
+        		        		
+				<p:column headerText="Nombre" style="width:120px" filterBy="#{ongBean.nombre}" filterMatchMode="contains">
+            		<h:outputText value="#{ongBean.nombre}" />
+        		</p:column>     
+        		
+        		<p:column headerText="Direccion" style="width:200px" filterBy="#{ongBean.direccion}" filterMatchMode="contains">
+            		<h:outputText value="#{ongBean.direccion}" />
+        		</p:column>	          		        		
+        		
+        		<f:facet name="footer">
+        			<p:outputPanel style="text-align: left">
+            			<p:commandButton process="ongsDT" update=":formONGs:msg" value="Siguiente" action="#{listaOngsBean.asignarOngs()}" />            			
+            		</p:outputPanel>            		
+        		</f:facet>	     		                  		                  		             	        		        	
+        		        		        		
+     		</p:dataTable>     		     		
+     		
+		</h:form>
+      
       </f:view>         
     </div>
     
-    <div>
-  		<h:form>      
- 	
-        	<p>
-			<h:outputText value="Seleccione el plan de riesgo que va a ser asignado a la catástrofe" style="width:100px;border: transparent;"/>			            
-            </p>
-            <p>
-			<h:outputText value="(El archivo debe estar en formato pdf)" style="width:100px;border: transparent;"/>			            
-            </p>
-                    
-		    <p:fileUpload fileUploadListener="#{fileUploadControllerPlan.upload}" mode="advanced" dragDropSupport="false" style="width:648px;border: transparent;"
-		                  label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" multiple="false" fileLimit="1" update="messages" allowTypes="/(\.|\/)(pdf)$/" />
-		 
-		    <p:growl id="messages" showDetail="true" />
-		    
-		    <br/>
-		    		    
-		</h:form> 
-  	</div>   
-    
-             
     <br class="clear" />
   </div>
 </div>
+
 
 
 <div class="wrapper col7">
@@ -246,8 +276,7 @@
     <br class="clear" />
   </div>
 </div>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {
@@ -256,5 +285,5 @@
 	  }
 	//]]>
 	</script>
-	</h:body> 
+</h:body> 
 </html>

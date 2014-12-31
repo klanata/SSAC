@@ -141,7 +141,6 @@
             <p:submenu label="Reportes">
                 <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
                <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
-               <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
             </p:submenu>
             
         </p:column>
@@ -157,23 +156,22 @@
 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
+    <div class="fl_left3">
       <h2>Registrar Filtro</h2>
-      <br/>	
+      	
       <f:view>
 		<h:form id="registroFiltro">
 						
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />			
 			
-				<h4>Descripción:</h4>	
-					<h:panelGrid columns="2" border="0">																																		
+			<h3>Descripción:</h3>	
+				<h:panelGrid columns="1" border="0" style="width: 35%; float:left;">																																		
 					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{filtroBean.descripcion}" required="true" requiredMessage="La descripción del filtro es obligatoria"/>								 					
 				</h:panelGrid>																							
 				<br/>															
-				
-			<p:commandButton id="comandoRegistrar" update="growl" ajax="false" type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Registrar" action="#{filtroBean.registrar()}">
-			</p:commandButton>		
-			
+						
+			<p:commandButton id="comandoRegistrar" update="growl" ajax="false" type="submit" style="margin-left: 0px;" styleClass="formbutton" value="Registrar" action="#{filtroBean.registrar()}" />					
+			 				
 		</h:form>
 		</f:view>
     </div>               

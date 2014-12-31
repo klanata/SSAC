@@ -142,7 +142,6 @@
             <p:submenu label="Reportes">
                 <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
                <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
-               <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
             </p:submenu>
             
         </p:column>
@@ -192,7 +191,7 @@
       		<p:growl id="msgss" showDetail="true" />	
       		
       		<p>
-			<h:outputText value="Filtros asignados a la Catástrofe " style="width:100px;border: transparent;"/>			            
+			<h:outputText value="Filtros ya asignados a la Catástrofe " style="width:100px;border: transparent;"/>			            
             </p>	
       		
     		<p:dataTable id="filtrosServicioYoutubeDT" var="filtroServicioBean" value="#{youtubeBean.listaFiltrosServicioBean}" widgetVar="filtrosServicioTable"

@@ -19,9 +19,105 @@
     }
     </style>
   	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
-    <script type="text/javascript" src="js/map.js"></script>    
+    <script type="text/javascript" src="js/map.js"></script> 
+    
+    <script type="text/javascript">
+		//<![CDATA[ 
+
+			var map;
+			var infoWindow;
+
+			function initialize() {
+				
+				  var mapOptions = {
+				    zoom: 10,
+				    center: new google.maps.LatLng(-34.782281, -56.121180),
+				    mapTypeId: google.maps.MapTypeId.TERRAIN
+				  };
+
+				  var zona;
+
+				  map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+
+				  // Define the LatLng coordinates for the polygon's path.
+				  var zonaCoords = [
+				    new google.maps.LatLng(-34.857253, -56.128733),
+				    new google.maps.LatLng(-34.857253, -56.028482),
+				    new google.maps.LatLng(-34.90062717370116, -56.0291686455),
+				    new google.maps.LatLng(-34.898656, -56.128733)
+				  ];
+
+				  // Construct the polygon.
+				  zona = new google.maps.Polygon({
+				    paths: zonaCoords,
+				    strokeColor: '#FF0000',
+				    strokeOpacity: 0.8,
+				    strokeWeight: 2,
+				    fillColor: '#FF0000',
+				    fillOpacity: 0.35,
+					  draggable: true,
+					  geodesic: true,
+				    editable:true
+				  });
+
+				  zona.setMap(map);
+				  
+				  // Add a listener for the click event.
+				  google.maps.event.addListener(zona, 'click', showArrays);				  				  		
+				  
+				  google.maps.event.addListener(zona.getPath(), 'set_at', function() {
+				  console.log("temine editar");
+				  });
+
+				  infoWindow = new google.maps.InfoWindow();
+
+				}
+
+				
+				/** @this {google.maps.Polygon} */
+				function showArrays(event) {
+
+				  // Since this polygon has only one path, we can call getPath()
+				  // to return the MVCArray of LatLngs.
+				  var vertices = this.getPath();
+				 /*
+				  var contentString = '<b>Poligono</b><br>' +
+				      'Hice click en: <br>' + event.latLng.lat() + ',' + event.latLng.lng() +
+				      '<br>';
+
+				  // Iterate over the vertices.
+				  for (var i =0; i < vertices.getLength(); i++) {
+				    var xy = vertices.getAt(i);
+				    contentString += '<br>' + 'Coordenada ' + i + ':<br>' + xy.lat() + ',' +
+				        xy.lng();
+				  }
+
+				  */
+
+				  var contentString="<br /><form >Escribe algo y pulsa enviar:<br>" +
+				  "<textarea cols=25 rows=3 name=texto></textarea>" +
+				  "<p /><input value=Enviar type=button onclick='registra()' /></form>";
+
+				  // Replace the info window's content and position.
+				  infoWindow.setContent(contentString);
+				  infoWindow.setPosition(event.latLng);
+
+				  infoWindow.open(map);				  
+				}	
+
+				 function registra() {
+					 System.out.println("llegue 1!!!.");
+					 catastrofeBeanMap.registrar();
+					 
+					 return false;
+				}		
+									
+			//]]>
+	</script>
+    
+       
 </h:head> 
-<h:body id="top"> 
+<h:body id="top"  style="margin:0px; padding:0px;" onload="initialize()"> 
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
@@ -149,7 +245,6 @@
             <p:submenu label="Reportes">
                 <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
                 <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
-                <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
             </p:submenu>
             
         </p:column>

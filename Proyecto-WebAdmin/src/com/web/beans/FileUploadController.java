@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import javax.faces.application.ConfigurableNavigationHandler;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
  
@@ -26,8 +25,8 @@ public class FileUploadController {
 	
 	
 	public void upload(FileUploadEvent event) {  
-        FacesMessage msg = new FacesMessage("Las imágenes fueron ingresadas con exito.");  
-        FacesContext.getCurrentInstance().addMessage(null, msg);              
+        //FacesMessage msg = new FacesMessage("Las imágenes fueron ingresadas con exito.");  
+        //FacesContext.getCurrentInstance().addMessage(null, msg);              
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
         } catch (IOException e) {
@@ -38,13 +37,13 @@ public class FileUploadController {
 	
 	public void copyFile(String fileName, InputStream in) {	
 		
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeImg");
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
 		System.out.println("El id del evento catastrofe imagen: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
 		}
 		else	
 		{		
@@ -90,7 +89,7 @@ public class FileUploadController {
 		             out.flush();
 		             out.close();
 		           
-		             System.out.println("Nuevo archivo creado!");   	    		
+		             //System.out.println("Nuevo archivo creado!");   	    		
 		        }catch (Exception excep){
 					System.out.println("Excepción al obtener la catástrofe: " + excep.getMessage());      		 			       	           	
 				}	    			    			    		        	      
@@ -99,14 +98,14 @@ public class FileUploadController {
 	        }
 	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");	
+			handler.performNavigation("asignarOngsCatastrofe?faces-redirect=true");	
 	        
 		}
 	}		
 	
 	
 	public void cancelar(){
-		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");				
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");		
 	}

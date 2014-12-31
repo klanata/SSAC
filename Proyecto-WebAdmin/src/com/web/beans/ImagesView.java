@@ -37,12 +37,12 @@ public class ImagesView implements Serializable{
     @PostConstruct
     public void init() {
     	
-    		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeImg");
+    		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
             if ((idEventoString == null) || (idEventoString == ""))
     		{	
     			System.out.println("No existe la catástrofe. "); 			
     			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-    			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");
+    			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
     		}
     		else	
     		{        
