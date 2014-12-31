@@ -123,7 +123,7 @@
  	<p:submenu label="Catástrofe" >
         <p:column>
             <p:submenu label="Alta " icon="ui-icon-check">
-                <p:menuitem value="Catástrofe" url="registrarCatastrofe.xhtml" />
+                <p:menuitem value="Catástrofe" url="registrarCatastrofeMap.xhtml" />
                 
             </p:submenu>
             <p:submenu label="Asignar">
@@ -224,7 +224,7 @@
 				</h:panelGrid>	
 																			
 				
-			 <h:commandButton id="submit" update="growl" style="margin-left: 400px;"
+			 <p:commandButton id="submit" update="growl" ajax="false" style="margin-left: 400px;"
 		                 action="#{ongBean.registrarOng}"
 			             value="Registrar" />	
 		
