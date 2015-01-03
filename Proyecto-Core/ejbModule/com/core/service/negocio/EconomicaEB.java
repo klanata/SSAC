@@ -20,8 +20,7 @@ public class EconomicaEB implements EconomicaEBR{
 	@EJB
 	private EconomicaDAO economicaDAO;
 	
-	public void crearDonacionEconomica(Long idOng, String usuario, Date fechaRealizada, 
-			BigDecimal monto)throws Exception{
+	public void crearDonacionEconomica(Long idOng, String usuario, Date fechaRealizada)throws Exception{
 		
 		Economica eco = new Economica();
 		Ong ong = dataService.find(Ong.class, idOng);
@@ -29,7 +28,7 @@ public class EconomicaEB implements EconomicaEBR{
 		
 		eco.setUsuario(usuario);
 		eco.setFechaRealizada(fechaRealizada);
-		eco.setMonto(monto);
+		
 		try {
 			 Long id = economicaDAO.agregarDonacionEconomicaOng(eco);
 			/*Collection<Economica> list = ong.getDonacionesEconomicas();

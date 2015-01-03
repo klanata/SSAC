@@ -68,6 +68,7 @@ private static final long serialVersionUID = 1L;
 	    	Long id;
 	    	String nombre;
 	    	String apellido;
+	    	String cedula;
 	    	String numeroContacto;
 	    	String descripcion;
 	    	Date fechnac;
@@ -77,7 +78,8 @@ private static final long serialVersionUID = 1L;
 				persona = res.get(i);
 				id = persona.getId();
 				nombre = persona.getNombre();
-				apellido = persona.getApellido();												
+				apellido = persona.getApellido();
+				cedula = persona.getCedula();
 				numeroContacto = persona.getNumeroContacto();
 				System.out.println("despues de numeroContacto");
 				descripcion = persona.getDescripcion();
@@ -85,7 +87,7 @@ private static final long serialVersionUID = 1L;
 				hallada = persona.isHallada();
 				imagenes = persona.getImagenes();
 				System.out.println("aca ");			
-				personasBean.add(i, new PersonasDesaparecidasBean(id,nombre, apellido, numeroContacto, descripcion, fechnac,  imagenes, hallada));									    		
+				personasBean.add(i, new PersonasDesaparecidasBean(id,nombre, apellido, cedula, numeroContacto, descripcion, fechnac,  imagenes, hallada));									    		
 			}	
 			
     	}catch (Exception excep){

@@ -61,6 +61,9 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	private String apellido = "";
 	
 	@Column(nullable= false)
+	private String cedula = "";
+	
+	@Column(nullable= false)
 	private String numeroContacto = "";
 	
 	@Column(nullable= false)
@@ -81,10 +84,11 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	//////////////CONSTRUCTORES///////////////////////////////
 	
 	
-	public PersonasDesaparecidas (String nombre, String apellido, String numeroContacto, String descripcion, Set<ImagenPersonaDesaparecida> imagenes, Date fechNac, boolean hallada){
+	public PersonasDesaparecidas (String nombre, String apellido, String cedula, String numeroContacto, String descripcion, Set<ImagenPersonaDesaparecida> imagenes, Date fechNac, boolean hallada){
 		super();
 		this.nombre=nombre;
 		this.apellido=apellido;
+		this.cedula=cedula;
 		this.numeroContacto=numeroContacto;
 		this.descripcion=descripcion;
 		this.fechNac=fechNac;
@@ -175,8 +179,14 @@ public class PersonasDesaparecidas  extends AbstractEntity implements Serializab
 	}
 
 
-	
+	public String getCedula() {
+		return cedula;
+	}
 
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
 
 
 	public boolean isHallada() {

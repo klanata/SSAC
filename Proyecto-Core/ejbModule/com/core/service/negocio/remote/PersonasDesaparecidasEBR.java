@@ -12,7 +12,7 @@ import com.core.data.entites.PersonasDesaparecidas;
 
 public interface PersonasDesaparecidasEBR {
 	
-	public Long crearReportePersonasDesaparecidas(Long idCatastrofe, String nombre, String apellido, String numeroContacto, String descripcion, Date fechNac,
+	public Long crearReportePersonasDesaparecidas(Long idCatastrofe, String nombre, String apellido, String cedula, String numeroContacto, String descripcion, Date fechNac,
 			Set<ImagenPersonaDesaparecida> imagenes, boolean hallada)throws Exception;
 
 	public void agregarImagenAPersonaDesaparecida(Long idPersona, String nombImagen) throws Exception;

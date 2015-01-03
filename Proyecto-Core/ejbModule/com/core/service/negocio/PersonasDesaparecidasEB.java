@@ -34,7 +34,7 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 	private ImagenPersonaDesaparecidaDAO imagenpersonaDAO;
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public Long crearReportePersonasDesaparecidas(Long idCatastrofe, String nombre, String apellido, String numeroContacto, String descripcion, Date fechNac,
+	public Long crearReportePersonasDesaparecidas(Long idCatastrofe, String nombre, String apellido, String cedula, String numeroContacto, String descripcion, Date fechNac,
 			Set<ImagenPersonaDesaparecida> imagenes, boolean hallada)throws Exception{ 
 	System.out.println("aca estoyyyyyy");
 		PersonasDesaparecidas perdes = new PersonasDesaparecidas();
@@ -43,6 +43,7 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		perdes.setCatastrofe(catastrofe);
 		perdes.setNombre(nombre);
 		perdes.setApellido(apellido);
+		perdes.setCedula(cedula);
 		perdes.setNumeroContacto(numeroContacto);
 		perdes.setDescripcion(descripcion);
 		perdes.setFechNac(fechNac);

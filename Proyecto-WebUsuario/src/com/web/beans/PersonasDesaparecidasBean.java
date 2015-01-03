@@ -40,6 +40,7 @@ public class PersonasDesaparecidasBean implements Serializable {
 	private Long id;
 	private String nombre;
 	private String apellido ;
+	private String cedula;
 	private String numeroContacto ;	
 	private Date fechNac;
 	private String descripcion ;
@@ -53,13 +54,14 @@ public class PersonasDesaparecidasBean implements Serializable {
 	
 	
 	public PersonasDesaparecidasBean(Long id, String nombre,
-			String apellido, String numeroContacto, String descripcion,
+			String apellido, String cedula, String numeroContacto, String descripcion,
 			Date fechnac, Set<ImagenPersonaDesaparecida> imagenes,
 			Boolean hallada) {
 		super();
 		this.id=id;
 		this.nombre=nombre;
 		this.apellido=apellido;
+		this.cedula=cedula;
 		this.numeroContacto=numeroContacto;
 		this.descripcion=descripcion;
 		this.fechNac=fechnac;
@@ -117,6 +119,7 @@ public class PersonasDesaparecidasBean implements Serializable {
 		this.hallada = hallada;
 	}
 	
+	
 /*	public Part getPart() {
 		return part;
 	}
@@ -127,6 +130,16 @@ public class PersonasDesaparecidasBean implements Serializable {
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
+public String getCedula() {
+		return cedula;
+	}
+
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+
 public Long getCatastrofeId() {
 		return catastrofeId;
 	}
@@ -157,7 +170,7 @@ public void registrarPersonasDesaparecidas(){
     		fechaPublicacion.getTime();
     		
     		hallada = false;
-    		Long in =manager.crearReportePersonasDesaparecidas(catastrofeId, nombre, apellido, numeroContacto, descripcion, fechaPublicacion, imagenes, hallada);
+    		Long in =manager.crearReportePersonasDesaparecidas(catastrofeId, nombre, apellido, cedula, numeroContacto, descripcion, fechaPublicacion, imagenes, hallada);
     		String idP = in.toString();
     		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idP", idP); 
     		

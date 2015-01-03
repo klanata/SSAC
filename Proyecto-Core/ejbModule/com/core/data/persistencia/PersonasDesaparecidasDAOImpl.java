@@ -114,20 +114,7 @@ private static final long serialVersionUID = 1L;
 		}	  	
 	}
 	
-	/*public Collection<PersonasDesaparecidas> listarPersonasHalladas(Long idPersona) throws Exception{
-		Collection<PersonasDesaparecidas> listaPersonasHalladas = null;
-		try{
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("id",idPersona);
-		listaPersonasHalladas  = dataService.findWithNamedQuery(PersonasDesaparecidas.class,"EstadoPersona.findHalladas", parameters);
-			parameters.clear();
-			
-		}catch (Exception e){}
-		return listaPersonasHalladas;
-		
-	}*/
-	
-	
+
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public PersonasDesaparecidas buscarPersonaPorId(Long id) throws Exception{
 		

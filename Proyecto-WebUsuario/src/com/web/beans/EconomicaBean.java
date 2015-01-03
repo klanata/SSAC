@@ -18,7 +18,6 @@ public class EconomicaBean implements Serializable{
 	private Long ong;
 	private String usuario = "";
 	private Date fechaRealizada;
-	private BigDecimal monto;
 	
 	public Long getOng() {
 		return ong;
@@ -38,12 +37,7 @@ public class EconomicaBean implements Serializable{
 	public void setFechaRealizada(Date fechaRealizada) {
 		this.fechaRealizada = fechaRealizada;
 	}
-	public BigDecimal getMonto() {
-		return monto;
-	}
-	public void setMonto(BigDecimal monto) {
-		this.monto = monto;
-	}
+
 	public void  registrarDonacionEconomica(){		
 		
 
@@ -66,7 +60,7 @@ public class EconomicaBean implements Serializable{
     		Date fechaRealizada = new Date();
     		fechaRealizada.getTime();
     		
-       		manager.crearDonacionEconomica(ong, usuario, fechaRealizada, monto);    	
+       		manager.crearDonacionEconomica(ong, usuario, fechaRealizada);    	
     		
     		
     	}catch (Exception excep){

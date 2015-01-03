@@ -6,6 +6,6 @@ import javax.ejb.Remote;
 
 @Remote
 public interface EconomicaEBR {
-	public void crearDonacionEconomica(Long idOng, String usuario, Date fechaRealizada, BigDecimal monto)throws Exception;
+	public void crearDonacionEconomica(Long idOng, String usuario, Date fechaRealizada)throws Exception;
 	
 }

@@ -12,8 +12,7 @@
 		#{idCatastrofeUsuario}
 		#{logoCatastrofeUsuario}
 		#{descripcionCatastrofeUsuario}	
-		
-			
+
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
@@ -27,8 +26,9 @@
     <link rel="stylesheet" href="css/2skel.css" />
 			<link id="cssPrincipal" rel="stylesheet" href="css/2style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
-			<link rel="stylesheet" href="css/style-noscript.css" />
-    <script>
+			<link rel="stylesheet" href="css/style-noscript.css" />		
+		
+		    <script>
 		  //alert(window.localStorage.getItem("IdCatastrofe"));
 		  var css = window.localStorage.getItem("urlCSS");
 		  var cssFinal = "css/"+ css; 
@@ -47,11 +47,7 @@
 				
 				alert(urlStr);
 				
-				
-
 				}
-
-		 
 	</script>	
 <style>
 			#map-canvas {
@@ -61,7 +57,7 @@
 			}
 		
 		     #map-canvas{
-		        height: 600px;
+		        height: 750px;
 				width:100%;
 		        margin: 0px;
 		        padding: 0px
@@ -69,11 +65,7 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     
-    
-			
-
-		
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+  
 	</h:head>
 	<body class="homepage">
 	
@@ -88,8 +80,7 @@
 							<center>¡Bienvenido al Sistema de Soporte ante Catástrofes!</center>
 						</div>
 						<div class="footer">
-							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>		
-												
+							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>	
 						</div>
 					</div>
 				
@@ -126,35 +117,25 @@
 		<h:form id="pedidoAyudaBean" >
 			<h:messages id="messages" for="pedidoAyudaBean"></h:messages>
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid>		
-			
+			<h:panelGrid>	
 			<p>
-			<br/>
-				<label for="catastrofeId">Catastrofe :</label>				
+			<label for="catastrofeId">Catastrofe :</label>				
 					<p:inputText id="catastrofeId" label="catastrofeId"  value="#{pedidoAyudaBean.catastrofe}" required="true" requiredMessage="La ong es requerida" >	
 					</p:inputText>																																									
 				</p>
-				<br/>
 				<p>
 				<label for="descripcion">Descripcion :</label>				
-					<p:inputTextarea rows="6" cols="33" id="descripcion" label="descripcion"  value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La ong es requerida" >	
+					<p:inputTextarea rows="6" cols="33" id="descripcion" label="descripcion"  value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La descripcion es requerida" >	
 					</p:inputTextarea>																																									
 				</p>
-				<br/>
 				<p>
-				<br/>
 				<label for="coordenadasX">Latitud es:</label>				
-					<p:inputText id="coordenadasX" label="coordenadasX" value="#{pedidoAyudaBean.coordenadasX}" required="true" requiredMessage="El usuario es requerido" >	
+					<p:inputText id="coordenadasX" label="coordenadasX" value="#{pedidoAyudaBean.coordenadasX}" required="true" requiredMessage="La latitud es requerida" >	
 					</p:inputText>																																									
 				</p>
-				<br/>
 				<label for="coordenadasY">Longitud es:</label>				
-					<p:inputText id="coordenadasY" label="coordenadasY" value="#{pedidoAyudaBean.coordenadasY}" required="true" requiredMessage="El usuario es requerido" >	
-					</p:inputText>																																									
-				
-				<br/>
-				
-	
+					<p:inputText id="coordenadasY" label="coordenadasY" value="#{pedidoAyudaBean.coordenadasY}" required="true" requiredMessage="La longitud es requerida" >	
+					</p:inputText>
 				</h:panelGrid>	
 			<p:commandButton id="registrarpedido" update="growl"  type="submit" style="margin-left: 150px;" Class="button" value="Ayuda" action="#{pedidoAyudaBean.registrarpedidoAyuda()}">
 			</p:commandButton>	
@@ -162,8 +143,9 @@
 		</f:view>
         
         </div>
-        <div class="ui-grid-col-1">1</div>
+        <div class="ui-grid-col-1"></div>
         <div class="ui-grid-col-5"> 
+        <br/>
         	<div id="map-canvas"></div>
         </div>
         <div class="ui-grid-col-1"></div>
@@ -172,8 +154,6 @@
 	
 	</div>
 		 
-		 
- 
 
 		<!-- Mision y vision -->	
 			
@@ -187,38 +167,122 @@
 									 Seleccione el tipo de donación que desea realizar,
 									 haciendo click en las imágenes que se encuentran a continuación.
 									</p>
-					  <h:outputText value="DE BIENES" />
-					<a href="#donaciondb" class="image featured"><img src="images/fru1.jpg" alt="" /></a>
-								<p>
-									Las donaciones de bienes consisten en bla bla bla
-								</p>
-						  <h:outputText value="DE SERVICIOS" />
-					<a href="#donacionds" class="image featured"><img src="images/servicio.jpg" alt="" /></a>
-								<p>
-									Las donaciones de servicios consisten en bla bla
-								</p>
-					<h:outputText value="ECONOMICA" />
-					<a href="#donacioneco" class="image featured"><img src="images/visa.jpg" alt="" /></a>
-								<p>
-									Las donaciones de servicios consisten en bla bla
-								</p>
-						
-					</div>
-				</div>
+					  
+					  
+					  
+					  
+					  
+					  <!-- DE SERVICIOS -->
 
-			</div>
+  <h:panelGrid columns="1" cellpadding="5">
+    <p:commandButton value="DE SERVICIOS" type="button" onclick="PF('dlg1').show();" /> 
+</h:panelGrid>
+<p:dialog header="DE SERVICIOS" widgetVar="dlg1" showEffect="explode" hideEffect="explode" height="500" width="400">
+
+ <div class="ui-grid" id="donacionds">
+   		 <div class="ui-grid-row">	
+   		 <div class="ui-grid-col-1"></div>	
+   		  <div class="ui-grid-col-6">
+		   <f:view>
+            <h:form id="deServicioBean">   
+                <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+               <img src="images/servicio.jpg" alt="" />
+                   <h:panelGrid>
+                    <p> 
+						<label for="idOng">ONG A DONAR</label>				
+						<p:inputText id="idOng" label="idOng"  value="#{deServicioBean.idOng}" required="true" requiredMessage="El nombre de la ong es requerido" >	
+						</p:inputText>																																									
+					</p>
+					   <p>
+						<label for="usuario">NOMBRE :</label>				
+						<p:inputText id="usuario" label="usuario"  value="#{deServicioBean.usuario}" required="true" requiredMessage="El nombre del usuario es requerido" >	
+						</p:inputText>																																									
+					</p>
+                     <p>
+						<label for="fechaRealizada"> FECHA :</label>					
+						<p:calendar id="fechaRealizada" label="fechaRealizada"  value="#{deServicioBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />																																							
+					</p>
+                     <p>
+						<label for="areaConocimient">AREA DE CONOCIMIENTO :</label>				
+						<p:inputText id="areaConocimient" label="areaConocimient"  value="#{deServicioBean.areaConocimient}" required="true" requiredMessage="El area es requerido" >	
+						</p:inputText>																																									
+					</p>
+                     <p>
+						<label for="cantidadHoras">CANTIDAD DE HORAS :</label>				
+						<p:inputText id="cantidadHoras" label="cantidadHoras"  value="#{deServicioBean.cantidadHoras}" required="true" requiredMessage="Cantidad de horas es requerido" >	
+						</p:inputText>																																									
+					</p>
+					
+                        <p:commandButton id="registro" update="growl" type="submit" Class="button" value="DONAR" action="#{deServicioBean.registrarDonacionDeServicio()}">
+			</p:commandButton>	
+			 
+                    </h:panelGrid>
+              
+            </h:form>
+            </f:view>
+            
+            </div>	
+            </div>	
+            </div>	
+</p:dialog>
+
+  <!-- ECONOMICA -->
+  <h:panelGrid columns="1" cellpadding="5">
+    <p:commandButton value="ECONOMICA" type="button" onclick="PF('dlg2').show();" /> 
+</h:panelGrid>
+<p:dialog header="ECONOMICA" widgetVar="dlg2" showEffect="explode" hideEffect="explode" height="500" width="400">
+<div class="ui-grid">
+   		 <div class="ui-grid-row">	
+   		 <div class="ui-grid-col-1"></div>	
+   		  <div class="ui-grid-col-6">
+		   <f:view>
+            <h:form id="economicaBean">   
+                <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+                <img src="images/visa.jpg" alt="" />
+                  <h:panelGrid>		
+				<p> ECONOMICA
+				<label for="ong">ONG A DONAR:</label>				
+					<p:inputText id="ong" label="ong"  value="#{economicaBean.ong}" required="true" requiredMessage="La ong es requerida" >	
+					</p:inputText>																																									
+				</p>
+				<p>
+				<label for="usuario">NOMBRE:</label>				
+					<p:inputText id="usuario" label="usuario" value="#{economicaBean.usuario}" required="true" requiredMessage="El usuario es requerido" >	
+					</p:inputText>																																									
+				</p>
+					<label for="fechaRealizada"> FECHA:</label>
+        		<p:calendar id="fechaRealizada" value="#{economicaBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />
 				
-					<!-- donacion de bienes -->
-					<div class="ui-grid" id="donaciondb">
+			<p:commandButton id="registrarDonacion" update="growl"  type="submit"  Class="button" value="DONAR" action="#{economicaBean.registrarDonacionEconomica()}">
+			</p:commandButton>	
+			</h:panelGrid>	
+              
+			
+            </h:form>
+            </f:view>
+            </div>	
+            </div>	
+            </div>	
+            
+</p:dialog>
+
+<!-- DE BIENES -->
+				
+<h:panelGrid columns="1" cellpadding="5">
+    <p:commandButton value="DE BIENES" type="button" onclick="PF('dlg3').show();" /> 
+</h:panelGrid>
+ 
+<p:dialog header="DE BIENES" widgetVar="dlg3" showEffect="explode" hideEffect="explode" height="500" width="400">
+ <div class="ui-grid" id="donaciondb">
    		 <div class="ui-grid-row">	
    		 <div class="ui-grid-col-1"></div>	
    		  <div class="ui-grid-col-6">
 		   <f:view>
             <h:form id="deBienesBean">   
                 <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+                  <img src="images/fru1.jpg" alt="" />
                     <h:panelGrid>
-                    <hr></hr>
-                    <p> DE BIENES
+                       <p> 
 						<label for="idOng">ONG A DONAR</label>				
 						<p:inputText id="idOng" label="idOng"  value="#{deBienesBean.idOng}" required="true" requiredMessage="El nombre de la ong es requerido" >	
 						</p:inputText>																																									
@@ -252,103 +316,30 @@
             </div>	
             </div>	
             </div>	
+</p:dialog>
+			
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+						
+					</div>
+				</div>
+
+			</div>
+				
+					<!-- donacion de bienes -->
+					
             
      <!-- DE SERVICIOS -->
      
-     <div class="ui-grid" id="donacionds">
-   		 <div class="ui-grid-row">	
-   		 <div class="ui-grid-col-1"></div>	
-   		  <div class="ui-grid-col-6">
-		   <f:view>
-            <h:form id="deServicioBean">   
-                <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-                   <h:panelGrid>
-                   <hr></hr>
-                    <p> DE SERVICIOS
-						<label for="idOng">ONG A DONAR</label>				
-						<p:inputText id="idOng" label="idOng"  value="#{deServicioBean.idOng}" required="true" requiredMessage="El nombre de la ong es requerido" >	
-						</p:inputText>																																									
-					</p>
-					   <p>
-						<label for="usuario">NOMBRE :</label>				
-						<p:inputText id="usuario" label="usuario"  value="#{deServicioBean.usuario}" required="true" requiredMessage="El nombre del usuario es requerido" >	
-						</p:inputText>																																									
-					</p>
-                     <p>
-						<label for="fechaRealizada"> FECHA :</label>					
-						<p:calendar id="fechaRealizada" label="fechaRealizada"  value="#{deServicioBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />																																							
-					</p>
-                     <p>
-						<label for="areaConocimient">AREA DE CONOCIMIENTO :</label>				
-						<p:inputText id="areaConocimient" label="areaConocimient"  value="#{deServicioBean.areaConocimient}" required="true" requiredMessage="El area es requerido" >	
-						</p:inputText>																																									
-					</p>
-                     <p>
-						<label for="cantidadHoras">CANTIDAD DE HORAS :</label>				
-						<p:inputText id="cantidadHoras" label="cantidadHoras"  value="#{deServicioBean.cantidadHoras}" required="true" requiredMessage="Cantidad de horas es requerido" >	
-						</p:inputText>																																									
-					</p>
-					
-                        <p:commandButton id="registro" update="growl" type="submit" Class="button" value="DONAR" action="#{deServicioBean.registrarDonacionDeServicio()}">
-			</p:commandButton>	
-			 
-                    </h:panelGrid>
-              
-			
-            </h:form>
-            </f:view>
+    
             
-            </div>	
-            </div>	
-            </div>	
-            
-        <!-- ECONOMICA -->
-        
-        <div class="ui-grid" id="donacioneco">
-   		 <div class="ui-grid-row">	
-   		 <div class="ui-grid-col-1"></div>	
-   		  <div class="ui-grid-col-6">
-		   <f:view>
-            <h:form id="economicaBean">   
-                <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-                  <h:panelGrid>		
-			<hr></hr>
-				<p> ECONOMICA
-				<label for="ong">ONG A DONAR :</label>				
-					<p:inputText id="ong" label="ong"  value="#{economicaBean.ong}" required="true" requiredMessage="La ong es requerida" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				
-				<p>
-				<label for="usuario">NOMBRE :</label>				
-					<p:inputText id="usuario" label="usuario" value="#{economicaBean.usuario}" required="true" requiredMessage="El usuario es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-					<label for="fechaRealizada"> FECHA :</label>
-        		<p:calendar id="fechaRealizada" value="#{economicaBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />
-        		<br/>
-        		
-				<p>
-				<label for="monto">MONTO :</label>				
-					<p:inputText id="monto" label="monto"  value="#{economicaBean.monto}"  required="true" requiredMessage="El monto es requerido" >		
-					</p:inputText>																																									
-				</p>
-				<br/>
-			<p:commandButton id="registrarDonacion" update="growl"  type="submit"  Class="button" value="DONAR" action="#{economicaBean.registrarDonacionEconomica()}">
-			</p:commandButton>	
-			</h:panelGrid>	
-              
-			
-            </h:form>
-            </f:view>
-            
-            </div>	
-            </div>	
-            </div>	
+      
 	<!-- ALTA DE PERSONAS DESAPARECIDAS -->
 	
 <div class="ui-grid" id="personasdesap">
@@ -455,6 +446,10 @@
             		<h:outputText value="#{personaBean.apellido}" />            		
         		</p:column>
         		
+        		<p:column headerText="Cedula" filterBy="#{personaBean.cedula}" filterMatchMode="contains" >
+            		<h:outputText value="#{personaBean.cedula}" />            		
+        		</p:column>
+        		
         		<p:column headerText="Contacto" filterBy="#{personaBean.numeroContacto}" filterMatchMode="contains">
             		<h:outputText value="#{personaBean.numeroContacto}" />            		
         		</p:column>
@@ -479,16 +474,8 @@
 <div class="ui-grid-col-1"></div>
 </div>
 </div>
-					
-			<h:panelGrid columns="1" cellpadding="5">
-   
-    <p:commandButton value="PruebaClic" type="button" onclick="PF('dlg3').show();" /> 
-</h:panelGrid>
- 
-<p:dialog header="PruebaClic" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
-    <h:outputText value="Probando." />
-</p:dialog>
-			
+
+
 
 			
 		<!-- Este script es para el mapa -->

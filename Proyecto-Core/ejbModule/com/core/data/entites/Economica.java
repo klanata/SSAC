@@ -53,10 +53,6 @@ public class Economica extends AbstractEntity implements Serializable {
 	@Column(nullable =false)
 	private Date fechaRealizada;
 	
-
-	@Column(nullable =false)
-	private BigDecimal monto;
-	
 	@ManyToOne 
 	private Ong ong;
 
@@ -86,13 +82,7 @@ public class Economica extends AbstractEntity implements Serializable {
 		this.fechaRealizada = fechaRealizada;
 	}
 
-	public BigDecimal getMonto() {
-		return monto;
-	}
-
-	public void setMonto(BigDecimal monto) {
-		this.monto = monto;
-	}
+	
 	public Ong getOng() {
 		return ong;
 	}
