@@ -53,7 +53,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
 	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
 		double coordenadasY, Boolean activa, Boolean prioridad, String css, Set<ImagenCatastrofe> imagenes, 
-		Set<Filtro> filtros, Set<Ong> ongs,	PlanDeRiesgo planDeRiesgo)throws Exception {
+		Set<Filtro> filtros, Set<Ong> ongs,	PlanDeRiesgo planDeRiesgo,String poligono)throws Exception {
 				
 		Catastrofe c = new Catastrofe();
 		Long id;	
@@ -66,11 +66,12 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setActiva(activa);
 		c.setPrioridad(prioridad);
 		c.setCss(css);
-		c.setImagenes(imagenes);
-		c.setFiltros(filtros);
+		c.setImagenes(imagenes);		
+		c.setFiltrosCatastrofes(filtros);
 		c.setOngs(ongs);
 		c.setPlanDeRiesgo(planDeRiesgo);
 		c.setBajaLogica(false);
+		c.setPoligono(poligono);
 				
 		id = catastrofeDAO.insert(c);
 		return id;											
@@ -283,7 +284,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);
 			Filtro filtro = dataService.find(Filtro.class, idFiltro);
 			
-			Set<Filtro> filtros = c.getFiltros();
+			Set<Filtro> filtros = c.getFiltrosCatastrofes();
 			filtros.add(filtro);
 			dataService.update(filtro);
 			
@@ -299,7 +300,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		
 		List<Filtro> res = new ArrayList<Filtro>();
 		Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);	
-		Set<Filtro> filtros = c.getFiltros();
+		Set<Filtro> filtros = c.getFiltrosCatastrofes();
 		Servicio servicio = servicioDAO.buscarServicioPorFuente(fuente);
 		Long idServcio = servicio.getId();
 		Set<Servicio> servicosF = new HashSet<Servicio>();
@@ -324,7 +325,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		
 		List<String> res = new ArrayList<String>();
 		Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);	
-		Set<Filtro> filtros = c.getFiltros();
+		Set<Filtro> filtros = c.getFiltrosCatastrofes();
 		Servicio servicio = servicioDAO.buscarServicioPorFuente(fuente);
 		Long idServcio = servicio.getId();
 		Set<Servicio> servicosF = new HashSet<Servicio>();

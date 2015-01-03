@@ -92,35 +92,13 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@OneToMany
 	private Set<PersonasDesaparecidas> personasDesaparecidas =  new HashSet<PersonasDesaparecidas>(0);
 	
-	
-	
-	
-	public Set<Filtro> getFiltrosCatastrofes() {
-		return filtrosCatastrofes;
-	}
-
-
-	public void setFiltrosCatastrofes(Set<Filtro> filtrosCatastrofes) {
-		this.filtrosCatastrofes = filtrosCatastrofes;
-	}
-
-
-	public Set<PersonasDesaparecidas> getPersonasDesaparecidas() {
-		return personasDesaparecidas;
-	}
-
-
-	public void setPersonasDesaparecidas(
-			Set<PersonasDesaparecidas> personasDesaparecidas) {
-		this.personasDesaparecidas = personasDesaparecidas;
-	}
-
 	@OneToOne
 	private PlanDeRiesgo planDeRiesgo;
 	
 	private boolean bajaLogica;
 	
-	
+	@Column(length=10000,nullable= false)
+	private String poligono = "";
 	
 	//	------------------ Constructors  --------------------------------
 	
@@ -142,6 +120,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.pedidosDeAyuda = new HashSet<PedidoDeAyuda>();		
 		this.personasDesaparecidas = new HashSet<PersonasDesaparecidas>();
 		this.bajaLogica = false;
+		this.poligono = new String();
 	}		
 	
 	
@@ -156,12 +135,15 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	 * @param filtros	 
 	 * @param ongs
 	 * @param pedidosDeAyuda
-	 * @param planDeRiesgo	 
+	 * @param planDeRiesgo
+	 * @param personasDesaparecidas	 
 	 * @param bajaLogica	
+	 * @param poligono
 	 */
 	public Catastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, double coordenadasY,
 			Boolean activa, Boolean prioridad, String css, Set<ImagenCatastrofe> imagenes, Set<Filtro> filtros,
-			Set<Ong> ongs, Set<PedidoDeAyuda> pedidosDeAyuda, PlanDeRiesgo planDeRiesgo, boolean bajaLogica) {
+			Set<Ong> ongs, Set<PedidoDeAyuda> pedidosDeAyuda, PlanDeRiesgo planDeRiesgo, boolean bajaLogica,
+			Set<PersonasDesaparecidas> personasDesaparecidas,String poligono) {
 		super();
 		this.nombreEvento = nombreEvento;
 		this.descripcion = descripcion;
@@ -176,8 +158,10 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.setOngs(ongs);
 		//this.ongs = ongs;
 		this.pedidosDeAyuda = pedidosDeAyuda;
-		this.planDeRiesgo = planDeRiesgo;		
+		this.planDeRiesgo = planDeRiesgo;	
+		this.personasDesaparecidas = personasDesaparecidas;
 		this.bajaLogica = bajaLogica;
+		this.poligono = poligono;
 	}
 	
 	
@@ -236,13 +220,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	}
 	public void setCss(String css) {
 		this.css = css;
-	}	
-	public Set<Filtro> getFiltros() {
-		return filtrosCatastrofes;
-	}
-	public void setFiltros(Set<Filtro> filtros) {
-		this.filtrosCatastrofes = filtros;
-	}
+	}		
 	public Set<Ong> getOngs() {
 		return ongs;
 	}
@@ -274,6 +252,26 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 
 	public void setBajaLogica(boolean bajaLogica) {
 		this.bajaLogica = bajaLogica;
+	}
+	
+	public Set<Filtro> getFiltrosCatastrofes() {
+		return filtrosCatastrofes;
+	}
+	public void setFiltrosCatastrofes(Set<Filtro> filtrosCatastrofes) {
+		this.filtrosCatastrofes = filtrosCatastrofes;
+	}
+	public Set<PersonasDesaparecidas> getPersonasDesaparecidas() {
+		return personasDesaparecidas;
+	}
+	public void setPersonasDesaparecidas(
+			Set<PersonasDesaparecidas> personasDesaparecidas) {
+		this.personasDesaparecidas = personasDesaparecidas;
+	}
+	public String getPoligono() {
+		return poligono;
+	}
+	public void setPoligono(String poligono) {
+		this.poligono = poligono;
 	}
 	
    

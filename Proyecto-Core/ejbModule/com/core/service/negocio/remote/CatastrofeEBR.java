@@ -16,7 +16,7 @@ import com.core.data.entites.PlanDeRiesgo;
 @Remote
 public interface CatastrofeEBR {
 
-	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX,double coordenadasY, Boolean activa, Boolean prioridad, String css,  Set<ImagenCatastrofe> imagenes, Set<Filtro> filtros, Set<Ong> ongs,PlanDeRiesgo planDeRiesgo)throws Exception;
+	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX,double coordenadasY, Boolean activa, Boolean prioridad, String css,  Set<ImagenCatastrofe> imagenes, Set<Filtro> filtros, Set<Ong> ongs,PlanDeRiesgo planDeRiesgo,String poligono)throws Exception;
 	//Retorna 0 si no puede ingresar la catastrofe, de lo contrario devuelve el id 
 	
 	public Catastrofe buscaCatastrofePorNombre(String nombreEvento) throws Exception;

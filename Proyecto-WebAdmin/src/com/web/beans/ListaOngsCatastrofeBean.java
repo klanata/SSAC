@@ -55,13 +55,13 @@ public class ListaOngsCatastrofeBean implements Serializable{
 	@PostConstruct
     public void init() {
 		
-			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeONG");
+			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
 			//System.out.println("El id del evento: " + idEventoString);		
 			if ((idEventoString == null) || (idEventoString == ""))
 			{	
 				System.out.println("No existe la catástrofe. "); 			
 				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-				handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
+				handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
 			}
 			else	
 			{											
@@ -154,9 +154,9 @@ public class ListaOngsCatastrofeBean implements Serializable{
 										
 						}		    	
 					}
-					else
-						System.out.println("La catástrofe no tiene ONGs. ");					
-					
+					else{					
+						//System.out.println("La catástrofe no tiene ONGs. ");
+					}															
 		    	}catch (Exception excep){
 		    		System.out.println("Excepción al listar las ONGs que pertenecen a la catástrofe: " + excep.getMessage());      		 			       	           	
 		    	}  							
@@ -280,12 +280,12 @@ public class ListaOngsCatastrofeBean implements Serializable{
 	
 	public void asignarOngs(){
 		
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeONG");
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
 		}
 		else	
 		{		
@@ -315,23 +315,24 @@ public class ListaOngsCatastrofeBean implements Serializable{
 						Long idOng = ongBean.getId();			
 						manager.agregarOngALaCatastrofe(idCatastrofe, idOng);				
 					}				
-					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
+					//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
 					ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-					handler.performNavigation("listaCatastrofesONGs?faces-redirect=true");
+					handler.performNavigation("asignarPlanRiesgoCatastrofe?faces-redirect=true");
 					//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
-					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
+					//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
 														
 				}catch (Exception excep){
-					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo dar de alta algúna de las ONG.");
+					//message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo dar de alta algúna de las ONG.");
+					//FacesContext.getCurrentInstance().addMessage(null, message);
 					System.out.println("Excepción al agregar las ONGs a la catástrofe: " + excep.getMessage());				
 				}  
 				
 			}
 			else{				
 				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una ONG.");
-				
+				FacesContext.getCurrentInstance().addMessage(null, message);
 			}
-			FacesContext.getCurrentInstance().addMessage(null, message);
+			
 		}
 		
 	}
