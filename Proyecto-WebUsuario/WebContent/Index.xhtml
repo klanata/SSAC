@@ -12,7 +12,8 @@
 		#{idCatastrofeUsuario}
 		#{logoCatastrofeUsuario}
 		#{descripcionCatastrofeUsuario}	
-
+		
+			
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
@@ -26,9 +27,8 @@
     <link rel="stylesheet" href="css/2skel.css" />
 			<link id="cssPrincipal" rel="stylesheet" href="css/2style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
-			<link rel="stylesheet" href="css/style-noscript.css" />		
-		
-		    <script>
+			<link rel="stylesheet" href="css/style-noscript.css" />
+    <script>
 		  //alert(window.localStorage.getItem("IdCatastrofe"));
 		  var css = window.localStorage.getItem("urlCSS");
 		  var cssFinal = "css/"+ css; 
@@ -47,7 +47,11 @@
 				
 				alert(urlStr);
 				
+				
+
 				}
+
+		 
 	</script>	
 <style>
 			#map-canvas {
@@ -57,7 +61,7 @@
 			}
 		
 		     #map-canvas{
-		        height: 750px;
+		        height: 850px;
 				width:100%;
 		        margin: 0px;
 		        padding: 0px
@@ -65,7 +69,11 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     
-  
+    
+			
+
+		
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</h:head>
 	<body class="homepage">
 	
@@ -80,7 +88,8 @@
 							<center>¡Bienvenido al Sistema de Soporte ante Catástrofes!</center>
 						</div>
 						<div class="footer">
-							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>	
+							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>		
+												
 						</div>
 					</div>
 				
@@ -88,11 +97,11 @@
 					<div id="nav">
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li><a href="#donaciones">DONACIONES</a></li>
+							<li><a href="#donacion">DONACIONES</a></li>
 							
-							<li><a href="left-sidebar.html">SOLICITAR AYUDA</a></li>
-							<li><a href="right-sidebar.html"></a></li>
-							<li><a href="#">PERSONAS DESAPARECIDAS</a></li>
+							<li><a href="#banner">SOLICITAR AYUDA</a></li>
+							<li><a href="#busperdesap">BUSCAR PERSONAS DESAPARECIDAS</a></li>
+							<li><a href="#personasdesap">ALTA PERSONAS DESAPARECIDAS</a></li>
 						</ul>
 					</div>
 
@@ -119,23 +128,23 @@
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 			<h:panelGrid>	
 			<p>
-			<label for="catastrofeId">Catastrofe :</label>				
+				<label for="catastrofeId">Catastrofe :</label>				
 					<p:inputText id="catastrofeId" label="catastrofeId"  value="#{pedidoAyudaBean.catastrofe}" required="true" requiredMessage="La ong es requerida" >	
 					</p:inputText>																																									
 				</p>
 				<p>
 				<label for="descripcion">Descripcion :</label>				
-					<p:inputTextarea rows="6" cols="33" id="descripcion" label="descripcion"  value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La descripcion es requerida" >	
+					<p:inputTextarea rows="6" cols="33" id="descripcion" label="descripcion"  value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La ong es requerida" >	
 					</p:inputTextarea>																																									
 				</p>
 				<p>
 				<label for="coordenadasX">Latitud es:</label>				
-					<p:inputText id="coordenadasX" label="coordenadasX" value="#{pedidoAyudaBean.coordenadasX}" required="true" requiredMessage="La latitud es requerida" >	
+					<p:inputText id="coordenadasX" label="coordenadasX" value="#{pedidoAyudaBean.coordenadasX}" required="true" requiredMessage="El usuario es requerido" >	
 					</p:inputText>																																									
 				</p>
 				<label for="coordenadasY">Longitud es:</label>				
-					<p:inputText id="coordenadasY" label="coordenadasY" value="#{pedidoAyudaBean.coordenadasY}" required="true" requiredMessage="La longitud es requerida" >	
-					</p:inputText>
+					<p:inputText id="coordenadasY" label="coordenadasY" value="#{pedidoAyudaBean.coordenadasY}" required="true" requiredMessage="El usuario es requerido" >	
+					</p:inputText>	
 				</h:panelGrid>	
 			<p:commandButton id="registrarpedido" update="growl"  type="submit" style="margin-left: 150px;" Class="button" value="Ayuda" action="#{pedidoAyudaBean.registrarpedidoAyuda()}">
 			</p:commandButton>	
@@ -154,35 +163,28 @@
 	
 	</div>
 		 
+		 
+ 
 
-		<!-- Mision y vision -->	
+		<!-- DONACIONES -->	
+<div class="wrapper style2" id="donacion">	
+
 			
-	<div class="wrapper style2" id="donaciones">
-
-				<div  id="main" class="container special">
-					<div id="main">
-				
-							<h2><a href="#">Ayudanos a ayudar ¡Realice donaciones!</a></h2>
+		<h2><a href="#donacion"> Ayudanos a ayudar ¡Realice donaciones!</a></h2>
 									<p>
-									 Seleccione el tipo de donación que desea realizar,
-									 haciendo click en las imágenes que se encuentran a continuación.
+									 Seleccione el tipo de donación que desea realizar.
 									</p>
-					  
-					  
-					  
-					  
-					  
-					  <!-- DE SERVICIOS -->
-
-  <h:panelGrid columns="1" cellpadding="5">
+		
+		
+	<div class="ui-grid" id="donacionds">
+   		 <div class="ui-grid-row">	
+   		 <div class="ui-grid-col-1"></div>	
+   		  <div class="ui-grid-col-6">	
+   		  
+	 <h:panelGrid columns="1" cellpadding="5">
     <p:commandButton value="DE SERVICIOS" type="button" onclick="PF('dlg1').show();" /> 
 </h:panelGrid>
 <p:dialog header="DE SERVICIOS" widgetVar="dlg1" showEffect="explode" hideEffect="explode" height="500" width="400">
-
- <div class="ui-grid" id="donacionds">
-   		 <div class="ui-grid-row">	
-   		 <div class="ui-grid-col-1"></div>	
-   		  <div class="ui-grid-col-6">
 		   <f:view>
             <h:form id="deServicioBean">   
                 <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
@@ -215,26 +217,25 @@
 					
                         <p:commandButton id="registro" update="growl" type="submit" Class="button" value="DONAR" action="#{deServicioBean.registrarDonacionDeServicio()}">
 			</p:commandButton>	
-			 
                     </h:panelGrid>
-              
             </h:form>
             </f:view>
-            
-            </div>	
-            </div>	
-            </div>	
 </p:dialog>
+            </div>	
+            </div>	
+            </div>	
+
 
   <!-- ECONOMICA -->
+  
+  <div class="ui-grid">
+   		 <div class="ui-grid-row">	
+   		 <div class="ui-grid-col-1"></div>	
+   		  <div class="ui-grid-col-6">
   <h:panelGrid columns="1" cellpadding="5">
     <p:commandButton value="ECONOMICA" type="button" onclick="PF('dlg2').show();" /> 
 </h:panelGrid>
 <p:dialog header="ECONOMICA" widgetVar="dlg2" showEffect="explode" hideEffect="explode" height="500" width="400">
-<div class="ui-grid">
-   		 <div class="ui-grid-row">	
-   		 <div class="ui-grid-col-1"></div>	
-   		  <div class="ui-grid-col-6">
 		   <f:view>
             <h:form id="economicaBean">   
                 <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
@@ -256,27 +257,24 @@
 			<p:commandButton id="registrarDonacion" update="growl"  type="submit"  Class="button" value="DONAR" action="#{economicaBean.registrarDonacionEconomica()}">
 			</p:commandButton>	
 			</h:panelGrid>	
-              
-			
             </h:form>
             </f:view>
-            </div>	
-            </div>	
-            </div>	
-            
 </p:dialog>
+</div>	
+ </div>	
+ </div>
 
 <!-- DE BIENES -->
-				
+			
+<div class="ui-grid">
+   		 <div class="ui-grid-row">	
+   		 <div class="ui-grid-col-1"></div>	
+   		  <div class="ui-grid-col-6">	
 <h:panelGrid columns="1" cellpadding="5">
     <p:commandButton value="DE BIENES" type="button" onclick="PF('dlg3').show();" /> 
 </h:panelGrid>
- 
 <p:dialog header="DE BIENES" widgetVar="dlg3" showEffect="explode" hideEffect="explode" height="500" width="400">
- <div class="ui-grid" id="donaciondb">
-   		 <div class="ui-grid-row">	
-   		 <div class="ui-grid-col-1"></div>	
-   		  <div class="ui-grid-col-6">
+ 
 		   <f:view>
             <h:form id="deBienesBean">   
                 <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
@@ -312,34 +310,19 @@
 					</h:panelGrid>
             </h:form>
             </f:view>
-            
-            </div>	
-            </div>	
-            </div>	
 </p:dialog>
+		</div>	
+        </div>	
+        </div>	
 			
-					  
-					  
-					  
-					  
-					  
-					  
-					  
-					  
-						
-					</div>
-				</div>
-
-			</div>
+	</div>			
 				
-					<!-- donacion de bienes -->
 					
-            
-     <!-- DE SERVICIOS -->
-     
-    
-            
-      
+					
+					
+					
+					
+					
 	<!-- ALTA DE PERSONAS DESAPARECIDAS -->
 	
 <div class="ui-grid" id="personasdesap">
@@ -409,7 +392,7 @@
 
 
 <!-- BUSCAR PERSONAS DESAPARECIDAS -->
-<div class="ui-grid">
+<div class="ui-grid" id="busperdesap">
 <div class="ui-grid-row">
 <div class="ui-grid-col-1"></div>
 <div class="ui-grid-col-11">
@@ -446,10 +429,6 @@
             		<h:outputText value="#{personaBean.apellido}" />            		
         		</p:column>
         		
-        		<p:column headerText="Cedula" filterBy="#{personaBean.cedula}" filterMatchMode="contains" >
-            		<h:outputText value="#{personaBean.cedula}" />            		
-        		</p:column>
-        		
         		<p:column headerText="Contacto" filterBy="#{personaBean.numeroContacto}" filterMatchMode="contains">
             		<h:outputText value="#{personaBean.numeroContacto}" />            		
         		</p:column>
@@ -474,8 +453,9 @@
 <div class="ui-grid-col-1"></div>
 </div>
 </div>
+					
 
-
+			
 
 			
 		<!-- Este script es para el mapa -->
