@@ -160,7 +160,10 @@ public class filtroUrl implements Filter , Serializable {
 					
 				HttpSession objetoCat= req.getSession(true);
 				objetoCat.setAttribute("nombreCatastrofeUsuario",existeURL.getNombreEvento());
-				
+				objetoCat.setAttribute("cssCatastrofeUsuario", existeURL.getCss());
+				objetoCat.setAttribute("idCatastrofeUsuario", existeURL.getId());
+				objetoCat.setAttribute("logoCatastrofeUsuario", existeURL.getLogo());
+				objetoCat.setAttribute("descripcionCatastrofeUsuario", existeURL.getDescripcion());
 				
 				res.sendRedirect(req.getContextPath() + "/Index.xhtml");
 					
