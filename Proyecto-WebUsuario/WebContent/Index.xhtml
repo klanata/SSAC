@@ -24,6 +24,7 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+	
     <link rel="stylesheet" href="css/2skel.css" />
 			<link id="cssPrincipal" rel="stylesheet" href="css/2style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
@@ -46,13 +47,38 @@
 				String urlStr = req.getRequestURL().toString().toLowerCase();
 				
 				alert(urlStr);
-				
-				
-
 				}
-
-		 
 	</script>	
+<script type="text/javascript" language="javascript">
+			function show(id) {
+				var oc = document.getElementById(id).style;
+				hide();
+				oc.display = "block";
+			}
+			function hide() {
+				document.getElementById('banner').style.display = "none";
+				document.getElementById('donacion').style.display = "none";
+				document.getElementById('busperdesap').style.display = "none";
+				document.getElementById('personasdesap').style.display = "none";
+				document.getElementById('registrousuario').style.display = "none";
+				document.getElementById('loginusuario').style.display = "none";
+				
+			}
+</script>
+		<style type="text/css">
+			.oculto {
+				display: none;
+			}
+			span {
+				color: purple;
+				font-size: 20px;
+			}
+			div {
+				color: purple;
+				font-size: 20px;
+				font-weight: bold
+			}
+		</style>
 <style>
 			#map-canvas {
 		   display: block;
@@ -67,19 +93,13 @@
 		        padding: 0px
 		      }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     
     
-			
-
-		
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+   <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</h:head>
 	<body class="homepage">
-	
 		<!-- Header -->
 			<div id="header">
-						
 				<!-- Inner -->
 					<div class="inner">
 						<div id="header">
@@ -88,8 +108,8 @@
 							<center>¡Bienvenido al Sistema de Soporte ante Catástrofes!</center>
 						</div>
 						<div class="footer">
-							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>		
-												
+							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>
+						
 						</div>
 					</div>
 				
@@ -97,25 +117,31 @@
 					<div id="nav">
 						<ul>
 							<li><a href="index.html">Home</a></li>
-							<li><a href="#donacion">DONACIONES</a></li>
-							
-							<li><a href="#banner">SOLICITAR AYUDA</a></li>
-							<li><a href="#busperdesap">BUSCAR PERSONAS DESAPARECIDAS</a></li>
-							<li><a href="#personasdesap">ALTA PERSONAS DESAPARECIDAS</a></li>
+							<!--  	<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
+					
+								<li><a href="#banner" style="cursor: hand; text-decoration: none" onclick="show('banner');"> Pedido de ayuda</a></li>
+								<li><a href="#donacion" style="cursor: hand; text-decoration: none" onclick="show('donacion');">Donaciones</a></li>
+								<li><a href="#busperdesap" style="cursor: hand; text-decoration: none" onclick="show('busperdesap');">Buscar Personas desaparecidas</a></li>
+								<li><a href="#personasdesap" style="cursor: hand; text-decoration: none" onclick="show('personasdesap');">Alta personas desaparecidas</a></li>
+								<li><a href="#registrousuario" style="cursor: hand; text-decoration: none" onclick="show('registrousuario');">Registro usuario</a></li>
+								<li><a href="#loginusuario" style="cursor: hand; text-decoration: none" onclick="show('loginusuario');">Login</a></li>
+														
 						</ul>
 					</div>
-
-			</div>
-			
-			
+				</div>
+				
 			<!-- Banner -->
-			<div class="section" id="banner">
+
+		<div class="oculto" id="banner">
+		<div class="section">
+			
 					<h2> <strong>¡SOLICITE AYUDA!</strong></h2>
 					
 						 <strong>		¿Se encuentra en situación de peligro? ¿Necesita ayuda? En SSAC brindamos </strong>
 						 <strong>		servicios de auxilio.</strong> 
 						 <strong>		Ingrese sus datos en el siguiente formulario y le derivaremos a un rescatista </strong>
 						 <strong>		lo antes posible.</strong>
+						 
 					
 					
 	<div class="ui-grid ui-grid-responsive">
@@ -160,14 +186,13 @@
         <div class="ui-grid-col-1"></div>
     </div>
 </div>
-	
+</div>
 	</div>
 		 
-		 
- 
 
 		<!-- DONACIONES -->	
-<div class="wrapper style2" id="donacion">	
+<div class="oculto" id="donacion">	
+<div class="wrapper style2">
 
 			
 		<h2><a href="#donacion"> Ayudanos a ayudar ¡Realice donaciones!</a></h2>
@@ -254,7 +279,7 @@
 					<label for="fechaRealizada"> FECHA:</label>
         		<p:calendar id="fechaRealizada" value="#{economicaBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />
 				
-			<p:commandButton id="registrarDonacion" update="growl"  type="submit"  Class="button" value="Registrar" action="#{economicaBean.registrarDonacionEconomica()}">
+			<p:commandButton id="registrarDonacion" update="growl"  type="submit"  Class="button" value="Confirmar datos" action="#{economicaBean.registrarDonacionEconomica()}">
 			</p:commandButton>	
 			</h:panelGrid>	
             </h:form>
@@ -262,9 +287,9 @@
             
  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_donations"></input>
-<input type="hidden" name="business" value="valentinaa.cabrera@gmail.com"></input>
+<input type="hidden" name="business" value="ongDonacion@gmail.com"></input>
 <input type="hidden" name="lc" value="AL"></input>
-<input type="hidden" name="item_name" value="SSAC"></input>
+<input type="hidden" name="item_name" value="ONG"></input>
 <input type="hidden" name="no_note" value="0"></input>
 <input type="hidden" name="currency_code" value="USD"></input>
 <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest"></input>
@@ -297,7 +322,6 @@
 						<p:inputText id="idOng" label="idOng"  value="#{deBienesBean.idOng}" required="true" requiredMessage="El nombre de la ong es requerido" >	
 						</p:inputText>																																									
 					</p>
-					
 					   <p>
 						<label for="usuario">Usuario :</label>				
 						<p:inputText id="usuario" label="usuario"  value="#{deBienesBean.usuario}" required="true" requiredMessage="El nombre del usuario es requerido" >	
@@ -308,13 +332,13 @@
 						<p:calendar id="fechaRealizada" label="fechaRealizada"  value="#{deBienesBean.fechaRealizada}" pattern="dd-MM-yyyy" mask="true" />																																							
 					</p>
                      <p>
-						<label for="nombreItem">nombreItem :</label>				
-						<p:inputText id="nombreItem" label="nombreItem"  value="#{deBienesBean.nombreItem}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
+						<label for="nombreItem">Elemento a donar :</label>				
+						<p:inputText id="nombreItem" label="nombreItem"  value="#{deBienesBean.nombreItem}" required="true" requiredMessage="El nombre del elemento requerido" >	
 						</p:inputText>																																									
 					</p>
                      <p>
 						<label for="cantidad">cantidad :</label>				
-						<p:inputText id="cantidad" label="cantidad"  value="#{deBienesBean.cantidad}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
+						<p:inputText id="cantidad" label="cantidad"  value="#{deBienesBean.cantidad}" required="true" requiredMessage="La cantidad es requerida" >	
 						</p:inputText>																																									
 					</p>
 		<p:commandButton id="registro" update="growl" type="submit" Class="button" value="DONAR" action="#{deBienesBean.registrarDonacionDeBienes()}">
@@ -327,17 +351,12 @@
         </div>	
         </div>	
 			
-	</div>			
-				
-					
-					
-					
-					
-					
+	</div>		
+</div>	
 					
 	<!-- ALTA DE PERSONAS DESAPARECIDAS -->
-	
-<div class="ui-grid" id="personasdesap">
+<div class ="oculto" id="personasdesap">
+<div class="ui-grid">
    		 <div class="ui-grid-row">	
    		 <div class="ui-grid-col-1"></div>	
    		  <div class="ui-grid-col-6">
@@ -346,8 +365,7 @@
 		<h:form id="personasdesaparecidasBean" >
 			 <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
                   <h:panelGrid>		
-                    <hr></hr>
-                <p>PERSONAS DESAPARECIDAS
+                    <p>PERSONAS DESAPARECIDAS
 						<label for="catastrofeId"> CATASTROFE:</label>				
 						<p:inputText id="catastrofeId" label="catastrofeId"  value="#{personasdesaparecidasBean.catastrofeId}" required="true" requiredMessage="El nombre es requerido" >	
 						</p:inputText>																																									
@@ -398,13 +416,12 @@
             
             </div>	
             </div>	
-            </div>
-			
-			<hr></hr>
-
-
+            </div>	
+   </div>
+            
 <!-- BUSCAR PERSONAS DESAPARECIDAS -->
-<div class="ui-grid" id="busperdesap">
+<div class ="oculto" id="busperdesap">
+<div class="ui-grid">
 <div class="ui-grid-row">
 <div class="ui-grid-col-1"></div>
 <div class="ui-grid-col-11">
@@ -465,7 +482,104 @@
 <div class="ui-grid-col-1"></div>
 </div>
 </div>
+</div>
+
+<!-- REGISTRO DE USUARIO -->
+<div class="oculto" id="registrousuario">
+<div class="ui-grid">
+<div class="ui-grid-row">
+<div class="ui-grid-col-2"></div>
+<div class="ui-grid-col-8">
+
+			<h2><a href="#"> REGISTRO DE USUARIO</a></h2>
+			<p>
+	 Por favor, ingrese los campos para registrarse a la catastrofe
+	</p>
+	 <f:view>
+	 <p:growl id="growl" showDetail="true" sticky="true" life="2000" />
+		<h:form id="login2" >
+		<p:panelGrid columns="1" cellpadding="2">
+                <p>
+						<label for="catastrofeId"> cat:</label>				
+						<p:inputText id="catastrofeId" label="catastrofeId"  value="#{loginBean.idCatastrofe}" required="true" requiredMessage="El nombre es requerido" >	
+						</p:inputText>																																									
+					</p>  
+			<p>
+						<label for="nick"> Nick:</label>				
+						<p:inputText id="nick" label="nick"  value="#{loginBean.nick}" required="true" requiredMessage="El nick es requerido" >	
+						</p:inputText>																																									
+					</p>
 					
+					   <p>
+						<label for="nombre">Nombre :</label>				
+						<p:inputText id="nombre" label="nombre"  value="#{loginBean.nombre}" required="true" requiredMessage="El nombre es requerido" >	
+						</p:inputText>																																									
+					</p>
+					
+                     <p>
+						<label for="email">E-mail :</label>				
+						<p:inputText id="email" label="email"  value="#{loginBean.email}"  >	
+						</p:inputText>																																									
+					</p>
+				<br/>
+				<p>
+						<label for="nombre"> Clave:</label>	
+							<p:password value="#{loginBean.clave}" id="password" required="true"  label="password" />																	
+					</p>
+					 <p>
+						<p:outputLabel for="fechNac" value="fechNac" />					
+						<p:calendar id="fechNac" label="fechNac"  value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy" mask="true" />											
+					</p>
+				<br/>
+				<p:commandButton id="registrarButton" value="Registrar" actionListener="#{loginBean.registro}" update=":growl"   oncomplete="manejarLogin(xhr, status, args)" />	 
+				   </p:panelGrid>  
+            </h:form>
+            </f:view>
+ 	</div>
+<div class="ui-grid-col-2"></div>
+</div>
+</div>	
+</div>
+ 
+ <!-- LOGIN -->
+ <div class="oculto" id="loginusuario">
+<div class="ui-grid">
+<div class="ui-grid-row">
+<div class="ui-grid-col-2"></div>
+<div class="ui-grid-col-8">
+		<p:growl id="mensajes" showDetail="true" life="2000" />
+					<h:form id= "formularioIngreso1">
+								 <p>
+						<label for="catastrofeId1"> Catastrofe:</label>				
+						<p:inputText id="catastrofeId1" label="catastrofeId1"  value="#{loginBean.idCatastrofe1}"  >	
+						</p:inputText>																																									
+					</p>  
+								<p>
+									<label for="nick1"> Nick:</label>				
+									<p:inputText id="nick1" label="nick1"  value="#{loginBean.nick1}" required="true" requiredMessage="El nick es requerido" >	
+									</p:inputText>	
+								</p>
+								<p>
+									<label for="nombre"> Clave:</label>	
+									<p:password value="#{loginBean.clave1}" id="password" required="true"  label="password1" />			
+	
+							    </p>
+							    <p:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" update=":mensajes"   oncomplete="manejarLogin(xhr, status, args)" />
+            					</h:form>
+								
+							
+							<div class="section">
+	<p><div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+		</p>
+	
+							</div>
+</div>
+<div class="ui-grid-col-2"></div>
+ </div>	
+  </div>		
+ </div>
+
+ 		
  		
 		<!-- Este script es para el mapa -->
 		
@@ -516,6 +630,85 @@
         initialize();
     });
     </script>
+    
+    
+   <!-- Este script es para el login -->
+   
+   <script>
+  
+		  function statusChangeCallback(response) {
+		    console.log('statusChangeCallback');
+		    console.log(response);
+		   
+		    if (response.status === 'connected') {
+		      
+		      testAPI();
+		    } else if (response.status === 'not_authorized') {
+		      
+		      document.getElementById('status').innerHTML = 'Please log ' +
+		        'into this app.';
+		    } else {
+		      
+		      document.getElementById('status').innerHTML = 'Please log ' +
+		        'into Facebook.';
+		    }
+		  }
+		
+		  function checkLoginState() {
+		    FB.getLoginStatus(function(response) {
+		      statusChangeCallback(response);
+		    });
+		  }
+		
+		  window.fbAsyncInit = function() {
+		  FB.init({
+		    appId      : '334952920040001',//esta es mi ide stephy
+		    cookie     : true,  // enable cookies to allow the server to access 
+		                        // the session
+		    xfbml      : true,  // parse social plugins on this page
+		    version    : 'v2.1' // use version 2.1
+		  });
+		
+		  
+		  FB.getLoginStatus(function(response) {
+		    statusChangeCallback(response);
+		  });
+		
+		  };
+		
+		  
+		  (function(d, s, id) {
+		    var js, fjs = d.getElementsByTagName(s)[0];
+		    if (d.getElementById(id)) return;
+		    js = d.createElement(s); js.id = id;
+		    js.src = "//connect.facebook.net/en_US/sdk.js";
+		    fjs.parentNode.insertBefore(js, fjs);
+		  }(document, 'script', 'facebook-jssdk'));
+		
+		  function testAPI() {
+		    console.log('Welcome!  Fetching your information.... ');
+		    FB.api('/me', function(response) {
+		      console.log('Successful login for: ' + response.name);
+		      document.getElementById('status').innerHTML =
+		        'Thanks for logging in, ' + response.name + '!' ;
+		      
+		    });
+		  }
+</script>
+
+<script type="text/javascript">
+  //<![CDATA[
+  function manejarLogin(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeado) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 500);
+    }
+  }
+//]]>
+</script>
+
+
 			
 	    <!--Este script es el que obtiene el id de la catastrofe que se selecciono en la pag anterior y lo guarda en el input-->
 		<script>
