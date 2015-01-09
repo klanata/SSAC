@@ -64,7 +64,7 @@ public class Ong  extends AbstractEntity implements Serializable{
 	
 	private String citioWeb = "";
 	
-	@Column(nullable= false)
+	@Column(length=10000,nullable= false)
 	private String descripcion = "";
 	
 	@ManyToMany(mappedBy="ongs" ,cascade=CascadeType.ALL, fetch=FetchType.EAGER)
