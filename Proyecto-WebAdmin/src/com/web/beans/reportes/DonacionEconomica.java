@@ -29,7 +29,7 @@ public class DonacionEconomica implements Serializable {
 	
 
 	
-	private BigDecimal monto;
+	
 	
 	 
 	private Ong ong;
@@ -65,14 +65,7 @@ public class DonacionEconomica implements Serializable {
 	}
 
 
-	public BigDecimal getMonto() {
-		return monto;
-	}
-
-
-	public void setMonto(BigDecimal monto) {
-		this.monto = monto;
-	}
+	
 
 
 	public Ong getOng() {
@@ -89,11 +82,11 @@ public class DonacionEconomica implements Serializable {
 	}
 	
 	public DonacionEconomica(String usuario, Date fechaRealizada,
-			BigDecimal monto) {
+			Ong ong) {
 		super();
 		this.usuario = usuario;
 		this.fechaRealizada = fechaRealizada;
-		this.monto = monto;
+		this.ong = ong;
 		
 	}
 	
