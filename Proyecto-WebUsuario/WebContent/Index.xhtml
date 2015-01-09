@@ -7,11 +7,8 @@
 
 <h:head>
 		<title>SSAC</title>
-		#{nombreCatastrofeUsuario}
 		#{cssCatastrofeUsuario}
 		#{idCatastrofeUsuario}
-		#{logoCatastrofeUsuario}
-		#{descripcionCatastrofeUsuario}	
 		
 			
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -103,9 +100,15 @@
 				<!-- Inner -->
 					<div class="inner">
 						<div id="header">
-							<h1><a href="Index.xhtml" id="logo">SSAC</a></h1>
+							<h1><a href="Index.xhtml" id="logo">#{nombreCatastrofeUsuario}</a></h1>
+							<p>			        		        
+            <p:graphicImage value="imagen/#{logoCatastrofeUsuario}" /> 
+            <h:outputText value="" style="border: transparent;"/>	              		         	        	
+			</p>
+							
+							
 							<hr />		
-							<center>¡Bienvenido al Sistema de Soporte ante Catástrofes!</center>
+							<center>#{descripcionCatastrofeUsuario}	</center>
 						</div>
 						<div class="footer">
 							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>
