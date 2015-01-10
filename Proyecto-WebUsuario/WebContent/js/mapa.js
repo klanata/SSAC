@@ -6,11 +6,6 @@ function cargar(position){
         //$.ajax({url:"http://172.16.102.89:8080/ServicioRest/catastrofe/catastrofes",
             success:function(response) {
             	
-                //alert(response);
-                //useReturnData(response);
-                listaCatastrofes = response.catastrofe;
-                //alert("Esta es la lista cargada: "+listaCatastrofes);
-                window.localStorage.setItem("listaCatastrofesStorage", listaCatastrofes);
 
                 var longitude = position.coords.longitude;
                 var latitude = position.coords.latitude;
@@ -25,8 +20,17 @@ function cargar(position){
 
                 var map =  new google.maps.Map(document.getElementById('mapa'),mapOptions);
                 //alert("lo que hay adentro " + listaCatastrofes[0].coordenadasX);
+                //alert(response);
+                //useReturnData(response);
 
+
+                if (response != null || !$.isEmptyObject(response)) {
+                listaCatastrofes = response.catastrofe;
+                //alert("Esta es la lista cargada: "+listaCatastrofes);
+                window.localStorage.setItem("listaCatastrofesStorage", listaCatastrofes);
                 
+
+                if(Object.prototype.toString.call(listaCatastrofes) === '[object Array]'){
                 //cargar las ubicaciones de los pedidos de ayuda en el mapa
                 var marcador;
                 for (var i = 0; i < listaCatastrofes.length; i++) {  
@@ -57,6 +61,48 @@ function cargar(position){
                         //document.getElementById("pedidoAyudaDetalle").style.display = 'initial';
                     });
                 }
+
+              }
+              else{
+                var marcador;
+                
+                        marcador = new google.maps.Marker({
+                        position: new google.maps.LatLng([listaCatastrofes][0].coordenadasX, [listaCatastrofes][0].coordenadasY),
+                        map: map
+                    });
+                    var str = [listaCatastrofes][0].poligono;
+                    alert([listaCatastrofes][0].poligono); 
+
+                    var json = str.slice(1,str.length-1);
+                    var json2 = '{"vertices":['+ json + ']}';
+                    alert(json2);
+                    var json3 = JSON.parse(json2);
+                    alert(json3.vertices[0].k);
+                    //Para guardar datos en el marcador
+                    marcador.set('IdCatastrofe', [listaCatastrofes][0].id);
+                    marcador.set('urlCSS', [listaCatastrofes][0].urlCSS);
+
+                    //para agregar evento onclick a los markers
+                    google.maps.event.addListener(marcador, 'click', function() {
+                        var IdActual = this.get('IdCatastrofe');
+                        var pathCSS = this.get('urlCSS');
+                        //alert(descripcionActual);
+                        window.localStorage.setItem("IdCatastrofe", IdActual);
+                        window.localStorage.setItem("urlCSS", pathCSS);
+                        //window.localStorage.setItem("descripcionPedidoAyudaActual", descripcionActual);
+                        //alert(window.localStorage.getItem("IdPedidoAyudaActual"));
+                        //alert("Me hiciste click!");
+                        document.getElementById("idCatastrofe").value = IdActual;
+                        window.location.replace("Index.xhtml?id="+ IdActual+"&c="+ pathCSS);
+                        
+                        //document.getElementById("idPedidoAyudaActual").value = IdActual;
+                        //document.getElementById("listaPendientes").style.display = 'none';
+                        //document.getElementById("pedidoAyudaDetalle").style.display = 'initial';
+                    });
+                
+
+              }
+            }
                
             },
             error:function (request, status, error) {

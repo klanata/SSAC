@@ -151,7 +151,7 @@ public class ServicioRescatistas {
 
 		try {
 
-			path = "/ServicioRest/WebContent/WEB-INF/content/PropuestaProyecto20140831v03.pdf";
+			path = "/ServicioRest/WebContent/WEB-INF/PropuestaProyecto20140831v03.pdf";
 			//path = "/ServicioRest/WebContent/WEB-INF/content/"+nombre;
 			// http://localhost:8080/ServicioRest/WebContent/WEB-INF/ViewerJS#../content/PropuestaProyecto20140831v03.pdf
 
@@ -164,14 +164,15 @@ public class ServicioRescatistas {
 	@GET
 	@Path("/pdf")
 	@Produces("application/pdf")
-	public Response getPDF() {
+	public Response getPDF(@QueryParam("nombreArchivoPlan") String nombreArchivo) {
 
-		String PDF_FILE = "C:\\wamp\\www\\RescatistasApp\\www\\PropuestaProyecto20140831v03.pdf";
+		String PDF_FILE = "C:\\wildfly-8.0.0.Final\\Proyecto\\imagenes.war\\"+ nombreArchivo ;
+		
 		File file = new File(PDF_FILE);
 
 		ResponseBuilder response = Response.ok((Object) file);
 		response.header("Content-Disposition",
-				"attachment; filename=\"test_PDF_file.pdf\"");
+				"attachment; filename=\"plan.pdf\"");
 		return response.build();
 
 	}
