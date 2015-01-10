@@ -52,4 +52,7 @@ public interface CatastrofeEBR {
 	
 	public List<String> BusquedaAsingadasACatastrofe(Long idCatastrofe, String fuente) throws Exception;
 	//Devuelve en una lista de string los filtros por los que se hace la busqueda para la catastrofe con idCatastrofe
+	
+	public List<Double> ListarCoordenasCatastrofe(Long idCatastrofe) throws Exception;
+	//Devuelve en una lista con las coordenadas de la catastrofe con idCatastrofe
 }

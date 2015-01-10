@@ -136,6 +136,17 @@ public class filtroUrl implements Filter , Serializable {
 				  
 			//obtengo la URL que ingresa un usuario
 			String urlStr = req.getRequestURL().toString().toLowerCase();
+			
+			if(urlStr ==null){
+				
+				
+				((HttpServletResponse) response).sendError(HttpServletResponse.SC_NOT_FOUND);
+				return;
+			}
+			
+			
+			
+			
 			 boolean noProteger = noProteger(urlStr);
 			 System.out.print(urlStr+"protegido: ");
 			 System.out.print(noProteger);
@@ -168,8 +179,10 @@ public class filtroUrl implements Filter , Serializable {
 				res.sendRedirect(req.getContextPath() + "/Index.xhtml");
 					
 					
-			  }//else { res.sendRedirect(req.getContextPath() + "/Error.xhtml");}
+			  }///else { res.sendRedirect(req.getContextPath() + "/Error.xhtml");}
 			 
+				
+				
 			  //El recurso requiere protección, pero el usuario ya está logueado.
 			  chain.doFilter(request, response);
 		}
@@ -207,7 +220,7 @@ public class filtroUrl implements Filter , Serializable {
 			//  urlStr = index;
 		     return true;
 		  }
-			*/ if (urlStr.endsWith("Index.xhtml") ||(urlStr.endsWith("agregarImagenPersona.xhtml")) )
+			*/ if (urlStr.endsWith("Index.xhtml") ||(urlStr.endsWith("agregarImagenPersona.xhtml")) || urlStr.endsWith("Error.xhtml") )
 			    return true;
 			
 			  if (urlStr.indexOf("/javax.faces.resource/") != -1)

@@ -149,13 +149,21 @@
   
 </div>
 
+
+
+
 <div class="wrapper col3">
+
+
+
+
+
   <div id="intro">
     
-    
-    
+   <h1> <a href="graficas.xhtml"> Ver Grafica </a> </h1>
+    <br/>	
    <h3>Listar Donacion de Bienes</h3>
-      <br/>	
+      
       <f:view>      	
       	
       	<h:form id="formdonacion1">      		
@@ -213,7 +221,7 @@
       		<p:growl id="msgs" showDetail="true" />
       		
     		<p:dataTable id="listarOngDT2" var="deBienesBean2" widgetVar="donacionBTable2" value = "#{ReporteDonacion.listaDeServicios}"
-                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{ReporteDonacion.filtroDeServicios}"               		  
+                 		 emptyMessage="No se han encontrado donaciones con ese criterio"  filteredValue="#{ReporteDonacion.filtroDeServicios}"               		  
                  		 paginator="true" rows="5" paginatorPosition="top"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 rowKey="#{deBienesBean2.id}" dblClickSelect="true">    
@@ -263,7 +271,7 @@
       		<p:growl id="msgs" showDetail="true" />
       		
     		<p:dataTable id="listarOngDT3" var="deBienesBean3" widgetVar="donacionBTable3" value = "#{ReporteDonacion.listaEconomica}"
-                 		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{ReporteDonacion.filtroEconomica}"               		  
+                 		 emptyMessage="No se han encontrado donaciones con ese criterio"  filteredValue="#{ReporteDonacion.filtroEconomica}"               		  
                  		 paginator="true" rows="5" paginatorPosition="top"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 rowKey="#{deBienesBean3.id}" dblClickSelect="true">    
@@ -284,8 +292,8 @@
         		
         		
         	    
-        	      <p:column headerText="Monto" style="width:200px"   >
-            		<h:outputText value="#{deBienesBean3.monto}" />
+        	      <p:column headerText="Ong" style="width:200px"   >
+            		<h:outputText value="#{deBienesBean3.ong.nombre}" />
         		</p:column>
         	       		     		 
         		        		        		

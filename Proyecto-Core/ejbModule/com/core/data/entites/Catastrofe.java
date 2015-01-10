@@ -56,7 +56,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@Column(unique=true, nullable=false)
 	private String nombreEvento = "";
 	
-	@Column( nullable= false)
+	@Column(length=10000,nullable= false)
 	private String descripcion = "";
 	
 	@Column(nullable= false)

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      > 
+
+<h:head></h:head> 
+<body> 
+
+<p:commandButton type="button" value="Exportar" icon="ui-icon-extlink" onclick="exportChart()"/>
+
+
+ 
+
+<p:chart type="bar" model="#{chartView.barModel}" style="height:300px" widgetVar="chart" />
+<p:dialog widgetVar="dlg" showEffect="fade" modal="true" header="Grafica de Donaciones" resizable="false">
+    <p:outputPanel id="output" layout="block" style="width:1000px;height:300px"/>
+</p:dialog>
+ 
+ 
+ <a href="reporteDonaciones.xhtml"> volver a menu </a>
+
+<script type="text/javascript">
+function exportChart() {
+    //export image
+    $('#output').empty().append(PF('chart').exportAsImage());
+ 
+    //show the dialog
+    PF('dlg').show();
+}
+</script>
+</body> 
+</html>

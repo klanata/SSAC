@@ -7,35 +7,18 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.annotation.PostConstruct;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.faces.bean.ManagedBean;
 import javax.naming.Context;
 import javax.naming.NamingException;
-
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.CartesianChartModel;
-import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.LineChartModel;
-import org.primefaces.model.chart.LineChartSeries;
-
 import clienteutility.ClienteUtility;
-
-import com.core.data.entites.Administrador;
 import com.core.data.entites.DeBienes;
 import com.core.data.entites.DeServicios;
 import com.core.data.entites.Economica;
 import com.core.service.negocio.remote.AdministradorEBR;
-import com.web.beans.administrador.AdministradorBean;
-import com.web.beans.ong.OngBean;
-
 
 @ManagedBean(name="ReporteDonacion")
 @RequestScoped
@@ -230,11 +213,11 @@ public class ReporteDonacionesBean implements Serializable {
 			listaDE = manager.listaDeEconomicaEnTiempo(fechaInicio, fechaFinal);
 			Iterator<Economica> it2 = listaDE.iterator();
     		int i2= 0;
+    		
     		while(it2.hasNext())
     		{
     			Economica e = it2.next();
-    			listaEconomica.add(i2, new DonacionEconomica(e.getUsuario(), e.getFechaRealizada(),
-    					e.getMonto()));
+    			listaEconomica.add(i2, new DonacionEconomica(e.getUsuario(), e.getFechaRealizada(),e.getOng()));
     			
     			i2++;
     			
@@ -243,7 +226,7 @@ public class ReporteDonacionesBean implements Serializable {
 			
 			
 			
-			//cantidadDE = listaDE.size();
+			
 			
 			Collection<DeServicios> listaDS = new ArrayList<DeServicios>();
 			listaDS = manager.listaDeServiciosEnTiempo(fechaInicio, fechaFinal);

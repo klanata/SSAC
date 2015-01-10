@@ -342,8 +342,69 @@ public class CatastrofeEB implements CatastrofeEBR{
 				}					
 			}			
 		}								
-		return res;
+		return res;		
+	}
+	
+	public List<Double> ListarCoordenasCatastrofe(Long idCatastrofe) throws Exception{
 		
+		List<Double> list = new ArrayList<Double>();
+		Catastrofe catastrofe = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);	
+		String poligono;
+		poligono = catastrofe.getPoligono();
+		int index = 0;
+		char fin = ']';
+		boolean esNegativo = false; 
+		char digChar;
+		double coordenada = 0;			
+		
+		do{
+			//Recorro hasta ":":
+			coordenada = 0;	
+			while(poligono.charAt(index) != ':'){
+				index ++;														
+			}
+			index ++;
+			if (poligono.charAt(index) == '-'){
+				esNegativo = true;							
+			}
+			else {
+				esNegativo = false;
+			}
+			index ++;
+			while(poligono.charAt(index) != '.'){
+				digChar = poligono.charAt(index);	
+				int dig = digChar - '0';
+				coordenada = coordenada*10 + dig;
+				index ++;																	
+			}	
+			index ++;
+			int cont = 1;
+			double digDespDeLaComa = 0;						
+			while((poligono.charAt(index) >= '0') && (poligono.charAt(index) <= '9')){
+				digChar = poligono.charAt(index);	
+				int dig = digChar - '0';
+				double acum;
+				double multi = 1;
+				for(int x = 1; x <= cont; x++) {
+					multi = 0.1 * multi;								
+				}
+				acum = dig * multi;
+				cont  ++;
+				index ++;
+				digDespDeLaComa = digDespDeLaComa + acum;							
+			}	
+			coordenada = coordenada + digDespDeLaComa;
+			if (esNegativo) {
+				coordenada = coordenada * (-1);
+			}		
+			
+			index ++;
+			list.add(coordenada);																
+			//System.out.println("valor de coordenada: " + coordenada);								
+			
+		}while( poligono.charAt(index) != fin );		
+		
+		return list;
 	}
 	
 	
