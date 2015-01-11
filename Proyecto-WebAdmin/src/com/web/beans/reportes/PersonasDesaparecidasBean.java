@@ -16,6 +16,7 @@ public class PersonasDesaparecidasBean implements Serializable{
 	private Long idCatastrofe;
 	private String nombre;
 	private String apellido ;
+	private String cedula;
 	private String numeroContacto ;	
 	private Date fechNac;
 	private String descripcion ;
@@ -62,6 +63,13 @@ public class PersonasDesaparecidasBean implements Serializable{
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	
+	public String getCedula() {
+		return cedula;
+	}
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
 	public String getNumeroContacto() {
 		return numeroContacto;
 	}
@@ -91,7 +99,7 @@ public class PersonasDesaparecidasBean implements Serializable{
 	
 	
 	public PersonasDesaparecidasBean(String nombreCatastrofe, Long id,
-			Long idCatastrofe, String nombre, String apellido,
+			Long idCatastrofe, String nombre, String apellido, String cedula,
 			String numeroContacto, Date fechNac, String descripcion,
 			Boolean hallada, String imagen) {
 		super();
@@ -100,6 +108,7 @@ public class PersonasDesaparecidasBean implements Serializable{
 		this.idCatastrofe = idCatastrofe;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.cedula=cedula;
 		this.numeroContacto = numeroContacto;
 		this.fechNac = fechNac;
 		this.descripcion = descripcion;

@@ -116,6 +116,7 @@ private static final long serialVersionUID = 1L;
 			String nombreCatastrofe;
 			String nombre;
 			String apellido ;
+			String cedula;
 			String numeroContacto ;	
 			Date fechNac;
 			String descripcion ;
@@ -131,6 +132,7 @@ private static final long serialVersionUID = 1L;
 				  id = a.getId();
 				  nombre= a.getNombre();
 				  apellido= a.getApellido();
+				  cedula=a.getCedula();
 				  nombreCatastrofe =  a.getCatastrofe().getNombreEvento();
 				  numeroContacto =  a.getNumeroContacto();
 				  fechNac = a.getFechNac();
@@ -141,7 +143,7 @@ private static final long serialVersionUID = 1L;
 				 /* Set<ImagenPersonaDesaparecida> lista =  a.getImagenes();
 				  Iterator<ImagenPersonaDesaparecida> it = lista.iterator();
 				  imagen = it.next();*/
-				  personasBean.add(i, new PersonasDesaparecidasBean(nombreCatastrofe, id, idCatastrofe, nombre, apellido, numeroContacto, fechNac, descripcion, hallada, imagen));
+				  personasBean.add(i, new PersonasDesaparecidasBean(nombreCatastrofe, id, idCatastrofe, nombre, apellido,cedula, numeroContacto, fechNac, descripcion, hallada, imagen));
 				  
 				  i++;
 				

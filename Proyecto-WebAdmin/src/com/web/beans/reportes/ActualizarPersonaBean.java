@@ -101,6 +101,7 @@ public class ActualizarPersonaBean implements Serializable {
 				//Long id;
 				String nombre = p.getNombre();
 				String apellido= p.getApellido();
+				String cedula = p.getCedula();
 				boolean hallada = p.isHallada();
 				String nombreCatastrofe = p.getCatastrofe().getNombreEvento();
 				String numeroContacto = p.getNumeroContacto();
@@ -108,7 +109,7 @@ public class ActualizarPersonaBean implements Serializable {
 				String descripcion = p.getDescripcion();
 				Long idCatastrofe = p.getCatastrofe().getId();
 				String imagen = "ver de tomarla";
-				personasdesaparecidasBean = new PersonasDesaparecidasBean(nombreCatastrofe, id, idCatastrofe, nombreCatastrofe, apellido, numeroContacto, fechNac, descripcion, hallada, imagen);
+				personasdesaparecidasBean = new PersonasDesaparecidasBean(nombreCatastrofe, id, idCatastrofe, nombreCatastrofe, apellido,cedula, numeroContacto, fechNac, descripcion, hallada, imagen);
 				
 				 
 				 	
@@ -152,6 +153,8 @@ public class ActualizarPersonaBean implements Serializable {
 		{
 			String nombre = personasdesaparecidasBean.getNombre();
 			String apellido= personasdesaparecidasBean.getApellido();
+			String cedula = personasdesaparecidasBean.getCedula();
+	
 			String descripcion = personasdesaparecidasBean.getDescripcion();
 			Long idCatastrofe = personasdesaparecidasBean.getIdCatastrofe();
 			
@@ -163,7 +166,7 @@ public class ActualizarPersonaBean implements Serializable {
 			System.out.println("*************FEcha 2222222222222222222222: " + fechaNacimiento);     
 			
 			//String imagen = "tomarla";
-			manager.ActualizarEstadoPersonaDesaparecida(apellido, descripcion, fechaNacimiento, hallada, nombre, telefono, idCatastrofe);			
+			manager.ActualizarEstadoPersonaDesaparecida(apellido, descripcion, cedula, fechaNacimiento, hallada, nombre, telefono, idCatastrofe);			
 
 
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
