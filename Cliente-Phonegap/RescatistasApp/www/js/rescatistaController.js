@@ -1,11 +1,15 @@
 'use strict';
 
+
+
 function rescatistaController($scope) {
     $scope.nick = "",
     $scope.email = "",
     $scope.password = "",
     $scope.nombreArchivoPlan = "",
     $scope.idPlanActual = "",
+    $scope.server = "192.168.0.105",
+    $scope.puerto = "8080",
     $scope.rutaViewerJS = "http://10.0.2.2/RescatistasApp/www/ViewerJS/#../",
     $scope.descripcion = "",//window.localStorage.getItem("descripcionPedidoAyudaActual"),
     $scope.planes = new Array();
@@ -45,7 +49,7 @@ function rescatistaController($scope) {
         //$.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Android nativo - red local Victoria 
         //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing 
         //$.ajax({url:"http://172.16.102.91:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing 
-        $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Utu 
+        $.ajax({url:"http://" + $scope.server + ":" + $scope.puerto + "/ServicioRest/catastrofe/rescatista/login?nick=" + $scope.nick + "&pass=" + $scope.password,   //Utu 
         //$.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Web - desde WAMP no se puede por CORS
             success:function(response) {
                 //console.log(response);
@@ -96,7 +100,7 @@ function rescatistaController($scope) {
  $scope.abrirPlan = function () {
     $scope.abrirPlan = function () {
         //$scope.nombreArchivoPlan = nombrePlan;
-        $scope.nombreArchivoPlan = "PropuestaProyecto20140831v03.pdf";//Esto es de prueba. Borrar despues que este implementado el metodo.
+        //$scope.nombreArchivoPlan = "PropuestaProyecto20140831v03.pdf";//Esto es de prueba. Borrar despues que este implementado el metodo.
         //$scope.idPlanActual = plan.idEstadoRescatista;
         //console.log($scope.rutaViewerJS + $scope.nombreArchivoPlan);
         //alert('ok');
@@ -115,9 +119,11 @@ function rescatistaController($scope) {
             },
             type:"get"
         });*/
-        
-        document.getElementById("pedidoAyudaDetalle").style.display = 'none';
-        document.getElementById("plan").style.display = 'initial';
+        $scope.nombreArchivoPlan = document.getElementById("urlArchivo").value;
+        var ref = window.open('http://'+$scope.server+':8080/ServicioRest/catastrofe/rescatista/pdf?nombreArchivoPlan='+$scope.nombreArchivoPlan, '_system', 'location=yes');
+        //var ref = window.open('http://www.google.com', '_system', 'location=yes');
+        //document.getElementById("pedidoAyudaDetalle").style.display = 'none';
+        //document.getElementById("plan").style.display = 'initial';
     }
   }
 
@@ -130,6 +136,7 @@ function rescatistaController($scope) {
 
   $scope.verMapa = function () {
   $scope.verMapa = function () {
+    alert("verMapa");
     mapa.initialize();
     //mapa.cargarMarcadores();
     }
@@ -139,8 +146,8 @@ function rescatistaController($scope) {
     $scope.finalizar = function () {
         //llama a funcion del rest que finaliza la ejecucion del plan y le pasa $scope.idPlanActual
         $scope.idPlanActual = document.getElementById("idPedidoAyudaActual").value;
-        alert("Id plan actual: " + $scope.idPlanActual);
-        $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?idEstadoRescatista="+$scope.idPlanActual, //Android nativo - red local
+        //alert("Id plan actual: " + $scope.idPlanActual);
+        $.ajax({url:"http://" + $scope.server + ":" + $scope.puerto + "/ServicioRest/catastrofe/rescatista/finalizarPlan?idEstadoRescatista=" + $scope.idPlanActual, //Android nativo - red local
         //$.ajax({url:"http://172.16.102.89:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Utu
         //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Utu
         //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Emulador Android - llamada al rest

@@ -18,10 +18,10 @@
      * specific language governing permissions and limitations
      * under the License.
      */
-
+    
 
     var mapa = {
-
+        
         // Application Constructor
         initialize: function() {
             this.bindEvents();
@@ -40,6 +40,7 @@
         onDeviceReady: function() {
             //app.receivedEvent('deviceready');
             navigator.geolocation.getCurrentPosition(mapa.onSuccess, mapa.onError);
+            alert("mapa");
         },
 
         onSuccess: function(position){
@@ -47,27 +48,11 @@
             var listaPedidosPendientes = new Array();
             var nick = window.localStorage.getItem("usuarioNick");
             //alert("Nick Storaged: "+ nick);
-            //$.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Emulador Android - llamada al rest
-            //$.ajax({url:"http://172.16.102.91:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Utu
-            $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Utu
-            //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick, //Emulador Android - llamada al rest
+			alert("http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick);
+            $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
                 success:function(response) {
                     //useReturnData(response);
                     
-                    listaPedidosPendientes = response.planesPendientesRescatistaDTO;
-                  
-                    window.localStorage.setItem("listaPedidosStorage", listaPedidosPendientes);
-                    //alert(response.toString());
-                    //alert("listaPedidosPendientes guardado: "+ listaPedidosPendientes);
-                    //alert("listaPedidosPendientes length: "+ listaPedidosPendientes.length);
-                    //alert("listaPedidosPendientes cero: "+ listaPedidosPendientes[0]);
-                    //alert(window.localStorage.getItem("listaPedidosStorage"));
-                    //listaPedidosPendientes = response.planesPendientesRescatistaRests;
-                    //console.log(listaPedidosPendientes);
-                    //document.getElementById("login").style.display = 'none';
-                   // document.getElementById("listaPendientes").style.display = 'initial';
-                    //scope.$apply();
-
                     var longitude = position.coords.longitude;
                     var latitude = position.coords.latitude;
                     var latLong = new google.maps.LatLng(latitude, longitude);
@@ -88,62 +73,72 @@
                     title:"Usted esta aqui",
                     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
                     });
+                     
+                    if (response != null || !$.isEmptyObject(response)) {
+                        listaPedidosPendientes = response.planesPendientesRescatistaDTO;
+                        window.localStorage.setItem("listaPedidosStorage", listaPedidosPendientes);
+                        //cargar las ubicaciones de los pedidos de ayuda en el mapa
+                        var marcador="";
+                        if(Object.prototype.toString.call(listaPedidosPendientes) === '[object Array]'){
+                            //alert("if");
+                             for (var i = 0; i < listaPedidosPendientes.length; i++) {  
+                                marcador = new google.maps.Marker({
+                                position: new google.maps.LatLng(listaPedidosPendientes[i].coordenadaX, listaPedidosPendientes[i].coordenaday),
+                                map: map
+                                });
 
-                    //cargar las ubicaciones de los pedidos de ayuda en el mapa
-                    var marcador="";
-                    if(Object.prototype.toString.call(listaPedidosPendientes) === '[object Array]'){
-                        //alert("if");
-                         for (var i = 0; i < listaPedidosPendientes.length; i++) {  
-                            marcador = new google.maps.Marker({
-                            position: new google.maps.LatLng(listaPedidosPendientes[i].coordenadaX, listaPedidosPendientes[i].coordenaday),
-                            map: map
-                            });
+                                 //Para guardar datos en el marcador
+                                marcador.set('IdPedidoAyudaActual', listaPedidosPendientes[i].idEstadoRescatista);
+                                marcador.set('descripcionPedidoAyudaActual', listaPedidosPendientes[i].descripcion);
+                                marcador.set('urlArchivo', listaPedidosPendientes[i].urlArchivo);
 
-                             //Para guardar datos en el marcador
-                            marcador.set('IdPedidoAyudaActual', listaPedidosPendientes[i].idEstadoRescatista);
-                            marcador.set('descripcionPedidoAyudaActual', listaPedidosPendientes[i].descripcion);
+                                //para agregar evento onclick a los markers
+                                google.maps.event.addListener(marcador, 'click', function() {
+                                var IdActual = this.get('IdPedidoAyudaActual');
+                                var descripcionActual = this.get('descripcionPedidoAyudaActual');
+                                var urlArchivo = this.get('urlArchivo');
+                                //alert(descripcionActual);
+                                //window.localStorage.setItem("IdPedidoAyudaActual", IdActual);
+                                //window.localStorage.setItem("descripcionPedidoAyudaActual", descripcionActual);
+                                //alert(window.localStorage.getItem("IdPedidoAyudaActual"));
+                                
+                                document.getElementById("descripcion").value = descripcionActual;
+                                document.getElementById("idPedidoAyudaActual").value = IdActual;
+                                document.getElementById("urlArchivo").value = urlArchivo;
+                                document.getElementById("listaPendientes").style.display = 'none';
+                                document.getElementById("pedidoAyudaDetalle").style.display = 'initial';
+                                });
+                             }
+                        }else{
+                                //alert("else");
+                                //alert(listaPedidosPendientes);
+                                marcador = new google.maps.Marker({
+                                position: new google.maps.LatLng([listaPedidosPendientes][0].coordenadaX, [listaPedidosPendientes][0].coordenaday),
+                                map: map
+                                });
 
-                            //para agregar evento onclick a los markers
-                            google.maps.event.addListener(marcador, 'click', function() {
-                            var IdActual = this.get('IdPedidoAyudaActual');
-                            var descripcionActual = this.get('descripcionPedidoAyudaActual');
-                            //alert(descripcionActual);
-                            //window.localStorage.setItem("IdPedidoAyudaActual", IdActual);
-                            //window.localStorage.setItem("descripcionPedidoAyudaActual", descripcionActual);
-                            //alert(window.localStorage.getItem("IdPedidoAyudaActual"));
-                            
-                            document.getElementById("descripcion").value = descripcionActual;
-                            document.getElementById("idPedidoAyudaActual").value = IdActual;
-                            document.getElementById("listaPendientes").style.display = 'none';
-                            document.getElementById("pedidoAyudaDetalle").style.display = 'initial';
-                            });
-                         }
-                    }else{
-                            //alert("else");
-                            //alert(listaPedidosPendientes);
-                            marcador = new google.maps.Marker({
-                            position: new google.maps.LatLng([listaPedidosPendientes][0].coordenadaX, [listaPedidosPendientes][0].coordenaday),
-                            map: map
-                            });
+                                 //Para guardar datos en el marcador
+                                marcador.set('IdPedidoAyudaActual', listaPedidosPendientes.idEstadoRescatista);
+                                marcador.set('descripcionPedidoAyudaActual', listaPedidosPendientes.descripcion);
+                                marcador.set('urlArchivo', listaPedidosPendientes.urlArchivo);
 
-                             //Para guardar datos en el marcador
-                            marcador.set('IdPedidoAyudaActual', listaPedidosPendientes.idEstadoRescatista);
-                            marcador.set('descripcionPedidoAyudaActual', listaPedidosPendientes.descripcion);
-
-                            //para agregar evento onclick a los markers
-                            google.maps.event.addListener(marcador, 'click', function() {
-                            var IdActual = this.get('IdPedidoAyudaActual');
-                            var descripcionActual = this.get('descripcionPedidoAyudaActual');
-                            //alert(descripcionActual);
-                            //window.localStorage.setItem("IdPedidoAyudaActual", IdActual);
-                            //window.localStorage.setItem("descripcionPedidoAyudaActual", descripcionActual);
-                            //alert(window.localStorage.getItem("IdPedidoAyudaActual"));
-                            
-                            document.getElementById("descripcion").value = descripcionActual;
-                            document.getElementById("idPedidoAyudaActual").value = IdActual;
-                            document.getElementById("listaPendientes").style.display = 'none';
-                            document.getElementById("pedidoAyudaDetalle").style.display = 'initial';
-                            });
+                                //para agregar evento onclick a los markers
+                                google.maps.event.addListener(marcador, 'click', function() {
+                                var IdActual = this.get('IdPedidoAyudaActual');
+                                var descripcionActual = this.get('descripcionPedidoAyudaActual');
+                                var urlArchivo = this.get('urlArchivo');
+                                //alert(descripcionActual);
+                                //window.localStorage.setItem("IdPedidoAyudaActual", IdActual);
+                                //window.localStorage.setItem("descripcionPedidoAyudaActual", descripcionActual);
+                                //alert(window.localStorage.getItem("IdPedidoAyudaActual"));
+                                
+                                document.getElementById("descripcion").value = descripcionActual;
+                                document.getElementById("idPedidoAyudaActual").value = IdActual;
+                                document.getElementById("urlArchivo").value = urlArchivo;
+                                document.getElementById("listaPendientes").style.display = 'none';
+                                document.getElementById("pedidoAyudaDetalle").style.display = 'initial';
+                                });
+                        }
                     }
                 },
                 error:function (request, status, error) {

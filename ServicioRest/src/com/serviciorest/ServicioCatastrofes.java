@@ -61,6 +61,7 @@ private CatastrofeEBR manager;
         	   catastrofeAux.setDescripcion(catastrofesCore.get(i).getDescripcion());
         	   catastrofeAux.setActiva(catastrofesCore.get(i).getActiva());
         	   catastrofeAux.setUrlCSS(catastrofesCore.get(i).getCss());
+        	   catastrofeAux.setPoligono(catastrofesCore.get(i).getPoligono());
         	   catastrofesRest.add(catastrofeAux);
 		}
             

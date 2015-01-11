@@ -14,6 +14,7 @@ public class Catastrofe {
 	private double coordenadasX ;
 	private double coordenadasY ;
 	private String urlCSS;
+	private String poligono;
 	
 	public Long getId() {
 		return id;
@@ -59,5 +60,12 @@ public class Catastrofe {
 	public void setUrlCSS(String urlCSS) {
 		this.urlCSS = urlCSS;
 	}
+	public String getPoligono() {
+		return poligono;
+	}
+	public void setPoligono(String poligono) {
+		this.poligono = poligono;
+	}
+	
 	
 }
