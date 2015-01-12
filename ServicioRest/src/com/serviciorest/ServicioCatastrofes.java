@@ -54,6 +54,8 @@ private CatastrofeEBR manager;
             catastrofesCore = manager.listaCatastrofes();
            for (int i = 0; i < catastrofesCore.size(); i++) {
         	   com.serviciorest.modelo.Catastrofe catastrofeAux = new Catastrofe();
+        	   List<Double> list = manager.ListarCoordenasCatastrofe((long)catastrofesCore.get(i).getId());
+        	   catastrofeAux.setPoligono(list);
         	   catastrofeAux.setId((long)catastrofesCore.get(i).getId());
         	   catastrofeAux.setNombreEvento((catastrofesCore.get(i).getNombreEvento()));
         	   catastrofeAux.setCoordenadasX(catastrofesCore.get(i).getCoordenadasX());
@@ -61,7 +63,6 @@ private CatastrofeEBR manager;
         	   catastrofeAux.setDescripcion(catastrofesCore.get(i).getDescripcion());
         	   catastrofeAux.setActiva(catastrofesCore.get(i).getActiva());
         	   catastrofeAux.setUrlCSS(catastrofesCore.get(i).getCss());
-        	   catastrofeAux.setPoligono(catastrofesCore.get(i).getPoligono());
         	   catastrofesRest.add(catastrofeAux);
 		}
             
@@ -73,3 +74,7 @@ private CatastrofeEBR manager;
 	}
 	
 }
+
+	
+	
+	

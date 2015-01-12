@@ -281,10 +281,8 @@ public class HelloGoogleMaps extends Activity {
                 }
             }
         });
-   }
+	}
+}
 
 	
 	
-	
-	
-}
