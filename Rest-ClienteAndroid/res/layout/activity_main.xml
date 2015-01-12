@@ -21,7 +21,7 @@
         android:layout_height="2dp"
         android:layout_marginLeft="45dp"
         android:layout_weight="1.89"
-        android:src="@drawable/logo2sacc" />
+        android:src="@drawable/ssaclogo" />
     
     <TextView
         android:id="@+id/textView2"
