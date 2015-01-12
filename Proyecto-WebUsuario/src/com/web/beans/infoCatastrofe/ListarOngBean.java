@@ -1,5 +1,6 @@
 package com.web.beans.infoCatastrofe;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +17,12 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -79,6 +86,8 @@ public class ListarOngBean implements Serializable{
 	}
 	/*---------------------------------------------------------------------------------*/
 	
+	
+	
 	@PostConstruct
     public void init() {
     	
@@ -103,6 +112,11 @@ public class ListarOngBean implements Serializable{
 					
 		try{			
 			Collection<Ong> res = new ArrayList<Ong>();
+			//*probar sino borrar
+				
+			///borrar
+			
+			
 			Long idCatastrofe=  new Long(1);
 			res = manager.listaOngDeCatastrofe(idCatastrofe);   				
 			//Ong ong;

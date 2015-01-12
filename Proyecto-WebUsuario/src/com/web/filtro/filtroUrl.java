@@ -5,20 +5,15 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -33,8 +28,6 @@ import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Catastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
-import com.sun.org.apache.bcel.internal.generic.LLOAD;
-
 
 
 /**
@@ -42,6 +35,8 @@ import com.sun.org.apache.bcel.internal.generic.LLOAD;
  */
 @WebFilter("/*")
 
+@ManagedBean(name="filtroUrl")
+@SessionScoped
 public class filtroUrl implements Filter , Serializable {
 
 	
@@ -170,6 +165,8 @@ public class filtroUrl implements Filter , Serializable {
 				 //si no es null obtengo los datos de la catastrofe y los guardo en variables
 				if (existeURL != null)  {
 					
+					
+				
 				HttpSession objetoCat= req.getSession(true);
 				objetoCat.setAttribute("nombreCatastrofeUsuario",existeURL.getNombreEvento());
 				objetoCat.setAttribute("cssCatastrofeUsuario", existeURL.getCss());
@@ -178,6 +175,9 @@ public class filtroUrl implements Filter , Serializable {
 				objetoCat.setAttribute("descripcionCatastrofeUsuario", existeURL.getDescripcion());
 				objetoCat.setAttribute("pdfCatastrofeUsuario", existeURL.getPlanDeRiesgo());
 				
+				id = (Long) req.getSession().getAttribute("idCatastrofeUsuario");	
+
+			
 				res.sendRedirect(req.getContextPath() + "/Index.xhtml");
 					
 					
