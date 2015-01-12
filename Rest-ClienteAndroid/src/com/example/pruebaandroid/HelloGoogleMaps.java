@@ -15,9 +15,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -26,6 +29,7 @@ import com.google.android.gms.maps.*;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -114,16 +118,46 @@ public class HelloGoogleMaps extends Activity {
 					 pedidoAyudaIntent.putExtra("coordX", "0.001");
 					 pedidoAyudaIntent.putExtra("coordY", "0.001");
 				 }
-				 /*//chancho
-				 pedidoAyudaIntent.putExtra("catastrofeId", "9");
-				 pedidoAyudaIntent.putExtra("coordX", "-34.909654");
-				 pedidoAyudaIntent.putExtra("coordY", "-56.202349");*/
+				
 				 pedidoAyudaIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			     startActivity(pedidoAyudaIntent);
 			}
 	    });
 		
 		}//del oncreate
+	
+	//probando poligono
+	public void dibujoPoligono(List<LatLng> list){
+		 PolygonOptions opcionesPoligono = new PolygonOptions();
+		 //para cada latlng de la lista de latlngs del poligono
+			for(LatLng coord:list)
+			{
+			  
+				opcionesPoligono.add(coord);
+//			     .add(new LatLng(-34.899422, -56.146639))
+//			     .add(new LatLng(-34.899105, -56.144654))
+//			     .add(new LatLng(-34.902536, -56.143571))
+//			     .add(new LatLng(-34.902827, -56.146103))
+//			     .add(new LatLng(-34.899422, -56.146639));
+			   
+			  // opcionesPoligono.
+			   //mMap.clear();			   
+			
+			}
+			   Polygon poligono = map.addPolygon(opcionesPoligono);  
+			   //poligono.hashCode();
+			   
+			   poligono.setFillColor(0x69FF0000); // Relleno del polígono rojo medio transparente 0x7FFF0000
+			   
+			   poligono.setStrokeColor(Color.WHITE); // Bordes del polígono
+			   Log.d("muestro", "Poligono cargado en el mapa.");
+			
+		  
+		
+		   
+	}
+		
+	
 	
 	
 	
@@ -137,6 +171,7 @@ public class HelloGoogleMaps extends Activity {
 	}
 	
 	//marca las catastrofes
+	//recibo arreglo de poligono
 	public void drawMarkerLatLong(String latitudX, String longitudY, String titulo, String idCatastrofe) {
 		if (longitudY!= null && latitudX!=null){
 			if (longitudY.compareTo("")!=0 && latitudX.compareTo("")!=0){
@@ -145,6 +180,7 @@ public class HelloGoogleMaps extends Activity {
 			    MarkerOptions markerOption = new MarkerOptions().position(new LatLng(Double.parseDouble(latitudX),Double.parseDouble(longitudY))).title(titulo).snippet(idCatastrofe);
 				 
 			    map.addMarker(markerOption);
+			    //llamo a la funcion del poligono pasandole arreglo
 				
 				}
 				catch(Exception e)
@@ -160,7 +196,7 @@ public class HelloGoogleMaps extends Activity {
 		Log.i("Entro al invoke","Entro al invoke");
         AsyncHttpClient client = new AsyncHttpClient();
        //client.get("http://10.0.2.2:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
-        client.get("http://192.168.43.91:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
+        client.get("http://192.168.1.44:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
            
         	// When the response returned by REST has Http response code '200'
             @Override
@@ -173,7 +209,7 @@ public class HelloGoogleMaps extends Activity {
                          
                         JSONArray arregloCat = obj.getJSONArray("catastrofe");
                         List<String> arreglo= new ArrayList<String>();
-                        
+                     	
                         //LISTO CATAS en logcat se ven los nombres de las catastrofes
                         for(int i=0;i< arregloCat.length();i++){
                         	
@@ -181,14 +217,32 @@ public class HelloGoogleMaps extends Activity {
                          String longitudY =  obj.getJSONArray("catastrofe").getJSONObject(i).get("coordenadasY").toString();
                          String  titulo =obj.getJSONArray("catastrofe").getJSONObject(i).get("nombreEvento").toString();
                          String  idCatastrofe =obj.getJSONArray("catastrofe").getJSONObject(i).get("id").toString();
+                         //String poligono = obj.getJSONObject("catastrofe").getJSONObject(i).get("").toString();
                          
+                         Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).toString());
                        	 Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).get("nombreEvento").toString());
                        	 Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).get("id").toString());
                        	 Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).get("coordenadasX").toString());
                        	 Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).get("coordenadasY").toString());
+                       	 Log.i("hola", obj.getJSONArray("catastrofe").getJSONObject(i).get("poligono").toString());
+          
+                     
                        	 
+                       	JSONArray puntos = (JSONArray) obj.getJSONArray("catastrofe").getJSONObject(i).get("poligono");
+                       	
+                       	
+                       	 List<LatLng> list = new ArrayList<LatLng>();
+                       	 for (int j = 0; j< puntos.length();j++){
+                       		 String lat = puntos.get(j).toString();
+                       		 j++;
+                       		 String lon = puntos.get(j).toString();
+                           	 Log.i("coords", lat + " y " + lon);
+                       		 LatLng latLngObjeto = new LatLng(Double.parseDouble(lat),Double.parseDouble(lon));
+                       		 list.add(latLngObjeto);
+                       	 }
+                       	 HelloGoogleMaps.this.dibujoPoligono(list);
                        	 HelloGoogleMaps.this.drawMarkerLatLong(latitudX,longitudY,titulo,idCatastrofe);
-                       	 ////
+                       	 ////aca le paso el json del poligono
                      
 
                        	 //los agrego al JsonArray para desp listar de aca
@@ -227,10 +281,8 @@ public class HelloGoogleMaps extends Activity {
                 }
             }
         });
-   }
+	}
+}
 
 	
 	
-	
-	
-}

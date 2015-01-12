@@ -7,8 +7,6 @@
 
 <h:head>
 		<title>SSAC</title>
-		#{cssCatastrofeUsuario}
-		#{idCatastrofeUsuario}
 		
 			
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -22,8 +20,8 @@
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
 	
-    <link rel="stylesheet" href="css/2skel.css" />
-			<link id="cssPrincipal" rel="stylesheet" href="css/2style.css" />
+    
+			
 			<link rel="stylesheet" href="css/style-desktop.css" />
 			<link rel="stylesheet" href="css/style-noscript.css" />
     <script>
@@ -59,21 +57,33 @@
 				document.getElementById('personasdesap').style.display = "none";
 				document.getElementById('registrousuario').style.display = "none";
 				document.getElementById('loginusuario').style.display = "none";
+				document.getElementById('home').style.display = "none";
 				
 			}
 </script>
+
+ 	<style>
+    *{ margin: 0; padding: 0; }
+    html, body, #map{
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+  	
+  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>	
+	
 		<style type="text/css">
 			.oculto {
 				display: none;
 			}
 			span {
-				color: purple;
+				
 				font-size: 20px;
 			}
 			div {
-				color: purple;
+				
 				font-size: 20px;
-				font-weight: bold
+				
 			}
 		</style>
 <style>
@@ -100,15 +110,99 @@
 				<!-- Inner -->
 					<div class="inner">
 						<div id="header">
+			
+			
+						
+						
+							<p:graphicImage value="imagen/#{logoCatastrofeUsuario}" width="100" height="100" /> 
+            				<h:outputText value="" style="border: transparent;"/>	   
+            
 							<h1><a href="Index.xhtml" id="logo">#{nombreCatastrofeUsuario}</a></h1>
-							<p>			        		        
-            <p:graphicImage value="imagen/#{logoCatastrofeUsuario}" /> 
-            <h:outputText value="" style="border: transparent;"/>	              		         	        	
-			</p>
+									    
+								#{filtroUrl.id}
+										        
+            
+            				 <p><u> Descripción: </u></p>
+            				<p>#{descripcionCatastrofeUsuario}	</p> 
+            				<br/>  
+            				<u> Imágenes: </u> 
+            				<br/>  
+							<p>	
+							<p:contentFlow value="#{imagesView.imagesMostrar}" var="image">
+							    <p:graphicImage value="imagen/#{image}" styleClass="content" />
+							     
+							    <div class="caption"></div>
+							</p:contentFlow>           		         	        	
+							</p>
+							<u> ONGS: </u> 
+							<br/>
 							
+						    <p:accordionPanel  value="#{listarOngUsuarioBean.listaOngBean}" var="ongUsuario">
+						        <p:tab title= "#{ongUsuario.nombre}">
+						        <p:graphicImage value="imagen/#{ongUsuario.imagen}" width="100" height="100"/>
+						            <h:panelGrid columns="2" cellpadding="10">
+						                
+						                
+						                <p>
+						                <h:outputText  value="Descripción:#{ongUsuario.descripcion}" />
+						                </p>
+						                <p>
+						                <h:outputText  value="Dirección:#{ongUsuario.direccion}" />
+						                </p>
+						                <p>
+						                <h:outputText  value="Teléfono:#{ongUsuario.telefono}" />
+						                </p>
+						                
+						            </h:panelGrid>
+						            
+						                <a href="#{ongUsuario.citioWeb}"> 
+						                
+						                #{ongUsuario.citioWeb} 
+						                
+						                </a>
+						        </p:tab>
+						    
+						    </p:accordionPanel>
+							
+							<br/>
+							<p><u> Mapa Zona Afectada </u></p>
+							
+							
+							<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="10" type="HYBRID"  style="width:1350px;height:500px"
+    						 model="#{imagesView.polygonModel}" widgetVar="map" >    
+    						<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
+    						</p:gmap>  
+							
+							
+							<u>Plan de Riesgo:</u>
+							<br/>
+							<object type="application/pdf" data="imagen/#{imagesView.pdfCatastrofe}?pfdrid_c=true" height="300px" width="100%">
+           					
+        					</object>
 							
 							<hr />		
-							<center>#{descripcionCatastrofeUsuario}	</center>
+							
+							<p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+    <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
+</p:dialog>
+ 
+<h:form>
+    <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+        <p:fileDownload value="#{fileDownloadView.file}" />
+    </p:commandButton>
+</h:form>
+ 
+<script type="text/javascript">
+function start() {
+    PF('statusDialog').show();
+}
+ 
+function stop() {
+    PF('statusDialog').hide();
+}
+</script>
+							
+							
 						</div>
 						<div class="footer">
 							<a href="#banner" class="button circled scrolly">¡AYUDA!</a>
@@ -119,9 +213,9 @@
 				<!-- Nav -->
 					<div id="nav">
 						<ul>
-							<li><a href="index.html">Home</a></li>
+							
 							<!--  	<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
-					
+								<li><a href="#home" style="cursor: hand; text-decoration: none" onclick="show('home');">Catastrofe</a></li>
 								<li><a href="#banner" style="cursor: hand; text-decoration: none" onclick="show('banner');"> Pedido de ayuda</a></li>
 								<li><a href="#donacion" style="cursor: hand; text-decoration: none" onclick="show('donacion');">Donaciones</a></li>
 								<li><a href="#busperdesap" style="cursor: hand; text-decoration: none" onclick="show('busperdesap');">Buscar Personas desaparecidas</a></li>
@@ -132,6 +226,52 @@
 						</ul>
 					</div>
 				</div>
+				
+				<!-- home -->
+			<div class="oculto" id="home">
+			<div class="section">
+			
+			
+					<h2> <strong>Descripción de la catàstrofe : #{nombreCatastrofeUsuario} </strong></h2>
+					<strong></strong>
+					<p>	
+						 <strong>#{descripcionCatastrofeUsuario}	</strong> 
+					</p>	
+					
+						 <strong>imagenes :</strong>
+						 <p>
+						 <p:graphicImage name="imagen/#{logoCatastrofeUsuario}" />
+						<p:galleria value="#{imagesView.imagesMostrar}" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+    <p:graphicImage name="imagen/#{logoCatastrofeUsuario}"  title="#{image}"/>
+</p:galleria>
+					</p>
+					#{cssCatastrofeUsuario}
+		#{idCatastrofeUsuario}
+		
+					
+	<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+     <div class="ui-grid-col-1"></div>
+        <div class="ui-grid-col-5">
+        <f:view>
+		
+		</f:view>
+        
+        </div>
+        <div class="ui-grid-col-1"></div>
+        <div class="ui-grid-col-5"> 
+        <br/>
+        	
+        </div>
+        <div class="ui-grid-col-1"></div>
+    </div>
+</div>
+</div>
+	</div>
+				
+				
+				
+				
 				
 			<!-- Banner -->
 
