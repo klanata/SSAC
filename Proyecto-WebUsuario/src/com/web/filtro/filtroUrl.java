@@ -166,6 +166,7 @@ public class filtroUrl implements Filter , Serializable {
 				}
 				*/
 				Catastrofe existeURL = existeCatastrofeURL(urlStr);
+				
 				 //si no es null obtengo los datos de la catastrofe y los guardo en variables
 				if (existeURL != null)  {
 					
@@ -175,6 +176,7 @@ public class filtroUrl implements Filter , Serializable {
 				objetoCat.setAttribute("idCatastrofeUsuario", existeURL.getId());
 				objetoCat.setAttribute("logoCatastrofeUsuario", existeURL.getLogo());
 				objetoCat.setAttribute("descripcionCatastrofeUsuario", existeURL.getDescripcion());
+				objetoCat.setAttribute("pdfCatastrofeUsuario", existeURL.getPlanDeRiesgo());
 				
 				res.sendRedirect(req.getContextPath() + "/Index.xhtml");
 					
