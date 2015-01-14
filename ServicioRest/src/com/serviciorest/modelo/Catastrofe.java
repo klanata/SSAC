@@ -17,6 +17,7 @@ public class Catastrofe {
 	private double coordenadasY ;
 	private String urlCSS;
 	List<Double> poligono ;
+	private String poligonoObjeto;
 	
 	
 	public Long getId() {
@@ -69,6 +70,13 @@ public class Catastrofe {
 	public void setPoligono(List<Double> poligono) {
 		this.poligono = poligono;
 	}
+	public String getPoligonoObjeto() {
+		return poligonoObjeto;
+	}
+	public void setPoligonoObjeto(String poligonoObjeto) {
+		this.poligonoObjeto = poligonoObjeto;
+	}
+	
 	
 }
 

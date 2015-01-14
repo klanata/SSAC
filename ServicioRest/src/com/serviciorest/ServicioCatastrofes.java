@@ -56,6 +56,7 @@ private CatastrofeEBR manager;
         	   com.serviciorest.modelo.Catastrofe catastrofeAux = new Catastrofe();
         	   List<Double> list = manager.ListarCoordenasCatastrofe((long)catastrofesCore.get(i).getId());
         	   catastrofeAux.setPoligono(list);
+        	   catastrofeAux.setPoligonoObjeto(catastrofesCore.get(i).getPoligono());
         	   catastrofeAux.setId((long)catastrofesCore.get(i).getId());
         	   catastrofeAux.setNombreEvento((catastrofesCore.get(i).getNombreEvento()));
         	   catastrofeAux.setCoordenadasX(catastrofesCore.get(i).getCoordenadasX());
