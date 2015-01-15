@@ -2,6 +2,7 @@ package com.web.filtro;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -27,7 +28,9 @@ import javax.servlet.http.HttpSession;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Catastrofe;
+import com.core.data.entites.Ong;
 import com.core.service.negocio.remote.CatastrofeEBR;
+
 
 
 /**
@@ -168,14 +171,25 @@ public class filtroUrl implements Filter , Serializable {
 					
 				
 				HttpSession objetoCat= req.getSession(true);
-				objetoCat.setAttribute("nombreCatastrofeUsuario",existeURL.getNombreEvento());
-				objetoCat.setAttribute("cssCatastrofeUsuario", existeURL.getCss());
-				objetoCat.setAttribute("idCatastrofeUsuario", existeURL.getId());
-				objetoCat.setAttribute("logoCatastrofeUsuario", existeURL.getLogo());
-				objetoCat.setAttribute("descripcionCatastrofeUsuario", existeURL.getDescripcion());
-				objetoCat.setAttribute("pdfCatastrofeUsuario", existeURL.getPlanDeRiesgo());
+				objetoCat.setAttribute("objetoCatastrofe", existeURL);
+				//objetoCat.setAttribute("nombreCatastrofeUsuario",existeURL.getNombreEvento());
+				ArrayList<Ong> listaOng= new ArrayList<Ong>();    
+				Ong ong;
+				Collection<Ong> setOng = existeURL.getOngs();
+				Iterator<Ong > it = setOng.iterator();
+		    	int i = 0;
+		    	while(it.hasNext()){
+				//for (int i=0; i<=res.size()-1; i++){    		
+					ong = it.next();
+					listaOng.add(ong);
+		    	}
 				
-				id = (Long) req.getSession().getAttribute("idCatastrofeUsuario");	
+				objetoCat.setAttribute("idmongo", existeURL.getId());
+				//objetoCat.setAttribute("descripcionCatastrofeUsuario", existeURL.getDescripcion());
+				//objetoCat.setAttribute("pdfCatastrofeUsuario", existeURL.getImagenes());
+				objetoCat.setAttribute("listaOngUsuario", listaOng);
+				
+				id = existeURL.getId();	
 
 			
 				res.sendRedirect(req.getContextPath() + "/Index.xhtml");

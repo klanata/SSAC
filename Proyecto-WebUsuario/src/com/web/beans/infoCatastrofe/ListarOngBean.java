@@ -23,6 +23,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -116,8 +117,11 @@ public class ListarOngBean implements Serializable{
 				
 			///borrar
 			
-			
-			Long idCatastrofe=  new Long(1);
+			FacesContext contexto = FacesContext.getCurrentInstance();
+			HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);
+			Long idCatastrofe = (Long)sesion.getAttribute("idmongo");
+
+			//Long idCatastrofe=  new Long(1);
 			res = manager.listaOngDeCatastrofe(idCatastrofe);   				
 			//Ong ong;
 	    	Long id;
@@ -133,6 +137,7 @@ public class ListarOngBean implements Serializable{
 	    	while(it.hasNext()){
 			//for (int i=0; i<=res.size()-1; i++){    		
 				ong = it.next();
+				
 				id = ong.getId();
 				nombre = ong.getNombre();
 				direccion = ong.getDireccion();												

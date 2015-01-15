@@ -1,5 +1,6 @@
 package com.web.beans.infoCatastrofe;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,17 +8,15 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
+
+
+
 import javax.servlet.http.HttpSession;
-
-
-
-
-
 
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -32,10 +31,14 @@ import com.core.data.entites.ImagenCatastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
  
-@ManagedBean
-public class ImagesView {
-     
+
+@ManagedBean(name="imagesView")
+@RequestScoped																																																																						
+public class ImagesView implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
+	private Long idCatastrofe;
 	
 private MapModel polygonModel;
 	
@@ -49,7 +52,15 @@ private MapModel polygonModel;
 	
 	
 	
-    public MapModel getPolygonModel() {
+    public Long getIdCatastrofe() {
+		return idCatastrofe;
+	}
+
+	public void setIdCatastrofe(Long idCatastrofe) {
+		this.idCatastrofe = idCatastrofe;
+	}
+
+	public MapModel getPolygonModel() {
 		return polygonModel;
 	}
 
@@ -110,23 +121,27 @@ private MapModel polygonModel;
 		this.imagesMostrar = imagesMostrar;
 	}
 
+	
+	
 	@PostConstruct
     public void init() {
     
     	
-		/*ServletRequest request = null;
-		HttpServletRequest req = (HttpServletRequest) request;
-		@SuppressWarnings("null")
-		HttpSession session = req.getSession();
-		Long idCatastrofe = (long) session.getAttribute("idCatastrofeUsuario");*/
-		//Object dato = session.getAttribute(identificador);
-    	Long idCatastrofe = new Long(1);
-    	//
+		FacesContext contexto = FacesContext.getCurrentInstance();
+		HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);
+		idCatastrofe = (Long)sesion.getAttribute("idmongo");
+
+		
+		System.out.print("esto obtiene de id catastrofe");
+		System.out.print(idCatastrofe);
+		
+		
+    	
         if ((idCatastrofe == null) || (idCatastrofe == 00))
 		{	
-			System.out.println("No existe la catástrofe al asignar imagenes. "); 			
+			System.out.println("id = o o null. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+			handler.performNavigation("no-sidebar?faces-redirect=true");
 		}
 		else	
 		{        
@@ -148,8 +163,9 @@ private MapModel polygonModel;
 		
 			try{
 				
-				System.out.print("esto obtiene de id catastrofe");
-				System.out.print(idCatastrofe);
+				
+				//System.out.print(nombreUrl);
+				
 				imagesMostrar = new ArrayList<String>();
 		        int posicion = 1;
 				if(idCatastrofe != 0){	
