@@ -2,11 +2,16 @@ package com.web.beans;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpSession;
+
 import clienteutility.ClienteUtility;
+
 import com.core.service.negocio.remote.PedidoDeAyudaEBR;
 
 @ManagedBean(name="pedidoAyudaBean")
@@ -85,7 +90,9 @@ public class PedidoDeAyudaBean implements Serializable {
     		Date fechaPublicacion= new Date();
     		fechaPublicacion.getTime();
     	
-    		
+    		FacesContext contexto = FacesContext.getCurrentInstance();
+			HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);
+			catastrofeId = (Long)sesion.getAttribute("idmongo");
        		Long id = manager.crearPedido(catastrofeId, descripcion, coordenadasX, coordenadasY, fechaPublicacion);    	
     		
     		

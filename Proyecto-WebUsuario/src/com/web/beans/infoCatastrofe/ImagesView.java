@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -40,7 +40,7 @@ public class ImagesView implements Serializable{
 
 	private Long idCatastrofe;
 	
-private MapModel polygonModel;
+	private MapModel polygonModel;
 	
 	private MapModel advancedModel;
 	
@@ -50,9 +50,49 @@ private MapModel polygonModel;
 	
 	private double longitud;
 	
+	private String logo;
+	private String descripcion;
+	
+	private String css;
+	
+	private String nombre;
 	
 	
-    public Long getIdCatastrofe() {
+	
+	
+    public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getCss() {
+		return css;
+	}
+
+	public void setCss(String css) {
+		this.css = css;
+	}
+
+	public Long getIdCatastrofe() {
 		return idCatastrofe;
 	}
 
@@ -141,7 +181,7 @@ private MapModel polygonModel;
 		{	
 			System.out.println("id = o o null. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("no-sidebar?faces-redirect=true");
+			handler.performNavigation("Error?faces-redirect=true");
 		}
 		else	
 		{        
@@ -167,16 +207,21 @@ private MapModel polygonModel;
 				//System.out.print(nombreUrl);
 				
 				imagesMostrar = new ArrayList<String>();
-		        int posicion = 1;
+		        
 				if(idCatastrofe != 0){	
 		        ///////////////////////////////////////////
 					Catastrofe c = new Catastrofe();
 				//obtener catastrofe
 				 c = manager.buscaCatastrofePorId(idCatastrofe);	
 
+				 logo = c.getLogo();
+				 descripcion = c.getDescripcion();
+				 css = c.getCss();
+				 nombre = c.getNombreEvento();
 			        latitud = c.getCoordenadasX();
 			        longitud = c.getCoordenadasY();
 			        String logoCatatrofe = c.getLogo();
+			        
 				pdfCatastrofe = c.getPlanDeRiesgo().getRutaArchivo();	
 				boolean prioridad = c.getPrioridad();
 				

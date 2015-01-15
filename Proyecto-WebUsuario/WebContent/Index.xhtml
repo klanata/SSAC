@@ -106,14 +106,14 @@
 					<div class="inner">
 						<div id="header">
 							
-							<p:graphicImage value="imagen/#{logoCatastrofeUsuario}" width="100" height="100" /> 
+							<p:graphicImage value="imagen/#{imagesView.logo}" width="100" height="100" /> 
             				<h:outputText value="" style="border: transparent;"/>	   
             
-							<h1><a href="Index.xhtml" id="logo">#{nombreCatastrofeUsuario}</a></h1>
+							<h1><a href="Index.xhtml" id="logo">#{imagesView.nombre}</a></h1>
 									
 								            
             				 <p><u> Descripción: </u></p> 
-            				<p>#{descripcionCatastrofeUsuario}	</p> 
+            				<p>#{imagesView.descripcion}	</p> 
             				<br/>  
             				<u> Imágenes: </u> 
             				<br/>  
@@ -164,35 +164,7 @@
     						</p:gmap>  
 							
 							
-							<u>Plan de Riesgo:</u>
-							<br/>
-							<object type="application/pdf" data="imagen/#{imagesView.pdfCatastrofe}?pfdrid_c=true" height="300px" width="100%">
-           					
-        					</object>
-							
-							<hr />		
-							
-							<p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
-    <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
-</p:dialog>
- 
-<h:form>
-    <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
-        <p:fileDownload value="#{fileDownloadView.file}" />
-    </p:commandButton>
-</h:form>
- 
-<script type="text/javascript">
-function start() {
-    PF('statusDialog').show();
-}
- 
-function stop() {
-    PF('statusDialog').hide();
-}
-</script>
-							
-						</div>
+												</div>
 						<div class="footer">
 							<a href="#banner"  class="button circled scrolly" style="cursor: hand; text-decoration: none" onclick="show('banner');"> ¡AYUDA!</a>
 						
@@ -235,9 +207,6 @@ function stop() {
 			<h:messages id="messages" for="pedidoAyudaBean"></h:messages>
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 			<h:panelGrid>
-				<label for="catastrofeId">Catastrofe :</label>				
-					<p:inputText id="catastrofeId" label="catastrofeId"  value="#{pedidoAyudaBean.catastrofe}" required="true" requiredMessage="La ong es requerida" >	
-					</p:inputText>																																									
 				
 				<label for="descripcion">Descripcion :</label>				
 					<p:inputText rows="5" cols="30" id="descripcion" label="descripcion"  value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La ong es requerida" >	
