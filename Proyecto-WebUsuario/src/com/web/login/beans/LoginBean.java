@@ -21,6 +21,7 @@ import clienteutility.ClienteUtility;
 
 
 
+
 import com.core.service.negocio.remote.UsuarioEBR;
 
 
@@ -140,7 +141,10 @@ public class LoginBean implements Serializable {
 		//System.out.print("nick1" + nick1);
 		////veo si el usuario esta registrado
 		Boolean exito =	manager.existeUsuario(nick1, clave1);
-		
+		FacesContext contextousuario = FacesContext.getCurrentInstance();
+		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
+		idCatastrofe1 = (Long)sesion.getAttribute("idmongo");
+   		
 		
 	
 		//veo si esta registrado a esa catastrofe

@@ -3,12 +3,15 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
+
+import org.primefaces.context.RequestContext;
 
 import clienteutility.ClienteUtility;
 
@@ -94,7 +97,37 @@ public class PedidoDeAyudaBean implements Serializable {
 			HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);
 			catastrofeId = (Long)sesion.getAttribute("idmongo");
        		Long id = manager.crearPedido(catastrofeId, descripcion, coordenadasX, coordenadasY, fechaPublicacion);    	
-    		
+       		RequestContext requestContext = RequestContext.getCurrentInstance();
+       	 requestContext.update("form:display");
+         requestContext.execute("PF('dlg').show()");
+         
+         
+    		if (id.equals(0)){
+    			
+    			//FacesContext contex = FacesContext.getCurrentInstance(); 
+    	        FacesMessage messages = new FacesMessage("Error al solicitar pedido de ayuda. "); 
+    	        contexto.addMessage("pedidoAyudaBean", messages);
+    	        
+    	        
+    		}
+    		else {    	
+    			
+
+    			this.coordenadasX = (Double) null;
+    			this.coordenadasY = (Double) null;
+    			this.descripcion = "";
+    			
+        		
+        		
+    			//FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        FacesMessage messages = new FacesMessage("Pedido Creado con exito !!"); 
+    	        contexto.addMessage("pedidoAyudaBean", messages);
+    			
+    			
+        		
+    		}
+       		
+       		
     		
     	}catch (Exception excep){
     		System.out.println("Excepcion en pedido de ayuda: " + excep.getMessage());      		 			       

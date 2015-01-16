@@ -8,7 +8,7 @@
 <h:head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
-		
+		<title> #{imagesView.nombre}</title>
 		<meta name="keywords" content="" />
 		<script src="js/jquery.dropotron.min.js"></script>
 		<script src="js/jquery.scrolly.min.js"></script>
@@ -204,18 +204,19 @@
         <div class="ui-grid-col-5">
         <f:view>
 		<h:form id="pedidoAyudaBean" >
-			<h:messages id="messages" for="pedidoAyudaBean"></h:messages>
+			
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			
 			<h:panelGrid>
 				
 				<label for="descripcion">Descripcion :</label>				
-					<p:inputText rows="5" cols="30" id="descripcion" label="descripcion"  value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La ong es requerida" >	
+					<p:inputText rows="20" cols="30" id="descripcion" label="descripcion"  value="#{pedidoAyudaBean.descripcion}" required="true" requiredMessage="La ong es requerida" >	
 					</p:inputText>																																									
-				<label for="coordenadasX">Latitud es:</label>				
-					<p:inputText id="coordenadasX" label="coordenadasX" value="#{pedidoAyudaBean.coordenadasX}" required="true" requiredMessage="La latitud es requerido" >	
+				
+					<p:inputText id="coordenadasX" label="coordenadasX" value="#{pedidoAyudaBean.coordenadasX}" type="hidden" required="true" requiredMessage="La latitud es requerido" >	
 					</p:inputText>																																									
-			<label for="coordenadasY">Longitud es:</label>				
-					<p:inputText id="coordenadasY" label="coordenadasY" value="#{pedidoAyudaBean.coordenadasY}" required="true" requiredMessage="La longitud es requerido" >	
+			
+					<p:inputText id="coordenadasY" label="coordenadasY" value="#{pedidoAyudaBean.coordenadasY}" type="hidden" required="true" requiredMessage="La longitud es requerido" >	
 					</p:inputText>	
 				</h:panelGrid>	
 				<ul class="actions align-center">
@@ -540,10 +541,8 @@
 	 <f:view>
 	 <p:growl id="growl" showDetail="true" sticky="true" life="2000" />
 		<h:form id="login2" >
-               		<label for="catastrofeId"> cat:</label>				
-						<p:inputText id="catastrofeId" label="catastrofeId"  value="#{loginBean.idCatastrofe}" required="true" requiredMessage="El nombre es requerido" >	
-						</p:inputText>																																									
-			
+               						
+						
 						<label for="nick"> Nick:</label>				
 						<p:inputText id="nick" label="nick"  value="#{loginBean.nick}" required="true" requiredMessage="El nick es requerido" >	
 						</p:inputText>																																									
@@ -553,7 +552,11 @@
 						</p:inputText>																																									
 				
 						<label for="email">E-mail :</label>				
-						<p:inputText id="email" label="email"  value="#{loginBean.email}"  >	
+						<p:inputText id="email" label="email"  value="#{loginBean.email}" validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com"  >	
+						<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				
+						
 						</p:inputText>																																									
 			
 						<label for="nombre"> Clave:</label>	
