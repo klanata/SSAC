@@ -125,6 +125,11 @@ public class PlanDeRiesgoBean implements Serializable{
 		this.catastrofeBean = catastrofeBean;
 	}	
 	
+	//	------------------ Operaciones ---------------------
+	
+	
+	
+	
 	
 
 }

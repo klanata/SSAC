@@ -10,8 +10,7 @@
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	  	  
-  	
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	  	    	
   	<style>
     *{ margin: 0; padding: 0; }
     html, body, #map{
@@ -168,15 +167,15 @@
     	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
     </p:gmap>  
     	
-    <p:dialog widgetVar="dlg" showEffect="fade" style="height:500px" width="700">
-    	<div class="wrapper col3">
-	  <div id="intro">
+    <p:dialog widgetVar="dlg" showEffect="fade">
+    <div class="wrapper col3" >
+	  <div >
 	    <div >
 	      <h2>Asignar Imágenes a la catástrofe</h2>
 	      
 	      <f:view>        
 	      	
-			<h:form columns="2" value="#{imagesView.catastrofeBean}" columnClasses="label, value" width="700" style="border: 0;">
+			<h:form columns="2" value="#{imagesView.catastrofeBean}" columnClasses="label, value" width="700px" style="border: 0;">
 				
 				<p>			        		        
 	            <p:graphicImage value="image/#{imagesView.catastrofeBean.logo}" /> 
@@ -209,8 +208,8 @@
 				<h:outputText value="(Debe ingresar al menos una imagen de la catástrofe)" style="width:100px;border: transparent;"/>			            
 	            </p>  	            	                               
 	                    
-			    <p:fileUpload fileUploadListener="#{fileUploadController.upload}" mode="advanced" dragDropSupport="false" style="width:600px;border: transparent;"
-			                  label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+			    <p:fileUpload fileUploadListener="#{fileUploadController.upload}" mode="advanced" dragDropSupport="false" style="max-height:900px;overflow:auto;width:600px;border: transparent;"  
+			                 label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 			 
 			    <p:growl id="messages" showDetail="true" life="2000" />
 			    

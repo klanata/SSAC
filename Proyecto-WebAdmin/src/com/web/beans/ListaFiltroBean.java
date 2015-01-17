@@ -142,9 +142,15 @@ public class ListaFiltroBean  implements Serializable{
 						Long idFiltro = filtroBean.getId();								
 						String fuente ="Youtube";
 						manager.asignarFiltroServicio(idFiltro, fuente);
-				}											
-				//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las ONGs fueron ingresadas al sistema.");
+				}															
 				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las Filtros fueron asignados a Youtube.");
+				FacesContext.getCurrentInstance().addMessage(null, message);
+				
+				FacesContext contexto = FacesContext.getCurrentInstance();
+				contexto.getExternalContext().getFlash().setKeepMessages(true);
+				
+				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+				handler.performNavigation("filtrosSobreYoutube?faces-redirect=true");
 														
 			}catch (Exception excep){
 					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo dar de alta algunos de los filtros.");

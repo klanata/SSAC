@@ -7,10 +7,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+
 
 import org.primefaces.event.FileUploadEvent;
 
@@ -21,8 +24,10 @@ import com.core.data.entites.PlanDeRiesgo;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
 
+
 @ManagedBean(name="fileUploadControllerPlan")
-public class FileUploadControllerPlan {
+@SessionScoped
+public class FileUploadControllerPlan {							 
 	
 	public void upload(FileUploadEvent event) {  
         //FacesMessage msg = new FacesMessage("El plan de riesgo fue ingresado con exito.");  
@@ -98,9 +103,10 @@ public class FileUploadControllerPlan {
 		           
 		             in.close();
 		             out.flush();
-		             out.close();
-		           
-		             System.out.println("Nuevo archivo creado!");   	    		
+		             out.close();		           		             
+		             
+		             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", fileString);		             		             		            		           		            		             
+		             
 		        }catch (Exception excep){
 					System.out.println("Excepción al obtener la catástrofe: " + excep.getMessage());      		 			       	           	
 				}	    			    			    		        	      
@@ -108,18 +114,12 @@ public class FileUploadControllerPlan {
 	             System.out.println(e.getMessage());
 	        }
 	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
-			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");	
+			//ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			//handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");	
 	        
 		}
 	}		
-	
-	
-	public void cancelar(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofePlanDeRiesgo", "");
-		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("listaCatastrofesPlanRiesgo?faces-redirect=true");		
-	}
+		
 	
 	public void borrarPlanRiesgoCatastrofe(String path){	
 		
@@ -131,6 +131,69 @@ public class FileUploadControllerPlan {
 			System.out.println("La operación de eliminación falló.");
 		}
 	}
+		
+	
+	
+	public void asignarPlanDeRiesgo(){
+		
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");		
+		System.out.println("El id del evento catastrofe plan de riesgo: " + idEventoString);		
+		if ((idEventoString == null) || (idEventoString == ""))
+		{	
+			System.out.println("No existe la catástrofe. "); 			
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+		}
+		else	
+		{		
+			CatastrofeEBR manager = null;				
+			Context context = null;				
+			FacesMessage message = null; 
+			
+			try {
+	            // 1. Obtaining Context
+	            context = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+	            manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }				
+			
+	        try {
+	        	 
+	        	Long idCatastrofe = new Long(idEventoString);	       	        	
+	    		
+	    		try {	    				    		
+	    			Catastrofe c = manager.buscaCatastrofePorId(idCatastrofe);
+	    			PlanDeRiesgo plan = c.getPlanDeRiesgo();	    		
+	    			
+	    			if (plan != null){	    				   				    				    		
+	    				
+	    				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
+	    				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+	    				handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");
+	    				
+	    			}
+	    			else {	    				    					    				
+	    				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe ingresar el plan de riesgo.");
+	    				FacesContext.getCurrentInstance().addMessage(null, message);
+	    			}
+	    				    				    			
+	    				    		
+		        }catch (Exception excep){
+					System.out.println("Excepción al obtener la catástrofe al asignar el plan de riesgo: " + excep.getMessage());      		 			       	           	
+				}	    			    			    		        	      
+	        } catch (Exception e) {
+	             System.out.println(e.getMessage());
+	        }
+	       	        
+		}
+							
+	}	
+	
 	
 
 }

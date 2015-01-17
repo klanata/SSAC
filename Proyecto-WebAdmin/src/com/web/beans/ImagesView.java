@@ -18,7 +18,7 @@ import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Polygon;
-import org.primefaces.model.map.Marker;
+
 
 import clienteutility.ClienteUtility;
 
@@ -40,11 +40,7 @@ public class ImagesView implements Serializable{
 	@ManagedProperty("#{imgCatastrofeBean}")
     private ImagenCatastrofeBean imgCatastrofeBean;
 	
-	private MapModel polygonModel;
-	
-	private MapModel advancedModel;
-	
-	private Marker marker;
+	private MapModel polygonModel;	
 	
 	private double latitud;
 	
@@ -165,10 +161,11 @@ public class ImagesView implements Serializable{
 										
 					List<Double> list = manager.ListarCoordenasCatastrofe(idCatastrofe);
 					
-					for (int i=0; i<=list.size()-1; i++){
-						double resultado = list.get(i);
-						System.out.println("valor de coordenadas en list: " + resultado);
-					}
+					//Muestra la lista de coordenadas del poligono
+					//for (int i=0; i<=list.size()-1; i++){
+						//double resultado = list.get(i);
+						//System.out.println("valor de coordenadas en list: " + resultado);
+					//}
 					
 					//Construyo el poligono
 					
@@ -203,14 +200,19 @@ public class ImagesView implements Serializable{
 			        
 			        latitud = catastrofe.getCoordenadasX();
 			        longitud = catastrofe.getCoordenadasY();
-			        String logoCatatrofe = catastrofe.getLogo();
 			        
+			        /*
+			        String logoCatatrofe = catastrofe.getLogo();
+			        			        
 			        advancedModel = new DefaultMapModel();
 			        
 			        LatLng coord1 = new LatLng(latitud, longitud);
 			        
 			        
-			        advancedModel.addOverlay(new Marker(coord1, "Konyaalti", logoCatatrofe, "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
+			        //advancedModel.addOverlay(new Marker(coord1, "Konyaalti", logoCatatrofe, "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
+			        advancedModel.addOverlay(new Marker(coord1, "Konyaalti"));
+			        
+			        */
 			        
 			        ///////////////////////////////////////////
 			        
@@ -272,27 +274,7 @@ public class ImagesView implements Serializable{
 	
 	public void setPolygonModel(MapModel polygonModel) {
 		this.polygonModel = polygonModel;
-	}
-		
-	
-	public MapModel getAdvancedModel() {
-		return advancedModel;
-	}
-
-
-	public void setAdvancedModel(MapModel advancedModel) {
-		this.advancedModel = advancedModel;
-	}
-
-
-	public Marker getMarker() {
-		return marker;
-	}
-
-
-	public void setMarker(Marker marker) {
-		this.marker = marker;
-	}
+	}	
 	
 	
 	public double getLatitud() {
@@ -317,8 +299,6 @@ public class ImagesView implements Serializable{
  
 	//	------------------ Operaciones ---------------------
 
-	
-
 	public void asignarImagen(){
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("asignarImgCatastrofe?faces-redirect=true");			
@@ -334,6 +314,7 @@ public class ImagesView implements Serializable{
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");		
 	}
+	
     
 
 }

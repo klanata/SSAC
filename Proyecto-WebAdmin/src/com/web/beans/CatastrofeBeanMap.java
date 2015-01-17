@@ -244,6 +244,8 @@ public class CatastrofeBeanMap implements Serializable{
     			//FacesContext.getCurrentInstance().addMessage(null, message);
         		String idCatastrofeString = idCatastrofe.toString();
         		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idCatastrofeString", idCatastrofeString);
+        		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
+        		
         		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
         		handler.performNavigation("asignarImgCatastrofe?faces-redirect=true");
         		
