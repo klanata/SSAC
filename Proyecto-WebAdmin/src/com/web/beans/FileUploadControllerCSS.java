@@ -38,7 +38,7 @@ public class FileUploadControllerCSS {
 	public void copyFile(String fileName, InputStream in) {	
 		
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");		
-		System.out.println("El id del evento catastrofe CSS: " + idEventoString);		
+		//System.out.println("El id del evento catastrofe CSS: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			
@@ -97,7 +97,7 @@ public class FileUploadControllerCSS {
 		             out.flush();
 		             out.close();
 		           
-		             System.out.println("Nuevo archivo creado!");   	    		
+		             //System.out.println("Nuevo archivo creado!");   	    		
 		        }catch (Exception excep){
 					System.out.println("Excepción al obtener la catástrofe: " + excep.getMessage());      		 			       	           	
 				}	    			    			    		        	      
@@ -132,7 +132,7 @@ public class FileUploadControllerCSS {
 	public void finalizar(){
 		
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");		
-		System.out.println("El id del evento catastrofe CSS: " + idEventoString);		
+		//System.out.println("El id del evento catastrofe CSS: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			

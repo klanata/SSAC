@@ -30,7 +30,7 @@ public class PdfReportServlet extends HttpServlet {
     	String fileString = (String) request.getSession().getAttribute("fileString");
     	
     	if ((fileString == null) || (fileString == "")) {    
-    		System.out.println("SC_NOT_FOUND ");
+    		//System.out.println("SC_NOT_FOUND ");
             response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
             return;
         }
@@ -39,7 +39,7 @@ public class PdfReportServlet extends HttpServlet {
     	
     	String path = jboss + "\\Proyecto\\imagenes.war\\" + fileString;
         
-        System.out.println("path " + path); 
+        //System.out.println("path " + path); 
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();           
         baos = convertPDFToByteArrayOutputStream(path);

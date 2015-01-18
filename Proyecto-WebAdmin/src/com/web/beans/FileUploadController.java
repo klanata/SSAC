@@ -38,7 +38,7 @@ public class FileUploadController {
 	public void copyFile(String fileName, InputStream in) {	
 		
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
-		System.out.println("El id del evento catastrofe imagen: " + idEventoString);		
+		//System.out.println("El id del evento catastrofe imagen: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			

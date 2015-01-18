@@ -43,7 +43,7 @@ public class FileUploadControllerPlan {
 	public void copyFile(String fileName, InputStream in) {	
 		
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");		
-		System.out.println("El id del evento catastrofe plan de riesgo: " + idEventoString);		
+		//System.out.println("El id del evento catastrofe plan de riesgo: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe al subir el plan. "); 			
@@ -137,7 +137,7 @@ public class FileUploadControllerPlan {
 	public void asignarPlanDeRiesgo(){
 		
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");		
-		System.out.println("El id del evento catastrofe plan de riesgo: " + idEventoString);		
+		//System.out.println("El id del evento catastrofe plan de riesgo: " + idEventoString);		
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			
