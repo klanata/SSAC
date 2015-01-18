@@ -147,12 +147,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 			imagenesCat.add(imgCat);						
 			dataService.update(c);						
 			//System.out.println("probando agregar imagen de nombre: " + nombImagen);			
-		}
-		else
-		{
-			//System.out.println("La imagen ya estaba en la catastrofe.");
-		}	
-		
+		}				
 		
 	}
 
