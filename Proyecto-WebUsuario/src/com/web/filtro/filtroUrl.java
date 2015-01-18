@@ -149,7 +149,7 @@ public class filtroUrl implements Filter , Serializable {
 			 System.out.print(urlStr+"protegido: ");
 			 System.out.print(noProteger);
 			  
-			  //Si no requiere protección continúo normalmente.
+			  //Si no requiere protecciï¿½n continï¿½o normalmente.
 			  if (noProteger(urlStr)) {
 				 // res.sendRedirect(req.getContextPath() + "/Index.xhtml");
 			   chain.doFilter(request, response);
@@ -193,13 +193,14 @@ public class filtroUrl implements Filter , Serializable {
 
 			
 				res.sendRedirect(req.getContextPath() + "/Index.xhtml");
-					
+				
+				return;
 					
 			  }///else { res.sendRedirect(req.getContextPath() + "/Error.xhtml");}
 			 
 				
 				
-			  //El recurso requiere protección, pero el usuario ya está logueado.
+			  //El recurso requiere protecciï¿½n, pero el usuario ya estï¿½ logueado.
 			  chain.doFilter(request, response);
 		}
 		
