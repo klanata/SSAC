@@ -116,11 +116,11 @@ public class CatastrofeEB implements CatastrofeEBR{
 		if(!esta){						
 			ongs.add(ong);					
 			dataService.update(c);						
-			System.out.println("probando agregar ONG de nombre: " + ong.getNombre());			
+			//System.out.println("probando agregar ONG de nombre: " + ong.getNombre());			
 		}
 		else
 		{
-			System.out.println("La ONG ya estaba en la catastrofe.");
+			//System.out.println("La ONG ya estaba en la catastrofe.");
 		}							
 	}
 	

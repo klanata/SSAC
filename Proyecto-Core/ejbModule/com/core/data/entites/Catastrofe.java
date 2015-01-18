@@ -89,7 +89,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<PedidoDeAyuda> pedidosDeAyuda =  new HashSet<PedidoDeAyuda>(0);
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private Set<PersonasDesaparecidas> personasDesaparecidas =  new HashSet<PersonasDesaparecidas>(0);
 	
 	@OneToOne

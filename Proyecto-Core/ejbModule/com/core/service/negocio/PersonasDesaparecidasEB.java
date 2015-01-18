@@ -60,6 +60,24 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		dataService.update(catastrofe);*/
 			
 	//	}
+		
+		PersonasDesaparecidas persona = dataService.find(PersonasDesaparecidas.class, id);
+		Set<PersonasDesaparecidas> personasDesaparecidasCatastrofe = catastrofe.getPersonasDesaparecidas();
+		
+		boolean esta = false;
+		Long idPersonaDesaparecida;
+		for (PersonasDesaparecidas p : personasDesaparecidasCatastrofe){
+			idPersonaDesaparecida = p.getId();			
+			if(id == idPersonaDesaparecida)
+				esta = true;
+		}
+		if(!esta){		
+			personasDesaparecidasCatastrofe.add(persona);						
+			dataService.update(catastrofe);						
+			//System.out.println("probando agregar persona desaparecida: " + id);			
+		}	
+		
+		
 		return id;
 	}
 	
