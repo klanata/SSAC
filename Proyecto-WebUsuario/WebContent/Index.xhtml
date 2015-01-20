@@ -114,7 +114,9 @@
 								            
             				 <p><u> Descripción: </u></p> 
             				<p>#{imagesView.descripcion}	</p> 
+
             				<br/>  
+            				
             				<u> Imágenes: </u> 
             				<br/>  
 							<p>	
@@ -124,6 +126,8 @@
 							    <div class="caption"></div>
 							</p:contentFlow>           		         	        	
 							</p>
+							 <a href="#banner"  class="button circled scrolly" style="cursor: hand; text-decoration: none" onclick="show('banner');"> ¡AYUDA!</a>
+							<br/>
 							<u> ONGS: </u> 
 							<br/>
 							
@@ -166,7 +170,6 @@
 							
 												</div>
 						<div class="footer">
-							<a href="#banner"  class="button circled scrolly" style="cursor: hand; text-decoration: none" onclick="show('banner');"> ¡AYUDA!</a>
 						
 						</div>
 					</div>
@@ -183,6 +186,7 @@
 								<li><a href="#personasdesap" style="cursor: hand; text-decoration: none" onclick="show('personasdesap');">Alta personas desaparecidas</a></li>
 								<li><a href="#registrousuario" style="cursor: hand; text-decoration: none" onclick="show('registrousuario');">Registro usuario</a></li>
 								<li><a href="#loginusuario" style="cursor: hand; text-decoration: none" onclick="show('loginusuario');">Login</a></li>
+								<li><a href="#desaparecidos" style="cursor: hand; text-decoration: none">Personas Desaparecidas</a></li>
 														
 						</ul>
 					</div>
@@ -257,13 +261,14 @@
    <div class="ui-grid-row">
         <div class="ui-grid-col-1"></div>
         <div class="ui-grid-col-10"><h2><strong><a href="#donacion"> Ayudanos a ayudar ¡Realice donaciones!</a></strong></h2></div>
+       <br/>
        <div class="ui-grid-col-1"></div>
 		 </div>
 		
 	<div class="ui-grid-row">
 	<div class="ui-grid-col-1"></div>
 				 <div class="ui-grid-col-3">
-							 <img src="images/pic07.jpg" alt="" onclick="PF('dlg1').show();" /> 
+							 <img src="images/fru1.jpg" alt="" onclick="PF('dlg1').show();" /> 
 							<header>
 								<h3><a href="#">DONACION DE BIENES</a></h3>
 							</header>
@@ -309,7 +314,7 @@
  <div class="ui-grid-col-1"></div>
  <!-- ECONOMICA -->
 	<div class="ui-grid-col-3">
-				<img src="images/pic07.jpg" alt="" onclick="PF('dlg2').show();" /> 
+				<img src="images/servicio.jpg" alt="" onclick="PF('dlg2').show();" /> 
 							<header>
 								<h3><a href="#">DONACION DE SERIVCIOS</a></h3>
 							</header>
@@ -357,12 +362,12 @@
 <div class="ui-grid-col-1"></div>		
 <!-- DE BIENES -->
 <div class="ui-grid-col-3">
-				<img src="images/pic07.jpg" alt="" onclick="PF('dlg3').show();" /> 
+				<img src="images/visa.jpg" alt="" onclick="PF('dlg3').show();" /> 
 							<header>
 								<h3><a href="#">DONACION ECONOMICA</a></h3>
 							</header>
 							<p>
-								Done un monto mediante paypal.
+								Done un monto mediante paypal a la ONG deseada.
 							</p>
 
 <p:dialog header="DE BIENES" widgetVar="dlg3" showEffect="explode" hideEffect="explode" height="550" width="800">
@@ -406,6 +411,47 @@
 </div>
 </div>
 
+	
+	
+	<!-- MENU DE PERSONAS DESAPARECIDAS -->
+	
+	<div  id="#desaparecidos">
+<div class="ui-grid ui-grid-responsive">
+   <div class="ui-grid-row">
+        <div class="ui-grid-col-1"></div>
+        <div class="ui-grid-col-10"><h2><strong><a href="#desaparecidos"> Personas Desaparecidas</a></strong></h2></div>
+        <br/>
+       <div class="ui-grid-col-1"></div>
+		 </div>
+		
+	<div class="ui-grid-row">
+	<div class="ui-grid-col-1"></div>
+				 <div class="ui-grid-col-3">
+							 <a href="#busperdesap"><img src="images/lupa.jpg" alt="" onclick="#busperdesap" /></a>
+							<header>
+								<h3><a>BUSCAR</a></h3>
+							</header>
+							<p>
+								Búsqueda con información completa de la persona, incluyendo el estado de la misma.
+							</p>
+				</div>
+				
+	<div class="ui-grid-col-1"></div>
+				 <div class="ui-grid-col-3">
+							 <a href="#personasdesap"><img src="images/ingreso.jpg" alt="" onclick="#personasdesap" /></a> 
+							<header>
+								<h3><a>REPORTAR</a></h3>
+							</header>
+							<p>
+								Ingreso en el sistema, para que nuestro equipo de trabajo comience su búsqueda.
+							</p>
+				</div>
+	</div>
+	</div>
+</div>
+			
+	
+	
 	
 					
 	<!-- ALTA DE PERSONAS DESAPARECIDAS -->
@@ -748,7 +794,6 @@
 
   ga('create', 'UA-58538699-1', 'auto');
   ga('send', 'pageview');
-
 </script>
 
 			
