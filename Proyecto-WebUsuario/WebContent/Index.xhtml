@@ -246,7 +246,7 @@
 <div class="ui-grid-row">
 <div class="ui-grid-col-2"></div>
 <div class="ui-grid-col-10">
-                        <p><input type="submit" value="Volver"/></p>
+                        <p><a href="#header"><input type="submit" value="Volver"/></a></p>
                      
 </div>
     </div> 
@@ -464,7 +464,7 @@
 		<h:form id="personasdesaparecidasBean" >
 			 <p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 			     <h:panelGrid>		
-                
+                 <h2><a href="#">INGRESO DE PERSONA DESAPARECIDA</a></h2>
                     <label for="catastrofeId"> Catastrofe:</label>				
 						<p:inputText id="catastrofeId" label="catastrofeId"  value="#{personasdesaparecidasBean.catastrofeId}" required="true" requiredMessage="El nombre es requerido" >	
 						</p:inputText>																																									
@@ -518,6 +518,7 @@
 <h:form id="formPersona">      		
       		
       		<p:growl id="msgs" showDetail="true" />
+      		 <h2><a href="#">BUSCAR PERSONA DESAPARECIDA</a></h2>
     		<p:dataTable id="perDT" var="personaBean" widgetVar="personaTable" value = "#{listapersonaBean.personasBean}"
                  		 emptyMessage="No se han encontrado administrador con ese criterio"  filteredValue="#{listapersonaBean.filtroPersonafeBean}"               		  
                  		 paginator="true" rows="5" paginatorPosition="top"
@@ -631,6 +632,7 @@
 
 		<p:growl id="mensajes" showDetail="true" life="2000" />
 					<h:form id= "formularioIngreso1">
+						<h2><a href="#">LOGIN</a></h2>
 						
 						<label for="catastrofeId1"> Catastrofe:</label>				
 						<p:inputText id="catastrofeId1" label="catastrofeId1"  value="#{loginBean.idCatastrofe1}"  >	
@@ -648,6 +650,7 @@
 							
 							<div class="section">
 	<p><div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+		<a href="#banner" onclick="show('registrousuario');">Registro</a>
 		</p>
 	
 							</div>
