@@ -1,9 +1,5 @@
 package com.serviciorest;
 
-import java.io.IOException;
-
-
-
 import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerResponse;
 import com.sun.jersey.spi.container.ContainerResponseFilter;

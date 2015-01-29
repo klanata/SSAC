@@ -1,6 +1,6 @@
 package com.web.beans;
 import java.io.Serializable;
-import java.math.BigDecimal;
+
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

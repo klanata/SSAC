@@ -680,7 +680,7 @@ L.LatLng = function (/*Number*/ rawLat, /*Number*/ rawLng, /*Boolean*/ noWrap) {
 		lng = (lng + 180) % 360 + ((lng < -180 || lng === 180) ? 180 : -180);	// wrap longtitude into -180..180
 	}
 
-	//TODO change to lat() & lng()
+	//
 	this.lat = lat;
 	this.lng = lng;
 };
@@ -867,7 +867,7 @@ L.CRS = {
 	pointToLatLng: function (/*Point*/ point, /*Number*/ scale, /*(optional) Boolean*/ unbounded)/*-> LatLng*/ {
 		var untransformedPoint = this.transformation.untransform(point, scale);
 		return this.projection.unproject(untransformedPoint, unbounded);
-		//TODO get rid of 'unbounded' everywhere
+		//
 	},
 
 	project: function (latlng) {
@@ -3171,7 +3171,7 @@ L.Map.include((L.Path.SVG && !window.L_PREFER_CANVAS) || !L.Browser.canvas ? {} 
 			size = vp.max.subtract(min),
 			root = this._pathRoot;
 
-		//TODO check if it's works properly on mobile webkit
+		//
 		L.DomUtil.setPosition(root, min);
 		root.width = size.x;
 		root.height = size.y;

@@ -31,9 +31,7 @@ public class EconomicaEB implements EconomicaEBR{
 		
 		try {
 			 Long id = economicaDAO.agregarDonacionEconomicaOng(eco);
-			/*Collection<Economica> list = ong.getDonacionesEconomicas();
-			list.add(eco);
-			dataService.update(ong);*/
+			
 		} catch (Exception e) {
 			throw e;
 		}

@@ -1,5 +1,5 @@
 package com.core.service.negocio;
-import java.util.Collection;
+
 import java.util.Date;
 
 import javax.ejb.EJB;

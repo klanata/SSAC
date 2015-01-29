@@ -68,7 +68,7 @@ public class LoginBean implements Serializable {
 		try {
 			Long id= manager.crearAdministrador("Administrador", "admin", "Sistema", "admin@ssac.com.uy", "admin", fechaNac, "Femenino", "1523639");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// 
 			e.printStackTrace();
 		}
 	

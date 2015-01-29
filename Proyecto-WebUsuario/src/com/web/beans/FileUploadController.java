@@ -18,7 +18,7 @@ import org.primefaces.event.FileUploadEvent;
 
 import clienteutility.ClienteUtility;
 
-import com.core.service.negocio.remote.CatastrofeEBR;
+
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
 
 @ManagedBean(name="fileUploadController")

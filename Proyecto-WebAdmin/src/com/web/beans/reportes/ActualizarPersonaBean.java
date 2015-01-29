@@ -1,11 +1,8 @@
 package com.web.beans.reportes;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
 
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
@@ -99,8 +96,8 @@ public class ActualizarPersonaBean implements Serializable {
 				//cargamos datos a mostrar
 						
 				//Long id;
-				String nombre = p.getNombre();
-				String apellido= p.getApellido();
+				//String nombre = p.getNombre();
+				String apellido= p.getNombre() + p.getApellido();
 				String cedula = p.getCedula();
 				boolean hallada = p.isHallada();
 				String nombreCatastrofe = p.getCatastrofe().getNombreEvento();
@@ -152,24 +149,10 @@ public class ActualizarPersonaBean implements Serializable {
 		else	
 		{
 			
-			String cedula = personasdesaparecidasBean.getCedula();
+			
 			Long idPersonaDesaparecida = personasdesaparecidasBean.getId();
 			Long idCatastrofe = personasdesaparecidasBean.getIdCatastrofe();
-			/*String nombre = personasdesaparecidasBean.getNombre();
-			String apellido= personasdesaparecidasBean.getApellido();
 			
-	
-			String descripcion = personasdesaparecidasBean.getDescripcion();
-			
-			
-			String telefono= personasdesaparecidasBean.getNumeroContacto();
-			Date fechaNacimiento = personasdesaparecidasBean.getFechNac();
-			
-			System.out.println("*************2222222222222222222222: " + idCatastrofe);      
-			System.out.println("*************Teefon 2222222222222222222222: " + telefono);     
-			System.out.println("*************FEcha 2222222222222222222222: " + fechaNacimiento);     
-			
-			//String imagen = "tomarla";*/
 			manager.ActualizarEstadoPersonaDesaparecida(idPersonaDesaparecida, idCatastrofe);			
 
 

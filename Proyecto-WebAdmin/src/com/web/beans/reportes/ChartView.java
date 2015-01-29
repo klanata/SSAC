@@ -2,7 +2,7 @@ package com.web.beans.reportes;
 import javax.annotation.PostConstruct;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -80,7 +80,7 @@ public class ChartView implements Serializable {
 			listaDE = manager.listaDeEconomicaEnTiempo(fechaInicio, fechaInicio);
 			Iterator<Economica> it2 = listaDE.iterator();
     		int y= 0;
-    		BigDecimal monto = new BigDecimal(0);
+    		//BigDecimal monto = new BigDecimal(0);
     		/*para formar la grafica*/
     		BarChartModel model = new BarChartModel();
     		ChartSeries donacionEconomica = new ChartSeries();

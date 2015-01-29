@@ -744,12 +744,12 @@
 		},
 		getMaximumWidth = helpers.getMaximumWidth = function(domNode){
 			var container = domNode.parentNode;
-			// TODO = check cross browser stuff with this.
+			// 
 			return container.clientWidth;
 		},
 		getMaximumHeight = helpers.getMaximumHeight = function(domNode){
 			var container = domNode.parentNode;
-			// TODO = check cross browser stuff with this.
+			// 
 			return container.clientHeight;
 		},
 		getMaximumSize = helpers.getMaximumSize = helpers.getMaximumWidth, // legacy support

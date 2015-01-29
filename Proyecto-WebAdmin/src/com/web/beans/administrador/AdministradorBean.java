@@ -1,7 +1,7 @@
 package com.web.beans.administrador;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,9 +10,9 @@ import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
