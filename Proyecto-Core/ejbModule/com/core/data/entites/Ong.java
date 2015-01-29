@@ -62,7 +62,7 @@ public class Ong  extends AbstractEntity implements Serializable{
 	
 	private String email= "";
 	
-	private String citioWeb = "";
+	private String sitioWeb = "";
 	
 	@Column(length=10000,nullable= false)
 	private String descripcion = "";
@@ -138,12 +138,12 @@ public class Ong  extends AbstractEntity implements Serializable{
 		this.email = email;
 	}
 
-	public String getCitioWeb() {
-		return citioWeb;
+	public String getsitioWeb() {
+		return sitioWeb;
 	}
 
-	public void setCitioWeb(String citioWeb) {
-		this.citioWeb = citioWeb;
+	public void setsitioWeb(String sitioWeb) {
+		this.sitioWeb = sitioWeb;
 	}
 
 	public String getDescripcion() {

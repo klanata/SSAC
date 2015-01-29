@@ -29,7 +29,7 @@ public class OngEB implements OngEBR{
 			throws Exception {
 		
 		Ong o= new Ong();
-		o.setCitioWeb(citioWeb);
+		o.setsitioWeb(citioWeb);
 		o.setDescripcion(descripcion);
 		o.setDireccion(direccion);
 		o.setEmail(email);
@@ -92,7 +92,7 @@ public class OngEB implements OngEBR{
 		
 		//obtengo la ong
 		Ong o =ongService.buscarOngPorNick(nombre);
-		o.setCitioWeb(citioWeb);
+		o.setsitioWeb(citioWeb);
 		o.setDescripcion(descripcion);
 		o.setDireccion(direccion);
 		o.setEmail(email);
