@@ -17,7 +17,9 @@ public interface PersonasDesaparecidasDAO extends JPAService {
 	
 	public PersonasDesaparecidas buscarPersonaPorId(Long id) throws Exception;
 
+	public PersonasDesaparecidas buscarPersonaPorIdAndIdCatastrofe(long idPersonaDesaparecida, long idCatastrofe);
 	public List<PersonasDesaparecidas> listarTodasLasPersonas() throws Exception;
+	
 	
 	
 }

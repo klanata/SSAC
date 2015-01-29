@@ -143,6 +143,19 @@ private static final long serialVersionUID = 1L;
 				 /* Set<ImagenPersonaDesaparecida> lista =  a.getImagenes();
 				  Iterator<ImagenPersonaDesaparecida> it = lista.iterator();
 				  imagen = it.next();*/
+				  
+				  if (a.getImagenes().isEmpty()){
+					  imagen = "images/demo/usuarioAnonimo.jpg";  
+				  }
+				  else
+				  {
+					  Set<ImagenPersonaDesaparecida> lista =  a.getImagenes();
+					  Iterator<ImagenPersonaDesaparecida> itlista = lista.iterator();
+					  ImagenPersonaDesaparecida objImagen = itlista.next();
+					  
+					  imagen = objImagen.getPath();
+				  }
+				  
 				  personasBean.add(i, new PersonasDesaparecidasBean(nombreCatastrofe, id, idCatastrofe, nombre, apellido,cedula, numeroContacto, fechNac, descripcion, hallada, imagen));
 				  
 				  i++;

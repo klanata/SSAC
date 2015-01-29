@@ -21,6 +21,6 @@ public interface PersonasDesaparecidasEBR {
 	public PersonasDesaparecidas buscarPersonaDesaparecida(Long idCatastrofe, String nomPersona, String apePersona) throws Exception;
 	public List<PersonasDesaparecidas> listarPersonas() throws Exception;
 	
-	public void ActualizarEstadoPersonaDesaparecida(String apellido, String descripcion, String cedula, Date fechaNacimiento,boolean hallada,String nombre, String telefono, long idCatastrofe);
+	public void ActualizarEstadoPersonaDesaparecida(long idPersonaDesaparecida, long idCatastrofe);
 	
 }

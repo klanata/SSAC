@@ -10,14 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.ejb.EJB;
-
-import com.core.data.entites.Administrador;
-import com.core.data.entites.Catastrofe;
 import com.core.data.entites.PersonasDesaparecidas;
 import com.core.data.persistencia.interfaces.locales.PersonasDesaparecidasDAO;
 
@@ -66,7 +59,7 @@ private static final long serialVersionUID = 1L;
 	  	return existe;
 	}
 	
-	
+	////////////////////////////////////////////////////////////////////////////////////////////////
 	public List<PersonasDesaparecidas> buscarPersonaPorCat(int idCat)throws Exception {	
 		try{
                
@@ -77,7 +70,7 @@ private static final long serialVersionUID = 1L;
 		}  catch (Exception excep){			
 			throw excep;
 		}	 
-}
+	}
 
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,7 +94,7 @@ private static final long serialVersionUID = 1L;
 		return perDesap;
 	}
 	
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<PersonasDesaparecidas> listarTodasLasPersonas() throws Exception{
 		
@@ -114,7 +107,7 @@ private static final long serialVersionUID = 1L;
 		}	  	
 	}
 	
-
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public PersonasDesaparecidas buscarPersonaPorId(Long id) throws Exception{
 		
@@ -132,6 +125,27 @@ private static final long serialVersionUID = 1L;
 		} catch (Exception excep){			
 			throw excep;
 		}	  	
+	}
+	///////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public PersonasDesaparecidas buscarPersonaPorIdAndIdCatastrofe(
+			long idPersonaDesaparecida, long idCatastrofe) {
+		PersonasDesaparecidas perDesap = null;
+		
+		
+		try{
+			Query consulta = this.em.createNamedQuery("PersonasDesaparecidas.BuscarPorID.Catastrofe");
+			consulta.setParameter("idCatastrofe", idCatastrofe);
+		  	consulta.setParameter("idPersonaDesaparecida", idPersonaDesaparecida);
+		  	
+		   		if (!consulta.getResultList().isEmpty()){
+		  		perDesap = (PersonasDesaparecidas)consulta.getResultList().get(0);
+			}
+		}catch (Exception excep){			
+			throw excep;
+		} 
+		
+		return perDesap;
 	}
 	
 	

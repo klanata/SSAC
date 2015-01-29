@@ -155,48 +155,41 @@
 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
+    <div class="">
       <h1>Actualizar Estado Persona Desaparecida</h1>
       
       <f:view>
 		<h:form id="registroOng" >
 			<h:messages id="messages" for="registroOng"></h:messages>
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-		<h:panelGrid columns="1" cellpadding="2">		
 			
-				<p>
-				<label for="nombre">Nombre : #{actualizarPersonaBean.personasdesaparecidasBean.nombre} </label>				
-																																														
-				</p>
-				<br/>
-				<p>
-				<label for="apellido">Apellido : #{actualizarPersonaBean.personasdesaparecidasBean.apellido} </label>				
-																																														
-				</p>
-				<br/>
-				
-				
-				<p>
-				<label for="telefono">Telefono : #{actualizarPersonaBean.personasdesaparecidasBean.numeroContacto}</label>				
-																																														
-				</p>
-				<br/>
-				<label for="telefono">Telefono : #{actualizarPersonaBean.personasdesaparecidasBean.fechNac}</label>
-				
-				
-				 </h:panelGrid>
-				
-				<p:outputLabel for="encontrada" value="Hallada ?:"  />
-		        <p:selectOneRadio id="encontrada" value="#{actualizarPersonaBean.encontrada}">
-		            <f:selectItem itemLabel="True" itemValue="True" />
-		            <f:selectItem itemLabel="False" itemValue="False" />
-		         </p:selectOneRadio>
-											
-																			
-				
-			<p:commandButton id="comandoActualizar" update="growl"  type="submit" style="margin-left: 150px;" styleClass="formbutton" value="Actualizar" action="#{actualizarPersonaBean.editar()}">
+			
+				<p:panelGrid columns="2">
+				    <f:facet name="header">
+				         <p:graphicImage name="images/demo/usuarioAnonimo.jpg"/>
+				    </f:facet>
+				 
+				    <h:outputText value="Nombre:" />
+				    <h:outputText value="#{actualizarPersonaBean.personasdesaparecidasBean.nombre}" />
+				    
+				 
+				    <h:outputText value="Apellido:" />
+				    <h:outputText value="#{actualizarPersonaBean.personasdesaparecidasBean.apellido}" />
+				    
+				    <h:outputText value="C.I:" />
+				    <h:outputText value="#{actualizarPersonaBean.personasdesaparecidasBean.cedula}" />
+				 
+				    <h:outputText value="Número de Contacto:" />
+				    <h:outputText value="#{actualizarPersonaBean.personasdesaparecidasBean.numeroContacto}" />
+				 
+				    <h:outputText value="Descripción:" />
+				    <h:outputText value="#{actualizarPersonaBean.personasdesaparecidasBean.descripcion}" />
+					    
+				</p:panelGrid>
+				    <p:commandButton id="comandoActualizar" update="growl"  type="submit" style="margin-left: 550px;" styleClass="formbutton" value="Encontrada" action="#{actualizarPersonaBean.editar()}">
 			</p:commandButton>		
-		
+				
+			
 		</h:form>
 		</f:view>
     </div>

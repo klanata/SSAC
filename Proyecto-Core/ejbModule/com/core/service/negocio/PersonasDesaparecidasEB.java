@@ -147,14 +147,12 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 	}
 	/**************************************************************************/
 
-	public void ActualizarEstadoPersonaDesaparecida(String apellido,
-			String descripcion, String cedula, Date fechaNacimiento, boolean hallada,
-			String nombre, String telefono, long idCatastrofe) {
+	public void ActualizarEstadoPersonaDesaparecida(long idPersonaDesaparecida, long idCatastrofe)
+	{
 		
 		
-		PersonasDesaparecidas persona= personadesaparecidaDAO.buscarPersonaDesaparecida(idCatastrofe, nombre, apellido);
+		PersonasDesaparecidas persona = personadesaparecidaDAO.buscarPersonaPorIdAndIdCatastrofe(idPersonaDesaparecida, idCatastrofe);
 		persona.setHallada(true);
-		
 		dataService.update(persona);
 		
 	}

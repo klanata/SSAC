@@ -29,7 +29,13 @@ allocationSize=1)
 			query = "SELECT e "+
 			"FROM PersonasDesaparecidas e " +
 			"WHERE e.nombre = :nomPer AND e.apellido = :apePer AND e.catastrofe.id = :idCatastrofe"),
-					
+
+@NamedQuery(name="PersonasDesaparecidas.BuscarPorID.Catastrofe", 
+query = "SELECT p "+
+"FROM PersonasDesaparecidas p " +
+"WHERE p.id = :idPersonaDesaparecida AND p.catastrofe.id = :idCatastrofe"),
+
+			
 @NamedQuery(name="PersonasDesaparecidas.BuscarPersona.Id", 
 				query = "SELECT c "+
 				"FROM PersonasDesaparecidas c " +

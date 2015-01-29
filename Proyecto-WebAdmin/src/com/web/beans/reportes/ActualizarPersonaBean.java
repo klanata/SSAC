@@ -151,22 +151,26 @@ public class ActualizarPersonaBean implements Serializable {
 		}
 		else	
 		{
-			String nombre = personasdesaparecidasBean.getNombre();
-			String apellido= personasdesaparecidasBean.getApellido();
+			
 			String cedula = personasdesaparecidasBean.getCedula();
+			Long idPersonaDesaparecida = personasdesaparecidasBean.getId();
+			Long idCatastrofe = personasdesaparecidasBean.getIdCatastrofe();
+			/*String nombre = personasdesaparecidasBean.getNombre();
+			String apellido= personasdesaparecidasBean.getApellido();
+			
 	
 			String descripcion = personasdesaparecidasBean.getDescripcion();
-			Long idCatastrofe = personasdesaparecidasBean.getIdCatastrofe();
+			
 			
 			String telefono= personasdesaparecidasBean.getNumeroContacto();
 			Date fechaNacimiento = personasdesaparecidasBean.getFechNac();
-			boolean hallada = personasdesaparecidasBean.getHallada();
+			
 			System.out.println("*************2222222222222222222222: " + idCatastrofe);      
 			System.out.println("*************Teefon 2222222222222222222222: " + telefono);     
 			System.out.println("*************FEcha 2222222222222222222222: " + fechaNacimiento);     
 			
-			//String imagen = "tomarla";
-			manager.ActualizarEstadoPersonaDesaparecida(apellido, descripcion, cedula, fechaNacimiento, hallada, nombre, telefono, idCatastrofe);			
+			//String imagen = "tomarla";*/
+			manager.ActualizarEstadoPersonaDesaparecida(idPersonaDesaparecida, idCatastrofe);			
 
 
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
