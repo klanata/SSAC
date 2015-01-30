@@ -1,6 +1,6 @@
 package com.serviciorest;
 
-import java.math.BigDecimal;
+
 import java.util.Date;
 
 import javax.naming.Context;
@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import clienteutility.ClienteUtility;
 
-import com.core.data.entites.PedidoDeAyuda;
+
 import com.core.service.negocio.remote.PedidoDeAyudaEBR;
 
 import javax.ejb.LocalBean;

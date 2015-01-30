@@ -6,9 +6,9 @@ import java.util.Date;
 
 import javax.ejb.Remote;
 
-import com.core.data.entites.Catastrofe;
+
 import com.core.data.entites.EstadoRescatista;
-import com.core.data.entites.PedidoDeAyuda;
+
 import com.core.data.entites.Rescatista;
 
 import cross_cuting.enums.PlanesPendientesRescatistaDTO;

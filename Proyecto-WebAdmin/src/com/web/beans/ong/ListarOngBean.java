@@ -2,8 +2,7 @@ package com.web.beans.ong;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -115,7 +114,7 @@ public class ListarOngBean implements Serializable{
 				direccion = ong.getDireccion();												
 				telefono = ong.getTelefono();																					
 				email = ong.getEmail();
-				citioWeb = ong.getCitioWeb();
+				citioWeb = ong.getsitioWeb();
 				descripcion = ong.getDescripcion();			
 				imagen = ong.getImagen();
 				listaOngBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion,imagen));	

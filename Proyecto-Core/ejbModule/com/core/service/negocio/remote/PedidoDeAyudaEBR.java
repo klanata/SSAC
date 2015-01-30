@@ -1,5 +1,4 @@
 package com.core.service.negocio.remote;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Remote;

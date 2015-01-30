@@ -23,14 +23,14 @@ public class LoginFilter implements Filter {
      * Default constructor. 
      */
     public LoginFilter() {
-        // TODO Auto-generated constructor stub
+        // 
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+		// 
 	}
 
 	/**

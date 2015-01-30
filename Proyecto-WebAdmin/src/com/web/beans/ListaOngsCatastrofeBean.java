@@ -147,7 +147,7 @@ public class ListaOngsCatastrofeBean implements Serializable{
 							direccionOngCat = ongCatastrofe.getDireccion();												
 							telefonoOngCat = ongCatastrofe.getTelefono();																					
 							emailOngCat = ongCatastrofe.getEmail();
-							citioWebOngCat = ongCatastrofe.getCitioWeb();
+							citioWebOngCat = ongCatastrofe.getsitioWeb();
 							descripcionOngCat = ongCatastrofe.getDescripcion();		
 							imagen = ongCatastrofe.getImagen(); 
 							ongsBeanCat.add(iOngCat, new OngBean(idOngCat,nombreOngCat,direccionOngCat,telefonoOngCat,emailOngCat,citioWebOngCat,descripcionOngCat,imagen));
@@ -196,7 +196,7 @@ public class ListaOngsCatastrofeBean implements Serializable{
 						direccion = ong.getDireccion();												
 						telefono = ong.getTelefono();																					
 						email = ong.getEmail();
-						citioWeb = ong.getCitioWeb();
+						citioWeb = ong.getsitioWeb();
 						descripcion = ong.getDescripcion();	
 						imagen = ong.getImagen();
 						ongsBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion,imagen));									    		

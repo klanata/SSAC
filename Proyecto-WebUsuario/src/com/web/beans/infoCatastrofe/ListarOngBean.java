@@ -1,6 +1,6 @@
 package com.web.beans.infoCatastrofe;
 
-import java.io.IOException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,27 +13,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
-
 import clienteutility.ClienteUtility;
-
-import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Ong;
 import com.core.service.negocio.remote.CatastrofeEBR;
-import com.core.service.negocio.remote.OngEBR;
 
 @ManagedBean(name="listarOngUsuarioBean")
 @RequestScoped
@@ -93,10 +81,10 @@ public class ListarOngBean implements Serializable{
     public void init() {
     	
 		CatastrofeEBR manager = null;		
-		boolean encontre= false;
+		//boolean encontre= false;
 		Context context = null;
-		Catastrofe catastrofe = null;		
-		FacesMessage message = null; 
+		//Catastrofe catastrofe = null;		
+		//FacesMessage message = null; 
 		Ong ong = null;
 		
 		try {
@@ -143,7 +131,7 @@ public class ListarOngBean implements Serializable{
 				direccion = ong.getDireccion();												
 				telefono = ong.getTelefono();																					
 				email = ong.getEmail();
-				citioWeb = ong.getCitioWeb();
+				citioWeb = ong.getsitioWeb();
 				descripcion = ong.getDescripcion();			
 				imagen = ong.getImagen();
 				listaOngBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion,imagen));	

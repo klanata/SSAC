@@ -19,7 +19,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.core.data.entites.EstadoRescatista;
-import com.core.data.entites.Ong;
 import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.entites.Rescatista;
 import com.core.data.persistencia.interfaces.locales.RescatistaDAO;

@@ -130,7 +130,7 @@ public class CatastrofeDAOImpl extends AbstractService implements CatastrofeDAO{
 
 	@Override
 	protected EntityManager getEntityManager() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	

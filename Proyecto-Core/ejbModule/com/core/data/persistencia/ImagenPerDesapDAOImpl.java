@@ -13,9 +13,9 @@ import javax.persistence.TypedQuery;
 
 import java.util.List;
 
-import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
+
 import com.core.data.persistencia.interfaces.locales.ImagenPersonaDesaparecidaDAO;
-import com.core.data.entites.PersonasDesaparecidas;
+
 import com.core.data.entites.ImagenPersonaDesaparecida;
 
 @Stateless
@@ -121,7 +121,7 @@ public class ImagenPerDesapDAOImpl extends AbstractService implements ImagenPers
 
 	@Override
 	protected EntityManager getEntityManager() {
-		// TODO Auto-generated method stub
+		// 
 		return null;
 	}
 	

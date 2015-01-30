@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -26,12 +26,8 @@ import clienteutility.ClienteUtility;
 
 import com.core.data.entites.ImagenPersonaDesaparecida;
 import com.core.data.entites.PersonasDesaparecidas;
-import com.core.data.entites.Rescatista;
+
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
-import com.core.service.negocio.remote.RescatistaEBR;
-import com.web.beans.rescatista.RescatistaBean;
-
-
 
 @ManagedBean(name="listarPersonasDesaparecidasBean")
 @RequestScoped

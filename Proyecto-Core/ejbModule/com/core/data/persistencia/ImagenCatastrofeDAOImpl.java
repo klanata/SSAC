@@ -15,7 +15,6 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
-import com.core.data.entites.Catastrofe;
 import com.core.data.entites.ImagenCatastrofe;
 
 @Stateless
@@ -125,7 +124,7 @@ public class ImagenCatastrofeDAOImpl extends AbstractService implements ImagenCa
 
 	@Override
 	protected EntityManager getEntityManager() {
-		// TODO Auto-generated method stub
+		// 
 		return null;
 	}
 	

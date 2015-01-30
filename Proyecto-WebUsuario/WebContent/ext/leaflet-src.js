@@ -607,7 +607,7 @@ L.DomUtil = {
 		}
 	},
 
-	//TODO refactor away this ugly translate/position mess
+	//
 
 	testProp: function (props) {
 		var style = document.documentElement.style;
@@ -810,7 +810,7 @@ L.LatLngBounds = L.Class.extend({
 	}
 });
 
-//TODO International date line?
+//
 
 
 /*
@@ -1097,7 +1097,7 @@ L.Map = L.Class.extend({
 		if (layer.options && !isNaN(layer.options.minZoom)) {
 			this._layersMinZoom = Math.min(this._layersMinZoom || Infinity, layer.options.minZoom);
 		}
-		//TODO getMaxZoom, getMinZoom in ILayer (instead of options)
+		//
 
 		if (this.options.zoomAnimation && L.TileLayer && (layer instanceof L.TileLayer)) {
 			this._tileLayersNum++;
@@ -1480,7 +1480,7 @@ L.Map = L.Class.extend({
 				if (this.options[i]) {
 					this[i].enable();
 				}
-				// TODO move enabling to handler contructor
+				// 
 			}
 		}
 	},
@@ -2065,9 +2065,9 @@ L.ImageOverlay = L.Class.extend({
 		this._image = L.DomUtil.create('img', 'leaflet-image-layer');
 
 		this._image.style.visibility = 'hidden';
-		//TODO opacity option
+		//
 
-		//TODO createImage util method to remove duplication
+		//
 		L.Util.extend(this._image, {
 			galleryimg: 'no',
 			onselectstart: L.Util.falseFn,
@@ -2198,7 +2198,7 @@ L.Marker = L.Class.extend({
 	onRemove: function (map) {
 		this._removeIcon();
 
-		// TODO move to Marker.Popup.js
+		// 
 		if (this.closePopup) {
 			this.closePopup();
 		}
@@ -2354,7 +2354,7 @@ L.Popup = L.Class.extend({
 
 		this._update();
 
-		this._container.style.opacity = '1'; //TODO fix ugly opacity hack
+		this._container.style.opacity = '1'; //
 
 		this._opened = true;
 	},
@@ -2706,7 +2706,7 @@ L.Path = L.Class.extend({
 
 		clickable: true,
 
-		// TODO remove this, as all paths now update on moveend
+		// 
 		updateOnMoveEnd: true
 	},
 
@@ -2761,7 +2761,7 @@ L.Map.include({
 	_updatePathViewport: function () {
 		var p = L.Path.CLIP_PADDING,
 			size = this.getSize(),
-			//TODO this._map._getMapPanePos()
+			//
 			panePos = L.DomUtil.getPosition(this._mapPane),
 			min = panePos.multiplyBy(-1).subtract(size.multiplyBy(p)),
 			max = min.add(size.multiplyBy(1 + p * 2));
@@ -2836,7 +2836,7 @@ L.Path = L.Path.extend({
 		this._path.setAttribute('d', str);
 	},
 
-	// TODO remove duplication with L.Map
+	// 
 	_initEvents: function () {
 		if (this.options.clickable) {
 			if (!L.Browser.vml) {
@@ -3078,7 +3078,7 @@ L.Path = (L.Path.SVG && !window.L_PREFER_CANVAS) || !L.Browser.canvas ? L.Path :
 
 				this._ctx[drawMethod](point.x, point.y);
 			}
-			// TODO refactor ugly hack
+			// 
 			if (this instanceof L.Polygon) {
 				this._ctx.closePath();
 			}
@@ -3119,13 +3119,13 @@ L.Path = (L.Path.SVG && !window.L_PREFER_CANVAS) || !L.Browser.canvas ? L.Path :
 
 		this._ctx.restore();
 
-		// TODO optimization: 1 fill/stroke for all features with equal style instead of 1 for each feature
+		// 
 	},
 
 	_initEvents: function () {
 		if (this.options.clickable) {
-			// TODO hand cursor
-			// TODO mouseover, mouseout, dblclick
+			// 
+			// 
 			this._map.on('click', this._onClick, this);
 		}
 	},
@@ -3618,7 +3618,7 @@ L.Polygon = L.Polyline.extend({
 		L.Polyline.prototype.projectLatlngs.call(this);
 
 		// project polygon holes points
-		// TODO move this logic to Polyline to get rid of duplication
+		// 
 		this._holePoints = [];
 
 		if (!this._holes) {
@@ -3832,7 +3832,7 @@ L.Polygon.include(!L.Path.CANVAS ? {} : {
 			i, j, k,
 			len, len2;
 
-		// TODO optimization: check if within bounds first
+		// 
 
 		if (L.Polyline.prototype._containsPoint.call(this, p, true)) {
 			// click on polygon border
@@ -4394,7 +4394,7 @@ L.Map.Drag = L.Handler.extend({
 			.fire('dragend');
 
 		if (map.options.maxBounds) {
-			// TODO predrag validation instead of animation
+			// 
 			L.Util.requestAnimFrame(this._panInsideMaxBounds, map, true, map._container);
 		}
 	},
@@ -4412,7 +4412,7 @@ L.Map.Drag = L.Handler.extend({
 L.Map.DoubleClickZoom = L.Handler.extend({
 	addHooks: function () {
 		this._map.on('dblclick', this._onDoubleClick);
-		// TODO remove 3d argument?
+		// 
 	},
 
 	removeHooks: function () {
@@ -4653,7 +4653,7 @@ L.Map.BoxZoom = L.Handler.extend({
 		this._box = L.DomUtil.create('div', 'leaflet-zoom-box', this._pane);
 		L.DomUtil.setPosition(this._box, this._startLayerPoint);
 
-		//TODO move cursor to styles
+		//
 		this._container.style.cursor = 'crosshair';
 
 		L.DomEvent.addListener(document, 'mousemove', this._onMouseMove, this);
@@ -5011,7 +5011,7 @@ L.Control.Layers = L.Class.extend({
 				L.DomEvent.addListener(link, 'focus', this._expand, this);
 			}
 			this._map.on('movestart', this._collapse, this);
-			// TODO keyboard accessibility
+			// 
 
 			this._container.appendChild(link);
 		} else {
@@ -5112,7 +5112,7 @@ L.Transition = L.Class.extend({
 	statics: {
 		CUSTOM_PROPS_SETTERS: {
 			position: L.DomUtil.setPosition
-			//TODO transform custom attr
+			//
 		},
 
 		implemented: function () {
@@ -5495,7 +5495,7 @@ L.Map.include(!L.DomUtil.TRANSITION ? {} : {
 
 		// Android doesn't like translate/scale chains, transformOrigin + scale works better but
 		// it breaks touch zoom which Anroid doesn't support anyway, so that's a really ugly hack
-		// TODO work around this prettier
+		// 
 		if (L.Browser.android) {
 			this._tileBg.style[transform + 'Origin'] = origin.x + 'px ' + origin.y + 'px';
 			scaleStr = 'scale(' + scale + ')';
@@ -5561,7 +5561,7 @@ L.Map.include(!L.DomUtil.TRANSITION ? {} : {
 		L.Util.falseFn(this._tileBg.offsetWidth);
 		this._resetView(this._animateToCenter, this._animateToZoom, true, true);
 
-		this._mapPane.className = this._mapPane.className.replace(' leaflet-zoom-anim', ''); //TODO toggleClass util
+		this._mapPane.className = this._mapPane.className.replace(' leaflet-zoom-anim', ''); //
 		this._animatingZoom = false;
 	},
 

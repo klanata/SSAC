@@ -3,7 +3,6 @@ import java.util.Collection;
 
 import javax.ejb.Local;
 
-import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.JPAService;
 

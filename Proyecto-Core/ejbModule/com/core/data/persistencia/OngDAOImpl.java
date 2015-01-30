@@ -1,6 +1,6 @@
 package com.core.data.persistencia;
 
-import java.util.Collection;
+
 import java.util.List;
 
 import javax.ejb.EJB;

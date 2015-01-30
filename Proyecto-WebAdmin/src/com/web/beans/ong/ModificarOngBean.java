@@ -1,25 +1,25 @@
 package com.web.beans.ong;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
 
-import com.core.data.entites.Administrador;
+
 import com.core.data.entites.Ong;
-import com.core.service.negocio.remote.AdministradorEBR;
+
 import com.core.service.negocio.remote.OngEBR;
-import com.web.beans.administrador.AdministradorBean;
+
 
 
 @ManagedBean(name="modificarOngBean")
@@ -84,7 +84,7 @@ public class ModificarOngBean implements Serializable{
 				String nombre = a.getNombre();
 				String direccion = a.getDireccion();
 				String descripcion = a.getDescripcion();
-				String citioWeb =  a.getCitioWeb();
+				String citioWeb =  a.getsitioWeb();
 				String email = a.getEmail();
 				String telefono = a.getTelefono();
 				String imagen = a.getImagen();

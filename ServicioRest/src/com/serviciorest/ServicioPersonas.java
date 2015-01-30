@@ -7,18 +7,18 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
+
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
+
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import clienteutility.ClienteUtility;
 
-import com.core.data.entites.Usuario;
+
 import com.core.service.negocio.remote.UsuarioEBR;
 import com.serviciorest.modelo.MiBoolean;
 import com.serviciorest.modelo.Persona;
@@ -139,12 +139,7 @@ public class ServicioPersonas {
         }
 		
 			
-			String login = nick;
-			String password ="1120212";
-			String email = "email@rest.com";
-			String nombre = "nombreResst"; 
-			Date fechaNac = new Date();
-		//	manager.ingesarUsuraio(login, password, email, nombre, fechaNac);
+			
 			
 			
 		

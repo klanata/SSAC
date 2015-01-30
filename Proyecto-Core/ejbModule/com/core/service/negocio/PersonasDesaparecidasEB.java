@@ -51,15 +51,9 @@ public class PersonasDesaparecidasEB  implements PersonasDesaparecidasEBR{
 		perdes.setHallada(hallada);
 		
 	
-		//FIXME: agregue esto vale
+		//
 		id = personadesaparecidaDAO.insert(perdes);
-		/*if(id!=0){
-		Set<PersonasDesaparecidas> lista=catastrofe.getPersonasDesaparecidas();
-		lista.add(perdes);
-		catastrofe.setPersonasDesaparecidas(lista);
-		dataService.update(catastrofe);*/
-			
-	//	}
+	
 		
 		PersonasDesaparecidas persona = dataService.find(PersonasDesaparecidas.class, id);
 		Set<PersonasDesaparecidas> personasDesaparecidasCatastrofe = catastrofe.getPersonasDesaparecidas();

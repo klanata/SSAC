@@ -48,7 +48,7 @@ public class ChartView implements Serializable {
      
    
  
-    @SuppressWarnings("deprecation")
+    
 	private BarChartModel initBarModel() {
     	
     	/*OBTENGO LA INSTANCIA DE CONECCION CON LA BASE*/

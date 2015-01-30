@@ -82,7 +82,7 @@ public class EliminarOngBean implements Serializable{
 					String nombre = a.getNombre();
 					String direccion = a.getDireccion();
 					String descripcion = a.getDescripcion();
-					String citioWeb =  a.getCitioWeb();
+					String citioWeb =  a.getsitioWeb();
 					String email = a.getEmail();
 					String telefono = a.getTelefono();
 					String imagen = a.getImagen();
