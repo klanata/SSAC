@@ -45,8 +45,16 @@ query = "SELECT f "+
 		"FROM Filtro f, IN (f.servicios) s "+
 		"WHERE f.bajaLogica = :bajaLogica AND " +
 		"s.fuente = :fuente "),
+		
+@NamedQuery(name="Filtro.BuscarPorServicio", 
+query = "SELECT f "+
+		"FROM Filtro f, IN (f.servicios) s "+
+		"WHERE f.bajaLogica = :bajaLogica AND " +
+		"s.fuente = :fuente "),
 
 })
+
+
 
 @Table (name = "filtro")
 @XmlRootElement
@@ -60,14 +68,11 @@ public class Filtro extends AbstractEntity implements Serializable {
 	@Column(name= "id", nullable= false)
 	private long id;		
 	
-	@Column(unique=true, nullable= false)
+	@Column(nullable= false)
 	private String descripcion = "";				
 		
-	@ManyToMany(mappedBy="filtros")
-	private Set<Servicio> servicios = new HashSet<Servicio>(0);	
-	
-	@ManyToMany(mappedBy="filtrosCatastrofes" ,cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private Set<Catastrofe> catastrofes = new HashSet<Catastrofe>(0);
+	@ManyToMany(mappedBy="filtros",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private Set<Servicio> servicios = new HashSet<Servicio>(0);			
 	
 	private boolean bajaLogica;
 	
@@ -88,11 +93,11 @@ public class Filtro extends AbstractEntity implements Serializable {
 	 * @param servicios	 
 	 * @param bajaLogica	 	
 	 */
-	public Filtro(String descripcion,Set<Servicio> servicios, boolean bajaLogica) {
+	public Filtro(String descripcion,Set<Servicio> servicios, Set<Catastrofe> catastrofes, boolean bajaLogica) {
 		super();
 		
 		this.descripcion = descripcion;
-		this.servicios = servicios;
+		this.servicios = servicios;		
 		this.bajaLogica = bajaLogica;			
 	}
 	
@@ -123,12 +128,6 @@ public class Filtro extends AbstractEntity implements Serializable {
 	}
 	public void setBajaLogica(boolean bajaLogica) {
 		this.bajaLogica = bajaLogica;
-	}
-	public Set<Catastrofe> getCatastrofes() {
-		return catastrofes;
-	}
-	public void setCatastrofes(Set<Catastrofe> catastrofes) {
-		this.catastrofes = catastrofes;
 	}	
 	
 	

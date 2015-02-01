@@ -13,7 +13,9 @@ import javax.ws.rs.Path;
 import com.core.data.persistencia.interfaces.locales.ServicioDAO;
 import com.core.data.entites.Servicio;
 import com.core.data.entites.Filtro;
+import com.core.data.entites.FiltroServicio;
 import com.core.data.persistencia.interfaces.locales.FiltroDAO;
+import com.core.data.persistencia.interfaces.locales.FiltroServicioDAO;
 import com.core.service.negocio.remote.FiltroEBR;
 import com.core.data.persistencia.DataService;
 
@@ -30,6 +32,9 @@ public class FiltroEB implements FiltroEBR{
 	
 	@EJB
 	private ServicioDAO servicioDAO;
+	
+	@EJB
+	private FiltroServicioDAO filtroServicioDAO;
 	
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -153,23 +158,20 @@ public class FiltroEB implements FiltroEBR{
 		Filtro filtro2;
 		Long id;
 		Long id2;
-		boolean esta;
-		boolean baja;
+		boolean esta;		
 		
 		for (int i=0; i<=listaAllFiltros.size()-1; i++){
 			filtro = listaAllFiltros.get(i);
 			id = filtro.getId();
-			esta = false;
-			baja = false;
+			esta = false;			
 			for (int j=0; j<=listaYoutubeFiltros.size()-1; j++){
-				filtro2 = listaYoutubeFiltros.get(j);
-				baja = filtro2.isBajaLogica();
+				filtro2 = listaYoutubeFiltros.get(j);				
 				id2 = filtro2.getId();
 				if (id == id2){
 					esta = true;					
 				}
 			}			
-			if ((esta == false) && (baja == false)){
+			if (esta == false){
 				listaId.add(id);				
 			}			
 		}
@@ -183,5 +185,75 @@ public class FiltroEB implements FiltroEBR{
 		}		
 		return listaFiltrosNoAsigYoutube;
 	}
+	
+	
+	public List<Filtro> listarFiltrosQueTieneAlMenosUnServicio() throws Exception{
+		
+		List<Filtro> listaFiltrosServicios = new ArrayList<Filtro>();		
+		List<Filtro> listaFiltrosPorServicios = new ArrayList<Filtro>();
+		List<Servicio> listaServicios = servicioDAO.listarServicios();		
+		Servicio s;
+		Filtro f;
+		
+		int k = 0;
+		for (int i=0; i<=listaServicios.size()-1; i++){
+			s = listaServicios.get(i);
+			String fuente = s.getFuente();
+			listaFiltrosPorServicios = filtroDAO.listarFiltrosPorServicio(fuente);
+			
+			for (int j=0; j<=listaFiltrosPorServicios.size()-1; j++){
+				f = listaFiltrosPorServicios.get(j);				
+				listaFiltrosServicios.add(k, f);						
+				k = k + 1;
+			}
+		}									
+		return listaFiltrosServicios;
+	}
+	
+	public List<Filtro> listaFiltrosNoAsignadosAlServicio(String nombreServicio) throws Exception{
+		
+		List<Filtro> listaFiltrosNoAsigServicio = new ArrayList<Filtro>();			
+		List<Filtro> listaAllFiltros = filtroDAO.listarFiltros();
+		//List<Servicio> listaAllServicios = servicioDAO.listarServicios(); 
+		
+		Servicio servicio = servicioDAO.buscarServicioPorFuente(nombreServicio);
+		Long idServicio = servicio.getId();
+				
+		//Lista de todos los filtros del servicio nombreServicio
+		List<FiltroServicio> listaFiltrosServicio = filtroServicioDAO.listarFiltrosServiciosPorIdServicio(idServicio);
+		List<Long> listaId = new ArrayList<Long>();
+		Filtro filtro;
+		//Filtro filtro2;
+		Long id;
+		Long id2;
+		boolean esta;	
+		FiltroServicio filtroServicio;
+		
+		for (int i=0; i<=listaAllFiltros.size()-1; i++){
+			filtro = listaAllFiltros.get(i);
+			id = filtro.getId();
+			esta = false;			
+			for (int j=0; j<=listaFiltrosServicio.size()-1; j++){
+				filtroServicio = listaFiltrosServicio.get(j);						 
+				id2 = filtroServicio.getIdFiltro();
+				if (id == id2){
+					esta = true;					
+				}
+			}			
+			if (esta == false){
+				listaId.add(id);				
+			}			
+		}
+		Filtro filtroRes;
+		Long idRes;
+		for (int k=0; k<=listaId.size()-1; k++){
+			idRes = listaId.get(k);
+			filtroRes = filtroDAO.buscarFiltroPorId(idRes);
+			listaFiltrosNoAsigServicio.add(filtroRes);
+		}		
+		
+		return listaFiltrosNoAsigServicio;
+	}
+	
 	
 }

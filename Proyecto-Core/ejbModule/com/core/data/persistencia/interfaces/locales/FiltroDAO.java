@@ -23,6 +23,8 @@ public interface FiltroDAO extends JPAService{
 	
 	public List<Filtro> listarFiltrosYoutube() throws Exception;
 	
+	public List<Filtro> listarFiltrosPorServicio(String fuente) throws Exception;
+	
 	
 
 }

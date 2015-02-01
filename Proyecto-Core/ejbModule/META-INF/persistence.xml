@@ -21,6 +21,7 @@
 	<class>com.core.data.entites.Servicio</class>
 	<class>com.core.data.entites.Usuario</class>
 	<class>com.core.data.entites.Filtro</class>
+	<class>com.core.data.entites.FiltroServicio</class>
 	<properties>			
 	     <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>		    
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

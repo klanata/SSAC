@@ -28,4 +28,9 @@ public interface FiltroEBR {
 	public List<Filtro> listaFiltrosNoAsignadosAYoutube() throws Exception;
 	//Lista los filtros que no estan asignados a Youtube
 	
+	public List<Filtro> listarFiltrosQueTieneAlMenosUnServicio() throws Exception;
+	//Lista los filtros que tienen asignado al menos un servicio
+	
+	public List<Filtro> listaFiltrosNoAsignadosAlServicio(String nombreServicio) throws Exception;
+	//Lista los filtros que no estan asignados al servicio nombreServicio
 }

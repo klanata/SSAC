@@ -35,11 +35,13 @@ public class FiltroDAOImpl extends AbstractService implements FiltroDAO{
 		Long id;
 		String descripcion = filtro.getDescripcion();
 		try {
+			/*
 			if (this.existeFiltro(descripcion)){				
 				id = (long) 0;				
 			} 
 			else 
-			{				
+			{	
+			*/			
 				this.em.persist(filtro);					
 				TypedQuery<Long> consulta = this.em.createNamedQuery("Filtro.BuscarFiltroId.Descripcion",Long.class);				
 				consulta.setParameter("descripcion", descripcion);				
@@ -49,7 +51,7 @@ public class FiltroDAOImpl extends AbstractService implements FiltroDAO{
 			  	} else {
 			  		id = filtroId.get(0);
 			  	}					
-			} 					
+			//} 					
 			return id;		    
 		} 
 		catch (Exception excep){			
@@ -149,7 +151,21 @@ public class FiltroDAOImpl extends AbstractService implements FiltroDAO{
 	}
 
 
-	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Filtro> listarFiltrosPorServicio(String fuente) throws Exception {
+	  	
+		try {
+			TypedQuery<Filtro> consulta = this.em.createNamedQuery("Filtro.BuscarPorServicio",Filtro.class);
+			boolean bajaLogica = false;
+			//fuente = "Youtube";
+			consulta.setParameter("bajaLogica", bajaLogica);
+			consulta.setParameter("fuente", fuente);			
+			List<Filtro> filtros = consulta.getResultList();			
+		  	return filtros;		
+		} catch (Exception excep){			
+			throw excep;
+		}	  	
+	}
 	
 	
 

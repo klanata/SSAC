@@ -79,10 +79,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	
 	@OneToMany(fetch=FetchType.EAGER)
 	private Set<ImagenCatastrofe> imagenes = new HashSet<ImagenCatastrofe>(0);
-		
-	@ManyToMany(fetch=FetchType.EAGER)
-	private Set<Filtro> filtrosCatastrofes = new HashSet<Filtro>(0);	
-	
+			
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Ong> ongs = new HashSet<Ong>(0);
 	
@@ -100,6 +97,10 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	@Column(length=10000,nullable= false)
 	private String poligono = "";
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	private Set<FiltroServicio> filtroServicio =  new HashSet<FiltroServicio>(0);
+	
+	
 	//	------------------ Constructors  --------------------------------
 	
 	public Catastrofe() {
@@ -113,7 +114,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.prioridad = false;		
 		this.css = new String();
 		this.imagenes = new HashSet<ImagenCatastrofe>();
-		this.filtrosCatastrofes = new HashSet<Filtro>();
+		
 		this.setOngs(new HashSet<Ong>(0));
 		//this.ongs = new HashSet<Ong>(0);
 		this.planDeRiesgo = null;	
@@ -153,8 +154,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 		this.activa = activa;
 		this.prioridad = prioridad;	
 		this.css = css;
-		this.setImagenes(imagenes);
-		this.filtrosCatastrofes = filtros;
+		this.setImagenes(imagenes);		
 		this.setOngs(ongs);
 		//this.ongs = ongs;
 		this.pedidosDeAyuda = pedidosDeAyuda;
@@ -253,13 +253,7 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	public void setBajaLogica(boolean bajaLogica) {
 		this.bajaLogica = bajaLogica;
 	}
-	
-	public Set<Filtro> getFiltrosCatastrofes() {
-		return filtrosCatastrofes;
-	}
-	public void setFiltrosCatastrofes(Set<Filtro> filtrosCatastrofes) {
-		this.filtrosCatastrofes = filtrosCatastrofes;
-	}
+		
 	public Set<PersonasDesaparecidas> getPersonasDesaparecidas() {
 		return personasDesaparecidas;
 	}
@@ -272,6 +266,12 @@ public class Catastrofe extends AbstractEntity implements Serializable {
 	}
 	public void setPoligono(String poligono) {
 		this.poligono = poligono;
+	}
+	public Set<FiltroServicio> getFiltroServicio() {
+		return filtroServicio;
+	}
+	public void setFiltroServicio(Set<FiltroServicio> filtroServicio) {
+		this.filtroServicio = filtroServicio;
 	}
 	
    

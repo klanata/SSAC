@@ -16,7 +16,7 @@ import com.core.data.entites.PlanDeRiesgo;
 @Remote
 public interface CatastrofeEBR {
 
-	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX,double coordenadasY, Boolean activa, Boolean prioridad, String css,  Set<ImagenCatastrofe> imagenes, Set<Filtro> filtros, Set<Ong> ongs,PlanDeRiesgo planDeRiesgo,String poligono)throws Exception;
+	public Long ingresarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX,double coordenadasY, Boolean activa, Boolean prioridad, String css,  Set<ImagenCatastrofe> imagenes, Set<Filtro> filtros, Set<Ong> ongs,PlanDeRiesgo planDeRiesgo,String poligono)throws Exception;
 	//Retorna 0 si no puede ingresar la catastrofe, de lo contrario devuelve el id 
 	
 	public Catastrofe buscaCatastrofePorNombre(String nombreEvento) throws Exception;
@@ -45,14 +45,21 @@ public interface CatastrofeEBR {
 	
 	public void eliminarCSSDeLaCatastrofe(Long idCatastrofe) throws Exception;
 	
-	public void asignarFiltroYoutubeALaCatastrofe(Long idCatastrofe, Long idFiltro) throws Exception;
+	//public void asignarFiltroALaCatastrofe(Long idCatastrofe, Long idFiltro) throws Exception;
 	
-	public List<Filtro> filtrosAsingadosACatastrofe(Long idCatastrofe, String fuente) throws Exception;
+	//public List<Filtro> filtrosAsingadosACatastrofe(Long idCatastrofe, String fuente) throws Exception;
 	//Devuelve los filtros por los que se hace la busqueda para la catastrofe con idCatastrofe
 	
-	public List<String> BusquedaAsingadasACatastrofe(Long idCatastrofe, String fuente) throws Exception;
+	//public List<String> BusquedaAsingadasACatastrofe(Long idCatastrofe, String fuente) throws Exception;
 	//Devuelve en una lista de string los filtros por los que se hace la busqueda para la catastrofe con idCatastrofe
 	
 	public List<Double> ListarCoordenasCatastrofe(Long idCatastrofe) throws Exception;
-	//Devuelve en una lista con las coordenadas de la catastrofe con idCatastrofe
+	//Devuelve la lista con las coordenadas de la catastrofe con idCatastrofe
+	
+	public List<Ong> listaOngsNoAsignadosALaCatastrofe(Long idCatastrofe) throws Exception;
+	//Devuelve la lista con las Ongs no asignadas de la catastrofe con idCatastrofe
+	
+	public void asignarFiltroServicioALaCatastrofe(Long idCatastrofe, Long idFiltroServicio) throws Exception;
+	
+	public void eliminarFiltroServicioDeCatastrofe(Long idFiltroServicio) throws Exception;
 }

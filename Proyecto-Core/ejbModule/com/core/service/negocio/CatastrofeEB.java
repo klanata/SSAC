@@ -16,6 +16,7 @@ import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Ong;
 import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Filtro;
+import com.core.data.entites.FiltroServicio;
 import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.entites.Servicio;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
@@ -23,6 +24,8 @@ import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
 import com.core.data.persistencia.interfaces.locales.FiltroDAO;
 import com.core.data.persistencia.interfaces.locales.ServicioDAO;
+import com.core.data.persistencia.interfaces.locales.OngDAO;
+import com.core.data.persistencia.interfaces.locales.FiltroServicioDAO;
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.data.persistencia.DataService;
 
@@ -48,10 +51,16 @@ public class CatastrofeEB implements CatastrofeEBR{
 	
 	@EJB
 	private ServicioDAO servicioDAO;
+	
+	@EJB
+	private OngDAO ongDAO;
+	
+	@EJB
+	private FiltroServicioDAO filtroServicioDAO;
 
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public Long ingesarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
+	public Long ingresarCatastrofe(String nombreEvento, String descripcion, String logo, double coordenadasX, 
 		double coordenadasY, Boolean activa, Boolean prioridad, String css, Set<ImagenCatastrofe> imagenes, 
 		Set<Filtro> filtros, Set<Ong> ongs,	PlanDeRiesgo planDeRiesgo,String poligono)throws Exception {
 				
@@ -67,7 +76,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		c.setPrioridad(prioridad);
 		c.setCss(css);
 		c.setImagenes(imagenes);		
-		c.setFiltrosCatastrofes(filtros);
+		//c.setFiltrosCatastrofes(filtros);
 		c.setOngs(ongs);
 		c.setPlanDeRiesgo(planDeRiesgo);
 		c.setBajaLogica(false);
@@ -273,7 +282,8 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}																																
 	}
 	
-	public void asignarFiltroYoutubeALaCatastrofe(Long idCatastrofe, Long idFiltro) throws Exception{
+	/*
+	public void asignarFiltroALaCatastrofe(Long idCatastrofe, Long idFiltro) throws Exception{
 		try {
 			
 			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);
@@ -290,6 +300,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}
 		
 	}
+	
 	
 	public List<Filtro> filtrosAsingadosACatastrofe(Long idCatastrofe, String fuente) throws Exception{
 		
@@ -316,6 +327,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		
 	}
 	
+	
 	public List<String> BusquedaAsingadasACatastrofe(Long idCatastrofe, String fuente) throws Exception{
 		
 		List<String> res = new ArrayList<String>();
@@ -339,6 +351,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}								
 		return res;		
 	}
+	*/
 	
 	public List<Double> ListarCoordenasCatastrofe(Long idCatastrofe) throws Exception{
 		
@@ -402,5 +415,78 @@ public class CatastrofeEB implements CatastrofeEBR{
 		return list;
 	}
 	
+	
+	public List<Ong> listaOngsNoAsignadosALaCatastrofe(Long idCatastrofe) throws Exception{
+		
+		List<Ong> listaOngNoAsigCatastrofe = new ArrayList<Ong>();			
+		List<Ong> listaAllOngs = ongDAO.listarONGS();
+		Catastrofe catastrofe = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);
+		Set<Ong> listaOngsCatastrofe = catastrofe.getOngs();
+		List<Long> listaId = new ArrayList<Long>();
+		Ong ong;		
+		Long id;
+		Long id2;
+		boolean esta;		
+		
+		for (int i=0; i<=listaAllOngs.size()-1; i++){
+			ong = listaAllOngs.get(i);
+			id = ong.getId();
+			esta = false;			
+			for (Ong ongCatastrofe: listaOngsCatastrofe){
+				id2 = ongCatastrofe.getId();
+				if (id == id2){
+					esta = true;					
+				}
+			}			
+			if (esta == false){
+				listaId.add(id);				
+			}																						
+		}
+		
+		Ong ongRes;
+		Long idRes;
+		for (int k=0; k<=listaId.size()-1; k++){
+			idRes = listaId.get(k);			
+			ongRes = ongDAO.buscarOngPorID(idRes);
+			listaOngNoAsigCatastrofe.add(ongRes);			
+		}
+				
+		return listaOngNoAsigCatastrofe;
+	}
+	
+	
+	public void asignarFiltroServicioALaCatastrofe(Long idCatastrofe, Long idFiltroServicio) throws Exception{		
+		try {			
+			Catastrofe c = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);
+			FiltroServicio filtroServicio = filtroServicioDAO.buscarFiltroServicioPorId(idFiltroServicio);
+			
+			filtroServicio.setCatastrofe(c);
+			Set<FiltroServicio> filtroServicios = c.getFiltroServicio();
+	
+			filtroServicios.add(filtroServicio);
+			dataService.update(filtroServicio);															
+		}catch (Exception e) {			
+			e.printStackTrace();
+		}		
+	}
+	
+	
+	public void eliminarFiltroServicioDeCatastrofe(Long idFiltroServicio) throws Exception{		
+		try {						
+			FiltroServicio filtroServicio = filtroServicioDAO.buscarFiltroServicioPorId(idFiltroServicio);	
+			Catastrofe c= filtroServicio.getCatastrofe();
+												
+			Set<FiltroServicio> lista = c.getFiltroServicio();
+			lista.remove(filtroServicio);			
+			c.setFiltroServicio(lista);
+			dataService.update(c);
+			
+			filtroServicio.setCatastrofe(null);							
+			dataService.update(filtroServicio);
+			
+		}catch (Exception e) {			
+			e.printStackTrace();
+		}		
+	}
 	
 }
