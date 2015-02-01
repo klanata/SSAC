@@ -185,7 +185,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 				Integer i = listaPendientes.size();
 				
 				//rescatista.getEstadoRescatista().
-				if ( (pendiente == 0) || (pendiente < i )  )
+				if  (pendiente >= i )  
 				{
 					//actualizo el rescatista con menos pendientes
 					rescatistaMenosPendientes = rescatista;
