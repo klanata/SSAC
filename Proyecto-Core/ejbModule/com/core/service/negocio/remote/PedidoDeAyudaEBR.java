@@ -12,4 +12,6 @@ public interface PedidoDeAyudaEBR {
 			Date fechaPublicacion) throws Exception;
 	public List<PedidoDeAyuda> listarTodosLosPedidos();
 	
+	public PedidoDeAyuda buscarPedido(long id);
+	
 }

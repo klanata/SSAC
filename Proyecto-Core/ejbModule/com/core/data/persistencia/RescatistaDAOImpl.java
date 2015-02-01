@@ -171,14 +171,16 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 			Collection<Rescatista> listarRescatistas = findAll(Rescatista.class);
 			//recorremos la lista y vamos viendo quien tiene menos pendientes
 			Integer pendiente = 0;
+			Iterator<Rescatista> itRescatista = listarRescatistas.iterator();
 			
-			while (listarRescatistas.isEmpty() != true)
+			while (itRescatista.hasNext())
 			{
-				Rescatista rescatista = listarRescatistas.iterator().next();
+				Rescatista rescatista = itRescatista.next();
 				//veo que cantidad de pendientes tiene
 				//Collection<EstadoRescatista> listaPendientes = rescatista.getEstadoRescatista();
 				Long idRescatista = rescatista.getId();
 				Collection<EstadoRescatista> listaPendientes = listarPendientesRescatistaPorID(idRescatista);
+				
 				
 				Integer i = listaPendientes.size();
 				

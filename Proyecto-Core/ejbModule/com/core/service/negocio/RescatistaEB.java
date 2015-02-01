@@ -103,18 +103,29 @@ public class RescatistaEB implements RescatistaEBR {
 	//FIXME: Vale tenes que usar esto para pedido de ayuda cuando lo crees
 	public void asignarRescatistaCatastrofe(long pedido) {
 		
+		Rescatista rescatista = null;
+		try{
+			
+			
+			 rescatista = rescatistaService.obtenerRescatistaConMenosPendientes();
+		}catch(Exception e){
+			
+			System.out.println("Excepcion al obtener rescatista con menos pendientes: " + e.getMessage());      
+		};
+		
 		try{
 		
 			
 			//obtengo objeto catastrofe
 			PedidoDeAyuda pedidoGuardar = dataService.find(PedidoDeAyuda.class, pedido);
+			
 			EstadoRescatista estadoRescatista = new EstadoRescatista();
 			estadoRescatista.setPendiente(true);
 			estadoRescatista.setIdPedidoAyuda(pedido);
 			
 			estadoRescatista.setNombreTarea(pedidoGuardar.getDescripcion());
 			//busco el rescatista para asignar
-			Rescatista rescatista = rescatistaService.obtenerRescatistaConMenosPendientes();
+			
 			estadoRescatista.setRescatista(rescatista);
 			dataService.create(estadoRescatista);
 			

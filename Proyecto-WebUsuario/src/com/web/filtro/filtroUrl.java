@@ -146,8 +146,7 @@ public class filtroUrl implements Filter , Serializable {
 			
 			
 			 boolean noProteger = noProteger(urlStr);
-			 System.out.print(urlStr+"protegido: ");
-			 System.out.print(noProteger);
+			 
 			  
 			  //Si no requiere protecci�n contin�o normalmente.
 			  if (noProteger(urlStr)) {
@@ -272,7 +271,7 @@ public class filtroUrl implements Filter , Serializable {
 			Collection<Catastrofe> listaCatastrofes= manager.listaCatastrofes();
 			Iterator<Catastrofe> it = listaCatastrofes.iterator();
 			
-			System.out.print("nombre url" + urlStr);
+			
 			//String nombreCatastrofe ;
 			while(it.hasNext() && (encontre==false) )
 			{
@@ -280,8 +279,7 @@ public class filtroUrl implements Filter , Serializable {
 				String nombre = c.getNombreEvento();
 				
 				String nombreCatastrofe = new String("http://localhost:8080/proyecto-webusuario/"+nombre +".xhtml");
-				System.out.print("nombre concatenado" + nombreCatastrofe);
-				System.out.print("nombre url" + urlStr);
+				
 				
 				
 				if( nombreCatastrofe.compareTo(urlStr)== 0)

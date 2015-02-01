@@ -69,6 +69,13 @@ public class PedidoDeAyudaEB implements PedidoDeAyudaEBR{
 		return listaPedidos;
 
  }
+
+	@Override
+	public PedidoDeAyuda buscarPedido(long id) {
+		
+		PedidoDeAyuda pedido= dataService.find(PedidoDeAyuda.class, id);
+		return pedido;
+	}
 	
 
 }

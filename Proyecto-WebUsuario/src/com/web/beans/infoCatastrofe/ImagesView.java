@@ -172,14 +172,12 @@ public class ImagesView implements Serializable{
 		idCatastrofe = (Long)sesion.getAttribute("idmongo");
 
 		
-		System.out.print("esto obtiene de id catastrofe");
-		System.out.print(idCatastrofe);
 		
 		
     	
         if ((idCatastrofe == null) || (idCatastrofe == 00))
 		{	
-			System.out.println("id = o o null. "); 			
+			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("Error?faces-redirect=true");
 		}
@@ -244,7 +242,7 @@ public class ImagesView implements Serializable{
 				
 				for (int i=0; i<=list.size()-1; i++){
 					double resultado = list.get(i);
-					System.out.println("valor de coordenadas en list: " + resultado);
+					
 				}
 				
 				//Construyo el poligono

@@ -1,6 +1,5 @@
 package com.web.beans;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
@@ -15,7 +14,9 @@ import org.primefaces.context.RequestContext;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.PedidoDeAyuda;
 import com.core.service.negocio.remote.PedidoDeAyudaEBR;
+import com.core.service.negocio.remote.RescatistaEBR;
 
 @ManagedBean(name="pedidoAyudaBean")
 @SessionScoped
@@ -73,17 +74,20 @@ public class PedidoDeAyudaBean implements Serializable {
 	public void  registrarpedidoAyuda(){				
 		
 		PedidoDeAyudaEBR manager = null;
-		
+		RescatistaEBR managerRes = null;
 		Context context = null;
+		Context contextEBR = null;
 		
 		try {
             // 1. Obtaining Context
             context = ClienteUtility.getInitialContext();
+            contextEBR = ClienteUtility.getInitialContext();
             // 2. Generate JNDI Lookup name
             //String lookupName = getLookupName();
             // 3. Lookup and cast
             manager = (PedidoDeAyudaEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//PedidoDeAyudaEB!com.core.service.negocio.remote.PedidoDeAyudaEBR");
  
+            managerRes=(RescatistaEBR) contextEBR.lookup("ejb:Proyecto-EAR/Proyecto-Core//RescatistaEB!com.core.service.negocio.remote.RescatistaEBR");
         } catch (NamingException e) {
             e.printStackTrace();
         }				
@@ -96,7 +100,13 @@ public class PedidoDeAyudaBean implements Serializable {
     		FacesContext contexto = FacesContext.getCurrentInstance();
 			HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);
 			catastrofeId = (Long)sesion.getAttribute("idmongo");
-       		Long id = manager.crearPedido(catastrofeId, descripcion, coordenadasX, coordenadasY, fechaPublicacion);    	
+       		Long id = manager.crearPedido(catastrofeId, descripcion, coordenadasX, coordenadasY, fechaPublicacion);   
+       		
+       		///Llamamos a la funcion para asignar de forma autòmatica un rescatista.
+       		//PedidoDeAyuda pedido= manager.buscarPedido(id);
+       		managerRes.asignarRescatistaCatastrofe(id);
+       		
+       		
        		RequestContext requestContext = RequestContext.getCurrentInstance();
        	 requestContext.update("form:display");
          requestContext.execute("PF('dlg').show()");
