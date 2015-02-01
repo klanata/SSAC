@@ -106,16 +106,15 @@ public class FileUploadControllerCSS {
 	        }
 	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 			//ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			//handler.performNavigation("listaCatastrofesCSS?faces-redirect=true");	
-	        
+			//handler.performNavigation("listaCatastrofesCSS?faces-redirect=true");		        
 		}
 	}		
 	
 	
 	public void cancelar(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeCSS", "");
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeCSS", "");
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("listaCatastrofesCSS?faces-redirect=true");		
+		handler.performNavigation("modificarCatastrofe?faces-redirect=true");		
 	}
 	
 	public void borrarCSSCatastrofe(String path){	
@@ -123,7 +122,7 @@ public class FileUploadControllerCSS {
 		String jboss = System.getenv("JBOSS_HOME");		
 		File file = new File(jboss + "\\Proyecto\\imagenes.war\\" + path);		
 		if(file.delete()){
-			System.out.println(file.getName() + " fue elimindada!");
+			//System.out.println(file.getName() + " fue elimindada!");
 		}else{
 			System.out.println("La operación de eliminación falló.");
 		}
@@ -131,8 +130,7 @@ public class FileUploadControllerCSS {
 	
 	public void finalizar(){
 		
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");		
-		//System.out.println("El id del evento catastrofe CSS: " + idEventoString);		
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");				
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			
@@ -166,32 +164,56 @@ public class FileUploadControllerCSS {
 	    			String nombCSS = c.getCss();
 	    			
 	    			if  ((nombCSS != null) && (nombCSS != "")){
+	    				/*
 	    				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La catástrofe fue ingresada al sistema.");
 	    				FacesContext.getCurrentInstance().addMessage(null, message);
 	    				
 	    				FacesContext contexto = FacesContext.getCurrentInstance();
 	    				contexto.getExternalContext().getFlash().setKeepMessages(true);
 	    				
-	    				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-	    				handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
-	    				
+	    				*/
+	    				String abm = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("ABMCatastrofe");
+	    		        
+	    		        if (abm=="Alta"){
+	    		        	message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La catástrofe fue ingresada al sistema.");
+		    				FacesContext.getCurrentInstance().addMessage(null, message);
+		    				
+		    				FacesContext contexto = FacesContext.getCurrentInstance();
+		    				contexto.getExternalContext().getFlash().setKeepMessages(true);
+	    		        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		    				handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+	    		        }
+	    		        else{
+	    		        	if (abm=="Modificacion"){
+	    		        		message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación Exitosa", "La catástrofe fue modificada de forma exitosa.");
+	    	    				FacesContext.getCurrentInstance().addMessage(null, message);
+	    	    				
+	    	    				FacesContext contexto = FacesContext.getCurrentInstance();
+	    	    				contexto.getExternalContext().getFlash().setKeepMessages(true);
+	    		        		
+	    		        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+	    	    				handler.performNavigation("modificarCatastrofe?faces-redirect=true");	
+	    			        }
+	    		        	else{	        		
+	    		        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+	    		    			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");	        		
+	    		        	}	        	
+	    		        }
+	    					    					    				
 	    			}
 	    			else {	    				    					    				
 	    				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe ingresar el archivo css.");
 	    				FacesContext.getCurrentInstance().addMessage(null, message);
 	    			}
-	    				    				    			
-	    				    		
+	    				    				    				    				    	
 		        }catch (Exception excep){
 					System.out.println("Excepción al obtener la catástrofe al finalizar: " + excep.getMessage());      		 			       	           	
 				}	    			    			    		        	      
 	        } catch (Exception e) {
 	             System.out.println(e.getMessage());
 	        }
-	       
-	        
-		}
-							
+	       	        
+		}						
 	}
 	
 

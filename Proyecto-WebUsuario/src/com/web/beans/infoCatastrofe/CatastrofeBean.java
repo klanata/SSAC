@@ -232,7 +232,7 @@ public class CatastrofeBean implements Serializable{
     		String logo= inputBean.uploadFile(this.part);   
     		String css = null;
     		String poli = "poligono";
-       		Long in= manager.ingesarCatastrofe(this.title, this.descripcion, logo, this.lat, this.lng, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo,poli);    	
+       		Long in= manager.ingresarCatastrofe(this.title, this.descripcion, logo, this.lat, this.lng, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo,poli);    	
     		if (in == 0){
     			System.out.println("es repetido." + in);
     			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");

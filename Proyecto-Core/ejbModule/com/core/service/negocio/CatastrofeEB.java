@@ -1,7 +1,6 @@
 package com.core.service.negocio;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
@@ -18,7 +17,6 @@ import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Filtro;
 import com.core.data.entites.FiltroServicio;
 import com.core.data.entites.ImagenCatastrofe;
-import com.core.data.entites.Servicio;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;

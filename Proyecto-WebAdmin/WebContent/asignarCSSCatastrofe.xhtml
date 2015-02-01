@@ -163,7 +163,7 @@
     	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
     </p:gmap>  
     	
-    <p:dialog widgetVar="dlg" showEffect="fade" style="height:500px" width="700">
+    <p:dialog widgetVar="dlg" showEffect="fade" height="400" width="700">
 
 	<div class="wrapper col3">
 	  <div >
@@ -175,7 +175,7 @@
 			<h:form columns="2" value="#{cssBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">			
 				
 				<p>			        		        
-	            <p:graphicImage value="image/#{cssBean.catastrofeBean.logo}" /> 
+	            <p:graphicImage value="image/#{cssBean.catastrofeBean.logo}" width="100" height="100"/> 
 	            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 				</p>			
 				

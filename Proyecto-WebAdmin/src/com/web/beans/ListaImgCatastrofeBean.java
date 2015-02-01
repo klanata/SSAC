@@ -45,12 +45,12 @@ public class ListaImgCatastrofeBean implements Serializable{
     @PostConstruct
     public void init() {
     	
-    		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeImg");
+    		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
             if ((idEventoString == null) || (idEventoString == ""))
     		{	
     			System.out.println("No existe la catástrofe. "); 			
     			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-    			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");
+    			handler.performNavigation("modificarCatastrofe?faces-redirect=true");
     		}
     		else	
     		{        
@@ -166,12 +166,12 @@ public class ListaImgCatastrofeBean implements Serializable{
 	
 	public void quitarImagenes(){
 		
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoCatastrofeImg");
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
 			System.out.println("No existe la catástrofe. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");
+			handler.performNavigation("modificarCatastrofe?faces-redirect=true");
 		}
 		else	
 		{ 
@@ -233,7 +233,7 @@ public class ListaImgCatastrofeBean implements Serializable{
 		String jboss = System.getenv("JBOSS_HOME");		
 		File file = new File(jboss + "\\Proyecto\\imagenes.war\\" + path);		
 		if(file.delete()){
-			System.out.println(file.getName() + " fue elimindada!");
+			//System.out.println(file.getName() + " fue elimindada!");
 		}else{
 			System.out.println("La operación de eliminación falló.");
 		}

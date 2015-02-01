@@ -136,12 +136,14 @@ public class ListaCatastrofesBean implements Serializable{
 	public void onRowSelect(SelectEvent event) {
 		
 		Long id = ((CatastrofeBean) event.getObject()).getId();
-		System.out.println("id de la catastrofe seleccionada: " + id);
+		//System.out.println("id de la catastrofe seleccionada: " + id);
 		String idCatastrofeString = id.toString();
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idCatastrofeString", idCatastrofeString); 		
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idCatastrofeString", idCatastrofeString);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("ABMCatastrofe", "Modificacion");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("asignarImagenCatastrofe?faces-redirect=true");						 														
+		handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");						 														
 		
 		//ConfigurableNavigationHandler.performNavigation("asignarOngCatastrofe?faces-redirect=true");
 		//return "asignarOngCatastrofe?faces-redirect=true";

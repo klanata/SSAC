@@ -15,6 +15,7 @@ import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Filtro;
 import com.core.data.entites.Servicio;
 import com.core.data.entites.FiltroServicio;
@@ -23,19 +24,19 @@ import com.core.service.negocio.remote.ServicioEBR;
 import com.core.service.negocio.remote.FiltroServicioEBR;
 
 
-@ManagedBean(name="listaFiltrosYoutubeBean")
+@ManagedBean(name="listaFiltrosDeDatosBean")
 @RequestScoped
-public class ListaFiltrosYoutubeBean implements Serializable{
+public class ListaFiltrosDeDatosBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<FiltroYoutubeBean> filtrosYoutubeBean = new ArrayList<FiltroYoutubeBean>();    
-    private List<FiltroYoutubeBean> filtroTablaFiltroYoutubeBean; 
+	private ArrayList<FiltroDeDatosBean> filtrosFiltroDeDatosBean = new ArrayList<FiltroDeDatosBean>();    
+    private List<FiltroDeDatosBean> filtroFiltroDeDatosBean; 
     
-    private FiltroYoutubeBean selectedFiltroYoutubeBean;
+    private FiltroDeDatosBean selectedFiltroDeDatosBean;
     
-    @ManagedProperty("#{filtroYoutubeBean}")
-    private FiltroYoutubeBean filtroYoutubeBean;
+    @ManagedProperty("#{filtroDeDatosBean}")
+    private FiltroDeDatosBean filtroDeDatosBean;
 
 	@PostConstruct
     public void init() {
@@ -111,22 +112,35 @@ public class ListaFiltrosYoutubeBean implements Serializable{
 			FiltroServicio filtroServicio;	
 			Filtro filtro;
 			Servicio servicio;
+			Catastrofe catastrofe;
 	    	Long idFiltro;	 
 	    	Long idServicio;
+	    	Long idFiltroServicio;
+	    	String nombreCatastrofe;
 	    	String fuente;
 	    	String descripcion;	    	
 	    	Boolean bajaLogica;		    	
 			for (int i=0; i<=listFiltroServicio.size()-1; i++){    		
-				filtroServicio = listFiltroServicio.get(i);				
+				filtroServicio = listFiltroServicio.get(i);	
+				idFiltroServicio = filtroServicio.getId();
+				bajaLogica = filtroServicio.isBajaLogica();
+								
 				idFiltro = filtroServicio.getIdFiltro();
 				idServicio = filtroServicio.getIdServicio();
+				catastrofe = filtroServicio.getCatastrofe();
+				if (catastrofe == null){ 
+					nombreCatastrofe = "";					
+				}
+				else{
+					nombreCatastrofe = catastrofe.getNombreEvento();
+				}										
 				filtro = manager.buscaFiltroPorId(idFiltro);
 				servicio = managerS.buscarServicioPorId(idServicio);
 				fuente = servicio.getFuente();
 				//fuente = "Youtube";
 				descripcion = filtro.getDescripcion();																
-				bajaLogica = filtro.isBajaLogica();				
-				filtrosYoutubeBean.add(i, new FiltroYoutubeBean(idFiltro,fuente,descripcion,bajaLogica));												    
+								
+				filtrosFiltroDeDatosBean.add(i, new FiltroDeDatosBean(idFiltroServicio,fuente,descripcion,nombreCatastrofe,bajaLogica));												    
 			}		
 			
     	}catch (Exception excep){
@@ -136,45 +150,42 @@ public class ListaFiltrosYoutubeBean implements Serializable{
     }
 	
     //	------------------ Getter and setter methods ---------------------
-        
-	public ArrayList<FiltroYoutubeBean> getFiltrosYoutubeBean() {
-		return filtrosYoutubeBean;
+      
+	public ArrayList<FiltroDeDatosBean> getFiltrosFiltroDeDatosBean() {
+		return filtrosFiltroDeDatosBean;
 	}
 
-
-	public void setFiltrosYoutubeBean(
-			ArrayList<FiltroYoutubeBean> filtrosYoutubeBean) {
-		this.filtrosYoutubeBean = filtrosYoutubeBean;
+	public void setFiltrosFiltroDeDatosBean(
+			ArrayList<FiltroDeDatosBean> filtrosFiltroDeDatosBean) {
+		this.filtrosFiltroDeDatosBean = filtrosFiltroDeDatosBean;
 	}
 
-
-	public List<FiltroYoutubeBean> getFiltroTablaFiltroYoutubeBean() {
-		return filtroTablaFiltroYoutubeBean;
+	public List<FiltroDeDatosBean> getFiltroFiltroDeDatosBean() {
+		return filtroFiltroDeDatosBean;
 	}
 
-
-	public void setFiltroTablaFiltroYoutubeBean(
-			List<FiltroYoutubeBean> filtroTablaFiltroYoutubeBean) {
-		this.filtroTablaFiltroYoutubeBean = filtroTablaFiltroYoutubeBean;
+	public void setFiltroFiltroDeDatosBean(
+			List<FiltroDeDatosBean> filtroFiltroDeDatosBean) {
+		this.filtroFiltroDeDatosBean = filtroFiltroDeDatosBean;
 	}
 
-
-	public FiltroYoutubeBean getFiltroYoutubeBean() {
-		return filtroYoutubeBean;
+	public FiltroDeDatosBean getSelectedFiltroDeDatosBean() {
+		return selectedFiltroDeDatosBean;
 	}
 
-
-	public void setFiltroYoutubeBean(FiltroYoutubeBean filtroYoutubeBean) {
-		this.filtroYoutubeBean = filtroYoutubeBean;
+	public void setSelectedFiltroDeDatosBean(
+			FiltroDeDatosBean selectedFiltroDeDatosBean) {
+		this.selectedFiltroDeDatosBean = selectedFiltroDeDatosBean;
 	}
 
-	public FiltroYoutubeBean getSelectedFiltroYoutubeBean() {
-		return selectedFiltroYoutubeBean;
+	public FiltroDeDatosBean getFiltroDeDatosBean() {
+		return filtroDeDatosBean;
 	}
 
-	public void setSelectedFiltroYoutubeBean(FiltroYoutubeBean selectedFiltroYoutubeBean) {
-		this.selectedFiltroYoutubeBean = selectedFiltroYoutubeBean;
+	public void setFiltroDeDatosBean(FiltroDeDatosBean filtroDeDatosBean) {
+		this.filtroDeDatosBean = filtroDeDatosBean;
 	}
+	
 	
 	//	------------------ Operaciones ---------------------
 	

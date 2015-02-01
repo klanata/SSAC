@@ -97,8 +97,23 @@ public class FileUploadController {
 	             System.out.println(e.getMessage());
 	        }
 	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
-			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("asignarOngsCatastrofe?faces-redirect=true");	
+	        String abm = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("ABMCatastrofe");
+	        
+	        if (abm=="Alta"){
+	        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+				handler.performNavigation("asignarOngsCatastrofe?faces-redirect=true");	
+	        }
+	        else{
+	        	if (abm=="Modificacion"){
+		        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+					handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");	
+		        }
+	        	else{	        		
+	        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+	    			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");	        		
+	        	}	        	
+	        }
+	        	
 	        
 		}
 	}		

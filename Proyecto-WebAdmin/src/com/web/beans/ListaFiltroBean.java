@@ -17,7 +17,10 @@ import javax.naming.NamingException;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Filtro;
+import com.core.data.entites.Servicio;
 import com.core.service.negocio.remote.FiltroEBR;
+import com.core.service.negocio.remote.ServicioEBR;
+import com.core.service.negocio.remote.FiltroServicioEBR;
 
 
 @ManagedBean(name="listaFiltroBean")
@@ -59,7 +62,9 @@ public class ListaFiltroBean  implements Serializable{
 		try{			
 			List<Filtro> res = new ArrayList<Filtro>();
 			//res = manager.listaFiltros();
-			res = manager.listaFiltrosNoAsignadosAYoutube();
+			//res = manager.listaFiltrosNoAsignadosAYoutube();
+			String nombreServicio = "Youtube";
+			res = manager.listaFiltrosNoAsignadosAlServicio(nombreServicio);
 			Filtro filtro;
 	    	Long id;	    	
 	    	String descripcion;	    	
@@ -117,17 +122,47 @@ public class ListaFiltroBean  implements Serializable{
 	
 	public void asignar(){
 							
-		FiltroEBR manager = null;
-		Context context = null;	
+		FiltroEBR managerF = null;
+		Context contextF = null;	
 		FacesMessage message = null;
 			
 		try {
 			// 1. Obtaining Context
-			context = ClienteUtility.getInitialContext();
+			contextF = ClienteUtility.getInitialContext();
 	        // 2. Generate JNDI Lookup name
 	        //String lookupName = getLookupName();
 	        // 3. Lookup and cast
-			manager = (FiltroEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroEB!com.core.service.negocio.remote.FiltroEBR");
+			managerF = (FiltroEBR) contextF.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroEB!com.core.service.negocio.remote.FiltroEBR");
+	 
+		} catch (NamingException e) {
+			e.printStackTrace();
+	    }
+		
+		ServicioEBR managerS = null;
+		Context contextS = null;			
+			
+		try {
+			// 1. Obtaining Context
+			contextS = ClienteUtility.getInitialContext();
+	        // 2. Generate JNDI Lookup name
+	        //String lookupName = getLookupName();
+	        // 3. Lookup and cast
+			managerS = (ServicioEBR) contextS.lookup("ejb:Proyecto-EAR/Proyecto-Core//ServicioEB!com.core.service.negocio.remote.ServicioEBR");
+	 
+		} catch (NamingException e) {
+			e.printStackTrace();
+	    }
+		
+		FiltroServicioEBR managerFS = null;
+		Context contextFS = null;			
+			
+		try {
+			// 1. Obtaining Context
+			contextFS = ClienteUtility.getInitialContext();
+	        // 2. Generate JNDI Lookup name
+	        //String lookupName = getLookupName();
+	        // 3. Lookup and cast
+			managerFS = (FiltroServicioEBR) contextFS.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroServicioEB!com.core.service.negocio.remote.FiltroServicioEBR");
 	 
 		} catch (NamingException e) {
 			e.printStackTrace();
@@ -136,12 +171,23 @@ public class ListaFiltroBean  implements Serializable{
 		if (selectedFiltro.size() > 0){ 				
 			try{					
 				FiltroBean filtroBean;
-				
+				Filtro filtro;
+				Servicio servicio;
 				for (int i=0; i<=selectedFiltro.size()-1; i++){ 				
 						filtroBean = selectedFiltro.get(i);
-						Long idFiltro = filtroBean.getId();								
+						Long idFiltro = filtroBean.getId();
+						filtro = managerF.buscaFiltroPorId(idFiltro);
 						String fuente ="Youtube";
-						manager.asignarFiltroServicio(idFiltro, fuente);
+						
+						boolean existeServicio = managerS.ExisteServicio(fuente);
+						
+						if (existeServicio == false) {
+							managerS.ingresarServicio(fuente);			
+						}						
+						servicio = managerS.buscarServicioPorFuente(fuente);
+						
+						managerFS.ingesarFiltroServicio(filtro, servicio);
+						//manager.asignarFiltroServicio(idFiltro, fuente);
 				}															
 				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "Las Filtros fueron asignados a Youtube.");
 				FacesContext.getCurrentInstance().addMessage(null, message);
@@ -150,7 +196,7 @@ public class ListaFiltroBean  implements Serializable{
 				contexto.getExternalContext().getFlash().setKeepMessages(true);
 				
 				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-				handler.performNavigation("filtrosSobreYoutube?faces-redirect=true");
+				handler.performNavigation("asignarFiltrosDeDatos?faces-redirect=true");
 														
 			}catch (Exception excep){
 					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo dar de alta algunos de los filtros.");
@@ -166,7 +212,7 @@ public class ListaFiltroBean  implements Serializable{
 	
 	public void cancelar(){		
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("filtrosSobreYoutube?faces-redirect=true");				
+		handler.performNavigation("asignarFiltrosDeDatos?faces-redirect=true");				
 	}
 
 

@@ -14,6 +14,7 @@ import javax.naming.NamingException;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Catastrofe;
+import com.core.data.entites.PlanDeRiesgo;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
 
@@ -80,10 +81,36 @@ public class PlanDeRiesgoBean implements Serializable{
 				activa = catastrofe.getActiva();
 				prioridad = catastrofe.getPrioridad();
 				css = catastrofe.getCss();
-				
-				//setCatastrofeBean(new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad));
-				
+												
 				catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad,css);
+				
+				String abm = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("ABMCatastrofe");
+				
+				if (abm=="Modificacion"){
+					CatastrofeEBR managerCatastrofe = null;
+					Context contextCatastrofe = null;
+					
+					try {
+			            // 1. Obtaining Context
+						contextCatastrofe = ClienteUtility.getInitialContext();
+			            // 2. Generate JNDI Lookup name
+			            //String lookupName = getLookupName();
+			            // 3. Lookup and cast
+						managerCatastrofe = (CatastrofeEBR) contextCatastrofe.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+			 
+			        } catch (NamingException e) {
+			            e.printStackTrace();
+			        }
+					
+					catastrofe = managerCatastrofe.buscaCatastrofePorId(idCatastrofe);
+					PlanDeRiesgo plan = catastrofe.getPlanDeRiesgo();
+					
+					if (plan != null){
+						String fileString = plan.getRutaArchivo();
+						FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", fileString);
+					}
+					
+	        	}
 			
 			}catch (Exception excep){
 				System.out.println("Excepción al obtener la catástrofe en el plan de riesgo: " + excep.getMessage());      		 			       	           	

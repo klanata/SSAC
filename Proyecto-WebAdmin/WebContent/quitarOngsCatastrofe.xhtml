@@ -9,9 +9,9 @@
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	  	    	
-  	<style>
+	<meta http-equiv="imagetoolbar" content="no" />	
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
+	<style>
     *{ margin: 0; padding: 0; }
     html, body, #map{
         width: 100%;
@@ -19,10 +19,11 @@
     }
     </style>
   	
-  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>	
+  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
+	
 	
 </h:head> 
-<h:body id="top" style="margin:0px; padding:0px;" > 
+<h:body id="top"> 
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
@@ -152,7 +153,7 @@
     </p:submenu>
        
 </p:megaMenu>
-</h:form>
+</h:form>           
           
     <br class="clear" />
   
@@ -167,62 +168,89 @@
     	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
     </p:gmap>  
     	
-    <p:dialog widgetVar="dlg" showEffect="fade"  style="height:400px" width="700">
-    <div class="wrapper col3" >
-	  <div >
+    <p:dialog widgetVar="dlg" showEffect="fade" height="470" width="600">
+
+	<div class="wrapper col3">
+	  <div>
 	    <div >
-	      <h2>Asignar Imágenes a la catástrofe</h2>
+	      <h2>Quitar ONGs a la catástrofe</h2>
 	      
-	      <f:view>        
+	      <f:view>  
 	      	
-			<h:form columns="2" value="#{imagesView.catastrofeBean}" columnClasses="label, value" width="700px" style="border: 0;">
-				
+			<h:form columns="2" value="#{listaOngsBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+					
 				<p>			        		        
-	            <p:graphicImage value="image/#{imagesView.catastrofeBean.logo}" width="50" height="50"/> 
+	            <p:graphicImage value="image/#{listaOngsBean.catastrofeBean.logo}"  width="100" height="100"/> 
 	            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 				</p>			
 				
 				<p>
 				<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
-	            <h:outputText value="#{imagesView.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+	            <h:outputText value="#{listaOngsBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
 	            </p>			
 	               
 	            <p>    
 	           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-	            <h:outputText value="#{imagesView.catastrofeBean.descripcion}" styleClass="outputLabel"/>
+	            <h:outputText value="#{listaOngsBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
 	            </p>
 				<br/>  
 	                         
-	        </h:form>
-	                									        
+	        </h:form>   
+	
+			<h:form id="formONGsCatastrofe">      	      	
+	      		<p:growl id="msgOngsCat" showDetail="true" />	
+	      		
+	      		<p>
+				<h:outputText value="ONGs asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
+	            </p>	
+	      		
+	    		<p:dataTable id="ongsCatDT" var="ongBeanCat" value="#{listaOngsBean.ongsBeanCat}" widgetVar="ongsCatTable"
+	                 		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBeanCat}"                 		  
+	                 		 paginator="true" rows="3" paginatorPosition="top"
+	                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                 		 selection="#{listaOngsBean.selectedOngsCat}" rowKey="#{ongBeanCat.id}" style="margin-bottom:0">
+	                 	                 	
+					<f:facet name="header">
+			            <p:outputPanel style="text-align: right">
+			                <h:outputText value="Buscar ONG:  " />
+			                <p:inputText id="globalFilter"   onkeyup="PF('ongsCatTable').filter()" style="width:200px" placeholder="Ingrese la consulta"/>		                
+			            </p:outputPanel>
+			        </f:facet>
+			        
+			        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>    		        		               	    
+	        		
+	        		<p:column headerText="Id" style="width:6px">
+	            		<h:outputText value="#{ongBeanCat.id}" />
+	        		</p:column>    
+	        		        		
+					<p:column headerText="Nombre" style="width:120px" filterBy="#{ongBeanCat.nombre}" filterMatchMode="contains">
+	            		<h:outputText value="#{ongBeanCat.nombre}" />
+	        		</p:column>     
+	        		
+	        		<p:column headerText="Direccion" style="width:200px" filterBy="#{ongBeanCat.direccion}" filterMatchMode="contains">
+	            		<h:outputText value="#{ongBeanCat.direccion}" />
+	        		</p:column>	  	        		        		    
+	        		
+	        		<f:facet name="footer">
+	        			<p:outputPanel style="text-align: left">
+	            			<p:commandButton process="ongsCatDT" update=":formONGsCatastrofe:msgOngsCat" value="Quitar" action="#{listaOngsBean.quitarOngs()}" />            			
+	            			<p:commandButton process="ongsCatDT" update=":formONGsCatastrofe:msgOngsCat" value="Cancelar" action="#{listaOngsBean.cancelarQuitarOngs()}" />
+	            		</p:outputPanel>            		
+	        		</f:facet>			     		                  		                  		             	        		        
+	        		        		        		
+	     		</p:dataTable>     		     		
+	     		
+			</h:form>					
+	      
 	      </f:view>         
 	    </div>
-	    	  	
-	  	<div>
-	  		<h:form>      
-	 	
-	        	<p>
-				<h:outputText value="Seleccione las imágenes que van a ser asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
-	            </p>
-	             <p>
-				<h:outputText value="(Debe ingresar al menos una imagen de la catástrofe)" style="width:100px;border: transparent;"/>			            
-	            </p>  	            	                               
-	                    
-			    <p:fileUpload fileUploadListener="#{fileUploadController.upload}" mode="advanced" dragDropSupport="false" style="max-height:350px;overflow:auto;width:600px;border: transparent;"  
-			                 label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-			 
-			    <p:growl id="messages" showDetail="true" life="2000" />
-			    
-			    <br/>
-			    		    
-			</h:form> 
-	  	</div>   	  	
-	  	  	  	
+	    
 	    <br class="clear" />
-	  </div> 	  
+	  </div>
 	</div>
-    </p:dialog>
+	</p:dialog>
 </div>
+
 
 <div class="wrapper col7">
   <div id="copyright">

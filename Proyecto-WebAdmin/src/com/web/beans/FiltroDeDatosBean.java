@@ -6,27 +6,29 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 
-@ManagedBean(name="filtroYoutubeBean")
+@ManagedBean(name="filtroDeDatosBean")
 @SessionScoped
-public class FiltroYoutubeBean implements Serializable{
+public class FiltroDeDatosBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;	
 	
 	private Long id;
 	private String fuente;
 	private String descripcion;
+	private String nombreCatastrofe;
 	private boolean bajaLogica;
 	
 	
-//	------------------ Constructors  --------------------------------
+	//	------------------ Constructors  --------------------------------
 	
-	public FiltroYoutubeBean() {	
+	public FiltroDeDatosBean() {	
 	}	
-	public FiltroYoutubeBean(Long id, String fuente, String descripcion, Boolean bajaLogica) {
+	public FiltroDeDatosBean(Long id, String fuente, String descripcion, String nombreCatastrofe, Boolean bajaLogica) {
 		super();
 		this.id = id;	
 		this.setFuente(fuente);
 		this.descripcion = descripcion;
+		this.nombreCatastrofe = nombreCatastrofe;
 		this.bajaLogica = bajaLogica;		
 	}
 				
@@ -49,6 +51,12 @@ public class FiltroYoutubeBean implements Serializable{
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}		
+	public String getNombreCatastrofe() {
+		return nombreCatastrofe;
+	}
+	public void setNombreCatastrofe(String nombreCatastrofe) {
+		this.nombreCatastrofe = nombreCatastrofe;
 	}
 	public boolean isBajaLogica() {
 		return bajaLogica;
@@ -57,9 +65,6 @@ public class FiltroYoutubeBean implements Serializable{
 		this.bajaLogica = bajaLogica;
 	}
 	
-	
-	
-
 	
 	
 }

@@ -82,15 +82,14 @@ public class FiltroBean implements Serializable{
 		
     	try{    	
     		Long in = manager.ingesarFiltro(descripcion);       		    	
-    		if (in == 0){
-    			System.out.println("es repetido." + in);
-    			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
+    		if (in == 0){    			
+    			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudo ingresar el fitro al sistema intentelo más tarde.");
     	        //FacesMessage messages = new FacesMessage("Ya existe un catastrofe con el mismo nombre de evento registrada en el sistema."); 
     	        //contexto.addMessage("registroCatastrofe", messages);
     		}
     		else {    	    			   	
         		this.descripcion = "";       
-    			System.out.println("no es repetido." + in);
+    			//System.out.println("no es repetido." + in);
     			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La filtro fue ingresada al sistema.");
     		}    		    
     		FacesContext.getCurrentInstance().addMessage(null, message);

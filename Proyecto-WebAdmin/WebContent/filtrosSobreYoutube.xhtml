@@ -172,9 +172,13 @@
 		            </p:outputPanel>
 		        </f:facet>    			       		               		      		        		                	    
         		
-        		<p:column headerText="Id" style="width:50px">
+        		<p:column headerText="Id" style="width:6px">
             		<h:outputText value="#{filtroYoutubeBean.id}" />
-        		</p:column>             		                  		                  		             	        		        		
+        		</p:column>     
+        		
+        		<p:column headerText="Fuente de datos" style="width:60px">
+	            		<h:outputText value="#{filtroYoutubeBean.fuente}" />
+	        		</p:column>        		                  		                  		             	        		        		
         		
         		<p:column headerText="Descripción" style="width:700px" filterBy="#{filtroYoutubeBean.descripcion}" filterMatchMode="contains">
             		<h:outputText value="#{filtroYoutubeBean.descripcion}" />            		

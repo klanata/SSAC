@@ -163,7 +163,7 @@
     	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
     </p:gmap>  
     	
-    <p:dialog widgetVar="dlg" showEffect="fade" style="height:1500px" width="700">
+    <p:dialog widgetVar="dlg" showEffect="fade" height="400" width="700">
 
 		<div class="wrapper col3">
 		  <div >
@@ -175,7 +175,7 @@
 				<h:form columns="2" value="#{planDeRiesgoBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
 					
 					<p>			        		        
-		            <p:graphicImage value="image/#{planDeRiesgoBean.catastrofeBean.logo}" /> 
+		            <p:graphicImage value="image/#{planDeRiesgoBean.catastrofeBean.logo}" width="50" height="50"/> 
 		            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 					</p>			
 					
@@ -212,7 +212,7 @@
 						<h:outputText value="Ver documento" style="width:100px"/>					
 					</p:commandLink>
 		                    
-				   <p:fileUpload fileUploadListener="#{fileUploadControllerPlan.upload}" mode="advanced" dragDropSupport="false" style="width:648px;border: transparent;"
+				   <p:fileUpload fileUploadListener="#{fileUploadControllerPlan.upload}" mode="advanced" dragDropSupport="false" style="width:650px;border: transparent;"
 		                  label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" multiple="false" fileLimit="1" update="messages" allowTypes="/(\.|\/)(pdf)$/" />				    				     					    																			     				     				
 														     				     				     				     				  					 					 					 
 				    <p:growl id="messages" showDetail="true" />

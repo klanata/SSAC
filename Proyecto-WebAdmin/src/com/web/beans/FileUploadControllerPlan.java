@@ -15,6 +15,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 
 
+
 import org.primefaces.event.FileUploadEvent;
 
 import clienteutility.ClienteUtility;
@@ -126,7 +127,7 @@ public class FileUploadControllerPlan {
 		String jboss = System.getenv("JBOSS_HOME");		
 		File file = new File(jboss + "\\Proyecto\\imagenes.war\\" + path);		
 		if(file.delete()){
-			System.out.println(file.getName() + " fue elimindada!");
+			//System.out.println(file.getName() + " fue elimindada!");
 		}else{
 			System.out.println("La operación de eliminación falló.");
 		}
@@ -173,8 +174,23 @@ public class FileUploadControllerPlan {
 	    			if (plan != null){	    				   				    				    		
 	    				
 	    				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
-	    				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-	    				handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");
+	    				
+	    				String abm = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("ABMCatastrofe");
+	    		        
+	    		        if (abm=="Alta"){
+	    		        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		    				handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");
+	    		        }
+	    		        else{
+	    		        	if (abm=="Modificacion"){
+	    		        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+	    	    				handler.performNavigation("vistaServiciosCatastrofe?faces-redirect=true");	
+	    			        }
+	    		        	else{	        		
+	    		        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+	    		    			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");	        		
+	    		        	}	        	
+	    		        }	    					    					    				
 	    				
 	    			}
 	    			else {	    				    					    				
@@ -192,7 +208,13 @@ public class FileUploadControllerPlan {
 	       	        
 		}
 							
-	}	
+	}
+	
+	public void cancelar(){
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("modificarCatastrofe?faces-redirect=true");		
+	}
 	
 	
 

@@ -299,6 +299,11 @@ public class ImagesView implements Serializable{
  
 	//	------------------ Operaciones ---------------------
 
+	public void siguiente(){
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("vistaOngsCatastrofe?faces-redirect=true");			
+	}
+	
 	public void asignarImagen(){
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("asignarImgCatastrofe?faces-redirect=true");			
@@ -310,9 +315,9 @@ public class ImagesView implements Serializable{
 	}
 	
 	public void cancelar(){
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");		
+		handler.performNavigation("modificarCatastrofe?faces-redirect=true");		
 	}
 	
     

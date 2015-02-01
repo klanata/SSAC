@@ -224,7 +224,7 @@ public class CatastrofeBeanMap implements Serializable{
     		InputBean inputBean = new InputBean();
     		String logo= inputBean.uploadFile(this.part);   
     		String css = null;    		
-       		Long idCatastrofe= manager.ingesarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo,this.polygon);    	
+       		Long idCatastrofe= manager.ingresarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo,this.polygon);    	
     		if (idCatastrofe == 0){
     			//System.out.println("es repetido." + idCatastrofe);
     			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
@@ -244,6 +244,7 @@ public class CatastrofeBeanMap implements Serializable{
     			//FacesContext.getCurrentInstance().addMessage(null, message);
         		String idCatastrofeString = idCatastrofe.toString();
         		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idCatastrofeString", idCatastrofeString);
+        		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("ABMCatastrofe", "Alta");
         		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
         		
         		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
