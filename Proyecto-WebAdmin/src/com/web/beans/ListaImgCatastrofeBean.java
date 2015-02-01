@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -179,7 +178,7 @@ public class ListaImgCatastrofeBean implements Serializable{
 			
 			CatastrofeEBR manager = null;
 			Context context = null;	
-			FacesMessage message = null;
+			//FacesMessage message = null;
 			
 			try {
 	            // 1. Obtaining Context
@@ -207,17 +206,19 @@ public class ListaImgCatastrofeBean implements Serializable{
 					//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
 					ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 					handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");
-					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación Exitosa", "Las imagenes fueron quitadas de la catástrofe al sistema.");
+					//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación Exitosa", "Las imagenes fueron quitadas de la catástrofe al sistema.");
 														
 				}catch (Exception excep){
-					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudieron quitar al menos alguna de las ONG.");
+					//message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No se pudieron quitar al menos alguna de las ONG.");
 					System.out.println("Excepción al quitar las imagenes a la catástrofe: " + excep.getMessage());				
 				}  
 			}
+			/*
 			else{				
 				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una imagen.");				
 			}
 			FacesContext.getCurrentInstance().addMessage(null, message);
+			*/
 		}
 												
 	}
