@@ -59,16 +59,18 @@ public class filtroUrl implements Filter , Serializable {
 	private String  cssCatastrofe ;//
 	private String descripcionCatastrofe;
 	
+	private String index = "http://localhost:8080/proyecto-webusuario/index.xhtml" ;
 	
-	/*
 	
-	public CatastrofeBean getCatastrofeUsuarioBean() {
-		return catastrofeUsuarioBean;
+	
+
+	public String getIndex() {
+		return index;
 	}
 
-	public void setCatastrofeUsuarioBean(CatastrofeBean catastrofeUsuarioBean) {
-		this.catastrofeUsuarioBean = catastrofeUsuarioBean;
-	}*/
+	public void setIndex(String index) {
+		this.index = index;
+	}
 
 	public String getLogoCatastrofe() {
 		return logoCatastrofe;
@@ -155,7 +157,7 @@ public class filtroUrl implements Filter , Serializable {
 			    return;
 			  }
 			  
-			  	String index="http://localhost:8080/proyecto-webusuario/index.xhtml" ;	
+			  //	String index="http://localhost:8080/proyecto-webusuario/index.xhtml" ;	
 			/*	if(urlStr.compareTo(index)==0) 
 				{
 					 res.sendRedirect(req.getContextPath() + "/Index.xhtml");
@@ -211,32 +213,11 @@ public class filtroUrl implements Filter , Serializable {
 	
 	private boolean noProteger(String urlStr) {
 
-		String index="http://localhost:8080/proyecto-webusuario/index.xhtml" ;	
+	//	String index="http://localhost:8080/proyecto-webusuario/index.xhtml" ;	
 		
 		
-		/*if(urlStr.compareTo(index)==0)
-		{
-			 // res.sendRedirect(req.getContextPath() + "/Index.xhtml");
-			     return true;
-			
-			
-		}
-		
-			Catastrofe existeURL = existeCatastrofeURL(urlStr);
-		  //si no es null obtengo los datos de la catastrofe y los guardo en variables
-			if (existeURL != null) {
-			  
-			  //copio los datos de la catastrofe X
-			  logoCatastrofe = existeURL.getLogo().toString();
-			  id= existeURL.getId();
-			  idCatastrofe = id.toString();
-			   cssCatastrofe = existeURL.getCss().toString();
-			   descripcionCatastrofe = existeURL.getDescripcion().toString();
-			 
-			//  urlStr = index;
-		     return true;
-		  }
-			*/ if (urlStr.endsWith("Index.xhtml") ||(urlStr.endsWith("agregarImagenPersona.xhtml")) || urlStr.endsWith("Error.xhtml") )
+	
+			 if (urlStr.endsWith("Index.xhtml") ||(urlStr.endsWith("agregarImagenPersona.xhtml")) || urlStr.endsWith("Error.xhtml") )
 			    return true;
 			
 			  if (urlStr.indexOf("/javax.faces.resource/") != -1)
@@ -277,8 +258,13 @@ public class filtroUrl implements Filter , Serializable {
 			{
 				Catastrofe c = it.next();
 				String nombre = c.getNombreEvento().toLowerCase();
+				//ver los espacios
+				String nombreSinEspacio = nombre.replaceAll(" ", "_");
 				
-				String nombreCatastrofe = new String("http://localhost:8080/proyecto-webusuario/"+nombre +".xhtml");
+				
+				
+				
+				String nombreCatastrofe = new String("http://localhost:8080/proyecto-webusuario/"+nombreSinEspacio +".xhtml");
 				
 				
 				
