@@ -132,6 +132,33 @@
 							</p:contentFlow>           		         	        	
 							</p>
 							<br/>
+							
+							<!-- VIDEOS YOUTUBE -->
+
+				<div class="ui-grid ui-grid-responsive">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-4"></div>
+						<div class="ui-grid-col-4">
+							
+								<h:dataTable rows="5" border="1" id="buscados"
+									value="#{busquedaYoutube.buscarResultadoList}" var="item">
+
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="URL VIDEO" />
+										</f:facet>
+										<h:outputText id="video" escape="false"
+											value="https://www.youtube.com/watch?v=#{item.idVideo}">
+										</h:outputText>
+									</h:column>
+
+								</h:dataTable>
+							
+						</div>
+						<div class="ui-grid-col-4"></div>
+					</div>
+				</div>
+				
 							<u> ONGS: </u> 
 							<br/>
 							

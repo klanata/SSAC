@@ -39,17 +39,19 @@
         // function, we must explicitly call 'app.receivedEvent(...);'
         onDeviceReady: function() {
             //app.receivedEvent('deviceready');
-            navigator.geolocation.getCurrentPosition(mapa.onSuccess, mapa.onError);
-            alert("mapa");
+            navigator.geolocation.getCurrentPosition(mapa.onSuccess, mapa.onError,{timeout: 10000, enableHighAccuracy: true});
+            alert("ondeviceready");
+			console.log("Ingresando al sistema");
         },
 
         onSuccess: function(position){
-
+        console.log("inicializando mapa");
+		alert("OnSuccess");
             var listaPedidosPendientes = new Array();
             var nick = window.localStorage.getItem("usuarioNick");
-            //alert("Nick Storaged: "+ nick);
-			alert("http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick);
-            $.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
+            console.log("Nick Storaged: "+ nick);
+			//alert("http://192.168.0.106:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick);
+            $.ajax({url:"http://172.16.100.73:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
                 success:function(response) {
                     //useReturnData(response);
                     
@@ -73,7 +75,8 @@
                     title:"Usted esta aqui",
                     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
                     });
-                     
+                     console.log("cargando posicion rescatista");
+					 
                     if (response != null || !$.isEmptyObject(response)) {
                         listaPedidosPendientes = response.planesPendientesRescatistaDTO;
                         window.localStorage.setItem("listaPedidosStorage", listaPedidosPendientes);
@@ -112,6 +115,9 @@
                         }else{
                                 //alert("else");
                                 //alert(listaPedidosPendientes);
+								console.log("coordenada unica");
+								console.log([listaPedidosPendientes][0].coordenadaX + " " + [listaPedidosPendientes][0].coordenaday);
+								
                                 marcador = new google.maps.Marker({
                                 position: new google.maps.LatLng([listaPedidosPendientes][0].coordenadaX, [listaPedidosPendientes][0].coordenaday),
                                 map: map
@@ -142,7 +148,7 @@
                     }
                 },
                 error:function (request, status, error) {
-                    alert("Error" + request.responseText);
+                    console.log("Error" + request.responseText);
                 },
                 dataType:"json",
                 type:"get"
@@ -151,11 +157,14 @@
         },
 
         onError: function(error) {
+		    console.log('se rompio todo');
+		    console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
             alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
         },
 
         cargarMarcadores: function(){
-            alert("cargue marcadores");
+		    console.log("cargue marcadores");
+            
             var soly = new google.maps.LatLng(-34.8275215,-55.9765871);
             //map.gmap('addMarker', { 'position': soly } );
 

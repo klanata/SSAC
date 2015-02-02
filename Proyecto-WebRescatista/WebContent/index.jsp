@@ -178,12 +178,13 @@
                     <div class="panel panel-default">
                         
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <div id="menuFinalizarPlan" class="panel-body">
                            
                             <!-- /.list-group -->
                             <a href="#" class="btn btn-default btn-block" onclick='verPlan()'>Ver Plan</a>
 							<a href="#" class="btn btn-default btn-block" onclick='finalizar()'>Finalizar pedido</a>
 							<input id="idEstadoRescatista" type="hidden">
+							<input type="hidden" id="urlArchivo">
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -193,7 +194,7 @@
                         
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <textarea id="descripcionPedidoAyuda" class="form-control" rows="7"></textarea>
+                            <textarea readonly id="descripcionPedidoAyuda" class="form-control" rows="7"></textarea>
                         </div>
                         <!-- /.panel-body -->
                     </div>
