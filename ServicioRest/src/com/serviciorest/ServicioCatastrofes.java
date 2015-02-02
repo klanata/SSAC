@@ -58,7 +58,7 @@ private CatastrofeEBR manager;
         	   catastrofeAux.setPoligono(list);
         	   catastrofeAux.setPoligonoObjeto(catastrofesCore.get(i).getPoligono());
         	   catastrofeAux.setId((long)catastrofesCore.get(i).getId());
-        	   catastrofeAux.setNombreEvento((catastrofesCore.get(i).getNombreEvento()));
+        	   catastrofeAux.setNombreEvento((catastrofesCore.get(i).getNombreEvento()).toLowerCase());
         	   catastrofeAux.setCoordenadasX(catastrofesCore.get(i).getCoordenadasX());
         	   catastrofeAux.setCoordenadasY(catastrofesCore.get(i).getCoordenadasY());
         	   catastrofeAux.setDescripcion(catastrofesCore.get(i).getDescripcion());

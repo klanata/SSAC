@@ -276,7 +276,7 @@ public class filtroUrl implements Filter , Serializable {
 			while(it.hasNext() && (encontre==false) )
 			{
 				Catastrofe c = it.next();
-				String nombre = c.getNombreEvento();
+				String nombre = c.getNombreEvento().toLowerCase();
 				
 				String nombreCatastrofe = new String("http://localhost:8080/proyecto-webusuario/"+nombre +".xhtml");
 				
