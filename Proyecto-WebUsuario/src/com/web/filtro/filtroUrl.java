@@ -217,7 +217,7 @@ public class filtroUrl implements Filter , Serializable {
 		
 		
 	
-			 if (urlStr.endsWith("Index.xhtml") ||(urlStr.endsWith("agregarImagenPersona.xhtml")) || urlStr.endsWith("Error.xhtml") )
+			 if (urlStr.endsWith("Index.xhtml") ||(urlStr.endsWith("agregarImagenPersona.xhtml")) || urlStr.endsWith("Error.xhtml") || (urlStr.endsWith("Home.xhtml")) )
 			    return true;
 			
 			  if (urlStr.indexOf("/javax.faces.resource/") != -1)
