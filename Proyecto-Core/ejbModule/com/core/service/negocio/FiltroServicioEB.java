@@ -61,11 +61,54 @@ public class FiltroServicioEB implements FiltroServicioEBR{
 		return fs;
 	}
 	
+	public List<FiltroServicio> listaAllFiltroServicios() throws Exception{
+		List<FiltroServicio> listFiltroServicios = new ArrayList<FiltroServicio>();	
+		List<FiltroServicio> listAllFiltroServicios = filtroServicioDAO.listarFiltroServicios();
+		
+		FiltroServicio filtroServicio;
+		Catastrofe catastrofe;
+		boolean bajaLogicia;
+				
+		for (int i=0; i<=listAllFiltroServicios.size()-1; i++){
+			filtroServicio = listAllFiltroServicios.get(i);
+			catastrofe = filtroServicio.getCatastrofe();
+			if (catastrofe != null){
+				bajaLogicia = catastrofe.getBajaLogica();
+				if (bajaLogicia == false){
+					listFiltroServicios.add(filtroServicio);					
+				}				
+			}	
+			else{
+				listFiltroServicios.add(filtroServicio);	
+			}
+				
+		}
+		
+		return listFiltroServicios;
+		
+	}
+	
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public List<FiltroServicio> listaFiltroServicios() throws Exception {
-		List<FiltroServicio> listFiltroServicios = new ArrayList<FiltroServicio>();
-		listFiltroServicios = filtroServicioDAO.listarFiltroServicios();
+	public List<FiltroServicio> listaFiltroServiciosCatastrofesNoDadasDeBaja() throws Exception {
+		List<FiltroServicio> listFiltroServicios = new ArrayList<FiltroServicio>();		
+		List<FiltroServicio> listAllFiltroServicios = filtroServicioDAO.listarFiltroServicios();
+		
+		FiltroServicio filtroServicio;
+		Catastrofe catastrofe;
+		boolean bajaLogicia;
+				
+		for (int i=0; i<=listAllFiltroServicios.size()-1; i++){
+			filtroServicio = listAllFiltroServicios.get(i);
+			catastrofe = filtroServicio.getCatastrofe();
+			if (catastrofe != null){
+				bajaLogicia = catastrofe.getBajaLogica();
+				if (bajaLogicia == false){
+					listFiltroServicios.add(filtroServicio);					
+				}				
+			}									
+		}
+		
 		return listFiltroServicios;
 	}	
 	
@@ -110,6 +153,12 @@ public class FiltroServicioEB implements FiltroServicioEBR{
 		}						
 		
 		return listFiltroServicios;
+	}
+	
+	public void EliminarFiltroServicio(Long idFiltroServicio) throws Exception{
+		FiltroServicio filtroServicio = filtroServicioDAO.buscarFiltroServicioPorId(idFiltroServicio);
+		filtroServicio.setBajaLogica(true);
+		dataService.update(filtroServicio);			
 	}
 	
 }

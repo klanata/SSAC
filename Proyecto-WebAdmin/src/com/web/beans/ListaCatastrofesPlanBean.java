@@ -135,7 +135,7 @@ public class ListaCatastrofesPlanBean implements Serializable{
 	public void onRowSelect(SelectEvent event) {
 		
 		Long id = ((CatastrofeBean) event.getObject()).getId();
-		System.out.println("id de la catastrofe seleccionada en el plan de riesgo: " + id);
+		//System.out.println("id de la catastrofe seleccionada en el plan de riesgo: " + id);
 		String idEvento = id.toString();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofePlanDeRiesgo", idEvento); 		
 					

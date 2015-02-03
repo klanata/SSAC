@@ -526,4 +526,13 @@ public class CatastrofeEB implements CatastrofeEBR{
 		return listaFiltros;		
 	}
 	
+	
+	public void EliminarCatastrofe(Long idCatastrofe) throws Exception{
+		Catastrofe catastrofe = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);
+		catastrofe.setBajaLogica(true);		
+		dataService.update(catastrofe);
+	}
+	
+	
+	
 }

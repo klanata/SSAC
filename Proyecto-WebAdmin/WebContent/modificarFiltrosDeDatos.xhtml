@@ -11,16 +11,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
-	<style>
-    *{ margin: 0; padding: 0; }
-    html, body, #map{
-        width: 100%;
-        height: 100%;
-    }
-    </style>
-  	
-  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
-          
+	
+	
 </h:head> 
 <h:body id="top"> 
 <div class="wrapper col1">
@@ -46,9 +38,11 @@
   </p:commandLink>
  
 </p:panelGrid>
-                              
+                   
+           
       </fieldset>
-                       
+     
+                    
     </div>
     <br class="clear" />
   </div>
@@ -58,7 +52,7 @@
  
    <h:form>
  
-<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px;">
+<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
     <p:submenu label="Home" style="right: 0px;left: 200px;">
         <p:column>
             <p:submenu label="SSCA">
@@ -93,7 +87,7 @@
                 
             </p:submenu>
         </p:column>
-    </p:submenu>   
+    </p:submenu>
  
     <p:submenu label="Ong" style="right: 0px;left: 200px;">
          <p:column>
@@ -109,8 +103,8 @@
     <p:submenu label="Filtro" style="right: 0px;left: 200px;">
          <p:column>
             <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaFiltro.xhtml" icon="ui-icon-check"/>   
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />                           
+                <p:menuitem value="Alta" url="altaFiltro.xhtml" icon="ui-icon-check"/>      
+                <p:menuitem value="Baja" url="" icon="ui-icon-close" />                        
             </p:submenu>
         </p:column>
     </p:submenu>
@@ -129,7 +123,7 @@
  		<p:column>
             <p:submenu label="ABM">
                 <p:menuitem value="Alta" url="registrarCatastrofeMap.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listaBajaCatastrofe.xhtml" icon="ui-icon-close" />
+                <p:menuitem value="Baja" url="" icon="ui-icon-close" />
                 <p:menuitem value="Modificación" url="modificarCatastrofe.xhtml" icon="ui-icon-pencil"/>                
             </p:submenu>
         </p:column>   
@@ -138,9 +132,9 @@
     <p:submenu label="Reporte" icon="ui-icon-contact" style="right: 0px;left: 200px;">
         <p:column>
             <p:submenu label="Reportes">
-                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
-                <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
-                <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
+               <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
+               <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
+               <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
             </p:submenu>
             
         </p:column>
@@ -148,75 +142,67 @@
     </p:submenu>
        
 </p:megaMenu>
-</h:form>
-                       
+</h:form>          
+          
     <br class="clear" />
   
 </div>
-
-<div id="mapa" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
-
-	<p:growl id="growl" life="3000" showDetail="true" />
-
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="10" type="HYBRID"  style="width:550px;height:670px"
-    		 model="#{imagesView.polygonModel}" widgetVar="map" >    
-    	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
-    </p:gmap>
-	
-</div>
-
 <div class="wrapper col3">
-    <div id="intro2">
+  <div id="intro">
+    <div>
+      <h3>Modificar filtros asignados a fuentes de datos</h3>
+      <br/>	
+      <f:view>      	
+      	
+      	<h:form id="formFiltroDeDatos">      		
+      		
+      		<p:growl id="msgs" showDetail="true" />
+      		
+    		<p:dataTable id="catastrofesDT" var="filtroDeDatosBean" value="#{listaFiltroServicioBean.filtrosFiltroDeDatosBean}" widgetVar="filtrosTable"
+                 		 emptyMessage="No se han encontrado filtros con ese criterio" filteredValue="#{listaFiltroServicioBean.filtroFiltroDeDatosBean}"                 		  
+                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 		 selectionMode="single" selection="#{listaFiltroServicioBean.selectedFiltroDeDatosBean}" rowKey="#{filtroDeDatosBean.id}" dblClickSelect="true">    
+                 		                                		                                           	                 	
+				<f:facet name="header">
+		            <p:outputPanel style="text-align: right">
+		                <h:outputText value="Buscar filtro:  " />
+		                <p:inputText id="globalFilter"   onkeyup="PF('filtrosTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		            </p:outputPanel>
+		        </f:facet>    			    
+		        
+		        <p:ajax event="rowSelect" listener="#{listaFiltroServicioBean.onRowSelect}" update=":formFiltroDeDatos:msgs" />
+        		<p:ajax event="rowUnselect" listener="#{listaFiltroServicioBean.onRowUnselect}" update=":formFiltroDeDatos:msgs" />   		               		      		        		                	    
+        		
+        		<p:column headerText="Id" style="width:6px">
+            		<h:outputText value="#{filtroDeDatosBean.id}" />
+        		</p:column>     
+        		
+        		<p:column headerText="Fuente de datos" style="width:60px">
+	            		<h:outputText value="#{filtroDeDatosBean.fuente}" />
+	        	</p:column>        		                  		                  		             	        		        		
+        		
+        		<p:column headerText="Descripción" style="width:600px" filterBy="#{filtroDeDatosBean.descripcion}" filterMatchMode="contains">
+            		<h:outputText value="#{filtroDeDatosBean.descripcion}" />            		
+        		</p:column>   
+        		
+        		<p:column headerText="Asignado a la Catástrofe" style="width:100px">
+	            		<h:outputText value="#{filtroDeDatosBean.nombreCatastrofe}" />
+	        	</p:column>       		        		
+        		
+                <p:column headerText="Baja">
+            		<h:outputText value="#{filtroDeDatosBean.bajaLogica}" />            		
+        		</p:column>        		        		 
+        		        		        		
+     		</p:dataTable>      		     				    		     	
+     		
+		</h:form>
+      
+      </f:view>         
+    </div>
     
-    <div class="fl_left2">
-            
-      <f:view>
-            				
-    		<h:form id="bajaCatastrofe" enctype="multipart/form-data"> 
-    		
-    			<p:growl id="messages" showDetail="true" />     			
-    		
-    			<h:panelGrid id="panel" columns="1" cellpadding="2">
-    			
-    			<h2>Eliminar Catástrofe</h2> 
-    			
-    				<p>			        		        
-		            <p:graphicImage value="image/#{borrarCatastrofeBeanMap.catastrofeBean.logo}" width="50" height="50"/> 
-		            <h:outputText value="" style="border: transparent;"/>	              		         	        	
-					</p>			
-					
-					<p>
-					<label for="nombre">Nombre del evento: #{borrarCatastrofeBeanMap.catastrofeBean.nombreEvento} </label>	
-					</p>
-					<br/>	
-					
-					<p>
-					<label for="descripcion">Descripción: #{borrarCatastrofeBeanMap.catastrofeBean.descripcion} </label>	
-					</p>
-					<br/>
-					
-					<p>
-					<label for="activa">Activa: #{borrarCatastrofeBeanMap.catastrofeBean.activa} </label>	
-					</p>
-					<br/>	
-					
-					<p>
-					<label for="prioridad">Prioridad: #{borrarCatastrofeBeanMap.catastrofeBean.prioridad} </label>	
-					</p>
-					<br/>													               		              		    		        		  	            																																																																																														            		            																																																																	                        		           	            
-            		
-            	</h:panelGrid>  
-            	            	
-                <p:commandButton value="Eliminar" ajax="false" update="bajaCatastrofe:messages" action="#{borrarCatastrofeBeanMap.borrarCatastrofe()}" />                		            	     			 					         		
-        		          					         			            		        		        	        		      
-    		</h:form>
-    		    		    		    		    		
-		</f:view>
-    </div> 
-    				    
     <br class="clear" />
-    
-	</div>	    		
+  </div>
 </div>
 
 <div class="wrapper col7">
@@ -226,6 +212,7 @@
     <br class="clear" />
   </div>
 </div>
+
 	<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
@@ -235,5 +222,5 @@
 	  }
 	//]]>
 	</script>
-</h:body> 
+	</h:body> 
 </html>

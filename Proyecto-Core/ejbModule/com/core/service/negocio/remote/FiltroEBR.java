@@ -33,4 +33,6 @@ public interface FiltroEBR {
 	
 	public List<Filtro> listaFiltrosNoAsignadosAlServicio(String nombreServicio) throws Exception;
 	//Lista los filtros que no estan asignados al servicio nombreServicio
+	
+	public void EliminarFiltro(Long idFiltro) throws Exception;
 }

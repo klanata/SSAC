@@ -20,7 +20,8 @@
     </style>
   	
   	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
-          
+	
+	
 </h:head> 
 <h:body id="top"> 
 <div class="wrapper col1">
@@ -46,9 +47,11 @@
   </p:commandLink>
  
 </p:panelGrid>
-                              
+                   
+           
       </fieldset>
-                       
+     
+                    
     </div>
     <br class="clear" />
   </div>
@@ -58,7 +61,7 @@
  
    <h:form>
  
-<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px;">
+<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
     <p:submenu label="Home" style="right: 0px;left: 200px;">
         <p:column>
             <p:submenu label="SSCA">
@@ -93,7 +96,7 @@
                 
             </p:submenu>
         </p:column>
-    </p:submenu>   
+    </p:submenu>
  
     <p:submenu label="Ong" style="right: 0px;left: 200px;">
          <p:column>
@@ -109,8 +112,8 @@
     <p:submenu label="Filtro" style="right: 0px;left: 200px;">
          <p:column>
             <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaFiltro.xhtml" icon="ui-icon-check"/>   
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />                           
+                <p:menuitem value="Alta" url="altaFiltro.xhtml" icon="ui-icon-check"/>      
+                <p:menuitem value="Baja" url="" icon="ui-icon-close" />                        
             </p:submenu>
         </p:column>
     </p:submenu>
@@ -129,7 +132,7 @@
  		<p:column>
             <p:submenu label="ABM">
                 <p:menuitem value="Alta" url="registrarCatastrofeMap.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listaBajaCatastrofe.xhtml" icon="ui-icon-close" />
+                <p:menuitem value="Baja" url="" icon="ui-icon-close" />
                 <p:menuitem value="Modificación" url="modificarCatastrofe.xhtml" icon="ui-icon-pencil"/>                
             </p:submenu>
         </p:column>   
@@ -138,9 +141,9 @@
     <p:submenu label="Reporte" icon="ui-icon-contact" style="right: 0px;left: 200px;">
         <p:column>
             <p:submenu label="Reportes">
-                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
-                <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
-                <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
+               <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
+               <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
+               <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
             </p:submenu>
             
         </p:column>
@@ -148,12 +151,11 @@
     </p:submenu>
        
 </p:megaMenu>
-</h:form>
-                       
+</h:form>          
+          
     <br class="clear" />
   
 </div>
-
 <div id="mapa" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
 
 	<p:growl id="growl" life="3000" showDetail="true" />
@@ -178,45 +180,45 @@
     		
     			<h:panelGrid id="panel" columns="1" cellpadding="2">
     			
-    			<h2>Eliminar Catástrofe</h2> 
+    			<h2>Modificar filtro</h2> 
     			
     				<p>			        		        
-		            <p:graphicImage value="image/#{borrarCatastrofeBeanMap.catastrofeBean.logo}" width="50" height="50"/> 
+		            <p:graphicImage value="image/#{modificarFiltroCatastrofeBean.catastrofeBean.logo}" width="50" height="50"/> 
 		            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 					</p>			
 					
 					<p>
-					<label for="nombre">Nombre del evento: #{borrarCatastrofeBeanMap.catastrofeBean.nombreEvento} </label>	
+					<label for="nombre">Nombre del evento: #{modificarFiltroCatastrofeBean.catastrofeBean.nombreEvento} </label>	
 					</p>
 					<br/>	
 					
 					<p>
-					<label for="descripcion">Descripción: #{borrarCatastrofeBeanMap.catastrofeBean.descripcion} </label>	
+					<label for="descripcion">Descripción: #{modificarFiltroCatastrofeBean.catastrofeBean.descripcion} </label>	
 					</p>
 					<br/>
 					
 					<p>
-					<label for="activa">Activa: #{borrarCatastrofeBeanMap.catastrofeBean.activa} </label>	
+					<label for="activa">Activa: #{modificarFiltroCatastrofeBean.catastrofeBean.activa} </label>	
 					</p>
 					<br/>	
 					
 					<p>
-					<label for="prioridad">Prioridad: #{borrarCatastrofeBeanMap.catastrofeBean.prioridad} </label>	
+					<label for="prioridad">Prioridad: #{modificarFiltroCatastrofeBean.catastrofeBean.prioridad} </label>	
 					</p>
 					<br/>													               		              		    		        		  	            																																																																																														            		            																																																																	                        		           	            
             		
             	</h:panelGrid>  
             	            	
-                <p:commandButton value="Eliminar" ajax="false" update="bajaCatastrofe:messages" action="#{borrarCatastrofeBeanMap.borrarCatastrofe()}" />                		            	     			 					         		
+                <p:commandButton value="Modificar" ajax="false" update="bajaCatastrofe:messages" action="#{modificarFiltroCatastrofeBean.modificarFiltroCatastrofe()}" />       		            	     			 					         		
         		          					         			            		        		        	        		      
     		</h:form>
     		    		    		    		    		
 		</f:view>
-    </div> 
-    				    
-    <br class="clear" />
+                   
+    </div>
     
-	</div>	    		
+    <br class="clear" />
+  </div>
 </div>
 
 <div class="wrapper col7">
@@ -226,6 +228,7 @@
     <br class="clear" />
   </div>
 </div>
+
 	<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
@@ -235,5 +238,5 @@
 	  }
 	//]]>
 	</script>
-</h:body> 
+	</h:body> 
 </html>

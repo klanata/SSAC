@@ -64,4 +64,7 @@ public interface CatastrofeEBR {
 	public void eliminarFiltroServicioDeCatastrofe(Long idFiltroServicio) throws Exception;
 	
 	public List<String> listarFiltrosDeCatastrofe(long idCatastrofe, String fuente) throws Exception;
+	
+	public void EliminarCatastrofe(Long idCatastofe) throws Exception;
+	
 }

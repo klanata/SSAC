@@ -19,9 +19,9 @@ import com.core.data.entites.Catastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
 
-@ManagedBean(name="borrarCatastrofeBeanMap")
+@ManagedBean(name="modificarFiltroCatastrofeBean")
 @RequestScoped
-public class BorrarCatastrofeBeanMap implements Serializable{
+public class ModificarFiltroCatastrofeBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;	
 	
@@ -136,7 +136,7 @@ public class BorrarCatastrofeBeanMap implements Serializable{
 	}
 
 		
-	public void borrarCatastrofe(){	
+	public void modificarFiltroCatastrofe(){	
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
 		if ((idEventoString == null) || (idEventoString == ""))
 		{	
@@ -167,20 +167,17 @@ public class BorrarCatastrofeBeanMap implements Serializable{
 				
 				try {	    				    	
 						    			
-					manager.EliminarCatastrofe(idCatastrofe);
+					//manager.EliminarCatastrofe(idCatastrofe);
 					
-					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Baja Exitosa", "La catástrofe fue dada de baja del sistema.");
+					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación Exitosa", "La catástrofe fue modificada.");
     				FacesContext.getCurrentInstance().addMessage(null, message);
     				
     				FacesContext contexto = FacesContext.getCurrentInstance();
     				contexto.getExternalContext().getFlash().setKeepMessages(true);
 		        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-    				handler.performNavigation("listaBajaCatastrofe?faces-redirect=true");
+    				handler.performNavigation("modificarFiltrosDeDatos?faces-redirect=true");
 								
-					//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
-					//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación Exitosa", "Las ONGs fueron quitadas de la catástrofe al sistema.");
-					//ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-					//handler.performNavigation("vistaServiciosCatastrofe?faces-redirect=true");						
+											
 														
 				}catch (Exception excep){
 					System.out.println("Excepción al borrar la catástrofe: " + excep.getMessage());      		 			       	           	
