@@ -8,7 +8,7 @@ function rescatistaController($scope) {
     $scope.password = "",
     $scope.nombreArchivoPlan = "",
     $scope.idPlanActual = "",
-    $scope.server = "172.16.100.73",
+    $scope.server = "192.168.0.106",
     $scope.puerto = "8080",
     $scope.rutaViewerJS = "http://10.0.2.2/RescatistasApp/www/ViewerJS/#../",
     $scope.descripcion = "",//window.localStorage.getItem("descripcionPedidoAyudaActual"),
@@ -55,7 +55,7 @@ function rescatistaController($scope) {
                 //console.log(response);
                 if(response.booleanValue === 'true')
                 {
-                    alert('ok');
+                    //alert('ok');
                     window.localStorage.setItem("usuarioNick", $scope.nick);
                     $scope.listarPlanes.call($scope.verMapa());
                     $scope.nick = "";
@@ -136,7 +136,7 @@ function rescatistaController($scope) {
 
   $scope.verMapa = function () {
   $scope.verMapa = function () {
-    alert("verMapa");
+    //alert("verMapa");
     mapa.initialize();
     //mapa.cargarMarcadores();
     }

@@ -40,18 +40,18 @@
         onDeviceReady: function() {
             //app.receivedEvent('deviceready');
             navigator.geolocation.getCurrentPosition(mapa.onSuccess, mapa.onError,{timeout: 10000, enableHighAccuracy: true});
-            alert("ondeviceready");
+            //alert("ondeviceready");
 			console.log("Ingresando al sistema");
         },
 
         onSuccess: function(position){
         console.log("inicializando mapa");
-		alert("OnSuccess");
+		//alert("OnSuccess");
             var listaPedidosPendientes = new Array();
             var nick = window.localStorage.getItem("usuarioNick");
             console.log("Nick Storaged: "+ nick);
 			//alert("http://192.168.0.106:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick);
-            $.ajax({url:"http://172.16.100.73:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
+            $.ajax({url:"http://192.168.0.106:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
                 success:function(response) {
                     //useReturnData(response);
                     
@@ -159,7 +159,7 @@
         onError: function(error) {
 		    console.log('se rompio todo');
 		    console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-            alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+            //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
         },
 
         cargarMarcadores: function(){

@@ -2,7 +2,7 @@
 var marcadores = [];
 var map = "";
 var Nick;
-var server = "172.16.100.73";
+var server = "192.168.0.106";
 var puerto = "8080";
 
 function cargarMapa(position) {
@@ -209,8 +209,10 @@ function validarRescatista() {
 }
 
 function verPlan() {
+	var urlArchivo = document.getElementById("urlArchivo").value;
 	window.location.replace("http://" + server + ":" + puerto
-			+ "/ServicioRest/catastrofe/rescatista/pdf?nombreArchivoPlan="+$scope.nombreArchivoPlan);
+			+ "/ServicioRest/catastrofe/rescatista/pdf?nombreArchivoPlan="+urlArchivo);
+	alert("urlArchivo");
 	// $("#panelPdf").empty();
 	// $("#panelPdf").append('<iframe
 	// src="http://docs.google.com/gview?url=http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/pdf.pdf&embedded=true"style="width:600px;

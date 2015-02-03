@@ -25,7 +25,7 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#E4E4E4;
-	background-image:url('../img/background-blue.jpg');
+	background-image:url('../img/background-violet.png');
    /* background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);

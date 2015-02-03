@@ -181,7 +181,7 @@
                         <div id="menuFinalizarPlan" class="panel-body">
                            
                             <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block" onclick='verPlan()'>Ver Plan</a>
+                            <a href="#" class="btn btn-default btn-block" onclick='verPlan()'>Descargar Plan</a>
 							<a href="#" class="btn btn-default btn-block" onclick='finalizar()'>Finalizar pedido</a>
 							<input id="idEstadoRescatista" type="hidden">
 							<input type="hidden" id="urlArchivo">
