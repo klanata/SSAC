@@ -15,17 +15,9 @@ import javax.naming.NamingException;
 import javax.annotation.PostConstruct; 
 
 
-
-
-
-
-
-
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Catastrofe;
-import com.core.data.entites.Filtro;
-import com.core.data.entites.FiltroServicio;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
 
@@ -129,7 +121,7 @@ public class BorrarCatastrofeBeanMap implements Serializable{
 				System.out.println("Catastrofe: " + idCatastrofe2);
 				List<String> filtros = new ArrayList<String>();
 				String fuente ="Youtube";
-				filtros= manager2.listarFiltroDeCatastrofe(idCatastrofe2, fuente);
+				filtros= manager2.listarFiltrosDeCatastrofe(idCatastrofe2, fuente);
 				System.out.println("Filtros size: " + filtros.size());
 				String f;
 				for (int i=0; i<=filtros.size()-1; i++){    		

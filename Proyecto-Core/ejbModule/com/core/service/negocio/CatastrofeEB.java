@@ -488,7 +488,7 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}		
 	}
 	
-	public List<String> listarFiltroDeCatastrofe(long idCatastrofe, String fuente) throws Exception{	
+	public List<String> listarFiltrosDeCatastrofe(long idCatastrofe, String fuente) throws Exception{	
 		
 		List<String> listaFiltros = new ArrayList<String>();
 		List<FiltroServicio> allFiltroServicio = filtroServicioDAO.listarFiltroServicios();
