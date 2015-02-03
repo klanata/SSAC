@@ -402,7 +402,11 @@ div {
 									<label for="cantidadHoras">Cantidad de horas :</label>
 									<p:inputText id="cantidadHoras" label="cantidadHoras"
 										value="#{deServicioBean.cantidadHoras}" required="true"
-										requiredMessage="Cantidad de horas es requerido">
+										requiredMessage="Cantidad de horas es requerido"
+										validatorMessage="Formato de Horas invalido, debe contener números 0..9" >	
+					
+					 <f:validateRegex pattern="[0-9]*" />
+										>
 									</p:inputText>
 
 									<p:commandButton id="registro" update="growl" type="submit"
@@ -525,7 +529,12 @@ div {
 									<label for="cantidad">Cantidad :</label>
 									<p:inputText id="cantidad" label="cantidad"
 										value="#{deBienesBean.cantidad}" required="true"
-										requiredMessage="La cantidad es requerida">
+										requiredMessage="La cantidad es requerida"
+										validatorMessage="Formato de Cantidad invalido, debe contener números 0..9" >	
+					
+					 <f:validateRegex pattern="[0-9]*" />
+										
+										>
 									</p:inputText>
 
 									<p:commandButton id="registro" update="growl" type="submit"
@@ -649,13 +658,23 @@ div {
 								<label for="cedula">Cedula :</label>
 								<p:inputText id="cedula" label="cedula"
 									value="#{personasdesaparecidasBean.cedula}" required="true"
-									requiredMessage="es requerido">
+									requiredMessage="es requerido"
+									validatorMessage="Formato de Cedula invalido, debe contener números 0..9" >	
+					
+					 <f:validateRegex pattern="[0-9]*" />
+									
+									>
 								</p:inputText>
 
 								<label for="numeroContacto">Numero de contacto :</label>
 								<p:inputText id="numeroContacto" label="numeroContacto"
 									value="#{personasdesaparecidasBean.numeroContacto}"
-									required="true" requiredMessage="es requerido">
+									required="true" requiredMessage="es requerido"
+									validatorMessage="Formato de Telefono invalido, debe contener números 0..9" >	
+					
+					 <f:validateRegex pattern="[0-9]*" />
+									
+									>
 								</p:inputText>
 
 								<label for="descripcion">Descripcion :</label>
@@ -811,7 +830,17 @@ div {
 
 							<label for="nombre"> Clave:</label>
 							<p:password value="#{loginBean.clave}" id="password"
-								required="true" label="password" />
+								required="true" label="password"
+								
+								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">
+				 
+				 
+				 <f:validateRegex pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
+								
+								
+								
+								
+								 </p:password>
 
 							<p:outputLabel for="fechNac" value="fechNac" />
 							<p:calendar id="fechNac" label="fechNac"
