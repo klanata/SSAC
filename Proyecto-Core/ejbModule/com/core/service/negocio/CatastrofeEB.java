@@ -17,6 +17,7 @@ import com.core.data.entites.PlanDeRiesgo;
 import com.core.data.entites.Filtro;
 import com.core.data.entites.FiltroServicio;
 import com.core.data.entites.ImagenCatastrofe;
+import com.core.data.entites.Servicio;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.ImagenCatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.PlanDeRiesgoDAO;
@@ -485,6 +486,44 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}catch (Exception e) {			
 			e.printStackTrace();
 		}		
+	}
+	
+	public List<String> listarFiltrosDeCatastrofe(long idCatastrofe, String fuente) throws Exception{	
+		
+		List<String> listaFiltros = new ArrayList<String>();
+		List<FiltroServicio> allFiltroServicio = filtroServicioDAO.listarFiltroServicios();
+		Servicio servicioFuente = servicioDAO.buscarServicioPorFuente(fuente) ;
+		
+		FiltroServicio filtroServicio;
+		Catastrofe catastrofe;
+		Long id;
+		Boolean bajaLogica;
+		String filtroDescripcion;
+		Long idFiltro;
+		Filtro filtro;
+		Servicio servicio;
+		Long idServicio;
+						
+		for (int i=0; i<=allFiltroServicio.size()-1; i++){
+			filtroServicio = allFiltroServicio.get(i);			
+			bajaLogica = filtroServicio.isBajaLogica();
+			catastrofe = filtroServicio.getCatastrofe();
+			idServicio = filtroServicio.getIdServicio();
+			servicio = servicioDAO.buscarServicioPorId(idServicio);					
+			
+			if ((catastrofe != null) && (bajaLogica == false) && (servicio == servicioFuente)) {					
+				id = catastrofe.getId();
+				//System.out.println("catastrofe Filtros servicios id: " + id);
+				if (id == idCatastrofe){	
+					idFiltro = filtroServicio.getIdFiltro();
+					filtro = filtroDAO.buscarFiltroPorId(idFiltro);
+					filtroDescripcion = filtro.getDescripcion();
+					listaFiltros.add(filtroDescripcion);
+				}											
+											
+			}						
+		}					
+		return listaFiltros;		
 	}
 	
 }

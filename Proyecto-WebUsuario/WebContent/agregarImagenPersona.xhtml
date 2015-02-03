@@ -51,13 +51,13 @@
    		 <div class="ui-grid-row">	
    		 <div class="ui-grid-col-1"></div>	
    		  <div class="ui-grid-col-10">
-  		<h:form enctype="multipart/form-data">  
+  		<h:form >  
   		    <h:panelGrid>	 
         	<p>
 			<h:outputText value="Seleccione las imágenes   " style="width:100px;border: transparent;"/>			            
             </p>
                     
-		    <p:fileUpload fileUploadListener="#{fileUploadController.upload}" mode="advanced" dragDropSupport="false"
+		    <p:fileUpload fileUploadListener="#{fileUploadUsuarioController.upload}" mode="advanced" dragDropSupport="false"
 		                  multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 		 
 		    <p:growl id="messages" showDetail="true" />
@@ -65,7 +65,7 @@
 		    <br/>
 		    
 		    <p:outputPanel style="text-align: left">			 		
-	        	<p:commandButton value="Cancelar" action="#{fileUploadController.cancelar()}" />
+	        	<p:commandButton value="Cancelar" action="#{fileUploadUsuarioController.cancelar()}" />
 	        </p:outputPanel>
 	            </h:panelGrid>	
 		</h:form> 

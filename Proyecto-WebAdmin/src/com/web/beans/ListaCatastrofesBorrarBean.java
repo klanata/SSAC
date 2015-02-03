@@ -24,9 +24,9 @@ import com.core.data.entites.Catastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
 
-@ManagedBean(name="listaCatastrofesBean")
+@ManagedBean(name="listaCatastrofesBorrarBean")
 @RequestScoped
-public class ListaCatastrofesBean implements Serializable{
+public class ListaCatastrofesBorrarBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -138,11 +138,11 @@ public class ListaCatastrofesBean implements Serializable{
 		Long id = ((CatastrofeBean) event.getObject()).getId();		
 		String idCatastrofeString = id.toString();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idCatastrofeString", idCatastrofeString);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("ABMCatastrofe", "Modificacion");
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("ABMCatastrofe", "Modificacion");
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");						 																	
+		handler.performNavigation("bajaCatastrofeMap?faces-redirect=true");						 																	
 		            
     }
  
