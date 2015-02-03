@@ -7,10 +7,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.faces.application.ConfigurableNavigationHandler;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -22,6 +20,8 @@ import javax.naming.NamingException;
 
 
 
+
+import javax.servlet.http.HttpSession;
 
 import clienteutility.ClienteUtility;
 
@@ -170,6 +170,11 @@ public void registrarPersonasDesaparecidas(){
     		fechaPublicacion.getTime();
     		
     		hallada = false;
+    		
+    		FacesContext contexto = FacesContext.getCurrentInstance();
+			HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);
+			catastrofeId = (Long)sesion.getAttribute("idmongo");
+			
     		Long in =manager.crearReportePersonasDesaparecidas(catastrofeId, nombre, apellido, cedula, numeroContacto, descripcion, fechaPublicacion, imagenes, hallada);
     		String idP = in.toString();
     		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idP", idP); 

@@ -15,6 +15,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 sequenceName = "imagenPersonaDesa_id_seq",
 initialValue=1,
 allocationSize=1)
+@NamedQueries({
+	
+	
+				
+@NamedQuery(name="ImagenPersonaDesaparecida.BuscarImgPersonaId.PathImg", 
+query = "SELECT img "+
+		"FROM ImagenPersonaDesaparecida img " +
+		"WHERE img.path = :pathImg"),
+		
+		@NamedQuery(name="ImagenPersonaDesaparecida.BuscarImgPersona.PathImg", 
+		query = "SELECT img "+
+				"FROM ImagenPersonaDesaparecida img " +
+				"WHERE img.path = :path")
+	
+
+})
+
 @XmlRootElement
 public class ImagenPersonaDesaparecida extends Imagen implements Serializable {
 

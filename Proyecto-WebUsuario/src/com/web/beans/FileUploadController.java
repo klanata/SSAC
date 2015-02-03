@@ -21,7 +21,7 @@ import clienteutility.ClienteUtility;
 
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
 
-@ManagedBean(name="fileUploadController")
+@ManagedBean(name="fileUploadUsuarioController")
 public class FileUploadController {	
 	
 	
