@@ -62,4 +62,6 @@ public interface CatastrofeEBR {
 	public void asignarFiltroServicioALaCatastrofe(Long idCatastrofe, Long idFiltroServicio) throws Exception;
 	
 	public void eliminarFiltroServicioDeCatastrofe(Long idFiltroServicio) throws Exception;
+	
+	public List<String> listarFiltrosDeCatastrofe(long idCatastrofe, String fuente) throws Exception;
 }
