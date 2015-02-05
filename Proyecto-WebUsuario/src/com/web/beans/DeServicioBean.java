@@ -74,6 +74,11 @@ public class DeServicioBean implements Serializable {
 		try{    		   	    	    		
 			Date fechaRealizada = new Date();
     		fechaRealizada.getTime();
+    		System.out.println("Excepcion en donacion de servicio: " + idOng);  
+    		System.out.println("Excepcion en donacion de servicio: " + usuario);  
+    		System.out.println("Excepcion en donacion de servicio: " + cantidadHoras);  
+    		
+    		
        		manager.crearDonacionDeServicios(idOng, usuario, fechaRealizada, areaConocimient, cantidadHoras);    	
 		}catch (Exception excep){
     		System.out.println("Excepcion en donacion de servicio: " + excep.getMessage());      		 			       

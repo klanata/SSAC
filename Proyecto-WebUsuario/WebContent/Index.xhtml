@@ -407,10 +407,10 @@ div {
 									<p:inputText id="cantidadHoras" label="cantidadHoras"
 										value="#{deServicioBean.cantidadHoras}" required="true"
 										requiredMessage="Cantidad de horas es requerido"
-										validatorMessage="Formato de Horas invalido, debe contener números 0..9">
-
-										<f:validateRegex pattern="[0-9]*" />
 										>
+
+										
+										
 									</p:inputText>
 
 									<p:commandButton id="registro" update="growl" type="submit"
@@ -534,11 +534,9 @@ div {
 									<p:inputText id="cantidad" label="cantidad"
 										value="#{deBienesBean.cantidad}" required="true"
 										requiredMessage="La cantidad es requerida"
-										validatorMessage="Formato de Cantidad invalido, debe contener números 0..9">
-
-										<f:validateRegex pattern="[0-9]*" />
-										
 										>
+
+										
 									</p:inputText>
 
 									<p:commandButton id="registro" update="growl" type="submit"
