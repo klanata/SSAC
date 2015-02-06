@@ -372,12 +372,12 @@ public class CatastrofeEB implements CatastrofeEBR{
 			}
 			index ++;
 			if (poligono.charAt(index) == '-'){
-				esNegativo = true;							
+				esNegativo = true;	
+				index ++;
 			}
 			else {
 				esNegativo = false;
-			}
-			index ++;
+			}			
 			while(poligono.charAt(index) != '.'){
 				digChar = poligono.charAt(index);	
 				int dig = digChar - '0';
