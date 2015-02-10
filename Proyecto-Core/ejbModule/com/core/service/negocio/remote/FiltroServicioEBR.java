@@ -28,7 +28,9 @@ public interface FiltroServicioEBR {
 	
 	public List<FiltroServicio> listaFiltroServicioAsignadosCatastrofe(long idCatastrofe) throws Exception;
 	
-	public void EliminarFiltroServicio(Long idFiltroServicio) throws Exception;
+	public void eliminarFiltroServicio(Long idFiltroServicio) throws Exception;
+	
+	public void modificarFiltroServicioCatastrofe(Long idFiltroServicio, String descripcion) throws Exception;
 		
 	
 }

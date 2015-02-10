@@ -16,6 +16,7 @@ import com.core.data.entites.FiltroServicio;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.FiltroServicioDAO;
 import com.core.data.persistencia.interfaces.locales.ServicioDAO;
+import com.core.data.persistencia.interfaces.locales.FiltroDAO;
 import com.core.service.negocio.remote.FiltroServicioEBR;
 import com.core.data.persistencia.DataService;
 
@@ -35,6 +36,9 @@ public class FiltroServicioEB implements FiltroServicioEBR{
 	
 	@EJB
 	private CatastrofeDAO catastrofeDAO;
+	
+	@EJB
+	private FiltroDAO filtroDAO;
 
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -155,10 +159,19 @@ public class FiltroServicioEB implements FiltroServicioEBR{
 		return listFiltroServicios;
 	}
 	
-	public void EliminarFiltroServicio(Long idFiltroServicio) throws Exception{
+	public void eliminarFiltroServicio(Long idFiltroServicio) throws Exception{
 		FiltroServicio filtroServicio = filtroServicioDAO.buscarFiltroServicioPorId(idFiltroServicio);
 		filtroServicio.setBajaLogica(true);
 		dataService.update(filtroServicio);			
+	}
+	
+	public void modificarFiltroServicioCatastrofe(Long idFiltroServicio, String descripcion) throws Exception{
+		FiltroServicio filtroServicio = filtroServicioDAO.buscarFiltroServicioPorId(idFiltroServicio);
+		Long idFiltro = filtroServicio.getIdFiltro();
+		
+		Filtro filtro = filtroDAO.buscarFiltroPorId(idFiltro);
+		filtro.setDescripcion(descripcion);
+		dataService.update(filtro);		
 	}
 	
 }
