@@ -160,7 +160,7 @@
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="10" type="HYBRID"  style="width:550px;height:670px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="8" type="HYBRID"  style="width:550px;height:670px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
     </p:gmap>
@@ -174,7 +174,7 @@
             
       <f:view>
             				
-    		<h:form id="bajaCatastrofe" enctype="multipart/form-data"> 
+    		<h:form id="modifFiltroCatastrofe" enctype="multipart/form-data"> 
     		
     			<p:growl id="messages" showDetail="true" />     			
     		
@@ -205,11 +205,24 @@
 					<p>
 					<label for="prioridad">Prioridad: #{modificarFiltroCatastrofeBean.catastrofeBean.prioridad} </label>	
 					</p>
-					<br/>													               		              		    		        		  	            																																																																																														            		            																																																																	                        		           	            
+					<br/>		
+					
+					<p>
+					<label for="filtro">Filtro :</label>				
+						<p:inputText id="filtro" label="filtro" value="#{modificarFiltroCatastrofeBean.filtroServicioBean.descripcion}" required="true" requiredMessage="El filtro es requerido" >	
+						</p:inputText>																																									
+					</p>
+					<br/>	
+					
+					<p>
+					<label for="servicio">Servicio: #{modificarFiltroCatastrofeBean.filtroServicioBean.fuente} </label>	
+					</p>
+					<br/>										               		              		    		        		  	            																																																																																														            		            																																																																	                        		           	            
             		
             	</h:panelGrid>  
             	            	
-                <p:commandButton value="Modificar" ajax="false" update="bajaCatastrofe:messages" action="#{modificarFiltroCatastrofeBean.modificarFiltroCatastrofe()}" />       		            	     			 					         		
+                <p:commandButton value="Modificar" ajax="false" update="modifFiltroCatastrofe:messages" action="#{modificarFiltroCatastrofeBean.modificarFiltroCatastrofe()}" />       		            	     			 					         		
+        		<p:commandButton value="Cancelar" ajax="false" update="modifFiltroCatastrofe:messages" action="#{modificarFiltroCatastrofeBean.cancelar()}" />  
         		          					         			            		        		        	        		      
     		</h:form>
     		    		    		    		    		

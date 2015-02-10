@@ -175,12 +175,7 @@ public class BorrarCatastrofeBeanMap implements Serializable{
     				FacesContext contexto = FacesContext.getCurrentInstance();
     				contexto.getExternalContext().getFlash().setKeepMessages(true);
 		        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-    				handler.performNavigation("listaBajaCatastrofe?faces-redirect=true");
-								
-					//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeONG", "");
-					//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Operación Exitosa", "Las ONGs fueron quitadas de la catástrofe al sistema.");
-					//ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-					//handler.performNavigation("vistaServiciosCatastrofe?faces-redirect=true");						
+    				handler.performNavigation("listaBajaCatastrofe?faces-redirect=true");																	
 														
 				}catch (Exception excep){
 					System.out.println("Excepción al borrar la catástrofe: " + excep.getMessage());      		 			       	           	
@@ -192,6 +187,12 @@ public class BorrarCatastrofeBeanMap implements Serializable{
 			FacesContext.getCurrentInstance().addMessage(null, message);
 				
 		}
+		
+	}
+	
+	public void cancelar(){	
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("listaBajaCatastrofe?faces-redirect=true");	
 		
 	}
 	

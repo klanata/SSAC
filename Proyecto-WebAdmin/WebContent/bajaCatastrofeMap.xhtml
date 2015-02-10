@@ -158,9 +158,9 @@
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="10" type="HYBRID"  style="width:550px;height:670px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:550px;height:670px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
-    	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
+    	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>
 	
 </div>
@@ -208,6 +208,7 @@
             	</h:panelGrid>  
             	            	
                 <p:commandButton value="Eliminar" ajax="false" update="bajaCatastrofe:messages" action="#{borrarCatastrofeBeanMap.borrarCatastrofe()}" />                		            	     			 					         		
+                <p:commandButton value="Cancelar" ajax="false" update="bajaCatastrofe:messages" action="#{borrarCatastrofeBeanMap.cancelar()}" />
         		          					         			            		        		        	        		      
     		</h:form>
     		    		    		    		    		

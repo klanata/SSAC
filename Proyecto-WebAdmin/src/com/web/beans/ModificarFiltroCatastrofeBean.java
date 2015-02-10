@@ -1,6 +1,5 @@
 package com.web.beans;
 
-
 import java.io.Serializable;
 
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -16,7 +15,13 @@ import javax.annotation.PostConstruct;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Catastrofe;
+import com.core.data.entites.Filtro;
+import com.core.data.entites.FiltroServicio;
+import com.core.data.entites.Servicio;
 import com.core.service.negocio.remote.CatastrofeEBR;
+import com.core.service.negocio.remote.FiltroEBR;
+import com.core.service.negocio.remote.FiltroServicioEBR;
+import com.core.service.negocio.remote.ServicioEBR;
 
 
 @ManagedBean(name="modificarFiltroCatastrofeBean")
@@ -27,6 +32,9 @@ public class ModificarFiltroCatastrofeBean implements Serializable{
 	
 	@ManagedProperty("#{catastrofeBean}")
     private CatastrofeBean catastrofeBean = new CatastrofeBean();
+	
+	@ManagedProperty("#{filtroServicioBean}")
+    private FiltroServicioBean filtroServicioBean = new FiltroServicioBean();
 				
 	
 	//	------------------ Getter and setter methods ---------------------
@@ -37,15 +45,23 @@ public class ModificarFiltroCatastrofeBean implements Serializable{
 	public void setCatastrofeBean(CatastrofeBean catastrofeBean) {
 		this.catastrofeBean = catastrofeBean;
 	}
+	public FiltroServicioBean getFiltroServicioBean() {
+		return filtroServicioBean;
+	}
+	public void setFiltroServicioBean(FiltroServicioBean filtroServicioBean) {
+		this.filtroServicioBean = filtroServicioBean;
+	}
+	
 	
 	//	------------------ Operaciones ---------------------
-			
+				
 	@PostConstruct
-	public void init() {
+	public void init() {		
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
-        if ((idEventoString == null) || (idEventoString == ""))
+		String idFiltroServString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idFiltroServicioString");
+        if ((idEventoString == null) || (idEventoString == "") || (idFiltroServString == null) || (idFiltroServString == ""))
 		{	
-			System.out.println("No existe la catástrofe al borrar."); 			
+			System.out.println("No existe la catástrofe al modificar FiltroServicio."); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
 		}
@@ -95,100 +111,139 @@ public class ModificarFiltroCatastrofeBean implements Serializable{
 			
 		    }catch (Exception excep){
 				System.out.println("Excepción en borrarCatastrofeBeanMap: " + excep.getMessage());      		 			       	            	
-			}  
+			}  				
 			
-			/*
-			CatastrofeEBR manager2 = null;				
-			Context context2 = null;			
-			//FacesMessage message = null; 
+			FiltroEBR managerF = null;	    	
+			Context contextF = null;		
+			//FacesMessage message = null;
 			
 			try {
 	            // 1. Obtaining Context
-	            context2 = ClienteUtility.getInitialContext();
+	            contextF = ClienteUtility.getInitialContext();
 	            // 2. Generate JNDI Lookup name
 	            //String lookupName = getLookupName();
 	            // 3. Lookup and cast
-	            manager2 = (CatastrofeEBR) context2.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	            managerF = (FiltroEBR) contextF.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroEB!com.core.service.negocio.remote.FiltroEBR");
 	 
 	        } catch (NamingException e) {
 	            e.printStackTrace();
 	        }
-		
-			try{
-				long idCatastrofe2 = new Long(idEventoString);
-				System.out.println("Catastrofe: " + idCatastrofe2);
-				List<String> filtros = new ArrayList<String>();
-				String fuente ="Youtube";
-				filtros= manager2.listarFiltrosDeCatastrofe(idCatastrofe2, fuente);
-				System.out.println("Filtros size: " + filtros.size());
-				String f;
-				for (int i=0; i<=filtros.size()-1; i++){    		
-					f = filtros.get(i);
-					System.out.println("Filtros: " + f);
-				}	
-
-		    }catch (Exception excep){
-				System.out.println("Excepción en borrarCatastrofeBeanMap: " + excep.getMessage());      		 			       	            	
-			} 
-			*/
+			
+			ServicioEBR managerS = null;	    	
+			Context contextS = null;		
+			//FacesMessage message = null;
+			
+			try {
+	            // 1. Obtaining Context
+				contextS = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+				managerS = (ServicioEBR) contextS.lookup("ejb:Proyecto-EAR/Proyecto-Core//ServicioEB!com.core.service.negocio.remote.ServicioEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }
+			
+			FiltroServicioEBR managerFS = null;				
+			Context contextFS = null;			
+			//FacesMessage message = null; 
+			
+			try {
+	            // 1. Obtaining Context
+				contextFS = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+	            managerFS = (FiltroServicioEBR) contextFS.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroServicioEB!com.core.service.negocio.remote.FiltroServicioEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }
+			try{			
+				Long idFiltroServicio = new Long(idFiltroServString);								
+				FiltroServicio filtroServicio;
+				filtroServicio = managerFS.buscaFiltroServicioPorId(idFiltroServicio);
+				
+				Long idFiltro;
+				Long idServicio;
+				Filtro filtro;
+		    	Servicio servicio;		    	
+				
+		    	String fuente;
+		    	String descripcion;	
+		    	boolean bajaLogica;
+		    	
+		    	idFiltro = filtroServicio.getIdFiltro();
+		    	idServicio = filtroServicio.getIdServicio();
+		    	
+		    	filtro = managerF.buscaFiltroPorId(idFiltro);
+		    	servicio = managerS.buscarServicioPorId(idServicio);
+				
+				fuente = servicio.getFuente();
+				descripcion = filtro.getDescripcion();
+				bajaLogica = filtroServicio.isBajaLogica();
+								
+				filtroServicioBean = new FiltroServicioBean(idFiltroServicio,fuente,descripcion,bajaLogica);								
+				    				
+			}catch (Exception excep){
+	    		System.out.println("Excepción al listar los filtros en FiltrosServiciosCatastrofeBean: " + excep.getMessage());      		 			       	           	
+	    	} 
+			
 			
 		}    	
 	}
 
 		
-	public void modificarFiltroCatastrofe(){	
-		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
-		if ((idEventoString == null) || (idEventoString == ""))
+	public void modificarFiltroCatastrofe(){			
+		String idFiltroServString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idFiltroServicioString");
+		if ((idFiltroServString == null) || (idFiltroServString == ""))
 		{	
-			System.out.println("No existe la catástrofe. "); 			
+			System.out.println("No existe el filtroServicio. "); 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
 		}
 		else	
 		{ 			
-			CatastrofeEBR manager = null;
-			Context context = null;	
-			FacesMessage message = null;
+			FiltroServicioEBR managerFS = null;				
+			Context contextFS = null;			
+			FacesMessage message = null; 
 			
 			try {
 	            // 1. Obtaining Context
-				context = ClienteUtility.getInitialContext();
+				contextFS = ClienteUtility.getInitialContext();
 	            // 2. Generate JNDI Lookup name
 	            //String lookupName = getLookupName();
 	            // 3. Lookup and cast
-				manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	            managerFS = (FiltroServicioEBR) contextFS.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroServicioEB!com.core.service.negocio.remote.FiltroServicioEBR");
 	 
 	        } catch (NamingException e) {
 	            e.printStackTrace();
 	        }
-									
 			try{			
-				Long idCatastrofe = new Long(idEventoString);
+				Long idFiltroServicio = new Long(idFiltroServString);												
+				String descripcion = filtroServicioBean.getDescripcion();
+				managerFS.modificarFiltroServicioCatastrofe(idFiltroServicio, descripcion);
 				
-				try {	    				    	
-						    			
-					//manager.EliminarCatastrofe(idCatastrofe);
-					
-					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación Exitosa", "La catástrofe fue modificada.");
-    				FacesContext.getCurrentInstance().addMessage(null, message);
-    				
-    				FacesContext contexto = FacesContext.getCurrentInstance();
-    				contexto.getExternalContext().getFlash().setKeepMessages(true);
-		        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-    				handler.performNavigation("modificarFiltrosDeDatos?faces-redirect=true");
-								
-											
-														
-				}catch (Exception excep){
-					System.out.println("Excepción al borrar la catástrofe: " + excep.getMessage());      		 			       	           	
-				}	    			    			    		        	      
-	        } catch (Exception e) {
-	             System.out.println(e.getMessage());
-	        }
-						
-			FacesContext.getCurrentInstance().addMessage(null, message);
+				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación Exitosa", "El filtro fue modificado.");
+				FacesContext.getCurrentInstance().addMessage(null, message);
+				
+				FacesContext contexto = FacesContext.getCurrentInstance();
+				contexto.getExternalContext().getFlash().setKeepMessages(true);
+	        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+				handler.performNavigation("modificarFiltrosDeDatos?faces-redirect=true");											
+				    				
+			}catch (Exception excep){
+	    		System.out.println("Excepción al modificar los filtros en FiltrosServiciosCatastrofeBean: " + excep.getMessage());      		 			       	           	
+	    	} 
 				
 		}
+		
+	}
+	
+	public void cancelar(){	
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("modificarFiltrosDeDatos?faces-redirect=true");	
 		
 	}
 	
