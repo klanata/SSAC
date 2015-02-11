@@ -158,7 +158,7 @@
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:550px;height:670px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="8" type="HYBRID"  style="width:550px;height:670px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>
@@ -181,7 +181,7 @@
     			<h2>Eliminar Catástrofe</h2> 
     			
     				<p>			        		        
-		            <p:graphicImage value="image/#{borrarCatastrofeBeanMap.catastrofeBean.logo}" width="50" height="50"/> 
+		            <p:graphicImage value="image/#{borrarCatastrofeBeanMap.catastrofeBean.logo}" width="30" height="30"/> 
 		            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 					</p>			
 					

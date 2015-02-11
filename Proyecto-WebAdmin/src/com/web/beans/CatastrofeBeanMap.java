@@ -221,8 +221,16 @@ public class CatastrofeBeanMap implements Serializable{
         }
 		
 		try{    	
-    		InputBean inputBean = new InputBean();
-    		String logo= inputBean.uploadFile(this.part);   
+    		InputBean inputBean = new InputBean(); 
+    		
+    		String logo = inputBean.uploadFile(this.part);
+    		    		    		
+    		//String nombreLogo = inputBean.uploadFile(this.part);  
+    		
+    		//String logo = inputBean.resizeImageCopy(nombreLogo);    
+    		
+    		//inputBean.borrarLogo(nombreLogo);
+    		
     		String css = null;    		
        		Long idCatastrofe= manager.ingresarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo,this.polygon);    	
     		if (idCatastrofe == 0){
