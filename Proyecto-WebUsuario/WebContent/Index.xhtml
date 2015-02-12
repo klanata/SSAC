@@ -621,85 +621,100 @@ div {
 
 
 
+
+
+
+
+
 	<!-- ALTA DE PERSONAS DESAPARECIDAS -->
 	<div class="oculto" id="personasdesap">
-		<div class="ui-grid">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-1"></div>
-				<div class="ui-grid-col-6">
-					<f:view>
+	<div class="ui-grid ui-grid-responsive">
+	
+	<f:view>
 						<h:form id="personasdesaparecidasBean">
 							<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-							<h:panelGrid>
-								<h2>
-									<a href="#">INGRESO DE PERSONA DESAPARECIDA</a>
-								</h2>
-								<br />
-
-
-								<label for="nombre"> Nombre:</label>
+							
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+        
+        <label for="nombre"> Nombre:</label>
 								<p:inputText id="nombre" label="nombre"
-									value="#{personasdesaparecidasBean.nombre}" required="true"
-									requiredMessage="El nombre es requerido">
+								value="#{personasdesaparecidasBean.nombre}" required="true"
+								requiredMessage="El nombre es requerido">
 								</p:inputText>
-
-								<label for="usuario">Apellido :</label>
+        </div>
+        <div class="ui-grid-col-4">
+        
+        <label for="usuario">Apellido :</label>
 								<p:inputText id="apellido" label="apellido"
-									value="#{personasdesaparecidasBean.apellido}" required="true"
-									requiredMessage="es requerido">
+								value="#{personasdesaparecidasBean.apellido}" required="true"
+								requiredMessage="El apellido es requerido">
 								</p:inputText>
-
-								<label for="cedula">Cedula :</label>
+        </div>
+         <div class="ui-grid-col-2"></div>
+    </div>
+    
+    
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+        
+        <label for="cedula">Cedula/Pasaporte- País :</label>
 								<p:inputText id="cedula" label="cedula"
 									value="#{personasdesaparecidasBean.cedula}" required="true"
-									requiredMessage="es requerido"
-									validatorMessage="Formato de Cedula invalido, debe contener números 0..9">
-
-									<f:validateRegex pattern="[0-9]*" />
+								
+									validatorMessage="La CI o Pasaporte es requerido">
 									
-									>
-								</p:inputText>
-
-								<label for="numeroContacto">Numero de contacto :</label>
+        							</p:inputText>
+        </div>
+        <div class="ui-grid-col-4">
+        
+        <label for="numeroContacto">Contacto :</label>
 								<p:inputText id="numeroContacto" label="numeroContacto"
 									value="#{personasdesaparecidasBean.numeroContacto}"
-									required="true" requiredMessage="es requerido"
+									required="true" 
 									validatorMessage="Formato de Telefono invalido, debe contener números 0..9">
-
 									<f:validateRegex pattern="[0-9]*" />
-									
-									>
 								</p:inputText>
-
-								<label for="descripcion">Descripcion :</label>
+        </div>
+          <div class="ui-grid-col-2"></div>
+    </div>
+    
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-8">
+        <label for="descripcion">Descripcion :</label>
 								<p:inputText id="descripcion" label="descripcion"
 									value="#{personasdesaparecidasBean.descripcion}"
-									required="true" requiredMessage="es requerido">
+									required="false" >
 								</p:inputText>
-
-
-								<label for="fechNac"> Fecha de nacimiento :</label>
-								<p:calendar id="fechNac" label="fechNac"
-									value="#{personasdesaparecidasBean.fechNac}"
-									pattern="dd-MM-yyyy" mask="true" />
-
-
-								<br />
-
-								<p:commandButton id="registro" update="growl" type="submit"
+        </div>
+       
+        <div class="ui-grid-col-2"></div>
+    </div>
+    
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-3"></div>
+          <div class="ui-grid-col-5">
+          <br/>
+          <p:commandButton id="registro" update="growl" type="submit"
 									Class="button" value="Registrar"
 									action="#{personasdesaparecidasBean.registrarPersonasDesaparecidas()}">
 								</p:commandButton>
-
-							</h:panelGrid>
-
-						</h:form>
-					</f:view>
-
-				</div>
-			</div>
-		</div>
-	</div>
+          </div>
+        <div class="ui-grid-col-2"></div>
+    </div>
+    
+    
+    </h:form>
+    </f:view>
+</div>    
+</div>
+	
+	
+	
 
 	<!-- BUSCAR PERSONAS DESAPARECIDAS -->
 	<div class="oculto" id="busperdesap">
@@ -716,7 +731,7 @@ div {
 						<br />
 						<p:dataTable id="perDT" var="personaBean" widgetVar="personaTable"
 							value="#{listapersonaBean.personasBean}"
-							emptyMessage="No se han encontrado administrador con ese criterio"
+							emptyMessage="No se han encontrado personas con ese criterio"
 							filteredValue="#{listapersonaBean.filtroPersonafeBean}"
 							paginator="true" rows="5" paginatorPosition="top"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
@@ -751,7 +766,7 @@ div {
 								<h:outputText value="#{personaBean.apellido}" />
 							</p:column>
 
-							<p:column headerText="Cedula" filterBy="#{personaBean.cedula}"
+							<p:column headerText="CI/Pasaporte-País" filterBy="#{personaBean.cedula}"
 								filterMatchMode="contains">
 								<h:outputText value="#{personaBean.cedula}" />
 							</p:column>
