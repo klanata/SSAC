@@ -166,18 +166,16 @@
 </div>
 
 <div class="wrapper col3">
-    <div id="intro2">
+    <div id="intro3">
     
-    <div class="fl_left2">
+    <div>
             
       <f:view>
             				
-    		<h:form id="bajaCatastrofe" enctype="multipart/form-data"> 
+    		<h:form id="bajaCatastrofe" columnClasses="label, value" style="width:500px;"> 
     		
     			<p:growl id="messages" showDetail="true" />     			
-    		
-    			<h:panelGrid id="panel" columns="1" cellpadding="2">
-    			
+    		    			    		
     			<h2>Eliminar Catástrofe</h2> 
     			
     				<p>			        		        
@@ -203,9 +201,14 @@
 					<p>
 					<label for="prioridad">Prioridad: #{borrarCatastrofeBeanMap.catastrofeBean.prioridad} </label>	
 					</p>
-					<br/>													               		              		    		        		  	            																																																																																														            		            																																																																	                        		           	            
-            		
-            	</h:panelGrid>  
+					<br/>	
+					
+					<p:galleria value="#{imagesView.images}" var="imgCatastrofeBean" panelWidth="500" panelHeight="313" showCaption="true">
+					    <p:graphicImage value="image/#{imgCatastrofeBean.path}"  title="#{imgCatastrofeBean.path}"/>
+					</p:galleria>
+					
+					<br/>														               		              		    		        		  	            																																																																																														            		            																																																																	                        		           	            
+            		            	
             	            	
                 <p:commandButton value="Eliminar" ajax="false" update="bajaCatastrofe:messages" action="#{borrarCatastrofeBeanMap.borrarCatastrofe()}" />                		            	     			 					         		
                 <p:commandButton value="Cancelar" ajax="false" update="bajaCatastrofe:messages" action="#{borrarCatastrofeBeanMap.cancelar()}" />
