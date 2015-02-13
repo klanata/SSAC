@@ -158,24 +158,29 @@
   
 </div>
 
-<div id="mapa">  
+<div id="mapa" style="width:38%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:1350px;height:500px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:550px;height:670px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
-    	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
-    </p:gmap>  
-    	
-    <p:dialog widgetVar="dlg" showEffect="fade"  height="400" width="700">
-		<div class="wrapper col3">
-		  <div>
-		    <div >
-		      <h2>Asignar ONGs a la catástrofe</h2>
-		      
-		      <f:view>  
+    	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
+    </p:gmap>
+	
+</div> 
+
+<div class="wrapper col3">
+    <div id="intro2">
+    
+    <div>		     
+	      
+	      <f:view>       	   
 		      	
-				<h:form columns="2" value="#{listaOngsBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+				<h:form id="formONGs" columns="2" value="#{listaOngsBean.catastrofeBean}" columnClasses="label, value" style="width:600px;border: 0;">
+				
+					<h3>Asignar ONGs a la catástrofe</h3>
+					
+					<p:growl id="msg" showDetail="true" />
 						
 					<p>			        		        
 		            <p:graphicImage value="image/#{listaOngsBean.catastrofeBean.logo}" width="50" height="50"/> 
@@ -192,26 +197,21 @@
 		            <h:outputText value="#{listaOngsBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
 		            </p>
 					<br/>  
-		                         
-		        </h:form>   				           
-		      	
-		      	<h:form id="formONGs">      	      	
-		      		<p:growl id="msg" showDetail="true" />
-		      		
+		                         		       
 		      		<p>
 					<h:outputText value="Seleccione las ONGs que van a ser asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
 		            </p>	
 		      		
 		    		<p:dataTable id="ongsDT" var="ongBean" value="#{listaOngsBean.ongsBean}" widgetVar="ongsTable"
 		                 		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBean}"                 		  
-		                 		 paginator="true" rows="3" paginatorPosition="top"
+		                 		 paginator="true" rows="5" paginatorPosition="top"
 		                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 		                 		 selection="#{listaOngsBean.selectedOngs}" rowKey="#{ongBean.id}" style="margin-bottom:0;width:600px">
 		                 	                 	
 						<f:facet name="header">
 				            <p:outputPanel style="text-align: right">
 				                <h:outputText value="Buscar ONG:  " />
-				                <p:inputText id="globalFilter"   onkeyup="PF('ongsTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+				                <p:inputText id="globalFilter"   onkeyup="PF('ongsTable').filter()" style="width:200px" placeholder="Ingrese la consulta"/>		                
 				            </p:outputPanel>
 				        </f:facet>
 				        
@@ -240,14 +240,13 @@
 				</h:form>
 		      
 		      </f:view>         
-		    </div>
-		    
-		    <br class="clear" />
-		  </div>
-		</div>
-	</p:dialog>
+		      		     
+    </div> 
+    				    
+    <br class="clear" />
+    
+	</div>	    		
 </div>
-
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>

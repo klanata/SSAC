@@ -14,11 +14,12 @@ import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
+import org.primefaces.event.map.OverlaySelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import org.primefaces.model.map.Polygon;
-
 
 import clienteutility.ClienteUtility;
 
@@ -45,6 +46,8 @@ public class ImagesView implements Serializable{
 	private double latitud;
 	
 	private double longitud;
+	
+	private Marker marker;
     
     @PostConstruct
     public void init() {
@@ -196,24 +199,19 @@ public class ImagesView implements Serializable{
 			        polygonModel.addOverlay(polygon);
 			        
     				////////////////////////////////////////
-			        
-			        
+			        			        
 			        latitud = catastrofe.getCoordenadasX();
 			        longitud = catastrofe.getCoordenadasY();
-			        
-			        /*
-			        String logoCatatrofe = catastrofe.getLogo();
-			        			        
-			        advancedModel = new DefaultMapModel();
-			        
+			        			       
 			        LatLng coord1 = new LatLng(latitud, longitud);
+			        			       			        			     			     
+			        marker = new Marker(coord1, nombreEvento);
 			        
-			        
-			        //advancedModel.addOverlay(new Marker(coord1, "Konyaalti", logoCatatrofe, "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
-			        advancedModel.addOverlay(new Marker(coord1, "Konyaalti"));
-			        
-			        */
-			        
+			        String icono = "http://localhost:8080/Proyecto-WebAdmin/image/" + logo;
+			        			        
+			        marker.setIcon(icono);
+			        			        
+			        polygonModel.addOverlay(marker);
 			        ///////////////////////////////////////////
 			        
     				Collection<ImagenCatastrofe> res = new ArrayList<ImagenCatastrofe>();
@@ -296,6 +294,14 @@ public class ImagesView implements Serializable{
 		this.longitud = longitud;
 	}
 
+	public Marker getMarker() {
+		return marker;
+	}
+
+
+	public void setMarker(Marker marker) {
+		this.marker = marker;
+	}
  
 	//	------------------ Operaciones ---------------------
 
@@ -319,7 +325,14 @@ public class ImagesView implements Serializable{
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("modificarCatastrofe?faces-redirect=true");		
 	}
+
+
 	
-    
+	
+	public void onMarkerSelect(OverlaySelectEvent event) {
+        marker = (Marker) event.getOverlay();           
+        
+        //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Selected", marker.getTitle()));
+    }
 
 }

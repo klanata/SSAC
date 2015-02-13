@@ -157,24 +157,29 @@
   
 </div>
 
-<div id="mapa">  
+<div id="mapa" style="width:40%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:1350px;height:500px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:550px;height:670px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
-    	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
-    </p:gmap>  
-    	
-    <p:dialog widgetVar="dlg" showEffect="fade"  height="590" width="800">
+    	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
+    </p:gmap>
+	
+</div> 
 
-	<div class="wrapper col3">
-	  <div >
-	    <div>
-	      <h2>Quitar imágenes asignadas a la catástrofe</h2>      	    
-	      	<f:view>        
+<div class="wrapper col3">
+    <div id="intro2">
+    
+    <div>		     
+	      
+	      <f:view>    	        
 	      	
-			<h:form columns="2" value="#{listaImgCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+			<h:form id="formImgCatastrofe" columns="2" value="#{listaImgCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+			
+				<p:growl id="msgs" showDetail="true" />
+			
+				<h3>Quitar imágenes asignadas a la catástrofe</h3>
 				
 				<p>			        		        
 	            <p:graphicImage value="image/#{listaImgCatastrofeBean.catastrofeBean.logo}" width="50" height="50"/> 
@@ -190,16 +195,10 @@
 	           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
 	            <h:outputText value="#{listaImgCatastrofeBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
 	            </p>
-				<br/>  
-	                         
-	        </h:form>
-	                									                   	      	 
-	      	<h:form id="formImgCatastrofe">      		
-	      		
-	      		<p:growl id="msgs" showDetail="true" />
+				<br/>  	                         	            			      			      		
 	      		
 	    		<p:dataTable id="catastrofesImgDT" var="imgCatastrofeBean" value="#{listaImgCatastrofeBean.imgCatastrofesBean}" widgetVar="catastrofesTable"                 		                		 
-	                 		 paginator="true" rows="1" paginatorPosition="top" style="width:700px;margin: 0;border: transparent;"
+	                 		 paginator="true" rows="1" paginatorPosition="top" style="width:550px;margin: 0;border: transparent;"
 	                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 	                 		 selection="#{listaImgCatastrofeBean.selectedImgsCatastrofe}" rowKey="#{imgCatastrofeBean.id}">
 	                 		 
@@ -210,7 +209,7 @@
 	        		</p:column> 
 			        
 			        <p:column>		        		        	
-	            		<p:graphicImage value="image/#{imgCatastrofeBean.path}" />               		         	
+	            		<p:graphicImage value="image/#{imgCatastrofeBean.path}"/>               		         	
 	        		</p:column>  
 	        		
 	        		<f:facet name="footer">
@@ -223,14 +222,13 @@
 	     		</p:dataTable>     		     		
 	     		
 			</h:form>
-	      
-	      </f:view>         
-	    </div>
-	    
-	    <br class="clear" />
-	  </div>
-	</div>
-	</p:dialog>
+    		    		    		    		    		
+		</f:view>
+    </div> 
+    				    
+    <br class="clear" />
+    
+	</div>	    		
 </div>
 
 <div class="wrapper col7">

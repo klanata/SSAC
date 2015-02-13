@@ -157,25 +157,29 @@
   
 </div>
 
-<div id="mapa">  
+<div id="mapa" style="width:44%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:1350px;height:500px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:550px;height:670px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
-    	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
-    </p:gmap>  
+    	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
+    </p:gmap>
+	
+</div> 
     	
-    <p:dialog widgetVar="dlg" showEffect="fade"  height="580" width="600">
-
-	<div class="wrapper col3">
-	  <div>
-	    <div >
-	      <h2>Imágenes de la Catástrofe</h2>
+<div class="wrapper col3">
+    <div id="intro2">
+    
+    <div>		     
 	      
 	      <f:view>        
 	      	
 			<h:form columns="2" value="#{imagesView.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+			
+				<p:growl id="messages" showDetail="true" />   							
+			
+				<h3>Imágenes de la Catástrofe</h3>
 				
 				<p>			        		        
 	            <p:graphicImage value="image/#{imagesView.catastrofeBean.logo}" width="50" height="50"/> 
@@ -191,16 +195,8 @@
 	           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
 	            <h:outputText value="#{imagesView.catastrofeBean.descripcion}" styleClass="outputLabel"/>
 	            </p>
-				<br/>  
-	                         
-	        </h:form>
-	                									        
-	      </f:view>         
-	    </div>
-	    
-		<div>
-			<f:view> 
-			<h:form>        
+				<br/>  	                         	            
+							
 	        	<p>
 				<h:outputText value="Imágenes asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
 	            </p>
@@ -217,15 +213,14 @@
 		            	<p:commandButton value="Cancelar" action="#{imagesView.cancelar()}" />
 		         </p:outputPanel>	
 		         <br/> 		
-			 </h:form>	 	
-			 	                          
-			</f:view>       
-	  	</div>  
-	  	  	
-	    <br class="clear" />
-	  </div>	 		  
-	</div>
-	</p:dialog>
+			 </h:form>
+    		    		    		    		    		
+		</f:view>
+    </div> 
+    				    
+    <br class="clear" />
+    
+	</div>	    		
 </div>
 
 <div class="wrapper col7">

@@ -169,7 +169,7 @@
 	</script>
           
 </h:head> 
-<h:body id="top"  style="margin:0px; padding:0px;" onload="initialize()"> 
+<h:body id="top"  onload="initialize()"> 
 <div class="wrapper col1">
   <div id="header">
     <div id="logo">
@@ -306,31 +306,32 @@
       <input type="button" value="Buscar" onclick="codeAddress()"/>
 </div>
 
-<div id="map-canvas" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
+<div id="map-canvas" style="width:40%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
 </div>
 
 <div class="wrapper col3">
     <div id="intro2">
     
-    <div class="fl_left2">
+    <div>
             
       <f:view>
             				
-    		<h:form id="registrarCatastrofe" enctype="multipart/form-data"> 
+    		<h:form id="registrarCatastrofe" enctype="multipart/form-data" columns="2" columnClasses="label, value" style="width:500px;border: 0;"> 
     		
     			<p:growl id="messages" showDetail="true" />     			
-    		
-    			<h:panelGrid id="panel" columns="1" style="width: 40%; float:left;">
-    			
-    			<h2>Registrar Catástrofe</h2>  		    		
+    		    			    			
+    			<h3>Registrar Catástrofe</h3>  		    		
         		  	            		
-					<label for="nombreEvento">Nombre del Evento:</label>				
+					<label for="nombreEvento">Nombre del Evento </label>				
 						<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBeanMap.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
-						</p:inputText>																																									
+						</p:inputText>	
+						
+					<br/>	
+					<br/>																																								
 															
-					<label for="descripcion">Descripción:</label>	
+					<label for="descripcion">Descripción </label>	
 					<h:panelGrid columns="2" border="0">																																		
-						<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{catastrofeBeanMap.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
+						<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="58" autoResize="false" value="#{catastrofeBeanMap.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
 					</h:panelGrid>													
 							
 					<label for="logo">Logo:</label>					
@@ -338,27 +339,31 @@
 						<h:inputFile id="logo" label="logo" value="#{catastrofeBeanMap.part}" required="true" requiredMessage="El logo es obligatorio" >			
 						</h:inputFile>					 					
 					</h:panelGrid>	
+					
+					<br/>	
             		            		
 					<p:selectBooleanCheckbox value="#{catastrofeBeanMap.activa}"> 					
-					<label for="activa">Activa:   </label>
+					<label for="activa">Activa    </label>
 					</p:selectBooleanCheckbox>
+					
+					<br/>	
+					<br/>
 															
 					<p:selectBooleanCheckbox value="#{catastrofeBeanMap.prioridad}"> 
-					<label for="prioridad">Prioridad:   </label>																		 	
+					<label for="prioridad">Prioridad    </label>																		 	
 					</p:selectBooleanCheckbox>	
 					
 					<p:inputText id="lat" value="#{catastrofeBeanMap.coordenadasX}" style="display:none" required="true" requiredMessage="Debe seleccionar en un punto dentro del polígono" />
 					
 					<p:inputText id="lng" value="#{catastrofeBeanMap.coordenadasY}" style="display:none" required="true" requiredMessage="Debe seleccionar en un punto dentro del polígono" />
 					
-					<p:inputTextarea id="poligono" value="#{catastrofeBeanMap.polygon}" style="height: 100px; width: 95%;display:none" required="true" requiredMessage="La zona de la catástrofe es obligatoria"/>														
-																            
-            		<f:facet name="footer">
-                		<p:commandButton value="Siguiente" ajax="false" update="registrarCatastrofe:messages" action="#{catastrofeBeanMap.registrarCatastrofe()}" />                		
-            		</f:facet>            	            	
-            		
-            	</h:panelGrid>        			 					         		
-        		          					         			            		        		        	        		      
+					<p:inputTextarea id="poligono" value="#{catastrofeBeanMap.polygon}" style="height: 100px; width: 95%;display:none" required="true" requiredMessage="La zona de la catástrofe es obligatoria"/>
+					
+					<br/>	
+					<br/>														
+																                        		
+                	<p:commandButton value="Siguiente" ajax="false" update="registrarCatastrofe:messages" action="#{catastrofeBeanMap.registrarCatastrofe()}" />                		
+            		          	            	            		            				 					         	        		          					         			            		        		        	        		     
     		</h:form>
     		    		    		    		    		
 		</f:view>
