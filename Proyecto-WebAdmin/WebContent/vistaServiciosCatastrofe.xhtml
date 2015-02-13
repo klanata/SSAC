@@ -175,9 +175,11 @@
 	      
 	      <f:view>      	    	      	      	          
 	      	
-			<h:form columns="2" value="#{filtrosCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:400px;border: 0;">
+			<h:form id="formFiltroYoutube" columns="2" value="#{filtrosCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:590px;border: 0;">
 			
 				<h3>Asignar filtros a la catástrofe</h3>
+				
+				<p:growl id="msg" showDetail="true" />	
 								
 				<p>			        		        
 	            <p:graphicImage value="image/#{filtrosCatastrofeBean.catastrofeBean.logo}" width="50" height="50"/> 
@@ -193,15 +195,7 @@
 	           	<h:outputText value="Descripción:  " style="width:60px;border: transparent;"/>
 	            <h:outputText value="#{filtrosCatastrofeBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
 	            </p>
-	            <br/>  
-	            
-	       	</h:form>
-	       	</f:view> 
-	            
-	        <f:view>  
-	            
-			<h:form id="formFiltroYoutube">      	      	
-	      		<p:growl id="msg" showDetail="true" />	
+	            <br/>  	            	       	
 	      		
 	      		<p>
 				<h:outputText value="Filtros de datos asignados a la Catástrofe" style="width:100px;border: transparent;"/>			            
