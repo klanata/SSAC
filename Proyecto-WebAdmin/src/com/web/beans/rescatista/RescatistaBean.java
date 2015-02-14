@@ -141,8 +141,10 @@ public class RescatistaBean implements Serializable {
             requestContext.execute("PF('dlg').show()");
             
             
-            InputBean inputBean = new InputBean();
-    		String imagen= inputBean.uploadFile(this.auxPart);  
+            //InputBean inputBean = new InputBean();
+    		//String imagen= inputBean.uploadFile(this.auxPart);  
+            
+            String imagen= "";
             
     		Long id= manager.crearRescatista(nombre, nick, apellido, email, password, fechaNac, sexo, celular,imagen);
     		if (id.equals(0)){

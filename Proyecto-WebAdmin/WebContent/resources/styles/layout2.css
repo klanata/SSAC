@@ -10,6 +10,15 @@ Licence: <a href="http://www.os-templates.com/template-terms">Website Template L
 @import url(forms.css);
 @import url(tables.css);
 
+#headerPrincipal{
+	background: url('../images/WebUsuarioHeader.png') center center no-repeat;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:130px;
+}
+
 body{
 	margin:0;
 	padding:0;
@@ -54,7 +63,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	border-bottom:1px dotted #DDDDDD;
 	}
 
-.col1{color:#666666; background-color:#E3F1F9;}
+.col1{color:#666666;}
 .col2{color:#FFFFFF; background-color:#000000;}
 .col3, .col4, .col5{color:#666666; background-color:#F3F3F3;}
 .col6{color:#999999; background-color:#F3F3F3;}
@@ -106,7 +115,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	}
 
 #header #logo h1{
-	margin:0 0 10px 0;
+	margin:0 0 0px 0;
 	padding:0;
 	font-size:36px;
 	border:none;
