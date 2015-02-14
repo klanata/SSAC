@@ -14,12 +14,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
+
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+
 import clienteutility.ClienteUtility;
+
 import com.core.data.entites.Ong;
 import com.core.service.negocio.remote.CatastrofeEBR;
 
@@ -38,12 +43,56 @@ public class ListarOngBean implements Serializable{
     
     private OngBean selectedOng;    
     
-    @ManagedProperty("#{ongUsuarioBean}")
+    private SelectItem auxong;
+    private String ong;  
+	private List<SelectItem> ongs;
+	private ArrayList<SelectItem> listaongs = new ArrayList<SelectItem>();
+	
+    
+    public ArrayList<SelectItem> getListaongs() {
+		return listaongs;
+	}
+
+	public void setListaongs(ArrayList<SelectItem> listaongs) {
+		this.listaongs = listaongs;
+	}
+
+	
+
+	public SelectItem getAuxong() {
+		return auxong;
+	}
+
+	public void setAuxong(SelectItem auxong) {
+		this.auxong = auxong;
+	}
+
+
+
+	@ManagedProperty("#{ongUsuarioBean}")
     private OngBean ongBean;
     
     /*-----------------------*/
+    
+    
 	public ArrayList<OngBean> getListaOngBean() {
 		return listaOngBean;
+	}
+
+	public String getOng() {
+		return ong;
+	}
+
+	public void setOng(String ong) {
+		this.ong = ong;
+	}
+
+	public List<SelectItem> getOngs() {
+		return ongs;
+	}
+
+	public void setOngs(List<SelectItem> ongs) {
+		this.ongs = ongs;
 	}
 
 	public void setListaOngBean(ArrayList<OngBean> listaOngBean) {
@@ -77,6 +126,7 @@ public class ListarOngBean implements Serializable{
 	
 	
 	
+	@SuppressWarnings("null")
 	@PostConstruct
     public void init() {
     	
@@ -120,8 +170,11 @@ public class ListarOngBean implements Serializable{
 	    	String citioWeb;
 	    	String descripcion;
 	    	String imagen;
-	    	Iterator<Ong > it = res.iterator();
+	    	Iterator<Ong> it = res.iterator();
 	    	int i = 0;
+	    	SelectItemGroup g1 = new SelectItemGroup("Ongs");
+	    	int tope = res.size() -1;
+	    	SelectItem[] selectItems = new SelectItem[tope];
 	    	while(it.hasNext()){
 			//for (int i=0; i<=res.size()-1; i++){    		
 				ong = it.next();
@@ -134,9 +187,14 @@ public class ListarOngBean implements Serializable{
 				citioWeb = ong.getsitioWeb();
 				descripcion = ong.getDescripcion();			
 				imagen = ong.getImagen();
+				listaongs.add(i, new SelectItem(ong.getNombre(),ong.getNombre()));
+							
 				listaOngBean.add(i, new OngBean(id,nombre,direccion,telefono,email,citioWeb,descripcion,imagen));	
 				i++;
 			}	
+	    	g1.setSelectItems(selectItems );
+	    	 ongs = new ArrayList<SelectItem>();
+	         ongs.add(g1);
 			
     	}catch (Exception excep){
     		System.out.println("Excepción al listar las ONGs: " + excep.getMessage());      		 			       	           	

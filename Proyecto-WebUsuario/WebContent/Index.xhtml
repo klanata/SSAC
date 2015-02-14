@@ -350,7 +350,7 @@ div {
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
 					<h2>
-						<strong><a href="#donacion"> 
+						<strong><a href="#donacion"> Ayudanos a ayudar
 								¡Realice donaciones!</a></strong>
 					</h2>
 				</div>
@@ -373,31 +373,33 @@ div {
 						enfermeros, etc.</p>
 
 
-					<p:dialog header="DE SERVICIOS" widgetVar="dlg1"
-						showEffect="explode" hideEffect="explode" height="550" width="800">
+					<p:dialog header="DONACIÓN DE SERVICIOS" widgetVar="dlg1"
+						showEffect="explode" hideEffect="explode" height="500" width="430">
 						<f:view>
+											
 							<h:form id="deServicioBean">
 								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 
 								<h:panelGrid>
 
-									<label for="idOng">ONG a donar</label>
-									<p:inputText id="idOng" label="idOng"
-										value="#{deServicioBean.idOng}" required="true"
-										requiredMessage="El nombre de la ong es requerido">
-									</p:inputText>
-
-									<label for="usuario">Nombre :</label>
+									
+									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+									
+							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}"   >
+							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
+							            <f:selectItems value="#{deServicioBean.listaongs}" />
+							        </p:selectOneMenu>
+									
+									</h:panelGrid>
+									
+									
+									<label for="usuario">Ingrese su nombre si lo desea :</label>
 									<p:inputText id="usuario" label="usuario"
 										value="#{deServicioBean.usuario}" required="false"
-										requiredMessage="El nombre del usuario es requerido">
+										>
 									</p:inputText>
 
-									<label for="fechaRealizada"> Fecha :</label>
-									<p:calendar id="fechaRealizada" label="fechaRealizada"
-										value="#{deServicioBean.fechaRealizada}" pattern="dd-MM-yyyy"
-										mask="true" />
-
+									
 									<label for="areaConocimient">Area de conocimiento :</label>
 									<p:inputText id="areaConocimient" label="areaConocimient"
 										value="#{deServicioBean.areaConocimient}" required="true"
@@ -413,7 +415,7 @@ div {
 										
 										
 									</p:inputText>
-
+									
 									<p:commandButton id="registro" update="growl" type="submit"
 										Class="button" value="DONAR"
 										action="#{deServicioBean.registrarDonacionDeServicio()}">
@@ -436,28 +438,29 @@ div {
 					</header>
 					<p>Done un monto mediante paypal a la ONG deseada.</p>
 
-					<p:dialog header="ECONOMICA" widgetVar="dlg2" showEffect="explode"
+					<p:dialog header="DONACIÓN ECONOMICA" widgetVar="dlg2" showEffect="explode"
 						hideEffect="explode" height="550" width="800">
 						<f:view>
 							<h:form id="economicaBean">
 								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 								<h:panelGrid>
+									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+									
+							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"   >
+							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
+							            <f:selectItems value="#{economicaBean.listaongs}" />
+							        </p:selectOneMenu>
+									
+									</h:panelGrid>
+									
 
-									<label for="ong">ONG a donar:</label>
-									<p:inputText id="ong" label="ong" value="#{economicaBean.ong}"
-										required="true" requiredMessage="La ong es requerida">
-									</p:inputText>
-
-									<label for="usuario">Nombre:</label>
+									<label for="usuario">Ingrese su nombre si lo desea :</label>
 									<p:inputText id="usuario" label="usuario"
 										value="#{economicaBean.usuario}" required="false"
-										requiredMessage="El usuario es requerido">
+										>
 									</p:inputText>
 
-									<label for="fechaRealizada"> Fecha:</label>
-									<p:calendar id="fechaRealizada"
-										value="#{economicaBean.fechaRealizada}" pattern="dd-MM-yyyy"
-										mask="true" />
+									
 
 									<p:commandButton id="registrarDonacion" update="growl"
 										type="submit" Class="button" value="Confirmar datos"
@@ -499,7 +502,7 @@ div {
 					</h3>
 					</header>
 					<p>Donar alimentos o bienes como maquinaria específica .</p>
-					<p:dialog header="DE BIENES" widgetVar="dlg3" showEffect="explode"
+					<p:dialog header="DONACIÓN DE BIENES" widgetVar="dlg3" showEffect="explode"
 						hideEffect="explode" height="550" width="800">
 
 						<f:view>
@@ -508,22 +511,23 @@ div {
 
 								<h:panelGrid>
 
-									<label for="idOng">ONG a donar</label>
-									<p:inputText id="idOng" label="idOng"
-										value="#{deBienesBean.idOng}" required="true"
-										requiredMessage="El nombre de la ong es requerido">
-									</p:inputText>
+									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+									
+							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"   >
+							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
+							            <f:selectItems value="#{deBienesBean.listaongs}" />
+							        </p:selectOneMenu>
+									
+									</h:panelGrid>
+									
 
-									<label for="usuario">Usuario :</label>
+									<label for="usuario">Ingrese su nombre si lo desea :</label>
 									<p:inputText id="usuario" label="usuario"
 										value="#{deBienesBean.usuario}" required="true"
 										requiredMessage="El nombre del usuario es requerido">
 									</p:inputText>
 
-									<p:outputLabel for="fechaRealizada" value="Fecha" />
-									<p:calendar id="fechaRealizada" label="fechaRealizada"
-										value="#{deBienesBean.fechaRealizada}" pattern="dd-MM-yyyy"
-										mask="true" />
+									
 
 									<label for="nombreItem">Elemento a donar :</label>
 									<p:inputText id="nombreItem" label="nombreItem"
@@ -557,7 +561,7 @@ div {
 		</div>
 		<br /> <br /> <br /> <br />
 	</div>
-
+	
 	<!-- MENU DE PERSONAS DESAPARECIDAS -->
 
 	<div class="oculto" id="desaparecidos">
@@ -801,103 +805,71 @@ div {
 
 	<!-- REGISTRO DE USUARIO -->
 	<div class="oculto" id="registrousuario">
-	<br></br>
-		<div class="ui-grid ui-grid-responsive">
-		<f:view>
+		<div class="ui-grid">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-2"></div>
+				<div class="ui-grid-col-8">
+
+					<h2>
+						<a href="#"> REGISTRO DE USUARIO</a>
+					</h2>
+					<p>Por favor, ingrese los campos para registrarse a la
+						catastrofe</p>
+					<f:view>
 						<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
 						<h:form id="login2">
-						
-    <div class="ui-grid-row">
-    <div class="ui-grid-col-3"></div>
-        <div class="ui-grid-col-3">        
-      
+
+
+							<label for="nick"> Nick:</label>
 							<p:inputText id="nick" label="nick" value="#{loginBean.nick}"
 								required="true" requiredMessage="El nick es requerido">
 							</p:inputText>
-							  <p:watermark for="nick" value="Nick" id="watermark" />
-        
-        
-        </div>
-        <div class="ui-grid-col-3">
-      
+
+							<label for="nombre">Nombre :</label>
 							<p:inputText id="nombre" label="nombre"
-							value="#{loginBean.nombre}" required="true"
-							requiredMessage="El nombre es requerido">
+								value="#{loginBean.nombre}" required="true"
+								requiredMessage="El nombre es requerido">
 							</p:inputText>
-          <p:watermark for="nombre" value="Nombre"  />
-        </div>
-          <div class="ui-grid-col-3"></div>
-    </div>
-    <br></br>
-    <div class="ui-grid-row">
-    <div class="ui-grid-col-3"></div>
-        <div class="ui-grid-col-3">
+
+							<label for="email">Correo :</label>
 							<p:inputText id="email" label="email" value="#{loginBean.email}"
-							validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
-							<f:validateRegex
-							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+
 							</p:inputText>
-							  <p:watermark for="email" value="Correo" />
-							
-		</div>
-        <div class="ui-grid-col-3">
-        			
-					<p:calendar id="fechNac" label="fechNac"
-					value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
-					mask="true" />
-					 <p:watermark for="fechNac" value="Fecha Nacimiento" />
-		</div>
-        <div class="ui-grid-col-3"></div>
-    </div>
-    <br></br>
-   
-    
-    <div class="ui-grid-row">
-    <div class="ui-grid-col-3"></div>
-        <div class="ui-grid-col-6"> 
-     
+
+							<label for="nombre"> Clave:</label>
 							<p:password value="#{loginBean.clave}" id="password"
 								required="true" label="password"
 								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">
+
+
 								<f:validateRegex
-							pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
+									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
+
+
+
+
 							</p:password>
-							 <p:watermark for="password" value="Contraseña" />
-							
-        			</div>
-         </div>
-         <br></br>
-            <div class="ui-grid-col-3"></div>
-            <div class="ui-grid-row">
-            
-            </div>
-            
-            
-            
-        <div class="ui-grid-row">
-    <div class="ui-grid-col-2"></div>
-    <div class="ui-grid-col-3"></div>
-    <div class="ui-grid-col-7">
-    <p:commandButton id="registrarButton" value="Registrar"
+
+							<p:outputLabel for="fechNac" value="fechNac" />
+							<p:calendar id="fechNac" label="Fecha de Nacimiento"
+								value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
+								mask="true" />
+
+							<p:commandButton id="registrarButton" value="Registrar"
 								actionListener="#{loginBean.registro}" update=":growl"
 								oncomplete="manejarLogin(xhr, status, args)" />
-      
-    
-    </div>
-    
-    </div>    
-        </h:form>
-        </f:view>
-        <br></br>
-</div>
+
+						</h:form>
+					</f:view>
+				</div>
+				<div class="ui-grid-col-2"></div>
+			</div>
+		</div>
 	</div>
-
-
-
-
-
-
-
 
 	<!-- LOGIN -->
 	<div class="oculto" id="loginusuario">
@@ -910,13 +882,10 @@ div {
 					<p:growl id="mensajes" showDetail="true" life="2000" />
 					<h:form id="formularioIngreso1">
 						<h2>
-							<a href="#">LOGIN</a>
+							<a href="#">Ingreso</a>
 						</h2>
 
-						<label for="catastrofeId1"> Catastrofe:</label>
-						<p:inputText id="catastrofeId1" label="catastrofeId1"
-							value="#{loginBean.idCatastrofe1}">
-						</p:inputText>
+						
 
 						<label for="nick1"> Nick:</label>
 						<p:inputText id="nick1" label="nick1" value="#{loginBean.nick1}"
@@ -948,8 +917,7 @@ div {
 		</div>
 	</div>
 
-
-
+	
 
 	<!-- Este script es para el mapa -->
 

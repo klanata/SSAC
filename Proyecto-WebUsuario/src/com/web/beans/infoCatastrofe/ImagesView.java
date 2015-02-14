@@ -9,8 +9,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
@@ -57,10 +57,30 @@ public class ImagesView implements Serializable{
 	
 	private String nombre;
 	
+	 private String ong;  
+	 private List<String> ongs;
+	 
+	 
+	 
 	
 	
-	
-    public String getNombre() {
+    public String getOng() {
+		return ong;
+	}
+
+	public void setOng(String ong) {
+		this.ong = ong;
+	}
+
+	public List<String> getOngs() {
+		return ongs;
+	}
+
+	public void setOngs(List<String> ongs) {
+		this.ongs = ongs;
+	}
+
+	public String getNombre() {
 		return nombre;
 	}
 
@@ -284,6 +304,10 @@ public class ImagesView implements Serializable{
 		        
 		        
 		        advancedModel.addOverlay(new Marker(coord1, "Konyaalti", logoCatatrofe, "http://maps.google.com/mapfiles/ms/micons/blue-dot.png"));
+		        
+		        ///combo
+		        
+		        
 		        
 				}}	
 		    catch (Exception excep){
