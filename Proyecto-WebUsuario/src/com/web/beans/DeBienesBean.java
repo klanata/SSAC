@@ -14,6 +14,8 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.context.RequestContext;
+
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Catastrofe;
@@ -116,6 +118,11 @@ public class DeBienesBean implements Serializable{
 			FacesContext contexto = FacesContext.getCurrentInstance();
 			HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);
 			Long idCatastrofe = (Long)sesion.getAttribute("idmongo");
+			
+			
+			String nombreCatastrofe = (String)sesion.getAttribute("nombreCatastrofe");
+			
+			
 
 			//Long idCatastrofe=  new Long(1);
 			res = managerCatastrofe.listaOngDeCatastrofe(idCatastrofe); 
@@ -198,8 +205,20 @@ public class DeBienesBean implements Serializable{
     		{
     			usuario= "Anonimo";
     		}
-	
-		manager.crearDonacionDeBienes(idOng, usuario, fechaRealizada, nombreItem, cantidad);    	
+    		RequestContext contextUrl = RequestContext.getCurrentInstance();
+    		/*Carga de la url*/
+    		FacesContext contextousuario = FacesContext.getCurrentInstance();	
+		manager.crearDonacionDeBienes(idOng, usuario, fechaRealizada, nombreItem, cantidad); 
+		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
+		String nombreCatastrofe = (String)sesion.getAttribute("nombreCatastrofe");
+		String nombre = nombreCatastrofe.toLowerCase();
+		//ver los espacios
+		String nombreSinEspacio = nombre.replaceAll(" ", "_");
+		String pagina = new String("http://localhost:8080/proyecto-webusuario/"+nombreSinEspacio +".xhtml");
+		
+		contextUrl.addCallbackParam("view", "Index.xhtml");
+		
+		/**/
 		}catch (Exception excep){
 		System.out.println("Excepcion en donacion de bienes: " + excep.getMessage());      		 			       
 		

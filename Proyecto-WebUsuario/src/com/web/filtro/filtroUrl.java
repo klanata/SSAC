@@ -188,7 +188,7 @@ public class filtroUrl implements Filter , Serializable {
 				objetoCat.setAttribute("idmongo", existeURL.getId());
 				//objetoCat.setAttribute("descripcionCatastrofeUsuario", existeURL.getDescripcion());
 				//objetoCat.setAttribute("pdfCatastrofeUsuario", existeURL.getImagenes());
-				objetoCat.setAttribute("listaOngUsuario", listaOng);
+				objetoCat.setAttribute("nombreCatastrofe", existeURL.getNombreEvento());
 				
 				id = existeURL.getId();	
 
