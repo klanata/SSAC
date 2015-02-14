@@ -11,11 +11,11 @@ Licence: <a href="http://www.os-templates.com/template-terms">Website Template L
 @import url(tables.css);
 
 #headerPrincipal{
-	background: url('../images/WebUsuarioHeader.png')no-repeat;
-	-webkit-background-size: 100% auto;
-    -moz-background-size: 100% auto;
-    -o-background-size: 100% auto;
-    background-size: 100% auto;
+	background: url('../images/WebUsuarioHeader.png') center center no-repeat;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     height:130px;
 }
 
