@@ -122,7 +122,7 @@
             <p:submenu label="ABM">
                 <p:menuitem value="Alta" url="asignarFiltrosDeDatos.xhtml" icon="ui-icon-check"/>
                 <p:menuitem value="Baja" url="" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="" icon="ui-icon-pencil"/>
+                <p:menuitem value="Modificación" url="modificarFiltrosDeDatos.xhtml" icon="ui-icon-pencil"/>
             </p:submenu>
         </p:column>
  	</p:submenu>
@@ -131,7 +131,7 @@
  		<p:column>
             <p:submenu label="ABM">
                 <p:menuitem value="Alta" url="registrarCatastrofeMap.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />
+                <p:menuitem value="Baja" url="listaBajaCatastrofe.xhtml" icon="ui-icon-close" />
                 <p:menuitem value="Modificación" url="modificarCatastrofe.xhtml" icon="ui-icon-pencil"/>                
             </p:submenu>
         </p:column>   
@@ -157,25 +157,29 @@
   
 </div>
 
-<div id="mapa">  
+<div id="mapa" style="width:38%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:1350px;height:500px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:550px;height:670px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
-    	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
-    </p:gmap>  
-    	
-    <p:dialog widgetVar="dlg" showEffect="fade" height="450" width="700">
+    	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
+    </p:gmap>
+	
+</div> 
 
-	<div class="wrapper col3">
-	  <div>
-	    <div >
-	      <h2>Asignar filtros a la catástrofe</h2>
+<div class="wrapper col3">
+    <div id="intro2">
+    
+    <div>		     
 	      
-	      <f:view>        
+	      <f:view>         	    
 	      	
-			<h:form columns="2" value="#{filtrosCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">
+			<h:form id="formFiltroServicioCatastrofe" columns="2" value="#{filtrosCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:590px;border: 0;">
+			
+				<h2>Asignar filtros a la catástrofe</h2>
+				
+				<p:growl id="msg" showDetail="true" />
 								
 				<p>			        		        
 	            <p:graphicImage value="image/#{filtrosCatastrofeBean.catastrofeBean.logo}" width="50" height="50"/> 
@@ -191,16 +195,8 @@
 	           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
 	            <h:outputText value="#{filtrosCatastrofeBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
 	            </p>
-	            <br/>  
-	            
-	       	</h:form>
-	       	</f:view> 
-	            
-	        <f:view>  
-	            
-			<h:form id="formFiltroServicioCatastrofe">      	      	
-	      		<p:growl id="msg" showDetail="true" />	
-	      		
+	            <br/>  	            	       	   	      
+	      				      		
 	      		<p>
 				<h:outputText value="Filtros de datos asignados a la Catástrofe" style="width:100px;border: transparent;"/>			            
 	            </p>	
@@ -247,18 +243,12 @@
 	     		
 			</h:form>
 			
-			<br class="clear" />			                     
-	      
-	      </f:view>   
-	            
-		<br/> 
-				                                            									                
-	   </div>    	  	  	  
-	  	  	  	
-	    <br class="clear" />
-	  </div>	 		  
-	</div>
-	</p:dialog>
+			</f:view>
+    </div> 
+    				    
+    <br class="clear" />
+    
+	</div>	    		
 </div>
 
 <div class="wrapper col7">

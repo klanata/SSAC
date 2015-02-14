@@ -2,10 +2,9 @@ package com.web.beans;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -13,7 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.annotation.PostConstruct; 
-
 
 import clienteutility.ClienteUtility;
 
@@ -99,7 +97,7 @@ public class BorrarCatastrofeBeanMap implements Serializable{
 				System.out.println("Excepción en borrarCatastrofeBeanMap: " + excep.getMessage());      		 			       	            	
 			}  
 			
-			
+			/*
 			CatastrofeEBR manager2 = null;				
 			Context context2 = null;			
 			//FacesMessage message = null; 
@@ -132,12 +130,69 @@ public class BorrarCatastrofeBeanMap implements Serializable{
 		    }catch (Exception excep){
 				System.out.println("Excepción en borrarCatastrofeBeanMap: " + excep.getMessage());      		 			       	            	
 			} 
+			*/
 			
 		}    	
 	}
 
 		
 	public void borrarCatastrofe(){	
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
+		if ((idEventoString == null) || (idEventoString == ""))
+		{	
+			System.out.println("No existe la catástrofe. "); 			
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+		}
+		else	
+		{ 			
+			CatastrofeEBR manager = null;
+			Context context = null;	
+			FacesMessage message = null;
+			
+			try {
+	            // 1. Obtaining Context
+				context = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+				manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }
+									
+			try{			
+				Long idCatastrofe = new Long(idEventoString);
+				
+				try {	    				    	
+						    			
+					manager.EliminarCatastrofe(idCatastrofe);
+					
+					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Baja Exitosa", "La catástrofe fue dada de baja del sistema.");
+    				FacesContext.getCurrentInstance().addMessage(null, message);
+    				
+    				FacesContext contexto = FacesContext.getCurrentInstance();
+    				contexto.getExternalContext().getFlash().setKeepMessages(true);
+		        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+    				handler.performNavigation("listaBajaCatastrofe?faces-redirect=true");																	
+														
+				}catch (Exception excep){
+					System.out.println("Excepción al borrar la catástrofe: " + excep.getMessage());      		 			       	           	
+				}	    			    			    		        	      
+	        } catch (Exception e) {
+	             System.out.println(e.getMessage());
+	        }
+						
+			FacesContext.getCurrentInstance().addMessage(null, message);
+				
+		}
+		
+	}
+	
+	public void cancelar(){	
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("listaBajaCatastrofe?faces-redirect=true");	
 		
 	}
 	

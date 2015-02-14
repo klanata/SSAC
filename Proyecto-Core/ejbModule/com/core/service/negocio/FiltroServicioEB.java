@@ -16,6 +16,7 @@ import com.core.data.entites.FiltroServicio;
 import com.core.data.persistencia.interfaces.locales.CatastrofeDAO;
 import com.core.data.persistencia.interfaces.locales.FiltroServicioDAO;
 import com.core.data.persistencia.interfaces.locales.ServicioDAO;
+import com.core.data.persistencia.interfaces.locales.FiltroDAO;
 import com.core.service.negocio.remote.FiltroServicioEBR;
 import com.core.data.persistencia.DataService;
 
@@ -35,6 +36,9 @@ public class FiltroServicioEB implements FiltroServicioEBR{
 	
 	@EJB
 	private CatastrofeDAO catastrofeDAO;
+	
+	@EJB
+	private FiltroDAO filtroDAO;
 
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
@@ -61,11 +65,54 @@ public class FiltroServicioEB implements FiltroServicioEBR{
 		return fs;
 	}
 	
+	public List<FiltroServicio> listaAllFiltroServicios() throws Exception{
+		List<FiltroServicio> listFiltroServicios = new ArrayList<FiltroServicio>();	
+		List<FiltroServicio> listAllFiltroServicios = filtroServicioDAO.listarFiltroServicios();
+		
+		FiltroServicio filtroServicio;
+		Catastrofe catastrofe;
+		boolean bajaLogicia;
+				
+		for (int i=0; i<=listAllFiltroServicios.size()-1; i++){
+			filtroServicio = listAllFiltroServicios.get(i);
+			catastrofe = filtroServicio.getCatastrofe();
+			if (catastrofe != null){
+				bajaLogicia = catastrofe.getBajaLogica();
+				if (bajaLogicia == false){
+					listFiltroServicios.add(filtroServicio);					
+				}				
+			}	
+			else{
+				listFiltroServicios.add(filtroServicio);	
+			}
+				
+		}
+		
+		return listFiltroServicios;
+		
+	}
+	
 	
 	@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-	public List<FiltroServicio> listaFiltroServicios() throws Exception {
-		List<FiltroServicio> listFiltroServicios = new ArrayList<FiltroServicio>();
-		listFiltroServicios = filtroServicioDAO.listarFiltroServicios();
+	public List<FiltroServicio> listaFiltroServiciosCatastrofesNoDadasDeBaja() throws Exception {
+		List<FiltroServicio> listFiltroServicios = new ArrayList<FiltroServicio>();		
+		List<FiltroServicio> listAllFiltroServicios = filtroServicioDAO.listarFiltroServicios();
+		
+		FiltroServicio filtroServicio;
+		Catastrofe catastrofe;
+		boolean bajaLogicia;
+				
+		for (int i=0; i<=listAllFiltroServicios.size()-1; i++){
+			filtroServicio = listAllFiltroServicios.get(i);
+			catastrofe = filtroServicio.getCatastrofe();
+			if (catastrofe != null){
+				bajaLogicia = catastrofe.getBajaLogica();
+				if (bajaLogicia == false){
+					listFiltroServicios.add(filtroServicio);					
+				}				
+			}									
+		}
+		
 		return listFiltroServicios;
 	}	
 	
@@ -110,6 +157,21 @@ public class FiltroServicioEB implements FiltroServicioEBR{
 		}						
 		
 		return listFiltroServicios;
+	}
+	
+	public void eliminarFiltroServicio(Long idFiltroServicio) throws Exception{
+		FiltroServicio filtroServicio = filtroServicioDAO.buscarFiltroServicioPorId(idFiltroServicio);
+		filtroServicio.setBajaLogica(true);
+		dataService.update(filtroServicio);			
+	}
+	
+	public void modificarFiltroServicioCatastrofe(Long idFiltroServicio, String descripcion) throws Exception{
+		FiltroServicio filtroServicio = filtroServicioDAO.buscarFiltroServicioPorId(idFiltroServicio);
+		Long idFiltro = filtroServicio.getIdFiltro();
+		
+		Filtro filtro = filtroDAO.buscarFiltroPorId(idFiltro);
+		filtro.setDescripcion(descripcion);
+		dataService.update(filtro);		
 	}
 	
 }

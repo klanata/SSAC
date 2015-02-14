@@ -120,7 +120,7 @@
             <p:submenu label="ABM">
                 <p:menuitem value="Alta" url="asignarFiltrosDeDatos.xhtml" icon="ui-icon-check"/>
                 <p:menuitem value="Baja" url="" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="" icon="ui-icon-pencil"/>
+                <p:menuitem value="Modificación" url="modificarFiltrosDeDatos.xhtml" icon="ui-icon-pencil"/>
             </p:submenu>
         </p:column>
  	</p:submenu>
@@ -154,62 +154,64 @@
   
 </div>
 
-<div id="mapa" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
+<div id="mapa" style="width:40%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="8" type="HYBRID"  style="width:700px;height:670px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="7" type="HYBRID"  style="width:550px;height:670px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
-    	<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();" update="growl" />	    	
+    	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>
 	
 </div>
 
 <div class="wrapper col3">
-    <div id="intro2">
+    <div id="intro3">
     
-    <div class="fl_left2">
+    <div>
             
       <f:view>
             				
-    		<h:form id="bajaCatastrofe" enctype="multipart/form-data"> 
+    		<h:form id="bajaCatastrofe" columnClasses="label, value" style="width:500px;"> 
     		
     			<p:growl id="messages" showDetail="true" />     			
-    		
-    			<h:panelGrid id="panel" columns="1" style="width: 40%; float:left;">
-    			
+    		    			    		
     			<h2>Eliminar Catástrofe</h2> 
     			
     				<p>			        		        
-		            <p:graphicImage value="image/#{borrarCatastrofeBeanMap.catastrofeBean.logo}" width="50" height="50"/> 
+		            <p:graphicImage value="image/#{borrarCatastrofeBeanMap.catastrofeBean.logo}" width="30" height="30"/> 
 		            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 					</p>			
 					
 					<p>
-					<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
-		            <h:outputText value="#{borrarCatastrofeBeanMap.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
-		            </p>			
-		               
-		            <p>    
-		           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-		            <h:outputText value="#{borrarCatastrofeBeanMap.catastrofeBean.descripcion}" styleClass="outputLabel"/>
-		            </p>
-		            <br/>  		    		        		  	            																																																																																														
-            		            		
-					<p:selectBooleanCheckbox value="#{borrarCatastrofeBeanMap.catastrofeBean.activa}"> 					
-					<label for="activa">Activa:   </label>
-					</p:selectBooleanCheckbox>
-															
-					<p:selectBooleanCheckbox value="#{borrarCatastrofeBeanMap.catastrofeBean.prioridad}"> 
-					<label for="prioridad">Prioridad:   </label>																		 	
-					</p:selectBooleanCheckbox>	
-																							
-																            
-            		<f:facet name="footer">
-                		<p:commandButton value="Eliminar" ajax="false" update="bajaCatastrofe:messages" action="#{borrarCatastrofeBeanMap.borrarCatastrofe()}" />                		
-            		</f:facet>            	            	
-            		
-            	</h:panelGrid>        			 					         		
+					<label for="nombre">Nombre del evento: #{borrarCatastrofeBeanMap.catastrofeBean.nombreEvento} </label>	
+					</p>
+					<br/>	
+					
+					<p>
+					<label for="descripcion">Descripción: #{borrarCatastrofeBeanMap.catastrofeBean.descripcion} </label>	
+					</p>
+					<br/>
+					
+					<p>
+					<label for="activa">Activa: #{borrarCatastrofeBeanMap.catastrofeBean.activa} </label>	
+					</p>
+					<br/>	
+					
+					<p>
+					<label for="prioridad">Prioridad: #{borrarCatastrofeBeanMap.catastrofeBean.prioridad} </label>	
+					</p>
+					<br/>	
+					
+					<p:galleria value="#{imagesView.images}" var="imgCatastrofeBean" panelWidth="500" panelHeight="313" showCaption="true">
+					    <p:graphicImage value="image/#{imgCatastrofeBean.path}"  title="#{imgCatastrofeBean.path}"/>
+					</p:galleria>
+					
+					<br/>														               		              		    		        		  	            																																																																																														            		            																																																																	                        		           	            
+            		            	
+            	            	
+                <p:commandButton value="Eliminar" ajax="false" update="bajaCatastrofe:messages" action="#{borrarCatastrofeBeanMap.borrarCatastrofe()}" />                		            	     			 					         		
+                <p:commandButton value="Cancelar" ajax="false" update="bajaCatastrofe:messages" action="#{borrarCatastrofeBeanMap.cancelar()}" />
         		          					         			            		        		        	        		      
     		</h:form>
     		    		    		    		    		

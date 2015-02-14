@@ -75,7 +75,14 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	position:left;
 	margin:0 auto 0;
 	display:block;
-	width:960px;	
+	width:900px;	
+	}
+	
+#intro3{
+	position:left;
+	margin:0 auto 0;
+	display:block;
+	width:800px;	
 	}
 
 /* ----------------------------------------------Header-------------------------------------*/
@@ -211,7 +218,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 #intro2 .fl_left2{
 	display:block;
 	float:left;
-	width:500px;
+	width:540px;
 	height:608px;
 	margin:0;
 	padding:30px;
@@ -363,6 +370,67 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	}
 
 #intro .fl_right4{float:right;}
+
+
+#intro3{
+	padding:30px 150px 0px 0;
+	font-size:14px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	}
+
+
+#intro3 .fl_left2{
+	display:block;
+	float:left;
+	width:700px;
+	height:608px;
+	margin:0;
+	padding:30px;
+	color:#FFFFFF;
+	background-color:#2684B7;
+	}
+	
+#intro3 .fl_left2 h2{
+	font-size:46px;
+	margin:0 0 15px 0;
+	padding:0;
+	border:none;
+	color:#FFFFFF;
+	background-color:#2684B7;
+	}
+	
+#intro3 .fl_left2 label{
+	margin:0 0 20px 0;
+	padding:0 0 8px 0;
+	font-size:20px;
+	font-weight:normal;
+	font-family:Georgia, "Times New Roman", Times, serif;		
+	}
+	
+#intro3 .fl_left2 p{
+	margin:0;
+	padding:0;
+	line-height:1.6em;
+	}
+	
+#intro3 .fl_left2 p.readmore{
+	display:block;
+	width:100%;
+	margin:20px 0 0 0;
+	padding:0;
+	text-align:right;
+	line-height:normal;
+	}
+
+#intro3 .fl_left2 p.readmore a{
+	padding:8px 15px;
+	font-size:18px;
+	color:#FFFFFF;
+	background-color:#1C5E82;
+	}
+
+#intro3 .fl_right2{float:right;}
+
 
 /* ----------------------------------------------Services-------------------------------------*/
 

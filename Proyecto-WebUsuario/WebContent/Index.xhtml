@@ -350,7 +350,7 @@ div {
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
 					<h2>
-						<strong><a href="#donacion"> Ayudanos a ayudar
+						<strong><a href="#donacion"> 
 								¡Realice donaciones!</a></strong>
 					</h2>
 				</div>
@@ -408,10 +408,10 @@ div {
 									<p:inputText id="cantidadHoras" label="cantidadHoras"
 										value="#{deServicioBean.cantidadHoras}" required="true"
 										requiredMessage="Cantidad de horas es requerido"
-										validatorMessage="Formato de Horas invalido, debe contener números 0..9">
-
-										<f:validateRegex pattern="[0-9]*" />
 										>
+
+										
+										
 									</p:inputText>
 
 									<p:commandButton id="registro" update="growl" type="submit"
@@ -535,11 +535,9 @@ div {
 									<p:inputText id="cantidad" label="cantidad"
 										value="#{deBienesBean.cantidad}" required="true"
 										requiredMessage="La cantidad es requerida"
-										validatorMessage="Formato de Cantidad invalido, debe contener números 0..9">
-
-										<f:validateRegex pattern="[0-9]*" />
-										
 										>
+
+										
 									</p:inputText>
 
 									<p:commandButton id="registro" update="growl" type="submit"
@@ -607,7 +605,7 @@ div {
 				<div class="ui-grid-col-3">
 					<header>
 					<h3>
-						<a>CONOCES A ESTAS PERSONAS?</a>
+						<a>¿CONOCES A ESTAS PERSONAS?</a>
 					</h3>
 					</header>
 					<p>Nuestro equipo proporciona un servicio de 24hs, con personal
@@ -624,86 +622,96 @@ div {
 
 
 
+
+
+
+
+
 	<!-- ALTA DE PERSONAS DESAPARECIDAS -->
 	<div class="oculto" id="personasdesap">
-		<div class="ui-grid">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-1"></div>
-				<div class="ui-grid-col-6">
-					<f:view>
+	<div class="ui-grid ui-grid-responsive">
+	
+	<f:view>
 						<h:form id="personasdesaparecidasBean">
 							<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-							<h:panelGrid>
-								<h2>
-									<a href="#">INGRESO DE PERSONA DESAPARECIDA</a>
-								</h2>
-								<br />
-
-
-								<label for="nombre"> Nombre:</label>
+							
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+        
+        <label for="nombre"> Nombre:</label>
 								<p:inputText id="nombre" label="nombre"
-									value="#{personasdesaparecidasBean.nombre}" required="true"
-									requiredMessage="El nombre es requerido">
+								value="#{personasdesaparecidasBean.nombre}" required="true"
+								requiredMessage="El nombre es requerido">
 								</p:inputText>
-
-								<label for="usuario">Apellido :</label>
+        </div>
+        <div class="ui-grid-col-4">
+        
+        <label for="usuario">Apellido :</label>
 								<p:inputText id="apellido" label="apellido"
-									value="#{personasdesaparecidasBean.apellido}" required="true"
-									requiredMessage="es requerido">
+								value="#{personasdesaparecidasBean.apellido}" required="true"
+								requiredMessage="El apellido es requerido">
 								</p:inputText>
-
-								<label for="cedula">Cedula :</label>
+        </div>
+         <div class="ui-grid-col-2"></div>
+    </div>
+    
+    
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+        
+        <label for="cedula">Cedula/Pasaporte- País :</label>
 								<p:inputText id="cedula" label="cedula"
-									value="#{personasdesaparecidasBean.cedula}" required="true"
-									requiredMessage="es requerido"
-									validatorMessage="Formato de Cedula invalido, debe contener números 0..9">
-
-									<f:validateRegex pattern="[0-9]*" />
+									value="#{personasdesaparecidasBean.cedula}" required="false">
 									
-									>
-								</p:inputText>
-
-								<label for="numeroContacto">Numero de contacto :</label>
+        							</p:inputText>
+        </div>
+        <div class="ui-grid-col-4">
+        
+        <label for="numeroContacto">Contacto :</label>
 								<p:inputText id="numeroContacto" label="numeroContacto"
 									value="#{personasdesaparecidasBean.numeroContacto}"
-									required="true" requiredMessage="es requerido"
+									required="true" 
 									validatorMessage="Formato de Telefono invalido, debe contener números 0..9">
-
 									<f:validateRegex pattern="[0-9]*" />
-									
-									>
 								</p:inputText>
-
-								<label for="descripcion">Descripcion :</label>
+        </div>
+          <div class="ui-grid-col-2"></div>
+    </div>
+    
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-8">
+        <label for="descripcion">Descripción :</label>
 								<p:inputText id="descripcion" label="descripcion"
 									value="#{personasdesaparecidasBean.descripcion}"
-									required="true" requiredMessage="es requerido">
+									required="false" >
 								</p:inputText>
-
-
-								<label for="fechNac"> Fecha de nacimiento :</label>
-								<p:calendar id="fechNac" label="fechNac"
-									value="#{personasdesaparecidasBean.fechNac}"
-									pattern="dd-MM-yyyy" mask="true" />
-
-
-								<br />
-
-								<p:commandButton id="registro" update="growl" type="submit"
+        </div>
+       
+        <div class="ui-grid-col-2"></div>
+    </div>
+    
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-3"></div>
+          <div class="ui-grid-col-5">
+          <br/>
+          <p:commandButton id="registro" update="growl" type="submit"
 									Class="button" value="Registrar"
 									action="#{personasdesaparecidasBean.registrarPersonasDesaparecidas()}">
 								</p:commandButton>
-
-							</h:panelGrid>
-
-						</h:form>
-					</f:view>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
+          </div>
+        <div class="ui-grid-col-2"></div>
+    </div>
+    
+    
+    </h:form>
+    </f:view>
+</div>    
+</div>
+	
 	<!-- BUSCAR PERSONAS DESAPARECIDAS -->
 	<div class="oculto" id="busperdesap">
 		<div class="ui-grid">
@@ -719,7 +727,7 @@ div {
 						<br />
 						<p:dataTable id="perDT" var="personaBean" widgetVar="personaTable"
 							value="#{listapersonaBean.personasBean}"
-							emptyMessage="No se han encontrado administrador con ese criterio"
+							emptyMessage="No se han encontrado personas con ese criterio"
 							filteredValue="#{listapersonaBean.filtroPersonafeBean}"
 							paginator="true" rows="5" paginatorPosition="top"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
@@ -754,7 +762,7 @@ div {
 								<h:outputText value="#{personaBean.apellido}" />
 							</p:column>
 
-							<p:column headerText="Cedula" filterBy="#{personaBean.cedula}"
+							<p:column headerText="CI/Pasaporte-País" filterBy="#{personaBean.cedula}"
 								filterMatchMode="contains">
 								<h:outputText value="#{personaBean.cedula}" />
 							</p:column>
@@ -788,73 +796,108 @@ div {
 		</div>
 	</div>
 
+
+
+
 	<!-- REGISTRO DE USUARIO -->
 	<div class="oculto" id="registrousuario">
-		<div class="ui-grid">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-2"></div>
-				<div class="ui-grid-col-8">
-
-					<h2>
-						<a href="#"> REGISTRO DE USUARIO</a>
-					</h2>
-					<p>Por favor, ingrese los campos para registrarse a la
-						catastrofe</p>
-					<f:view>
+	<br></br>
+		<div class="ui-grid ui-grid-responsive">
+		<f:view>
 						<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
 						<h:form id="login2">
-
-
-							<label for="nick"> Nick:</label>
+						
+    <div class="ui-grid-row">
+    <div class="ui-grid-col-3"></div>
+        <div class="ui-grid-col-3">        
+      
 							<p:inputText id="nick" label="nick" value="#{loginBean.nick}"
 								required="true" requiredMessage="El nick es requerido">
 							</p:inputText>
-
-							<label for="nombre">Nombre :</label>
+							  <p:watermark for="nick" value="Nick" id="watermark" />
+        
+        
+        </div>
+        <div class="ui-grid-col-3">
+      
 							<p:inputText id="nombre" label="nombre"
-								value="#{loginBean.nombre}" required="true"
-								requiredMessage="El nombre es requerido">
+							value="#{loginBean.nombre}" required="true"
+							requiredMessage="El nombre es requerido">
 							</p:inputText>
-
-							<label for="email">E-mail :</label>
+          <p:watermark for="nombre" value="Nombre"  />
+        </div>
+          <div class="ui-grid-col-3"></div>
+    </div>
+    <br></br>
+    <div class="ui-grid-row">
+    <div class="ui-grid-col-3"></div>
+        <div class="ui-grid-col-3">
 							<p:inputText id="email" label="email" value="#{loginBean.email}"
-								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
-								<f:validateRegex
-									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-
-
+							validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
+							<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 							</p:inputText>
-
-							<label for="nombre"> Clave:</label>
+							  <p:watermark for="email" value="Correo" />
+							
+		</div>
+        <div class="ui-grid-col-3">
+        			
+					<p:calendar id="fechNac" label="fechNac"
+					value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
+					mask="true" />
+					 <p:watermark for="fechNac" value="Fecha Nacimiento" />
+		</div>
+        <div class="ui-grid-col-3"></div>
+    </div>
+    <br></br>
+   
+    
+    <div class="ui-grid-row">
+    <div class="ui-grid-col-3"></div>
+        <div class="ui-grid-col-6"> 
+     
 							<p:password value="#{loginBean.clave}" id="password"
 								required="true" label="password"
 								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">
-
-
 								<f:validateRegex
-									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
-
-
-
-
+							pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
 							</p:password>
-
-							<p:outputLabel for="fechNac" value="fechNac" />
-							<p:calendar id="fechNac" label="fechNac"
-								value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
-								mask="true" />
-
-							<p:commandButton id="registrarButton" value="Registrar"
+							 <p:watermark for="password" value="Contraseña" />
+							
+        			</div>
+         </div>
+         <br></br>
+            <div class="ui-grid-col-3"></div>
+            <div class="ui-grid-row">
+            
+            </div>
+            
+            
+            
+        <div class="ui-grid-row">
+    <div class="ui-grid-col-2"></div>
+    <div class="ui-grid-col-3"></div>
+    <div class="ui-grid-col-7">
+    <p:commandButton id="registrarButton" value="Registrar"
 								actionListener="#{loginBean.registro}" update=":growl"
 								oncomplete="manejarLogin(xhr, status, args)" />
-
-						</h:form>
-					</f:view>
-				</div>
-				<div class="ui-grid-col-2"></div>
-			</div>
-		</div>
+      
+    
+    </div>
+    
+    </div>    
+        </h:form>
+        </f:view>
+        <br></br>
+</div>
 	</div>
+
+
+
+
+
+
+
 
 	<!-- LOGIN -->
 	<div class="oculto" id="loginusuario">

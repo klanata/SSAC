@@ -16,11 +16,21 @@ public interface FiltroServicioEBR {
 	
 	public FiltroServicio buscaFiltroServicioPorId(Long id) throws Exception;
 	
-	public List<FiltroServicio> listaFiltroServicios() throws Exception;
+	public List<FiltroServicio> listaAllFiltroServicios() throws Exception;
+	//Lista la tabla FiltroServicio registros que no estan dados de baja
+	//tambien tiene en cuenta que la Catastrofe no este dada de baja
+	
+	public List<FiltroServicio> listaFiltroServiciosCatastrofesNoDadasDeBaja() throws Exception;
+	//Lista la tabla FiltroServicio registros que no estan dados de baja y
+	//tambien tiene en cuenta que la Catastrofe no este dada de baja
 	
 	public List<FiltroServicio> listaFiltroServiciosSinCatastrofe() throws Exception;
 	
 	public List<FiltroServicio> listaFiltroServicioAsignadosCatastrofe(long idCatastrofe) throws Exception;
+	
+	public void eliminarFiltroServicio(Long idFiltroServicio) throws Exception;
+	
+	public void modificarFiltroServicioCatastrofe(Long idFiltroServicio, String descripcion) throws Exception;
 		
 	
 }

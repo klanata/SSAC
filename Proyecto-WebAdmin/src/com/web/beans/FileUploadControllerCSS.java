@@ -120,12 +120,15 @@ public class FileUploadControllerCSS {
 	public void borrarCSSCatastrofe(String path){	
 		
 		String jboss = System.getenv("JBOSS_HOME");		
-		File file = new File(jboss + "\\Proyecto\\imagenes.war\\" + path);		
+		File file = new File(jboss + "\\Proyecto\\imagenes.war\\" + path);	
+		file.delete();
+		/*
 		if(file.delete()){
 			//System.out.println(file.getName() + " fue elimindada!");
 		}else{
 			System.out.println("La operación de eliminación falló.");
 		}
+		*/
 	}
 	
 	public void finalizar(){
@@ -164,14 +167,7 @@ public class FileUploadControllerCSS {
 	    			String nombCSS = c.getCss();
 	    			
 	    			if  ((nombCSS != null) && (nombCSS != "")){
-	    				/*
-	    				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La catástrofe fue ingresada al sistema.");
-	    				FacesContext.getCurrentInstance().addMessage(null, message);
 	    				
-	    				FacesContext contexto = FacesContext.getCurrentInstance();
-	    				contexto.getExternalContext().getFlash().setKeepMessages(true);
-	    				
-	    				*/
 	    				String abm = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("ABMCatastrofe");
 	    		        
 	    		        if (abm=="Alta"){

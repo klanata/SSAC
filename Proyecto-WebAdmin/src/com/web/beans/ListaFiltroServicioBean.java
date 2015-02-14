@@ -5,28 +5,33 @@ import java.util.List;
 import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
+
+import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Filtro;
-import com.core.data.entites.Servicio;
 import com.core.data.entites.FiltroServicio;
+import com.core.data.entites.Servicio;
 import com.core.service.negocio.remote.FiltroEBR;
-import com.core.service.negocio.remote.ServicioEBR;
 import com.core.service.negocio.remote.FiltroServicioEBR;
+import com.core.service.negocio.remote.ServicioEBR;
 
 
-@ManagedBean(name="listaFiltrosDeDatosBean")
+@ManagedBean(name="listaFiltroServicioBean")
 @RequestScoped
-public class ListaFiltrosDeDatosBean implements Serializable{
+public class ListaFiltroServicioBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -37,7 +42,8 @@ public class ListaFiltrosDeDatosBean implements Serializable{
     
     @ManagedProperty("#{filtroDeDatosBean}")
     private FiltroDeDatosBean filtroDeDatosBean;
-
+    
+    
 	@PostConstruct
     public void init() {
     	
@@ -108,7 +114,7 @@ public class ListaFiltrosDeDatosBean implements Serializable{
 			}		
 			*/
 			List<FiltroServicio> listFiltroServicio = new ArrayList<FiltroServicio>();
-			listFiltroServicio = managerFS.listaAllFiltroServicios();
+			listFiltroServicio = managerFS.listaFiltroServiciosCatastrofesNoDadasDeBaja();
 			FiltroServicio filtroServicio;	
 			Filtro filtro;
 			Servicio servicio;
@@ -144,13 +150,14 @@ public class ListaFiltrosDeDatosBean implements Serializable{
 			}		
 			
     	}catch (Exception excep){
-    		System.out.println("Excepción al listar los filtros de youtube: " + excep.getMessage());      		 			       	           	
-    	}  					
+    		System.out.println("Excepción al listar los FiltroServicio en modificiar: " + excep.getMessage());      		 			       	           	
+    	}  		
 				
-    }
-	
+    }    
+    
     //	------------------ Getter and setter methods ---------------------
-      
+     
+	
 	public ArrayList<FiltroDeDatosBean> getFiltrosFiltroDeDatosBean() {
 		return filtrosFiltroDeDatosBean;
 	}
@@ -185,19 +192,57 @@ public class ListaFiltrosDeDatosBean implements Serializable{
 	public void setFiltroDeDatosBean(FiltroDeDatosBean filtroDeDatosBean) {
 		this.filtroDeDatosBean = filtroDeDatosBean;
 	}
-	
+   
 	
 	//	------------------ Operaciones ---------------------
 	
-	public void asignarFiltro(){
+	public void onRowSelect(SelectEvent event) {
+		
+		Long idFiltroServicio = ((FiltroDeDatosBean) event.getObject()).getId();		
+		String idFiltroServicioString = idFiltroServicio.toString();
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idFiltroServicioString", idFiltroServicioString);
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("ABMCatastrofe", "Modificacion");
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
+		
+		FiltroServicioEBR managerFS = null;	    	
+		Context contextFS = null;		
+		//FacesMessage message = null;
+		
+		try {
+            // 1. Obtaining Context
+			contextFS = ClienteUtility.getInitialContext();
+            // 2. Generate JNDI Lookup name
+            //String lookupName = getLookupName();
+            // 3. Lookup and cast
+			managerFS = (FiltroServicioEBR) contextFS.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroServicioEB!com.core.service.negocio.remote.FiltroServicioEBR");
+ 
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+		
+		try{	
+			FiltroServicio filtroServicio = managerFS.buscaFiltroServicioPorId(idFiltroServicio);
+			Catastrofe c = filtroServicio.getCatastrofe();
+			Long idCatastrofe = c.getId();
+															    
+			String idCatastrofeString = idCatastrofe.toString();
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idCatastrofeString", idCatastrofeString);
+			
+    	}catch (Exception excep){
+    		System.out.println("Excepción al listar los FiltroServicio en modificiar: " + excep.getMessage());      		 			       	           	
+    	}  	
+					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("asignarFiltroYoutube?faces-redirect=true");			
-	}
+		handler.performNavigation("modificarFiltrosDeDatosCatastrofe?faces-redirect=true");						 																	
+		            
+    }
+
+	public void onRowUnselect(UnselectEvent event) {
+        FacesMessage msg = new FacesMessage("Catastrofe No Seleccionada");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 	
-	public void borrarFiltro(){			
-		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("quitarImagenCatastrofe?faces-redirect=true");		
-	}
+ 
     
 	
 }

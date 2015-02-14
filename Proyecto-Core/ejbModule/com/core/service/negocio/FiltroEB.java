@@ -255,5 +255,11 @@ public class FiltroEB implements FiltroEBR{
 		return listaFiltrosNoAsigServicio;
 	}
 	
+	public void EliminarFiltro(Long idFiltro) throws Exception{
+		Filtro filtro = filtroDAO.buscarFiltroPorId(idFiltro);
+		filtro.setBajaLogica(true);				
+		dataService.update(filtro);
+	}
+	
 	
 }

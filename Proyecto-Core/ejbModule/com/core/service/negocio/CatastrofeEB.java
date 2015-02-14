@@ -372,12 +372,12 @@ public class CatastrofeEB implements CatastrofeEBR{
 			}
 			index ++;
 			if (poligono.charAt(index) == '-'){
-				esNegativo = true;							
+				esNegativo = true;	
+				index ++;
 			}
 			else {
 				esNegativo = false;
-			}
-			index ++;
+			}			
 			while(poligono.charAt(index) != '.'){
 				digChar = poligono.charAt(index);	
 				int dig = digChar - '0';
@@ -525,5 +525,14 @@ public class CatastrofeEB implements CatastrofeEBR{
 		}					
 		return listaFiltros;		
 	}
+	
+	
+	public void EliminarCatastrofe(Long idCatastrofe) throws Exception{
+		Catastrofe catastrofe = catastrofeDAO.buscarCatastrofePorId(idCatastrofe);
+		catastrofe.setBajaLogica(true);		
+		dataService.update(catastrofe);
+	}
+	
+	
 	
 }
