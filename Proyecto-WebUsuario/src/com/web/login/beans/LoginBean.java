@@ -178,7 +178,7 @@ public class LoginBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		context.addCallbackParam("estaLogeado", logeado);
 		if (logeado){
-			context.addCallbackParam("view", "PerDesaparecidas.xhtml");
+			context.addCallbackParam("view", "Index.xhtml");
 		}
 	} 
 	
@@ -204,6 +204,10 @@ public class LoginBean implements Serializable {
             e.printStackTrace();
         }
 		String imagen = "null";
+		FacesContext contextousuario = FacesContext.getCurrentInstance();
+		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
+		idCatastrofe = (Long)sesion.getAttribute("idmongo");
+   		
 		manager.registroUsuarioPlataforma(nick, clave, email, nombre, fechaNacimiento, idCatastrofe,imagen);
 		nick="";
 		clave="";
