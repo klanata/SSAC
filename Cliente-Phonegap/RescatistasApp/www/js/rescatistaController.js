@@ -8,7 +8,7 @@ function rescatistaController($scope) {
     $scope.password = "",
     $scope.nombreArchivoPlan = "",
     $scope.idPlanActual = "",
-    $scope.server = "192.168.0.106",
+    $scope.server = "172.16.100.98",
     $scope.puerto = "8080",
     $scope.rutaViewerJS = "http://10.0.2.2/RescatistasApp/www/ViewerJS/#../",
     $scope.descripcion = "",//window.localStorage.getItem("descripcionPedidoAyudaActual"),
@@ -17,47 +17,21 @@ function rescatistaController($scope) {
     //Funciones:
     $scope.validarRescatista = function(){
         $scope.verMapa();
-        //Llamar a la funcion de login con POST
-        /*
-        $http({
-            method : 'POST',
-            //url : 'http://localhost:8080/ServicioRest/catastrofe/personas/login', //Web
-            url : 'http://10.0.2.2:8080/ServicioRest/catastrofe/personas/login', //Android
-            data : $.param({
-                'id' : $scope.email,
-                'password' : $scope.password
-            }),
-            crossDomain:true,
-            //dataType: 'json',
-            headers : {
-                'Content-Type' : 'application/x-www-form-urlencoded'
-            }
-        }).success(function (data) {
-            console.log(' data ');
-            if(data)
-            {
-                alert('ok');
-                $scope.listar();
-            }
-        }).
-        error(function(){
-             alert('Error al invocar al ServicioRest');
-        });
-        */
-        
-        //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Android emulador
-        //$.ajax({url:"http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Android nativo - red local Victoria 
-        //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing 
-        //$.ajax({url:"http://172.16.102.91:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,   //Fing 
-        $.ajax({url:"http://" + $scope.server + ":" + $scope.puerto + "/ServicioRest/catastrofe/rescatista/login?nick=" + $scope.nick + "&pass=" + $scope.password,   //Utu 
-        //$.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/login?nick="+$scope.nick+"&pass="+$scope.password,//Web - desde WAMP no se puede por CORS
+        if(window.localStorage.usuarioNick){
+			$scope.listarPlanes.call($scope.verMapa());
+		}
+		else{
+		console.log("Nick: " + $scope.nick);
+        $.ajax({url:"http://" + $scope.server + ":" + $scope.puerto + "/ServicioRest/catastrofe/rescatista/login?nick=" + $scope.nick + "&pass=" + $scope.password,
             success:function(response) {
-                //console.log(response);
+                //console.log("Entro al response: " + response);
                 if(response.booleanValue === 'true')
                 {
                     //alert('ok');
                     window.localStorage.setItem("usuarioNick", $scope.nick);
                     $scope.listarPlanes.call($scope.verMapa());
+					document.getElementById("nick").value="";
+					document.getElementById("password").value="";
                     $scope.nick = "";
                     $scope.password = "";
                 }
@@ -67,44 +41,33 @@ function rescatistaController($scope) {
                
             },
             error:function (request, status, error) {
-                alert("No hay conexión. Por favor, intente más tarde." + request.responseText);
+			//console.log("Nick: " + $scope.nick);
+			//console.log("pass: " + $scope.password);
+			    console.log(error.message);
+				console.log(request.responseText);
+                alert("No hay conexión. Sus datos no pueden ser verificados. Por favor, intente más tarde.");
             },
             dataType:"json",
             type:"get"
         });
+		}
        
       }
     
 
    $scope.listarPlanes = function() {
     
-        //var map = new GoogleMap();
-        //map.initialize();
-        //console.log(map);
-        //mostrarMapa();
         document.getElementById("login").style.display = 'none';
-        document.getElementById("listaPendientes").style.display = 'initial';
+        document.getElementById("listaPendientes").style.display = 'initial';//Div que contiene al mapa.
         document.getElementById("pedidoAyudaDetalle").style.display = 'none';
 
-       //$scope.planes = [{"nombrePlan":"Procedimiento Incendios", "planId":"1"}, {"nombrePlan":"Procedimiento Inundación", "planId":"3"}];--Datos para probar
-        /*console.log($scope.planes);
-        function useReturnData(response){
-            
-            $scope.planesAsignados = JSON.stringify(response.planesAsignados);
-            console.log(response.planesAsignados);
-        };*/
-
-    
  }
 
  $scope.abrirPlan = function () {
     $scope.abrirPlan = function () {
         //$scope.nombreArchivoPlan = nombrePlan;
-        //$scope.nombreArchivoPlan = "PropuestaProyecto20140831v03.pdf";//Esto es de prueba. Borrar despues que este implementado el metodo.
         //$scope.idPlanActual = plan.idEstadoRescatista;
-        //console.log($scope.rutaViewerJS + $scope.nombreArchivoPlan);
-        //alert('ok');
-        //alert(window.location.protocol + window.location.host + window.location.pathname);
+
         //window.open('http://10.0.2.2/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf', '_system', 'location=yes');
         //window.open('http://10.0.2.2:8080/ServicioRest/WEB-INF/lib/ViewerJS/#../PropuestaProyecto20140831v03.pdf', '_system', 'location=yes');
         //window.open('http://192.168.0.104:8080/ServicioRest/catastrofe/rescatista/pdf', '_system', 'location=yes');
@@ -148,13 +111,7 @@ function rescatistaController($scope) {
         $scope.idPlanActual = document.getElementById("idPedidoAyudaActual").value;
         //alert("Id plan actual: " + $scope.idPlanActual);
         $.ajax({url:"http://" + $scope.server + ":" + $scope.puerto + "/ServicioRest/catastrofe/rescatista/finalizarPlan?idEstadoRescatista=" + $scope.idPlanActual, //Android nativo - red local
-        //$.ajax({url:"http://172.16.102.89:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Utu
-        //$.ajax({url:"http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Utu
-        //$.ajax({url:"http://10.0.2.2:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Emulador Android - llamada al rest
-        //$.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/rescatista/finalizarPlan?"+$scope.idPlanActual, //Emulador Android - llamada al rest
-        //$.ajax({url:"http://10.0.2.2/RescatistasApp/www/planesEmergenciaDB.js",//Emulador Android - llamada de prueba
-        //$.ajax({url:"http://172.16.103.203/RescatistasApp/www/planesEmergenciaDB.js",//Android nativo, red local - llamada de prueba
-        //$.ajax({url:"http://localhost/RescatistasApp/www/planesEmergenciaDB.js",//Web - llamada de prueba
+
             success:function(response) {
                 alert("Plan finalizado");
                 $scope.listarPlanes.call($scope.verMapa());
@@ -181,8 +138,11 @@ function rescatistaController($scope) {
 
   $scope.logout = function () {
     $scope.logout = function () {
+	    window.localStorage.removeItem("usuarioNick");
         document.getElementById("listaPendientes").style.display = 'none';
         document.getElementById("pedidoAyudaDetalle").style.display = 'none';
+		document.getElementById("nick").value="";
+		document.getElementById("password").value="";
         document.getElementById("login").style.display = 'initial';
     }
   }

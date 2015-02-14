@@ -13,6 +13,8 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="css/ssac.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -32,14 +34,14 @@
 
 </head>
 
-<body>
+<body id="body">
 
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">Ingrese al sitio</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form">
@@ -48,11 +50,11 @@
                                     <input id="nickText" class="form-control" placeholder="Nick" name="nick" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input  id="passText" class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input  id="passText" class="form-control" placeholder="Contrase&ntilde;a" name="password" type="password" value="">
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a id="botonLogin" class="btn btn-lg btn-success btn-block" onclick="validarRescatista()">Login</a>
+                                <a id="botonLogin" class="btn btn-lg btn-default btn-block" onclick="validarRescatista()">Ingresar</a>
                             </fieldset>
                         </form>
                     </div>

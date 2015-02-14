@@ -1,135 +1,161 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"> 
-      
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
- 		
-		<title>BIENVENIDO A SSAC</title>
-		
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		
-		<script src="js/jquery.dropotron.min.js"></script>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery.scrolly.min.js"></script>
-		<script src="js/jquery.onvisible.min.js"></script>
 
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
-		
-		<style>
-		#mapa {
-		   display: block;
-		   width: 100%;
-		   height: 900px;
-			}
+	<title>BIENVENIDO A SSAC</title>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+
+	<script src="js/jquery.dropotron.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.scrolly.min.js"></script>
+	<script src="js/jquery.onvisible.min.js"></script>
+
+	<script src="js/skel.min.js"></script>
+	<script src="js/skel-layers.min.js"></script>
+	<script src="js/init.js"></script>
+
+	<style>
+#mapa {
+	display: block;
+	height: 440px;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	box-shadow: 0px 0px 26px #888888;
+}
+
+.labels {
+	/*color: black;
+			font-family: "Lucida Grande", "Arial", sans-serif;
+			font-size: 10px;
+			font-weight: bold;
+			text-align: center;  
+			white-space: nowrap;
 			
-		#mapa {
-		   height: 420px;
-		   width:100%;
-		   margin: 0px;
-		   padding: 0px
-		      }
-		      
-		.labels {
-		  color: black;
-		  font-family: "Lucida Grande", "Arial", sans-serif;
-		  font-size: 10px;
-		  font-weight: bold;
-		  text-transform: uppercase;
-		  text-align: center;
-          white-space: nowrap;
-          }
-    </style>
-    
-    
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-		<script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.5/src/markerwithlabel_packed.js"></script>
-		
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<!-- link rel="stylesheet" href="css/style-desktop.css" /-->
-			<link rel="stylesheet" href="css/style-noscript.css" />
-		<script type="text/javascript" src="js/mapa.js"></script>
-		
-	</h:head>
+	width: 200px;
+	white-space: nowrap;
+	padding-left: 1px;
+	padding-right: 1px;
+	border: 1px solid gray;
+	border-radius:5px;
+	font-family: Verdana;
+	background-image:url('images/Picture-4.png');
+	background-color: grey;
+	color: #000;*/
 	
-	<body class="left-sidebar">
+}
+</style>
 
-		<!-- Header -->
-	
 
-				<!-- Inner -->
-					 <div class="headerMapaPrincipal">
-					 
-						<div id="headerMapaPrincipal" >
-						<div class="4u" id="sidebar">
-						 
-						 <a href="Index.xhtml"><img src="images/ssacExt.png" alt="" height="150px" /></a>
-						
-						 </div>
-							
+	<!-- script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script-->
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;signed_in=true&amp;libraries=places"></script>
+	<script type="text/javascript"
+		src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.5/src/markerwithlabel_packed.js"></script>
+
+	<link rel="stylesheet" href="css/skel.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/google-map.css" />
+	<!-- link rel="stylesheet" href="css/style-desktop.css" /-->
+	<link rel="stylesheet" href="css/style-noscript.css" />
+	<script type="text/javascript" src="js/mapa.js"></script>
+
+</h:head>
+
+<body class="left-sidebar">
+
+	<!-- Header -->
+
+
+	<!-- Inner -->
+	<div class="headerMapaPrincipal">
+
+		<div id="headerMapaPrincipal">
+			<div class="4u" id="logoHeaderPrincipal">
+
+				<a href="Home.xhtml"><img src="images/ssacExt.png" alt=""
+					height="100px" /></a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- Main -->
+	<div class="wrapper2 style3">
+
+		<div class="container">
+			<div class="row 100%">
+				<div class="4u" id="sidebar">
+
+					<hr class="first" />
+					<div class="section">
+
+						<!-- start feedwind code -->
+						<script type="text/javascript">document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js">\x3C/script>');</script>
+						<script type="text/javascript">(function() {var params = {rssmikle_url: "http://www.alertacatastrofes.com/feed/",rssmikle_frame_width: "300",rssmikle_frame_height: "400",frame_height_by_article: "",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "off",responsive: "off",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "",rssmikle_title_link: "",rssmikle_title_bgcolor: "#7A008F",rssmikle_title_color: "#FFFFFF",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#000308",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#666666",rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M:%S %p",item_description_style: "text",item_thumbnail: "full",article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script>
+						<div style="font-size: 10px; text-align: center; width: 300px;">
+							<a href="http://feed.mikle.com/" target="_blank"
+								style="color: #CCCCCC;">RSS Feed Widget</a>
+							<!--Please display the above link in your web page according to Terms of Service.-->
 						</div>
-					
-					</div>
-		
-
-<!-- Main -->
-			<div class="wrapper2 style3">
-
-				<div class="container">
-					<div class="row 100%">
-						<div class="4u" id="sidebar">
-						
-							<hr class="first" />
-							<div class="section">
-									
-								<!-- start feedwind code --><script type="text/javascript">document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js">\x3C/script>');</script><script type="text/javascript">(function() {var params = {rssmikle_url: "http://www.alertacatastrofes.com/feed/",rssmikle_frame_width: "300",rssmikle_frame_height: "400",frame_height_by_article: "",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "off",responsive: "off",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "New",rssmikle_title: "on",rssmikle_title_sentence: "",rssmikle_title_link: "",rssmikle_title_bgcolor: "#7A008F",rssmikle_title_color: "#FFFFFF",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#000308",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#666666",rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M:%S %p",item_description_style: "text",item_thumbnail: "full",article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script><div style="font-size:10px; text-align:center; width:300px;"><a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;">RSS Feed Widget</a><!--Please display the above link in your web page according to Terms of Service.--></div><!-- end feedwind code -->
-								<div class="footer">
-									<a href="analytics.html" class="button">Uso del sitio</a><br/>
-									<a href="http://www.contadorvisitasgratis.com" target="_Blank" title="contador de visitas para mi blog"></a><br/>
-<script type="text/javascript" src="http://counter1.allfreecounter.com/private/countertab.js?c=127e8f46a09e4ecfe135ced588f15147"></script>
-								</div>
-							</div>
-							<hr />
-							
-						</div>
-						<div class="8u important(collapse)" id="content">
-							<div class="article" id="main">
-							<p:commandLink id="mapaWraper">
-							<div id="mapa">Mapa</div>
-							<p:ajax id="aj2" listener="#{homeBean.mouseClicked}"/>
-							</p:commandLink>
-							<form action="Index.xhtml">
-							<input type="hidden" id="idCatastrofe" value=""></input>
-							</form>
-							</div>
+						<!-- end feedwind code -->
+						<div class="footer">
+							<a href="analytics.html" class="button">Uso del sitio</a><br /> <a
+								href="http://www.contadorvisitasgratis.com" target="_Blank"
+								title="contador de visitas para mi blog"></a><br />
+							<script type="text/javascript"
+								src="http://counter1.allfreecounter.com/private/countertab.js?c=127e8f46a09e4ecfe135ced588f15147"></script>
 						</div>
 					</div>
 					<hr />
-					
+
 				</div>
-
-			
-</div>
-
-<div id="footer">
-				<ul class="icons">
-					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>				
-					<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-				</ul>
-				<ul class="copyright">
-					<li>&copy; Untitled. All rights reserved.</li><li>GRUPO 5</li>
-				</ul>
+				<div class="8u important(collapse)" id="content">
+					<div class="article" id="main">
+					<input id="pac-input" class="controls" type="text" placeholder="Buscador de zonas"/>
+						<p:commandLink id="mapaWraper">
+						
+							<div id="mapa">Mapa</div>
+							<p:ajax id="aj2" listener="#{homeBean.mouseClicked}" />
+						</p:commandLink>
+						<form action="Index.xhtml">
+							<input type="hidden" id="idCatastrofe" value=""></input>
+						</form>
+					</div>
+				</div>
 			</div>
+			<hr />
 
-</body> 
+		</div>
+
+
+	</div>
+
+	<div id="footer">
+		<ul class="icons">
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-instagram"><span
+					class="label">Instagram</span></a></li>
+			<li><a href="#" class="icon fa-google-plus"><span
+					class="label">Google+</span></a></li>
+		</ul>
+		<ul class="copyright">
+			<li>&copy; SSAC. All rights reserved.</li>
+			<li>GRUPO 4</li>
+		</ul>
+	</div>
+
+</body>
 </html>
 

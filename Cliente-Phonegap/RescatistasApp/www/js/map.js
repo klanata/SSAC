@@ -39,7 +39,7 @@
         // function, we must explicitly call 'app.receivedEvent(...);'
         onDeviceReady: function() {
             //app.receivedEvent('deviceready');
-            navigator.geolocation.getCurrentPosition(mapa.onSuccess, mapa.onError,{timeout: 10000, enableHighAccuracy: true});
+            navigator.geolocation.getCurrentPosition(mapa.onSuccess, mapa.onError,{timeout: 30000, enableHighAccuracy: true});
             //alert("ondeviceready");
 			console.log("Ingresando al sistema");
         },
@@ -49,9 +49,9 @@
 		//alert("OnSuccess");
             var listaPedidosPendientes = new Array();
             var nick = window.localStorage.getItem("usuarioNick");
-            console.log("Nick Storaged: "+ nick);
-			//alert("http://192.168.0.106:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick);
-            $.ajax({url:"http://192.168.0.106:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
+            //console.log("Nick Storaged: "+ nick);
+			//alert("http://192.168.0.102:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick);
+            $.ajax({url:"http://172.16.100.98:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
                 success:function(response) {
                     //useReturnData(response);
                     
@@ -69,11 +69,15 @@
                     //alert("lo que hay adentro " + listaPedidosPendientes[0].coordPedidoAyudaX);
 
                     //Posicion del rescatista
+					var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+					//var icono = '../img/Blue.png';
                     var marker = new google.maps.Marker({
                     position: latLong,
                     map: map,
                     title:"Usted esta aqui",
                     icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+					//icon:'../img/BlueDot.png',
+					
                     });
                      console.log("cargando posicion rescatista");
 					 

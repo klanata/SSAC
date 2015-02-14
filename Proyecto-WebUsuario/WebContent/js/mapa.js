@@ -7,7 +7,7 @@ function cargar(position) {
 	$
 			.ajax({
 				url : "http://localhost:8080/ServicioRest/catastrofe/catastrofes",
-				// $.ajax({url:"http://localhost:8080/ServicioRest/catastrofe/catastrofes",
+				// $.ajax({url:"http://ssac:8080/ServicioRest/catastrofe/catastrofes",
 				success : function(response) {
 
 					var longitude = position.coords.longitude;
@@ -15,13 +15,52 @@ function cargar(position) {
 					var latLong = new google.maps.LatLng(latitude, longitude);
 
 					var mapOptions = {
-						center : latLong,
-						zoom : 12,
-						mapTypeId : google.maps.MapTypeId.ROADMAP
-					};
+							center : latLong,
+							zoom : 10,
+							mapTypeId : google.maps.MapTypeId.ROADMAP
+						};
 
-					map = new google.maps.Map(document.getElementById('mapa'),
-							mapOptions);
+						map = new google.maps.Map(document.getElementById('mapa'),
+								mapOptions);
+						
+					/*----------Empieza definicion de Searchbox-------------*/
+					// Create the search box and link it to the UI element.
+					  var input = (document.getElementById('pac-input'));
+					  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+					  
+					  var searchBox = new google.maps.places.SearchBox((input));
+					  
+					  // Listen for the event fired when the user selects an item from the
+					  // pick list. Retrieve the matching places for that item.
+					  google.maps.event.addListener(searchBox, 'places_changed', function() {
+					    var places = searchBox.getPlaces();
+					    //alert(places[0].geometry.location);
+
+					  if (places.length == 0) {
+					      return;
+					  }
+					   	
+					  
+					  // Create a marker 
+					  var marker = new google.maps.Marker({
+					      map: map,
+					      title: places[0].name,
+					      position: places[0].geometry.location,
+					      
+					      visible : false					        
+					   });
+					   
+					   map.setCenter(places[0].geometry.location);
+				       map.setZoom(6);
+				        
+					   //map.fitBounds(bounds);
+					  });
+					  /*----------Termina definicion de Searchbox-------------*/  
+					  
+					
+					
+					
+					  
 
 					if (response != null || !$.isEmptyObject(response)) {
 						listaCatastrofes = response.catastrofe;
@@ -87,7 +126,7 @@ function makePolygon(polyCoords, catastrofe) {
 		draggable : false,
 		raiseOnDrag : false,
 		map : map,
-		labelContent : 'Catastrofe: ' + catastrofe.nombreEvento,
+		labelContent : 'Catastrofe: ' + catastrofe.nombreEvento+' (Click para ingresar al sitio)',
 		labelAnchor : new google.maps.Point(30, 20),
 		labelClass : "labels",
 		labelStyle : {

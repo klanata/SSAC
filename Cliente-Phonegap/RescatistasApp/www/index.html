@@ -40,78 +40,63 @@
     <body ng-app="" ng-controller="rescatistaController" id="body">
       <div class="container" id="mainContainer">
         <div id="login">
-          <div class="row">
-           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1>Rescatistas</h1></div>
-          </div>
+          <!--div class="row">
+           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1 id="tituloRescatistas">Rescatistas</h1></div>
+          </div-->
+        </br>
+        </br>
+        </br>
+        </br>
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <form role="form">
-                   <div class="form-group col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-                     <label for="nick">Nick</label>
-                     <input type="text" class="form-control" id="nick" ng-model="nick">
-                   </div>
-                   <div class="form-group col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-                     <label for="password">Password</label>
-                     <input type="password" class="form-control" id="password" ng-model="password">
-                    </div>
-                     <div class="form-group col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-                     <button type="submit" class="btn btn-default" touchstart='validarRescatista()' ng-click='validarRescatista()'>Ingresar</button>
-                    </div>
+              <div class="btn-group btn-group-lg col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2" role="group" aria-label="">
                    
+                     <input type="text" class="form-control" id="nick" ng-model="nick" placeholder="Nick">
+                     </br>
+                     <input type="password" class="form-control" id="password" ng-model="password" placeholder="Contrase&ntilde;a">
+                     </br>
+                     <button type="submit" class="btn btn-default" touchstart='validarRescatista()' ng-click='validarRescatista()'>Ingresar <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></button>
+                    
+                </div>   
             </form>
+
           </div>
         </div>
         </div> 
 
         <div id="listaPendientes" style="display:none;">
-          <!--div class="container">
-             <h1>Planes pendientes:</h1>
-             <button ng-click='volver()' class="btn btn-default"><-</button>
-             <table class="table table-stripped table-hover table-responsive ">
-              <th><button ng-click='listarPlanes()' class="btn btn-default">Mostrar planes</button></th>
-              <tbody id="touchzone">
-                <tr ng-click='abrirPlan(plan)' id="touchzone" ng-repeat="plan in planes"><td>{{plan.idEstadoRescatista}}</td><td>{{plan.nombreTarea}}</td></tr>
-              </tbody>
-            </table>
-          </div-->
           <div id="geolocation" style="with: 310px; height: 400px;">  
           <!--button class="btn btn-danger" ng-click='verMapa()'>Ver mapa</button-->        
           </div>
-          <button type="button" class="btn btn-info col-xs-12 col-sm-12 col-md-12 col-lg-12" touchstart='logout()' ng-click='logout()'>Salir</button>
-          
+          <button type="button" class="btn btn-default col-xs-12 col-sm-12 col-md-12 col-lg-12" touchstart='logout()' ng-click='logout()'>Salir <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></button>
         </div> 
 
         <div id="pedidoAyudaDetalle" style="display:none;">
-          <div class="row">
+          <!--div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1>Detalle</h1></div>
-          </div>
+          </div-->
+          <br/>
+          <br/>
+          <br/>
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                      <div class="form-group">
                        <input type="hidden" class="form-control" id="idPedidoAyudaActual" ng-model="idPlanActual">
                        <input type="hidden" class="form-control" id="urlArchivo" ng-model="nombreArchivoPlan">
-                       <label for="descripcion">Descripcion</label>
                        <textarea class="form-control" rows="7" id="descripcion" ng-model="descripcion"></textarea>
                      </div>
             </div>
           </div>
           <div class="row">
              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <button class="btn btn-info col-xs-12 col-sm-12 col-md-12 col-lg-12" touchstart='abrirPlan()' ng-click='abrirPlan()'>Descargar plan</button>
+              <div class="btn-group btn-group-lg" role="group" aria-label="">
+              <button class="btn btn-default" touchstart='abrirPlan()' ng-click='abrirPlan()'>Plan  <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></button>
+              <button class="btn btn-default" touchstart='listarPlanes()' ng-click='listarPlanes()'>Mapa</button>
+              <button class="btn btn-success" touchstart='finalizar()' ng-click='finalizar()'>Hecho <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+              </div>
             </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <button class="btn btn-info col-xs-12 col-sm-12 col-md-12 col-lg-12" touchstart='listarPlanes()' ng-click='listarPlanes()'>Mapa</button>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <button class="btn btn-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" touchstart='finalizar()' ng-click='finalizar()'>Finalizar</button>
-            </div>
-          </div>
+          </div> 
         </div> 
 
         <div id="plan" style="display:none;">
@@ -121,12 +106,8 @@
                    <div class="form-group">
                      <!--a href="http://localhost/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf"-->
                       <!--iframe id="viewer" src = "http://localhost/RescatistasApp/www/ViewerJS/#../PropuestaProyecto20140831v03.pdf" width='400' height='600' allowfullscreen webkitallowfullscreen></iframe--> 
-                      <!--iframe id="viewer" ng-src = "http://10.0.2.2/RescatistasApp/www/ViewerJS/#../{{$scope.nombreArchivoPlan}}" width='400' height='600' allowfullscreen webkitallowfullscreen></iframe-->                
                       <!--embed width="100%" height="100%" name="plugin" src = "http://10.0.2.2/RescatistasApp/www/ViewerJS/#../{{$scope.nombreArchivoPlan}}" type="application/pdf"-->
                       <!--embed width="100%" height="70%" name="plugin" src = "http://{{$scope.server}}:{{$scope.puerto}}/ServicioRest/catastrofe/rescatista/pdf" type="application/pdf"-->
-                        <!--embed width="100%" height="70%" name="plugin" src = "http://172.16.102.89:8080/ServicioRest/catastrofe/rescatista/pdf" type="application/pdf"-->
-                          <!--embed width="100%" height="70%" name="plugin" src = "http://192.168.43.183:8080/ServicioRest/catastrofe/rescatista/pdf" type="application/pdf"-->
-                        <!--embed width="100%" height="100%" name="plugin" src = "http://192.168.0.104:8080/ServicioRest/catastrofe/rescatista/pdf" type="application/pdf"-->
                     </div>
                     <br>
                     <button class="btn btn-danger col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-click='volver()'>Volver</button>
@@ -137,7 +118,7 @@
         
         <script src="js/map.js"></script>
         <script src="js/RescatistasApp.js"></script>
-        <script src="js/rescatistaController.js"></script> 
+        <script src="js/rescatistaController.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyARuUi9XM4V6ccbETN2Zhv2WPFn3ovLvnE&sensor=false"> </script>

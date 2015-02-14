@@ -52,6 +52,7 @@
       }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+   
 </head>
 
 <body>
@@ -134,7 +135,7 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Usuario</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i><span id=usuario></span></span></a>
                         </li>
                         
                         <li class="divider"></li>
@@ -213,6 +214,14 @@
     
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    
+     <script type="text/javascript">
+    var usuarioLogueado = localStorage.getItem('usuarioNick');
+    alert(usuarioLogueado);
+    $(document).ready(document.getElementById("usuario").innerHTML = usuarioLogueado);
+    alert(usuarioLogueado);
+    </script>
+    
     <script src="js/loginRescatista.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

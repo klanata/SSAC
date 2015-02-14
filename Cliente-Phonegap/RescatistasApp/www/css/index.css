@@ -20,13 +20,22 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+/* latin */
+@font-face {
+  font-family: 'Signika';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Signika-Bold'), url('../fonts/Signika-Bold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#E4E4E4;
-	background-image:url('../img/background-violet.png');
-   /* background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+	/*background-image:url('../img/background-violet-2.png');
+   background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     background-image:-webkit-gradient(
@@ -36,7 +45,17 @@ body {
         color-stop(0, #A7A7A7),
         color-stop(0.51, #E4E4E4)
     );*/
-    background-attachment:fixed;
+	
+	background: url('../img/background-violet-2.png') no-repeat center center fixed;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+ 
+    /*background-attachment:fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: %100 auto;*/
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
@@ -44,6 +63,10 @@ body {
     padding:0px;
     text-transform:uppercase;
     width:100%;
+}
+
+#tituloRescatistas{
+font-family:'Signika', sans-serif;
 }
 
 /* Portrait layout (default) */

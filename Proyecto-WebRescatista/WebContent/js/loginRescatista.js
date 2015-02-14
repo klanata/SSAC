@@ -2,7 +2,7 @@
 var marcadores = [];
 var map = "";
 var Nick;
-var server = "192.168.0.106";
+var server = "localhost";
 var puerto = "8080";
 
 function cargarMapa(position) {
@@ -182,14 +182,12 @@ function validarRescatista() {
 		url : "http://" + server + ":" + puerto
 				+ "/ServicioRest/catastrofe/rescatista/login?nick="
 				+ Nick.toString() + "&pass=" + Pass.toString(),// NO
-		// ANDA
-		// CON
-		// 127.0.0.1
+		
 
 		success : function(response) {
 			// console.log(response);
 			if (response.booleanValue === 'true') {
-				alert('ok');
+				//alert('ok');
 				window.localStorage.setItem("usuarioNick", Nick);
 				window.location.replace("index.jsp");
 
