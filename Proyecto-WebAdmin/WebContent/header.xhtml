@@ -15,18 +15,9 @@
 					<p:graphicImage name="/images/SSACadministrador.png" height="100px"/>
 				</h1>
 			</div>						
-   			
-			<div id="newsletter">
-				<fieldset>
-					<p:panelGrid columns="1">
-					<h:outputText value="#{administradorBean.nick}" />
-					<p:commandLink id="logout"
-						actionListener="#{administradorBean.logout()}"
-						style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-						<h:outputText value="Cerrar Sesión" />
-					</p:commandLink>
-				</p:panelGrid>
-				</fieldset>
+   			#{loginBean.setLogeado(true)}
+			<div >
+			
 			</div>
 			
 			<br class="clear" />
@@ -36,11 +27,14 @@
 
 		<h:form>
 
+
 			<p:megaMenu orientation="#{megaMenuView.orientation}">
 				<p:submenu label="Home" style="right: 0px;left: 200px;">
 					<p:column>
 						<p:submenu label="SSCA">
+				
 							<p:menuitem value="" url="index.xhtml" />
+      
 						</p:submenu>
 					</p:column>
 				</p:submenu>
@@ -130,12 +124,23 @@
 						</p:submenu>
 					</p:column>
 				</p:submenu>
+				
+				<p:submenu label="Cerrar Sesión" style="right: 0px;left: 200px;">
+					<p:column>
+						<p:submenu label="">
+						<p:menuitem value="Cerrar Sesión"   actionListener="#{administradorBean.logout}" oncomplete="logout(xhr, status, args)" />
+				
+						</p:submenu>
+					</p:column>
+				</p:submenu>
+				
+				
 			</p:megaMenu>
 		</h:form>
 	</div>	
 </h:body>
 <script type="text/javascript">
-  //<![CDATA[
+  <![CDATA[
   function manejarLogin(xhr, status, args) {
     if (!args.validationFailed && args.estaLogeado) {
       setTimeout(function() {
@@ -143,6 +148,6 @@
       }, 500);
     }
   }
-//]]>
+]]>
 </script>
 </html>

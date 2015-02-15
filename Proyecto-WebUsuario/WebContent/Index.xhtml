@@ -246,7 +246,7 @@ div {
 				onclick="show('desaparecidos');">Personas Desaparecidas</a></li>
 			<li><a href="#registrousuario"
 				style="cursor: hand; text-decoration: none"
-				onclick="show('registrousuario');">Rosegistro usuario</a></li>
+				onclick="show('registrousuario');">Registro usuario</a></li>
 			<li><a href="#loginusuario"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('loginusuario');">Login</a></li>
@@ -285,7 +285,7 @@ div {
 								<h:panelGrid>
 
 									<label for="descripcion">Descripcion :</label>
-									<p:inputTextarea rows="5" cols="30" id="descripcion"
+									<p:inputTextarea rows="3" cols="10" id="descripcion"
 										label="descripcion" value="#{pedidoAyudaBean.descripcion}"
 										required="true" requiredMessage="La descripcion es requerida">
 									</p:inputTextarea>
@@ -312,7 +312,7 @@ div {
 						</f:view>
 
 						<p>
-							<a href="#header"><input type="submit" value="Volver" /></a>
+							
 						</p>
 					</div>
 					<div class="ui-grid-col-1"></div>
@@ -439,7 +439,7 @@ div {
 					<p>Done un monto mediante paypal a la ONG deseada.</p>
 
 					<p:dialog header="DONACIÓN ECONOMICA" widgetVar="dlg2" showEffect="explode"
-						hideEffect="explode" height="550" width="800">
+						hideEffect="explode" height="500" width="430">
 						<f:view>
 							<h:form id="economicaBean">
 								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
@@ -503,7 +503,7 @@ div {
 					</header>
 					<p>Donar alimentos o bienes como maquinaria específica .</p>
 					<p:dialog header="DONACIÓN DE BIENES" widgetVar="dlg3" showEffect="explode"
-						hideEffect="explode" height="550" width="800">
+						hideEffect="explode" height="500" width="430">
 
 						<f:view>
 							<h:form id="deBienesBean">
@@ -523,8 +523,8 @@ div {
 
 									<label for="usuario">Ingrese su nombre si lo desea :</label>
 									<p:inputText id="usuario" label="usuario"
-										value="#{deBienesBean.usuario}" required="false"
-										>
+										value="#{deBienesBean.usuario}" required="true"
+										requiredMessage="El nombre del usuario es requerido">
 									</p:inputText>
 
 									
@@ -888,7 +888,7 @@ div {
 						
 
 						<label for="nick1"> Nick:</label>
-						<p:inputText id="nick1" label="nick1" value="#{loginBean.nick1}"
+						<p:inputText id="nick1" label="nick1" value="#{loginBean.nick1}" height="30" width="50"
 							required="true" requiredMessage="El nick es requerido">
 						</p:inputText>
 
@@ -1069,14 +1069,7 @@ div {
 
 
 	<div id="footer">
-		<ul class="icons">
-			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon fa-instagram"><span
-					class="label">Instagram</span></a></li>
-			<li><a href="#" class="icon fa-google-plus"><span
-					class="label">Google+</span></a></li>
-		</ul>
+		
 		<ul class="copyright">
 			<li>&copy; Untitled. All rights reserved.</li>
 			<li>Grupo 4 - Proyecto Tecnologo</li>

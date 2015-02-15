@@ -221,5 +221,9 @@ public class LoginBean implements Serializable {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
 		logeado = false;
+		RequestContext context = RequestContext.getCurrentInstance();
+		context.addCallbackParam("view", "home.xhtml");
+		
+		
 	} 
 }
