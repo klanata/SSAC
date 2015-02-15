@@ -26,6 +26,7 @@ import clienteutility.ClienteUtility;
 
 
 
+
 import com.core.service.negocio.remote.UsuarioEBR;
 
 
@@ -141,7 +142,7 @@ public class LoginBean implements Serializable {
 			Menu = "Iniciar Sesión";
 		}else 
 		{
-			mensaje = "";
+			mensaje = "Bienvenido "+ nick1;
 			Menu = "Cerrar Sesión";
 		
 		}
@@ -180,10 +181,15 @@ public class LoginBean implements Serializable {
 		FacesContext contextousuario = FacesContext.getCurrentInstance();
 		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
 		idCatastrofe1 = (Long)sesion.getAttribute("idmongo");
-   		
 		
-	
+		/*String nombreCatastrofe = (String)sesion.getAttribute("nombreCatastrofe");
+		String index = nombreCatastrofe.toLowerCase();
+		//ver los espacios
+		index = index.replaceAll(" ", "_");
+		index = "http://localhost:8080/proyecto-webusuario/" + index + "xhtml";
+		System.out.print("url logue"+ index);
 		//veo si esta registrado a esa catastrofe
+		*/
 		Boolean registrado = manager.estaRegistradoCatastrofe(nick1, idCatastrofe1);
 		
 		if(registrado==false){

@@ -69,7 +69,8 @@
 					
 					document.getElementById('personasdesap').style.visibility = "hidden";
 					document.getElementById('desaparecidos').style.visibility = "hidden";
-					//alert("Debe estar Logueado para reportar o buscar personas Desaparecidas");
+					document.getElementById('busperdesap').style.visibility = "hidden";
+					
 				}
 			}
 			function hide() {
@@ -79,7 +80,9 @@
 				document.getElementById('personasdesap').style.display = "none";
 				document.getElementById('desaparecidos').style.display = "none";
 				document.getElementById('registrousuario').style.display = "none";
+				
 				document.getElementById('loginusuario').style.display = "none";
+				//document.getElementById('logautusuario').style.display = "none";
 							}
 </script>
 	<style type="text/css">
@@ -272,6 +275,7 @@ div {
 			<li><a href="#loginusuario"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('loginusuario');">Inicio Sesión</a></li>
+			<li><a href="">Cerrar Sesión</a></li>
 
 		</ul>
 	</div>
@@ -584,10 +588,129 @@ div {
 		<br /> <br /> <br /> <br />
 	</div>
 	
-	<!-- MENU DE PERSONAS DESAPARECIDAS -->
+	
 
-	<div class="oculto" id="desaparecidos">
+
+	<!-- REGISTRO DE USUARIO -->
+	<div class="oculto" id="registrousuario">
+		<div class="ui-grid">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-2"></div>
+				<div class="ui-grid-col-8">
+
+					<h2>
+						<a href="#"> REGISTRO DE USUARIO</a>
+					</h2>
+					<p>Por favor, ingrese los campos para registrarse a la
+						catastrofe</p>
+					<f:view>
+						<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
+						<h:form id="login2">
+
+
+							<label for="nick"> Nick:</label>
+							<p:inputText id="nick" label="nick" value="#{loginBean.nick}"
+								required="true" requiredMessage="El nick es requerido">
+							</p:inputText>
+
+							<label for="nombre">Nombre :</label>
+							<p:inputText id="nombre" label="nombre"
+								value="#{loginBean.nombre}" required="true"
+								requiredMessage="El nombre es requerido">
+							</p:inputText>
+
+							<label for="email">Correo :</label>
+							<p:inputText id="email" label="email" value="#{loginBean.email}"
+								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+
+							</p:inputText>
+
+							<label for="nombre"> Clave:</label>
+							<p:password value="#{loginBean.clave}" id="password"
+								required="true" label="password"
+								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">
+
+
+								<f:validateRegex
+									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
+
+
+
+
+							</p:password>
+
+							<p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
+							<p:calendar id="fechNac" label="Fecha de Nacimiento"
+								value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
+								mask="true" />
+
+							<p:commandButton id="registrarButton" value="Registrar"
+								actionListener="#{loginBean.registro}" update=":growl"
+								oncomplete="manejarLogin(xhr, status, args)" />
+
+						</h:form>
+					</f:view>
+				</div>
+				<div class="ui-grid-col-2"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- LOGIN -->
+	<div class="oculto" id="loginusuario">
+
+		<div class="ui-grid">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-2"></div>
+				<div class="ui-grid-col-8">
+
+					<p:growl id="mensajes" showDetail="true" life="2000" />
+					<h:form id="formularioIngreso1">
+						<h2>
+							<a href="#">Ingreso</a>
+						</h2>
+
+						
+
+						<label for="nick1"> Nick:</label>
+						<p:inputText id="nick1" label="nick1" value="#{loginBean.nick1}" height="30" width="50"
+							required="true" requiredMessage="El nick es requerido">
+						</p:inputText>
+
+						<label for="nombre"> Clave:</label>
+						<p:password value="#{loginBean.clave1}" id="password"
+							required="true" label="password1" />
+						<p:commandButton id="loginButton" value="Login"
+							actionListener="#{loginBean.login}" update=":mensajes"
+							oncomplete="manejarLogin(xhr, status, args)">
+							<span class="fontawesome-lock"></span>
+						</p:commandButton>
+					</h:form>
+
+
+					<div class="section">
+						<p>
+							<div class="fb-login-button" data-max-rows="1" data-size="xlarge"
+								data-show-faces="false" data-auto-logout-link="false"></div>
+							<a href="#banner" onclick="show('registrousuario');">Registro</a>
+						</p>
+
+					</div>
+				</div>
+				<div class="ui-grid-col-2"></div>
+			</div>
+		</div>
+	</div>
+
+	
+	
+	<!-- MENU DE PERSONAS DESAPARECIDAS -->
 	<h2>#{loginBean.mensaje}</h2>
+	<div class="oculto" id="desaparecidos">
+	
 		<div class="ui-grid ui-grid-responsive">
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-1"></div>
@@ -824,123 +947,6 @@ div {
 					</h:form>
 				</div>
 				<div class="ui-grid-col-1"></div>
-			</div>
-		</div>
-	</div>
-
-
-
-
-	<!-- REGISTRO DE USUARIO -->
-	<div class="oculto" id="registrousuario">
-		<div class="ui-grid">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-2"></div>
-				<div class="ui-grid-col-8">
-
-					<h2>
-						<a href="#"> REGISTRO DE USUARIO</a>
-					</h2>
-					<p>Por favor, ingrese los campos para registrarse a la
-						catastrofe</p>
-					<f:view>
-						<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
-						<h:form id="login2">
-
-
-							<label for="nick"> Nick:</label>
-							<p:inputText id="nick" label="nick" value="#{loginBean.nick}"
-								required="true" requiredMessage="El nick es requerido">
-							</p:inputText>
-
-							<label for="nombre">Nombre :</label>
-							<p:inputText id="nombre" label="nombre"
-								value="#{loginBean.nombre}" required="true"
-								requiredMessage="El nombre es requerido">
-							</p:inputText>
-
-							<label for="email">Correo :</label>
-							<p:inputText id="email" label="email" value="#{loginBean.email}"
-								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
-								<f:validateRegex
-									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-
-
-							</p:inputText>
-
-							<label for="nombre"> Clave:</label>
-							<p:password value="#{loginBean.clave}" id="password"
-								required="true" label="password"
-								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">
-
-
-								<f:validateRegex
-									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
-
-
-
-
-							</p:password>
-
-							<p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
-							<p:calendar id="fechNac" label="Fecha de Nacimiento"
-								value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
-								mask="true" />
-
-							<p:commandButton id="registrarButton" value="Registrar"
-								actionListener="#{loginBean.registro}" update=":growl"
-								oncomplete="manejarLogin(xhr, status, args)" />
-
-						</h:form>
-					</f:view>
-				</div>
-				<div class="ui-grid-col-2"></div>
-			</div>
-		</div>
-	</div>
-
-	<!-- LOGIN -->
-	<div class="oculto" id="loginusuario">
-
-		<div class="ui-grid">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-2"></div>
-				<div class="ui-grid-col-8">
-
-					<p:growl id="mensajes" showDetail="true" life="2000" />
-					<h:form id="formularioIngreso1">
-						<h2>
-							<a href="#">Ingreso</a>
-						</h2>
-
-						
-
-						<label for="nick1"> Nick:</label>
-						<p:inputText id="nick1" label="nick1" value="#{loginBean.nick1}" height="30" width="50"
-							required="true" requiredMessage="El nick es requerido">
-						</p:inputText>
-
-						<label for="nombre"> Clave:</label>
-						<p:password value="#{loginBean.clave1}" id="password"
-							required="true" label="password1" />
-						<p:commandButton id="loginButton" value="Login"
-							actionListener="#{loginBean.login}" update=":mensajes"
-							oncomplete="manejarLogin(xhr, status, args)">
-							<span class="fontawesome-lock"></span>
-						</p:commandButton>
-					</h:form>
-
-
-					<div class="section">
-						<p>
-							<div class="fb-login-button" data-max-rows="1" data-size="xlarge"
-								data-show-faces="false" data-auto-logout-link="false"></div>
-							<a href="#banner" onclick="show('registrousuario');">Registro</a>
-						</p>
-
-					</div>
-				</div>
-				<div class="ui-grid-col-2"></div>
 			</div>
 		</div>
 	</div>
