@@ -86,12 +86,12 @@ public class LoginBean implements Serializable {
 		{
 			logeado = false;
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
-			"Credenciales no válidas");
+			"Credenciales no vï¿½lidas");
 		}
 		
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		context.addCallbackParam("estaLogeado", logeado);
-		if (logeado){
+		if (logeado){					
 			context.addCallbackParam("view", "index.xhtml");
 		}
 	} 

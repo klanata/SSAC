@@ -56,10 +56,11 @@ public class LoginFilter implements Filter {
 		  }
 		  
 		  //El usuario no est� logueado
-		  //if (loginBean == null || !loginBean.estaLogeado()) {			 
-		  //  res.sendRedirect(req.getContextPath() + "/home.xhtml");
-		  //  return;
-		  //}
+		  if (loginBean == null || !loginBean.estaLogeado()) {	
+			  System.out.println("no estoy logeado." + urlStr);
+			  res.sendRedirect(req.getContextPath() + "/home.xhtml");
+		   	  return;
+		  }
 		 
 		  //El recurso requiere protecci�n, pero el usuario ya est� logueado.
 		  chain.doFilter(request, response);
@@ -76,6 +77,8 @@ public class LoginFilter implements Filter {
 		 */
 		  if (urlStr.endsWith("home.xhtml"))
 		    return true;
+		  if (urlStr.endsWith("header.xhtml"))
+			    return true;
 		  if (urlStr.indexOf("/javax.faces.resource/") != -1)
 		    return true;
 		  return false;
