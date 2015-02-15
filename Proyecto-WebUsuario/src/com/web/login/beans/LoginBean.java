@@ -6,8 +6,10 @@ import java.io.Serializable;
 
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -22,26 +24,28 @@ import clienteutility.ClienteUtility;
 
 
 
+
+
 import com.core.service.negocio.remote.UsuarioEBR;
 
 
 
 
 @ManagedBean(name="loginBean")
+//@RequestScoped
 @SessionScoped
-
 public class LoginBean implements Serializable {
 	private static final long serialVersionUID = -2152389656664659476L;
 	private String nombre;
 	private String clave;
 	private String clave1;
 	private boolean logeado = false;
-	
+	private String mensaje;
 	private String nick;
 	private String nick1;
 	private String email;
 	private Date fechaNacimiento;
-	
+	private String Menu;
 	private Long idCatastrofe;
 	private Long idCatastrofe1;
 	
@@ -52,6 +56,18 @@ public class LoginBean implements Serializable {
 	public boolean estaLogeado() {
 		return logeado;
 	} 
+	public String getMenu() {
+		return Menu;
+	}
+	public void setMenu(String menu) {
+		Menu = menu;
+	}
+	public String getMensaje() {
+		return mensaje;
+	}
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
 	public String getClave1() {
 		return clave1;
 	}
@@ -115,6 +131,26 @@ public class LoginBean implements Serializable {
 		this.clave = clave;
 	}
 	
+	@PostConstruct
+    public void init() {
+    
+		if (!logeado){
+			
+			
+			mensaje = "Estimado Visitante debe estar registrado para tener acceso a reportar o buscar Personas Desaparecidas";
+			Menu = "Iniciar Sesión";
+		}else 
+		{
+			mensaje = "";
+			Menu = "Cerrar Sesión";
+		
+		}
+		
+		
+	}
+	
+	
+	
 	public void login(ActionEvent actionEvent) {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
@@ -151,7 +187,7 @@ public class LoginBean implements Serializable {
 		Boolean registrado = manager.estaRegistradoCatastrofe(nick1, idCatastrofe1);
 		
 		if(registrado==false){
-					
+					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no Registrado", "");
 					System.out.print("registro == false usuario no registrado a la catastrofe");
 				}	
 		if ((exito ==  true) && (registrado ==true))
@@ -159,7 +195,7 @@ public class LoginBean implements Serializable {
 			
 			logeado = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nick1);
-			context.addCallbackParam("view", "PerDesaparecidas.xhtml");
+			context.addCallbackParam("view", "Index.xhtml");
 		} 
 		else if((exito == true) && (registrado==false))
 		{
@@ -168,7 +204,7 @@ public class LoginBean implements Serializable {
 			manager.registrarACatastrofe(nick1, clave1, idCatastrofe1);
 			logeado = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@","Se ha registrado a la catástrofe");
-			context.addCallbackParam("view", "PerDesaparecidas.xhtml");
+			context.addCallbackParam("view", "Index.xhtml");
 		}
 		else{
 			logeado = false;
@@ -215,14 +251,15 @@ public class LoginBean implements Serializable {
 		nombre="";
 		//fechaNacimiento = null;
 		//idCatastrofe= //
-		context.addCallbackParam("view", "PerDesaparecidas.xhtml");
+		context.addCallbackParam("view", "Index.xhtml");
 	}
 	public void logout() {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
 		logeado = false;
 		RequestContext context = RequestContext.getCurrentInstance();
-		context.addCallbackParam("view", "home.xhtml");
+		//ver esto creo esta mal
+		context.addCallbackParam("view", "Index.xhtml");
 		
 		
 	} 

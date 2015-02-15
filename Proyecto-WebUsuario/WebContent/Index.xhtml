@@ -32,6 +32,17 @@
 		  //alert("Css final: "+cssFinal);
 		  //alert(window.localStorage.getItem("urlCSS"));
 		  //document.getElementById("j_idt5:catastrofeId").value = id;
+		  
+		  var login= #{loginBean.logeado} ;
+		  function mostrarMenuLogueo(){
+			if !login{
+
+
+			}
+			  
+		  }
+		  
+		  
 		  function cambiarCSS() { 
 				$("#cssPrincipal").attr("href",cssFinal);
 				//alert("cambie el css");
@@ -48,19 +59,28 @@
 	<script type="text/javascript" language="javascript">
 			function show(id) {
 				var oc = document.getElementById(id).style;
+		
+				var login =  #{loginBean.logeado} ;
+				  
+				 				
 				hide();
 				oc.display = "block";
+				if (!login) {
+					
+					document.getElementById('personasdesap').style.visibility = "hidden";
+					document.getElementById('desaparecidos').style.visibility = "hidden";
+					//alert("Debe estar Logueado para reportar o buscar personas Desaparecidas");
+				}
 			}
 			function hide() {
 				document.getElementById('banner').style.display = "none";
 				document.getElementById('donacion').style.display = "none";
 				document.getElementById('busperdesap').style.display = "none";
 				document.getElementById('personasdesap').style.display = "none";
+				document.getElementById('desaparecidos').style.display = "none";
 				document.getElementById('registrousuario').style.display = "none";
 				document.getElementById('loginusuario').style.display = "none";
-				document.getElementById('desaparecidos').style.display = "none";
-				
-			}
+							}
 </script>
 	<style type="text/css">
 .oculto {
@@ -106,10 +126,10 @@ div {
 		<div class="inner">
 			<div id="header">
 
-				<p:graphicImage value="imagen/#{imagesView.logo}" width="100"
+			<!-- 	<p:graphicImage value="imagen/#{imagesView.logo}" width="100"
 					height="100" />
 				<h:outputText value="" style="border: transparent;" />
-
+ -->
 				<h1>
 					<a href="Index.xhtml" id="logo">#{imagesView.nombre}</a>
 				</h1>
@@ -231,7 +251,7 @@ div {
 	<!-- Nav -->
 	<div id="nav">
 		<ul>
-			<li><a href="Index.xhtml">Home</a></li>
+			<li><a href="Index.xhtml">Inicio</a></li>
 			<!--  	<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
 
 			<li><a href="#banner" style="cursor: hand; text-color: FFFFFFF"
@@ -241,6 +261,8 @@ div {
 				onclick="show('donacion');">Donaciones</a></li>
 			<!--<li><a href="#busperdesap" style="cursor: hand; text-decoration: none" onclick="show('busperdesap');">Buscar Personas desaparecidas</a></li>-->
 			<!--<li><a href="#personasdesap" style="cursor: hand; text-decoration: none" onclick="show('personasdesap');">Alta personas desaparecidas</a></li>-->
+		
+
 			<li><a href="#desaparecidos"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('desaparecidos');">Personas Desaparecidas</a></li>
@@ -249,7 +271,7 @@ div {
 				onclick="show('registrousuario');">Registro usuario</a></li>
 			<li><a href="#loginusuario"
 				style="cursor: hand; text-decoration: none"
-				onclick="show('loginusuario');">Login</a></li>
+				onclick="show('loginusuario');">Inicio Sesión</a></li>
 
 		</ul>
 	</div>
@@ -565,11 +587,17 @@ div {
 	<!-- MENU DE PERSONAS DESAPARECIDAS -->
 
 	<div class="oculto" id="desaparecidos">
+	<h2>#{loginBean.mensaje}</h2>
 		<div class="ui-grid ui-grid-responsive">
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
+				
+				
 					<h2>
+					
+						
+					
 						<strong><a href="#desaparecidos"> Personas
 								Desaparecidas</a></strong>
 					</h2>
