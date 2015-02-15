@@ -78,6 +78,8 @@ public class LoginFilter implements Filter {
 		    return true;
 		  if (urlStr.endsWith("header.xhtml"))
 			    return true;
+		 
+		  
 		  if (urlStr.indexOf("/javax.faces.resource/") != -1)
 		    return true;
 		  return false;

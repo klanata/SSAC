@@ -16,9 +16,9 @@
 				</h1>
 			</div>						
    			
-			<!-- div id="newsletter">
+			<div id="newsletter">
 				<fieldset>
-					< p:panelGrid columns="1">
+					<p:panelGrid columns="1">
 					<h:outputText value="#{administradorBean.nick}" />
 					<p:commandLink id="logout"
 						actionListener="#{administradorBean.logout()}"
@@ -27,7 +27,7 @@
 					</p:commandLink>
 				</p:panelGrid>
 				</fieldset>
-			</div-->
+			</div>
 			
 			<br class="clear" />
 		</div>
@@ -134,4 +134,15 @@
 		</h:form>
 	</div>	
 </h:body>
+<script type="text/javascript">
+  //<![CDATA[
+  function manejarLogin(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeado) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 500);
+    }
+  }
+//]]>
+</script>
 </html>

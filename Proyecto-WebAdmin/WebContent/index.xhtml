@@ -24,17 +24,10 @@
 <ui:include src="header.xhtml" /> 
 			<div id="newsletter">
 			     <fieldset>
-			          <legend>NewsLetter</legend>
 			          
-						<p:panelGrid columns="1">
-						    			 			    
-						    <h:outputText value="#{administradorBean.nick}" />
-						 	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
-						      style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-						    <h:outputText value="Cerrar Sesión" />
-						  </p:commandLink>
-						 
-						</p:panelGrid>
+			          #{loginBean.setLogeado(true)}
+			          
+						
 			                   			           
 			      </fieldset>
 			     			                  
