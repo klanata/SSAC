@@ -3,8 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      > 
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
@@ -28,8 +27,7 @@
         border: 1px solid #999;
       }
     </style>
-  	 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in;=true"></script>
-    
+  	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in;=true"></script>    
     <script type="text/javascript">
 		//<![CDATA[ 
 			var zona;
@@ -105,9 +103,7 @@
 						document.getElementById('registrarCatastrofe:lat').value = lat;
 							
 						document.getElementById('registrarCatastrofe:lng').value = lon;		
-
-							      				      				    
-
+							      				      				   
 				   // Define the LatLng coordinates for the polygon's path.
 					  var zonaCoords = [
 					    new google.maps.LatLng(lat, lon),
