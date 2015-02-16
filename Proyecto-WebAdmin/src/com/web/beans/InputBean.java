@@ -21,8 +21,8 @@ public class InputBean implements Serializable{
 	
 	private static final long serialVersionUID = 9040359120893077422L;
 	
-	private static final int IMG_WIDTH = 50;
-	private static final int IMG_HEIGHT = 50;
+	private static final int IMG_WIDTH = 30;
+	private static final int IMG_HEIGHT = 30;
 	
 	private Part part;
 	private String statusMessage;
