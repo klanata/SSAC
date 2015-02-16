@@ -14,7 +14,8 @@
       html, body, #map-canvas {
         height: 100%;
         margin: 0px;
-        padding: 0px
+        padding: 0px;        
+        box-shadow: 0px 0px 26px #888888;
       }
       #panelmapa {
         position: absolute;
@@ -172,11 +173,11 @@
       <input type="button" value="Buscar" onclick="codeAddress()"/>
 </div>
 
-<div id="map-canvas" style="width:450px;height:500px; float:right;margin-top:30px;margin-right: 70px;padding:0px 74px 0px 0px;">
+<div id="map-canvas" style="width:500px;height:670px; float:right;margin-top:30px;margin-right: 100px;padding:0px 74px 0px 0px;">
 </div>
 
 <div class="wrapper col3">
-    <div id="intro3">
+    <div id="intro2">
     
     <div>
             
@@ -247,6 +248,14 @@
     <br class="clear" />
   </div>
 </div>
-	
+<script type="text/javascript">
+	  //<![CDATA[
+	  function logout(xhr, status, args) {
+	    setTimeout(function() {
+	      window.location = 'home.xhtml';
+	    }, 500);
+	  }
+	//]]>
+</script>	
 </h:body> 
 </html>

@@ -14,29 +14,10 @@
 
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div id="newsletter">
-			     <fieldset>
-			          <legend>NewsLetter</legend>
-			          
-						<p:panelGrid columns="1">
-						    			 			    
-						    <h:outputText value="#{administradorBean.nick}" />
-						 	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
-						      style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-						    <h:outputText value="Cerrar Sesión" />
-						  </p:commandLink>
-						 
-						</p:panelGrid>
-			                   			           
-			      </fieldset>
-			     			                  
-			</div>
-
 <div class="wrapper col3">
   <div id="intro">
     <div>
-      <h3>Modificar catástrofes</h3>
-      <br/>	
+      <h3>Modificar catástrofes</h3>      
       <f:view>      	
       	
       	<h:form id="formCatastrofe">      		
@@ -88,8 +69,7 @@
 		</h:form>
       
       </f:view>         
-    </div>
-    
+    </div>    
     <br class="clear" />
   </div>
 </div>
@@ -101,16 +81,5 @@
     <br class="clear" />
   </div>
 </div>
-<script type="text/javascript">
-  //<![CDATA[
-  function manejarLogin(xhr, status, args) {
-    if (!args.validationFailed && args.estaLogeado) {
-      setTimeout(function() {
-        window.location = args.view;
-      }, 500);
-    }
-  }
-//]]>
-</script>	
 </h:body>
 </html>
