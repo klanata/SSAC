@@ -163,6 +163,14 @@ div {
 				<!-- VIDEOS YOUTUBE -->
 
 				<div class="ui-grid ui-grid-responsive">
+				<div class="ui-grid-row">
+				<div class="ui-grid-col-3"></div>
+				<div class="ui-grid-col-1"></div>
+				<div class="ui-grid-col-7"> <h1>Zona:</h1></div>
+				<div class="ui-grid-col-1"></div>
+				</div>
+				
+				
 					<div class="ui-grid-row">
 						<div class="ui-grid-col-3">
 
@@ -178,11 +186,12 @@ div {
 
 							</h:dataTable>
 						</div>
+						
 						<div class="ui-grid-col-9">
-						<h1>Zonas afectadas:</h1>
+						<!-- MAPA DE ZONAS AFECTADAS -->
 						<p:gmap id="map"
 					center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="10"
-					type="HYBRID" style="width:100%;height:500px"
+					type="HYBRID" style="width:100%;height:580px"
 					model="#{imagesView.polygonModel}" widgetVar="map">
 					<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();"
 						update="growl" />
@@ -376,7 +385,7 @@ div {
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
 					<h2>
-						<strong><a href="#donacion"> Ayudanos a ayudar
+						<strong><a href="#donacion">
 								¡Realice donaciones!</a></strong>
 					</h2>
 				</div>
@@ -683,7 +692,7 @@ div {
 						<label for="nombre"> Clave:</label>
 						<p:password value="#{loginBean.clave1}" id="password"
 							required="true" label="password1" />
-						<p:commandButton id="loginButton" value="Login"
+						<p:commandButton id="loginButton" value="Ingresar"
 							actionListener="#{loginBean.login}" update=":mensajes"
 							oncomplete="manejarLogin(xhr, status, args)">
 							<span class="fontawesome-lock"></span>
@@ -715,13 +724,8 @@ div {
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
-				
-				
 					<h2>
-					
-						
-					
-						<strong><a href="#desaparecidos"> Personas
+					<strong><a href="#desaparecidos"> Personas
 								Desaparecidas</a></strong>
 					</h2>
 				</div>
