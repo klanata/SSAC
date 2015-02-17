@@ -1,7 +1,6 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -60,8 +59,7 @@ public class Servicio  extends AbstractEntity implements Serializable {
 	@Column(name= "fuente",  nullable= false)
 	private String fuente = "";		
 	
-	@ManyToMany(fetch=FetchType.EAGER)
-	private Set<Filtro> filtros = new  HashSet<Filtro>(0);
+	
 	
 	
 	
@@ -70,14 +68,14 @@ public class Servicio  extends AbstractEntity implements Serializable {
 		super();
 		this.url = new String();
 		this.fuente = new String();		
-		this.filtros = new HashSet<Filtro>();		
+		//this.filtros = new HashSet<Filtro>();		
 	}
 	
 	public Servicio(String url, String fuente, Set<Filtro> filtros) {
 		super();
 		this.url = url;
 		this.fuente = fuente;		
-		this.filtros = filtros;
+		//this.filtros = filtros;
 	}
 	
 	
@@ -107,13 +105,7 @@ public class Servicio  extends AbstractEntity implements Serializable {
 		this.fuente = fuente;
 	}
 
-	public Set<Filtro> getFiltros() {
-		return filtros;
-	}
-
-	public void setFiltros(Set<Filtro> filtros) {
-		this.filtros = filtros;
-	}
+	
 	
 	
 	

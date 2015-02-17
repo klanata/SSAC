@@ -173,8 +173,7 @@ public class FiltrosCatastrofeBean implements Serializable{
     			//Lista de los FiltroServicio de datos asignados a la Catástrofe seleccionada
     			
     			FiltroEBR managerF = null;				
-    			Context contextF = null;			
-    			//FacesMessage message = null; 
+    			Context contextF = null;			    			
     			
     			try {
     	            // 1. Obtaining Context
@@ -189,8 +188,7 @@ public class FiltrosCatastrofeBean implements Serializable{
     	        }
     			
     			ServicioEBR managerS = null;				
-    			Context contextS = null;			
-    			//FacesMessage message = null; 
+    			Context contextS = null;			    			
     			
     			try {
     	            // 1. Obtaining Context
@@ -222,7 +220,7 @@ public class FiltrosCatastrofeBean implements Serializable{
     	        }
     			
     			try{
-    				long idCat= new Long(idEventoString);;    				
+    				long idCat= new Long(idEventoString);			
     				List<FiltroServicio> listaFiltroServicio = new ArrayList<FiltroServicio>();
     				listaFiltroServicio = managerFS.listaFiltroServicioAsignadosCatastrofe(idCat);
     				Long id;

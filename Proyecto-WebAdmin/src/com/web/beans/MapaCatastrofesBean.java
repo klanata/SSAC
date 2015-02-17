@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.annotation.PostConstruct; 
@@ -25,7 +25,7 @@ import com.core.service.negocio.remote.CatastrofeEBR;
 
 
 @ManagedBean(name="mapaCatastrofesBean")
-@SessionScoped
+@RequestScoped
 public class MapaCatastrofesBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

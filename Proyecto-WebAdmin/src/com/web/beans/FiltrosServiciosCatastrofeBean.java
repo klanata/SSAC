@@ -44,7 +44,7 @@ public class FiltrosServiciosCatastrofeBean implements Serializable{
 	private List<FiltroServicioBean> filtroFiltroServicioBean;
     
     private List<FiltroServicioBean> selectedFiltroServicioBean;
-	
+    	
 	
 	@PostConstruct
     public void init() {
@@ -100,66 +100,9 @@ public class FiltrosServiciosCatastrofeBean implements Serializable{
 					catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad,css);    				    														         			
     		    }catch (Exception excep){
     				System.out.println("Excepción en FiltrosServiciosCatastrofeBean al ver los datos de la catastrofe: " + excep.getMessage());      		 			       	            	
-    			}      			    			    			    	
+    			}      	
     			
-    			// Listo todos los filtros que tiene al menos un servicio asignado
-    			/*
-    			FiltroEBR managerF = null;				
-    			Context contextF = null;			
-    			//FacesMessage message = null; 
-    			
-    			try {
-    	            // 1. Obtaining Context
-    	            contextF = ClienteUtility.getInitialContext();
-    	            // 2. Generate JNDI Lookup name
-    	            //String lookupName = getLookupName();
-    	            // 3. Lookup and cast
-    	            managerF = (FiltroEBR) contextF.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroEB!com.core.service.negocio.remote.FiltroEBR");
-    	 
-    	        } catch (NamingException e) {
-    	            e.printStackTrace();
-    	        }
-                
-    			try{				
-    				List<Filtro> listaFiltro = new ArrayList<Filtro>();
-    				listaFiltro = managerF.listarFiltrosQueTieneAlMenosUnServicio();
-    				Filtro filtro;
-    		    	Long id;
-    		    	String fuente;
-    		    	String descripcion;
-    		    	boolean bajaLogica;
-    		    	Servicio servicio;
-    		    	Set <Servicio> serviciosFiltro = new HashSet<Servicio>();    		        		    
-    		    	
-    		    	//int j = 0;
-    		    	for (int i=0; i<=listaFiltro.size()-1; i++){    							
-    					filtro = listaFiltro.get(i);
-    					id = filtro.getId();
-    					descripcion = filtro.getDescripcion();
-    					bajaLogica = filtro.isBajaLogica();
-    					    					
-    					serviciosFiltro = filtro.getServicios();
-    					    					
-    					//fuente = "Youtube";
-    					List <Servicio> listServicios = new ArrayList<Servicio>();
-    					for (Servicio s : serviciosFiltro){
-    						//fuente = s.getFuente();	
-    						listServicios.add(s);
-    						//listaFiltroServicioBean.add(j, new FiltroServicioBean(id,fuente,descripcion,bajaLogica));
-    						//j = j + 1;
-    					}    
-    					for (int j=0; j<=listServicios.size()-1; j++){
-    						servicio = listServicios.get(j);
-    						fuente = servicio.getFuente();
-    						listaFiltroServicioBean.add(j, new FiltroServicioBean(id,fuente,descripcion,bajaLogica));    						
-    					}    					    					
-    																						    		
-    				}				
-    				
-    			}catch (Exception excep){
-    	    		System.out.println("Excepción al listar los filtros en FiltrosServiciosCatastrofeBean: " + excep.getMessage());      		 			       	           	
-    	    	}  
-    	    	*/
+    			//Lista de los FiltroServicio de datos asignados a la Catástrofe seleccionada
     			
     			FiltroEBR managerF = null;				
     			Context contextF = null;			
@@ -192,8 +135,7 @@ public class FiltrosServiciosCatastrofeBean implements Serializable{
     	        } catch (NamingException e) {
     	            e.printStackTrace();
     	        }
-    			
-    			// Listo todos los filtroServicio que no tienen asignada la catastrofe todavia
+    			    			
     			FiltroServicioEBR managerFS = null;				
     			Context contextFS = null;			
     			//FacesMessage message = null; 
@@ -209,9 +151,10 @@ public class FiltrosServiciosCatastrofeBean implements Serializable{
     	        } catch (NamingException e) {
     	            e.printStackTrace();
     	        }
-    			try{				
-    				List<FiltroServicio> listaFiltroServicio = new ArrayList<FiltroServicio>();
-    				listaFiltroServicio = managerFS.listaFiltroServiciosSinCatastrofe();
+    			try{	
+    				long idCat= new Long(idEventoString);	
+    				List<FiltroServicio> listaFiltroServicio = new ArrayList<FiltroServicio>();    				
+    				listaFiltroServicio = managerFS.listaFiltroServicioAsignadosCatastrofe(idCat);
     				Long id;
     				Long idFiltro;
     				Long idServicio;
@@ -298,8 +241,7 @@ public class FiltrosServiciosCatastrofeBean implements Serializable{
 	public void setSelectedFiltroServicioBean(
 			List<FiltroServicioBean> selectedFiltroServicioBean) {
 		this.selectedFiltroServicioBean = selectedFiltroServicioBean;
-	}
-		
+	}					
 	
 	//	------------------ Operaciones ---------------------
 	
@@ -349,8 +291,8 @@ public class FiltrosServiciosCatastrofeBean implements Serializable{
 	    	}
 		}
 	}
-	*/
-	
+	*/	
+
 	public void asignarFiltroCatastrofe(){
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
 		if ((idEventoString == null) || (idEventoString == ""))
@@ -410,12 +352,17 @@ public class FiltrosServiciosCatastrofeBean implements Serializable{
 				
 			}
 			else{				
-				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una filtro.");
+				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una filtro de datos.");
 				FacesContext.getCurrentInstance().addMessage(null, message);
 			}
 			
 		}
 		
+	}
+	
+	public void agregarFiltroNuevo(){
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("altaFiltro?faces-redirect=true");						
 	}
 	
 	
@@ -431,8 +378,57 @@ public class FiltrosServiciosCatastrofeBean implements Serializable{
 		handler.performNavigation("listaCatastrofesServiciosYoutube?faces-redirect=true");
 		
 	}
-
 	
+	public void siguiente(){
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
+		if ((idEventoString == null) || (idEventoString == ""))
+		{	
+			System.out.println("No existe la catástrofe. "); 			
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+		}
+		else	
+		{
+			Long idCatastrofe = new Long(idEventoString);		
+			FiltroServicioEBR managerFS = null;				
+			Context contextFS = null;			
+			FacesMessage message = null; 
+			
+			try {
+	            // 1. Obtaining Context
+				contextFS = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+	            managerFS = (FiltroServicioEBR) contextFS.lookup("ejb:Proyecto-EAR/Proyecto-Core//FiltroServicioEB!com.core.service.negocio.remote.FiltroServicioEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }
+			
+			try{
+				List<FiltroServicio> listaFiltroServicio = new ArrayList<FiltroServicio>();    				
+				listaFiltroServicio = managerFS.listaFiltroServicioAsignadosCatastrofe(idCatastrofe);
+				
+				if (listaFiltroServicio.size() == 0){
+					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe seleccionar al menos una filtro de datos.");
+	    			FacesContext.getCurrentInstance().addMessage(null, message);					
+				}
+				else{
+					ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+					handler.performNavigation("asignarCSSCatastrofe?faces-redirect=true");					
+				}
+												
+			}catch (Exception excep){
+	    		System.out.println("Excepcion al listar los FiltroServicios de la catastrofe: " + excep.getMessage());      		 			       
+		           		
+	    	}
+									
+			
+		}
+		
+	}
+		
 	
 
 }
