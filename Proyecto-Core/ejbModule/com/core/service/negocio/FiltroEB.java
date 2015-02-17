@@ -2,7 +2,6 @@ package com.core.service.negocio;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -114,7 +113,7 @@ public class FiltroEB implements FiltroEBR{
 			
 		
 	}
-	*/
+	
 	
 	public void asignarFiltroServicio(Long idFiltro,String fuente) throws Exception{
 		
@@ -146,7 +145,7 @@ public class FiltroEB implements FiltroEBR{
 		}	
 		
 	}
-	
+	*/
 	
 	public List<Filtro> listaFiltrosNoAsignadosAYoutube() throws Exception{
 		
