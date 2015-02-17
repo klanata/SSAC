@@ -135,15 +135,17 @@ public class LoginBean implements Serializable {
 	@PostConstruct
     public void init() {
     
+		
 		if (!logeado){
 			
 			
-			mensaje = "Estimado Visitante debe estar registrado para tener acceso a reportar o buscar Personas Desaparecidas";
+			//mensaje = "Estimado Visitante debe estar registrado para tener acceso a reportar o buscar Personas Desaparecidas";
+			mensaje = "Debe Registrarse";
 			Menu = "Iniciar Sesión";
 		}else 
 		{
 			mensaje = "Bienvenido "+ nick1;
-			Menu = "Cerrar Sesión";
+			Menu = "";
 		
 		}
 		
@@ -193,6 +195,9 @@ public class LoginBean implements Serializable {
 		Boolean registrado = manager.estaRegistradoCatastrofe(nick1, idCatastrofe1);
 		
 		if(registrado==false){
+			nick1= "";
+			Menu = "Iniciar Sesión";
+			mensaje ="";
 					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no Registrado", "");
 					System.out.print("registro == false usuario no registrado a la catastrofe");
 				}	
@@ -201,6 +206,9 @@ public class LoginBean implements Serializable {
 			
 			logeado = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nick1);
+			Menu = "";
+			mensaje ="";
+			nick1="Bienvenid@ "+ nick1;
 			context.addCallbackParam("view", "Index.xhtml");
 		} 
 		else if((exito == true) && (registrado==false))
@@ -210,16 +218,24 @@ public class LoginBean implements Serializable {
 			manager.registrarACatastrofe(nick1, clave1, idCatastrofe1);
 			logeado = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@","Se ha registrado a la catástrofe");
+			Menu = "";
+			mensaje ="";
+			nick1="Bienvenid@ "+ nick1;
 			context.addCallbackParam("view", "Index.xhtml");
 		}
 		else{
 			logeado = false;
+			nick1= "";
+			
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error","Credenciales no válidas");
 		}
 		
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		context.addCallbackParam("estaLogeado", logeado);
 		if (logeado){
+			Menu = "";
+			mensaje ="";
+			//nick1="Bienvenid@ "+ nick1;
 			context.addCallbackParam("view", "Index.xhtml");
 		}
 	} 
@@ -255,6 +271,9 @@ public class LoginBean implements Serializable {
 		clave="";
 		email="";
 		nombre="";
+		
+		//logeado = true;
+		
 		//fechaNacimiento = null;
 		//idCatastrofe= //
 		context.addCallbackParam("view", "Index.xhtml");
@@ -263,6 +282,7 @@ public class LoginBean implements Serializable {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
 		logeado = false;
+		Menu = "Iniciar Sesión";
 		RequestContext context = RequestContext.getCurrentInstance();
 		//ver esto creo esta mal
 		context.addCallbackParam("view", "Index.xhtml");

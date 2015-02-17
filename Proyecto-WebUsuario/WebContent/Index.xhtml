@@ -33,11 +33,11 @@
 		  //alert(window.localStorage.getItem("urlCSS"));
 		  //document.getElementById("j_idt5:catastrofeId").value = id;
 		  
-		  var login= #{loginBean.logeado} ;
+		  var login= #{loginBean.logeado};
 		  function mostrarMenuLogueo(){
 			if !login{
 
-
+				
 			}
 			  
 		  }
@@ -67,11 +67,17 @@
 				oc.display = "block";
 				if (!login) {
 					
-					document.getElementById('personasdesap').style.visibility = "hidden";
+					//document.getElementById('personasdesap').style.visibility = "hidden";
 					document.getElementById('desaparecidos').style.visibility = "hidden";
 					document.getElementById('busperdesap').style.visibility = "hidden";
+					document.getElementById('desaparecidosocultar').style.visibility = "hidden";
 					
-				}
+					
+				}else {
+					document.getElementById('loginusuario').style.visibility = "hidden";
+					
+
+					}
 			}
 			function hide() {
 				document.getElementById('banner').style.display = "none";
@@ -81,8 +87,9 @@
 				document.getElementById('desaparecidos').style.display = "none";
 				document.getElementById('registrousuario').style.display = "none";
 				
+				document.getElementById('desaparecidosocultar').style.display = "none";
 				document.getElementById('loginusuario').style.display = "none";
-				//document.getElementById('logautusuario').style.display = "none";
+				document.getElementById('logoutusuario').style.display = "none";
 							}
 </script>
 	<style type="text/css">
@@ -143,6 +150,7 @@ div {
 						<div class="ui-grid-col-4"></div>
 						<div class="ui-grid-col-4">
 							<p>#{imagesView.descripcion}</p>
+							
 						</div>
 
 						<div class="ui-grid-col-4"></div>
@@ -263,18 +271,14 @@ div {
 	<!-- Nav -->
 	<div id="nav">
 		<ul>
-			<li><a href="Index.xhtml">Inicio</a></li>
-			<!--  	<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
+			<!--  <li><a href="Index.xhtml">Inicio</a></li>
+				<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
 
 			<li><a href="#banner" style="cursor: hand; text-color: FFFFFFF"
 				onclick="show('banner');"> Pedido de ayuda</a></li>
 			<li><a href="#donacion"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('donacion');">Donaciones</a></li>
-			<!--<li><a href="#busperdesap" style="cursor: hand; text-decoration: none" onclick="show('busperdesap');">Buscar Personas desaparecidas</a></li>-->
-			<!--<li><a href="#personasdesap" style="cursor: hand; text-decoration: none" onclick="show('personasdesap');">Alta personas desaparecidas</a></li>-->
-		
-
 			<li><a href="#desaparecidos"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('desaparecidos');">Personas Desaparecidas</a></li>
@@ -283,8 +287,18 @@ div {
 				onclick="show('registrousuario');">Registro usuario</a></li>
 			<li><a href="#loginusuario"
 				style="cursor: hand; text-decoration: none"
-				onclick="show('loginusuario');">Inicio Sesión</a></li>
-			<li><a href="">Cerrar Sesión</a></li>
+				onclick="show('loginusuario');">#{loginBean.menu}</a></li>
+			<li><a href=""
+				style="cursor: hand; text-decoration: none"
+			>#{loginBean.nick1}</a></li>
+			<li ><a href="#logoutusuario"
+				style="cursor: hand; text-decoration: none"
+				onclick="show('logoutusuario');">Cerrar Sesión</a></li>
+			
+			
+			
+			
+			
 
 		</ul>
 	</div>
@@ -668,6 +682,46 @@ div {
 		</div>
 	</div>
 
+
+<!-- LOGOUT -->
+
+<div class="oculto" id="logoutusuario">
+
+		<div class="ui-grid">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-2"></div>
+				<div class="ui-grid-col-8">
+
+					<p:growl id="mens" showDetail="true" life="2000" />
+					<h:form id="formulariologout">
+						<h2>
+							 Gracias por visitar nuestra página web. </h2>
+							 <h1>
+							 <br/>
+							 Si esta seguro que desea cerrar sesión dar clic a "Confirmar"
+							 </h1>
+						
+
+						<br/>
+
+
+						<p:commandButton id="loginButton" value="Confirmar"
+							actionListener="#{loginBean.logout()}" update=":mens"
+							oncomplete="manejarLogin(xhr, status, args)">
+							<span class="fontawesome-lock"></span>
+						</p:commandButton>
+					</h:form>
+
+
+				</div>
+				<div class="ui-grid-col-2"></div>
+			</div>
+		</div>
+	</div>
+
+	
+
+
 	<!-- LOGIN -->
 	<div class="oculto" id="loginusuario">
 
@@ -698,16 +752,16 @@ div {
 							<span class="fontawesome-lock"></span>
 						</p:commandButton>
 					</h:form>
-
-
 					<div class="section">
 						<p>
 							<div class="fb-login-button" data-max-rows="1" data-size="xlarge"
 								data-show-faces="false" data-auto-logout-link="false"></div>
-							<a href="#banner" onclick="show('registrousuario');">Registro</a>
+							
 						</p>
 
 					</div>
+	
+
 				</div>
 				<div class="ui-grid-col-2"></div>
 			</div>
@@ -717,8 +771,10 @@ div {
 	
 	
 	<!-- MENU DE PERSONAS DESAPARECIDAS -->
-	<h2>#{loginBean.mensaje}</h2>
+	
 	<div class="oculto" id="desaparecidos">
+		<h2>#{loginBean.mensaje}</h2>
+	<div class="oculto" id="desaparecidosocultar">
 	
 		<div class="ui-grid ui-grid-responsive">
 			<div class="ui-grid-row">
@@ -778,7 +834,7 @@ div {
 			</div>
 		</div>
 	</div>
-
+</div>
 
 
 
