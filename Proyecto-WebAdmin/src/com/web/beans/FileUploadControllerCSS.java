@@ -172,20 +172,25 @@ public class FileUploadControllerCSS {
 	    		        
 	    		        if (abm=="Alta"){
 	    		        	message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La catástrofe fue ingresada al sistema.");
-		    				FacesContext.getCurrentInstance().addMessage(null, message);
+		    				//FacesContext.getCurrentInstance().addMessage(null, message);
 		    				
-		    				FacesContext contexto = FacesContext.getCurrentInstance();
+		    				FacesContext contexto = FacesContext.getCurrentInstance();		    						    				
 		    				contexto.getExternalContext().getFlash().setKeepMessages(true);
+		    				
+		    				contexto.addMessage(null, message);
+		    						    				
 	    		        	ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		    				handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+		    				handler.performNavigation("modificarCatastrofe?faces-redirect=true");
 	    		        }
 	    		        else{
 	    		        	if (abm=="Modificacion"){
 	    		        		message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación Exitosa", "La catástrofe fue modificada de forma exitosa.");
-	    	    				FacesContext.getCurrentInstance().addMessage(null, message);
+	    	    				//FacesContext.getCurrentInstance().addMessage(null, message);
 	    	    				
 	    	    				FacesContext contexto = FacesContext.getCurrentInstance();
 	    	    				contexto.getExternalContext().getFlash().setKeepMessages(true);
+	    	    				
+	    	    				contexto.addMessage(null, message);
 	    		        		
 	    		        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 	    	    				handler.performNavigation("modificarCatastrofe?faces-redirect=true");	
