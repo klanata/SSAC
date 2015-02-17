@@ -23,7 +23,7 @@
 
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div id="mapa" style="width:40%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
+<div id="mapa" style="width:41%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
@@ -41,7 +41,7 @@
 	      
 	      <f:view>        
 	      	
-			<h:form id="formFiltroServicio" columns="2" value="#{filtrosServiciosCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:550px;border: 0;">
+			<h:form id="formFiltroServicio" columns="2" value="#{filtrosServiciosCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:540px;border: 0;">
 			
 				<h3>Asignar filtros a la catástrofe</h3>
 				
@@ -71,18 +71,14 @@
 	                 		 emptyMessage="No se han encontrado filtro con ese criterio" filteredValue="#{filtrosServiciosCatastrofeBean.filtroFiltroServicioBean}"                 		  
 	                 		 paginator="true" rows="5" paginatorPosition="top"
 	                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-	                 		 selection="#{filtrosServiciosCatastrofeBean.selectedFiltroServicioBean}" rowKey="#{FiltroServicioBean.id}" style="margin-bottom:0;width:550px">
+	                 		 selection="#{filtrosServiciosCatastrofeBean.selectedFiltroServicioBean}" rowKey="#{FiltroServicioBean.id}" style="margin-bottom:0;width:540px">
 	                 	                 	
 					<f:facet name="header">
 			            <p:outputPanel style="text-align: right">
 			                <h:outputText value="Buscar Filtro:  " />
 			                <p:inputText id="globalFilter"   onkeyup="PF('filtrosTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 			            </p:outputPanel>
-			        </f:facet>			        			            		        		               	  
-	        		
-	        		<p:column headerText="Id" style="width:6px">
-	            		<h:outputText value="#{FiltroServicioBean.id}" />
-	        		</p:column>  
+			        </f:facet>			        			            		        		               	  	        			        
 	        		
 	        		<p:column headerText="Fuente de datos" style="width:60px">
 	            		<h:outputText value="#{FiltroServicioBean.fuente}" />

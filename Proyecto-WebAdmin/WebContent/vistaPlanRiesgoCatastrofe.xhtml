@@ -59,7 +59,7 @@
 		            <p:commandLink style="text-align:right" oncomplete="window.open('http://localhost:8080/Proyecto-WebAdmin/reporte.pdf')">		            
 						<h:outputText value="Ver documento" style="width:100px"/>					
 					</p:commandLink>		                    
-				   <p:fileUpload fileUploadListener="#{fileUploadControllerPlan.upload}" mode="advanced" dragDropSupport="false" style="overflow:auto;width:580px;border: transparent;"
+				   <p:fileUpload fileUploadListener="#{fileUploadControllerPlan.upload}" mode="advanced" dragDropSupport="false" style="width:580px;border: transparent;" styleClass="files"
 		                  label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" multiple="false" fileLimit="1" update="messages" allowTypes="/(\.|\/)(pdf)$/" />				    				     					    																			     				     																		     				     				     				     				  					 					 					 				   				    
 				    <br/>				    
 				    <p:outputPanel style="text-align: left">

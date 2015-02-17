@@ -23,11 +23,11 @@
  
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div id="mapa"  style="width:44%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
+<div id="mapa"  style="width:470px;height:580px; float:right;margin-top:30px;margin-right: 120px;padding:0px 74px 0px 0px;">  
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:550px;height:670px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:580px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>
@@ -38,7 +38,7 @@
     <div>      
       	
       <f:view>
-		<h:form id="registroFiltro" columns="2" columnClasses="label, value" style="width:474px;border: 0;">
+		<h:form id="registroFiltro" columns="2" columnClasses="label, value" style="width:500px;border: 0;">
 						
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />	
 			
@@ -74,7 +74,7 @@
 			
 			<label for="descripcion">Descripción </label>	
 				<h:panelGrid columns="1" border="0" style="width: 35%; float:left;">																																		
-					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{filtroBean.descripcion}" />								 					
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="58" autoResize="false" value="#{filtroBean.descripcion}" />								 					
 				</h:panelGrid>																											
 			<br/>															
 						

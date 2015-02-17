@@ -23,7 +23,7 @@
 
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div id="mapa" style="width:40%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
+<div id="mapa" style="width:41%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
@@ -41,7 +41,7 @@
 	      
 	      <f:view>       	   
 		      	
-				<h:form id="formONGs" columns="2" value="#{listaOngsBean.catastrofeBean}" columnClasses="label, value" style="width:550px;border: 0;">
+				<h:form id="formONGs" columns="2" value="#{listaOngsBean.catastrofeBean}" columnClasses="label, value" style="width:540px;border: 0;">
 				
 					<h3>Asignar ONGs a la catástrofe</h3>
 					
@@ -71,7 +71,7 @@
 		                 		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBean}"                 		  
 		                 		 paginator="true" rows="5" paginatorPosition="top"
 		                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		                 		 selection="#{listaOngsBean.selectedOngs}" rowKey="#{ongBean.id}" style="margin-bottom:0;width:550px">
+		                 		 selection="#{listaOngsBean.selectedOngs}" rowKey="#{ongBean.id}" style="margin-bottom:0;width:540px">
 		                 	                 	
 						<f:facet name="header">
 				            <p:outputPanel style="text-align: right">

@@ -23,7 +23,7 @@
 
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div id="mapa" style="width:40%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
+<div id="mapa" style="width:41%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
@@ -41,14 +41,14 @@
 	      
 	      <f:view>           
 	      	
-			<h:form id="formCss" columns="2" value="#{cssBean.catastrofeBean}" columnClasses="label, value" style="width:570px;border: 0;">
+			<h:form id="formCss" columns="2" value="#{cssBean.catastrofeBean}" columnClasses="label, value" style="width:540px;border: 0;">
 			
 				<h3>Asignar CSS a la Catástrofe</h3>	
 				
 				<p:growl id="messages" showDetail="true" life="3000" />		
 				
 				<p>			        		        
-	            <p:graphicImage value="image/#{cssBean.catastrofeBean.logo}" width="50" height="50"/> 
+	            <p:graphicImage value="image/#{cssBean.catastrofeBean.logo}" width="30" height="30"/> 
 	            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 				</p>			
 				
@@ -70,7 +70,7 @@
 				<h:outputText value="(El archivo debe estar en formato css)" style="width:100px;border: transparent;"/>			            
 	            </p>
 	                    
-			    <p:fileUpload fileUploadListener="#{fileUploadControllerCSS.upload}" mode="advanced" dragDropSupport="false" style="overflow:auto;width:580px;border: transparent;line-height: 20px;"
+			    <p:fileUpload fileUploadListener="#{fileUploadControllerCSS.upload}" mode="advanced" dragDropSupport="false" style="overflow:auto;width:540px;border: transparent;line-height: 20px;" styleClass="files"
 			                  label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" multiple="false" fileLimit="1" update="messages" allowTypes="/(\.|\/)(css)$/" />				    
 			    
 			    <br/>
