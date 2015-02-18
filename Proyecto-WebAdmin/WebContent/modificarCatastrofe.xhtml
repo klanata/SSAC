@@ -26,7 +26,7 @@
       		
     		<p:dataTable id="catastrofesDT" var="catastrofeBean" value="#{listaCatastrofesBean.catastrofesBean}" widgetVar="catastrofesTable"
                  		 emptyMessage="No se han encontrado catástrofes con ese criterio" filteredValue="#{listaCatastrofesBean.filtroCatastrofeBean}"                 		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                  		 selectionMode="single" selection="#{listaCatastrofesBean.selectedCatastrofe}" rowKey="#{catastrofeBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	

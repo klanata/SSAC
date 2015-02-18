@@ -29,11 +29,11 @@
 
 
 			<p:megaMenu orientation="#{megaMenuView.orientation}">
-				<p:submenu label="Home" style="right: 0px;left: 200px;">
+				<p:submenu label="Inicio" style="right: 0px;left: 200px;">
 					<p:column>
 						<p:submenu label="SSCA">
 				
-							<p:menuitem value="" url="index.xhtml" />
+							<p:menuitem value="Zonas afectadas"  url="index.xhtml" />
       
 						</p:submenu>
 					</p:column>
@@ -75,19 +75,7 @@
 								icon="ui-icon-pencil" />
 						</p:submenu>
 					</p:column>
-				</p:submenu>				
-
-				<p:submenu label="Servicios" style="right: 0px;left: 200px;">
-					<p:column>
-						<p:submenu label="ABM">
-							<p:menuitem value="Alta" url="asignarFiltrosDeDatos.xhtml"
-								icon="ui-icon-check" />
-							<p:menuitem value="Baja" url="" icon="ui-icon-close" />
-							<p:menuitem value="Modificación"
-								url="modificarFiltrosDeDatos.xhtml" icon="ui-icon-pencil" />
-						</p:submenu>
-					</p:column>
-				</p:submenu>
+				</p:submenu>								
 
 				<p:submenu label="Catástrofe" style="right: 0px;left: 200px;">
 					<p:column>
@@ -128,7 +116,6 @@
 			</p:megaMenu>
 		</h:form>
 	</div>	
-</h:body>
 <script type="text/javascript">
   <![CDATA[
   function manejarLogin(xhr, status, args) {
@@ -140,4 +127,5 @@
   }
 ]]>
 </script>
+</h:body>
 </html>

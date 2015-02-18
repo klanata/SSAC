@@ -23,9 +23,9 @@
 
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div id="mapa" style="width:44%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
+<div id="mapa" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 	<p:growl id="growl" life="3000" showDetail="true" />
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:550px;height:670px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:580px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>	
@@ -35,11 +35,11 @@
     <div id="intro2">    
     <div>		     	      
 	      <f:view>        	      	
-			<h:form columns="2" value="#{imagesView.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">			
+			<h:form id="formImagenesCatastrofe" columns="2" value="#{imagesView.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">			
 				<p:growl id="messages" showDetail="true" />   										
 				<h3>Imágenes de la Catástrofe</h3>				
 				<p>			        		        
-	            <p:graphicImage value="image/#{imagesView.catastrofeBean.logo}" width="50" height="50"/> 
+	            <p:graphicImage value="image/#{imagesView.catastrofeBean.logo}" width="30" height="30"/> 
 	            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 				</p>							
 				<p>
@@ -54,12 +54,12 @@
 	        	<p>
 				<h:outputText value="Imágenes asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
 	            </p>	            
-		        <p:galleria value="#{imagesView.images}" var="imgCatastrofeBean" panelWidth="500" panelHeight="313" showCaption="true">
+		        <p:galleria value="#{imagesView.images}" var="imgCatastrofeBean" panelWidth="500" panelHeight="313" showCaption="true" style="box-shadow: 0px 0px 26px #888888;">
 				    <p:graphicImage value="image/#{imgCatastrofeBean.path}"  title="#{imgCatastrofeBean.path}"/>
 				</p:galleria>					
 				<br/> 
 				 <p:outputPanel style="text-align: left">
-				 		<p:commandButton value="Siguiente" action="#{imagesView.siguiente()}"/>  
+				 		<p:commandButton  update=":formImagenesCatastrofe:messages" value="Siguiente" action="#{imagesView.siguiente()}"/>  
 				 		<p:commandButton value="Agregar" action="#{imagesView.asignarImagen()}"/>         
 		            	<p:commandButton value="Quitar" action="#{imagesView.borrarImagen()}"/>
 		            	<p:commandButton value="Cancelar" action="#{imagesView.cancelar()}" />

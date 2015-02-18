@@ -67,4 +67,6 @@ public interface CatastrofeEBR {
 	
 	public void EliminarCatastrofe(Long idCatastofe) throws Exception;	
 	
+	public void bajaFiltroServicioDeCatastrofe(Long idFiltroServicio) throws Exception;
+	
 }

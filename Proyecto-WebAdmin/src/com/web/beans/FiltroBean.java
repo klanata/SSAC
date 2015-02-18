@@ -221,9 +221,23 @@ public class FiltroBean implements Serializable{
 		    				managerC.asignarFiltroServicioALaCatastrofe(idCatastrofe, idFiltroServicio);
 		    						    						    				
 		    				//System.out.println("idServicioString: " + idServicioString);
-		    					    				    			
-		    				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		    				handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");	
+		    				
+		    				String abm = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("ABMCatastrofe");
+		    				
+		    				if (abm=="Alta"){		    		        				    						    			
+		    					ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			    				handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");
+		    		        }
+		    		        else{
+		    		        	if (abm=="Modificacion"){		    		        				    		        		
+		    		        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		    	    				handler.performNavigation("vistaServiciosCatastrofe?faces-redirect=true");	
+		    			        }
+		    		        	else{	        		
+		    		        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		    		    			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");	        		
+		    		        	}	        	
+		    		        }		    					    				    					    				
 		    						
 		        		}
 		        		catch (Exception excep){
@@ -251,8 +265,24 @@ public class FiltroBean implements Serializable{
 	
 	
 	public void cancelar(){
-		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");		
+		//ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		//handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");		
+		String abm = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("ABMCatastrofe");
+		
+		if (abm=="Alta"){		    		        				    						    			
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("asignarServiciosCatastrofe?faces-redirect=true");
+        }
+        else{
+        	if (abm=="Modificacion"){		    		        				    		        		
+        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+				handler.performNavigation("vistaServiciosCatastrofe?faces-redirect=true");	
+	        }
+        	else{	        		
+        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+    			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");	        		
+        	}	        	
+        }
 	}
 	
 	
