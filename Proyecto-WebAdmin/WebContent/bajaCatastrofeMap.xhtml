@@ -15,6 +15,7 @@
     html, body, #map{
         width: 100%;
         height: 100%;
+        box-shadow: 0px 0px 26px #888888;
     }
     </style>  	
   	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>          
@@ -22,11 +23,11 @@
 
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div id="mapa" style="width:40%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
+<div id="mapa" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="7" type="HYBRID"  style="width:500px;height:580px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="7" type="HYBRID"  style="width:500px;height:620px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>
@@ -44,10 +45,10 @@
     		
     			<p:growl id="messages" showDetail="true" />     			
     		    			    		
-    			<h2>Eliminar Catástrofe</h2> 
+    			<h3>Eliminar Catástrofe</h3> 
     			
     				<p>			        		        
-		            <p:graphicImage value="image/#{borrarCatastrofeBeanMap.catastrofeBean.logo}" width="50" height="50"/> 
+		            <p:graphicImage value="image/#{borrarCatastrofeBeanMap.catastrofeBean.logo}" width="30" height="30"/> 
 		            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 					</p>			
 					
