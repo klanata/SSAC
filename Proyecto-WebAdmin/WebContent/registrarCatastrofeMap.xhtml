@@ -177,22 +177,17 @@
 </div>
 
 <div class="wrapper col3">
-    <div id="intro2">
-    
-    <div>
-            
-      <f:view>
-            				
+    <div id="intro2">    
+    <div>            
+      <f:view>            			
     		<h:form id="registrarCatastrofe" enctype="multipart/form-data" columns="2" columnClasses="label, value" style="width:500px;border: 0;"> 
     		
-    			<p:growl id="messages" showDetail="true" />     			
-    		    			    			
+    			<p:growl id="messages" showDetail="true" />     			    		    			    			
     			<h3>Registrar Catástrofe</h3>  		    		
         		  	            		
 					<label for="nombreEvento">Nombre del Evento </label>				
 						<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBeanMap.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
-						</p:inputText>	
-						
+						</p:inputText>							
 					<br/>	
 					<br/>																																								
 															
@@ -231,13 +226,10 @@
 																                        		
                 	<p:commandButton value="Siguiente" ajax="false" update="registrarCatastrofe:messages" action="#{catastrofeBeanMap.registrarCatastrofe()}" />                		
             		          	            	            		            				 					         	        		          					         			            		        		        	        		     
-    		</h:form>
-    		    		    		    		    		
+    		</h:form>    		    		    		    		    	
 		</f:view>
-    </div> 
-    				    
-    <br class="clear" />
-    
+    </div>     				   
+    <br class="clear" />    
 	</div>	    		
 </div>
 
