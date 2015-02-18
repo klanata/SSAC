@@ -67,14 +67,15 @@
 				oc.display = "block";
 				if (!login) {
 					
-					//document.getElementById('personasdesap').style.visibility = "hidden";
+					document.getElementById('personasdesap').style.visibility = "hidden";
 					document.getElementById('desaparecidos').style.visibility = "hidden";
 					document.getElementById('busperdesap').style.visibility = "hidden";
-					document.getElementById('desaparecidosocultar').style.visibility = "hidden";
-					
+					//document.getElementById('desaparecidosocultar').style.visibility = "hidden";
+					loginBean.setNick1("");
 					
 				}else {
 					document.getElementById('loginusuario').style.visibility = "hidden";
+					
 					
 
 					}
@@ -87,7 +88,7 @@
 				document.getElementById('desaparecidos').style.display = "none";
 				document.getElementById('registrousuario').style.display = "none";
 				
-				document.getElementById('desaparecidosocultar').style.display = "none";
+				
 				document.getElementById('loginusuario').style.display = "none";
 				document.getElementById('logoutusuario').style.display = "none";
 							}
@@ -695,19 +696,19 @@ div {
 					<p:growl id="mens" showDetail="true" life="2000" />
 					<h:form id="formulariologout">
 						<h2>
-							 Gracias por visitar nuestra página web. </h2>
+							 Gracias por visitar nuestro citio. </h2>
 							 <h1>
 							 <br/>
 							 Si esta seguro que desea cerrar sesión dar clic a "Confirmar"
 							 </h1>
 						
-
+						<br/>
 						<br/>
 
 
 						<p:commandButton id="loginButton" value="Confirmar"
-							actionListener="#{loginBean.logout()}" update=":mens"
-							oncomplete="manejarLogin(xhr, status, args)">
+							actionListener="#{loginBean.logout}" update=":mens"
+						oncomplete="logout(xhr, status, args)">
 							<span class="fontawesome-lock"></span>
 						</p:commandButton>
 					</h:form>
@@ -746,6 +747,7 @@ div {
 						<label for="nombre"> Clave:</label>
 						<p:password value="#{loginBean.clave1}" id="password"
 							required="true" label="password1" />
+							
 						<p:commandButton id="loginButton" value="Ingresar"
 							actionListener="#{loginBean.login}" update=":mensajes"
 							oncomplete="manejarLogin(xhr, status, args)">
@@ -774,7 +776,7 @@ div {
 	
 	<div class="oculto" id="desaparecidos">
 		<h2>#{loginBean.mensaje}</h2>
-	<div class="oculto" id="desaparecidosocultar">
+	
 	
 		<div class="ui-grid ui-grid-responsive">
 			<div class="ui-grid-row">
@@ -834,7 +836,7 @@ div {
 			</div>
 		</div>
 	</div>
-</div>
+
 
 
 
@@ -1170,4 +1172,15 @@ div {
 		</ul>
 	</div>
 </body>
+<script type="text/javascript">
+  <![CDATA[
+  function manejarLogin(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeado) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 500);
+    }
+  }
+]]>
+</script>
 </html>

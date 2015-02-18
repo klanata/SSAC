@@ -9,7 +9,7 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -278,14 +278,24 @@ public class LoginBean implements Serializable {
 		//idCatastrofe= //
 		context.addCallbackParam("view", "Index.xhtml");
 	}
-	public void logout() {
+	public void logout(ActionEvent actionEvent) {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
 		logeado = false;
 		Menu = "Iniciar Sesión";
 		RequestContext context = RequestContext.getCurrentInstance();
+		FacesMessage msg = null;
+		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Gracias por visitarnos","");
+		//FacesContext.getCurrentInstance().addMessage(null, msg);
+		nick1="";
+		setNick1(nick1);
+		context.addCallbackParam("estaLogeado", logeado);
 		//ver esto creo esta mal
 		context.addCallbackParam("view", "Index.xhtml");
+	
+		//FacesContext.getCurrentInstance().addMessage(null, msg);
+		//context.addCallbackParam("estaLogeado", logeado);
+		
 		
 		
 	} 

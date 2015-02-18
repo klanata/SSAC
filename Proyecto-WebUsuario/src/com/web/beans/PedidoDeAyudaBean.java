@@ -14,7 +14,7 @@ import org.primefaces.context.RequestContext;
 
 import clienteutility.ClienteUtility;
 
-import com.core.data.entites.PedidoDeAyuda;
+
 import com.core.service.negocio.remote.PedidoDeAyudaEBR;
 import com.core.service.negocio.remote.RescatistaEBR;
 

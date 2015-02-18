@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.Filter;
@@ -157,14 +158,17 @@ public class filtroUrl implements Filter , Serializable {
 			    return;
 			  }
 			  
-			  //	String index="http://localhost:8080/proyecto-webusuario/index.xhtml" ;	
-			/*	if(urlStr.compareTo(index)==0) 
-				{
-					 res.sendRedirect(req.getContextPath() + "/Index.xhtml");
-					
-				}
-				*/
-				Catastrofe existeURL = existeCatastrofeURL(urlStr);
+			 
+			  Catastrofe existeURL = null;
+				
+					 existeURL = existeCatastrofeURL(urlStr);
+			
+				
+			  
+			  
+				
+				
+				
 				
 				 //si no es null obtengo los datos de la catastrofe y los guardo en variables
 				if (existeURL != null)  {
@@ -278,6 +282,40 @@ public class filtroUrl implements Filter , Serializable {
 			}
 			
 			
+			
+		} catch (Exception e) {
+			// 
+			e.printStackTrace();
+		}
+		
+				  
+		  return catastrofe;
+		}
+	
+	private Catastrofe BuscarCatastrofeURL(Long id) {
+
+		
+		CatastrofeEBR manager = null;		
+		Context context = null;
+		Catastrofe catastrofe = null;		
+		 
+		
+		try {
+            // 1. Obtaining Context
+            context = ClienteUtility.getInitialContext();
+            // 2. Generate JNDI Lookup name
+            //String lookupName = getLookupName();
+            // 3. Lookup and cast
+            manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+ 
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }				    			
+		
+		try {
+			
+			catastrofe= manager.buscaCatastrofePorId(id);
+				
 			
 		} catch (Exception e) {
 			// 
