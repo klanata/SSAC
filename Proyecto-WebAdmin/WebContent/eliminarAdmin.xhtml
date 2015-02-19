@@ -21,7 +21,7 @@
 		<h:form id="eliminarAdministrador" columns="2" columnClasses="label, value" style="width:570px;border: 0;">
 						
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h3>Eliminar Administrador</h3>
+			<h3>Baja Administrador</h3>
 			
 				<table border="0" cellspacing="0" style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
 				
@@ -107,7 +107,7 @@
 				</table>																				
 																					 																																																					
 				<p:outputPanel style="text-align: left">
-			 		<p:commandButton value="Eliminar" update="eliminarAdministrador:growl"  type="submit"  action="#{eliminarAdmBean.eliminar()}"/>         
+			 		<p:commandButton value="Confirmar" update="eliminarAdministrador:growl"  type="submit"  action="#{eliminarAdmBean.eliminar()}"/>         
 	            	<p:commandButton value="Cancelar" update="eliminarAdministrador:growl"  type="submit"  action="#{eliminarAdmBean.cancelar()}" />
 	         	</p:outputPanel>																			
 			
