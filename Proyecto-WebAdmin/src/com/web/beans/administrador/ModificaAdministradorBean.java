@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -16,7 +18,6 @@ import javax.naming.NamingException;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Administrador;
-
 import com.core.service.negocio.remote.AdministradorEBR;
 
 
@@ -94,13 +95,12 @@ public class ModificaAdministradorBean implements Serializable {
 				String sexo = a.getSexo() ;
 				String celular = a.getCelular();
 				
-				administradorBean = new AdministradorBean(idAdministrador, nombre, apellido, nick, email, password, fechaNac, sexo, celular);
-				 
-				  System.out.println("obtengo administrador ");      	
-		     
-		     }
+				//System.out.println("obtengo administrador " + password);
 				
-			
+				administradorBean = new AdministradorBean(idAdministrador, nombre, apellido, nick, email, password, fechaNac, sexo, celular);				 
+				//System.out.println("obtengo administrador ");      			     
+		     }
+							
     	}catch (Exception excep){
     		System.out.println("Excepci�n al listar los administradores: " + excep.getMessage());      		 			       	           	
     	}  					
@@ -113,6 +113,8 @@ public class ModificaAdministradorBean implements Serializable {
 		AdministradorEBR manager = null;		
 		
 		Context context = null;
+		
+		FacesMessage message = null;
 		 
 		try {
             // 1. Obtaining Context
@@ -144,7 +146,15 @@ public class ModificaAdministradorBean implements Serializable {
 			String sexo = administradorBean.getSexo() ;
 			String celular = administradorBean.getCelular();
 		
-			manager.modificarAdministrador(nick, nombre, apellido, email, password, fechaNac, sexo, celular);			
+			manager.modificarAdministrador(nick, nombre, apellido, email, password, fechaNac, sexo, celular);
+			
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación Exitosa", "El administrador fue modificado de forma exitosa.");
+			//FacesContext.getCurrentInstance().addMessage(null, message);
+			
+			FacesContext contexto = FacesContext.getCurrentInstance();		    						    				
+			contexto.getExternalContext().getFlash().setKeepMessages(true);
+			
+			contexto.addMessage(null, message);
 
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listarAdministradores?faces-redirect=true");
@@ -152,7 +162,7 @@ public class ModificaAdministradorBean implements Serializable {
 	
 	}
 	
-	public void cancelar(){
+	public void cancelar(){		
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("listarAdministradores?faces-redirect=true");			
 	}

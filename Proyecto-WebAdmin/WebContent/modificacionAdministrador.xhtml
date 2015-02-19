@@ -113,7 +113,8 @@
 				</table>																																																			        		        	
         		
         	<p:outputPanel style="text-align: left">
-				<p:commandButton id="Editar" update="registroAdministrador:growl"  type="submit" value="Confirmar" action="#{modificarAdminBean.editar()}" />				
+				<p:commandButton id="Editar" update="registroAdministrador:growl"  type="submit" value="Confirmar" action="#{modificarAdminBean.editar()}" />
+				<p:commandButton value="Cancelar" update="registroAdministrador:growl"  action="#{modificarAdminBean.cancelar()}" immediate="true"/>
 	         </p:outputPanel>
 			
 		</h:form>

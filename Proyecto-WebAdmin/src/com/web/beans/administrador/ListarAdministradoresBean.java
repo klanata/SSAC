@@ -97,13 +97,8 @@ public class ListarAdministradoresBean implements Serializable {
 				  celular = a.getCelular();
 				  administradoresBean.add(i, new AdministradorBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular));
 				  i++;
-				  System.out.println("obtengo administradores: " + i);      	
-		     
-		     }
-			
-		
-													    		
-			
+				  //System.out.println("obtengo administradores: " + i);      			     
+		     }																		    		
 			
     	}catch (Exception excep){
     		System.out.println("Excepci�n al listar los administradores: " + excep.getMessage());      		 			       	           	
@@ -158,14 +153,13 @@ public class ListarAdministradoresBean implements Serializable {
 		
 		///Obtenego el string con el id del objeto
 		Long id = ((AdministradorBean) event.getObject()).getId();
-		System.out.println("id del Administrador seleccionada: " + id);
+		//System.out.println("id del Administrador seleccionada: " + id);
 		//Pasarlo a string cuando lo mandemos por sesion
 		String idEvento = id.toString();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoAdministrador", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("modificacionAdministrador?faces-redirect=true");						 														
-
 		            
     }
 	
