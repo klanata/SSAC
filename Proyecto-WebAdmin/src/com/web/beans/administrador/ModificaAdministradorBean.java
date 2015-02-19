@@ -144,14 +144,18 @@ public class ModificaAdministradorBean implements Serializable {
 			String sexo = administradorBean.getSexo() ;
 			String celular = administradorBean.getCelular();
 		
-			manager.modificarAdministrador(nick, nombre, apellido, email, password, fechaNac, sexo, celular);
-			
-
+			manager.modificarAdministrador(nick, nombre, apellido, email, password, fechaNac, sexo, celular);			
 
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listarAdministradores?faces-redirect=true");
 		}
 	
 	}
+	
+	public void cancelar(){
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("listarAdministradores?faces-redirect=true");			
+	}
+	
 	/*-------------------------------------------------------------------------------------------------------*/
 }
