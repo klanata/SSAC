@@ -1,18 +1,13 @@
 package com.web.beans.administrador;
 
 import java.io.Serializable;
-
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpSession;
@@ -24,7 +19,7 @@ import clienteutility.ClienteUtility;
 import com.core.service.negocio.remote.AdministradorEBR;
 
 @ManagedBean(name="administradorBean")
-@RequestScoped
+@SessionScoped
 public class AdministradorBean implements Serializable{
 
 
@@ -144,24 +139,27 @@ public class AdministradorBean implements Serializable{
         }				
     	
     	try{    	
-    		RequestContext requestContext = RequestContext.getCurrentInstance();
+    		//RequestContext requestContext = RequestContext.getCurrentInstance();
             
-            requestContext.update("form:display");
-            requestContext.execute("PF('dlg').show()");
+            //requestContext.update("form:display");
+            //requestContext.execute("PF('dlg').show()");
     		
             //controlamos que el correo tenga un @
             
             
             
             
-    		Long id= manager.crearAdministrador(nombre, nick, apellido, email, password, fechaNac, sexo, celular);
-    		if (id.equals(0)){
+    		Long id= manager.crearAdministrador(nombre, nick, apellido, email, password, fechaNac, sexo, celular);    		
+    		
+    		if (id == 0){    			    			    			
+    			//FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        //FacesMessage messages = new FacesMessage("Ya existe un Administrador con el mismo nick registrada en el sistema."); 
+    	        //contexto.addMessage("registroAdministrador", messages);
+    			FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un Administrador con el mismo nick registrada en el sistema.");    			
+    			FacesContext.getCurrentInstance().addMessage(null, messages);
     			
-    			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Ya existe un Administrador con el mismo nick registrada en el sistema."); 
-    	        contexto.addMessage("registroAdministrador", messages);
     	        
-    	        requestContext.addCallbackParam("view", "altaAdministrador.xhtml");
+    	        //requestContext.addCallbackParam("view", "altaAdministrador.xhtml");
     		}
     		else {    	
     			
@@ -171,14 +169,20 @@ public class AdministradorBean implements Serializable{
         		this.nick = "";
         		this.celular = "";
         		this.email = "";
+        		this.fechaNac = null;
         		this.password = "";
         		this.sexo= "";
         		this.urlLogueado ="http://localhost:8080/Proyecto-WebAdmin/index.xhtml";
     			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Administrador registrado con exito !!"); 
-    	        contexto.addMessage("registroAdministrador", messages);
+    	        //FacesMessage messages = new FacesMessage("Administrador registrado con exito !!"); 
+    			FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "El administrador fue ingresado al sistema.");
+    			    				    						    			
+    			contexto.getExternalContext().getFlash().setKeepMessages(true);
     			
+    	        contexto.addMessage(null, messages);
     			
+    	        ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+    			handler.performNavigation("listarAdministradores?faces-redirect=true");
         		
     		}
     		    		    		    		
@@ -234,7 +238,7 @@ public class AdministradorBean implements Serializable{
 	      logeado = false;
 	      
 	      msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
-	                             "Credenciales no válidas");
+	                             "Credenciales no vï¿½lidas");
 	    }
 
 	    FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -257,6 +261,7 @@ public class AdministradorBean implements Serializable{
 	 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 	 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	 /*
 	private String MD5(String input) {
 
 		String md5 = null;
@@ -281,6 +286,7 @@ public class AdministradorBean implements Serializable{
 
 		return md5;
 	}
+	*/
 
 	public AdministradorBean(){}
 	

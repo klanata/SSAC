@@ -33,7 +33,7 @@
 				<f:facet name="header">
 		            <p:outputPanel style="text-align: right">
 		                <h:outputText value="Buscar Administrador:  " />
-		                <p:inputText id="globalFilter"   onkeyup="PF('administrador2Table').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
+		                <p:inputText id="globalFilter"   onkeyup="PF('administradorTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
 		        </f:facet>    	
 		         <p:ajax event="rowSelect" listener="#{listaAdmBean.onRowSelect}" update=":formAdmin:msgs" />

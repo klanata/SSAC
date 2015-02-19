@@ -15,9 +15,8 @@
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
 <div class="wrapper col3">
-  <div id="intro2">  		
-    <div>
-  	
+  <div id="intro">  		
+    <div>  				    	    													
       <f:view>      
 		<h:form id="registroAdministrador" columns="2" columnClasses="label, value" style="width:570px;border: 0;">
 								
@@ -32,7 +31,7 @@
 						</td>				
 						
 						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
-							<p:inputText id="nick" label="evento" value="#{administradorBean.nick}" required="true" requiredMessage="El nick del Administrador es requerido" >	
+							<p:inputText id="nick" label="nick" value="#{administradorBean.nick}" required="true" requiredMessage="El nick del Administrador es requerido" >	
 							</p:inputText>																																																	
 						</td>					
 									
@@ -55,7 +54,7 @@
 						</td>		
 						
 						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
-							<p:inputText id="nombre" label="evento"  value="#{administradorBean.nombre}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
+							<p:inputText id="nombre" label="nombre"  value="#{administradorBean.nombre}" required="true" requiredMessage="El nombre del Administrador es requerido" >	
 							</p:inputText>																																																
 						</td>	
 						
@@ -93,11 +92,11 @@
 					
 					<tr>
 						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
-							<label for="email">Fecha de nacimiento </label>					
+							<label for="fechaNac">Fecha de nacimiento </label>					
 						</td>		
 						
 						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
-							<p:calendar id="fecha" value="#{administradorBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />																																																
+							<p:calendar id="fechaNac" value="#{administradorBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />																																																
 						</td>	
 						
 						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
@@ -114,11 +113,10 @@
 										
 				</table>																																																																																																																																																																																																																																																																																																											        						       		        					        		         		         
 		                 		
-			<p:commandButton id="comandoRegistrar" update="growl"  type="submit"  styleClass="formbutton" value="Registrar" action="#{administradorBean.registrarAdministrador()}">
+			<p:commandButton id="comandoRegistrar"  update="registroAdministrador:growl"  type="submit"  value="Registrar" action="#{administradorBean.registrarAdministrador()}">
 			</p:commandButton>		
 			
-		</h:form>
-		
+		</h:form>		
 	</f:view>			
     </div>   
     <br class="clear" />

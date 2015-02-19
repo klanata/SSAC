@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -102,9 +103,9 @@ public class EliminarAdministradoresBean implements Serializable {/**
 	/*---------------------------------------------------------------------------------------------------------*/
 	public void eliminar(){
 			
-		AdministradorEBR manager = null;		
-		
+		AdministradorEBR manager = null;				
 		Context context = null;
+		FacesMessage message = null; 
 		 
 		try {
             // 1. Obtaining Context
@@ -135,8 +136,14 @@ public class EliminarAdministradoresBean implements Serializable {/**
 			
 			manager.eliminarAdministrador(a.getNick());
 			
-
-
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Baja Exitosa", "El administrador fue dado de baja del sistema.");
+			//FacesContext.getCurrentInstance().addMessage(null, message);
+			
+			FacesContext contexto = FacesContext.getCurrentInstance();		    						    				
+			contexto.getExternalContext().getFlash().setKeepMessages(true);
+			
+			contexto.addMessage(null, message);
+						
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listarAdministradores_?faces-redirect=true");
 		}
@@ -144,12 +151,7 @@ public class EliminarAdministradoresBean implements Serializable {/**
 	}
 	/*----------------------------------------------------------------------------------------------------------------------------------*/
 	public void cancelar(){
-	
-
-
-			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listarAdministradores_?faces-redirect=true");
-		
-	
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("listarAdministradores_?faces-redirect=true");			
 	}
 }
