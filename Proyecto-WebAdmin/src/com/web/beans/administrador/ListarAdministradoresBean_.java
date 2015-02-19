@@ -160,8 +160,7 @@ public class ListarAdministradoresBean_ implements Serializable {
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("eliminarAdmin?faces-redirect=true");						 														
-
-		            
+		           
     }
 	
  

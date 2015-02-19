@@ -93,9 +93,7 @@ public class ModificaAdministradorBean implements Serializable {
 				String password = a.getPassword() ;
 				Date fechaNac = a.getFechaNac();
 				String sexo = a.getSexo() ;
-				String celular = a.getCelular();
-				
-				//System.out.println("obtengo administrador " + password);
+				String celular = a.getCelular();								
 				
 				administradorBean = new AdministradorBean(idAdministrador, nombre, apellido, nick, email, password, fechaNac, sexo, celular);				 
 				//System.out.println("obtengo administrador ");      			     
