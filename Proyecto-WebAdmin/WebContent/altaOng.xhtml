@@ -16,83 +16,94 @@
 <ui:include src="header.xhtml" /> 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Alta Ong</h2>
-      
+    <div>      
       <f:view>
-		<h:form id="registroOng" enctype="multipart/form-data">
-			<h:messages id="messages" for="registroOng"></h:messages>
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-		<h:panelGrid columns="1" cellpadding="2">		
+		<h:form id="registroOng" enctype="multipart/form-data" columns="2" columnClasses="label, value" style="width:650px;border: 0;">
 			
-				<p>
-				<label for="nombre">Nombre :</label>				
-					<p:inputText id="nombre" label="evento"  value="#{ongBean.nombre}" required="true" requiredMessage="El nombre de la ONG es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<h3>Alta Ong</h3>
+			
+				<table border="0" cellspacing="0" style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+				
+					<tr>					
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="nombre">Nombre   </label>				
+						</td>				
 						
-				<p>
-				<label for="direccion">Dirección :</label>				
-					<p:inputText id="direccion" label="evento" value="#{ongBean.direccion}" required="true" requiredMessage="La dirección de la ONG es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				<p>
-				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento"  value="#{ongBean.telefono}"  validatorMessage="Formato de Telefono invalido, debe contener números 0..9" >	
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="nombre" label="nombre" value="#{ongBean.nombre}" required="true" requiredMessage="El nombre de la ONG es requerido" >	
+							</p:inputText>																																																	
+						</td>					
+									
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">					
+							<label for="dirección">Dirección </label>
+						</td>		
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+							<p:inputText id="direccion" label="evento" value="#{ongBean.direccion}" required="true" requiredMessage="La dirección de la ONG es requerido" >	
+							</p:inputText>						
+						</td>					
+					</tr>
 					
-					 <f:validateRegex pattern="[0-9]*" />	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				<p>
-				<label for="email">Email :</label>				
-					<p:inputText id="email" label="evento" value="#{ongBean.email}"  	
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="telefono">Teléfono </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="telefono" label="evento"  value="#{ongBean.telefono}"  validatorMessage="Formato de feléfono inválido, debe contener números 0..9" >						
+								<f:validateRegex pattern="[0-9]*" />	
+							</p:inputText>																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="email">Email </label>				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="email" label="evento" value="#{ongBean.telefono}" validatorMessage="Formato de correo inválido. Debe ingresar ej: admin@dominio.com"  >	
+								<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />				
+							</p:inputText>																																																		
+						</td>					
+					</tr>
 					
-					validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com"  >
-						<f:validateRegex
-								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-					</p:inputText>																																									
-				</p>
-				<br/>
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="email">Logo </label>				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:inputFile id="Imagen" label="Imagen" value="#{ongBean.auxPart}" required="true" requiredMessage="El logo es obligatorio" >			
+							</h:inputFile>																																																		
+						</td>	
+					
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="sitioWeb">Sitio Web </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="sitioWeb" label="sitioWeb" value="#{ongBean.citioWeb}" >													 	
+							</p:inputText>																																																
+						</td>																
+					</tr>
 				
-				<p>
-				<label for="citioweb">Sitio Web :</label>				
-					<p:inputText id="citioweb"  label="evento" value="#{ongBean.citioWeb}"  >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				<label for="imagen">Logo:</label>					
-																									
-						<h:inputFile id="Imagen" label="Imagen" value="#{ongBean.auxPart}" required="true" requiredMessage="El logo es obligatorio" >			
-						</h:inputFile>
-				 </h:panelGrid>
-				<h4>Descripción:</h4>	
-					<h:panelGrid columns="2" border="0">																																		
-					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{ongBean.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
-				
-				
-				
-				</h:panelGrid>	
-																			
-				
-			 <p:commandButton id="submit" update="growl" ajax="false" style="margin-left: 400px;"
-		                 action="#{ongBean.registrarOng}"
-			             value="Registrar" />	
+				</table>
+
+			<label for="nombreDescripcion">Descripción </label>	
+			<br class="clear" />																																
+			<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{ongBean.descripcion}" required="true" requiredMessage="La descripción es obligatoria"/>								 					
+												
+			<br class="clear" />
+			<br class="clear" />																																		
+			<p:commandButton id="submit" update="registroOng:growl" ajax="false" action="#{ongBean.registrarOng}" value="Registrar" />	
 		
 		</h:form>
-		</f:view>
-    </div>
-    
+	</f:view>
+    </div>    
     <br class="clear" />
   </div>
 </div>
-
-
-
+<br class="clear" />
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
@@ -100,8 +111,7 @@
     <br class="clear" />
   </div>
 </div>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {
@@ -109,7 +119,7 @@
 	    }, 500);
 	  }
 	//]]>
-	</script>
+</script>
 </h:body>
 </html>
 

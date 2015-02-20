@@ -25,9 +25,7 @@ import com.web.beans.InputBean;
 public class OngBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;	
-	
-	
-	
+		
 	private String nombre = "";
 	private String direccion = "";
 	private String telefono = "";
@@ -37,9 +35,7 @@ public class OngBean implements Serializable{
 	private Long id;
 	private String imagen = "";
 	private Part auxPart;	
-	
-	
-	
+		
 	
 	public Part getAuxPart() {
 		return auxPart;
@@ -164,8 +160,7 @@ public class OngBean implements Serializable{
     	        FacesMessage messages = new FacesMessage("Ya existe una ONG con el mismo nombre registrada en el sistema."); 
     	        contexto.addMessage("registroOng", messages);
     		}
-    		else {    	
-    			
+    		else {    	    			
     			
     			this.nombre = "";   		
         		this.descripcion = "";
@@ -175,8 +170,7 @@ public class OngBean implements Serializable{
         		this.direccion = "";
     			FacesContext contexto = FacesContext.getCurrentInstance(); 
     	        FacesMessage messages = new FacesMessage("Ong registrada con exito !!"); 
-    	        contexto.addMessage("registroOng", messages);
-    			
+    	        contexto.addMessage("registroOng", messages);    			
         		
     		}
     		    		    		    		
@@ -210,6 +204,7 @@ public class OngBean implements Serializable{
 		
 		return lista;
 	}
+	
 	////////////////////////////////////////////////////////////////
 	//Constructores
 	public OngBean(){}
