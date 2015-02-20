@@ -3,16 +3,14 @@ package com.web.beans.ong;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.http.Part;
-
-import org.primefaces.context.RequestContext;
 
 import clienteutility.ClienteUtility;
 
@@ -146,19 +144,23 @@ public class OngBean implements Serializable{
         }				
     	
     	try{    	
-    		RequestContext requestContext = RequestContext.getCurrentInstance();
+    		//RequestContext requestContext = RequestContext.getCurrentInstance();
             
-            requestContext.update("form:display");
-            requestContext.execute("PF('dlg').show()");
+            //requestContext.update("form:display");
+            //requestContext.execute("PF('dlg').show()");
             
             InputBean inputBean = new InputBean();
     		String imagen= inputBean.uploadFile(this.auxPart); 
     		Long id= manager.ingesarOng(nombre, direccion, descripcion, email, telefono, citioWeb, imagen);
-    		if (id.equals(0)){
+    		
+    		if (id == 0){
     			
-    			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Ya existe una ONG con el mismo nombre registrada en el sistema."); 
-    	        contexto.addMessage("registroOng", messages);
+    			//FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        //FacesMessage messages = new FacesMessage("Ya existe una ONG con el mismo nombre registrada en el sistema."); 
+    	        //contexto.addMessage("registroOng", messages);
+    			
+    			FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un ONG con el mismo nombre registrada en el sistema.");    			
+    			FacesContext.getCurrentInstance().addMessage(null, messages);
     		}
     		else {    	    			
     			
@@ -168,9 +170,19 @@ public class OngBean implements Serializable{
         		this.telefono = "";
         		this.email = "";
         		this.direccion = "";
-    			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        FacesMessage messages = new FacesMessage("Ong registrada con exito !!"); 
-    	        contexto.addMessage("registroOng", messages);    			
+    			//FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        //FacesMessage messages = new FacesMessage("Ong registrada con exito !!"); 
+    	        //contexto.addMessage("registroOng", messages);   
+        		
+        		FacesContext contexto = FacesContext.getCurrentInstance(); 
+    	        //FacesMessage messages = new FacesMessage("Administrador registrado con exito !!"); 
+    			FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La ONG fue registrada al sistema.");
+    			    				    						    			
+    			contexto.getExternalContext().getFlash().setKeepMessages(true);    			
+    	        contexto.addMessage(null, messages);
+    			
+    	        ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+    			handler.performNavigation("listarOng?faces-redirect=true");        		
         		
     		}
     		    		    		    		
