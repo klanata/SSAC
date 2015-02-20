@@ -66,9 +66,7 @@ public class EliminarAdministradoresBean implements Serializable {/**
     			handler.performNavigation("listarAdministrador?faces-redirect=true");
     		}
     		else	
-    		{
-			
-    			
+    		{		    		
     			//busco al administrador con es id
     			Long idAdministrador = new Long(idEventoString);
 				
@@ -88,7 +86,7 @@ public class EliminarAdministradoresBean implements Serializable {/**
 				
 				administradorBean = new AdministradorBean(idAdministrador, nombre, apellido, nick, email, password, fechaNac, sexo, celular);
 				 
-				  System.out.println("obtengo administrador ");      	
+				//System.out.println("obtengo administrador ");      	
 		     
 		     }
 				

@@ -1,11 +1,11 @@
 package com.web.beans.rescatista;
 
 import java.io.Serializable;
-
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -14,8 +14,8 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
-import com.core.data.entites.Rescatista;
 
+import com.core.data.entites.Rescatista;
 import com.core.service.negocio.remote.RescatistaEBR;
 
 
@@ -47,8 +47,7 @@ public class ModificaRescatistaBean implements Serializable {
 	@PostConstruct
     public void init() {
     	
-		RescatistaEBR manager = null;		
-		
+		RescatistaEBR manager = null;				
 		Context context = null;
 		 
 		try {
@@ -61,8 +60,7 @@ public class ModificaRescatistaBean implements Serializable {
  
         } catch (NamingException e) {
             e.printStackTrace();
-        }				
-    	
+        }				    	
  					
 		try{			
 			
@@ -74,9 +72,7 @@ public class ModificaRescatistaBean implements Serializable {
     			handler.performNavigation("listarRescatistas?faces-redirect=true");
     		}
     		else	
-    		{
-			
-    			
+    		{			    			
     			//busco al administrador con es id
     			Long idAdministrador = new Long(idEventoString);
 				
@@ -95,25 +91,21 @@ public class ModificaRescatistaBean implements Serializable {
 				String celular = a.getCelular();
 				String imagen = a.getImagen();
 				
-				rescatistaBean = new RescatistaBean(idAdministrador, nombre, apellido, nick, email, password, fechaNac, sexo, celular,imagen);
-				 
-				 	
+				rescatistaBean = new RescatistaBean(idAdministrador, nombre, apellido, nick, email, password, fechaNac, sexo, celular,imagen);				 				 	
 		     
-		     }
-				
-			
+		     }            
+            
     	}catch (Exception excep){
     		System.out.println("Excepcion obtener rescatista: " + excep.getMessage());      		 			       	           	
     	}  					
-		
-		
+				
     }    
 	/*---------------------------------------------------------------------------------------------------------*/
 	public void editar(){
 			
-		RescatistaEBR manager = null;		
-		
+		RescatistaEBR manager = null;				
 		Context context = null;
+		FacesMessage message = null;
 		 
 		try {
             // 1. Obtaining Context
@@ -129,8 +121,7 @@ public class ModificaRescatistaBean implements Serializable {
 					
 		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoRescatista");
 		if ((idEventoString == null) || (idEventoString == ""))
-		{	
-						
+		{						
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listarRescatistas?faces-redirect=true");
 		}
@@ -147,12 +138,25 @@ public class ModificaRescatistaBean implements Serializable {
 			String imagen = "tomarla";
 			manager.modificarRescatista(nombre, nick, apellido, email, password, fechaNac, sexo, celular, imagen);
 			
-
-
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Modificación Exitosa", "El rescatista fue modificado de forma exitosa.");
+			//FacesContext.getCurrentInstance().addMessage(null, message);
+			
+			FacesContext contexto = FacesContext.getCurrentInstance();		    						    				
+			contexto.getExternalContext().getFlash().setKeepMessages(true);
+			
+			contexto.addMessage(null, message);
+		
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listarRescatistas?faces-redirect=true");
 		}
 	
 	}
+	
+	public void cancelar(){		
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("listarRescatistas?faces-redirect=true");			
+	}
+	
+	
 	/*-------------------------------------------------------------------------------------------------------*/
 }

@@ -16,62 +16,108 @@
 <ui:include src="header.xhtml" /> 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left4">
-      <h2>Eliminar Rescatista</h2>
-      <br/>	
-      
-      
-		<h:form id="eliminarRescatista" >
+    <div>
+            	        
+		<h:form id="eliminarRescatista" columns="2" columnClasses="label, value" style="width:570px;border: 0;">
 						
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid columns="1" cellpadding="3">	
-				<p>
-					<p:outputLabel> Nick : #{eliminarRescatista.rescatistaBean.nick} </p:outputLabel>	
-																																													
-				</p>
-				<br/>
-				
-				<p>
-				
-					<p:outputLabel> Nombre: #{eliminarRescatista.rescatistaBean.nombre} </p:outputLabel>	
-																																										
-				</p>
-				<br/>
-						
-				<p>
-					<p:outputLabel> Apellido : #{eliminarRescatista.rescatistaBean.apellido} </p:outputLabel>	
-																																					
-				</p>
-				<br/>
-				
-								
-				<p>
-				<p:outputLabel> Email: #{eliminarRescatista.rescatistaBean.email} </p:outputLabel>
-					  
-																																													
-				</p>
-				<br/>
-				<p:outputPanel style="text-align: left">
-			 		<p:commandButton value="Eliminar" update="growl"  type="submit"     action="#{eliminarRescatista.eliminar()}"/>         
-	            	<p:commandButton value="Cancelar" update="growl"  type="submit"  action="#{eliminarRescatista.cancelar()}" />
-	         	</p:outputPanel>								
-				
-				
+			<h3>Baja Rescatista</h3>
 			
-			</h:panelGrid>
+				<table border="0" cellspacing="0" style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+				
+					<tr>					
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="nick">Nick   </label>				
+						</td>				
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="nick" label="nick" value="#{eliminarAdmBean.administradorBean.nick} ">	
+							</h:outputText>																																																	
+						</td>					
+									
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">					
+							<label for="pass">Password </label>
+						</td>		
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+							<p:outputLabel id="pass" value="***********" >				 				 							
+						</p:outputLabel>	
+						
+						</td>					
+					</tr>
+				
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="nombre">Nombre </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="nombre" label="nombre"  value="#{eliminarRescatista.rescatistaBean.nombre}" >	
+							</h:outputText>																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="apellido">Apellido </label>					
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="apellido" label="apellido"  value="#{eliminarRescatista.rescatistaBean.apellido}">	
+							</h:outputText>																																																		
+						</td>					
+					</tr>
+					
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="telefono">Teléfono </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="telefono" label="telefono"  value="#{eliminarRescatista.rescatistaBean.celular}">													 	
+							</h:outputText>																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="email">Email </label>				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="email" label="email" value="#{eliminarRescatista.rescatistaBean.email}" >				
+							</h:outputText>																																																		
+						</td>					
+					</tr>
+					
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="fechaNac">Fecha de nacimiento </label>					
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="fechaNac" value="#{eliminarRescatista.rescatistaBean.fechaNac}" />																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="sexo">Sexo </label> 				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="sexo" value="#{eliminarRescatista.rescatistaBean.sexo}" />																																																
+						</td>					
+					</tr>
+								
+				</table>				
+																															
+				<p:outputPanel style="text-align: left">
+			 		<p:commandButton value="Confirmar" update="eliminarRescatista:growl"  type="submit"  action="#{eliminarRescatista.eliminar()}"/>         
+	            	<p:commandButton value="Cancelar" update="eliminarRescatista:growl"  type="submit"  action="#{eliminarRescatista.cancelar()}" />
+	         	</p:outputPanel>								
+												
 		</h:form>
-		
-		
-    </div>
-  
+				
+    </div>  
     <br class="clear" />
   </div>
 </div>
-
-	    <br class="clear" />
-
-
-
+<br class="clear" />
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
@@ -79,8 +125,7 @@
     <br class="clear" />
   </div>
 </div>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {
@@ -88,8 +133,8 @@
 	    }, 500);
 	  }
 	//]]>
-	</script>
-	</h:body>
+</script>
+</h:body>
 </html>
 
 

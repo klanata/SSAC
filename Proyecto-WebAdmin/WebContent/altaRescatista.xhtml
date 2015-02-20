@@ -9,120 +9,122 @@
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
-	<style>
-    *{ margin: 0; padding: 0; }
-    html, body, #map{
-        width: 100%;
-        height: 100%;
-    }
-    </style>
-  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
-    <script type="text/javascript" src="js/map.js"></script>    
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />		 
 </h:head> 
 
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Alta Rescatista</h2>
-      
+    <div>           
       <f:view>
-		<h:form id="registroRescatista" enctype="multipart/form-data"> 
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid columns="0" cellpadding="2">				
-			
-			
-				<p>
-				<label for="nick">Nick :</label>				
-					<p:inputText id="nick"  label="evento" value="#{rescatistaBean.nick}" required="true" requiredMessage="El nick del Rescatista es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				<p>
-				<label for="pass">Password :</label>	
-				<p:password id="pass" value="#{rescatistaBean.password}" feedback="true"  requiered = "true" requiredMessage="La contraseña es requerida" 
-				
-				validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">
-				 
-				 
-				 <f:validateRegex pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
-				
-				
-				</p:password>		
-																																														
-				</p>
-				<br/>
-				<p>
-				<label for="nombre">Nombre :</label>				
-					<p:inputText id="nombre" label="evento"  value="#{rescatistaBean.nombre}" required="true" requiredMessage="El nombre del Rescatista es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-						
-				<p>
-				<label for="apellido">Apellido :</label>				
-					<p:inputText id="apellido" label="evento" value="#{rescatistaBean.apellido}" required="true" requiredMessage="El apellido del Rescatista es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				<p>
-				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento"  value="#{rescatistaBean.celular}"  validatorMessage="Formato de Telefono invalido, debe contener números 0..9" >	
-					
-					 <f:validateRegex pattern="[0-9]*" />
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				<p>
-				<label for="email">Email :</label>				
-					<p:inputText id="email"  label="evento" value="#{rescatistaBean.email}"  validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com"  >		
-						<f:validateRegex
-								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-				
-					
-					</p:inputText>																																									
-				</p>
-				<p:outputLabel for="fecha" value="Fecha:" />
-        		<p:calendar id="fecha" value="#{rescatistaBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />
-				
-					<!-- label for="imagen">Imagen:</label>					
-																									
-						<h:inputFile id="Imagen" label="Imagen" value="#{rescatistaBean.auxPart}" required="true" requiredMessage="El logo es obligatorio" >			
-						</h:inputFile-->		
-				
-				</h:panelGrid>
-				
-					
-					
-				<p:outputLabel for="sexo" value="Sexo:" />
-		        <p:selectOneRadio id="sexo" value="#{rescatistaBean.sexo}">
-		            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
-		            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
-		         </p:selectOneRadio>
-		         
-		        <p:commandButton id="submit" style="margin-left: 400px;" ajax="false"
-		                 action="#{rescatistaBean.registrarRescatista}"
-			             value="Registrar" />
-                	
-			
-		        
-		         
-				
+		<h:form id="registroRescatista" enctype="multipart/form-data" columns="2" columnClasses="label, value" style="width:570px;border: 0;"> 
 		
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<h3>Alta Rescatista</h3>			
+			
+				<table border="0" cellspacing="0" style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+				
+					<tr>					
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="nick">Nick   </label>				
+						</td>				
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="nick" label="nick" value="#{rescatistaBean.nick}" required="true" requiredMessage="El nick del Rescatista es requerido" >	
+							</p:inputText>																																																	
+						</td>					
+									
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">					
+							<label for="pass">Password </label>
+						</td>		
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+							<p:password id="pass" value="#{rescatistaBean.password}" feedback="true"  requiered = "true" requiredMessage="La contraseña es requerida" 				 	
+								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">				 				 
+								<f:validateRegex pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
+							</p:password>							
+						</td>					
+					</tr>
+				
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="nombre">Nombre </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="nombre" label="nombre"  value="#{rescatistaBean.nombre}" required="true" requiredMessage="El nombre del Rescatista es requerido"  >	
+							</p:inputText>																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="apellido">Apellido </label>					
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="apellido" label="apellido"  value="#{rescatistaBean.apellido}" required="true" requiredMessage="El apellido del Rescatista es requerido" >	
+							</p:inputText>																																																		
+						</td>					
+					</tr>
+					
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="telefono">Teléfono </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="telefono" label="telefono"  value="#{rescatistaBean.celular}" validatorMessage="Formato de teléfono inválido, debe contener números 0..9" >						
+							 	<f:validateRegex pattern="[0-9]*" />
+							</p:inputText>																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="email">Email </label>				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="email" label="email" value="#{rescatistaBean.email}" validatorMessage="Formato de correo inválido. Debe ingresar ej: admin@dominio.com"  >	
+								<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />				
+							</p:inputText>																																																		
+						</td>					
+					</tr>
+					
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="fechaNac">Fecha de nacimiento </label>					
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:calendar id="fechaNac" value="#{rescatistaBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="sexo">Sexo </label> 				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:selectOneRadio id="sexo" value="#{rescatistaBean.sexo}" style="width:200px;border: 0;">		        	
+					            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+					            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />		            
+					         </p:selectOneRadio>																																																		
+						</td>					
+					</tr>
+				
+				</table>
+				
+			<p:commandButton id="submit" update="registroRescatista:growl" ajax="false" value="Confirmar" action="#{rescatistaBean.registrarRescatista}"  />
+																																																																																												
+			<!-- label for="imagen">Imagen:</label>																													
+				<h:inputFile id="Imagen" label="Imagen" value="#{rescatistaBean.auxPart}" required="true" requiredMessage="El logo es obligatorio" >			
+				</h:inputFile-->		
+																												      		                    						        		         		
 		</h:form>
-		</f:view>
-    </div>
-    
+	</f:view>
+    </div>    
     <br class="clear" />
   </div>
 </div>
-
-
+<br class="clear" />
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
@@ -130,8 +132,7 @@
     <br class="clear" />
   </div>
 </div>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {
@@ -139,8 +140,8 @@
 	    }, 500);
 	  }
 	//]]>
-	</script>
-	</h:body> 
+</script>
+</h:body> 
 </html>
 
 

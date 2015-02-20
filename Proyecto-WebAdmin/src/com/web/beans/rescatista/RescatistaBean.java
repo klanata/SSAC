@@ -3,25 +3,17 @@ package com.web.beans.rescatista;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.http.Part;
 
-
-
-
-
-import org.primefaces.context.RequestContext;
-
 import clienteutility.ClienteUtility;
-
 import com.core.service.negocio.remote.RescatistaEBR;
-import com.web.beans.InputBean;
 
 @ManagedBean(name="rescatistaBean")
 @RequestScoped
@@ -44,9 +36,6 @@ public class RescatistaBean implements Serializable {
 	private String celular = "";
 	private String imagen="";
 	private Part auxPart;	
-	
-	
-	
 	
 	
 	
@@ -118,8 +107,7 @@ public class RescatistaBean implements Serializable {
 	}
 	public void registrarRescatista(){				
 		
-		RescatistaEBR manager = null;		
-		FacesMessage message = null; 
+		RescatistaEBR manager = null;				
 		Context context = null;
 		 
 		try {
@@ -135,10 +123,10 @@ public class RescatistaBean implements Serializable {
         }				
     	
     	try{    	
-    		RequestContext requestContext = RequestContext.getCurrentInstance();
+    		//RequestContext requestContext = RequestContext.getCurrentInstance();
            
-            requestContext.update("form:display");
-            requestContext.execute("PF('dlg').show()");
+            //requestContext.update("form:display");
+            //requestContext.execute("PF('dlg').show()");
             
             
             //InputBean inputBean = new InputBean();
@@ -147,11 +135,13 @@ public class RescatistaBean implements Serializable {
             String imagen= "";
             
     		Long id= manager.crearRescatista(nombre, nick, apellido, email, password, fechaNac, sexo, celular,imagen);
-    		if (id.equals(0)){
+    		if (id==0){
     			
-    		//	FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	     message = new FacesMessage("Ya existe una Rescatista con el mismo nick registrada en el sistema."); 
-    	       // contexto.addMessage("registroRescatista", message);
+    			//FacesContext contexto = FacesContext.getCurrentInstance(); 
+    			//message = new FacesMessage("Ya existe una Rescatista con el mismo nick registrada en el sistema."); 
+    			//contexto.addMessage("registroRescatista", message);
+    			FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un Rescatista con el mismo nick registrada en el sistema.");    			
+    			FacesContext.getCurrentInstance().addMessage(null, messages);
     	        
     		}
     		else {    	
@@ -163,21 +153,29 @@ public class RescatistaBean implements Serializable {
         		this.email = "";
         		this.password = "";
         		this.sexo= "";
-        		this.auxPart = null;
+        		this.auxPart = null;        		        		
         		
-    			FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	       message = new FacesMessage("Rescatista registrado con exito !!"); 
-    	        contexto.addMessage("registroRescatista", message);
-    			
-    	       // FacesContext.getCurrentInstance().addMessage(null, messages); 
+    			//FacesContext contexto = FacesContext.getCurrentInstance(); 
+    			//message = new FacesMessage("Rescatista registrado con exito !!"); 
+    	        //contexto.addMessage("registroRescatista", message);
+        		//FacesContext.getCurrentInstance().addMessage(null, messages); 
+    	        
+    	        FacesContext contexto = FacesContext.getCurrentInstance();        		
+        		FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "El administrador fue ingresado al sistema.");    			
+        		
+    			contexto.getExternalContext().getFlash().setKeepMessages(true);    			
+    	        contexto.addMessage(null, messages);
+    	        
+    	        ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+    			handler.performNavigation("listarRescatistas?faces-redirect=true");
         		
     		}
-    		FacesContext.getCurrentInstance().addMessage(null, message);   		    		    		
+    		//FacesContext.getCurrentInstance().addMessage(null, message);   		    		    		
     		//return "success"; 
     		
     	}catch (Exception excep){
     		System.out.println("Excepcion en agregar rescatista: " + excep.getMessage());      		 			       
-	     //   return "failure"; 
+    		//return "failure"; 
     		
     	}    
 	}

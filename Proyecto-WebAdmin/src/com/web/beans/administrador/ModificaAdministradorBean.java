@@ -75,9 +75,7 @@ public class ModificaAdministradorBean implements Serializable {
     			handler.performNavigation("listarAdministrador?faces-redirect=true");
     		}
     		else	
-    		{
-			
-    			
+    		{			    			
     			//busco al administrador con es id
     			Long idAdministrador = new Long(idEventoString);
 				
@@ -108,10 +106,8 @@ public class ModificaAdministradorBean implements Serializable {
 	/*---------------------------------------------------------------------------------------------------------*/
 	public void editar(){
 			
-		AdministradorEBR manager = null;		
-		
-		Context context = null;
-		
+		AdministradorEBR manager = null;				
+		Context context = null;		
 		FacesMessage message = null;
 		 
 		try {

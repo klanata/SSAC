@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -13,6 +14,7 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
+
 import com.core.data.entites.Rescatista;
 import com.core.service.negocio.remote.RescatistaEBR;
 
@@ -64,9 +66,7 @@ public class EliminarRescatistaBean implements Serializable {/**
     			handler.performNavigation("listarAdministrador?faces-redirect=true");
     		}
     		else	
-    		{
-			
-    			
+    		{			    			
     			//busco al administrador con es id
     			Long id = new Long(idEventoString);
 				Rescatista a = new Rescatista();
@@ -86,10 +86,7 @@ public class EliminarRescatistaBean implements Serializable {/**
 				String imagen = a.getImagen();
 				
 				rescatistaBean = new RescatistaBean(id, nombre, apellido, nick, email, password, fechaNac, sexo, celular, imagen);
-				
-				 
-				   	
-		     
+								 				   			    
 		     }
 				
 			
@@ -103,9 +100,9 @@ public class EliminarRescatistaBean implements Serializable {/**
 	/*---------------------------------------------------------------------------------------------------------*/
 	public void eliminar(){
 			
-		RescatistaEBR manager = null;		
-		
+		RescatistaEBR manager = null;				
 		Context context = null;
+		FacesMessage message = null; 
 		 
 		try {
             // 1. Obtaining Context
@@ -139,7 +136,15 @@ public class EliminarRescatistaBean implements Serializable {/**
 			String nick = a.getNick();
 			eliminado= manager.eliminarRescatista(nick);
 			
-
+			if (eliminado) {
+				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Baja Exitosa", "El rescatista fue dado de baja del sistema.");
+				//FacesContext.getCurrentInstance().addMessage(null, message);
+				
+				FacesContext contexto = FacesContext.getCurrentInstance();		    						    				
+				contexto.getExternalContext().getFlash().setKeepMessages(true);
+				
+				contexto.addMessage(null, message);	
+			}										
 
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listarRescatistas_?faces-redirect=true");
@@ -148,12 +153,7 @@ public class EliminarRescatistaBean implements Serializable {/**
 	}
 	/*----------------------------------------------------------------------------------------------------------------------------------*/
 	public void cancelar(){
-	
-
-
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listarRescatistas_?faces-redirect=true");
-		
-	
+			handler.performNavigation("listarRescatistas_?faces-redirect=true");			
 	}
 }
