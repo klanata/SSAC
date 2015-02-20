@@ -18,7 +18,7 @@
   <div id="intro">
     
    <h1> <a href="graficas.xhtml"> Ver Grafica </a> </h1>
-    <br/>	
+    	
    <h3>Listar Donacion de Bienes</h3>
       
       <f:view>      	
@@ -29,7 +29,7 @@
       		
     		<p:dataTable id="listarOngDT2" var="deBienesBean" widgetVar="donacionBTable" value = "#{ReporteDonacion.listaDeBienes}"
                  		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{ReporteDonacion.filtroDeBienes}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 rowKey="#{deBienesBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
@@ -65,7 +65,7 @@
         
     <div id="intro">
     <h3>Listar Donacion de Servicios</h3>
-      <br/>	
+      
       <f:view>      	
       	
       	<h:form id="formdonacion2">      		
@@ -74,7 +74,7 @@
       		
     		<p:dataTable id="listarOngDT2" var="deBienesBean2" widgetVar="donacionBTable2" value = "#{ReporteDonacion.listaDeServicios}"
                  		 emptyMessage="No se han encontrado donaciones con ese criterio"  filteredValue="#{ReporteDonacion.filtroDeServicios}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 rowKey="#{deBienesBean2.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
@@ -108,11 +108,10 @@
       
       </f:view>         
     </div>
-    
-    
+        
     <div id="intro">
     <h3>Listar Donacion de Economica</h3>
-      <br/>	
+     
       <f:view>      	
       	
       	<h:form id="formdonacion3">      		
@@ -121,7 +120,7 @@
       		
     		<p:dataTable id="listarOngDT3" var="deBienesBean3" widgetVar="donacionBTable3" value = "#{ReporteDonacion.listaEconomica}"
                  		 emptyMessage="No se han encontrado donaciones con ese criterio"  filteredValue="#{ReporteDonacion.filtroEconomica}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 rowKey="#{deBienesBean3.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
@@ -131,15 +130,10 @@
 		                <p:inputText id="globalFilter"   onkeyup="PF('donacionBTable3').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
 		        </f:facet>    	
-		       
-		        
-        		         		                  		                  		             	
-        		
+		       		                		         		                  		                  		             	        		
         		<p:column headerText="Fecha Realizado" style="width:200px" filterBy="#{deBienesBean3.fechaRealizada}" filterMatchMode="contains" >
             		<h:outputText value="#{deBienesBean3.fechaRealizada}" />
-        		</p:column>
-        		
-        		
+        		</p:column>        		        		
         	    
         	      <p:column headerText="Ong" style="width:200px"   >
             		<h:outputText value="#{deBienesBean3.ong.nombre}" />

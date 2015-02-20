@@ -17,8 +17,7 @@
 <div class="wrapper col3">
   <div id="intro">
     <div>
-      <h3>Listar  Personas Desaparecidas</h3>
-      <br/>	
+      <h3>Listar  Personas Desaparecidas</h3>     
       <f:view>      	
       	
       	<h:form id="formPersonas">      		
@@ -27,7 +26,7 @@
       		
     		<p:dataTable id="personaDT" var="personasBean" widgetVar="personaTable2" value = "#{listarPersonasDesaparecidasBean.personasBean}"
                  		 emptyMessage="No se han encontrado personas desaparecidas con ese criterio"  filteredValue="#{listarPersonasDesaparecidasBean.filtroPersonasBean}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 selectionMode="single" selection="#{listarPersonasDesaparecidasBean.selectedPersonas}"  rowKey="#{personasBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
