@@ -123,19 +123,10 @@ public class ListarOngBean_ implements Serializable{
     	}catch (Exception excep){
     		System.out.println("Excepción al listar las ONGs: " + excep.getMessage());      		 			       	           	
     	}  	
-	}
-
+	}	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	public void onRowSelect(SelectEvent event) {
-		
+	public void onRowSelect(SelectEvent event) {		
 		///Obtenego el string con el id del objeto
 		Long id = ((OngBean) event.getObject()).getId();
 	
@@ -145,8 +136,7 @@ public class ListarOngBean_ implements Serializable{
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("bajaOng?faces-redirect=true");						 														
-
-		            
+		         
     }
 	
  

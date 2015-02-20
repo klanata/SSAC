@@ -129,19 +129,17 @@ public class ListarOngBean implements Serializable{
 				
      
 	
-	public void onRowSelect(SelectEvent event) {
-		
+	public void onRowSelect(SelectEvent event) {		
 		///Obtenego el string con el id del objeto
 		Long id = ((OngBean) event.getObject()).getId();
-		System.out.println("id del ong seleccionada: " + id);
+		//System.out.println("id del ong seleccionada: " + id);
 		//Pasarlo a string cuando lo mandemos por sesion
 		String idEvento = id.toString();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoOngEditar", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("modificacionOng?faces-redirect=true");						 														
-
-		            
+		          
     }
 	
  
