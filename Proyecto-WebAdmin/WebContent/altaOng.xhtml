@@ -91,10 +91,10 @@
 
 			<label for="nombreDescripcion">Descripción </label>	
 			<br class="clear" />																																
-			<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{ongBean.descripcion}" required="true" requiredMessage="La descripción es obligatoria"/>								 					
-												
+			<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="54" autoResize="false" value="#{ongBean.descripcion}" required="true" requiredMessage="La descripción es obligatoria"/>								 																
 			<br class="clear" />
-			<br class="clear" />																																		
+			<br class="clear" />
+																																					
 			<p:commandButton id="submit" update="registroOng:growl" ajax="false" action="#{ongBean.registrarOng}" value="Registrar" />	
 		
 		</h:form>

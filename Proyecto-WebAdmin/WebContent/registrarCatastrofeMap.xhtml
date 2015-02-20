@@ -189,19 +189,17 @@
 						<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBeanMap.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
 						</p:inputText>							
 					<br/>	
-					<br/>																																								
-															
-					<label for="nombreDescripcion">Descripción </label>	
-					<h:panelGrid columns="1" border="0">																																		
-						<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="58" autoResize="false" value="#{catastrofeBeanMap.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
-					</h:panelGrid>													
-							
-					<label for="logo">Logo </label>					
-					<h:panelGrid columns="1" border="0">																						
-						<h:inputFile id="logo" label="logo" value="#{catastrofeBeanMap.part}" required="true" requiredMessage="El logo es obligatorio" >			
-						</h:inputFile>					 					
-					</h:panelGrid>	
+					<br/>																																																												
 					
+					<label for="nombreDescripcion">Descripción </label>																																					
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="59" autoResize="false" value="#{catastrofeBeanMap.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 																
+					<br/>
+					<br/>												
+							
+					<label for="logo">Logo </label>																														
+					<h:inputFile id="logo" label="logo" value="#{catastrofeBeanMap.part}" required="true" requiredMessage="El logo es obligatorio" >			
+					</h:inputFile>					 										
+					<br/>
 					<br/>	
             		            		
 					<p:selectBooleanCheckbox value="#{catastrofeBeanMap.activa}"> 					
