@@ -46,6 +46,18 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 
 	public Rescatista() {
 		super();
+		this.nombre = new String();
+		this.apellido = new String();
+		this.nick = new String();
+		this.email = new String();
+		this.password  = new String();
+		this.fechaNac = new Date();
+		this.sexo = new String();		
+		this.imagen = new String();
+		this.celular = new String();
+		this.bajaLogica = false;
+		this.estadoRescatista = new HashSet<EstadoRescatista>();
+		
 	}
 	
 	@Id
@@ -79,6 +91,9 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 	
 	private boolean bajaLogica;
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	private Set<EstadoRescatista> estadoRescatista = new HashSet<EstadoRescatista>(0);
+	
 	
 	
 	public String getImagen() {
@@ -97,9 +112,6 @@ public class Rescatista  extends AbstractEntity implements Serializable {
 		this.bajaLogica = bajaLogica;
 	}
 	
-	
-	@OneToMany
-	private Set<EstadoRescatista> estadoRescatista = new HashSet<EstadoRescatista>(0);
 
 	public Long getId() {
 		return id;

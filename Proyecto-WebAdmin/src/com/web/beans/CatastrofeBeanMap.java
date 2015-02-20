@@ -2,7 +2,9 @@ package com.web.beans;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -17,6 +19,7 @@ import javax.annotation.PostConstruct;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Filtro;
 import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.entites.Ong;
@@ -232,33 +235,61 @@ public class CatastrofeBeanMap implements Serializable{
     		inputBean.borrarLogo(nombreLogo);
     		
     		String css = null;    		
-       		Long idCatastrofe= manager.ingresarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo,this.polygon);    	
-    		if (idCatastrofe == 0){
-    			//System.out.println("es repetido." + idCatastrofe);
-    			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
-    			FacesContext.getCurrentInstance().addMessage(null, message);
-    	        //FacesMessage messages = new FacesMessage("Ya existe un catastrofe con el mismo nombre de evento registrada en el sistema."); 
-    	        //contexto.addMessage("registroCatastrofe", messages);
-    		}
-    		else {    	
-    			this.nombreEvento = "";     			
-        		this.descripcion = "";
-        		this.part = null;        		
-        		this.activa = false;
-        		this.prioridad = false;
-        		this.polygon = "";
-    			//System.out.println("no es repetido." + idCatastrofe);
-    			//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La catástrofe fue ingresada al sistema.");
-    			//FacesContext.getCurrentInstance().addMessage(null, message);
-        		String idCatastrofeString = idCatastrofe.toString();
-        		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idCatastrofeString", idCatastrofeString);
-        		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("ABMCatastrofe", "Alta");
-        		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
-        		
-        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-        		handler.performNavigation("asignarImgCatastrofe?faces-redirect=true");
-        		
-    		}    		        		    		
+    		
+    		List<Catastrofe> res = new ArrayList<Catastrofe>();
+			res = manager.listaCatastrofes();    				
+			Catastrofe catastrofe;
+			String catastrofePoligono;
+			boolean existePoligono;
+			Long idCatastrofePoligono;
+	    	
+			idCatastrofePoligono = (long) 0;
+			existePoligono = false;
+			for (int i=0; i<=res.size()-1; i++){    		
+				catastrofe = res.get(i);				
+				catastrofePoligono = catastrofe.getPoligono();
+				if (catastrofePoligono.equals(polygon)){					
+					existePoligono = true;
+					idCatastrofePoligono = catastrofe.getId();
+				}								
+			}
+    		
+			if (existePoligono) {
+				Catastrofe c;
+				c = manager.buscaCatastrofePorId(idCatastrofePoligono);
+				String nombreC;
+				nombreC = c.getNombreEvento();
+				message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe en la misma zona. Para ingresar una nueva debe dar de baja la catástrofe " + nombreC);
+    			FacesContext.getCurrentInstance().addMessage(null, message);    
+			}
+			else {
+				Long idCatastrofe= manager.ingresarCatastrofe(this.nombreEvento, this.descripcion, logo, this.coordenadasX, this.coordenadasY, this.activa, this.prioridad, css, imagenes, filtros, ongs, planDeRiesgo,this.polygon);    	
+	    		if (idCatastrofe == 0){
+	    			//System.out.println("es repetido." + idCatastrofe);
+	    			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe un catástrofe con el mismo nombre de evento registrada en el sistema.");
+	    			FacesContext.getCurrentInstance().addMessage(null, message);    	        
+	    		}
+	    		else {    	
+	    			this.nombreEvento = "";     			
+	        		this.descripcion = "";
+	        		this.part = null;        		
+	        		this.activa = false;
+	        		this.prioridad = false;
+	        		this.polygon = "";
+	    			//System.out.println("no es repetido." + idCatastrofe);
+	    			//message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "La catástrofe fue ingresada al sistema.");
+	    			//FacesContext.getCurrentInstance().addMessage(null, message);
+	        		String idCatastrofeString = idCatastrofe.toString();
+	        		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idCatastrofeString", idCatastrofeString);
+	        		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("ABMCatastrofe", "Alta");
+	        		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("fileString", "");
+	        		
+	        		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+	        		handler.performNavigation("asignarImgCatastrofe?faces-redirect=true");	        		
+	    		} 
+	    		
+			}
+       		    		    		
     		//return "success"; 
     		
     	}catch (Exception excep){
