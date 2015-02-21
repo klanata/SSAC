@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -26,6 +27,7 @@ import clienteutility.ClienteUtility;
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.ImagenCatastrofe;
 import com.core.service.negocio.remote.CatastrofeEBR;
+
 
 @ManagedBean(name="imagesView")
 @RequestScoped
@@ -101,66 +103,6 @@ public class ImagesView implements Serializable{
 					prioridad = catastrofe.getPrioridad();  
 					css = null;
 					catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad,css);
-
-					/*
-					String poligono;
-					poligono = catastrofe.getPoligono();					
-					
-					int index = 0;
-					char fin = ']';
-					boolean esNegativo = false; 
-					char digChar;
-					double coordenada = 0;			
-					List<Double> list = new ArrayList<Double>();					
-					
-					do{
-						//Recorro hasta ":":
-						coordenada = 0;	
-						while(poligono.charAt(index) != ':'){
-							index ++;														
-						}
-						index ++;
-						if (poligono.charAt(index) == '-'){
-							esNegativo = true;							
-						}
-						else {
-							esNegativo = false;
-						}
-						index ++;
-						while(poligono.charAt(index) != '.'){
-							digChar = poligono.charAt(index);	
-							int dig = digChar - '0';
-							coordenada = coordenada*10 + dig;
-							index ++;																	
-						}	
-						index ++;
-						int cont = 1;
-						double digDespDeLaComa = 0;						
-						while((poligono.charAt(index) >= '0') && (poligono.charAt(index) <= '9')){
-							digChar = poligono.charAt(index);	
-							int dig = digChar - '0';
-							double acum;
-							double multi = 1;
-							for(int x = 1; x <= cont; x++) {
-								multi = 0.1 * multi;								
-							}
-							acum = dig * multi;
-							cont  ++;
-							index ++;
-							digDespDeLaComa = digDespDeLaComa + acum;							
-						}	
-						coordenada = coordenada + digDespDeLaComa;
-						if (esNegativo) {
-							coordenada = coordenada * (-1);
-						}		
-						
-						index ++;
-						list.add(coordenada);																
-						System.out.println("value of coordenada: " + coordenada);								
-						
-					}while( poligono.charAt(index) != fin );										
-					
-					*/
 										
 					List<Double> list = manager.ListarCoordenasCatastrofe(idCatastrofe);
 					
@@ -305,9 +247,54 @@ public class ImagesView implements Serializable{
  
 	//	------------------ Operaciones ---------------------
 
-	public void siguiente(){
-		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("vistaOngsCatastrofe?faces-redirect=true");			
+	public void siguiente(){	
+		
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
+		if ((idEventoString == null) || (idEventoString == ""))
+		{	
+			System.out.println("No existe la catástrofe. "); 			
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+		}
+		else	
+		{
+			Long idCatastrofe = new Long(idEventoString);
+			
+			CatastrofeEBR manager = null;				
+			Context context = null;			
+			FacesMessage message = null; 
+			
+			try {
+	            // 1. Obtaining Context
+	            context = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+	            manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }
+			
+			try{
+				Collection<ImagenCatastrofe> res = new ArrayList<ImagenCatastrofe>();
+				res = manager.listaImagenesDeCatastrofe(idCatastrofe);	
+				
+				if (res.size() == 0){
+					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe ingresar al menos una imagen de la catástrofe.");
+	    			FacesContext.getCurrentInstance().addMessage(null, message);					
+				}
+				else{
+					ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+					handler.performNavigation("vistaOngsCatastrofe?faces-redirect=true");					
+				}
+												
+			}catch (Exception excep){
+	    		System.out.println("Excepcion al listar los ImagesView: " + excep.getMessage());      		 			       
+		           		
+	    	}
+												
+		}
 	}
 	
 	public void asignarImagen(){
@@ -320,18 +307,13 @@ public class ImagesView implements Serializable{
 		handler.performNavigation("quitarImagenCatastrofe?faces-redirect=true");		
 	}
 	
-	public void cancelar(){
-		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
+	public void cancelar(){		
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("modificarCatastrofe?faces-redirect=true");		
 	}
-
-
-	
 	
 	public void onMarkerSelect(OverlaySelectEvent event) {
-        marker = (Marker) event.getOverlay();           
-        
+        marker = (Marker) event.getOverlay();                   
         //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Selected", marker.getTitle()));
     }
 

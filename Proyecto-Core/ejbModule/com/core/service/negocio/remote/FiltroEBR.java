@@ -23,7 +23,7 @@ public interface FiltroEBR {
 	public List<Filtro> listaFiltrosYoutube() throws Exception;
 	//Lista los filtros de Youtube
 	
-	public void asignarFiltroServicio(Long idFiltro,String fuente) throws Exception;
+	//public void asignarFiltroServicio(Long idFiltro,String fuente) throws Exception;
 		
 	public List<Filtro> listaFiltrosNoAsignadosAYoutube() throws Exception;
 	//Lista los filtros que no estan asignados a Youtube

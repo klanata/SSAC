@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.web.controller.home.LoginBean;
 
 /**
@@ -40,27 +41,27 @@ public class LoginFilter implements Filter {
 	
 		HttpServletRequest req = (HttpServletRequest) request;
 		  HttpServletResponse res = (HttpServletResponse) response;
-		   // Obtengo el bean que representa el usuario desde el scope sesión
+		   // Obtengo el bean que representa el usuario desde el scope sesiï¿½n
 		  LoginBean loginBean = (LoginBean) req.getSession().getAttribute("loginBean");
 		  
-		  //Proceso la URL que está requiriendo el cliente
+		  //Proceso la URL que estï¿½ requiriendo el cliente
 		  String urlStr = req.getRequestURL().toString().toLowerCase();
 		  boolean noProteger = noProteger(urlStr);
 		 
 		  
-		  //Si no requiere protección continúo normalmente.
+		  //Si no requiere protecciï¿½n continï¿½o normalmente.
 		  if (noProteger(urlStr)) {
 		    chain.doFilter(request, response);
 		    return;
 		  }
 		  
-		  //El usuario no está logueado
-		  if (loginBean == null || !loginBean.estaLogeado()) {
-		    res.sendRedirect(req.getContextPath() + "/home.xhtml");
-		    return;
+		  //El usuario no estï¿½ logueado
+		  if (loginBean == null || !loginBean.estaLogeado()) {				  
+			  res.sendRedirect(req.getContextPath() + "/home.xhtml");
+		   	  return;
 		  }
 		 
-		  //El recurso requiere protección, pero el usuario ya está logueado.
+		  //El recurso requiere protecciï¿½n, pero el usuario ya estï¿½ logueado.
 		  chain.doFilter(request, response);
 	}
 
@@ -69,12 +70,16 @@ public class LoginFilter implements Filter {
 		/*
 		 * Este es un buen lugar para colocar y programar todos los patrones que
 		 * creamos convenientes para determinar cuales de los recursos no
-		 * requieren protección. Sin duda que habría que crear un mecanizmo tal
-		 * que se obtengan de un archivo de configuración o algo que no requiera
-		 * compilación.
+		 * requieren protecciï¿½n. Sin duda que habrï¿½a que crear un mecanizmo tal
+		 * que se obtengan de un archivo de configuraciï¿½n o algo que no requiera
+		 * compilaciï¿½n.
 		 */
 		  if (urlStr.endsWith("home.xhtml"))
 		    return true;
+		  if (urlStr.endsWith("header.xhtml"))
+			    return true;
+		 
+		  
 		  if (urlStr.indexOf("/javax.faces.resource/") != -1)
 		    return true;
 		  return false;

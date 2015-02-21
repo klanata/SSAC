@@ -5,7 +5,9 @@ package com.core.service.negocio;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -68,7 +70,7 @@ public class RescatistaEB implements RescatistaEBR {
 				    	   EstadoRescatista e = it.next();
 				    	   Long idpedidoAyuda = e.getIdPedidoAyuda();
 				    	   PedidoDeAyuda pedido = dataService.find(PedidoDeAyuda.class,idpedidoAyuda);
-				    	   //obtengo la catastrofeç
+				    	   //obtengo la catastrofeï¿½
 				    	   PlanDeRiesgo p = pedido.getCatastrofe().getPlanDeRiesgo();
 				    	   
 				    	   //obtengo planDeRiesgo
@@ -114,7 +116,10 @@ public class RescatistaEB implements RescatistaEBR {
 		};
 		
 		try{
-		
+			
+			if (rescatista == null){
+				System.out.println("el rescatisata es nulo: " );
+			}
 			
 			//obtengo objeto catastrofe
 			PedidoDeAyuda pedidoGuardar = dataService.find(PedidoDeAyuda.class, pedido);
@@ -130,7 +135,7 @@ public class RescatistaEB implements RescatistaEBR {
 			dataService.create(estadoRescatista);
 			
 			//obtenemos la lista de pendientes del rescatista 
-			Collection<EstadoRescatista> listaEstado= rescatista.getEstadoRescatista();
+			Set<EstadoRescatista> listaEstado= rescatista.getEstadoRescatista();						
 			listaEstado.add(estadoRescatista);
 			dataService.update(rescatista);
 			

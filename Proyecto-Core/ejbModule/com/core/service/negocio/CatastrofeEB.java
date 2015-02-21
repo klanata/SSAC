@@ -533,6 +533,15 @@ public class CatastrofeEB implements CatastrofeEBR{
 		dataService.update(catastrofe);
 	}
 	
+	public void bajaFiltroServicioDeCatastrofe(Long idFiltroServicio) throws Exception{
+		try {						
+			FiltroServicio filtroServicio = filtroServicioDAO.buscarFiltroServicioPorId(idFiltroServicio);	
+			filtroServicio.setBajaLogica(true);		
+		}catch (Exception e) {			
+			e.printStackTrace();
+		}			
+	}
+	
 	
 	
 }

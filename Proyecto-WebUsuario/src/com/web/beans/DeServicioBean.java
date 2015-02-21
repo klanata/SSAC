@@ -203,9 +203,9 @@ public class DeServicioBean implements Serializable {
 			
 			RequestContext requestContext = RequestContext.getCurrentInstance();
             
-            requestContext.update("form:display");
+           requestContext.update("form:display");
             requestContext.execute("PF('dlg').show()");
-            
+           
 			Date fechaRealizada = new Date();
     		fechaRealizada.getTime();
     		/**fin **/

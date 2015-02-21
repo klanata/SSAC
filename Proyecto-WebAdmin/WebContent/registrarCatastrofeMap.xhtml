@@ -3,8 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      > 
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
@@ -15,21 +14,21 @@
       html, body, #map-canvas {
         height: 100%;
         margin: 0px;
-        padding: 0px
+        padding: 0px;        
+        box-shadow: 0px 0px 26px #888888;
       }
       #panelmapa {
         position: absolute;
         top: 15px;
-        left: 70%;
-        margin-top:400px;
+        left: 63%;
+        margin-top:200px;
         z-index: 5;
         background-color: #fff;
         padding: 5px;
         border: 1px solid #999;
       }
     </style>
-  	 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in;=true"></script>
-    
+  	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in;=true"></script>    
     <script type="text/javascript">
 		//<![CDATA[ 
 			var zona;
@@ -105,9 +104,7 @@
 						document.getElementById('registrarCatastrofe:lat').value = lat;
 							
 						document.getElementById('registrarCatastrofe:lng').value = lon;		
-
-							      				      				    
-
+							      				      				   
 				   // Define the LatLng coordinates for the polygon's path.
 					  var zonaCoords = [
 					    new google.maps.LatLng(lat, lon),
@@ -176,40 +173,33 @@
       <input type="button" value="Buscar" onclick="codeAddress()"/>
 </div>
 
-<div id="map-canvas" style="width:40%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
+<div id="map-canvas" style="width:470px;height:580px; float:right;margin-top:30px;margin-right: 120px;padding:0px 74px 0px 0px;">
 </div>
 
 <div class="wrapper col3">
-    <div id="intro3">
-    
-    <div>
-            
-      <f:view>
-            				
+    <div id="intro2">    
+    <div>            
+      <f:view>            			
     		<h:form id="registrarCatastrofe" enctype="multipart/form-data" columns="2" columnClasses="label, value" style="width:500px;border: 0;"> 
     		
-    			<p:growl id="messages" showDetail="true" />     			
-    		    			    			
+    			<p:growl id="messages" showDetail="true" />     			    		    			    			
     			<h3>Registrar Catástrofe</h3>  		    		
         		  	            		
 					<label for="nombreEvento">Nombre del Evento </label>				
 						<p:inputText id="nombreEvento" label="evento" value="#{catastrofeBeanMap.nombreEvento}" required="true" requiredMessage="El nombre del evento es obligatorio" >	
-						</p:inputText>	
-						
+						</p:inputText>							
 					<br/>	
-					<br/>																																								
-															
-					<label for="descripcion">Descripción </label>	
-					<h:panelGrid columns="2" border="0">																																		
-						<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="58" autoResize="false" value="#{catastrofeBeanMap.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 					
-					</h:panelGrid>													
-							
-					<label for="logo">Logo </label>					
-					<h:panelGrid columns="1" border="0">																						
-						<h:inputFile id="logo" label="logo" value="#{catastrofeBeanMap.part}" required="true" requiredMessage="El logo es obligatorio" >			
-						</h:inputFile>					 					
-					</h:panelGrid>	
+					<br/>																																																												
 					
+					<label for="nombreDescripcion">Descripción </label>																																					
+					<p:inputTextarea id="descripcion" label="descripcion" rows="5" cols="59" autoResize="false" value="#{catastrofeBeanMap.descripcion}" required="true" requiredMessage="La descripción del evento es obligatoria"/>								 																
+					<br/>
+					<br/>												
+							
+					<label for="logo">Logo </label>																														
+					<h:inputFile id="logo" label="logo" value="#{catastrofeBeanMap.part}" required="true" requiredMessage="El logo es obligatorio" >			
+					</h:inputFile>					 										
+					<br/>
 					<br/>	
             		            		
 					<p:selectBooleanCheckbox value="#{catastrofeBeanMap.activa}"> 					
@@ -234,13 +224,10 @@
 																                        		
                 	<p:commandButton value="Siguiente" ajax="false" update="registrarCatastrofe:messages" action="#{catastrofeBeanMap.registrarCatastrofe()}" />                		
             		          	            	            		            				 					         	        		          					         			            		        		        	        		     
-    		</h:form>
-    		    		    		    		    		
+    		</h:form>    		    		    		    		    	
 		</f:view>
-    </div> 
-    				    
-    <br class="clear" />
-    
+    </div>     				   
+    <br class="clear" />    
 	</div>	    		
 </div>
 
@@ -251,7 +238,7 @@
     <br class="clear" />
   </div>
 </div>
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {
@@ -259,6 +246,6 @@
 	    }, 500);
 	  }
 	//]]>
-	</script>
+</script>	
 </h:body> 
 </html>

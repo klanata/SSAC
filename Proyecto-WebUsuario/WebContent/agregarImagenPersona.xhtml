@@ -10,19 +10,21 @@
 		
 			
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-	
-		<script src="js/jquery.dropotron.min.js"></script>
-		<script src="js/jquery.scrolly.min.js"></script>
-		<script src="js/jquery.onvisible.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
-    <link rel="stylesheet" href="css/2skel.css" />
-			<link id="cssPrincipal" rel="stylesheet" href="css/2style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
-			<link rel="stylesheet" href="css/style-noscript.css" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<script src="js/jquery.dropotron.min.js"></script>
+	<script src="js/jquery.scrolly.min.js"></script>
+	<script src="js/jquery.onvisible.min.js"></script>
+	<script src="js/skel.min.js"></script>
+	<script src="js/skel-layers.min.js"></script>
+	<script src="js/init.js"></script>
+	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/style-desktop.css" />
+	<link rel="stylesheet" href="css/style-noscript.css" />
+	<link rel="stylesheet" href="css/skel.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/styles.css" media="screen"
+		type="text/css" />
 
 	</h:head>
 <body class="left-sidebar">
@@ -33,15 +35,15 @@
 				<!-- Inner -->
 					<div class="inner">
 						<div id="header">
-							<h1><a href="index.html" id="logo">EN SSAC NOS GUSTA AYUDAR</a></h1>
+							<h1><a href="index.html" id="logo">SSAC</a></h1>
 						</div>
 					</div>
 					
 					<!-- Nav -->
 						<div id="nav">
 						<ul>
-							<li><a href="Index.xhtml">Volver a la pagina principal</a></li>
-							<li><a href="">Pedido de ayuda</a></li>
+							<li><a href="Index.xhtml">Inicio</a></li>
+						
 							
 						</ul>
 					</div>
@@ -58,6 +60,10 @@
             </p>
                     
 		    <p:fileUpload fileUploadListener="#{fileUploadUsuarioController.upload}" mode="advanced" dragDropSupport="false"
+		    
+		     style="max-height:350px;overflow:auto;width:580px;border: transparent;"  
+			                 label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" 
+		    
 		                  multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 		 
 		    <p:growl id="messages" showDetail="true" />
@@ -65,7 +71,7 @@
 		    <br/>
 		    
 		    <p:outputPanel style="text-align: left">			 		
-	        	<p:commandButton value="Cancelar" action="#{fileUploadUsuarioController.cancelar()}" />
+	        	<p:commandButton value="Aceptar" action="#{fileUploadUsuarioController.cancelar()}" />
 	        </p:outputPanel>
 	            </h:panelGrid>	
 		</h:form> 

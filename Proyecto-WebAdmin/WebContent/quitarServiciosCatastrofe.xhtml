@@ -3,8 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      > 
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
@@ -16,156 +15,20 @@
     html, body, #map{
         width: 100%;
         height: 100%;
+        box-shadow: 0px 0px 26px #888888;
     }
-    </style>
-  	
-  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
-	
+    </style>  	
+  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>	
 </h:head> 
+
 <h:body id="top"> 
-<div class="wrapper col1">
-  <div id="header">
-    <div id="logo">
-      <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
-      <p><strong>Vista Web para Administradores</strong></p>
-    </div>
-     <div id="newsletter">
-     <fieldset>
-          <legend>NewsLetter</legend>
-          
-	<p:panelGrid columns="1">
-    <f:facet name="header">
-        <p:graphicImage name="/images/demo/ADMIN.png" />
-    </f:facet>
- 
-    
-    <h:outputText value="#{administradorBean.nick}" />
- 	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
-      style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-    <h:outputText value="Cerrar Sesión" />
-  </p:commandLink>
- 
-</p:panelGrid>
-                   
-           
-      </fieldset>
-     
-                    
-    </div>
-    <br class="clear" />
-  </div>
-</div>
-
-<div class="wrapper col2">
- 
-   <h:form>
- 
-<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
-    <p:submenu label="Home" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="SSCA">
-                <p:menuitem value="" url="index.xhtml" />
-           
-            </p:submenu>
-            
-        </p:column>
- 
-                
-    </p:submenu>
- 
-    <p:submenu label="Administrador" style="right: 0px;left: 200px;">
- 
-        <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaAdministrador.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarAdministradores_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarAdministradores.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
- 
-    </p:submenu>
- 
-    <p:submenu label="Rescatista" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaRescatista.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarRescatistas_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarRescatistas.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
-    </p:submenu>
- 
-    <p:submenu label="Ong" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaOng.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarOng_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarOng.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
-    </p:submenu>
-    
-    <p:submenu label="Filtro" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaFiltro.xhtml" icon="ui-icon-check"/>   
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />                           
-            </p:submenu>
-        </p:column>
-    </p:submenu>
-    
-    <p:submenu label="Servicios" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="asignarFiltrosDeDatos.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="modificarFiltrosDeDatos.xhtml" icon="ui-icon-pencil"/>
-            </p:submenu>
-        </p:column>
- 	</p:submenu>
- 	
- 	<p:submenu label="Catástrofe" style="right: 0px;left: 200px;">
- 		<p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="registrarCatastrofeMap.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listaBajaCatastrofe.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="modificarCatastrofe.xhtml" icon="ui-icon-pencil"/>                
-            </p:submenu>
-        </p:column>   
-    </p:submenu>
-    
-    <p:submenu label="Reporte" icon="ui-icon-contact" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="Reportes">
-               <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
-               <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
-               <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
-            </p:submenu>
-            
-        </p:column>
- 
-       
-    </p:submenu>
-       
-</p:megaMenu>
-</h:form>
-          
-    <br class="clear" />
-  
-</div>
-
-<div id="mapa" style="width:38%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
-
+<ui:include src="header.xhtml" /> 
+<div id="mapa" style="width:41%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 	<p:growl id="growl" life="3000" showDetail="true" />
-
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:550px;height:670px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:580px"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
-    </p:gmap>
-	
+    </p:gmap>	
 </div> 
 
 <div class="wrapper col3">
@@ -175,14 +38,14 @@
 	      
 	      <f:view>         	    
 	      	
-			<h:form id="formFiltroServicioCatastrofe" columns="2" value="#{filtrosCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:590px;border: 0;">
+			<h:form id="formFiltroServicioCatastrofe" columns="2" value="#{filtrosCatastrofeBean.catastrofeBean}" columnClasses="label, value" style="width:530px;border: 0;">
 			
-				<h2>Asignar filtros a la catástrofe</h2>
+				<h2>Quitar filtros a la catástrofe</h2>
 				
 				<p:growl id="msg" showDetail="true" />
 								
 				<p>			        		        
-	            <p:graphicImage value="image/#{filtrosCatastrofeBean.catastrofeBean.logo}" width="50" height="50"/> 
+	            <p:graphicImage value="image/#{filtrosCatastrofeBean.catastrofeBean.logo}" width="30" height="30"/> 
 	            <h:outputText value="" style="border: transparent;"/>	              		         	        	
 				</p>			
 				
@@ -190,7 +53,7 @@
 				<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
 	            <h:outputText value="#{filtrosCatastrofeBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
 	            </p>			
-	               
+	            <br/>   
 	            <p>    
 	           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
 	            <h:outputText value="#{filtrosCatastrofeBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
@@ -205,7 +68,7 @@
 	                 		 emptyMessage="No se han encontrado filtro con ese criterio" filteredValue="#{filtrosCatastrofeBean.filtroFiltroServicioBean}"                 		  
 	                 		 paginator="true" rows="3" paginatorPosition="top"
 	                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-	                 		 selection="#{filtrosCatastrofeBean.selectedFiltroServicioBean}" rowKey="#{FiltroServicioBean.id}" style="margin-bottom:0;width:600px">
+	                 		 selection="#{filtrosCatastrofeBean.selectedFiltroServicioBean}" rowKey="#{FiltroServicioBean.id}" style="margin-bottom:0;width:530px">
 	                 	                 	
 					<f:facet name="header">
 			            <p:outputPanel style="text-align: right">
@@ -214,17 +77,13 @@
 			            </p:outputPanel>
 			        </f:facet>			 
 			        
-			        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>          			          		        		               	   
-	        		
-	        		<p:column headerText="Id" style="width:6px">
-	            		<h:outputText value="#{FiltroServicioBean.id}" />
-	        		</p:column>            		        
+			        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>          			          		        		               	   	        			        		            		      
 	        		
 	        		<p:column headerText="Fuente de datos" style="width:90px">
 	            		<h:outputText value="#{FiltroServicioBean.fuente}" />
 	        		</p:column>					
 	        		
-	        		<p:column headerText="Descripcion"   filterBy="#{FiltroServicioBean.descripcion}" style="width:350px" filterMatchMode="contains">
+	        		<p:column headerText="Descripcion"   filterBy="#{FiltroServicioBean.descripcion}" style="width:300px" filterMatchMode="contains">
 	            		<h:outputText value="#{FiltroServicioBean.descripcion}" />
 	        		</p:column>	  
 	        		

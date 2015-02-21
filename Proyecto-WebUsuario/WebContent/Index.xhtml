@@ -32,6 +32,17 @@
 		  //alert("Css final: "+cssFinal);
 		  //alert(window.localStorage.getItem("urlCSS"));
 		  //document.getElementById("j_idt5:catastrofeId").value = id;
+		  
+		  var login= #{loginBean.logeado};
+		  function mostrarMenuLogueo(){
+			if !login{
+
+				
+			}
+			  
+		  }
+		  
+		  
 		  function cambiarCSS() { 
 				$("#cssPrincipal").attr("href",cssFinal);
 				//alert("cambie el css");
@@ -48,19 +59,39 @@
 	<script type="text/javascript" language="javascript">
 			function show(id) {
 				var oc = document.getElementById(id).style;
+		
+				var login =  #{loginBean.logeado} ;
+				  
+				 				
 				hide();
 				oc.display = "block";
+				if (!login) {
+					
+					document.getElementById('personasdesap').style.visibility = "hidden";
+					document.getElementById('desaparecidos').style.visibility = "hidden";
+					document.getElementById('busperdesap').style.visibility = "hidden";
+					//document.getElementById('desaparecidosocultar').style.visibility = "hidden";
+					loginBean.setNick1("");
+					
+				}else {
+					document.getElementById('loginusuario').style.visibility = "hidden";
+					
+					
+
+					}
 			}
 			function hide() {
 				document.getElementById('banner').style.display = "none";
 				document.getElementById('donacion').style.display = "none";
 				document.getElementById('busperdesap').style.display = "none";
 				document.getElementById('personasdesap').style.display = "none";
-				document.getElementById('registrousuario').style.display = "none";
-				document.getElementById('loginusuario').style.display = "none";
 				document.getElementById('desaparecidos').style.display = "none";
+				document.getElementById('registrousuario').style.display = "none";
 				
-			}
+				
+				document.getElementById('loginusuario').style.display = "none";
+				document.getElementById('logoutusuario').style.display = "none";
+							}
 </script>
 	<style type="text/css">
 .oculto {
@@ -106,10 +137,10 @@ div {
 		<div class="inner">
 			<div id="header">
 
-				<p:graphicImage value="imagen/#{imagesView.logo}" width="100"
+			<!-- 	<p:graphicImage value="imagen/#{imagesView.logo}" width="100"
 					height="100" />
 				<h:outputText value="" style="border: transparent;" />
-
+ -->
 				<h1>
 					<a href="Index.xhtml" id="logo">#{imagesView.nombre}</a>
 				</h1>
@@ -120,6 +151,7 @@ div {
 						<div class="ui-grid-col-4"></div>
 						<div class="ui-grid-col-4">
 							<p>#{imagesView.descripcion}</p>
+							
 						</div>
 
 						<div class="ui-grid-col-4"></div>
@@ -140,6 +172,14 @@ div {
 				<!-- VIDEOS YOUTUBE -->
 
 				<div class="ui-grid ui-grid-responsive">
+				<div class="ui-grid-row">
+				<div class="ui-grid-col-3"></div>
+				<div class="ui-grid-col-1"></div>
+				<div class="ui-grid-col-7"> <h1>Zona:</h1></div>
+				<div class="ui-grid-col-1"></div>
+				</div>
+				
+				
 					<div class="ui-grid-row">
 						<div class="ui-grid-col-3">
 
@@ -155,11 +195,12 @@ div {
 
 							</h:dataTable>
 						</div>
+						
 						<div class="ui-grid-col-9">
-						<h1>Zonas afectadas:</h1>
+						<!-- MAPA DE ZONAS AFECTADAS -->
 						<p:gmap id="map"
 					center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="10"
-					type="HYBRID" style="width:100%;height:500px"
+					type="HYBRID" style="width:100%;height:580px"
 					model="#{imagesView.polygonModel}" widgetVar="map">
 					<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();"
 						update="growl" />
@@ -231,25 +272,34 @@ div {
 	<!-- Nav -->
 	<div id="nav">
 		<ul>
-			<li><a href="Index.xhtml">Home</a></li>
-			<!--  	<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
+			<!--  <li><a href="Index.xhtml">Inicio</a></li>
+				<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
 
 			<li><a href="#banner" style="cursor: hand; text-color: FFFFFFF"
 				onclick="show('banner');"> Pedido de ayuda</a></li>
 			<li><a href="#donacion"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('donacion');">Donaciones</a></li>
-			<!--<li><a href="#busperdesap" style="cursor: hand; text-decoration: none" onclick="show('busperdesap');">Buscar Personas desaparecidas</a></li>-->
-			<!--<li><a href="#personasdesap" style="cursor: hand; text-decoration: none" onclick="show('personasdesap');">Alta personas desaparecidas</a></li>-->
 			<li><a href="#desaparecidos"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('desaparecidos');">Personas Desaparecidas</a></li>
 			<li><a href="#registrousuario"
 				style="cursor: hand; text-decoration: none"
-				onclick="show('registrousuario');">Rosegistro usuario</a></li>
+				onclick="show('registrousuario');">Registro usuario</a></li>
 			<li><a href="#loginusuario"
 				style="cursor: hand; text-decoration: none"
-				onclick="show('loginusuario');">Login</a></li>
+				onclick="show('loginusuario');">#{loginBean.menu}</a></li>
+			<li><a href=""
+				style="cursor: hand; text-decoration: none"
+			>#{loginBean.nick1}</a></li>
+			<li ><a href="#logoutusuario"
+				style="cursor: hand; text-decoration: none"
+				onclick="show('logoutusuario');">Cerrar Sesión</a></li>
+			
+			
+			
+			
+			
 
 		</ul>
 	</div>
@@ -285,7 +335,7 @@ div {
 								<h:panelGrid>
 
 									<label for="descripcion">Descripcion :</label>
-									<p:inputTextarea rows="5" cols="30" id="descripcion"
+									<p:inputTextarea rows="3" cols="10" id="descripcion"
 										label="descripcion" value="#{pedidoAyudaBean.descripcion}"
 										required="true" requiredMessage="La descripcion es requerida">
 									</p:inputTextarea>
@@ -312,7 +362,7 @@ div {
 						</f:view>
 
 						<p>
-							<a href="#header"><input type="submit" value="Volver" /></a>
+							
 						</p>
 					</div>
 					<div class="ui-grid-col-1"></div>
@@ -350,7 +400,7 @@ div {
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
 					<h2>
-						<strong><a href="#donacion"> Ayudanos a ayudar
+						<strong><a href="#donacion">
 								¡Realice donaciones!</a></strong>
 					</h2>
 				</div>
@@ -385,7 +435,7 @@ div {
 									
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}"   >
+							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:160px"  >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deServicioBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -439,14 +489,14 @@ div {
 					<p>Done un monto mediante paypal a la ONG deseada.</p>
 
 					<p:dialog header="DONACIÓN ECONOMICA" widgetVar="dlg2" showEffect="explode"
-						hideEffect="explode" height="550" width="800">
+						hideEffect="explode" height="500" width="430">
 						<f:view>
 							<h:form id="economicaBean">
 								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 								<h:panelGrid>
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"   >
+							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:160px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{economicaBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -503,7 +553,7 @@ div {
 					</header>
 					<p>Donar alimentos o bienes como maquinaria específica .</p>
 					<p:dialog header="DONACIÓN DE BIENES" widgetVar="dlg3" showEffect="explode"
-						hideEffect="explode" height="550" width="800">
+						hideEffect="explode" height="500" width="430">
 
 						<f:view>
 							<h:form id="deBienesBean">
@@ -513,7 +563,7 @@ div {
 
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"   >
+							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:160px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deBienesBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -523,8 +573,8 @@ div {
 
 									<label for="usuario">Ingrese su nombre si lo desea :</label>
 									<p:inputText id="usuario" label="usuario"
-										value="#{deBienesBean.usuario}" required="false"
-										>
+										value="#{deBienesBean.usuario}" required="true"
+										requiredMessage="El nombre del usuario es requerido">
 									</p:inputText>
 
 									
@@ -562,15 +612,202 @@ div {
 		<br /> <br /> <br /> <br />
 	</div>
 	
-	<!-- MENU DE PERSONAS DESAPARECIDAS -->
+	
 
+
+	<!-- REGISTRO DE USUARIO -->
+	
+	<div class="oculto" id="registrousuario">
+	<div class="ui-grid ui-grid-responsive">
+	
+	<h2><a href="#"> REGISTRO DE USUARIO</a></h2>
+					<p>Por favor, ingrese los campos para registrarse a la
+						catastrofe</p>
+					<f:view>
+						<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
+						<h:form id="login2">
+	
+	
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+        <label for="nick"> Nick:</label>
+							<p:inputText id="nick" label="nick" value="#{loginBean.nick}"
+								required="true" requiredMessage="El nick es requerido">
+							</p:inputText>
+        </div>
+        
+        <div class="ui-grid-col-4">
+        
+        					<label for="nombre">Nombre :</label>
+							<p:inputText id="nombre" label="nombre"
+								value="#{loginBean.nombre}" required="true"
+								requiredMessage="El nombre es requerido">
+							</p:inputText>
+        </div>
+        <div class="ui-grid-col-2"></div>
+    </div>
+    
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+       						 <p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
+							<p:calendar id="fechNac" label="Fecha de Nacimiento"
+								value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
+								mask="true" />
+        </div>
+        <div class="ui-grid-col-4">
+       							 <label for="email">Correo :</label>
+								<p:inputText id="email" label="email" value="#{loginBean.email}"
+								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
+								<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+        
+        </div>
+        <div class="ui-grid-col-2"></div>
+    </div>
+    
+    
+    
+    <div class="ui-grid-row">
+         <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+      						  <label for="nombre"> Clave:</label>
+							<p:password value="#{loginBean.clave}" id="password"
+								required="true" label="password"
+								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#-@ ej: Re-casd8">
+								<f:validateRegex
+									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$-]).{8,9})" />
+							</p:password>
+        
+        </div>
+        <div class="ui-grid-col-1"></div>
+         <div class="ui-grid-col-3">
+        <br/>
+        <br/>
+        <p:commandButton id="registrarButton" value="Registrar"
+								actionListener="#{loginBean.registro}" update=":growl"
+								oncomplete="manejarLogin(xhr, status, args)" />
+        
+        
+        </div>
+         <div class="ui-grid-col-2"></div>
+    </div>
+    
+    
+    	</h:form>
+					</f:view>
+</div>
+</div>
+	
+	
+	
+	
+	
+	
+
+<!-- LOGOUT -->
+
+<div class="oculto" id="logoutusuario">
+
+		<div class="ui-grid">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-2"></div>
+				<div class="ui-grid-col-8">
+
+					
+					<h:form id="formulariologout">
+					<p:growl id="mens" showDetail="true" life="2000" />
+						<h2>
+							 Gracias por visitar nuestro citio. </h2>
+							 <h1>
+							 <br/>
+							 Si esta seguro que desea cerrar sesión dar clic a "Confirmar"
+							 </h1>
+						
+						<br/>
+						<br/>
+
+
+						<p:commandButton id="loginButton" value="Confirmar"
+							actionListener="#{loginBean.logout}" update="formulariologout:mens"
+						oncomplete="logout(xhr, status, args)">
+							<span class="fontawesome-lock"></span>
+						</p:commandButton>
+					</h:form>
+
+
+				</div>
+				<div class="ui-grid-col-2"></div>
+			</div>
+		</div>
+	</div>
+
+	
+
+
+	<!-- LOGIN -->
+	<div class="oculto" id="loginusuario">
+
+		<div class="ui-grid">
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-2"></div>
+				<div class="ui-grid-col-8">
+
+					<p:growl id="mensajes" showDetail="true" life="2000" />
+					<h:form id="formularioIngreso1">
+						<h2>
+							<a href="#">Ingreso</a>
+						</h2>
+
+						
+
+						<label for="nick1"> Nick:</label>
+						<p:inputText id="nick1" label="nick1" value="#{loginBean.nick1}" height="30" width="50"
+							required="true" requiredMessage="El nick es requerido">
+						</p:inputText>
+
+						<label for="nombre"> Clave:</label>
+						<p:password value="#{loginBean.clave1}" id="password"
+							required="true" label="password1" />
+							
+						<p:commandButton id="loginButton" value="Ingresar"
+							actionListener="#{loginBean.login}" update=":mensajes"
+							oncomplete="manejarLogin(xhr, status, args)">
+							<span class="fontawesome-lock"></span>
+						</p:commandButton>
+					</h:form>
+					<div class="section">
+						<p>
+							<div class="fb-login-button" data-max-rows="1" data-size="xlarge"
+								data-show-faces="false" data-auto-logout-link="false"></div>
+							
+						</p>
+
+					</div>
+	
+
+				</div>
+				<div class="ui-grid-col-2"></div>
+			</div>
+		</div>
+	</div>
+
+	
+	
+	<!-- MENU DE PERSONAS DESAPARECIDAS -->
+	
 	<div class="oculto" id="desaparecidos">
+		<h2>#{loginBean.mensaje}</h2>
+	
+	
 		<div class="ui-grid ui-grid-responsive">
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
 					<h2>
-						<strong><a href="#desaparecidos"> Personas
+					<strong><a href="#desaparecidos"> Personas
 								Desaparecidas</a></strong>
 					</h2>
 				</div>
@@ -696,7 +933,6 @@ div {
        
         <div class="ui-grid-col-2"></div>
     </div>
-    
     <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
         <div class="ui-grid-col-3"></div>
@@ -796,123 +1032,6 @@ div {
 					</h:form>
 				</div>
 				<div class="ui-grid-col-1"></div>
-			</div>
-		</div>
-	</div>
-
-
-
-
-	<!-- REGISTRO DE USUARIO -->
-	<div class="oculto" id="registrousuario">
-		<div class="ui-grid">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-2"></div>
-				<div class="ui-grid-col-8">
-
-					<h2>
-						<a href="#"> REGISTRO DE USUARIO</a>
-					</h2>
-					<p>Por favor, ingrese los campos para registrarse a la
-						catastrofe</p>
-					<f:view>
-						<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
-						<h:form id="login2">
-
-
-							<label for="nick"> Nick:</label>
-							<p:inputText id="nick" label="nick" value="#{loginBean.nick}"
-								required="true" requiredMessage="El nick es requerido">
-							</p:inputText>
-
-							<label for="nombre">Nombre :</label>
-							<p:inputText id="nombre" label="nombre"
-								value="#{loginBean.nombre}" required="true"
-								requiredMessage="El nombre es requerido">
-							</p:inputText>
-
-							<label for="email">Correo :</label>
-							<p:inputText id="email" label="email" value="#{loginBean.email}"
-								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
-								<f:validateRegex
-									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-
-
-							</p:inputText>
-
-							<label for="nombre"> Clave:</label>
-							<p:password value="#{loginBean.clave}" id="password"
-								required="true" label="password"
-								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">
-
-
-								<f:validateRegex
-									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
-
-
-
-
-							</p:password>
-
-							<p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
-							<p:calendar id="fechNac" label="Fecha de Nacimiento"
-								value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
-								mask="true" />
-
-							<p:commandButton id="registrarButton" value="Registrar"
-								actionListener="#{loginBean.registro}" update=":growl"
-								oncomplete="manejarLogin(xhr, status, args)" />
-
-						</h:form>
-					</f:view>
-				</div>
-				<div class="ui-grid-col-2"></div>
-			</div>
-		</div>
-	</div>
-
-	<!-- LOGIN -->
-	<div class="oculto" id="loginusuario">
-
-		<div class="ui-grid">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-2"></div>
-				<div class="ui-grid-col-8">
-
-					<p:growl id="mensajes" showDetail="true" life="2000" />
-					<h:form id="formularioIngreso1">
-						<h2>
-							<a href="#">Ingreso</a>
-						</h2>
-
-						
-
-						<label for="nick1"> Nick:</label>
-						<p:inputText id="nick1" label="nick1" value="#{loginBean.nick1}"
-							required="true" requiredMessage="El nick es requerido">
-						</p:inputText>
-
-						<label for="nombre"> Clave:</label>
-						<p:password value="#{loginBean.clave1}" id="password"
-							required="true" label="password1" />
-						<p:commandButton id="loginButton" value="Login"
-							actionListener="#{loginBean.login}" update=":mensajes"
-							oncomplete="manejarLogin(xhr, status, args)">
-							<span class="fontawesome-lock"></span>
-						</p:commandButton>
-					</h:form>
-
-
-					<div class="section">
-						<p>
-							<div class="fb-login-button" data-max-rows="1" data-size="xlarge"
-								data-show-faces="false" data-auto-logout-link="false"></div>
-							<a href="#banner" onclick="show('registrousuario');">Registro</a>
-						</p>
-
-					</div>
-				</div>
-				<div class="ui-grid-col-2"></div>
 			</div>
 		</div>
 	</div>
@@ -1069,18 +1188,22 @@ div {
 
 
 	<div id="footer">
-		<ul class="icons">
-			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-			<li><a href="#" class="icon fa-instagram"><span
-					class="label">Instagram</span></a></li>
-			<li><a href="#" class="icon fa-google-plus"><span
-					class="label">Google+</span></a></li>
-		</ul>
+		
 		<ul class="copyright">
 			<li>&copy; Untitled. All rights reserved.</li>
 			<li>Grupo 4 - Proyecto Tecnologo</li>
 		</ul>
 	</div>
 </body>
+<script type="text/javascript">
+  <![CDATA[
+  function manejarLogin(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeado) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 500);
+    }
+  }
+]]>
+</script>
 </html>

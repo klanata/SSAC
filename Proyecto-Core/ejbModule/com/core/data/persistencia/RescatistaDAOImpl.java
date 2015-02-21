@@ -180,7 +180,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 			Iterator<Rescatista> itRescatista = listarRescatistas.iterator();
 			
 			while (itRescatista.hasNext())
-			{
+			{				
 				Rescatista rescatista = itRescatista.next();
 				//veo que cantidad de pendientes tiene
 				//Collection<EstadoRescatista> listaPendientes = rescatista.getEstadoRescatista();
@@ -191,7 +191,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 				Integer i = listaPendientes.size();
 				
 				//rescatista.getEstadoRescatista().
-				if  (pendiente >= i )  
+				if  ((pendiente >= i ) || (pendiente == 0))
 				{
 					//actualizo el rescatista con menos pendientes
 					rescatistaMenosPendientes = rescatista;

@@ -1,7 +1,6 @@
 package com.core.data.entites;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -40,17 +39,7 @@ query = "SELECT f.id "+
 		"FROM Filtro f " +
 		"WHERE f.descripcion = :descripcion"),
 
-@NamedQuery(name="Filtro.BuscarYoutube", 
-query = "SELECT f "+
-		"FROM Filtro f, IN (f.servicios) s "+
-		"WHERE f.bajaLogica = :bajaLogica AND " +
-		"s.fuente = :fuente "),
-		
-@NamedQuery(name="Filtro.BuscarPorServicio", 
-query = "SELECT f "+
-		"FROM Filtro f, IN (f.servicios) s "+
-		"WHERE f.bajaLogica = :bajaLogica AND " +
-		"s.fuente = :fuente "),
+
 
 })
 
@@ -71,8 +60,7 @@ public class Filtro extends AbstractEntity implements Serializable {
 	@Column(nullable= false)
 	private String descripcion = "";				
 		
-	@ManyToMany(mappedBy="filtros",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private Set<Servicio> servicios = new HashSet<Servicio>(0);			
+			
 	
 	private boolean bajaLogica;
 	
@@ -83,7 +71,7 @@ public class Filtro extends AbstractEntity implements Serializable {
 	public Filtro() {
 		super();		
 		this.descripcion = new String();		
-		this.servicios = new HashSet<Servicio>();		
+		//this.servicios = new HashSet<Servicio>();		
 		this.bajaLogica = false;
 	}		
 	
@@ -97,7 +85,7 @@ public class Filtro extends AbstractEntity implements Serializable {
 		super();
 		
 		this.descripcion = descripcion;
-		this.servicios = servicios;		
+		//this.servicios = servicios;		
 		this.bajaLogica = bajaLogica;			
 	}
 	
@@ -117,12 +105,7 @@ public class Filtro extends AbstractEntity implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Set<Servicio> getServicios() {
-		return servicios;
-	}
-	public void setServicios(Set<Servicio> servicios) {
-		this.servicios = servicios;
-	}
+	
 	public boolean isBajaLogica() {
 		return bajaLogica;
 	}

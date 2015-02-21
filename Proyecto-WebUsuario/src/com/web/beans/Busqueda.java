@@ -1,10 +1,10 @@
 package com.web.beans;
 
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Catastrofe;
-import com.core.data.entites.Filtro;
+
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;

@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -22,26 +24,31 @@ import clienteutility.ClienteUtility;
 
 
 
+
+
+
+
+
 import com.core.service.negocio.remote.UsuarioEBR;
 
 
 
 
 @ManagedBean(name="loginBean")
+//@RequestScoped
 @SessionScoped
-
 public class LoginBean implements Serializable {
 	private static final long serialVersionUID = -2152389656664659476L;
 	private String nombre;
 	private String clave;
 	private String clave1;
 	private boolean logeado = false;
-	
+	private String mensaje;
 	private String nick;
 	private String nick1;
 	private String email;
 	private Date fechaNacimiento;
-	
+	private String Menu;
 	private Long idCatastrofe;
 	private Long idCatastrofe1;
 	
@@ -52,6 +59,18 @@ public class LoginBean implements Serializable {
 	public boolean estaLogeado() {
 		return logeado;
 	} 
+	public String getMenu() {
+		return Menu;
+	}
+	public void setMenu(String menu) {
+		Menu = menu;
+	}
+	public String getMensaje() {
+		return mensaje;
+	}
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
 	public String getClave1() {
 		return clave1;
 	}
@@ -115,6 +134,28 @@ public class LoginBean implements Serializable {
 		this.clave = clave;
 	}
 	
+	@PostConstruct
+    public void init() {
+    
+		
+		if (!logeado){
+			
+			
+			//mensaje = "Estimado Visitante debe estar registrado para tener acceso a reportar o buscar Personas Desaparecidas";
+			mensaje = "Debe Registrarse";
+			Menu = "Iniciar Sesión";
+		}else 
+		{
+			mensaje = "Bienvenido "+ nick1;
+			Menu = "";
+		
+		}
+		
+		
+	}
+	
+	
+	
 	public void login(ActionEvent actionEvent) {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
@@ -144,14 +185,22 @@ public class LoginBean implements Serializable {
 		FacesContext contextousuario = FacesContext.getCurrentInstance();
 		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
 		idCatastrofe1 = (Long)sesion.getAttribute("idmongo");
-   		
 		
-	
+		/*String nombreCatastrofe = (String)sesion.getAttribute("nombreCatastrofe");
+		String index = nombreCatastrofe.toLowerCase();
+		//ver los espacios
+		index = index.replaceAll(" ", "_");
+		index = "http://localhost:8080/proyecto-webusuario/" + index + "xhtml";
+		System.out.print("url logue"+ index);
 		//veo si esta registrado a esa catastrofe
+		*/
 		Boolean registrado = manager.estaRegistradoCatastrofe(nick1, idCatastrofe1);
 		
 		if(registrado==false){
-					
+			nick1= "";
+			Menu = "Iniciar Sesión";
+			mensaje ="";
+					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no Registrado", "");
 					System.out.print("registro == false usuario no registrado a la catastrofe");
 				}	
 		if ((exito ==  true) && (registrado ==true))
@@ -159,7 +208,10 @@ public class LoginBean implements Serializable {
 			
 			logeado = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nick1);
-			context.addCallbackParam("view", "PerDesaparecidas.xhtml");
+			Menu = "";
+			mensaje ="";
+			nick1="Bienvenid@ "+ nick1;
+			context.addCallbackParam("view", "Index.xhtml");
 		} 
 		else if((exito == true) && (registrado==false))
 		{
@@ -168,16 +220,24 @@ public class LoginBean implements Serializable {
 			manager.registrarACatastrofe(nick1, clave1, idCatastrofe1);
 			logeado = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@","Se ha registrado a la catástrofe");
-			context.addCallbackParam("view", "PerDesaparecidas.xhtml");
+			Menu = "";
+			mensaje ="";
+			nick1="Bienvenid@ "+ nick1;
+			context.addCallbackParam("view", "Index.xhtml");
 		}
 		else{
 			logeado = false;
+			nick1= "";
+			
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error","Credenciales no válidas");
 		}
 		
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		context.addCallbackParam("estaLogeado", logeado);
 		if (logeado){
+			Menu = "";
+			mensaje ="";
+			//nick1="Bienvenid@ "+ nick1;
 			context.addCallbackParam("view", "Index.xhtml");
 		}
 	} 
@@ -208,18 +268,49 @@ public class LoginBean implements Serializable {
 		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
 		idCatastrofe = (Long)sesion.getAttribute("idmongo");
    		
-		manager.registroUsuarioPlataforma(nick, clave, email, nombre, fechaNacimiento, idCatastrofe,imagen);
+		try {
+			manager.registroUsuarioPlataforma(nick, clave, email, nombre, fechaNacimiento, idCatastrofe,imagen);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		nick="";
 		clave="";
 		email="";
 		nombre="";
+		
+		//logeado = true;
+		
 		//fechaNacimiento = null;
 		//idCatastrofe= //
-		context.addCallbackParam("view", "PerDesaparecidas.xhtml");
+		context.addCallbackParam("view", "Index.xhtml");
 	}
-	public void logout() {
+	public void logout(ActionEvent actionEvent) {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
 		logeado = false;
+		Menu = "Iniciar Sesión";
+		RequestContext context = RequestContext.getCurrentInstance();
+		FacesMessage msg = null;
+		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Gracias por visitarnos","!");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		//FacesContext.getCurrentInstance().addMessage(null, msg);
+		nick1="";
+		setNick1(nick1);
+		context.addCallbackParam("estaLogeado", logeado);
+		//ver esto creo esta mal
+		/*context.addCallbackParam("view", "Index.xhtml");
+	*/
+		
+		FacesContext contexto = FacesContext.getCurrentInstance();
+		contexto.getExternalContext().getFlash().setKeepMessages(true);
+		
+	//	contexto.addMessage(null, msg);
+		
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("Home?faces-redirect=true");
+		
+		
+		
 	} 
 }

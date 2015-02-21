@@ -3,237 +3,127 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      > 
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
-	
-	
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />			
 </h:head> 
+
 <h:body id="top"> 
-<div class="wrapper col1">
-  <div id="header">
-    <div id="logo">
-      <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
-      <p><strong>Vista Web para Administradores</strong></p>
-    </div>
-     <div id="newsletter">
-     <fieldset>
-          <legend>NewsLetter</legend>
-          
-	<p:panelGrid columns="1">
-    <f:facet name="header">
-        <p:graphicImage name="/images/demo/ADMIN.png" />
-    </f:facet>
- 
-    
-    <h:outputText value="#{administradorBean.nick}" />
- 	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
-      style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-    <h:outputText value="Cerrar Sesión" />
-  </p:commandLink>
- 
-</p:panelGrid>
-                   
-           
-      </fieldset>
-     
-                    
-    </div>
-    <br class="clear" />
-  </div>
-</div>
-
-<div class="wrapper col2">
- 
-   <h:form>
- 
-<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
-    <p:submenu label="Home" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="SSCA">
-                <p:menuitem value="" url="index.xhtml" />
-           
-            </p:submenu>
-            
-        </p:column>
- 
-                
-    </p:submenu>
- 
-    <p:submenu label="Administrador"  style="right: 0px;left: 200px;">
- 
-        <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaAdministrador.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarAdministradores_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarAdministradores.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
- 
-    </p:submenu>
- 
-    <p:submenu label="Rescatista" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaRescatista.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarRescatistas_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarRescatistas.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
-    </p:submenu>
- 
-    <p:submenu label="Ong" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaOng.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarOng_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarOng.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
-    </p:submenu>
-    
-    <p:submenu label="Filtro" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaFiltro.xhtml" icon="ui-icon-check"/>    
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />                          
-            </p:submenu>
-        </p:column>
-    </p:submenu>
-    
-    <p:submenu label="Servicios" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="asignarFiltrosDeDatos.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="modificarFiltrosDeDatos.xhtml" icon="ui-icon-pencil"/>
-            </p:submenu>
-        </p:column>
- 	</p:submenu>
- 	
- 	<p:submenu label="Catástrofe" style="right: 0px;left: 200px;">
- 		<p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="registrarCatastrofeMap.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listaBajaCatastrofe.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="modificarCatastrofe.xhtml" icon="ui-icon-pencil"/>                
-            </p:submenu>
-        </p:column>   
-    </p:submenu>
-    
-    <p:submenu label="Reporte" icon="ui-icon-contact" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="Reportes">
-                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
-              <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
-              <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
-            </p:submenu>
-            
-        </p:column>
- 
-       
-    </p:submenu>
-       
-</p:megaMenu>
-</h:form>
-
-          
-    
-          
-    <br class="clear" />
-  
-</div>
-
+<ui:include src="header.xhtml" /> 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left">
-      <h2>Modificar Rescatista</h2>
-      <br/>	
-      <f:view>
-		<h:form id="registroRescatista" >
-			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid columns="1" cellpadding="3">				
-			
-			
-				<p>
-				<label for="nick">Nick : #{modificarRescatistaBean.rescatistaBean.nick}</label>				
-						
-																																														
-				</p>
-				<br/>
-				
-				<p>
-				<label for="pass">Password :</label>				
-				<p:password id="pass" value="#{modificarRescatistaBean.rescatistaBean.password}" feedback="true"  
->
-				 
-				 
-				 
-				 </p:password>				
-																																						
-				</p>
-				<br/>
-				<p>
-				<label for="nombre">Nombre :</label>				
-					<p:inputText id="nombre" label="evento"  value="#{modificarRescatistaBean.rescatistaBean.nombre}" required="true" requiredMessage="El nombre del Rescatista es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-						
-				<p>
-				<label for="apellido">Apellido :</label>				
-					<p:inputText id="apellido" label="evento" value="#{modificarRescatistaBean.rescatistaBean.apellido}" required="true" requiredMessage="El apellido del Rescatista es requerido" >	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				<p>
-				<label for="telefono">Telefono :</label>				
-					<p:inputText id="telefono" label="evento"  value="#{modificarRescatistaBean.rescatistaBean.celular}"  validatorMessage="Formato de Telefono invalido, debe contener números 0..9" >	
-					
-					 <f:validateRegex pattern="[0-9]*" />	
-					</p:inputText>																																									
-				</p>
-				<br/>
-				
-				<p>
-				<label for="email">Email :</label>				
-					<p:inputText id="email"  label="evento" value="#{modificarRescatistaBean.rescatistaBean.email}"  validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com"  >
-						<f:validateRegex
-								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-					
-					</p:inputText>																																									
-				</p>
-				<p:outputLabel for="fecha" value="Fecha:" />
-        		<p:calendar id="fecha" value="#{modificarRescatistaBean.rescatistaBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />
-				<br/>	
-				</h:panelGrid>	
-				<p:outputLabel for="sexo" value="Sexo:" />
-		        <p:selectOneRadio id="sexo" value="#{modificarRescatistaBean.rescatistaBean.sexo}">
-		            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
-		            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />
-		         </p:selectOneRadio>
-			<p:commandButton id="comandoModificar" update="growl"  type="submit" style="margin-left: 400px;" styleClass="formbutton" value="Editar" action="#{modificarRescatistaBean.editar()}">
-			
-			</p:commandButton>		
+    <div>      
+            
+		<h:form id="modificarRescatista" columns="2" columnClasses="label, value" style="width:570px;border: 0;">
 		
-		</h:form>
-		</f:view>
-    </div>
-    
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<h3>Modificar Rescatista</h3>
+			
+				<table border="0" cellspacing="0" style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+
+					<tr>					
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="nick">Nick   </label>				
+						</td>				
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="nick" label="nick" value="#{modificarRescatistaBean.rescatistaBean.nick} ">	
+							</h:outputText>																																																	
+						</td>					
+									
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">					
+							<label for="pass">Password </label>
+						</td>		
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+							<p:password id="feedback" value="#{modificarRescatistaBean.rescatistaBean.password}" feedback="true" requiered = "true" requiredMessage="La contraseña es requerida" 
+							 		validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re-casd8">							 							 
+							 	<f:validateRegex pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$-]).{8,20})" />
+							</p:password>				 				 																				
+						</td>					
+					</tr>
+				
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="nombre">Nombre </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="nombre" label="nombre"  value="#{modificarRescatistaBean.rescatistaBean.nombre}" required="true" requiredMessage="El nombre del Rescatista es requerido">	
+							</p:inputText>																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="apellido">Apellido </label>					
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="apellido" label="apellido"  value="#{modificarRescatistaBean.rescatistaBean.apellido}" required="true" requiredMessage="El apellido del Rescatista es requerido">	
+							</p:inputText>																																																		
+						</td>					
+					</tr>
+					
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="telefono">Teléfono </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="telefono" label="evento"  value="#{modificarRescatistaBean.rescatistaBean.celular}" validatorMessage="Formato de teléfono invalido, debe contener números 0..9" >						
+							 	<f:validateRegex pattern="[0-9]*" />
+							</p:inputText>																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="email">Email </label>				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:inputText id="email" label="evento" value="#{modificarRescatistaBean.rescatistaBean.email}" validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com"  >	
+								<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />				
+							</p:inputText>																																																		
+						</td>					
+					</tr>
+					
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="fechaNac">Fecha de nacimiento </label>					
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:calendar id="fechaNac" value="#{modificarRescatistaBean.rescatistaBean.fechaNac}" pattern="dd-MM-yyyy" mask="true" />																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="sexo">Sexo </label> 				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<p:selectOneRadio id="sexo" value="#{modificarRescatistaBean.rescatistaBean.sexo}" style="width:200px;border: 0;">		        	
+					            <f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+					            <f:selectItem itemLabel="Masculino" itemValue="Masculino" />		            
+					         </p:selectOneRadio>																																																		
+						</td>					
+					</tr>
+				
+				</table>
+
+			<p:outputPanel style="text-align: left">																																										
+				<p:commandButton id="comandoModificar" update="modificarRescatista:growl"  type="submit" value="Confirmar" action="#{modificarRescatistaBean.editar()}" />			
+				<p:commandButton  update="modificarRescatista:growl"  value="Cancelar" action="#{modificarRescatistaBean.cancelar()}" immediate="true"/>
+			</p:outputPanel>	
+		
+		</h:form>		
+		
+    </div>    
     <br class="clear" />
   </div>
 </div>
-
-
+<br class="clear" />
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
@@ -241,8 +131,7 @@
     <br class="clear" />
   </div>
 </div>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {
@@ -250,8 +139,8 @@
 	    }, 500);
 	  }
 	//]]>
-	</script>
-	</h:body> 
+</script>
+</h:body> 
 </html>
 
 

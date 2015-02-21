@@ -33,7 +33,25 @@ public class LoginBean implements Serializable {
 	private boolean logeado = false;
 	public boolean estaLogeado() {
 	return logeado;
-	} public String getNombre() {
+	
+	
+	}
+	
+	
+	
+	public void setLogeado(boolean logeado) {
+		this.logeado = logeado;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
+	public String getNombre() {
 	return nombre;
 	} public void setNombre(String nombre) {
 	this.nombre = nombre;
@@ -86,12 +104,12 @@ public class LoginBean implements Serializable {
 		{
 			logeado = false;
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
-			"Credenciales no válidas");
+			"Credenciales no vï¿½lidas");
 		}
 		
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		context.addCallbackParam("estaLogeado", logeado);
-		if (logeado){
+		if (logeado){					
 			context.addCallbackParam("view", "index.xhtml");
 		}
 	} 

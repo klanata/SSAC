@@ -14,19 +14,12 @@
 					<!-- a href="#"><img src="resources/images/SSACadministrador.png" height="100px" /></a-->
 					<p:graphicImage name="/images/SSACadministrador.png" height="100px"/>
 				</h1>
+			</div>						
+   			#{loginBean.setLogeado(true)}
+			<div >
+			
 			</div>
-			<!-- div id="newsletter">
-				<fieldset>
-					< p:panelGrid columns="1">
-					<h:outputText value="#{administradorBean.nick}" />
-					<p:commandLink id="logout"
-						actionListener="#{administradorBean.logout()}"
-						style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-						<h:outputText value="Cerrar Sesión" />
-					</p:commandLink>
-				</p:panelGrid>
-				</fieldset>
-			</div-->
+			
 			<br class="clear" />
 		</div>
 	</div>
@@ -34,11 +27,14 @@
 
 		<h:form>
 
+
 			<p:megaMenu orientation="#{megaMenuView.orientation}">
-				<p:submenu label="Home" style="right: 0px;left: 200px;">
+				<p:submenu label="Inicio" style="right: 0px;left: 200px;">
 					<p:column>
 						<p:submenu label="SSCA">
-							<p:menuitem value="" url="index.xhtml" />
+				
+							<p:menuitem value="Zonas afectadas"  url="index.xhtml" />
+      
 						</p:submenu>
 					</p:column>
 				</p:submenu>
@@ -46,11 +42,11 @@
 				<p:submenu label="Administrador" style="right: 0px;left: 200px;">
 					<p:column>
 						<p:submenu label="ABM">
-							<p:menuitem value="Alta" url="altaAdministrador.xhtml"
+							<p:menuitem value="Alta Administrador" url="altaAdministrador.xhtml"
 								icon="ui-icon-check" />
-							<p:menuitem value="Baja" url="listarAdministradores_.xhtml"
+							<p:menuitem value="Baja Administrador" url="listarAdministradores_.xhtml"
 								icon="ui-icon-close" />
-							<p:menuitem value="Modificación"
+							<p:menuitem value="Modificar Administrador"
 								url="listarAdministradores.xhtml" icon="ui-icon-pencil" />
 						</p:submenu>
 					</p:column>
@@ -59,11 +55,11 @@
 				<p:submenu label="Rescatista" style="right: 0px;left: 200px;">
 					<p:column>
 						<p:submenu label="ABM">
-							<p:menuitem value="Alta" url="altaRescatista.xhtml"
+							<p:menuitem value="Alta Rescatista" url="altaRescatista.xhtml"
 								icon="ui-icon-check" />
-							<p:menuitem value="Baja" url="listarRescatistas_.xhtml"
+							<p:menuitem value="Baja Rescatista" url="listarRescatistas_.xhtml"
 								icon="ui-icon-close" />
-							<p:menuitem value="Modificación" url="listarRescatistas.xhtml"
+							<p:menuitem value="Modificar Rescatista" url="listarRescatistas.xhtml"
 								icon="ui-icon-pencil" />
 						</p:submenu>
 					</p:column>
@@ -72,45 +68,23 @@
 				<p:submenu label="Ong" style="right: 0px;left: 200px;">
 					<p:column>
 						<p:submenu label="ABM">
-							<p:menuitem value="Alta" url="altaOng.xhtml" icon="ui-icon-check" />
-							<p:menuitem value="Baja" url="listarOng_.xhtml"
+							<p:menuitem value="Alta Ong" url="altaOng.xhtml" icon="ui-icon-check" />
+							<p:menuitem value="Baja Ong" url="listarOng_.xhtml"
 								icon="ui-icon-close" />
-							<p:menuitem value="Modificación" url="listarOng.xhtml"
+							<p:menuitem value="Modificar Ong" url="listarOng.xhtml"
 								icon="ui-icon-pencil" />
 						</p:submenu>
 					</p:column>
-				</p:submenu>
-
-				<p:submenu label="Filtro" style="right: 0px;left: 200px;">
-					<p:column>
-						<p:submenu label="ABM">
-							<p:menuitem value="Alta" url="altaFiltro.xhtml"
-								icon="ui-icon-check" />
-							<p:menuitem value="Baja" url="" icon="ui-icon-close" />
-						</p:submenu>
-					</p:column>
-				</p:submenu>
-
-				<p:submenu label="Servicios" style="right: 0px;left: 200px;">
-					<p:column>
-						<p:submenu label="ABM">
-							<p:menuitem value="Alta" url="asignarFiltrosDeDatos.xhtml"
-								icon="ui-icon-check" />
-							<p:menuitem value="Baja" url="" icon="ui-icon-close" />
-							<p:menuitem value="Modificación"
-								url="modificarFiltrosDeDatos.xhtml" icon="ui-icon-pencil" />
-						</p:submenu>
-					</p:column>
-				</p:submenu>
+				</p:submenu>								
 
 				<p:submenu label="Catástrofe" style="right: 0px;left: 200px;">
 					<p:column>
 						<p:submenu label="ABM">
-							<p:menuitem value="Alta" url="registrarCatastrofeMap.xhtml"
+							<p:menuitem value="Alta Catástrofe" url="registrarCatastrofeMap.xhtml"
 								icon="ui-icon-check" />
-							<p:menuitem value="Baja" url="listaBajaCatastrofe.xhtml"
+							<p:menuitem value="Baja Catástrofe" url="listaBajaCatastrofe.xhtml"
 								icon="ui-icon-close" />
-							<p:menuitem value="Modificación" url="modificarCatastrofe.xhtml"
+							<p:menuitem value="Modificar Catástrofe" url="modificarCatastrofe.xhtml"
 								icon="ui-icon-pencil" />
 						</p:submenu>
 					</p:column>
@@ -128,8 +102,30 @@
 						</p:submenu>
 					</p:column>
 				</p:submenu>
+				
+				<p:submenu label="Cerrar Sesión" style="right: 0px;left: 200px;">
+					<p:column>
+						<p:submenu label="">
+						<p:menuitem value="Cerrar Sesión"   actionListener="#{administradorBean.logout}" oncomplete="logout(xhr, status, args)" />
+				
+						</p:submenu>
+					</p:column>
+				</p:submenu>
+				
+				
 			</p:megaMenu>
 		</h:form>
-	</div>
+	</div>	
+<script type="text/javascript">
+  <![CDATA[
+  function manejarLogin(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeado) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 500);
+    }
+  }
+]]>
+</script>
 </h:body>
 </html>

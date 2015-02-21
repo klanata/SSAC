@@ -3,213 +3,121 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      > 
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
 	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
-	
-	
-</h:head> 
+</h:head>
+ 
 <h:body id="top"> 
-<div class="wrapper col1">
-  <div id="header">
-    <div id="logo">
-      <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
-      <p><strong>Vista Web para Administradores</strong></p>
-    </div>
-     <div id="newsletter">
-     <fieldset>
-          <legend>NewsLetter</legend>
-          
-	<p:panelGrid columns="1">
-    <f:facet name="header">
-        <p:graphicImage name="/images/demo/ADMIN.png" />
-    </f:facet>
- 
-    
-    <h:outputText value="#{administradorBean.nick}" />
- 	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
-      style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-    <h:outputText value="Cerrar Sesión" />
-  </p:commandLink>
- 
-</p:panelGrid>
-                   
-           
-      </fieldset>
-     
-                    
-    </div>
-    <br class="clear" />
-  </div>
-</div>
-
-<div class="wrapper col2">
- 
-   <h:form>
- 
-<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
-    <p:submenu label="Home" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="SSCA">
-                <p:menuitem value="" url="index.xhtml" />
-           
-            </p:submenu>
-            
-        </p:column>
- 
-                
-    </p:submenu>
- 
-    <p:submenu label="Administrador"  style="right: 0px;left: 200px;">
- 
-        <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaAdministrador.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarAdministradores_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarAdministradores.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
- 
-    </p:submenu>
- 
-    <p:submenu label="Rescatista" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaRescatista.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarRescatistas_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarRescatistas.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
-    </p:submenu>
- 
-    <p:submenu label="Ong" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaOng.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarOng_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarOng.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
-    </p:submenu>
-    
-    <p:submenu label="Filtro" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaFiltro.xhtml" icon="ui-icon-check"/>  
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />                            
-            </p:submenu>
-        </p:column>
-    </p:submenu>
-    
-    <p:submenu label="Servicios" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="asignarFiltrosDeDatos.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="modificarFiltrosDeDatos.xhtml" icon="ui-icon-pencil"/>
-            </p:submenu>
-        </p:column>
- 	</p:submenu>
- 	
- 	<p:submenu label="Catástrofe" style="right: 0px;left: 200px;">
- 		<p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="registrarCatastrofeMap.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listaBajaCatastrofe.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="modificarCatastrofe.xhtml" icon="ui-icon-pencil"/>                
-            </p:submenu>
-        </p:column>   
-    </p:submenu>
-    
-    <p:submenu label="Reporte" icon="ui-icon-contact" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="Reportes">
-                 <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
-               <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
-               <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
-            </p:submenu>
-            
-        </p:column>
- 
-       
-    </p:submenu>
-       
-</p:megaMenu>
-</h:form>
-
-          
-    
-          
-    <br class="clear" />
-  
-</div>
-
+<ui:include src="header.xhtml" /> 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="fl_left4">
-      <h2>Eliminar Rescatista</h2>
-      <br/>	
-      
-      
-		<h:form id="eliminarRescatista" >
+    <div>
+            	        
+		<h:form id="eliminarRescatista" columns="2" columnClasses="label, value" style="width:570px;border: 0;">
 						
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
-			<h:panelGrid columns="1" cellpadding="3">	
-				<p>
-					<p:outputLabel> Nick : #{eliminarRescatista.rescatistaBean.nick} </p:outputLabel>	
-																																													
-				</p>
-				<br/>
-				
-				<p>
-				
-					<p:outputLabel> Nombre: #{eliminarRescatista.rescatistaBean.nombre} </p:outputLabel>	
-																																										
-				</p>
-				<br/>
-						
-				<p>
-					<p:outputLabel> Apellido : #{eliminarRescatista.rescatistaBean.apellido} </p:outputLabel>	
-																																					
-				</p>
-				<br/>
-				
-								
-				<p>
-				<p:outputLabel> Email: #{eliminarRescatista.rescatistaBean.email} </p:outputLabel>
-					  
-																																													
-				</p>
-				<br/>
-				<p:outputPanel style="text-align: left">
-			 		<p:commandButton value="Eliminar" update="growl"  type="submit"     action="#{eliminarRescatista.eliminar()}"/>         
-	            	<p:commandButton value="Cancelar" update="growl"  type="submit"  action="#{eliminarRescatista.cancelar()}" />
-	         	</p:outputPanel>								
-				
-				
+			<h3>Baja Rescatista</h3>
 			
-			</h:panelGrid>
+				<table border="0" cellspacing="0" style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+				
+					<tr>					
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="nick">Nick   </label>				
+						</td>				
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="nick" label="nick" value="#{eliminarRescatista.rescatistaBean.nick} ">	
+							</h:outputText>																																																	
+						</td>					
+									
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">					
+							<label for="pass">Password </label>
+						</td>		
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
+							<p:outputLabel id="pass" value="***********" >				 				 							
+						</p:outputLabel>	
+						
+						</td>					
+					</tr>
+				
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="nombre">Nombre </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="nombre" label="nombre"  value="#{eliminarRescatista.rescatistaBean.nombre}" >	
+							</h:outputText>																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="apellido">Apellido </label>					
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="apellido" label="apellido"  value="#{eliminarRescatista.rescatistaBean.apellido}">	
+							</h:outputText>																																																		
+						</td>					
+					</tr>
+					
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="telefono">Teléfono </label>				
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="telefono" label="telefono"  value="#{eliminarRescatista.rescatistaBean.celular}">													 	
+							</h:outputText>																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="email">Email </label>				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="email" label="email" value="#{eliminarRescatista.rescatistaBean.email}" >				
+							</h:outputText>																																																		
+						</td>					
+					</tr>
+					
+					<tr>
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="fechaNac">Fecha de nacimiento </label>					
+						</td>		
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="fechaNac" value="#{eliminarRescatista.rescatistaBean.fechaNac}" />																																																
+						</td>	
+						
+						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">				
+							<label for="sexo">Sexo </label> 				
+						</td>	
+						
+						<td  style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">	
+							<h:outputText id="sexo" value="#{eliminarRescatista.rescatistaBean.sexo}" />																																																
+						</td>					
+					</tr>
+								
+				</table>				
+																															
+				<p:outputPanel style="text-align: left">
+			 		<p:commandButton value="Confirmar" update="eliminarRescatista:growl"  type="submit"  action="#{eliminarRescatista.eliminar()}"/>         
+	            	<p:commandButton value="Cancelar" update="eliminarRescatista:growl"  type="submit"  action="#{eliminarRescatista.cancelar()}" />
+	         	</p:outputPanel>								
+												
 		</h:form>
-		
-		
-    </div>
-  
+				
+    </div>  
     <br class="clear" />
   </div>
 </div>
-
-	    <br class="clear" />
-
-
-
+<br class="clear" />
 <div class="wrapper col7">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
@@ -217,8 +125,7 @@
     <br class="clear" />
   </div>
 </div>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	  //<![CDATA[
 	  function logout(xhr, status, args) {
 	    setTimeout(function() {
@@ -226,8 +133,8 @@
 	    }, 500);
 	  }
 	//]]>
-	</script>
-	</h:body>
+</script>
+</h:body>
 </html>
 
 

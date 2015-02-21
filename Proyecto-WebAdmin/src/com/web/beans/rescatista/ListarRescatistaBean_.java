@@ -101,17 +101,11 @@ public class ListarRescatistaBean_ implements Serializable {
 				  celular = a.getCelular();
 				  imagen = a.getImagen();
 				  rescatistasBean.add(i, new RescatistaBean(id,nombre, apellido, nick, email, password, fechaNac, sexo, celular,imagen));
-				  i++;
-				
-		     
-		     }
-			
-		
-													    		
-			
+				  i++;						 
+		     }																		    			
 			
     	}catch (Exception excep){
-    		System.out.println("Excepci�n al listar los administradores: " + excep.getMessage());      		 			       	           	
+    		System.out.println("Excepcion al listar los rescatistas: " + excep.getMessage());      		 			       	           	
     	}  					
 				
     }    
@@ -155,19 +149,17 @@ public class ListarRescatistaBean_ implements Serializable {
 		this.rescatistaBean = rescatistaBean;
 	}
 
-	public void onRowSelect(SelectEvent event) {
-		
+	public void onRowSelect(SelectEvent event) {		
 		///Obtenego el string con el id del objeto
 		Long id = ((RescatistaBean) event.getObject()).getId();
-		System.out.println("id del Rescatista seleccionada: " + id);
+		//System.out.println("id del Rescatista seleccionada: " + id);
 		//Pasarlo a string cuando lo mandemos por sesion
 		String idEvento = id.toString();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoRescatistaEliminar", idEvento); 		
 					
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("bajaRescatista?faces-redirect=true");						 														
-
-		            
+		           
     }
 	
  

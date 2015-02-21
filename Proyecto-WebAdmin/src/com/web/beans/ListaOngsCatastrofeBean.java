@@ -305,9 +305,54 @@ public class ListaOngsCatastrofeBean implements Serializable{
 	
 	//	------------------ Operaciones ---------------------
 	
-	public void siguiente(){
-		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("vistaPlanRiesgoCatastrofe?faces-redirect=true");			
+	public void siguiente(){		
+		String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idCatastrofeString");
+		if ((idEventoString == null) || (idEventoString == ""))
+		{	
+			System.out.println("No existe la catástrofe. "); 			
+			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("registrarCatastrofeMap?faces-redirect=true");
+		}
+		else	
+		{
+			Long idCatastrofe = new Long(idEventoString);
+			
+			CatastrofeEBR manager = null;				
+			Context context = null;			
+			FacesMessage message = null; 
+			
+			try {
+	            // 1. Obtaining Context
+	            context = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+	            manager = (CatastrofeEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//CatastrofeEB!com.core.service.negocio.remote.CatastrofeEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }
+			
+			try{
+				Collection<Ong> res = new ArrayList<Ong>();
+				res = manager.listaOngDeCatastrofe(idCatastrofe);	
+				
+				if (res.size() == 0){
+					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Debe ingresar al menos una ONG.");
+	    			FacesContext.getCurrentInstance().addMessage(null, message);					
+				}
+				else{
+					ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+					handler.performNavigation("vistaPlanRiesgoCatastrofe?faces-redirect=true");					
+				}
+												
+			}catch (Exception excep){
+	    		System.out.println("Excepcion al listar los ImagesView: " + excep.getMessage());      		 			       
+		           		
+	    	}
+												
+		}
+		
 	}
 	
 	public void agregarOngs(){

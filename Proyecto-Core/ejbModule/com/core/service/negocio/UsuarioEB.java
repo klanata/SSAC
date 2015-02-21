@@ -2,11 +2,13 @@ package com.core.service.negocio;
 
 import java.util.Date;
 import java.util.Set;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Path;
+
 import com.core.data.entites.Catastrofe;
 import com.core.data.entites.Usuario;
 import com.core.data.persistencia.DataService;
@@ -70,8 +72,8 @@ public class UsuarioEB implements UsuarioEBR{
 		
 	}
 	@Override
-	public void registroUsuarioPlataforma(String nick, String pass,
-			String mail, String nombre, Date fecha, long idCatastrofe, String imagen) {
+	public Long registroUsuarioPlataforma(String nick, String pass,
+			String mail, String nombre, Date fecha, long idCatastrofe, String imagen) throws Exception{
 		
 		//se ejecuta solo una vez
 		Catastrofe c = dataService.find(Catastrofe.class, idCatastrofe);
@@ -87,6 +89,11 @@ public class UsuarioEB implements UsuarioEBR{
 		lista.add(c);
 		u.setCatastrofesRegistradas(lista);
 		
+		Long id = usuarioDAO.insert(u);
+		
+		return id;
+		
+		/*
 		try {
 			Long id = usuarioDAO.insert(u);
 			
@@ -94,6 +101,7 @@ public class UsuarioEB implements UsuarioEBR{
 			
 			e.printStackTrace();
 		}
+		*/
 		
 	}
 	@Override

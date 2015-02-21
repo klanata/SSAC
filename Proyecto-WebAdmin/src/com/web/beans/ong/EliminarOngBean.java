@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 
 
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -56,10 +58,7 @@ public class EliminarOngBean implements Serializable{
 	        } catch (NamingException e) {
 	            e.printStackTrace();
 	        }			
-						
-						
-						
-				
+																		
 				String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoOngEliminar");
 	            if ((idEventoString == null) || (idEventoString == ""))
 	    		{	
@@ -68,9 +67,7 @@ public class EliminarOngBean implements Serializable{
 	    			handler.performNavigation("listarAdministrador?faces-redirect=true");
 	    		}
 	    		else	
-	    		{
-				
-	    			
+	    		{					    			
 	    			//busco al administrador con es id
 	    			Long id = new Long(idEventoString);
 					Ong a = new Ong();
@@ -88,23 +85,17 @@ public class EliminarOngBean implements Serializable{
 					String imagen = a.getImagen();
 					
 					ongBean =  new OngBean(id, nombre, direccion, telefono, email, citioWeb, descripcion, imagen);
-					 
-					  	 	
-			     
-			     }
-					
-				
-	    					
-			
+					 					  				    
+			     }	            
 			
 	    }    
 		/*--------------------------------------------------------------------------------------------------------------------------------------------*/
 		/*---------------------------------------------------------------------------------------------------------*/
 		public void eliminar(){
 				
-			OngEBR manager = null;		
-			
+			OngEBR manager = null;					
 			Context context = null;
+			FacesMessage message = null; 
 			 
 			try {
 	            // 1. Obtaining Context
@@ -117,8 +108,7 @@ public class EliminarOngBean implements Serializable{
 	        } catch (NamingException e) {
 	            e.printStackTrace();
 	        }			
-						
-						
+											
 			String idEventoString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idEventoOngEliminar");
 			if ((idEventoString == null) || (idEventoString == ""))
 			{	
@@ -130,14 +120,19 @@ public class EliminarOngBean implements Serializable{
 			{
 				
 				Long id = new Long(idEventoString);
-			//	Ong o = new Ong();
+				//	Ong o = new Ong();
 				
 				//o = manager.buscarOngPorID_EB(id);
 				//a = manager.obetenrAdministradorPorNick(idAdministrador);
 				manager.EliminarONG(id);
 				
+				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Baja Exitosa", "La Ong fue dado de baja del sistema.");
+				//FacesContext.getCurrentInstance().addMessage(null, message);
 				
-
+				FacesContext contexto = FacesContext.getCurrentInstance();		    						    				
+				contexto.getExternalContext().getFlash().setKeepMessages(true);
+				
+				contexto.addMessage(null, message);
 
 				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 				handler.performNavigation("listarOng_?faces-redirect=true");
@@ -146,14 +141,12 @@ public class EliminarOngBean implements Serializable{
 		}
 		/*----------------------------------------------------------------------------------------------------------------------------------*/
 		public void cancelar(){
-		
-
-
 				ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-				handler.performNavigation("listarOng_?faces-redirect=true");
-			
-		
+				handler.performNavigation("listarOng_?faces-redirect=true");					
 		}
+		
+		
+		
 	}
 
 

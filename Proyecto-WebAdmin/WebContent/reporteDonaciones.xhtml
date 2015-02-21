@@ -3,164 +3,22 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      > 
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
 	<title>Sistema de Soporte ante Catástrofes Naturales</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="imagetoolbar" content="no" />
-	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
-	
-	
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />			
 </h:head> 
+
 <h:body id="top"> 
-<div class="wrapper col1">
-  <div id="header">
-    <div id="logo">
-      <h1><a href="#">Sistema de Soporte ante Catástrofes Naturales</a></h1>
-      <p><strong>Vista Web para Administradores</strong></p>
-    </div>
-     <div id="newsletter">
-     <fieldset>
-          <legend>NewsLetter</legend>
-          
-	<p:panelGrid columns="1">
-    <f:facet name="header">
-        <p:graphicImage name="/images/demo/ADMIN.png" />
-    </f:facet>
- 
-    
-    <h:outputText value="#{administradorBean.nick}" />
- 	<p:commandLink id="logout" actionListener="#{administradorBean.logout()}"
-      style="margin-right:20px;" oncomplete="logout(xhr, status, args)">
-    <h:outputText value="Cerrar Sesión" />
-  </p:commandLink>
- 
-</p:panelGrid>
-                   
-           
-      </fieldset>
-     
-                    
-    </div>
-    <br class="clear" />
-  </div>
-</div>
-
-<div class="wrapper col2">
- 
-   <h:form>
- 
-<p:megaMenu orientation="#{megaMenuView.orientation}" style="margin-top:20px">
-    <p:submenu label="Home" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="SSCA">
-                <p:menuitem value="" url="index.xhtml" />
-           
-            </p:submenu>
-            
-        </p:column>
- 
-                
-    </p:submenu>
- 
-    <p:submenu label="Administrador" style="right: 0px;left: 200px;" >
- 
-        <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaAdministrador.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarAdministradores_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarAdministradores.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
- 
-    </p:submenu>
- 
-    <p:submenu label="Rescatista" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaRescatista.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarRescatistas_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarRescatistas.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
-    </p:submenu>
- 
-    <p:submenu label="Ong" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaOng.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listarOng_.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="listarOng.xhtml" icon="ui-icon-pencil"/>
-                
-            </p:submenu>
-        </p:column>
-    </p:submenu>
-    
-    <p:submenu label="Filtro" style="right: 0px;left: 200px;">
-         <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="altaFiltro.xhtml" icon="ui-icon-check"/>     
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />                         
-            </p:submenu>
-        </p:column>
-    </p:submenu>
-    
-    <p:submenu label="Servicios" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="asignarFiltrosDeDatos.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="modificarFiltrosDeDatos.xhtml" icon="ui-icon-pencil"/>
-            </p:submenu>
-        </p:column>
- 	</p:submenu>
- 	
- 	<p:submenu label="Catástrofe" style="right: 0px;left: 200px;">
- 		<p:column>
-            <p:submenu label="ABM">
-                <p:menuitem value="Alta" url="registrarCatastrofeMap.xhtml" icon="ui-icon-check"/>
-                <p:menuitem value="Baja" url="listaBajaCatastrofe.xhtml" icon="ui-icon-close" />
-                <p:menuitem value="Modificación" url="modificarCatastrofe.xhtml" icon="ui-icon-pencil"/>                
-            </p:submenu>
-        </p:column>   
-    </p:submenu>
-    
-    <p:submenu label="Reporte" icon="ui-icon-contact" style="right: 0px;left: 200px;">
-        <p:column>
-            <p:submenu label="Reportes">
-                <p:menuitem value="Donaciones" url="reporteDonaciones.xhtml" />
-                <p:menuitem value="Pedidos de ayuda" url="reportePedidoAyuda.xhtml" />
-                <p:menuitem value="Personas Desaparecidas" url="listarPersonasDesaparecidas.xhtml" />
-            </p:submenu>
-            
-        </p:column>
-        
-    </p:submenu>
-       
-</p:megaMenu>
-</h:form>
-                    
-    <br class="clear" />
-  
-</div>
-
-
-
-
+<ui:include src="header.xhtml" /> 
 <div class="wrapper col3">
-
-
-
-
-
   <div id="intro">
     
    <h1> <a href="graficas.xhtml"> Ver Grafica </a> </h1>
-    <br/>	
+    	
    <h3>Listar Donacion de Bienes</h3>
       
       <f:view>      	
@@ -171,7 +29,7 @@
       		
     		<p:dataTable id="listarOngDT2" var="deBienesBean" widgetVar="donacionBTable" value = "#{ReporteDonacion.listaDeBienes}"
                  		 emptyMessage="No se han encontrado ong con ese criterio"  filteredValue="#{ReporteDonacion.filtroDeBienes}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 rowKey="#{deBienesBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
@@ -180,10 +38,7 @@
 		                <h:outputText value="Buscar Donacion de Bienes:  " />
 		                <p:inputText id="globalFilter"   onkeyup="PF('donacionBTable').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
-		        </f:facet>    	
-		       
-		        
-        		         		                  		                  		             	
+		        </f:facet>    			       		                		         		                  		                  		            
         		
         		<p:column headerText="Fecha Realizado" style="width:200px" filterBy="#{deBienesBean.fechaRealizada}" filterMatchMode="contains" >
             		<h:outputText value="#{deBienesBean.fechaRealizada}" />
@@ -200,19 +55,17 @@
         	      <p:column headerText="Persona" style="width:200px"   >
             		<h:outputText value="#{deBienesBean.usuario}" />
         		</p:column>
-        	       		     		 
-        		        		        		
+        	       		     		         		        		        	
      		</p:dataTable>     		     		
      		
 		</h:form>
       
       </f:view>         
     </div>
-    
-    
+        
     <div id="intro">
     <h3>Listar Donacion de Servicios</h3>
-      <br/>	
+      
       <f:view>      	
       	
       	<h:form id="formdonacion2">      		
@@ -221,7 +74,7 @@
       		
     		<p:dataTable id="listarOngDT2" var="deBienesBean2" widgetVar="donacionBTable2" value = "#{ReporteDonacion.listaDeServicios}"
                  		 emptyMessage="No se han encontrado donaciones con ese criterio"  filteredValue="#{ReporteDonacion.filtroDeServicios}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 rowKey="#{deBienesBean2.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
@@ -230,10 +83,7 @@
 		                <h:outputText value="Buscar Donacion de Bienes:  " />
 		                <p:inputText id="globalFilter"   onkeyup="PF('donacionBTable2').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
-		        </f:facet>    	
-		       
-		        
-        		         		                  		                  		             	
+		        </f:facet>    			       		                		         		                  		                  		             
         		
         		<p:column headerText="Fecha Realizado" style="width:200px" filterBy="#{deBienesBean2.fechaRealizada}" filterMatchMode="contains" >
             		<h:outputText value="#{deBienesBean2.fechaRealizada}" />
@@ -258,11 +108,10 @@
       
       </f:view>         
     </div>
-    
-    
+        
     <div id="intro">
     <h3>Listar Donacion de Economica</h3>
-      <br/>	
+     
       <f:view>      	
       	
       	<h:form id="formdonacion3">      		
@@ -271,7 +120,7 @@
       		
     		<p:dataTable id="listarOngDT3" var="deBienesBean3" widgetVar="donacionBTable3" value = "#{ReporteDonacion.listaEconomica}"
                  		 emptyMessage="No se han encontrado donaciones con ese criterio"  filteredValue="#{ReporteDonacion.filtroEconomica}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top"
+                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 rowKey="#{deBienesBean3.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
@@ -281,32 +130,23 @@
 		                <p:inputText id="globalFilter"   onkeyup="PF('donacionBTable3').filter()" style="width:300px" placeholder="Ingrese la consulta"/>		                
 		            </p:outputPanel>
 		        </f:facet>    	
-		       
-		        
-        		         		                  		                  		             	
-        		
+		       		                		         		                  		                  		             	        		
         		<p:column headerText="Fecha Realizado" style="width:200px" filterBy="#{deBienesBean3.fechaRealizada}" filterMatchMode="contains" >
             		<h:outputText value="#{deBienesBean3.fechaRealizada}" />
-        		</p:column>
-        		
-        		
+        		</p:column>        		        		
         	    
         	      <p:column headerText="Ong" style="width:200px"   >
             		<h:outputText value="#{deBienesBean3.ong.nombre}" />
         		</p:column>
-        	       		     		 
-        		        		        		
+        	       		     		         		        		        	
      		</p:dataTable>     		     		
      		
 		</h:form>
       
       </f:view>         
     </div>    
-    
-    
-  </div>
-
-
+        
+</div>
 
 <div class="wrapper col7">
   <div id="copyright">
