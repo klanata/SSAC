@@ -8,7 +8,7 @@ function rescatistaController($scope) {
     $scope.password = "",
     $scope.nombreArchivoPlan = "",
     $scope.idPlanActual = "",
-    $scope.server = "172.16.100.98",
+    $scope.server = "172.16.100.115",
     $scope.puerto = "8080",
     $scope.rutaViewerJS = "http://10.0.2.2/RescatistasApp/www/ViewerJS/#../",
     $scope.descripcion = "",//window.localStorage.getItem("descripcionPedidoAyudaActual"),

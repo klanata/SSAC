@@ -51,7 +51,7 @@
             var nick = window.localStorage.getItem("usuarioNick");
             //console.log("Nick Storaged: "+ nick);
 			//alert("http://192.168.0.102:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick);
-            $.ajax({url:"http://172.16.100.98:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
+            $.ajax({url:"http://172.16.100.115:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
                 success:function(response) {
                     //useReturnData(response);
                     

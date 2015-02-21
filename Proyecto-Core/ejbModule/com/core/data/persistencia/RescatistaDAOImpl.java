@@ -84,6 +84,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	public boolean existeRescatista(String nick) {
 				
 				boolean existe;
+				try {
 				Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista");
 				consulta.setParameter("nick", nick);							
 				if (consulta.getResultList().isEmpty()){
@@ -92,6 +93,11 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 			  		existe = true;
 			  	}
 			  	return existe;
+				}
+				catch (Exception ex){			
+					throw ex;
+				}	
+				
 		}
 
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -200,7 +206,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	}
 	///////////////////////////////////////////////////////////////////////////////////////
 	public Rescatista buscarUsuario(String login, String password) {
-		
+		try{
 		Rescatista usuario = null;
 		Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista.Nick.Pass");
 	  	consulta.setParameter("nick", login);
@@ -208,6 +214,9 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	   	usuario = (Rescatista) consulta.getResultList().get(0);
 	  		
 		return usuario;
+		}
+		catch(Exception ex){
+			throw ex;		}
 	}
 	/////////////////////////////////////////////////////////////////////////////////////
 	

@@ -181,7 +181,7 @@ function validarRescatista() {
 	$.ajax({
 		url : "http://" + server + ":" + puerto
 				+ "/ServicioRest/catastrofe/rescatista/login?nick="
-				+ Nick.toString() + "&pass=" + Pass.toString(),// NO
+				+ Nick.toString() + "&pass=" + encodeURIComponent(Pass),
 		
 
 		success : function(response) {
