@@ -616,73 +616,96 @@ div {
 
 
 	<!-- REGISTRO DE USUARIO -->
+	
 	<div class="oculto" id="registrousuario">
-		<div class="ui-grid">
-			<div class="ui-grid-row">
-				<div class="ui-grid-col-2"></div>
-				<div class="ui-grid-col-8">
-
-					<h2>
-						<a href="#"> REGISTRO DE USUARIO</a>
-					</h2>
+	<div class="ui-grid ui-grid-responsive">
+	
+	<h2><a href="#"> REGISTRO DE USUARIO</a></h2>
 					<p>Por favor, ingrese los campos para registrarse a la
 						catastrofe</p>
 					<f:view>
 						<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
 						<h:form id="login2">
-
-
-							<label for="nick"> Nick:</label>
+	
+	
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+        <label for="nick"> Nick:</label>
 							<p:inputText id="nick" label="nick" value="#{loginBean.nick}"
 								required="true" requiredMessage="El nick es requerido">
 							</p:inputText>
-
-							<label for="nombre">Nombre :</label>
+        </div>
+        
+        <div class="ui-grid-col-4">
+        
+        					<label for="nombre">Nombre :</label>
 							<p:inputText id="nombre" label="nombre"
 								value="#{loginBean.nombre}" required="true"
 								requiredMessage="El nombre es requerido">
 							</p:inputText>
-
-							<label for="email">Correo :</label>
-							<p:inputText id="email" label="email" value="#{loginBean.email}"
-								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
-								<f:validateRegex
-									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-
-
-							</p:inputText>
-
-							<label for="nombre"> Clave:</label>
-							<p:password value="#{loginBean.clave}" id="password"
-								required="true" label="password"
-								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#-@ ej: Re-casd8">
-
-
-								<f:validateRegex
-									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$-]).{8,9})" />
-
-
-
-
-							</p:password>
-
-							<p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
+        </div>
+        <div class="ui-grid-col-2"></div>
+    </div>
+    
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+       						 <p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
 							<p:calendar id="fechNac" label="Fecha de Nacimiento"
 								value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
 								mask="true" />
-
-							<p:commandButton id="registrarButton" value="Registrar"
+        </div>
+        <div class="ui-grid-col-4">
+       							 <label for="email">Correo :</label>
+								<p:inputText id="email" label="email" value="#{loginBean.email}"
+								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
+								<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+        
+        </div>
+        <div class="ui-grid-col-2"></div>
+    </div>
+    
+    
+    
+    <div class="ui-grid-row">
+         <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-4">
+      						  <label for="nombre"> Clave:</label>
+							<p:password value="#{loginBean.clave}" id="password"
+								required="true" label="password"
+								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#-@ ej: Re-casd8">
+								<f:validateRegex
+									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$-]).{8,9})" />
+							</p:password>
+        
+        </div>
+        <div class="ui-grid-col-1"></div>
+         <div class="ui-grid-col-3">
+        <br/>
+        <br/>
+        <p:commandButton id="registrarButton" value="Registrar"
 								actionListener="#{loginBean.registro}" update=":growl"
 								oncomplete="manejarLogin(xhr, status, args)" />
-
-						</h:form>
+        
+        
+        </div>
+         <div class="ui-grid-col-2"></div>
+    </div>
+    
+    
+    	</h:form>
 					</f:view>
-				</div>
-				<div class="ui-grid-col-2"></div>
-			</div>
-		</div>
-	</div>
-
+</div>
+</div>
+	
+	
+	
+	
+	
+	
 
 <!-- LOGOUT -->
 
@@ -910,7 +933,6 @@ div {
        
         <div class="ui-grid-col-2"></div>
     </div>
-    
     <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
         <div class="ui-grid-col-3"></div>
