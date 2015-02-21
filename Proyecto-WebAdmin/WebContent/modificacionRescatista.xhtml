@@ -41,8 +41,8 @@
 						
 						<td style="border-collapse: collapse; border-color: rgb(255, 255, 255); border-width: 0px;">
 							<p:password id="feedback" value="#{modificarRescatistaBean.rescatistaBean.password}" feedback="true" requiered = "true" requiredMessage="La contraseña es requerida" 
-							 		validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">							 							 
-							 	<f:validateRegex pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,20})" />
+							 		validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re-casd8">							 							 
+							 	<f:validateRegex pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$-]).{8,20})" />
 							</p:password>				 				 																				
 						</td>					
 					</tr>

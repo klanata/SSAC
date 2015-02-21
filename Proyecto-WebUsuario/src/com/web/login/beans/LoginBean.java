@@ -7,9 +7,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -20,6 +20,8 @@ import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
 import clienteutility.ClienteUtility;
+
+
 
 
 
@@ -266,7 +268,12 @@ public class LoginBean implements Serializable {
 		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
 		idCatastrofe = (Long)sesion.getAttribute("idmongo");
    		
-		manager.registroUsuarioPlataforma(nick, clave, email, nombre, fechaNacimiento, idCatastrofe,imagen);
+		try {
+			manager.registroUsuarioPlataforma(nick, clave, email, nombre, fechaNacimiento, idCatastrofe,imagen);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		nick="";
 		clave="";
 		email="";
@@ -285,16 +292,23 @@ public class LoginBean implements Serializable {
 		Menu = "Iniciar Sesión";
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
-		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Gracias por visitarnos","");
+		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Gracias por visitarnos","!");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 		//FacesContext.getCurrentInstance().addMessage(null, msg);
 		nick1="";
 		setNick1(nick1);
 		context.addCallbackParam("estaLogeado", logeado);
 		//ver esto creo esta mal
-		context.addCallbackParam("view", "Index.xhtml");
-	
-		//FacesContext.getCurrentInstance().addMessage(null, msg);
-		//context.addCallbackParam("estaLogeado", logeado);
+		/*context.addCallbackParam("view", "Index.xhtml");
+	*/
+		
+		FacesContext contexto = FacesContext.getCurrentInstance();
+		contexto.getExternalContext().getFlash().setKeepMessages(true);
+		
+	//	contexto.addMessage(null, msg);
+		
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("Home?faces-redirect=true");
 		
 		
 		

@@ -15,7 +15,7 @@ private static final long serialVersionUID = 1L;
 	private String path;	
 	
 	
-	ImagenPersonaBean(){
+	public ImagenPersonaBean(){
 		super();
 	}
 	public ImagenPersonaBean(Long id, String path) {

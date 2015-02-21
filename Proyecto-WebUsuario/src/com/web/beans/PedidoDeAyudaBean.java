@@ -2,6 +2,7 @@ package com.web.beans;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -15,11 +16,13 @@ import org.primefaces.context.RequestContext;
 import clienteutility.ClienteUtility;
 
 
+
 import com.core.service.negocio.remote.PedidoDeAyudaEBR;
 import com.core.service.negocio.remote.RescatistaEBR;
 
 @ManagedBean(name="pedidoAyudaBean")
-@SessionScoped
+//@SessionScoped
+@RequestScoped
 public class PedidoDeAyudaBean implements Serializable {
 	
 	
@@ -104,13 +107,11 @@ public class PedidoDeAyudaBean implements Serializable {
        		
        		///Llamamos a la funcion para asignar de forma autòmatica un rescatista.
        		//PedidoDeAyuda pedido= manager.buscarPedido(id);
-       		managerRes.asignarRescatistaCatastrofe(id);
+       		
        		
        		
        		RequestContext requestContext = RequestContext.getCurrentInstance();
-       	 requestContext.update("form:display");
-         requestContext.execute("PF('dlg').show()");
-         
+       
          
     		if (id.equals(0)){
     			
@@ -122,9 +123,9 @@ public class PedidoDeAyudaBean implements Serializable {
     		}
     		else {    	
     			
-
-    			this.coordenadasX = (Double) null;
-    			this.coordenadasY = (Double) null;
+    			managerRes.asignarRescatistaCatastrofe(id);
+    			this.coordenadasX = 0.00;
+    			this.coordenadasY = 0.00;
     			this.descripcion = "";
     			
         		

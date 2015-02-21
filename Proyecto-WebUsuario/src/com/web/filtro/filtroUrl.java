@@ -137,7 +137,7 @@ public class filtroUrl implements Filter , Serializable {
 				  
 			//obtengo la URL que ingresa un usuario
 			String urlStr = req.getRequestURL().toString().toLowerCase();
-			
+			urlStr = urlStr.replaceAll("%c3%b1", "ñ");
 			if(urlStr ==null){
 				
 				

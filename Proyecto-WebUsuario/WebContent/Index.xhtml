@@ -435,7 +435,7 @@ div {
 									
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}"   >
+							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:160px"  >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deServicioBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -496,7 +496,7 @@ div {
 								<h:panelGrid>
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"   >
+							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:160px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{economicaBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -563,7 +563,7 @@ div {
 
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"   >
+							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:160px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deBienesBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -655,11 +655,11 @@ div {
 							<label for="nombre"> Clave:</label>
 							<p:password value="#{loginBean.clave}" id="password"
 								required="true" label="password"
-								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#%@ ej: Re%casd8">
+								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#-@ ej: Re-casd8">
 
 
 								<f:validateRegex
-									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$%]).{8,9})" />
+									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$-]).{8,9})" />
 
 
 
@@ -693,8 +693,9 @@ div {
 				<div class="ui-grid-col-2"></div>
 				<div class="ui-grid-col-8">
 
-					<p:growl id="mens" showDetail="true" life="2000" />
+					
 					<h:form id="formulariologout">
+					<p:growl id="mens" showDetail="true" life="2000" />
 						<h2>
 							 Gracias por visitar nuestro citio. </h2>
 							 <h1>
@@ -707,7 +708,7 @@ div {
 
 
 						<p:commandButton id="loginButton" value="Confirmar"
-							actionListener="#{loginBean.logout}" update=":mens"
+							actionListener="#{loginBean.logout}" update="formulariologout:mens"
 						oncomplete="logout(xhr, status, args)">
 							<span class="fontawesome-lock"></span>
 						</p:commandButton>
