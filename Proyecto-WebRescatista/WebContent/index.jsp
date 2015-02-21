@@ -15,6 +15,8 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="css/ssac.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -60,7 +62,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav id="header-background" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -217,9 +219,9 @@
     
      <script type="text/javascript">
     var usuarioLogueado = localStorage.getItem('usuarioNick');
-    alert(usuarioLogueado);
+    //alert(usuarioLogueado);
     $(document).ready(document.getElementById("usuario").innerHTML = usuarioLogueado);
-    alert(usuarioLogueado);
+    //alert(usuarioLogueado);
     </script>
     
     <script src="js/loginRescatista.js"></script>

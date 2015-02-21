@@ -8,7 +8,7 @@ function rescatistaController($scope) {
     $scope.password = "",
     $scope.nombreArchivoPlan = "",
     $scope.idPlanActual = "",
-    $scope.server = "172.16.100.115",
+    $scope.server = "192.168.0.104",
     $scope.puerto = "8080",
     $scope.rutaViewerJS = "http://10.0.2.2/RescatistasApp/www/ViewerJS/#../",
     $scope.descripcion = "",//window.localStorage.getItem("descripcionPedidoAyudaActual"),
@@ -22,7 +22,7 @@ function rescatistaController($scope) {
 		}
 		else{
 		console.log("Nick: " + $scope.nick);
-        $.ajax({url:"http://" + $scope.server + ":" + $scope.puerto + "/ServicioRest/catastrofe/rescatista/login?nick=" + $scope.nick + "&pass=" + $scope.password,
+        $.ajax({url:"http://" + $scope.server + ":" + $scope.puerto + "/ServicioRest/catastrofe/rescatista/login?nick=" + $scope.nick + "&pass=" + encodeURIComponent($scope.password),
             success:function(response) {
                 //console.log("Entro al response: " + response);
                 if(response.booleanValue === 'true')

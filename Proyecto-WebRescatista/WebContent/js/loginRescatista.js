@@ -210,7 +210,7 @@ function verPlan() {
 	var urlArchivo = document.getElementById("urlArchivo").value;
 	window.location.replace("http://" + server + ":" + puerto
 			+ "/ServicioRest/catastrofe/rescatista/pdf?nombreArchivoPlan="+urlArchivo);
-	alert("urlArchivo");
+	//alert("urlArchivo");
 	// $("#panelPdf").empty();
 	// $("#panelPdf").append('<iframe
 	// src="http://docs.google.com/gview?url=http://192.168.0.105:8080/ServicioRest/catastrofe/rescatista/pdf.pdf&embedded=true"style="width:600px;

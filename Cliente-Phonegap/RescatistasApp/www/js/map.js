@@ -51,7 +51,7 @@
             var nick = window.localStorage.getItem("usuarioNick");
             //console.log("Nick Storaged: "+ nick);
 			//alert("http://192.168.0.102:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick);
-            $.ajax({url:"http://172.16.100.115:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
+            $.ajax({url:"http://192.168.0.104:8080/ServicioRest/catastrofe/rescatista/verPendientes?nick=" + nick,
                 success:function(response) {
                     //useReturnData(response);
                     
@@ -71,6 +71,10 @@
                     //Posicion del rescatista
 					var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 					//var icono = '../img/Blue.png';
+					var data = "Usted esta aqui";
+					var infowindow = new google.maps.InfoWindow({
+					  content: data
+					});
                     var marker = new google.maps.Marker({
                     position: latLong,
                     map: map,
@@ -79,6 +83,9 @@
 					//icon:'../img/BlueDot.png',
 					
                     });
+					 google.maps.event.addListener(marker, 'click', function() {
+                      infowindow.open(map,marker);
+                     });
                      console.log("cargando posicion rescatista");
 					 
                     if (response != null || !$.isEmptyObject(response)) {
