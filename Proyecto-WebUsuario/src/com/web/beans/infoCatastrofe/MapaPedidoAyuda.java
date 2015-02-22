@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -108,13 +109,7 @@ public class MapaPedidoAyuda implements Serializable{
 					css = null;
 					catastrofeBean = new CatastrofeBean(idCatastrofe,nombreEvento,descripcionCatastrofe,logo,coordenadasX,coordenadasY,activa,prioridad,css);
 										
-					List<Double> list = manager.ListarCoordenasCatastrofe(idCatastrofe);
-					
-					//Muestra la lista de coordenadas del poligono
-					//for (int i=0; i<=list.size()-1; i++){
-						//double resultado = list.get(i);
-						//System.out.println("valor de coordenadas en list: " + resultado);
-					//}
+					List<Double> list = manager.ListarCoordenasCatastrofe(idCatastrofe);										
 					
 					//Construyo el poligono
 					
@@ -253,8 +248,9 @@ public class MapaPedidoAyuda implements Serializable{
 	public void onMarkerDrag(MarkerDragEvent event) {
 		marker = event.getMarker();     	
 		
+		/*
 		double latP = marker.getLatlng().getLat();
-		double lngP = marker.getLatlng().getLng();
+		double lngP = marker.getLatlng().getLng();				
 		
 		System.out.println("lat: " + latP); 
 		System.out.println("lng: " + lngP); 
@@ -269,6 +265,7 @@ public class MapaPedidoAyuda implements Serializable{
 		else {
 			System.out.println("no esta en la zona: ");
 		}
+		*/
 		
         //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Selected", marker.getTitle()));		
     }
@@ -437,38 +434,57 @@ public class MapaPedidoAyuda implements Serializable{
         		FacesContext contexto = FacesContext.getCurrentInstance();
     			HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);
     			idCatastrofe = (Long)sesion.getAttribute("idmongo");
-           		Long id = manager.crearPedido(idCatastrofe, descripcion, latP, lngP, fechaPublicacion);            		
+           		Long id = manager.crearPedido(idCatastrofe, descripcion, latP, lngP, fechaPublicacion);   
            		
-           		managerR.asignarRescatistaCatastrofe(id);
-           		
-           		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-				handler.performNavigation("Home?faces-redirect=true");
-				
-				/*
-           		
-				FacesContext contexto = FacesContext.getCurrentInstance(); 
-			       
-				FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "El administrador fue ingresado al sistema.");
-				    				    						    			
-				contexto.getExternalContext().getFlash().setKeepMessages(true);		
-				
-		        contexto.addMessage("growl4", messages); 
-		        
-		        ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-				handler.performNavigation("Home?faces-redirect=true");
-				
-		        //contexto.getExternalContext().getFlash().setRedirect(true); 
-		        
-		        //contexto.getExternalContext().redirect("Index.xhtml");
-		        */	        
-		        
+           		if (id==0){
+           			
+           			//FacesContext contex = FacesContext.getCurrentInstance(); 
+        	        //FacesMessage messages = new FacesMessage("Error al solicitar pedido de ayuda. "); 
+        	        //contexto.addMessage("pedidoAyudaBean", messages);
+           		}
+           		else {  
+           			
+           			managerR.asignarRescatistaCatastrofe(id);           		
+        			this.descripcion = "";
+        			
+        			/*ESTE ANDA NO SE MUERE*/
+           		 
+        	        //FacesMessage messages = new FacesMessage("Pedido Creado con exito !!"); 
+        	        //contexto.addMessage("pedidoAyudaBean", messages);
+               		
+               		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+    				handler.performNavigation("Home?faces-redirect=true");
+        	        
+        	        /*
+               		
+    				FacesContext contexto = FacesContext.getCurrentInstance(); 
+    			       
+    				FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "El administrador fue ingresado al sistema.");
+    				    				    						    			
+    				contexto.getExternalContext().getFlash().setKeepMessages(true);		
+    				
+    		        contexto.addMessage("growl4", messages); 
+    		        
+    		        ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+    				handler.performNavigation("Home?faces-redirect=true");
+    				
+    		        //contexto.getExternalContext().getFlash().setRedirect(true); 
+    		        
+    		        //contexto.getExternalContext().redirect("Index.xhtml");
+    		        */	       
+           		}
+           		           												        
 			}catch (Exception excep){
 				System.out.println("Excepción en MapaPedidoAyuda en registrarPedidoAyuda() " + excep.getMessage());   				
 			}  
 			
 		}
 		else {
-			System.out.println("No esta en la zona registrarPedidoAyuda NO registro Pedido.");			
+			System.out.println("No esta en la zona registrarPedidoAyuda NO registro Pedido.");
+			FacesContext contexto = FacesContext.getCurrentInstance();
+			FacesMessage messages = new FacesMessage("Debe hacer click en la zona de la catástrofe !!"); 
+ 	        contexto.addMessage("pedidoAyudaBean", messages);
+			
 		}		
 		
 	}
