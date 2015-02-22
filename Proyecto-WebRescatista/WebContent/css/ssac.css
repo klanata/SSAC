@@ -1,0 +1,26 @@
+@CHARSET "ISO-8859-1";
+
+#body{
+	background: url('../img/background-violet-2.png')no-repeat center center fixed;
+	-webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+}
+
+#header-background{
+	background: url('../img/WebUsuarioHeader.png')no-repeat center center fixed;
+	-webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+    height:70px;
+}
+
+#mapa{
+	box-shadow: 0px 0px 26px #888888;
+}
+
+#aLogo{
+	padding-top:5px;
+}

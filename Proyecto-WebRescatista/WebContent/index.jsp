@@ -70,7 +70,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Rescatistas</a>
+                <a id="aLogo" class="navbar-brand" href="index.html"><img src="img/SSACrescatista.png" alt="" height="60px" /></a>
+                
             </div>
             <!-- /.navbar-header -->
 

@@ -16,29 +16,22 @@
 	<script src="js/skel.min.js"></script>
 	<script src="js/skel-layers.min.js"></script>
 	<script src="js/init.js"></script>
-	<link rel="stylesheet" href="css/styles.css" />
-	<link rel="stylesheet" href="css/style-desktop.css" />
 	<link rel="stylesheet" href="css/style-noscript.css" />
 	<link rel="stylesheet" href="css/skel.css" />
 	<link id="cssPrincipal" rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/styles.css" media="screen"
-		type="text/css" />
 	<link rel="stylesheet"
 		href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" />
-	<script>
-		  //alert(window.localStorage.getItem("IdCatastrofe"));
-		  var css = window.localStorage.getItem("urlCSS");
+	<script type="text/javascript" language="javascript">
+		  var css = "#{imagesView.css}";
 		  var cssFinal = "css/"+ css; 
-		  //alert("Css final: "+cssFinal);
-		  //alert(window.localStorage.getItem("urlCSS"));
-		  //document.getElementById("j_idt5:catastrofeId").value = id;
+		  console.log(cssFinal);
 		  
 		  var login= #{loginBean.logeado};
 		  function mostrarMenuLogueo(){
-			if !login{
+			//if !login{
 
 				
-			}
+			//}
 			  
 		  }
 		  
@@ -49,12 +42,13 @@
 				return false;
 		  }
 		  cambiarCSS();
-			function obtenerNombre(){
+		  
+		  /*function obtenerNombre(){
 				HttpServletRequest req = (HttpServletRequest) request;
 				String urlStr = req.getRequestURL().toString().toLowerCase();
 				
 				alert(urlStr);
-				}
+		  }*/
 	</script>
 	<script type="text/javascript" language="javascript">
 			function show(id) {
