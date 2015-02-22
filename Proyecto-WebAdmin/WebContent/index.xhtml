@@ -32,12 +32,14 @@
  <div id="map">
 	<p:growl id="growl" life="3000" showDetail="true" />
 	<p:gmap id="map" center="4.350836, 26.531067" zoom="2" type="HYBRID" 
-		model="#{mapaCatastrofesBean.polygonModel}" widgetVar="map" style="width:1350px;height:400px"  >
+		model="#{mapaCatastrofesBean.polygonModel}" widgetVar="map" style="width:1350px;height:250px"  >
 		<p:ajax event="overlaySelect" listener="#{mapaCatastrofesBean.onMarkerSelect}" update="growl" />         	   
-    </p:gmap>                
+    </p:gmap>  
+ </div>               
  
+ <div class="wrapper col7" style=" border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved </p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>

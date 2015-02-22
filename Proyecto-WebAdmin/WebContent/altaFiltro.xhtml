@@ -23,17 +23,17 @@
  
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div id="mapa"  style="width:470px;height:580px; float:right;margin-top:30px;margin-right: 120px;padding:0px 74px 0px 0px;">  
+<div id="mapa"  style="width:470px;height:450px; float:right;margin-top:30px;margin-right: 120px;padding:0px 74px 0px 0px;">  
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:580px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:450px;"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>
 	
 </div> 
-<div class="wrapper col3">
+<div class="wrapper col3" style="height:480px;">
   <div id="intro2">
     <div>      
       	
@@ -53,12 +53,7 @@
 			<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
 	        <h:outputText value="#{filtrosServiciosCatastrofeBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
 	        </p>			
-	        <br/>      
-	        <p>    
-	        <h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-	        <h:outputText value="#{filtrosServiciosCatastrofeBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
-	        </p>
-	        <br/>		        	        	        
+	        <br/>      	                	        	       
 	        
 	        <label for="nombreEvento">Servicio: </label>
 	        <p:selectOneMenu id="idServicio" value="#{filtroBean.servicio}" converter="servicioConverter" 
@@ -88,9 +83,9 @@
   </div>
 </div>
 
-<div class="wrapper col7">
+<div class="wrapper col7" style="border:solid white; border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved </p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>

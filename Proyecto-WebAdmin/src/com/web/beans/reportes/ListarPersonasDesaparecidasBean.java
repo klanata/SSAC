@@ -155,16 +155,12 @@ private static final long serialVersionUID = 1L;
 				  personasBean.add(i, new PersonasDesaparecidasBean(nombreCatastrofe, id, idCatastrofe, nombre, apellido,cedula, numeroContacto, fechNac, descripcion, hallada, imagen));
 				  
 				  i++;
-				
-		     
+						   
 		     }
-			
-		
-													    		
-			
+																		    					
 			
     	}catch (Exception excep){
-    		System.out.println("Excepción al listar las personas Desaparecidas: " + excep.getMessage());      		 			       	           	
+    		System.out.println("Excepciï¿½n al listar las personas Desaparecidas: " + excep.getMessage());      		 			       	           	
     	}  					
 				
     }    

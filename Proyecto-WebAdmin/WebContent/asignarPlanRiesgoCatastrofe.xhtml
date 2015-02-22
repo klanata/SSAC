@@ -27,18 +27,16 @@
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:580px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:450px;"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>
 	
 </div> 
 
-<div class="wrapper col3">
-    <div id="intro2">
-    
-    <div>		     
-	      
+<div class="wrapper col3"  style="height:480px;">
+    <div id="intro2">    
+    <div>		     	      
 	      <f:view>          	    
 		      	
 				<h:form id="formPlanRiesgo" enctype="multipart/form-data" columns="2" value="#{planDeRiesgoBean.catastrofeBean}" columnClasses="label, value" style="width:540px;border: 0;">
@@ -56,21 +54,14 @@
 					<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
 		            <h:outputText value="#{planDeRiesgoBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
 		            </p>			
-		            <br/>  
-		            <p>    
-		           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-		            <h:outputText value="#{planDeRiesgoBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
-		            </p>
-					<br/>  		                         		           
+		            <br/>  		            		                         		          
 		 	
 		        	<p>
 					<h:outputText value="Seleccione el plan de riesgo que va a ser asignado a la catástrofe" style="width:100px;border: transparent;"/>			            
 		            </p>
 		            <p>
-					<h:outputText value="(El archivo debe estar en formato pdf)" style="width:100px;border: transparent;"/>	
-																						           
-		            </p>
-		            
+					<h:outputText value="(El archivo debe estar en formato pdf)" style="width:100px;border: transparent;"/>																							          
+		            </p>		            
 		            <br/>					
 		            
 		            <p:commandLink style="text-align:right" oncomplete="window.open('http://localhost:8080/Proyecto-WebAdmin/reporte.pdf')">		            
@@ -88,14 +79,13 @@
 		  	</f:view>
     </div> 
     				    
-    <br class="clear" />
-    
+    <br class="clear" />    
 	</div>	    		
 </div>
 
-<div class="wrapper col7">
+<div class="wrapper col7" style="border:solid white; border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved  </p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>

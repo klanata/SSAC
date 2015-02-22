@@ -1,8 +1,9 @@
 package com.web.beans.reportes;
 
 import java.io.Serializable;
-
 import java.util.Date;
+import java.util.Set;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
@@ -14,11 +15,9 @@ import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.ImagenPersonaDesaparecida;
 import com.core.data.entites.PersonasDesaparecidas;
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
-
-
-
 
 
 @ManagedBean(name="actualizarPersonaBean")
@@ -29,9 +28,7 @@ public class ActualizarPersonaBean implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	 
-	
+	private static final long serialVersionUID = 1L;	
 	
 	private String encontrada;
 	
@@ -86,8 +83,7 @@ public class ActualizarPersonaBean implements Serializable {
     		}
     		else	
     		{
-			
-    			
+			    			
     			//busco al administrador con es id
     			Long id = new Long(idEventoString);
 				
@@ -96,8 +92,8 @@ public class ActualizarPersonaBean implements Serializable {
 				//cargamos datos a mostrar
 						
 				//Long id;
-				//String nombre = p.getNombre();
-				String apellido= p.getNombre() + p.getApellido();
+				String nombre = p.getNombre();
+				String apellido= p.getApellido();
 				String cedula = p.getCedula();
 				boolean hallada = p.isHallada();
 				String nombreCatastrofe = p.getCatastrofe().getNombreEvento();
@@ -105,14 +101,22 @@ public class ActualizarPersonaBean implements Serializable {
 				Date fechNac = p.getFechNac();
 				String descripcion = p.getDescripcion();
 				Long idCatastrofe = p.getCatastrofe().getId();
-				String imagen = "ver de tomarla";
-				personasdesaparecidasBean = new PersonasDesaparecidasBean(nombreCatastrofe, id, idCatastrofe, nombreCatastrofe, apellido,cedula, numeroContacto, fechNac, descripcion, hallada, imagen);
+				String imagen = "usuarioAnonimo.jpg";
 				
-				 
-				 	
-		     
-		     }
+				Set<ImagenPersonaDesaparecida> imgsPerDesaparecida = p.getImagenes();
 				
+				int i=0;
+				if (imgsPerDesaparecida.size() > 0){															
+					for (ImagenPersonaDesaparecida imagP : imgsPerDesaparecida){
+						if (i == 0){
+							imagen = imagP.getPath();
+						}
+						i = i + 1;														
+					}							
+				}
+				personasdesaparecidasBean = new PersonasDesaparecidasBean(nombreCatastrofe, id, idCatastrofe, nombre, apellido,cedula, numeroContacto, fechNac, descripcion, hallada, imagen);
+								 				 			     
+		     }				
         	
     	}catch (Exception excep){
     		System.out.println("Excepcion obtener personas desaparecidas: " + excep.getMessage());      		 			       	           	

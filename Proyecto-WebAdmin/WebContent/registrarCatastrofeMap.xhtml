@@ -173,10 +173,10 @@
       <input type="button" value="Buscar" onclick="codeAddress()"/>
 </div>
 
-<div id="map-canvas" style="width:470px;height:580px; float:right;margin-top:30px;margin-right: 120px;padding:0px 74px 0px 0px;">
+<div id="map-canvas" style="width:470px;height:450px; float:right;margin-top:30px;margin-right: 120px;padding:0px 74px 0px 0px;">
 </div>
 
-<div class="wrapper col3">
+<div class="wrapper col3" style="height:480px;">
     <div id="intro2">    
     <div>            
       <f:view>            			
@@ -220,7 +220,8 @@
 					<p:inputTextarea id="poligono" value="#{catastrofeBeanMap.polygon}" style="height: 100px; width: 95%;display:none" required="true" requiredMessage="La zona de la catástrofe es obligatoria"/>
 					
 					<br/>	
-					<br/>														
+					<br/>	
+					<br/>												
 																                        		
                 	<p:commandButton value="Siguiente" ajax="false" update="registrarCatastrofe:messages" action="#{catastrofeBeanMap.registrarCatastrofe()}" />                		
             		          	            	            		            				 					         	        		          					         			            		        		        	        		     
@@ -231,9 +232,9 @@
 	</div>	    		
 </div>
 
-<div class="wrapper col7">
+<div class="wrapper col7" style="border:solid white; border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved  <a href="#"></a></p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>

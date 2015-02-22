@@ -14,7 +14,7 @@
 
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div class="wrapper col3">
+<div class="wrapper col3" style="height:400px;">
   <div id="intro">
     <div>
       <h3>Listar  Personas Desaparecidas</h3>     
@@ -26,7 +26,7 @@
       		
     		<p:dataTable id="personaDT" var="personasBean" widgetVar="personaTable2" value = "#{listarPersonasDesaparecidasBean.personasBean}"
                  		 emptyMessage="No se han encontrado personas desaparecidas con ese criterio"  filteredValue="#{listarPersonasDesaparecidasBean.filtroPersonasBean}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
+                 		 paginator="true" rows="4" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 selectionMode="single" selection="#{listarPersonasDesaparecidasBean.selectedPersonas}"  rowKey="#{personasBean.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
@@ -67,17 +67,13 @@
 		</h:form>
       
       </f:view>         
-    </div>
-    
+    </div>    
     <br class="clear" />
   </div>
 </div>
-
-
-
-<div class="wrapper col7">
+<div class="wrapper col7" style="border:solid white; border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved </p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>

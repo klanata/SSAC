@@ -27,14 +27,14 @@
 
 	<p:growl id="growl" life="3000" showDetail="true" />
 
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:580px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:450px;"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>
 	
 </div> 
 
-<div class="wrapper col3">
+<div class="wrapper col3" style="height:480px;">
     <div id="intro2">
     
     <div>		     
@@ -56,12 +56,7 @@
 					<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
 		            <h:outputText value="#{listaOngsBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
 		            </p>			
-		            <br/>
-		            <p>    
-		           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-		            <h:outputText value="#{listaOngsBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
-		            </p>
-					<br/>  
+		            <br/>		           
 		                         		       
 		      		<p>
 					<h:outputText value="Seleccione las ONGs que van a ser asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
@@ -69,7 +64,7 @@
 		      		
 		    		<p:dataTable id="ongsDT" var="ongBean" value="#{listaOngsBean.ongsBean}" widgetVar="ongsTable"
 		                 		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBean}"                 		  
-		                 		 paginator="true" rows="5" paginatorPosition="top"
+		                 		 paginator="true" rows="4" paginatorPosition="top"
 		                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 		                 		 selection="#{listaOngsBean.selectedOngs}" rowKey="#{ongBean.id}" style="margin-bottom:0;width:540px">
 		                 	                 	
@@ -112,9 +107,9 @@
     
 	</div>	    		
 </div>
-<div class="wrapper col7">
+<div class="wrapper col7" style="border:solid white; border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved  </p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>

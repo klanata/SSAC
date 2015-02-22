@@ -25,13 +25,13 @@
 <ui:include src="header.xhtml" /> 
 <div id="mapa" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
 	<p:growl id="growl" life="3000" showDetail="true" />
-	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:580px"
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:550px;"
     		 model="#{imagesView.polygonModel}" widgetVar="map" >    
     	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
     </p:gmap>	
 </div> 
 
-<div class="wrapper col3">
+<div class="wrapper col3" style="height:580px;">
     <div id="intro2">    
     <div>		     	      
 	      <f:view>      	      	
@@ -46,18 +46,13 @@
 				<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
 	            <h:outputText value="#{listaOngsBean.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
 	            </p>
-	            <br/>				               
-	            <p>    
-	           	<h:outputText value="Descripción:  " style="width:100px;border: transparent;"/>
-	            <h:outputText value="#{listaOngsBean.catastrofeBean.descripcion}" styleClass="outputLabel"/>
-	            </p>
-				<br/>  	                         	          				     	      		      	      
+	            <br/>				               	              	                         	          				     	      		      	     
 	      		<p>
 				<h:outputText value="ONGs asignadas a la catástrofe  " style="width:100px;border: transparent;"/>			            
 	            </p>		      		
 	    		<p:dataTable id="ongsCatDT" var="ongBeanCat" value="#{listaOngsBean.ongsBeanCat}" widgetVar="ongsCatTable"
 	                 		 emptyMessage="No se han encontrado ONGs con ese criterio" filteredValue="#{listaOngsBean.filtroOngBeanCat}"                 		  
-	                 		 paginator="true" rows="5" paginatorPosition="top"
+	                 		 paginator="true" rows="4" paginatorPosition="top"
 	                 		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 	                 		 selection="#{listaOngsBean.selectedOngsCat}" rowKey="#{ongBeanCat.id}" style="width:530px;margin-bottom:0;">	                 	                 
 					<f:facet name="header">
@@ -89,9 +84,9 @@
     <br class="clear" />    
 	</div>	    		
 </div>
-<div class="wrapper col7">
+<div class="wrapper col7" style="border:solid white; border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved </p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>

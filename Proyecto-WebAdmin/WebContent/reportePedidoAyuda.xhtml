@@ -14,7 +14,7 @@
 
 <h:body id="top"> 
 <ui:include src="header.xhtml" /> 
-<div class="wrapper col3">
+<div class="wrapper col3" style="height:400px;">
   <div id="intro">            
    <h3>Listar Pedido de Ayuda</h3>      
       <f:view>      	      	
@@ -22,7 +22,7 @@
       		<p:growl id="msgs" showDetail="true" />      		
     		<p:dataTable id="listarOngDT2" var="p" widgetVar="pedidoTable" value = "#{reportePedidoAyuda.lista}"
                  		 emptyMessage="No se han encontrado pedidos de ayuda con ese criterio"  filteredValue="#{reportePedidoAyuda.filtro}"               		  
-                 		 paginator="true" rows="5" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
+                 		 paginator="true" rows="4" paginatorPosition="top" style="box-shadow: 0px 0px 26px #888888;"
                  		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                  		 rowKey="#{p.id}" dblClickSelect="true">    
                  		                                		                                           	                 	
@@ -59,16 +59,13 @@
         		        		        		
      		</p:dataTable>     		     		
      		
-		</h:form>
-      
+		</h:form>      
       </f:view>         
-    </div>
-       
+    </div>       
   </div>
-
-<div class="wrapper col7">
+<div class="wrapper col7" style="border:solid white; border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved </p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>

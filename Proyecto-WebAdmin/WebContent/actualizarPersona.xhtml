@@ -17,18 +17,17 @@
 <ui:include src="header.xhtml" /> 
 <div class="wrapper col3">
   <div id="intro">
-    <div class="">
-      <h1>Actualizar Estado Persona Desaparecida</h1>
+    <div class="">      
       
       <f:view>
 		<h:form id="registroOng" >
 			<h:messages id="messages" for="registroOng"></h:messages>
 			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+			<h3>Actualizar Estado Persona Desaparecida</h3>
 			
-			
-				<p:panelGrid columns="2">
-				    <f:facet name="header">
-				         <p:graphicImage name="images/demo/usuarioAnonimo.jpg"/>
+				<p:panelGrid columns="2" style="box-shadow: 0px 0px 26px #888888;">
+				    <f:facet name="header">				         
+				         <p:graphicImage value="image/#{actualizarPersonaBean.personasdesaparecidasBean.imagen}" width="284px" height="177px"/> 	            			              		    
 				    </f:facet>
 				 
 				    <h:outputText value="Nombre:" />
@@ -48,7 +47,7 @@
 				    <h:outputText value="#{actualizarPersonaBean.personasdesaparecidasBean.descripcion}" />
 					    
 				</p:panelGrid>
-				    <p:commandButton id="comandoActualizar" update="growl"  type="submit" style="margin-left: 550px;" styleClass="formbutton" value="Encontrada" action="#{actualizarPersonaBean.editar()}">
+				    <p:commandButton id="comandoActualizar" update="growl"  type="submit" value="Encontrada" action="#{actualizarPersonaBean.editar()}">
 			</p:commandButton>		
 				
 			
@@ -59,18 +58,12 @@
     <br class="clear" />
   </div>
 </div>
-
-<div class="wrapper col7">
+<div class="wrapper col7" style="border:solid white; border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
-    <p class="fl_left">Copyright &copy; 2014 - All Rights Reserved - <a href="#">SSAC</a></p>
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved </p>
     <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
     <br class="clear" />
   </div>
 </div>
 </h:body>
 </html>
-
-
-
-
-
