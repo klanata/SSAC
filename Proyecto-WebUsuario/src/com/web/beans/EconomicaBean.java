@@ -127,8 +127,7 @@ public class EconomicaBean implements Serializable{
     		*/
     		managerOng.buscarOngPorNick_EB(ong);
     		
-    		FacesMessage messages = new FacesMessage("Donación creada con exito !!"); 
- 	        contexto.addMessage("pedidoAyudaBean", messages);
+    		
  			
     		
        		    	
@@ -188,7 +187,9 @@ public class EconomicaBean implements Serializable{
        		manager.crearDonacionEconomica(idOng, usuario, fechaRealizada);    	
        		
        		usuario = "";
-    		
+       		FacesContext contexto = FacesContext.getCurrentInstance();
+       		FacesMessage messages = new FacesMessage("Donación creada con exito !!"); 
+    		contexto.addMessage("economicaBean", messages);
     		
     	}catch (Exception excep){
     		System.out.println("Excepcion en donacion economica: " + excep.getMessage());      		 			       

@@ -160,8 +160,8 @@ public class DeServicioBean implements Serializable {
     		*/
     		managerOng.buscarOngPorNick_EB(ong);
 
-    		FacesMessage messages = new FacesMessage("Donación creada con exito !!"); 
- 	        contexto.addMessage("pedidoAyudaBean", messages);
+    		 
+ 	        
  			
     		
        		    	
@@ -228,10 +228,11 @@ public class DeServicioBean implements Serializable {
        		this.usuario= "";
        		this.areaConocimient = "";
        		
+       		
        		FacesContext contexto = FacesContext.getCurrentInstance(); 
 	        	        
-	        FacesMessage messages = new FacesMessage("Donación realizada con exito !!"); 
-	        contexto.addMessage("pedidoAyudaBean", messages);
+	        FacesMessage messages = new FacesMessage("Donación realizada con exito !!",null); 
+	        contexto.addMessage("deServicioBean", messages);
 			
        		
        		

@@ -275,8 +275,7 @@ div {
 			<!--  <li><a href="Index.xhtml">Inicio</a></li>
 				<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
 
-			<li><a href="#banner" style="cursor: hand; text-color: FFFFFFF"
-				onclick="show('banner');"> Pedido de ayuda</a></li>
+			<li><a href="Home.xhtml" > Inicio</a></li>
 			<li><a href="#donacion"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('donacion');">Donaciones</a></li>
@@ -330,7 +329,7 @@ div {
 						<f:view>
 							<h:form id="pedidoAyudaBean">
 
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl" life="2000" />
 
 								<h:panelGrid>
 
@@ -429,7 +428,7 @@ div {
 											
 							
 							<h:form id="deServicioBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="1000" />
+								<p:growl id="growl"  life="1000" />
 
 								<h:panelGrid>
 
@@ -469,7 +468,7 @@ div {
 									<br/>
 									<p:commandButton id="registro" update="growl" type="submit"
 										Class="button" value="DONAR"
-										action="#{deServicioBean.registrarDonacionDeServicio()}">
+										action="#{deServicioBean.registrarDonacionDeServicio()}" >
 									</p:commandButton>
 								</h:panelGrid>
 							</h:form>
@@ -493,7 +492,7 @@ div {
 						hideEffect="explode" height="400" width="430">
 						<f:view>
 							<h:form id="economicaBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="1000" />
+								<p:growl id="growl"  life="1000" />
 								<h:panelGrid>
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
@@ -558,7 +557,7 @@ div {
 
 						<f:view>
 							<h:form id="deBienesBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="1000" />
+								<p:growl id="growl" life="1000" />
 
 								<h:panelGrid>
 
@@ -719,9 +718,9 @@ div {
 
 					
 					<h:form id="formulariologout">
-					<p:growl id="mens" showDetail="true" life="2000" />
+					<p:growl id="mens"  life="2000" />
 						<h2>
-							 Gracias por visitar nuestro citio. </h2>
+							 Gracias por visitar nuestro Sitio. </h2>
 							 <h1>
 							 <br/>
 							 Si esta seguro que desea cerrar sesión dar clic a "Confirmar"
