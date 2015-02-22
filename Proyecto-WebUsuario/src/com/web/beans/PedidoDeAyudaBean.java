@@ -104,19 +104,15 @@ public class PedidoDeAyudaBean implements Serializable {
     		Date fechaPublicacion= new Date();
     		fechaPublicacion.getTime();
     	
-    /*		FacesContext contexto = FacesContext.getCurrentInstance();
-			HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);*/
-			catastrofeId = new Long(2);//(Long)sesion.getAttribute("idmongo");
+    		FacesContext contexto = FacesContext.getCurrentInstance();
+			HttpSession sesion = (HttpSession)contexto.getExternalContext().getSession(true);
+			catastrofeId = (Long)sesion.getAttribute("idmongo");
        		Long id = manager.crearPedido(catastrofeId, descripcion, coordenadasX, coordenadasY, fechaPublicacion);   
-       		
-       		///Llamamos a la funcion para asignar de forma autòmatica un rescatista.
-       		//PedidoDeAyuda pedido= manager.buscarPedido(id);
-       		
        		
        		
        		RequestContext requestContext = RequestContext.getCurrentInstance();       
          
-    		if (id.equals(0)){
+    		if (id==0){
     			
     			//FacesContext contex = FacesContext.getCurrentInstance(); 
     	        FacesMessage messages = new FacesMessage("Error al solicitar pedido de ayuda. "); 
@@ -135,7 +131,7 @@ public class PedidoDeAyudaBean implements Serializable {
         		
         		
     		/*ESTE ANDA NO SE MUERE*/
-    		 FacesContext contexto = FacesContext.getCurrentInstance();
+    		 
     	        FacesMessage messages = new FacesMessage("Pedido Creado con exito !!"); 
     	        contexto.addMessage("pedidoAyudaBean", messages);
     			
@@ -147,7 +143,7 @@ public class PedidoDeAyudaBean implements Serializable {
     			handler.performNavigation("Index?faces-redirect=true");
     			
     			    		
-    			//((RequestContext) contexto).addCallbackParam("view", "Index.xhtml");
+    			
         		
     		}
        		

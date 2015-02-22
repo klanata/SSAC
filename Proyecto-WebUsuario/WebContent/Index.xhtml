@@ -427,15 +427,16 @@ div {
 						showEffect="explode" hideEffect="explode" height="500" width="430">
 						<f:view>
 											
+							
 							<h:form id="deServicioBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl" showDetail="true" sticky="true" life="1000" />
 
 								<h:panelGrid>
 
 									
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:160px"  >
+							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:400px"  >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deServicioBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -465,14 +466,14 @@ div {
 										
 										
 									</p:inputText>
-									
+									<br/>
 									<p:commandButton id="registro" update="growl" type="submit"
 										Class="button" value="DONAR"
 										action="#{deServicioBean.registrarDonacionDeServicio()}">
 									</p:commandButton>
 								</h:panelGrid>
 							</h:form>
-						</f:view>
+							</f:view>
 					</p:dialog>
 
 				</div>
@@ -489,14 +490,14 @@ div {
 					<p>Done un monto mediante paypal a la ONG deseada.</p>
 
 					<p:dialog header="DONACIÓN ECONOMICA" widgetVar="dlg2" showEffect="explode"
-						hideEffect="explode" height="500" width="430">
+						hideEffect="explode" height="400" width="430">
 						<f:view>
 							<h:form id="economicaBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl" showDetail="true" sticky="true" life="1000" />
 								<h:panelGrid>
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:160px" >
+							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:400px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{economicaBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -510,7 +511,7 @@ div {
 										>
 									</p:inputText>
 
-									
+									<br/>
 
 									<p:commandButton id="registrarDonacion" update="growl"
 										type="submit" Class="button" value="Confirmar datos"
@@ -557,13 +558,13 @@ div {
 
 						<f:view>
 							<h:form id="deBienesBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl" showDetail="true" sticky="true" life="1000" />
 
 								<h:panelGrid>
 
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:160px" >
+							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:400px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deBienesBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -573,8 +574,8 @@ div {
 
 									<label for="usuario">Ingrese su nombre si lo desea :</label>
 									<p:inputText id="usuario" label="usuario"
-										value="#{deBienesBean.usuario}" required="true"
-										requiredMessage="El nombre del usuario es requerido">
+										value="#{deBienesBean.usuario}" 
+									>
 									</p:inputText>
 
 									
@@ -593,7 +594,7 @@ div {
 
 										
 									</p:inputText>
-
+									<br/>
 									<p:commandButton id="registro" update="growl" type="submit"
 										Class="button" value="DONAR"
 										action="#{deBienesBean.registrarDonacionDeBienes()}">
@@ -624,15 +625,15 @@ div {
 					<p>Por favor, ingrese los campos para registrarse a la
 						catastrofe</p>
 					<f:view>
-						<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
-						<h:form id="login2">
+						
+						<h:form>
 	
-	
+		<p:growl id="msgRegistro" life="2000" />
     <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
         <div class="ui-grid-col-4">
         <label for="nick"> Nick:</label>
-							<p:inputText id="nick" label="nick" value="#{loginBean.nick}"
+							<p:inputText id="nick" label="nick" value="#{registroBean.nick}"
 								required="true" requiredMessage="El nick es requerido">
 							</p:inputText>
         </div>
@@ -641,7 +642,7 @@ div {
         
         					<label for="nombre">Nombre :</label>
 							<p:inputText id="nombre" label="nombre"
-								value="#{loginBean.nombre}" required="true"
+								value="#{registroBean.nombre}" required="true"
 								requiredMessage="El nombre es requerido">
 							</p:inputText>
         </div>
@@ -653,12 +654,12 @@ div {
         <div class="ui-grid-col-4">
        						 <p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
 							<p:calendar id="fechNac" label="Fecha de Nacimiento"
-								value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
+								value="#{registroBean.fechaNacimiento}" pattern="dd-MM-yyyy"
 								mask="true" />
         </div>
         <div class="ui-grid-col-4">
        							 <label for="email">Correo :</label>
-								<p:inputText id="email" label="email" value="#{loginBean.email}"
+								<p:inputText id="email" label="email" value="#{registroBean.email}"
 								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
 								<f:validateRegex
 								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -674,7 +675,7 @@ div {
          <div class="ui-grid-col-2"></div>
         <div class="ui-grid-col-4">
       						  <label for="nombre"> Clave:</label>
-							<p:password value="#{loginBean.clave}" id="password"
+							<p:password value="#{registroBean.clave}" id="password"
 								required="true" label="password"
 								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#-@ ej: Re-casd8">
 								<f:validateRegex
@@ -686,9 +687,9 @@ div {
          <div class="ui-grid-col-3">
         <br/>
         <br/>
-        <p:commandButton id="registrarButton" value="Registrar"
-								actionListener="#{loginBean.registro}" update=":growl"
-								oncomplete="manejarLogin(xhr, status, args)" />
+       <p:commandButton id="registrarButton" value="Registrar"
+								actionListener="#{registroBean.registro}"  update="msgRegistro" ajax="false"
+								 />
         
         
         </div>

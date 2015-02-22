@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -151,7 +152,9 @@ public class DeBienesBean implements Serializable{
     		 * Busco la ong por el nombre seleccionado
     		*/
     		managerOng.buscarOngPorNick_EB(ong);
-    		
+    		FacesMessage messages = new FacesMessage("Donación creada con exito !!"); 
+ 	        contexto.addMessage("pedidoAyudaBean", messages);
+ 			
     		
        		    	
 		}catch (Exception excep){
