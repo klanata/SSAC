@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="css/style-desktop.css" />
 	<link rel="stylesheet" href="css/style-noscript.css" />
 	<link rel="stylesheet" href="css/skel.css" />
-	<link rel="stylesheet" href="css/style.css" />
+	<link id="cssPrincipal" rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/styles.css" media="screen"
 		type="text/css" />
 	<link rel="stylesheet"
@@ -315,10 +315,7 @@ div {
 				<strong>¡SOLICITE AYUDA!</strong>
 			</h2>
 
-			<strong> ¿Se encuentra en situación de peligro? ¿Necesita
-				ayuda? En SSAC brindamos </strong> <strong> servicios de auxilio.</strong> <strong>
-				Ingrese sus datos en el siguiente formulario y le derivaremos a un
-				rescatista </strong> <strong> lo antes posible.</strong>
+			<strong>Marque su ubicaci&oacute;n en el mapa y opcionalmente utilice la secci&oacute;n Descripci&oacute;n para darnos m&aacute;s detalles sobre la situaci&oacute;n. Le derivaremos a un rescatista lo antes posible. </strong>
 
 			<div class="ui-grid ui-grid-responsive">
 
@@ -334,7 +331,7 @@ div {
 
 								<h:panelGrid>
 
-									<label for="descripcion">Descripcion :</label>
+									<label for="descripcion">Descripci&oacute;n :</label>
 									<p:inputTextarea rows="3" cols="10" id="descripcion"
 										label="descripcion" value="#{pedidoAyudaBean.descripcion}"
 										required="true" requiredMessage="La descripcion es requerida">
