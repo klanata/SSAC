@@ -1,14 +1,14 @@
 package com.web.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import java.util.List;
-
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
@@ -18,17 +18,18 @@ import javax.servlet.http.HttpSession;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.Catastrofe;
-
 import com.core.service.negocio.remote.CatastrofeEBR;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
+
 import clienteYoutube.*;
+
 import com.web.beans.resultadoBusqueda;
 
 @ManagedBean(name = "busquedaYoutube")
-@SessionScoped
-public class Busqueda {
+@RequestScoped
+public class Busqueda implements Serializable{
 
 	private String busca;
 	private List<SearchResult> searchResultList = new ArrayList<SearchResult>();
@@ -79,13 +80,10 @@ public class Busqueda {
 				.getSession(true);
 		idCatastrofe = (Long) sesion.getAttribute("idmongo");
 
-		System.out.print("esto obtiene de id catastrofe");
-		System.out.print(idCatastrofe);
-		//String res = this.registrar();
 		
 
 		if ((idCatastrofe == null) || (idCatastrofe == 00)) {
-			System.out.println("id = o o null. ");
+		
 			ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) FacesContext
 					.getCurrentInstance().getApplication()
 					.getNavigationHandler();
@@ -118,7 +116,7 @@ public class Busqueda {
 					}
 				    
 				    //filtro = "Inundacion Uruguay";
-					System.out.println("Filtros de base: " + filtro);
+					
 				    this.setBusqueda(filtro);
 
 				}

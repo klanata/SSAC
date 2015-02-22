@@ -24,11 +24,6 @@ import clienteutility.ClienteUtility;
 
 
 
-
-
-
-
-
 import com.core.service.negocio.remote.UsuarioEBR;
 
 
@@ -186,14 +181,7 @@ public class LoginBean implements Serializable {
 		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
 		idCatastrofe1 = (Long)sesion.getAttribute("idmongo");
 		
-		/*String nombreCatastrofe = (String)sesion.getAttribute("nombreCatastrofe");
-		String index = nombreCatastrofe.toLowerCase();
-		//ver los espacios
-		index = index.replaceAll(" ", "_");
-		index = "http://localhost:8080/proyecto-webusuario/" + index + "xhtml";
-		System.out.print("url logue"+ index);
-		//veo si esta registrado a esa catastrofe
-		*/
+		
 		Boolean registrado = manager.estaRegistradoCatastrofe(nick1, idCatastrofe1);
 		
 		if(registrado==false){
@@ -242,7 +230,7 @@ public class LoginBean implements Serializable {
 		}
 	} 
 	
-	
+	/*
 	public void registro(ActionEvent actionEvent) {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
@@ -284,7 +272,7 @@ public class LoginBean implements Serializable {
 		//fechaNacimiento = null;
 		//idCatastrofe= //
 		context.addCallbackParam("view", "Index.xhtml");
-	}
+	}*/
 	public void logout(ActionEvent actionEvent) {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
@@ -297,15 +285,10 @@ public class LoginBean implements Serializable {
 		//FacesContext.getCurrentInstance().addMessage(null, msg);
 		nick1="";
 		setNick1(nick1);
-		context.addCallbackParam("estaLogeado", logeado);
-		//ver esto creo esta mal
-		/*context.addCallbackParam("view", "Index.xhtml");
-	*/
+		//context.addCallbackParam("estaLogeado", logeado);
 		
 		FacesContext contexto = FacesContext.getCurrentInstance();
 		contexto.getExternalContext().getFlash().setKeepMessages(true);
-		
-	//	contexto.addMessage(null, msg);
 		
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("Home?faces-redirect=true");
