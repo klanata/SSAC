@@ -181,7 +181,7 @@ public class RegistroBean implements Serializable{
 		RequestContext context = RequestContext.getCurrentInstance();
 		
 		
-		context.addCallbackParam("view", "Index.xhtml");
+		//context.addCallbackParam("view", "Index.xhtml");
         
         
 		/*		

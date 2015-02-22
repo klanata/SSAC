@@ -138,9 +138,6 @@ public class PedidoDeAyudaBean implements Serializable {
     	      
     	       
     			
-    			/* sirve para redireccionar sin mensaje con los recuesq*/
-    			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-    			handler.performNavigation("Index?faces-redirect=true");
     			
     			    		
     			

@@ -66,12 +66,15 @@
 				hide();
 				oc.display = "block";
 				if (!login) {
+					//desaparecidos
 					
 					document.getElementById('personasdesap').style.visibility = "hidden";
 					document.getElementById('desaparecidos').style.visibility = "hidden";
 					document.getElementById('busperdesap').style.visibility = "hidden";
 					//document.getElementById('desaparecidosocultar').style.visibility = "hidden";
+					registroBean.setMensaje("Estimado Usuario debe estar logueado en el sistema para poder reportar personas desaparecidas.")
 					loginBean.setNick1("");
+					document.getElementById('logoutusuario').style.visibility = "hidden";
 					
 				}else {
 					document.getElementById('loginusuario').style.visibility = "hidden";
@@ -161,11 +164,23 @@ div {
 					style="cursor: hand; text-decoration: none"
 					onclick="show('banner');"> ¡AYUDA!</a> <br /> <br /> <br />
 				<p>
-					<p:contentFlow value="#{imagesView.imagesMostrar}" var="image">
+				
+				<!-- comentada esto mueve las imagenes pero no es active responsive
+				
+				<p:imageSwitch effect="shuffle">
+				    <ui:repeat value="#{imagesView.imagesMostrar}" var="image">
+				        <p:graphicImage value="imagen/#{image}" styleClass="content" />
+				        
+						<div class="caption"></div>
+				    </ui:repeat>
+				</p:imageSwitch>
+				-->
+					<p:contentFlow value="#{imagesView.imagesMostrar}" var="image" effect="fade">
 						<p:graphicImage value="imagen/#{image}" styleClass="content" />
 
 						<div class="caption"></div>
 					</p:contentFlow>
+					
 				</p>
 				<br />
 
@@ -336,7 +351,7 @@ div {
 									<label for="descripcion">Descripcion :</label>
 									<p:inputTextarea rows="3" cols="10" id="descripcion"
 										label="descripcion" value="#{pedidoAyudaBean.descripcion}"
-										required="true" requiredMessage="La descripcion es requerida">
+										>
 									</p:inputTextarea>
 
 									<p:inputText id="coordenadasX" label="coordenadasX"
@@ -755,7 +770,7 @@ div {
 				<div class="ui-grid-col-2"></div>
 				<div class="ui-grid-col-8">
 
-					<p:growl id="mensajes" showDetail="true" life="2000" />
+					<p:growl id="mensajes"  life="2000" />
 					<h:form id="formularioIngreso1">
 						<h2>
 							<a href="#">Ingreso</a>
@@ -799,7 +814,7 @@ div {
 	<!-- MENU DE PERSONAS DESAPARECIDAS -->
 	
 	<div class="oculto" id="desaparecidos">
-		<h2>#{loginBean.mensaje}</h2>
+		<h2>#{registroBean.mensaje}</h2>
 	
 	
 		<div class="ui-grid ui-grid-responsive">
@@ -874,7 +889,7 @@ div {
 	
 	<f:view>
 						<h:form id="personasdesaparecidasBean">
-							<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+							<p:growl id="growl"  life="2000" />
 							
     <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
