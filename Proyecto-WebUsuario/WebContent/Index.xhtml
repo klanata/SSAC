@@ -341,7 +341,7 @@ div {
 
 									<label for="descripcion">Descripci&oacute;n :</label>
 									<p:inputTextarea rows="3" cols="10" id="descripcion"
-										label="descripcion" value="#{pedidoAyudaBean.descripcion}"
+										label="descripcion" value="#{mapaPedidoAyuda.descripcion}"
 										>
 									</p:inputTextarea>
 
@@ -359,7 +359,7 @@ div {
 									<p:commandButton id="registrarpedido" update="growl"
 										type="submit" style="margin-left: 150px;" Class="button"
 										value="Ayuda"
-										action="#{pedidoAyudaBean.registrarpedidoAyuda()}">
+										action="#{mapaPedidoAyuda.registrarPedidoAyuda()}">
 									</p:commandButton>
 								</ul>
 							</h:form>
@@ -373,7 +373,13 @@ div {
 					<div class="ui-grid-col-1"></div>
 					<div class="ui-grid-col-5">
 						<br />
-						<div id="map-canvas"></div>
+						<div id="mapa2" style="width:42%; float:right;margin-right: 300px;padding:0px 74px 0px 0px;">  
+							<p:growl id="growl2" life="3000" showDetail="true" />
+							<p:gmap id="map2" center="#{mapaPedidoAyuda.latitud}, #{mapaPedidoAyuda.longitud}" zoom="8" type="HYBRID"  style="width:500px;height:580px"
+						    		 model="#{mapaPedidoAyuda.polygonModel}" widgetVar="map" >    
+						    	 <p:ajax event="markerDrag" listener="#{mapaPedidoAyuda.onMarkerDrag}" update="growl2" />	
+						    </p:gmap>	
+						</div>
 					</div>
 
 					<div class="ui-grid-col-1"></div>
@@ -693,7 +699,7 @@ div {
         <br/>
         <br/>
        <p:commandButton id="registrarButton" value="Registrar"
-								actionListener="#{registroBean.registro}"  update="msgRegistro" ajax="false"
+								action="#{registroBean.registro()}"  update="msgRegistro" 
 								 />
         
         
