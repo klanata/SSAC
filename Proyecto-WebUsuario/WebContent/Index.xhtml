@@ -1034,13 +1034,22 @@ div {
 							</p:column>
 
 							<p:column headerText="Imagen" filterMatchMode="contains">
-								<h:graphicImage value="image/#{personaBean.imagenes}" />
+								
+								
+								<p:commandButton type="button" value="Ver Imagenes" onclick="PF('dlg').show()" />
+ 
+								<p:dialog header="Imagenes" widgetVar="dlg" modal="true"
+								    draggable="false" resizable="false">
+								 
+								    <p:imageSwitch effect="fade">
+								        <ui:repeat value="#{imagesView.imagesMostrar}" var="image">
+								            <p:graphicImage value="imagen/#{image}" styleClass="content" />>
+								        </ui:repeat>
+								    </p:imageSwitch>
+								</p:dialog>
 							</p:column>
 
-							<p:column headerText="¿Hallada?"
-								filterBy="#{personaBean.hallada}" filterMatchMode="contains">
-								<h:outputText value="#{personaBean.hallada}" />
-							</p:column>
+							
 							<hr></hr>
 						</p:dataTable>
 						<hr></hr>
