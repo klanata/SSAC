@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -24,7 +26,7 @@ import com.core.service.negocio.remote.OngEBR;
 
 
 @ManagedBean(name="economicaBean")
-@SessionScoped
+@RequestScoped
 public class EconomicaBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -77,7 +79,7 @@ public class EconomicaBean implements Serializable{
 		OngEBR managerOng = null;		
 		Context contextOng = null;
 		
-		
+		usuario = "";
 		try {
             
             contextCatastrofe = ClienteUtility.getInitialContext();
@@ -100,10 +102,9 @@ public class EconomicaBean implements Serializable{
 
 			//Long idCatastrofe=  new Long(1);
 			res = managerCatastrofe.listaOngDeCatastrofe(idCatastrofe); 
-			Catastrofe c = managerCatastrofe.buscaCatastrofePorId(idCatastrofe);
-			String nombre = c.getNombreEvento().toLowerCase();
+			
 			//ver los espacios
-			String nombreSinEspacio = nombre.replaceAll(" ", "_");
+			
 			
 			 
 			Iterator<Ong> it = res.iterator();
@@ -126,6 +127,8 @@ public class EconomicaBean implements Serializable{
     		*/
     		managerOng.buscarOngPorNick_EB(ong);
     		
+    		
+ 			
     		
        		    	
 		}catch (Exception excep){
@@ -182,7 +185,11 @@ public class EconomicaBean implements Serializable{
     		
     		
        		manager.crearDonacionEconomica(idOng, usuario, fechaRealizada);    	
-    		
+       		
+       		usuario = "";
+       		FacesContext contexto = FacesContext.getCurrentInstance();
+       		FacesMessage messages = new FacesMessage("Donación creada con exito !!"); 
+    		contexto.addMessage("economicaBean", messages);
     		
     	}catch (Exception excep){
     		System.out.println("Excepcion en donacion economica: " + excep.getMessage());      		 			       

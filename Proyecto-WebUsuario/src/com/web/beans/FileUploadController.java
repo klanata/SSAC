@@ -40,10 +40,10 @@ public class FileUploadController {
 	public void copyFile(String fileName, InputStream in) {	
 		
 		String idP = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idP");
-		System.out.println("El id: " + idP);		
+				
 		if ((idP == null) || (idP == ""))
 		{	
-			System.out.println("No existe . "); 			
+			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");
 		}
@@ -91,7 +91,7 @@ public class FileUploadController {
 		             out.flush();
 		             out.close();
 		           
-		             System.out.println("Nuevo archivo creado!");   	    		
+		             		
 		        }catch (Exception excep){
 					System.out.println("Excepción al obtener " + excep.getMessage());      		 			       	           	
 				}	    			    			    		        	      
@@ -109,7 +109,7 @@ public class FileUploadController {
 	public void cancelar(){
 		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");		
+		handler.performNavigation("Index?faces-redirect=true");		
 	}
 	
 

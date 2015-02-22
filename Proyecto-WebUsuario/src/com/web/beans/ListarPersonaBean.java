@@ -81,12 +81,12 @@ private static final long serialVersionUID = 1L;
 				apellido = persona.getApellido();
 				cedula = persona.getCedula();
 				numeroContacto = persona.getNumeroContacto();
-				System.out.println("despues de numeroContacto");
+				
 				descripcion = persona.getDescripcion();
 				fechnac = persona.getFechNac();
 				hallada = persona.isHallada();
 				imagenes = persona.getImagenes();
-				System.out.println("aca ");			
+					
 				personasBean.add(i, new PersonasDesaparecidasBean(id,nombre, apellido, cedula, numeroContacto, descripcion, fechnac,  imagenes, hallada));									    		
 			}	
 			
@@ -137,13 +137,15 @@ private static final long serialVersionUID = 1L;
 	public void onRowSelect(SelectEvent event) {
 		
 		Long id = ((PersonasDesaparecidasBean) event.getObject()).getId();
-		System.out.println("id de la persona seleccionada: " + id);
+		
 		String idP = id.toString();
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idP", idP); 		
-					
+		
+		
+		/*
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
 		handler.performNavigation("Index?faces-redirect=true");						 														
-		
+		*/
 		//ConfigurableNavigationHandler.performNavigation("asignarOngCatastrofe?faces-redirect=true");
 		//return "asignarOngCatastrofe?faces-redirect=true";
 		            

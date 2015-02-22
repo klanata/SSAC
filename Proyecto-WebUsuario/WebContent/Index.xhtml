@@ -66,12 +66,15 @@
 				hide();
 				oc.display = "block";
 				if (!login) {
+					//desaparecidos
 					
 					document.getElementById('personasdesap').style.visibility = "hidden";
 					document.getElementById('desaparecidos').style.visibility = "hidden";
 					document.getElementById('busperdesap').style.visibility = "hidden";
 					//document.getElementById('desaparecidosocultar').style.visibility = "hidden";
+					registroBean.setMensaje("Estimado Usuario debe estar logueado en el sistema para poder reportar personas desaparecidas.")
 					loginBean.setNick1("");
+					document.getElementById('logoutusuario').style.visibility = "hidden";
 					
 				}else {
 					document.getElementById('loginusuario').style.visibility = "hidden";
@@ -161,11 +164,23 @@ div {
 					style="cursor: hand; text-decoration: none"
 					onclick="show('banner');"> ¡AYUDA!</a> <br /> <br /> <br />
 				<p>
-					<p:contentFlow value="#{imagesView.imagesMostrar}" var="image">
+				
+				<!-- comentada esto mueve las imagenes pero no es active responsive
+				
+				<p:imageSwitch effect="shuffle">
+				    <ui:repeat value="#{imagesView.imagesMostrar}" var="image">
+				        <p:graphicImage value="imagen/#{image}" styleClass="content" />
+				        
+						<div class="caption"></div>
+				    </ui:repeat>
+				</p:imageSwitch>
+				-->
+					<p:contentFlow value="#{imagesView.imagesMostrar}" var="image" effect="fade">
 						<p:graphicImage value="imagen/#{image}" styleClass="content" />
 
 						<div class="caption"></div>
 					</p:contentFlow>
+					
 				</p>
 				<br />
 
@@ -275,8 +290,7 @@ div {
 			<!--  <li><a href="Index.xhtml">Inicio</a></li>
 				<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
 
-			<li><a href="#banner" style="cursor: hand; text-color: FFFFFFF"
-				onclick="show('banner');"> Pedido de ayuda</a></li>
+			<li><a href="Home.xhtml" > Inicio</a></li>
 			<li><a href="#donacion"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('donacion');">Donaciones</a></li>
@@ -327,14 +341,14 @@ div {
 						<f:view>
 							<h:form id="pedidoAyudaBean">
 
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl" life="2000" />
 
 								<h:panelGrid>
 
 									<label for="descripcion">Descripci&oacute;n :</label>
 									<p:inputTextarea rows="3" cols="10" id="descripcion"
 										label="descripcion" value="#{pedidoAyudaBean.descripcion}"
-										required="true" requiredMessage="La descripcion es requerida">
+										>
 									</p:inputTextarea>
 
 									<p:inputText id="coordenadasX" label="coordenadasX"
@@ -424,15 +438,16 @@ div {
 						showEffect="explode" hideEffect="explode" height="500" width="430">
 						<f:view>
 											
+							
 							<h:form id="deServicioBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl"  life="1000" />
 
 								<h:panelGrid>
 
 									
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:160px"  >
+							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:400px"  >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deServicioBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -462,14 +477,14 @@ div {
 										
 										
 									</p:inputText>
-									
+									<br/>
 									<p:commandButton id="registro" update="growl" type="submit"
 										Class="button" value="DONAR"
-										action="#{deServicioBean.registrarDonacionDeServicio()}">
+										action="#{deServicioBean.registrarDonacionDeServicio()}" >
 									</p:commandButton>
 								</h:panelGrid>
 							</h:form>
-						</f:view>
+							</f:view>
 					</p:dialog>
 
 				</div>
@@ -486,14 +501,14 @@ div {
 					<p>Done un monto mediante paypal a la ONG deseada.</p>
 
 					<p:dialog header="DONACIÓN ECONOMICA" widgetVar="dlg2" showEffect="explode"
-						hideEffect="explode" height="500" width="430">
+						hideEffect="explode" height="400" width="430">
 						<f:view>
 							<h:form id="economicaBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl"  life="1000" />
 								<h:panelGrid>
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:160px" >
+							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:400px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{economicaBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -507,7 +522,7 @@ div {
 										>
 									</p:inputText>
 
-									
+									<br/>
 
 									<p:commandButton id="registrarDonacion" update="growl"
 										type="submit" Class="button" value="Confirmar datos"
@@ -554,13 +569,13 @@ div {
 
 						<f:view>
 							<h:form id="deBienesBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl" life="1000" />
 
 								<h:panelGrid>
 
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:160px" >
+							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:400px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deBienesBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -570,8 +585,8 @@ div {
 
 									<label for="usuario">Ingrese su nombre si lo desea :</label>
 									<p:inputText id="usuario" label="usuario"
-										value="#{deBienesBean.usuario}" required="true"
-										requiredMessage="El nombre del usuario es requerido">
+										value="#{deBienesBean.usuario}" 
+									>
 									</p:inputText>
 
 									
@@ -590,7 +605,7 @@ div {
 
 										
 									</p:inputText>
-
+									<br/>
 									<p:commandButton id="registro" update="growl" type="submit"
 										Class="button" value="DONAR"
 										action="#{deBienesBean.registrarDonacionDeBienes()}">
@@ -621,15 +636,15 @@ div {
 					<p>Por favor, ingrese los campos para registrarse a la
 						catastrofe</p>
 					<f:view>
-						<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
-						<h:form id="login2">
+						
+						<h:form>
 	
-	
+		<p:growl id="msgRegistro" life="2000" />
     <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
         <div class="ui-grid-col-4">
         <label for="nick"> Nick:</label>
-							<p:inputText id="nick" label="nick" value="#{loginBean.nick}"
+							<p:inputText id="nick" label="nick" value="#{registroBean.nick}"
 								required="true" requiredMessage="El nick es requerido">
 							</p:inputText>
         </div>
@@ -638,7 +653,7 @@ div {
         
         					<label for="nombre">Nombre :</label>
 							<p:inputText id="nombre" label="nombre"
-								value="#{loginBean.nombre}" required="true"
+								value="#{registroBean.nombre}" required="true"
 								requiredMessage="El nombre es requerido">
 							</p:inputText>
         </div>
@@ -650,12 +665,12 @@ div {
         <div class="ui-grid-col-4">
        						 <p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
 							<p:calendar id="fechNac" label="Fecha de Nacimiento"
-								value="#{loginBean.fechaNacimiento}" pattern="dd-MM-yyyy"
+								value="#{registroBean.fechaNacimiento}" pattern="dd-MM-yyyy"
 								mask="true" />
         </div>
         <div class="ui-grid-col-4">
        							 <label for="email">Correo :</label>
-								<p:inputText id="email" label="email" value="#{loginBean.email}"
+								<p:inputText id="email" label="email" value="#{registroBean.email}"
 								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
 								<f:validateRegex
 								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -671,7 +686,7 @@ div {
          <div class="ui-grid-col-2"></div>
         <div class="ui-grid-col-4">
       						  <label for="nombre"> Clave:</label>
-							<p:password value="#{loginBean.clave}" id="password"
+							<p:password value="#{registroBean.clave}" id="password"
 								required="true" label="password"
 								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#-@ ej: Re-casd8">
 								<f:validateRegex
@@ -683,9 +698,9 @@ div {
          <div class="ui-grid-col-3">
         <br/>
         <br/>
-        <p:commandButton id="registrarButton" value="Registrar"
-								actionListener="#{loginBean.registro}" update=":growl"
-								oncomplete="manejarLogin(xhr, status, args)" />
+       <p:commandButton id="registrarButton" value="Registrar"
+								actionListener="#{registroBean.registro}"  update="msgRegistro" ajax="false"
+								 />
         
         
         </div>
@@ -715,9 +730,9 @@ div {
 
 					
 					<h:form id="formulariologout">
-					<p:growl id="mens" showDetail="true" life="2000" />
+					<p:growl id="mens"  life="2000" />
 						<h2>
-							 Gracias por visitar nuestro citio. </h2>
+							 Gracias por visitar nuestro Sitio. </h2>
 							 <h1>
 							 <br/>
 							 Si esta seguro que desea cerrar sesión dar clic a "Confirmar"
@@ -752,7 +767,7 @@ div {
 				<div class="ui-grid-col-2"></div>
 				<div class="ui-grid-col-8">
 
-					<p:growl id="mensajes" showDetail="true" life="2000" />
+					<p:growl id="mensajes"  life="2000" />
 					<h:form id="formularioIngreso1">
 						<h2>
 							<a href="#">Ingreso</a>
@@ -796,7 +811,7 @@ div {
 	<!-- MENU DE PERSONAS DESAPARECIDAS -->
 	
 	<div class="oculto" id="desaparecidos">
-		<h2>#{loginBean.mensaje}</h2>
+		<h2>#{registroBean.mensaje}</h2>
 	
 	
 		<div class="ui-grid ui-grid-responsive">
@@ -871,7 +886,7 @@ div {
 	
 	<f:view>
 						<h:form id="personasdesaparecidasBean">
-							<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+							<p:growl id="growl"  life="2000" />
 							
     <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
@@ -1016,13 +1031,22 @@ div {
 							</p:column>
 
 							<p:column headerText="Imagen" filterMatchMode="contains">
-								<h:graphicImage value="image/#{personaBean.imagenes}" />
+								
+								
+								<p:commandButton type="button" value="Ver Imagenes" onclick="PF('dlg').show()" />
+ 
+								<p:dialog header="Imagenes" widgetVar="dlg" modal="true"
+								    draggable="false" resizable="false">
+								 
+								    <p:imageSwitch effect="fade">
+								        <ui:repeat value="#{imagesView.imagesMostrar}" var="image">
+								            <p:graphicImage value="imagen/#{image}" styleClass="content" />>
+								        </ui:repeat>
+								    </p:imageSwitch>
+								</p:dialog>
 							</p:column>
 
-							<p:column headerText="¿Hallada?"
-								filterBy="#{personaBean.hallada}" filterMatchMode="contains">
-								<h:outputText value="#{personaBean.hallada}" />
-							</p:column>
+							
 							<hr></hr>
 						</p:dataTable>
 						<hr></hr>

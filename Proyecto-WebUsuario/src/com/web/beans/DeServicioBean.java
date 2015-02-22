@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -31,7 +32,7 @@ import com.web.beans.infoCatastrofe.OngBean;
 
 
 @ManagedBean(name="deServicioBean")
-@SessionScoped
+@RequestScoped
 public class DeServicioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -158,7 +159,10 @@ public class DeServicioBean implements Serializable {
     		 * Busco la ong por el nombre seleccionado
     		*/
     		managerOng.buscarOngPorNick_EB(ong);
-    		
+
+    		 
+ 	        
+ 			
     		
        		    	
 		}catch (Exception excep){
@@ -203,9 +207,7 @@ public class DeServicioBean implements Serializable {
 			
 			RequestContext requestContext = RequestContext.getCurrentInstance();
             
-           requestContext.update("form:display");
-            requestContext.execute("PF('dlg').show()");
-           
+                     
 			Date fechaRealizada = new Date();
     		fechaRealizada.getTime();
     		/**fin **/
@@ -225,11 +227,13 @@ public class DeServicioBean implements Serializable {
        		
        		this.usuario= "";
        		this.areaConocimient = "";
-       		FacesContext contexto = FacesContext.getCurrentInstance(); 
-	        FacesMessage messages = new FacesMessage("Donación realizada con exito !!"); 
-	        requestContext.addCallbackParam("view", "Index.xhtml");
-	        
        		
+       		
+       		FacesContext contexto = FacesContext.getCurrentInstance(); 
+	        	        
+	        FacesMessage messages = new FacesMessage("Donación realizada con exito !!",null); 
+	        contexto.addMessage("deServicioBean", messages);
+			
        		
        		
        		

@@ -209,11 +209,6 @@ public class filtroUrl implements Filter , Serializable {
 			  chain.doFilter(request, response);
 		}
 		
-			//
-	
-	
-	
-	
 	
 	private boolean noProteger(String urlStr) {
 

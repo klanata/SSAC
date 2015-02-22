@@ -18,6 +18,7 @@ import javax.persistence.Query;
 
 import javax.persistence.TypedQuery;
 
+import com.core.data.entites.Economica;
 import com.core.data.entites.EstadoRescatista;
 import com.core.data.entites.PedidoDeAyuda;
 import com.core.data.entites.Rescatista;
@@ -84,7 +85,6 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	public boolean existeRescatista(String nick) {
 				
 				boolean existe;
-				try {
 				Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista");
 				consulta.setParameter("nick", nick);							
 				if (consulta.getResultList().isEmpty()){
@@ -93,11 +93,6 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 			  		existe = true;
 			  	}
 			  	return existe;
-				}
-				catch (Exception ex){			
-					throw ex;
-				}	
-				
 		}
 
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -128,13 +123,11 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 		Collection<EstadoRescatista> listapendientes = null;
 		try{
 			
-			//para crear Querys
-			//coleccion de parametros clave/valor
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("idRescatista",idRescatista);
-			listapendientes = dataService.findWithNamedQuery(EstadoRescatista.class,"EstadoRescatista.FindPendientes", parameters);
-			//limpiar parametros
-			parameters.clear();
+			
+			TypedQuery<EstadoRescatista> consulta= this.em.createNamedQuery("EstadoRescatista.FindPendientes",EstadoRescatista.class);
+			consulta.setParameter("idRescatista",idRescatista);
+			listapendientes = consulta.getResultList();	
+			
 			
 		}catch (Exception e){}
 		
@@ -191,7 +184,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 				Integer i = listaPendientes.size();
 				
 				//rescatista.getEstadoRescatista().
-				if  ((pendiente >= i ) || (pendiente == 0))
+				if  ( (pendiente==0)  || (pendiente >= i) )
 				{
 					//actualizo el rescatista con menos pendientes
 					rescatistaMenosPendientes = rescatista;
@@ -206,7 +199,7 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	}
 	///////////////////////////////////////////////////////////////////////////////////////
 	public Rescatista buscarUsuario(String login, String password) {
-		try{
+		
 		Rescatista usuario = null;
 		Query consulta = this.em.createNamedQuery("Rescatista.BuscarRescatista.Nick.Pass");
 	  	consulta.setParameter("nick", login);
@@ -214,9 +207,6 @@ public class RescatistaDAOImpl extends AbstractService   implements RescatistaDA
 	   	usuario = (Rescatista) consulta.getResultList().get(0);
 	  		
 		return usuario;
-		}
-		catch(Exception ex){
-			throw ex;		}
 	}
 	/////////////////////////////////////////////////////////////////////////////////////
 	

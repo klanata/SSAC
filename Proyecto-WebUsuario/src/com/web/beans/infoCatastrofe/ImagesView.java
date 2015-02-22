@@ -10,7 +10,7 @@ import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
+
 import javax.naming.Context;
 import javax.naming.NamingException;
 

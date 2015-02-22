@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -28,7 +30,7 @@ import com.core.service.negocio.remote.OngEBR;
 
 
 @ManagedBean(name="deBienesBean")
-@SessionScoped
+@RequestScoped
 public class DeBienesBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Long idOng;
@@ -205,19 +207,13 @@ public class DeBienesBean implements Serializable{
     		{
     			usuario= "Anonimo";
     		}
-    		RequestContext contextUrl = RequestContext.getCurrentInstance();
+    		FacesContext contexto = FacesContext.getCurrentInstance();
     		/*Carga de la url*/
-    		FacesContext contextousuario = FacesContext.getCurrentInstance();	
-		manager.crearDonacionDeBienes(idOng, usuario, fechaRealizada, nombreItem, cantidad); 
-		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
-		String nombreCatastrofe = (String)sesion.getAttribute("nombreCatastrofe");
-		String nombre = nombreCatastrofe.toLowerCase();
-		//ver los espacios
-		String nombreSinEspacio = nombre.replaceAll(" ", "_");
-		String pagina = new String("http://localhost:8080/proyecto-webusuario/"+nombreSinEspacio +".xhtml");
-		
-		contextUrl.addCallbackParam("view", "Index.xhtml");
-		
+    		
+    		manager.crearDonacionDeBienes(idOng, usuario, fechaRealizada, nombreItem, cantidad);
+    		FacesMessage messages = new FacesMessage("Donación creada con exito !!"); 
+    		contexto.addMessage("deBienesBean", messages);
+ 			
 		/**/
 		}catch (Exception excep){
 		System.out.println("Excepcion en donacion de bienes: " + excep.getMessage());      		 			       
