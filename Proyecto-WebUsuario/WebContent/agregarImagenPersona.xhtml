@@ -6,8 +6,7 @@
        xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
-		<title>SSAC</title>
-		
+	
 			
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
@@ -32,36 +31,33 @@
 		<!-- Header -->
 			<div id="header">
 
-				<!-- Inner -->
-					<div class="inner">
-						<div id="header">
-							<h1><a href="index.html" id="logo">SSAC</a></h1>
-						</div>
-					</div>
+				
 					
-					<!-- Nav -->
-						<div id="nav">
-						<ul>
-							<li><a href="Index.xhtml">Inicio</a></li>
-						
-							
-						</ul>
-					</div>
+					
+					
 			</div>
+<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+				<p>
+					<a href="Index.xhtml"><input type="submit" value="Inicio" /></a>
+				</p>
 
+			</div>
+		</div>
+	</div>
  <div class="ui-grid">
    		 <div class="ui-grid-row">	
    		 <div class="ui-grid-col-1"></div>	
    		  <div class="ui-grid-col-10">
   		<h:form >  
   		    <h:panelGrid>	 
-        	<p>
-			<h:outputText value="Seleccione las imágenes   " style="width:100px;border: transparent;"/>			            
-            </p>
-                    
+         <br />
+               <h2>Ingrese imágenes</h2>    <br />
 		    <p:fileUpload fileUploadListener="#{fileUploadUsuarioController.upload}" mode="advanced" dragDropSupport="false"
 		    
-		     style="max-height:350px;overflow:auto;width:580px;border: transparent;"  
+		     style="max-height:400px;overflow:auto;width:800px;border: transparent;"  
 			                 label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" 
 		    
 		                  multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
@@ -69,12 +65,13 @@
 		    <p:growl id="messages" showDetail="true" />
 		    
 		    <br/>
-		    
+		    <br />
 		    <p:outputPanel style="text-align: left">			 		
-	        	<p:commandButton value="Aceptar" action="#{fileUploadUsuarioController.cancelar()}" />
+	        	<p:commandButton value="Finalizar" action="#{fileUploadUsuarioController.cancelar()}" />
+	        	
 	        </p:outputPanel>
 	            </h:panelGrid>	
-		</h:form> 
+		</h:form>  <br />
 		 <div class="ui-grid-col-1"></div>
   	</div>  
   	</div>   
@@ -90,13 +87,10 @@
 				<ul class="icons">
 					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-					<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+			
 				</ul>
 				<ul class="copyright">
-					<li>&copy; Untitled. All rights reserved.</li><li>GRUPO 5</li>
+					<li>&copy; Untitled. All rights reserved.</li><li>Grupo 4</li>
 				</ul>
 			</div>
 

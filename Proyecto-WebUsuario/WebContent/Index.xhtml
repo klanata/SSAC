@@ -19,8 +19,7 @@
 	<link rel="stylesheet" href="css/style-noscript.css" />
 	<link rel="stylesheet" href="css/skel.css" />
 	<link id="cssPrincipal" rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet"
-		href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" />
 	<script type="text/javascript" language="javascript">
 		  var css = "#{imagesView.css}";
 		  var cssFinal = "cssFile/"+ css; 
@@ -138,9 +137,10 @@ div {
 					height="100" />
 				<h:outputText value="" style="border: transparent;" />
  -->
+ 					<br />
 				<h1>
 					<a href="Index.xhtml" id="logo">#{imagesView.nombre}</a>
-				</h1>
+				</h1><br />
 
 				<div class="ui-grid ui-grid-responsive">
 
@@ -156,7 +156,7 @@ div {
 				</div>
 				<br /> <a href="#banner" class="button circled scrolly"
 					style="cursor: hand; text-decoration: none"
-					onclick="show('banner');"> ¡AYUDA!</a> <br /> <br /> <br />
+					onclick="show('banner');"> ¡AYUDA!</a> <br /> <br /> <br /><br />
 				<p>
 				
 				<!-- comentada esto mueve las imagenes pero no es active responsive
@@ -184,7 +184,7 @@ div {
 				<div class="ui-grid-row">
 				<div class="ui-grid-col-3"></div>
 				<div class="ui-grid-col-1"></div>
-				<div class="ui-grid-col-7"> <h1>Zona:</h1></div>
+				<div class="ui-grid-col-7"> </div>
 				<div class="ui-grid-col-1"></div>
 				</div>
 				
@@ -218,11 +218,11 @@ div {
 					</div>
 				</div>
 
-				<u> ONGS: </u> <br />
+			 <br />
 
 				<p:accordionPanel value="#{listarOngUsuarioBean.listaOngBean}"
 					var="ongUsuario">
-					<p:tab title="#{ongUsuario.nombre}">
+					<p:tab title="#{ongUsuario.nombre}" >
 						<p:graphicImage value="imagen/#{ongUsuario.imagen}" width="100"
 							height="100" />
 						<h:panelGrid columns="2" cellpadding="10">
@@ -284,7 +284,7 @@ div {
 			<!--  <li><a href="Index.xhtml">Inicio</a></li>
 				<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
 
-			<li><a href="Home.xhtml" > Inicio</a></li>
+			<li><a href="Home.xhtml" > SSAC</a></li>
 			<li><a href="#donacion"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('donacion');">Donaciones</a></li>
@@ -320,10 +320,26 @@ div {
 		<div class="section">
 
 			<h2>
+			<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+				<p>
+					<a href="#header"><input type="submit" value="Inicio" /></a>
+				</p>
+
+			</div>
+		</div>
+	</div>
+			
+			
 				<strong>¡SOLICITE AYUDA!</strong>
 			</h2>
 
-			<strong>Marque su ubicaci&oacute;n en el mapa y opcionalmente utilice la secci&oacute;n Descripci&oacute;n para darnos m&aacute;s detalles sobre la situaci&oacute;n. Le derivaremos a un rescatista lo antes posible. </strong>
+			<strong> ¿Se encuentra en situación de peligro? ¿Necesita
+				ayuda? En SSAC brindamos </strong> <strong> servicios de auxilio.</strong> <strong>
+				Ingrese sus datos en el siguiente formulario y le derivaremos a un
+				rescatista </strong> <strong> lo antes posible.</strong>
 
 			<div class="ui-grid ui-grid-responsive">
 
@@ -331,7 +347,7 @@ div {
 
 					<div class="ui-grid-col-1"></div>
 
-					<div class="ui-grid-col-5">
+					<div class="ui-grid-col-5"><br />
 						<f:view>
 							<h:form id="pedidoAyudaBean">
 
@@ -339,7 +355,7 @@ div {
 
 								<h:panelGrid>
 
-									<label for="descripcion">Descripci&oacute;n :</label>
+									<label for="descripcion">Descripcion :</label>
 									<p:inputTextarea rows="3" cols="10" id="descripcion"
 										label="descripcion" value="#{mapaPedidoAyuda.descripcion}"
 										>
@@ -375,7 +391,7 @@ div {
 						<br />
 						<div id="mapa2" style="width:42%; float:right;margin-right: 300px;padding:0px 74px 0px 0px;">  
 							<p:growl id="growl2" life="3000" showDetail="true" />
-							<p:gmap id="map2" center="#{mapaPedidoAyuda.latitud}, #{mapaPedidoAyuda.longitud}" zoom="8" type="HYBRID"  style="width:500px;height:580px"
+							<p:gmap id="map2" center="#{mapaPedidoAyuda.latitud}, #{mapaPedidoAyuda.longitud}" zoom="8" type="HYBRID"  style="width:500px;height:300px"
 						    		 model="#{mapaPedidoAyuda.polygonModel}" widgetVar="map" >    
 						    	 <p:ajax event="markerDrag" listener="#{mapaPedidoAyuda.onMarkerDrag}" update="growl2" />	
 						    </p:gmap>	
@@ -389,17 +405,7 @@ div {
 		</div>
 	</div>
 
-	<div class="ui-grid">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2"></div>
-			<div class="ui-grid-col-10">
-				<p>
-					<a href="#header"><input type="submit" value="Volver" /></a>
-				</p>
 
-			</div>
-		</div>
-	</div>
 
 
 
@@ -410,7 +416,17 @@ div {
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
-					<h2>
+					<h2>	<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+				<p>
+					<a href="#header"><input type="submit" value="Inicio" /></a>
+				</p>
+
+			</div>
+		</div>
+	</div>
 						<strong><a href="#donacion">
 								¡Realice donaciones!</a></strong>
 					</h2>
@@ -427,7 +443,7 @@ div {
 					<img src="images/servicio.jpg" alt="" onclick="PF('dlg1').show();" />
 					<header>
 					<h3>
-						<a href="#">DONACION DE SERIVCIOS</a>
+						<a href="#">DONACION DE SERVICIOS</a>
 					</h3>
 					</header>
 					<p>Donacion de servicios, voluntarios, médicos, ingenieros,
@@ -557,7 +573,7 @@ div {
 				<!-- DE BIENES -->
 				<div class="ui-grid-col-3">
 
-					<img src="images/fru1.jpg" alt="" onclick="PF('dlg3').show();" />
+					<img src="images/fru2.jpg" alt="" onclick="PF('dlg3').show();" />
 					<header>
 					<h3>
 						<a href="#">DONACION DE BIENES</a>
@@ -632,9 +648,38 @@ div {
 	<div class="oculto" id="registrousuario">
 	<div class="ui-grid ui-grid-responsive">
 	
-	<h2><a href="#"> REGISTRO DE USUARIO</a></h2>
-					<p>Por favor, ingrese los campos para registrarse a la
-						catastrofe</p>
+	
+		<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+			<h2>	
+					
+		<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+				<p>
+					<a href="#header"><input type="submit" value="Inicio" /></a>
+				</p>
+
+			</div>
+		</div>
+	</div>
+				
+</h2>
+			</div>
+			
+		</div>
+		<div class="ui-grid">
+		<div class="ui-grid-row">
+		<div class="ui-grid-col-2"></div>
+		<h2><a href="#registrousuario"> Registro</a></h2>
+		</div></div>
+	</div>
+	
+
+					<br />
 					<f:view>
 						
 						<h:form>
@@ -699,17 +744,17 @@ div {
         <br/>
         <br/>
        <p:commandButton id="registrarButton" value="Registrar"
-								action="#{registroBean.registro()}"  update="msgRegistro" 
+								actionListener="#{registroBean.registro}"  update="msgRegistro" ajax="false"
 								 />
-        
+       
         
         </div>
          <div class="ui-grid-col-2"></div>
     </div>
     
     
-    	</h:form>
-					</f:view>
+    	</h:form> <br />
+					</f:view><br /><br />
 </div>
 </div>
 	
@@ -727,7 +772,17 @@ div {
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-2"></div>
 				<div class="ui-grid-col-8">
+ 		<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+				<p>
+					<a href="#header"><input type="submit" value="Inicio" /></a>
+				</p>
 
+			</div>
+		</div>
+	</div>
 					
 					<h:form id="formulariologout">
 					<p:growl id="mens"  life="2000" />
@@ -747,7 +802,7 @@ div {
 						oncomplete="logout(xhr, status, args)">
 							<span class="fontawesome-lock"></span>
 						</p:commandButton>
-					</h:form>
+					</h:form><br /><br /><br /><br /><br /><br /><br /><br />
 
 
 				</div>
@@ -769,7 +824,19 @@ div {
 
 					<p:growl id="mensajes"  life="2000" />
 					<h:form id="formularioIngreso1">
+					
 						<h2>
+								<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+				<p>
+					<a href="#header"><input type="submit" value="Inicio" /></a>
+				</p>
+
+			</div>
+		</div>
+	</div>
 							<a href="#">Ingreso</a>
 						</h2>
 
@@ -783,21 +850,23 @@ div {
 						<label for="nombre"> Clave:</label>
 						<p:password value="#{loginBean.clave1}" id="password"
 							required="true" label="password1" />
-							
+							<br />
 						<p:commandButton id="loginButton" value="Ingresar"
 							actionListener="#{loginBean.login}" update=":mensajes"
 							oncomplete="manejarLogin(xhr, status, args)">
 							<span class="fontawesome-lock"></span>
-						</p:commandButton>
+						</p:commandButton> 
 					</h:form>
 					<div class="section">
 						<p>
 							<div class="fb-login-button" data-max-rows="1" data-size="xlarge"
 								data-show-faces="false" data-auto-logout-link="false"></div>
 							
-						</p>
+						</p><a href="#registrousuario"
+				style="cursor: hand; color: blue" 
+				onclick="show('registrousuario');">Registrarse</a>
 
-					</div>
+					</div><br /><br />
 	
 
 				</div>
@@ -812,13 +881,27 @@ div {
 	
 	<div class="oculto" id="desaparecidos">
 		<h2>#{registroBean.mensaje}</h2>
+
 	
 	
 		<div class="ui-grid ui-grid-responsive">
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
+				
 					<h2>
+					<div class="ui-grid">
+					<div class="ui-grid-row">
+						<div class="ui-grid-col-2"></div>
+						<div class="ui-grid-col-10">
+						<p>
+						<a href="#header"><input type="submit" value="Inicio" /></a>
+						</p>
+
+						</div>
+					</div>
+					</div>
+					
 					<strong><a href="#desaparecidos"> Personas
 								Desaparecidas</a></strong>
 					</h2>
@@ -843,7 +926,7 @@ div {
 
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-3">
-					<a href="#personasdesap"><img src="images/ingreso.jpg"
+					<a href="#personasdesap"><img src="images/ingreso2.jpg"
 						onclick="show('personasdesap');" /></a>
 					<header>
 					<h3>
@@ -884,6 +967,35 @@ div {
 	<div class="oculto" id="personasdesap">
 	<div class="ui-grid ui-grid-responsive">
 	
+	<div class="ui-grid-row">
+				<div class="ui-grid-col-1"></div>
+				<div class="ui-grid-col-10">
+				
+					<h2>	
+					
+		<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+				<p>
+					<a href="#header"><input type="submit" value="Inicio" /></a>
+				</p>
+
+			</div>
+		</div>
+	</div>
+						<strong><a href="#donacion">
+								 Reporta</a></strong>
+					</h2>
+					
+					
+					
+				</div>
+				<br /> <br />
+				<div class="ui-grid-col-1"></div>
+			</div>
+
+			
 	<f:view>
 						<h:form id="personasdesaparecidasBean">
 							<p:growl id="growl"  life="2000" />
@@ -973,8 +1085,21 @@ div {
 					<h:form id="formPersona">
 
 						<p:growl id="msgs" showDetail="true" />
+						
 						<h2>
-							<a href="#">BUSCAR PERSONA DESAPARECIDA</a>
+						<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+				<p>
+					<a href="#header"><input type="submit" value="Inicio" /></a>
+				</p>
+
+			</div>
+		</div>
+	</div>
+	
+							<strong><a href="#">Buscar Persona Desaparecida</a></strong>
 						</h2>
 						<br />
 						<p:dataTable id="perDT" var="personaBean" widgetVar="personaTable"
@@ -992,7 +1117,7 @@ div {
 
 									<p:inputText id="globalFilter"
 										onkeyup="PF('personaTable').filter()" style="width:300px"
-										placeholder="Ingrese el nombre" />
+										placeholder="Ingrese su busqueda" />
 								</p:outputPanel>
 							</f:facet>
 							<p:ajax event="rowSelect"
