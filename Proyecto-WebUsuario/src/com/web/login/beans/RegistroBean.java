@@ -8,6 +8,8 @@ import java.util.Date;
 
 
 
+
+
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -30,12 +32,16 @@ import clienteutility.ClienteUtility;
 
 
 
+
+
+import com.core.data.entites.Usuario;
 import com.core.service.negocio.remote.UsuarioEBR;
 
 
 
 @ManagedBean(name="registroBean")
 @RequestScoped
+
 public class RegistroBean implements Serializable{
 
 	/**
@@ -137,7 +143,7 @@ public class RegistroBean implements Serializable{
 		this.clave = clave;
 	}
 	
-	public void registro(ActionEvent actionEvent) {
+	public void registro() {
 		
 		
 		
@@ -162,31 +168,34 @@ public class RegistroBean implements Serializable{
 		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
 		idCatastrofe = (Long)sesion.getAttribute("idmongo");
    		
-		try {
-			manager.registroUsuarioPlataforma(nick, clave, email, nombre, fechaNacimiento, idCatastrofe,imagen);
-		} catch (Exception e) {
+		Usuario u = manager.obtenerUsuarioPorNick(nick);
+		
+		if(u ==null)
+		{
 			
-			e.printStackTrace();
+			try {
+				manager.registroUsuarioPlataforma(nick, clave, email, nombre, fechaNacimiento, idCatastrofe,imagen);
+				FacesContext contextomsg = FacesContext.getCurrentInstance();
+				FacesMessage messages = new FacesMessage("Se ha registrado con exito. !!"); 
+		        contextomsg.addMessage("registroBean", messages);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}else{
+			nick="";
+			clave="";
+			email="";
+			nombre="";
+			//error usuario ya esta registrado
+			FacesContext contextomsg = FacesContext.getCurrentInstance();
+			FacesMessage messages = new FacesMessage("Error el usuario se encuentra registrado !!"); 
+	        contextomsg.addMessage("registroBean", messages);
 		}
-		nick="";
-		clave="";
-		email="";
-		nombre="";
-		
-		FacesContext contextomsg = FacesContext.getCurrentInstance();
-		FacesMessage messages = new FacesMessage("Se ha registrado con exito. !!"); 
-        contextomsg.addMessage("registroBean", messages);
 		
 		
-		RequestContext context = RequestContext.getCurrentInstance();
-		
-		
-		//context.addCallbackParam("view", "Index.xhtml");
-        
-        
-		/*		
-		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("Index?faces-redirect=true");*/
 		
 	}
 
