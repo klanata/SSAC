@@ -161,7 +161,7 @@ public class RescatistaBean implements Serializable {
         		//FacesContext.getCurrentInstance().addMessage(null, messages); 
     	        
     	        FacesContext contexto = FacesContext.getCurrentInstance();        		
-        		FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "El administrador fue ingresado al sistema.");    			
+        		FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "El rescatista fue ingresado al sistema.");    			
         		
     			contexto.getExternalContext().getFlash().setKeepMessages(true);    			
     	        contexto.addMessage(null, messages);
