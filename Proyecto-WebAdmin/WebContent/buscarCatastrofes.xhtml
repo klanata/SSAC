@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Sistema de Soporte ante Catástrofes Naturales</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
+	<style>
+    *{ margin: 0; padding: 0; }
+    html, body, #map{
+        width: 100%;
+        height: 100%;
+        box-shadow: 0px 0px 26px #888888;
+    }
+    </style>  	
+  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>
+  	<script type="text/javascript" src="js/map.js"></script>      
+</h:head> 
+
+<h:body id="top"> 
+<ui:include src="header.xhtml" /> 			
+ <div id="mapa" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
+	<p:growl id="growl" life="3000" showDetail="true" />
+	<p:gmap id="map" center="4.350836, 26.531067" zoom="2" type="HYBRID" 
+		model="#{mapaCatastrofesBean.polygonModel}" widgetVar="map" style="width:500px;height:550px;"  >
+		<p:ajax event="overlaySelect" listener="#{mapaCatastrofesBean.onMarkerSelect}" update="growl" />         	   
+    </p:gmap>  
+</div>      
+
+<div class="wrapper col3" style="height:580px;">
+    <div id="intro2">    
+    <div>	
+    
+    </div>     				   
+    <br class="clear" />    
+	</div>	    		
+</div>         
+ 
+ <div class="wrapper col7" style=" border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2014  All Rights Reserved </p>
+    <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
+    <br class="clear" />
+  </div>
+</div>       
+
+<script type="text/javascript">
+  //<![CDATA[
+  function manejarLogin(xhr, status, args) {
+    if (!args.validationFailed && args.estaLogeado) {
+      setTimeout(function() {
+        window.location = args.view;
+      }, 500);
+    }
+  }
+//]]>
+</script>
+</h:body> 
+</html>
