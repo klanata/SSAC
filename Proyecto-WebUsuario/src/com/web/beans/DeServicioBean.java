@@ -33,6 +33,7 @@ import com.web.beans.infoCatastrofe.OngBean;
 
 @ManagedBean(name="deServicioBean")
 @RequestScoped
+//@SessionScoped
 public class DeServicioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -230,7 +231,7 @@ public class DeServicioBean implements Serializable {
        		
        		
        		FacesContext contexto = FacesContext.getCurrentInstance(); 
-	        	        
+    	        
 	        FacesMessage messages = new FacesMessage("Donación realizada con exito !!",null); 
 	        contexto.addMessage("deServicioBean", messages);
 			

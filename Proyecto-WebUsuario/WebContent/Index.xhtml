@@ -16,21 +16,29 @@
 	<script src="js/skel.min.js"></script>
 	<script src="js/skel-layers.min.js"></script>
 	<script src="js/init.js"></script>
+	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/style-desktop.css" />
 	<link rel="stylesheet" href="css/style-noscript.css" />
 	<link rel="stylesheet" href="css/skel.css" />
-	<link id="cssPrincipal" rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" />
-	<script type="text/javascript" language="javascript">
-		  var css = "#{imagesView.css}";
-		  var cssFinal = "cssFile/"+ css; 
-		  console.log(cssFinal);
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/styles.css" media="screen"
+		type="text/css" />
+	<link rel="stylesheet"
+		href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" />
+	<script>
+		  //alert(window.localStorage.getItem("IdCatastrofe"));
+		  var css = window.localStorage.getItem("urlCSS");
+		  var cssFinal = "css/"+ css; 
+		  //alert("Css final: "+cssFinal);
+		  //alert(window.localStorage.getItem("urlCSS"));
+		  //document.getElementById("j_idt5:catastrofeId").value = id;
 		  
 		  var login= #{loginBean.logeado};
 		  function mostrarMenuLogueo(){
-			//if !login{
+			if !login{
 
 				
-			//}
+			}
 			  
 		  }
 		  
@@ -41,13 +49,12 @@
 				return false;
 		  }
 		  cambiarCSS();
-		  
-		  /*function obtenerNombre(){
+			function obtenerNombre(){
 				HttpServletRequest req = (HttpServletRequest) request;
 				String urlStr = req.getRequestURL().toString().toLowerCase();
 				
 				alert(urlStr);
-		  }*/
+				}
 	</script>
 	<script type="text/javascript" language="javascript">
 			function show(id) {
@@ -59,15 +66,12 @@
 				hide();
 				oc.display = "block";
 				if (!login) {
-					//desaparecidos
 					
 					document.getElementById('personasdesap').style.visibility = "hidden";
 					document.getElementById('desaparecidos').style.visibility = "hidden";
 					document.getElementById('busperdesap').style.visibility = "hidden";
 					//document.getElementById('desaparecidosocultar').style.visibility = "hidden";
-					registroBean.setMensaje("Estimado Usuario debe estar logueado en el sistema para poder reportar personas desaparecidas.")
 					loginBean.setNick1("");
-					document.getElementById('logoutusuario').style.visibility = "hidden";
 					
 				}else {
 					document.getElementById('loginusuario').style.visibility = "hidden";
@@ -137,10 +141,9 @@ div {
 					height="100" />
 				<h:outputText value="" style="border: transparent;" />
  -->
- 					<br />
 				<h1>
 					<a href="Index.xhtml" id="logo">#{imagesView.nombre}</a>
-				</h1><br />
+				</h1>
 
 				<div class="ui-grid ui-grid-responsive">
 
@@ -156,25 +159,13 @@ div {
 				</div>
 				<br /> <a href="#banner" class="button circled scrolly"
 					style="cursor: hand; text-decoration: none"
-					onclick="show('banner');"> ¡AYUDA!</a> <br /> <br /> <br /><br />
+					onclick="show('banner');"> ¡AYUDA!</a> <br /> <br /> <br />
 				<p>
-				
-				<!-- comentada esto mueve las imagenes pero no es active responsive
-				
-				<p:imageSwitch effect="shuffle">
-				    <ui:repeat value="#{imagesView.imagesMostrar}" var="image">
-				        <p:graphicImage value="imagen/#{image}" styleClass="content" />
-				        
-						<div class="caption"></div>
-				    </ui:repeat>
-				</p:imageSwitch>
-				-->
-					<p:contentFlow value="#{imagesView.imagesMostrar}" var="image" effect="fade">
+					<p:contentFlow value="#{imagesView.imagesMostrar}" var="image">
 						<p:graphicImage value="imagen/#{image}" styleClass="content" />
 
 						<div class="caption"></div>
 					</p:contentFlow>
-					
 				</p>
 				<br />
 
@@ -184,7 +175,7 @@ div {
 				<div class="ui-grid-row">
 				<div class="ui-grid-col-3"></div>
 				<div class="ui-grid-col-1"></div>
-				<div class="ui-grid-col-7"> </div>
+				<div class="ui-grid-col-7"> <h1>Zona:</h1></div>
 				<div class="ui-grid-col-1"></div>
 				</div>
 				
@@ -218,11 +209,11 @@ div {
 					</div>
 				</div>
 
-			 <br />
+				<u> ONGS: </u> <br />
 
 				<p:accordionPanel value="#{listarOngUsuarioBean.listaOngBean}"
 					var="ongUsuario">
-					<p:tab title="#{ongUsuario.nombre}" >
+					<p:tab title="#{ongUsuario.nombre}">
 						<p:graphicImage value="imagen/#{ongUsuario.imagen}" width="100"
 							height="100" />
 						<h:panelGrid columns="2" cellpadding="10">
@@ -284,7 +275,8 @@ div {
 			<!--  <li><a href="Index.xhtml">Inicio</a></li>
 				<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
 
-			<li><a href="Home.xhtml" > SSAC</a></li>
+			<li><a href="#banner" style="cursor: hand; text-color: FFFFFFF"
+				onclick="show('banner');"> Pedido de ayuda</a></li>
 			<li><a href="#donacion"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('donacion');">Donaciones</a></li>
@@ -320,19 +312,6 @@ div {
 		<div class="section">
 
 			<h2>
-			<div class="ui-grid">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2"></div>
-			<div class="ui-grid-col-10">
-				<p>
-					<a href="#header"><input type="submit" value="Inicio" /></a>
-				</p>
-
-			</div>
-		</div>
-	</div>
-			
-			
 				<strong>¡SOLICITE AYUDA!</strong>
 			</h2>
 
@@ -347,18 +326,18 @@ div {
 
 					<div class="ui-grid-col-1"></div>
 
-					<div class="ui-grid-col-5"><br />
+					<div class="ui-grid-col-5">
 						<f:view>
 							<h:form id="pedidoAyudaBean">
 
-								<p:growl id="growl" life="2000" />
+								<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
 
 								<h:panelGrid>
 
 									<label for="descripcion">Descripcion :</label>
 									<p:inputTextarea rows="3" cols="10" id="descripcion"
-										label="descripcion" value="#{mapaPedidoAyuda.descripcion}"
-										>
+										label="descripcion" value="#{pedidoAyudaBean.descripcion}"
+										required="true" requiredMessage="La descripcion es requerida">
 									</p:inputTextarea>
 
 									<p:inputText id="coordenadasX" label="coordenadasX"
@@ -375,7 +354,8 @@ div {
 									<p:commandButton id="registrarpedido" update="growl"
 										type="submit" style="margin-left: 150px;" Class="button"
 										value="Ayuda"
-										action="#{mapaPedidoAyuda.registrarPedidoAyuda()}">
+										
+										actionListener="#{pedidoAyudaBean.registrarpedidoAyuda}">
 									</p:commandButton>
 								</ul>
 							</h:form>
@@ -389,13 +369,7 @@ div {
 					<div class="ui-grid-col-1"></div>
 					<div class="ui-grid-col-5">
 						<br />
-						<div id="mapa2" style="width:42%; float:right;margin-right: 300px;padding:0px 74px 0px 0px;">  
-							<p:growl id="growl2" life="3000" showDetail="true" />
-							<p:gmap id="map2" center="#{mapaPedidoAyuda.latitud}, #{mapaPedidoAyuda.longitud}" zoom="8" type="HYBRID"  style="width:500px;height:300px"
-						    		 model="#{mapaPedidoAyuda.polygonModel}" widgetVar="map" >    
-						    	 <p:ajax event="markerDrag" listener="#{mapaPedidoAyuda.onMarkerDrag}" update="growl2" />	
-						    </p:gmap>	
-						</div>
+						<div id="map-canvas"></div>
 					</div>
 
 					<div class="ui-grid-col-1"></div>
@@ -405,7 +379,17 @@ div {
 		</div>
 	</div>
 
+	<div class="ui-grid">
+		<div class="ui-grid-row">
+			<div class="ui-grid-col-2"></div>
+			<div class="ui-grid-col-10">
+				<p>
+					<a href="#header"><input type="submit" value="Volver" /></a>
+				</p>
 
+			</div>
+		</div>
+	</div>
 
 
 
@@ -416,17 +400,7 @@ div {
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
-					<h2>	<div class="ui-grid">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2"></div>
-			<div class="ui-grid-col-10">
-				<p>
-					<a href="#header"><input type="submit" value="Inicio" /></a>
-				</p>
-
-			</div>
-		</div>
-	</div>
+					<h2>
 						<strong><a href="#donacion">
 								¡Realice donaciones!</a></strong>
 					</h2>
@@ -443,7 +417,7 @@ div {
 					<img src="images/servicio.jpg" alt="" onclick="PF('dlg1').show();" />
 					<header>
 					<h3>
-						<a href="#">DONACION DE SERVICIOS</a>
+						<a href="#">DONACION DE SERIVCIOS</a>
 					</h3>
 					</header>
 					<p>Donacion de servicios, voluntarios, médicos, ingenieros,
@@ -454,16 +428,15 @@ div {
 						showEffect="explode" hideEffect="explode" height="500" width="430">
 						<f:view>
 											
-							
 							<h:form id="deServicioBean">
-								<p:growl id="growl"  life="1000" />
+								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 
 								<h:panelGrid>
 
 									
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:400px"  >
+							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:160px"  >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deServicioBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -493,14 +466,14 @@ div {
 										
 										
 									</p:inputText>
-									<br/>
+									
 									<p:commandButton id="registro" update="growl" type="submit"
 										Class="button" value="DONAR"
-										action="#{deServicioBean.registrarDonacionDeServicio()}" >
+										action="#{deServicioBean.registrarDonacionDeServicio()}">
 									</p:commandButton>
 								</h:panelGrid>
 							</h:form>
-							</f:view>
+						</f:view>
 					</p:dialog>
 
 				</div>
@@ -517,14 +490,14 @@ div {
 					<p>Done un monto mediante paypal a la ONG deseada.</p>
 
 					<p:dialog header="DONACIÓN ECONOMICA" widgetVar="dlg2" showEffect="explode"
-						hideEffect="explode" height="400" width="430">
+						hideEffect="explode" height="500" width="430">
 						<f:view>
 							<h:form id="economicaBean">
-								<p:growl id="growl"  life="1000" />
+								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 								<h:panelGrid>
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:400px" >
+							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:160px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{economicaBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -538,7 +511,7 @@ div {
 										>
 									</p:inputText>
 
-									<br/>
+									
 
 									<p:commandButton id="registrarDonacion" update="growl"
 										type="submit" Class="button" value="Confirmar datos"
@@ -573,7 +546,7 @@ div {
 				<!-- DE BIENES -->
 				<div class="ui-grid-col-3">
 
-					<img src="images/fru2.jpg" alt="" onclick="PF('dlg3').show();" />
+					<img src="images/fru1.jpg" alt="" onclick="PF('dlg3').show();" />
 					<header>
 					<h3>
 						<a href="#">DONACION DE BIENES</a>
@@ -585,13 +558,13 @@ div {
 
 						<f:view>
 							<h:form id="deBienesBean">
-								<p:growl id="growl" life="1000" />
+								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 
 								<h:panelGrid>
 
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:400px" >
+							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:160px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deBienesBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -601,8 +574,8 @@ div {
 
 									<label for="usuario">Ingrese su nombre si lo desea :</label>
 									<p:inputText id="usuario" label="usuario"
-										value="#{deBienesBean.usuario}" 
-									>
+										value="#{deBienesBean.usuario}" required="true"
+										requiredMessage="El nombre del usuario es requerido">
 									</p:inputText>
 
 									
@@ -621,7 +594,7 @@ div {
 
 										
 									</p:inputText>
-									<br/>
+
 									<p:commandButton id="registro" update="growl" type="submit"
 										Class="button" value="DONAR"
 										action="#{deBienesBean.registrarDonacionDeBienes()}">
@@ -644,125 +617,73 @@ div {
 
 
 	<!-- REGISTRO DE USUARIO -->
-	
 	<div class="oculto" id="registrousuario">
-	<div class="ui-grid ui-grid-responsive">
-	
-	
 		<div class="ui-grid">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2"></div>
-			<div class="ui-grid-col-10">
-			<h2>	
-					
-		<div class="ui-grid">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2"></div>
-			<div class="ui-grid-col-10">
-				<p>
-					<a href="#header"><input type="submit" value="Inicio" /></a>
-				</p>
+			<div class="ui-grid-row">
+				<div class="ui-grid-col-2"></div>
+				<div class="ui-grid-col-8">
 
-			</div>
-		</div>
-	</div>
-				
-</h2>
-			</div>
-			
-		</div>
-		<div class="ui-grid">
-		<div class="ui-grid-row">
-		<div class="ui-grid-col-2"></div>
-		<h2><a href="#registrousuario"> Registro</a></h2>
-		</div></div>
-	</div>
-	
-
-					<br />
+					<h2>
+						<a href="#"> REGISTRO DE USUARIO</a>
+					</h2>
+					<p>Por favor, ingrese los campos para registrarse a la
+						catastrofe</p>
 					<f:view>
 						
 						<h:form>
-	
-		<p:growl id="msgRegistro" life="2000" />
-    <div class="ui-grid-row">
-        <div class="ui-grid-col-2"></div>
-        <div class="ui-grid-col-4">
-        <label for="nick"> Nick:</label>
+							
+							<p:growl id="msgRegistro" life="2000" />
+							<label for="nick"> Nick:</label>
 							<p:inputText id="nick" label="nick" value="#{registroBean.nick}"
 								required="true" requiredMessage="El nick es requerido">
 							</p:inputText>
-        </div>
-        
-        <div class="ui-grid-col-4">
-        
-        					<label for="nombre">Nombre :</label>
+
+							<label for="nombre">Nombre :</label>
 							<p:inputText id="nombre" label="nombre"
 								value="#{registroBean.nombre}" required="true"
 								requiredMessage="El nombre es requerido">
 							</p:inputText>
-        </div>
-        <div class="ui-grid-col-2"></div>
-    </div>
-    
-    <div class="ui-grid-row">
-        <div class="ui-grid-col-2"></div>
-        <div class="ui-grid-col-4">
-       						 <p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
-							<p:calendar id="fechNac" label="Fecha de Nacimiento"
-								value="#{registroBean.fechaNacimiento}" pattern="dd-MM-yyyy"
-								mask="true" />
-        </div>
-        <div class="ui-grid-col-4">
-       							 <label for="email">Correo :</label>
-								<p:inputText id="email" label="email" value="#{registroBean.email}"
+
+							<label for="email">Correo :</label>
+							<p:inputText id="email" label="email" value="#{registroBean.email}"
 								validatorMessage="Formato de correo invalido. Debe ingresar ej: admin@dominio.com">
 								<f:validateRegex
-								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+
 							</p:inputText>
-        
-        </div>
-        <div class="ui-grid-col-2"></div>
-    </div>
-    
-    
-    
-    <div class="ui-grid-row">
-         <div class="ui-grid-col-2"></div>
-        <div class="ui-grid-col-4">
-      						  <label for="nombre"> Clave:</label>
+
+							<label for="nombre"> Clave:</label>
 							<p:password value="#{registroBean.clave}" id="password"
 								required="true" label="password"
 								validatorMessage="La contraseña debe contener : minimo 8 caracteres máximo 20.Al menos un digito, una letra mayúscula y un	carácter $#-@ ej: Re-casd8">
+
+
 								<f:validateRegex
 									pattern="((?=.*\d)(?=.*[A-Z])(?=.*[@#$-]).{8,9})" />
+
+
+
+
 							</p:password>
-        
-        </div>
-        <div class="ui-grid-col-1"></div>
-         <div class="ui-grid-col-3">
-        <br/>
-        <br/>
-       <p:commandButton id="registrarButton" value="Registrar"
+
+							<p:outputLabel for="fechNac" value="Fecha de Nacimiento" />
+							<p:calendar id="fechNac" label="Fecha de Nacimiento"
+								value="#{registroBean.fechaNacimiento}" pattern="dd-MM-yyyy"
+								mask="true" />
+
+							<p:commandButton id="registrarButton" value="Registrar"
 								actionListener="#{registroBean.registro}"  update="msgRegistro" ajax="false"
 								 />
-       
-        
-        </div>
-         <div class="ui-grid-col-2"></div>
-    </div>
-    
-    
-    	</h:form> <br />
-					</f:view><br /><br />
-</div>
-</div>
-	
-	
-	
-	
-	
-	
+
+						</h:form>
+					</f:view>
+				</div>
+				<div class="ui-grid-col-2"></div>
+			</div>
+		</div>
+	</div>
+
 
 <!-- LOGOUT -->
 
@@ -772,22 +693,12 @@ div {
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-2"></div>
 				<div class="ui-grid-col-8">
- 		<div class="ui-grid">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2"></div>
-			<div class="ui-grid-col-10">
-				<p>
-					<a href="#header"><input type="submit" value="Inicio" /></a>
-				</p>
 
-			</div>
-		</div>
-	</div>
 					
 					<h:form id="formulariologout">
-					<p:growl id="mens"  life="2000" />
+					<p:growl id="mens" showDetail="true" life="2000" />
 						<h2>
-							 Gracias por visitar nuestro Sitio. </h2>
+							 Gracias por visitar nuestro sitio. </h2>
 							 <h1>
 							 <br/>
 							 Si esta seguro que desea cerrar sesión dar clic a "Confirmar"
@@ -802,7 +713,7 @@ div {
 						oncomplete="logout(xhr, status, args)">
 							<span class="fontawesome-lock"></span>
 						</p:commandButton>
-					</h:form><br /><br /><br /><br /><br /><br /><br /><br />
+					</h:form>
 
 
 				</div>
@@ -822,21 +733,9 @@ div {
 				<div class="ui-grid-col-2"></div>
 				<div class="ui-grid-col-8">
 
-					<p:growl id="mensajes"  life="2000" />
+					<p:growl id="mensajes" showDetail="true" life="2000" />
 					<h:form id="formularioIngreso1">
-					
 						<h2>
-								<div class="ui-grid">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2"></div>
-			<div class="ui-grid-col-10">
-				<p>
-					<a href="#header"><input type="submit" value="Inicio" /></a>
-				</p>
-
-			</div>
-		</div>
-	</div>
 							<a href="#">Ingreso</a>
 						</h2>
 
@@ -850,23 +749,21 @@ div {
 						<label for="nombre"> Clave:</label>
 						<p:password value="#{loginBean.clave1}" id="password"
 							required="true" label="password1" />
-							<br />
+							
 						<p:commandButton id="loginButton" value="Ingresar"
 							actionListener="#{loginBean.login}" update=":mensajes"
 							oncomplete="manejarLogin(xhr, status, args)">
 							<span class="fontawesome-lock"></span>
-						</p:commandButton> 
+						</p:commandButton>
 					</h:form>
 					<div class="section">
 						<p>
 							<div class="fb-login-button" data-max-rows="1" data-size="xlarge"
 								data-show-faces="false" data-auto-logout-link="false"></div>
 							
-						</p><a href="#registrousuario"
-				style="cursor: hand; color: blue" 
-				onclick="show('registrousuario');">Registrarse</a>
+						</p>
 
-					</div><br /><br />
+					</div>
 	
 
 				</div>
@@ -880,28 +777,14 @@ div {
 	<!-- MENU DE PERSONAS DESAPARECIDAS -->
 	
 	<div class="oculto" id="desaparecidos">
-		<h2>#{registroBean.mensaje}</h2>
-
+		<h2>#{loginBean.mensaje}</h2>
 	
 	
 		<div class="ui-grid ui-grid-responsive">
 			<div class="ui-grid-row">
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-10">
-				
 					<h2>
-					<div class="ui-grid">
-					<div class="ui-grid-row">
-						<div class="ui-grid-col-2"></div>
-						<div class="ui-grid-col-10">
-						<p>
-						<a href="#header"><input type="submit" value="Inicio" /></a>
-						</p>
-
-						</div>
-					</div>
-					</div>
-					
 					<strong><a href="#desaparecidos"> Personas
 								Desaparecidas</a></strong>
 					</h2>
@@ -926,7 +809,7 @@ div {
 
 				<div class="ui-grid-col-1"></div>
 				<div class="ui-grid-col-3">
-					<a href="#personasdesap"><img src="images/ingreso2.jpg"
+					<a href="#personasdesap"><img src="images/ingreso.jpg"
 						onclick="show('personasdesap');" /></a>
 					<header>
 					<h3>
@@ -967,38 +850,9 @@ div {
 	<div class="oculto" id="personasdesap">
 	<div class="ui-grid ui-grid-responsive">
 	
-	<div class="ui-grid-row">
-				<div class="ui-grid-col-1"></div>
-				<div class="ui-grid-col-10">
-				
-					<h2>	
-					
-		<div class="ui-grid">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2"></div>
-			<div class="ui-grid-col-10">
-				<p>
-					<a href="#header"><input type="submit" value="Inicio" /></a>
-				</p>
-
-			</div>
-		</div>
-	</div>
-						<strong><a href="#donacion">
-								 Reporta</a></strong>
-					</h2>
-					
-					
-					
-				</div>
-				<br /> <br />
-				<div class="ui-grid-col-1"></div>
-			</div>
-
-			
 	<f:view>
 						<h:form id="personasdesaparecidasBean">
-							<p:growl id="growl"  life="2000" />
+							<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
 							
     <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
@@ -1057,6 +911,7 @@ div {
        
         <div class="ui-grid-col-2"></div>
     </div>
+    
     <div class="ui-grid-row">
         <div class="ui-grid-col-2"></div>
         <div class="ui-grid-col-3"></div>
@@ -1085,21 +940,8 @@ div {
 					<h:form id="formPersona">
 
 						<p:growl id="msgs" showDetail="true" />
-						
 						<h2>
-						<div class="ui-grid">
-		<div class="ui-grid-row">
-			<div class="ui-grid-col-2"></div>
-			<div class="ui-grid-col-10">
-				<p>
-					<a href="#header"><input type="submit" value="Inicio" /></a>
-				</p>
-
-			</div>
-		</div>
-	</div>
-	
-							<strong><a href="#">Buscar Persona Desaparecida</a></strong>
+							<a href="#">BUSCAR PERSONA DESAPARECIDA</a>
 						</h2>
 						<br />
 						<p:dataTable id="perDT" var="personaBean" widgetVar="personaTable"
@@ -1117,7 +959,7 @@ div {
 
 									<p:inputText id="globalFilter"
 										onkeyup="PF('personaTable').filter()" style="width:300px"
-										placeholder="Ingrese su busqueda" />
+										placeholder="Ingrese el nombre" />
 								</p:outputPanel>
 							</f:facet>
 							<p:ajax event="rowSelect"
@@ -1156,22 +998,13 @@ div {
 							</p:column>
 
 							<p:column headerText="Imagen" filterMatchMode="contains">
-								
-								
-								<p:commandButton type="button" value="Ver Imagenes" onclick="PF('dlg').show()" />
- 
-								<p:dialog header="Imagenes" widgetVar="dlg" modal="true"
-								    draggable="false" resizable="false">
-								 
-								    <p:imageSwitch effect="fade">
-								        <ui:repeat value="#{imagesView.imagesMostrar}" var="image">
-								            <p:graphicImage value="imagen/#{image}" styleClass="content" />>
-								        </ui:repeat>
-								    </p:imageSwitch>
-								</p:dialog>
+								<h:graphicImage value="image/#{personaBean.imagenes}" />
 							</p:column>
 
-							
+							<p:column headerText="¿Hallada?"
+								filterBy="#{personaBean.hallada}" filterMatchMode="contains">
+								<h:outputText value="#{personaBean.hallada}" />
+							</p:column>
 							<hr></hr>
 						</p:dataTable>
 						<hr></hr>
