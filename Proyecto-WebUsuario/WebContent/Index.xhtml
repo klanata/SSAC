@@ -25,22 +25,12 @@
 		type="text/css" />
 	<link rel="stylesheet"
 		href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" />
-	<script>
-		  //alert(window.localStorage.getItem("IdCatastrofe"));
-		  var css = window.localStorage.getItem("urlCSS");
-		  var cssFinal = "css/"+ css; 
-		  //alert("Css final: "+cssFinal);
-		  //alert(window.localStorage.getItem("urlCSS"));
-		  //document.getElementById("j_idt5:catastrofeId").value = id;
+	<script type="text/javascript" language="javascript">
+		  var css = "#{imagesView.css}";
+		  var cssFinal = "cssFile/"+ css; 
+		  console.log(cssFinal);
 		  
-		  var login= #{loginBean.logeado};
-		  function mostrarMenuLogueo(){
-			if !login{
-
-				
-			}
-			  
-		  }
+		
 		  
 		  
 		  function cambiarCSS() { 
@@ -49,12 +39,8 @@
 				return false;
 		  }
 		  cambiarCSS();
-			function obtenerNombre(){
-				HttpServletRequest req = (HttpServletRequest) request;
-				String urlStr = req.getRequestURL().toString().toLowerCase();
-				
-				alert(urlStr);
-				}
+		  
+		
 	</script>
 	<script type="text/javascript" language="javascript">
 			function show(id) {
@@ -330,46 +316,42 @@ div {
 						<f:view>
 							<h:form id="pedidoAyudaBean">
 
-								<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
+								<p:growl id="growl" life="2000" />
 
 								<h:panelGrid>
 
 									<label for="descripcion">Descripcion :</label>
 									<p:inputTextarea rows="3" cols="10" id="descripcion"
-										label="descripcion" value="#{pedidoAyudaBean.descripcion}"
-										required="true" requiredMessage="La descripcion es requerida">
+										label="descripcion" value="#{mapaPedidoAyuda.descripcion}"
+										>
 									</p:inputTextarea>
 
-									<p:inputText id="coordenadasX" label="coordenadasX"
-										value="#{pedidoAyudaBean.coordenadasX}" type="hidden"
-										required="true" requiredMessage="La latitud es requerido">
-									</p:inputText>
-
-									<p:inputText id="coordenadasY" label="coordenadasY"
-										value="#{pedidoAyudaBean.coordenadasY}" type="hidden"
-										required="true" requiredMessage="La longitud es requerido">
-									</p:inputText>
+									
 								</h:panelGrid>
 								<ul class="actions align-center">
 									<p:commandButton id="registrarpedido" update="growl"
 										type="submit" style="margin-left: 150px;" Class="button"
 										value="Ayuda"
-										
-										actionListener="#{pedidoAyudaBean.registrarpedidoAyuda}">
+										action="#{mapaPedidoAyuda.registrarPedidoAyuda()}">
 									</p:commandButton>
 								</ul>
 							</h:form>
 
 						</f:view>
-
-						<p>
-							
-						</p>
+						
 					</div>
 					<div class="ui-grid-col-1"></div>
 					<div class="ui-grid-col-5">
 						<br />
-						<div id="map-canvas"></div>
+						<br />
+
+						<div id="mapa2" style="width:42%; float:right;margin-right: 300px;padding:0px 74px 0px 0px;">  
+							<p:growl id="growl2" life="3000" showDetail="true" />
+							<p:gmap id="map2" center="#{mapaPedidoAyuda.latitud}, #{mapaPedidoAyuda.longitud}" zoom="8" type="HYBRID"  style="width:500px;height:580px"
+						    		 model="#{mapaPedidoAyuda.polygonModel}" widgetVar="map" >    
+						    	 <p:ajax event="markerDrag" listener="#{mapaPedidoAyuda.onMarkerDrag}" update="growl2" />	
+						    </p:gmap>	
+						</div>
 					</div>
 
 					<div class="ui-grid-col-1"></div>
