@@ -37,8 +37,6 @@ public class UsuarioEB implements UsuarioEBR{
 		
 		boolean existe = false ;
 		
-			System.out.print("pass" + pass);
-			System.out.print("nick" + nick);
 			existe=  usuarioDAO.existeUsuario(nick, pass);
 			
 		

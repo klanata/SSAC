@@ -57,7 +57,9 @@
 					document.getElementById('desaparecidos').style.visibility = "hidden";
 					document.getElementById('busperdesap').style.visibility = "hidden";
 					//document.getElementById('desaparecidosocultar').style.visibility = "hidden";
+					registroBean.setMensaje("Estimado Usuario debe estar logueado en el sistema para poder reportar personas desaparecidas.")
 					loginBean.setNick1("");
+					
 					
 				}else {
 					document.getElementById('loginusuario').style.visibility = "hidden";
@@ -261,8 +263,7 @@ div {
 			<!--  <li><a href="Index.xhtml">Inicio</a></li>
 				<a id="displayText"  href="#banner" onclick="toggle();">SOLICITAR AYUDA</a></li>-->
 
-			<li><a href="#banner" style="cursor: hand; text-color: FFFFFFF"
-				onclick="show('banner');"> Pedido de ayuda</a></li>
+			<li><a href="Home.xhtml" > SSAC</a></li>
 			<li><a href="#donacion"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('donacion');">Donaciones</a></li>
@@ -399,7 +400,7 @@ div {
 					<img src="images/servicio.jpg" alt="" onclick="PF('dlg1').show();" />
 					<header>
 					<h3>
-						<a href="#">DONACION DE SERIVCIOS</a>
+						<a href="#">DONACION DE SERVICIOS</a>
 					</h3>
 					</header>
 					<p>Donacion de servicios, voluntarios, médicos, ingenieros,
@@ -411,14 +412,14 @@ div {
 						<f:view>
 											
 							<h:form id="deServicioBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
 
 								<h:panelGrid>
 
 									
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:160px"  >
+							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:400px"  >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deServicioBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -448,7 +449,7 @@ div {
 										
 										
 									</p:inputText>
-									
+									<br/>
 									<p:commandButton id="registro" update="growl" type="submit"
 										Class="button" value="DONAR"
 										action="#{deServicioBean.registrarDonacionDeServicio()}">
@@ -475,11 +476,11 @@ div {
 						hideEffect="explode" height="500" width="430">
 						<f:view>
 							<h:form id="economicaBean">
-								<p:growl id="growl" showDetail="true" sticky="true" life="3000" />
+								<p:growl id="growl" showDetail="true" sticky="true" life="2000" />
 								<h:panelGrid>
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:160px" >
+							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:400px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{economicaBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -494,7 +495,7 @@ div {
 									</p:inputText>
 
 									
-
+								<br/>
 									<p:commandButton id="registrarDonacion" update="growl"
 										type="submit" Class="button" value="Confirmar datos"
 										action="#{economicaBean.registrarDonacionEconomica()}">
@@ -502,7 +503,7 @@ div {
 								</h:panelGrid>
 							</h:form>
 						</f:view>
-
+						<br/>
 						<form action="https://www.paypal.com/cgi-bin/webscr" method="post"
 							target="_top">
 							<input type="hidden" name="cmd" value="_donations"></input> <input
@@ -546,7 +547,7 @@ div {
 
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:160px" >
+							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:400px" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deBienesBean.listaongs}" />
 							        </p:selectOneMenu>

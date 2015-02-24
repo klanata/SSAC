@@ -385,16 +385,15 @@ public class MapaPedidoAyuda implements Serializable{
 		double latP = marker.getLatlng().getLat();
 		double lngP = marker.getLatlng().getLng();
 		
-		System.out.println("lat: " + latP); 
-		System.out.println("lng: " + lngP); 
-		System.out.println("descripcion en registrarPedidoAyuda "+ descripcion);
+		
+		
 				
 		LatLng p = new LatLng(latP, lngP);
 		
 		boolean existe = insidePolygon(p);
 		
 		if (existe) {
-			System.out.println("Esta en la zona en registrarPedidoAyuda registro Pedido.");		
+			//System.out.println("Esta en la zona en registrarPedidoAyuda registro Pedido.");		
 			try{ 
 				
 				PedidoDeAyudaEBR manager = null;				
@@ -447,31 +446,18 @@ public class MapaPedidoAyuda implements Serializable{
            			managerR.asignarRescatistaCatastrofe(id);           		
         			this.descripcion = "";
         			
-        			/*ESTE ANDA NO SE MUERE*/
-           		 
-        	        //FacesMessage messages = new FacesMessage("Pedido Creado con exito !!"); 
-        	        //contexto.addMessage("pedidoAyudaBean", messages);
+        			
+        			 
+        	        
+        	        FacesMessage messages = new FacesMessage("Pedido realizada con exito !!",null); 
+        	        contexto.addMessage("deServicioBean", messages);
+        	        
+        			/*
                		
                		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
     				handler.performNavigation("Home?faces-redirect=true");
-        	        
-        	        /*
-               		
-    				FacesContext contexto = FacesContext.getCurrentInstance(); 
-    			       
-    				FacesMessage messages = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ingreso Exitoso", "El administrador fue ingresado al sistema.");
-    				    				    						    			
-    				contexto.getExternalContext().getFlash().setKeepMessages(true);		
-    				
-    		        contexto.addMessage("growl4", messages); 
-    		        
-    		        ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-    				handler.performNavigation("Home?faces-redirect=true");
-    				
-    		        //contexto.getExternalContext().getFlash().setRedirect(true); 
-    		        
-    		        //contexto.getExternalContext().redirect("Index.xhtml");
-    		        */	       
+        	        */
+        	          
            		}
            		           												        
 			}catch (Exception excep){
