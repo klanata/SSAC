@@ -65,10 +65,7 @@
 	        		</p:column>						        		
 	        		<p:column headerText="Descripcion"   filterBy="#{FiltroServicioBean.descripcion}" style="width:330px" filterMatchMode="contains">
 	            		<h:outputText value="#{FiltroServicioBean.descripcion}" />
-	        		</p:column>	  	        		
-	        		<p:column headerText="Baja">
-	            		<h:outputText value="#{FiltroServicioBean.bajaLogica}" />
-	        		</p:column>	             		        		      	        			        				     		                  		                  		             	        		       	        		 		        	
+	        		</p:column>	  	        			        			             		        		      	        			        				     		                  		                  		             	        		       	        		 		        
 	     		</p:dataTable>  
 	     		<p:outputPanel style="text-align: left">
 					<p:commandButton update=":formFiltroYoutube:msg"  value="Siguiente" action="#{filtrosCatastrofeBean.siguiente()}"/>  
