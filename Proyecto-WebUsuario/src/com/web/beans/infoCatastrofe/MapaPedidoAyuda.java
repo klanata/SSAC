@@ -9,7 +9,7 @@ import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -31,7 +31,7 @@ import com.core.service.negocio.remote.RescatistaEBR;
 
 
 @ManagedBean(name="mapaPedidoAyuda")
-@ViewScoped
+@RequestScoped
 public class MapaPedidoAyuda implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

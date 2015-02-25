@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Sistema de Soporte ante Catástrofes Naturales</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<link rel="stylesheet" type="text/css" href="resources/styles/layout2.css" />	
+	<style>
+    *{ margin: 0; padding: 0; }
+    html, body, #map{
+        width: 100%;
+        height: 100%;
+        box-shadow: 0px 0px 26px #888888;
+    }
+    </style>  	
+  	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=es"></script>  	
+</h:head> 
+
+<h:body id="top"> 
+<ui:include src="header.xhtml" /> 
+<div id="mapa" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">  
+	<p:growl id="growl" life="3000" showDetail="true" />
+	<p:gmap id="map" center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="6" type="HYBRID"  style="width:500px;height:550px;"
+    		 model="#{imagesView.polygonModel}" widgetVar="map" >    
+    	<p:ajax event="overlaySelect" listener="#{imagesView.onMarkerSelect}" update="growl" />   	
+    </p:gmap>	
+</div> 
+    	
+<div class="wrapper col3" style="height:580px;">
+    <div id="intro2">    
+    <div>		     	      
+	      <f:view>        	      	
+			<h:form id="formImagenesCatastrofe" columns="2" value="#{imagesView.catastrofeBean}" columnClasses="label, value" style="width:500px;border: 0;">			
+				<p:growl id="messages" showDetail="true" />   										
+				<h3>Datos de la Catástrofe</h3>				
+				<p>			        		        
+	            <p:graphicImage value="image/#{imagesView.catastrofeBean.logo}" width="30" height="30"/> 
+	            <h:outputText value="" style="border: transparent;"/>	              		         	        	
+				</p>							
+				<p>
+				<h:outputText value="Nombre del evento:  " style="width:100px;border: transparent;"/>			
+	            <h:outputText value="#{imagesView.catastrofeBean.nombreEvento}" styleClass="outputLabel"/>
+	            </p>	
+	            <br/>			               	              	                         	            							        										
+				<p>
+				<label for="prioridad">Prioridad: #{imagesView.catastrofeBean.prioridad} </label>	
+				</p>								
+				<p:galleria value="#{imagesView.images}" var="imgCatastrofeBean" panelWidth="500" panelHeight="313" showCaption="true" style="box-shadow: 0px 0px 26px #888888;">
+				    <p:graphicImage value="image/#{imgCatastrofeBean.path}"  title="#{imgCatastrofeBean.path}"/>
+				</p:galleria>					
+				<br/> 
+				
+				<p:commandButton id="comandoBuscar" type="submit" style="margin-left: 0px;" styleClass="formbutton" value="Aceptar" action="#{imagesView.aceptarBusqueda()}" />
+					
+		         <br/> 		
+			 </h:form>    		    		    		    		    	
+		</f:view>
+    </div>     				   
+    <br class="clear" />    
+	</div>	    		
+</div>
+<div class="wrapper col7" style="border:solid white; border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
+  <div id="copyright">
+    <p class="fl_left">Copyright &copy; 2014 All Rights Reserved </p>
+    <p class="fl_right">Desarrolladores: Cecilia Camps, Stephanie Pacheco, Valentina Cabrera, Karina Lanata, Victoria Andrada.</p>
+    <br class="clear" />
+  </div>
+</div>
+<script type="text/javascript">
+	  //<![CDATA[
+	  function logout(xhr, status, args) {
+	    setTimeout(function() {
+	      window.location = 'home.xhtml';
+	    }, 500);
+	  }
+	//]]>
+	</script>
+</h:body> 
+</html>

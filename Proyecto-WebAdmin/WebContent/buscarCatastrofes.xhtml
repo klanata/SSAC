@@ -26,21 +26,42 @@
 <ui:include src="header.xhtml" /> 			
  <div id="mapa" style="width:42%; float:right;margin-top:30px;padding:0px 74px 0px 0px;">
 	<p:growl id="growl" life="3000" showDetail="true" />
-	<p:gmap id="map" center="4.350836, 26.531067" zoom="2" type="HYBRID" 
-		model="#{mapaCatastrofesBean.polygonModel}" widgetVar="map" style="width:500px;height:550px;"  >
-		<p:ajax event="overlaySelect" listener="#{mapaCatastrofesBean.onMarkerSelect}" update="growl" />         	   
+	<p:gmap id="map" center="#{buscaCatastrofesBean.latitud}, #{buscaCatastrofesBean.longitud}" zoom="2" type="HYBRID" 
+		model="#{buscaCatastrofesBean.polygonModel}" widgetVar="map" style="width:500px;height:550px;"  >
+		<p:ajax event="overlaySelect" listener="#{buscaCatastrofesBean.onMarkerSelect}" update="growl" />         	   
     </p:gmap>  
 </div>      
 
 <div class="wrapper col3" style="height:580px;">
-    <div id="intro2">    
-    <div>	
+  <div id="intro2">
+    <div>            	
+      <f:view>
+		<h:form id="buscarCatastrofes" columns="2" columnClasses="label, value" style="width:500px;border: 0;">
+						
+			<p:growl id="growl" showDetail="true" sticky="true" life="3000" />				
+			<h3>Buscar Catástrofes</h3>	
+			
+			<label for="nombreEvento">Nombre de la Catástorfe: </label>
+	        <p:selectOneMenu id="idCatastrofe" value="#{buscaCatastrofesBean.catastrofeBeanMap}" converter="catastrofeConverter" 
+	        	var="t" effect="fade" style="width:180px" filter="true" filterMatchMode="startsWith">	            
+	            <f:selectItems value="#{buscaCatastrofesBean.catastrofesBeanMap}" var="catastrofeBeanMap" itemLabel="#{catastrofeBeanMap.nombreEvento}" itemValue="#{catastrofeBeanMap}" />
+	            <p:column>
+                <h:outputText value="#{t.nombreEvento}" />
+            </p:column>
+	        </p:selectOneMenu>	       
+	        <br/>
+	        <br/>
+	        
+	        <p:commandButton id="comandoBuscar" update=":buscarCatastrofes:growl" type="submit" style="margin-left: 0px;" styleClass="formbutton" value="Buscar" action="#{buscaCatastrofesBean.buscarCatastrofe()}" />
+	        	
+		</h:form>
+		</f:view>
+    </div>               
     
-    </div>     				   
-    <br class="clear" />    
-	</div>	    		
-</div>         
- 
+    <br class="clear" />
+  </div>
+</div>	
+		
  <div class="wrapper col7" style=" border-radius:3px;background: url('resources/images/WebUsuarioHeader.png') center center ;">
   <div id="copyright">
     <p class="fl_left">Copyright &copy; 2014  All Rights Reserved </p>

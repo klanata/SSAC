@@ -316,5 +316,10 @@ public class ImagesView implements Serializable{
         marker = (Marker) event.getOverlay();                   
         //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Selected", marker.getTitle()));
     }
+	
+	public void aceptarBusqueda(){		
+		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+		handler.performNavigation("buscarCatastrofes?faces-redirect=true");		
+	}
 
 }
