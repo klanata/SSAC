@@ -447,15 +447,15 @@ public class MapaPedidoAyuda implements Serializable{
         			this.descripcion = "";
         			
         			
-        			 
-        	        
-        	        FacesMessage messages = new FacesMessage("Pedido realizada con exito !!",null); 
-        	        contexto.addMessage("deServicioBean", messages);
-        	        
-        			/*
-               		
+        			 FacesMessage message = null;
+        	            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Pedido realizado con Exito", "");
+        	            FacesContext.getCurrentInstance().addMessage(null, message);
+        	           
+        			
+        			
+               		/*
                		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-    				handler.performNavigation("Home?faces-redirect=true");
+    				handler.performNavigation("Index?faces-redirect=true");
         	        */
         	          
            		}

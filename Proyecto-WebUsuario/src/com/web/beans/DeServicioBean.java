@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -227,15 +228,22 @@ public class DeServicioBean implements Serializable {
        		manager.crearDonacionDeServicios(idOng, usuario, fechaRealizada, areaConocimient, cantidadHoras);    	
        		
        		this.usuario= "";
-       		this.areaConocimient = "";
+       		this.areaConocimient = "";       		       		
        		
        		
+            FacesMessage message = null;
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Gracias por su donaciï¿½n", "");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+            
+       		
+       		/*
        		FacesContext contexto = FacesContext.getCurrentInstance(); 
-    	        
-	        FacesMessage messages = new FacesMessage("Donación realizada con exito !!",null); 
+    	    FacesMessage messages = new FacesMessage("Donaciï¿½n realizada con exito !!",null); 
 	        contexto.addMessage("deServicioBean", messages);
 			
-       		
+	        ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
+			handler.performNavigation("Index?faces-redirect=true");
+       		*/
        		
        		
 		}catch (Exception excep){

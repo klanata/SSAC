@@ -211,8 +211,10 @@ public class DeBienesBean implements Serializable{
     		/*Carga de la url*/
     		
     		manager.crearDonacionDeBienes(idOng, usuario, fechaRealizada, nombreItem, cantidad);
-    		FacesMessage messages = new FacesMessage("Donación creada con exito !!"); 
-    		contexto.addMessage("deBienesBean", messages);
+    		 FacesMessage message = null;
+             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Gracias por su donación", "");
+             FacesContext.getCurrentInstance().addMessage(null, message);
+            
  			
 		/**/
 		}catch (Exception excep){
