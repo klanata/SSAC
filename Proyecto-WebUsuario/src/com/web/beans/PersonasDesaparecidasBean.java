@@ -4,6 +4,7 @@ import java.util.Date;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpSession;
 import clienteutility.ClienteUtility;
 
 import com.core.data.entites.ImagenPersonaDesaparecida;
+import com.core.data.entites.PersonasDesaparecidas;
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
 
 
@@ -46,6 +48,9 @@ public class PersonasDesaparecidasBean implements Serializable {
 	private String descripcion ;
 	private Set<ImagenPersonaDesaparecida> imagenes = new HashSet<ImagenPersonaDesaparecida>();
 	private Boolean hallada;
+	private List<String> listaMostrar;
+	private String imagen;
+	private String encontrada;
 //	private Part part;
 	
 
@@ -55,8 +60,8 @@ public class PersonasDesaparecidasBean implements Serializable {
 	
 	public PersonasDesaparecidasBean(Long id, String nombre,
 			String apellido, String cedula, String numeroContacto, String descripcion,
-			Date fechnac, Set<ImagenPersonaDesaparecida> imagenes,
-			Boolean hallada) {
+			Date fechnac, List<String> listaMostrar,
+			String encontrada) {
 		super();
 		this.id=id;
 		this.nombre=nombre;
@@ -65,10 +70,85 @@ public class PersonasDesaparecidasBean implements Serializable {
 		this.numeroContacto=numeroContacto;
 		this.descripcion=descripcion;
 		this.fechNac=fechnac;
-		this.imagenes=imagenes;
-		this.hallada=hallada;
+		this.listaMostrar=listaMostrar;
+		this.encontrada=encontrada;
 		
 	}
+	
+	
+	public List<String> getListaMostrar() {
+		/*
+		String idPersonaString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idP");
+		
+		System.out.println("idPersonaString: " + idPersonaString); 
+		
+		if (idPersonaString != null) {
+			
+			PersonasDesaparecidasEBR manager = null;		    	
+			Context context = null;			
+			//FacesMessage message = null;
+			
+			try {
+	            // 1. Obtaining Context
+	            context = ClienteUtility.getInitialContext();
+	            // 2. Generate JNDI Lookup name
+	            //String lookupName = getLookupName();
+	            // 3. Lookup and cast
+	            manager = (PersonasDesaparecidasEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//PersonasDesaparecidasEB!com.core.service.negocio.remote.PersonasDesaparecidasEBR");
+	 
+	        } catch (NamingException e) {
+	            e.printStackTrace();
+	        }
+						
+			try{
+				PersonasDesaparecidas persona;
+				Long idPersona = new Long(idPersonaString);
+				persona = manager.buscaPersonaPorId(idPersona);
+				
+				Set<ImagenPersonaDesaparecida> imagenes;
+				imagenes = persona.getImagenes();
+				String path;	
+				
+				for (ImagenPersonaDesaparecida img : imagenes){					
+					path = img.getPath();					
+					listaMostrar.add(path);							
+				}				
+				
+			}catch (Exception excep){
+	    		System.out.println("Excepción al obtener imagnes de las personas: " + excep.getMessage());      		 			       	           	
+	    	} 
+			
+		}		
+		*/				
+		return listaMostrar;
+	}
+
+
+	public void setListaMostrar(List<String> listaMostrar) {
+		this.listaMostrar = listaMostrar;
+	}
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+
+	public String getEncontrada() {
+		return encontrada;
+	}
+
+
+	public void setEncontrada(String encontrada) {
+		this.encontrada = encontrada;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

@@ -10,21 +10,21 @@
 	<meta name="description" content="" />
 	<title>#{imagesView.nombre}</title>
 	<meta name="keywords" content="" />
+	
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<title>#{imagesView.nombre}</title>
+	<meta name="keywords" content="" />
 	<script src="js/jquery.dropotron.min.js"></script>
 	<script src="js/jquery.scrolly.min.js"></script>
 	<script src="js/jquery.onvisible.min.js"></script>
 	<script src="js/skel.min.js"></script>
 	<script src="js/skel-layers.min.js"></script>
 	<script src="js/init.js"></script>
-	<link rel="stylesheet" href="css/styles.css" />
-	<link rel="stylesheet" href="css/style-desktop.css" />
 	<link rel="stylesheet" href="css/style-noscript.css" />
 	<link rel="stylesheet" href="css/skel.css" />
-	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/styles.css" media="screen"
-		type="text/css" />
-	<link rel="stylesheet"
-		href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" />
+	<link id="cssPrincipal" rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" />
 	<script type="text/javascript" language="javascript">
 		  var css = "#{imagesView.css}";
 		  var cssFinal = "cssFile/"+ css; 
@@ -53,8 +53,7 @@
 				
 				alert(urlStr);
 		  }*/
-	</script>
-	<script type="text/javascript" language="javascript">
+	</script><script type="text/javascript" language="javascript">
 			function show(id) {
 				var oc = document.getElementById(id).style;
 		
@@ -82,6 +81,7 @@
 					}
 			}
 			function hide() {
+				
 				document.getElementById('banner').style.display = "none";
 				document.getElementById('donacion').style.display = "none";
 				document.getElementById('busperdesap').style.display = "none";
@@ -214,7 +214,7 @@ div {
 						<div class="ui-grid-col-9">
 						<!-- MAPA DE ZONAS AFECTADAS -->
 						<p:gmap id="map"
-					center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="10"
+					center="#{imagesView.latitud}, #{imagesView.longitud}" zoom="8"
 					type="HYBRID" style="width:100%;height:580px"
 					model="#{imagesView.polygonModel}" widgetVar="map">
 					<p:ajax event="overlaySelect" oncomplete="PF('dlg').show();"
@@ -325,8 +325,7 @@ div {
 	<div id="banner">
 		<div class="section">
 
-			<h2>
-			<div class="ui-grid">
+<div class="ui-grid">
 		<div class="ui-grid-row">
 			<div class="ui-grid-col-2"></div>
 			<div class="ui-grid-col-10">
@@ -337,9 +336,8 @@ div {
 			</div>
 		</div>
 	</div>
-			
-			
-				<strong>¡SOLICITE AYUDA!</strong>
+	
+			<h2><strong>¡SOLICITE AYUDA!</strong>
 			</h2>
 
 			<strong> ¿Se encuentra en situación de peligro? ¿Necesita
@@ -347,13 +345,13 @@ div {
 				Ingrese sus datos en el siguiente formulario y le derivaremos a un
 				rescatista </strong> <strong> lo antes posible.</strong>
 
-			<div class="ui-grid ui-grid-responsive">
+			<div class="ui-grid">
 
 				<div class="ui-grid-row">
 
 					<div class="ui-grid-col-1"></div>
 
-					<div class="ui-grid-col-5"><br />
+					<div class="ui-grid-col-4"><br />
 						<f:view>
 							<h:form id="pedidoAyudaBean">
 
@@ -397,20 +395,18 @@ div {
 						<br />
 						  
 							<p:growl id="growl2" life="3000" showDetail="true" />
-							<p:gmap id="map2" center="#{mapaPedidoAyuda.latitud}, #{mapaPedidoAyuda.longitud}" zoom="8" type="HYBRID"  style="width:500px;height:300px"
+							<p:gmap id="map2" center="#{mapaPedidoAyuda.latitud}, #{mapaPedidoAyuda.longitud}" zoom="8" type="HYBRID"  style="width:100%;height:450px"
 						    		 model="#{mapaPedidoAyuda.polygonModel}" widgetVar="map" >    
 						    	 <p:ajax event="markerDrag" listener="#{mapaPedidoAyuda.onMarkerDrag}" update="growl2" />	
 						    </p:gmap>	
 						
 					</div>
-
 					<div class="ui-grid-col-1"></div>
 
-				</div>
+			</div>
 			</div>
 		</div>
 	</div>
-
 
 
 
@@ -469,7 +465,7 @@ div {
 									
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:400px"  >
+							        <p:selectOneMenu id="ongs" value="#{deServicioBean.ong}" style="width:400px" required="true" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deServicioBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -530,7 +526,7 @@ div {
 								<h:panelGrid>
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:400px" >
+							        <p:selectOneMenu id="ongs" value="#{economicaBean.ong}"  style="width:400px" required="true" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{economicaBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -597,7 +593,7 @@ div {
 
 									<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 									
-							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:400px" >
+							        <p:selectOneMenu id="ongs" value="#{deBienesBean.ong}"  style="width:400px" required="true" >
 							            <f:selectItem itemLabel="Seleccione Ong a donar :" itemValue=""  />
 							            <f:selectItems value="#{deBienesBean.listaongs}" />
 							        </p:selectOneMenu>
@@ -702,7 +698,7 @@ div {
         
         <div class="ui-grid-col-4">
         
-        					<label for="nombre">Nombre :</label>
+        					<label for="nombre">Nombre Completo :</label>
 							<p:inputText id="nombre" label="nombre"
 								value="#{registroBean.nombre}" required="true"
 								requiredMessage="El nombre es requerido">
@@ -884,9 +880,10 @@ div {
 	
 	
 	<!-- MENU DE PERSONAS DESAPARECIDAS -->
-	
+	<div>
+	<h2>#{loginBean.mensaje}</h2>
 	<div class="oculto" id="desaparecidos">
-		<h2>#{registroBean.mensaje}</h2>
+		
 
 	
 	
@@ -963,7 +960,7 @@ div {
 	</div>
 
 
-
+</div>
 
 
 
@@ -1040,7 +1037,7 @@ div {
         </div>
         <div class="ui-grid-col-4">
         
-        <label for="numeroContacto">Numero de Teléfono :</label>
+        <label for="numeroContacto">Número de Teléfono :</label>
 								<p:inputText id="numeroContacto" label="numeroContacto"
 									value="#{personasdesaparecidasBean.numeroContacto}"
 									required="true" 
@@ -1116,14 +1113,14 @@ div {
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
 							selectionMode="single"
 							selection="#{listapersonaBean.selectedPersona}"
-							rowKey="{personaBean.id}" dblClickSelect="true">
+							rowKey="#{personaBean.id}" dblClickSelect="true">
 
 							<f:facet name="header">
 								<p:outputPanel style="text-align: right">
 
 									<p:inputText id="globalFilter"
 										onkeyup="PF('personaTable').filter()" style="width:300px"
-										placeholder="Ingrese su busqueda" />
+										placeholder="Buscar" />
 								</p:outputPanel>
 							</f:facet>
 							<p:ajax event="rowSelect"
@@ -1150,28 +1147,32 @@ div {
 								<h:outputText value="#{personaBean.cedula}" />
 							</p:column>
 
-							<p:column headerText="Contacto"
-								filterBy="#{personaBean.numeroContacto}"
+							<p:column headerText="Número de Teléfono :"
+								
 								filterMatchMode="contains">
 								<h:outputText value="#{personaBean.numeroContacto}" />
 							</p:column>
 
 
-							<p:column headerText="Descripcion" filterMatchMode="contains">
+							<p:column headerText="Descripción" filterBy="#{personaBean.descripcion}" filterMatchMode="contains">
 								<h:outputText value="#{personaBean.descripcion}" />
 							</p:column>
+							<p:column headerText="Estado" filterMatchMode="contains">
+								<h:outputText value="#{personaBean.encontrada}" />
+							</p:column>
 
-							<p:column headerText="Imagen" filterMatchMode="contains">
+							<p:column headerText="Imágen" filterMatchMode="contains">
 								
 								
-								<p:commandButton type="button" value="Ver Imagenes" onclick="PF('dlg').show()" />
+								<p:commandButton type="button" value="Ver" onclick="PF('dlg').show()" />
  
 								<p:dialog header="Imagenes" widgetVar="dlg" modal="true"
 								    draggable="false" resizable="false">
 								 
 								    <p:imageSwitch effect="fade">
-								        <ui:repeat value="#{imagesView.imagesMostrar}" var="image">
-								            <p:graphicImage value="imagen/#{image}" styleClass="content" />>
+								        <ui:repeat value="#{personaBean.listaMostrar}" var="image">
+								            <p:graphicImage value="imagen/#{image}" styleClass="content" width="200"
+							height="200" />
 								        </ui:repeat>
 								    </p:imageSwitch>
 								</p:dialog>

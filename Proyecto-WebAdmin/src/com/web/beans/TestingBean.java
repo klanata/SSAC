@@ -5,13 +5,11 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
 import clienteutility.ClienteUtility;
 
-import com.core.service.negocio.remote.CatastrofeEBR;
 import com.core.service.negocio.remote.RescatistaEBR;
 
 

@@ -138,7 +138,7 @@ public class LoginBean implements Serializable {
 			
 			//mensaje = "Estimado Visitante debe estar registrado para tener acceso a reportar o buscar Personas Desaparecidas";
 			mensaje = "Debe Registrarse";
-			Menu = "Iniciar Sesión";
+			Menu = "Iniciar Sesi�n";
 		}else 
 		{
 			mensaje = "Bienvenido "+ nick1;
@@ -177,64 +177,56 @@ public class LoginBean implements Serializable {
 		//System.out.print("nick1" + nick1);
 		////veo si el usuario esta registrado
 		Boolean exito =	manager.existeUsuario(nick1, clave1);
+		FacesContext contextousuario = FacesContext.getCurrentInstance();
+		HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
+		idCatastrofe1 = (Long)sesion.getAttribute("idmongo");
 		if(exito==false){
-			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "ERROR","Usuario no registrado en el sistema.");
+			nick1= "";
+			Menu = "Iniciar Sesi�n";
+			mensaje ="";
+			logeado=false;
+					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no Registrado", "");
+					//context.addCallbackParam("view", "Index.xhtml");
+					System.out.print("registro == false usuario no registrado a la catastrofe");
+		}else
+		{	
+			//exito = true
+				Boolean registrado = manager.estaRegistradoCatastrofe(nick1, idCatastrofe1);
+					
+				if  (registrado ==true)
+				{
+					
+					logeado = true;
+					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nick1);
+					Menu = "";
+					mensaje ="";
+					nick1="Bienvenid@ "+ nick1;
+					context.addCallbackParam("view", "Index.xhtml");
+				} 
+				else //if((exito == true) && (registrado==false))
+				{
+					//si esta registrado en la plataforma pero no a la catastrofe
+					
+					manager.registrarACatastrofe(nick1, clave1, idCatastrofe1);
+					logeado = true;
+					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@","Se ha registrado a la cat�strofe");
+					Menu = "";
+					mensaje ="";
+					nick1="Bienvenid@ "+ nick1;
+					context.addCallbackParam("view", "Index.xhtml");
+				}
+				
+				
+		
+		}
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		context.addCallbackParam("estaLogeado", logeado);
+		if (logeado){
+			Menu = "";
+			mensaje ="";
+			//nick1="Bienvenid@ "+ nick1;
 			context.addCallbackParam("view", "Index.xhtml");
 		}
-		else{
-			FacesContext contextousuario = FacesContext.getCurrentInstance();
-			HttpSession sesion = (HttpSession)contextousuario.getExternalContext().getSession(true);
-			idCatastrofe1 = (Long)sesion.getAttribute("idmongo");
-			
-			
-			Boolean registrado = manager.estaRegistradoCatastrofe(nick1, idCatastrofe1);
-			
-			if(registrado==false){
-				nick1= "";
-				Menu = "Iniciar Sesión";
-				mensaje ="";
-						msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no Registrado", "");
-						context.addCallbackParam("view", "Index.xhtml");
-						System.out.print("registro == false usuario no registrado a la catastrofe");
-					}	
-			if ( registrado ==true)
-			{
-				
-				logeado = true;
-				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nick1);
-				Menu = "";
-				mensaje ="";
-				nick1="Bienvenid@ "+ nick1;
-				context.addCallbackParam("view", "Index.xhtml");
-			} 
-		/*	else if((exito == true) && (registrado==false))
-			{
-				//si esta registrado en la plataforma pero no a la catastrofe
-				
-				manager.registrarACatastrofe(nick1, clave1, idCatastrofe1);
-				logeado = true;
-				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@","Se ha registrado a la catástrofe");
-				Menu = "";
-				mensaje ="";
-				nick1="Bienvenid@ "+ nick1;
-				context.addCallbackParam("view", "Index.xhtml");
-			}
-			else{
-				logeado = false;
-				nick1= "";
-				
-				msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error","Credenciales no válidas");
-			}*/
-			
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-			context.addCallbackParam("estaLogeado", logeado);
-			if (logeado){
-				Menu = "";
-				mensaje ="";
-				//nick1="Bienvenid@ "+ nick1;
-				context.addCallbackParam("view", "Index.xhtml");
-			}
-		}	
 	} 
 	
 	/*
@@ -284,7 +276,7 @@ public class LoginBean implements Serializable {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
 		logeado = false;
-		Menu = "Iniciar Sesión";
+		Menu = "Iniciar Sesi�n";
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
 		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Gracias por visitarnos","!");

@@ -1,5 +1,6 @@
 package com.web.beans;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import javax.faces.application.FacesMessage;
 
 import clienteutility.ClienteUtility;
 
+import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.entites.ImagenPersonaDesaparecida;
 import com.core.data.entites.PersonasDesaparecidas;
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
@@ -35,7 +37,7 @@ private static final long serialVersionUID = 1L;
 	private ArrayList<PersonasDesaparecidasBean> personasBean = new ArrayList<PersonasDesaparecidasBean>();    
     private List<PersonasDesaparecidas> filtroPersonafeBean;
     
-    private PersonasDesaparecidas selectedPersona;    
+    private PersonasDesaparecidasBean selectedPersona;
     
     @ManagedProperty("#{personasdesaparecidasBean}")
     private PersonasDesaparecidasBean personaBean;
@@ -73,7 +75,9 @@ private static final long serialVersionUID = 1L;
 	    	String descripcion;
 	    	Date fechnac;
 	    	Boolean hallada;
+	    	String encontrada;
 	    	Set<ImagenPersonaDesaparecida> imagenes;
+	    	 List<String> imagesMostrar = new ArrayList<String>();
 			for (int i=0; i<=res.size()-1; i++){    		
 				persona = res.get(i);
 				id = persona.getId();
@@ -85,9 +89,30 @@ private static final long serialVersionUID = 1L;
 				descripcion = persona.getDescripcion();
 				fechnac = persona.getFechNac();
 				hallada = persona.isHallada();
+				if(hallada==false)
+					encontrada="Encontrada";
+				else
+					encontrada="Buscando";
 				imagenes = persona.getImagenes();
+				
+				Collection<ImagenPersonaDesaparecida> res1 = new ArrayList<ImagenPersonaDesaparecida>();
+				res1 = persona.getImagenes();			
+				
+				String path;				
+				for (ImagenPersonaDesaparecida img : res1){
 					
-				personasBean.add(i, new PersonasDesaparecidasBean(id,nombre, apellido, cedula, numeroContacto, descripcion, fechnac,  imagenes, hallada));									    		
+					path = img.getPath();					
+					imagesMostrar.add(path);
+			//		
+				
+				}
+				
+		        
+				
+				
+				
+					
+				personasBean.add(i, new PersonasDesaparecidasBean(id,nombre, apellido, cedula, numeroContacto, descripcion, fechnac, imagesMostrar, encontrada));									    		
 			}	
 			
     	}catch (Exception excep){
@@ -114,12 +139,12 @@ private static final long serialVersionUID = 1L;
 			List<PersonasDesaparecidas> filtroPersonafeBean) {
 		this.filtroPersonafeBean = filtroPersonafeBean;
 	}
-
-	public PersonasDesaparecidas getSelectedPersona() {
+	
+	public PersonasDesaparecidasBean getSelectedPersona() {
 		return selectedPersona;
 	}
 
-	public void setSelectedPersona(PersonasDesaparecidas selectedPersona) {
+	public void setSelectedPersona(PersonasDesaparecidasBean selectedPersona) {
 		this.selectedPersona = selectedPersona;
 	}
 
