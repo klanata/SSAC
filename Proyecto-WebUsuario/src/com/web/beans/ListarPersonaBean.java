@@ -17,12 +17,9 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
-
 import clienteutility.ClienteUtility;
 
-import com.core.data.entites.ImagenCatastrofe;
 import com.core.data.entites.ImagenPersonaDesaparecida;
 import com.core.data.entites.PersonasDesaparecidas;
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
