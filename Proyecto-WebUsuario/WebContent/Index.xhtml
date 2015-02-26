@@ -299,7 +299,7 @@ div {
 				onclick="show('desaparecidos');">Personas Desaparecidas</a></li>
 			<li><a href="#registrousuario"
 				style="cursor: hand; text-decoration: none"
-				onclick="show('registrousuario');">Registro usuario</a></li>
+				onclick="show('registrousuario');">Registro de Usuario</a></li>
 			<li><a href="#loginusuario"
 				style="cursor: hand; text-decoration: none"
 				onclick="show('loginusuario');">#{loginBean.menu}</a></li>
@@ -541,11 +541,7 @@ div {
 									</p:inputText>
 
 									<br/>
-
-									<p:commandButton id="registrarDonacion" update="growleconomica"
-										type="submit" Class="button" value="Confirmar datos" ajax="false"
-										action="#{economicaBean.registrarDonacionEconomica()}">
-									</p:commandButton>
+									
 								</h:panelGrid>
 							</h:form>
 						</f:view>
@@ -1159,24 +1155,7 @@ div {
 							</p:column>
 							<p:column headerText="Estado" filterMatchMode="contains">
 								<h:outputText value="#{personaBean.encontrada}" />
-							</p:column>
-
-							<p:column headerText="Imágen" filterMatchMode="contains">
-								
-								
-								<p:commandButton type="button" value="Ver" onclick="PF('dlg').show()" />
- 
-								<p:dialog header="Imagenes" widgetVar="dlg" modal="true"
-								    draggable="false" resizable="false">
-								 
-								    <p:imageSwitch effect="fade">
-								        <ui:repeat value="#{personaBean.listaMostrar}" var="image">
-								            <p:graphicImage value="imagen/#{image}" styleClass="content" width="200"
-							height="200" />
-								        </ui:repeat>
-								    </p:imageSwitch>
-								</p:dialog>
-							</p:column>
+							</p:column>							
 
 							
 							<hr></hr>

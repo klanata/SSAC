@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,16 +20,18 @@ import org.primefaces.event.FileUploadEvent;
 import clienteutility.ClienteUtility;
 
 
+
 import com.core.service.negocio.remote.PersonasDesaparecidasEBR;
 
 @ManagedBean(name="fileUploadUsuarioController")
+@RequestScoped
 public class FileUploadController {	
 	
 	
 	
 	public void upload(FileUploadEvent event) {  
-        FacesMessage msg = new FacesMessage("Las imágenes fueron ingresadas con exito.");  
-        FacesContext.getCurrentInstance().addMessage(null, msg);              
+        //FacesMessage msg = new FacesMessage("Las imï¿½genes fueron ingresadas con exito.");  
+        //FacesContext.getCurrentInstance().addMessage(null, msg);              
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
         } catch (IOException e) {
@@ -45,7 +48,7 @@ public class FileUploadController {
 		{	
 			
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("listaCatastrofesImagenes?faces-redirect=true");
+			handler.performNavigation("Index?faces-redirect=true");
 		}
 		else	
 		{		
@@ -93,14 +96,18 @@ public class FileUploadController {
 		           
 		             		
 		        }catch (Exception excep){
-					System.out.println("Excepción al obtener " + excep.getMessage());      		 			       	           	
+					System.out.println("Excepciï¿½n al obtener " + excep.getMessage());      		 			       	           	
 				}	    			    			    		        	      
 	        } catch (Exception e) {
 	             System.out.println(e.getMessage());
 	        }
+	        
+	        FacesMessage msg = new FacesMessage("Las imÃ¡genes fueron ingresadas con exito.","");  
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+	        	        
 	        //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idEventoCatastrofeImg", "");
 			ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-			handler.performNavigation("vistaImagenesCatastrofe?faces-redirect=true");	
+			handler.performNavigation("Index?faces-redirect=true");	
 	        
 		}
 	}		

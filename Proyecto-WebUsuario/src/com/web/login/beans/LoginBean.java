@@ -137,8 +137,8 @@ public class LoginBean implements Serializable {
 			
 			
 			//mensaje = "Estimado Visitante debe estar registrado para tener acceso a reportar o buscar Personas Desaparecidas";
-			mensaje = "Debe Registrarse";
-			Menu = "Iniciar Sesión";
+			mensaje = "Estimado Usuario debe estar logueado en el sistema para poder reportar personas desaparecidas.";
+			Menu = "Iniciar SesiÃ³n";
 		}else 
 		{
 			mensaje = "Bienvenido "+ nick1;
@@ -182,7 +182,7 @@ public class LoginBean implements Serializable {
 		idCatastrofe1 = (Long)sesion.getAttribute("idmongo");
 		if(exito==false){
 			nick1= "";
-			Menu = "Iniciar Sesión";
+			Menu = "Iniciar Sesiï¿½n";
 			mensaje ="";
 			logeado=false;
 					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario no Registrado", "");
@@ -209,7 +209,7 @@ public class LoginBean implements Serializable {
 					
 					manager.registrarACatastrofe(nick1, clave1, idCatastrofe1);
 					logeado = true;
-					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@","Se ha registrado a la catástrofe");
+					msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@","Se ha registrado a la catï¿½strofe");
 					Menu = "";
 					mensaje ="";
 					nick1="Bienvenid@ "+ nick1;
@@ -276,7 +276,7 @@ public class LoginBean implements Serializable {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
 		logeado = false;
-		Menu = "Iniciar Sesión";
+		Menu = "Iniciar Sesiï¿½n";
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
 		msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Gracias por visitarnos","!");

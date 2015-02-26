@@ -13,6 +13,7 @@ import javax.faces.bean.RequestScoped;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.faces.context.FacesContext;
+import javax.faces.application.ConfigurableNavigationHandler;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -164,10 +165,10 @@ private static final long serialVersionUID = 1L;
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("idP", idP); 		
 		
 		
-		/*
+		
 		ConfigurableNavigationHandler handler=(ConfigurableNavigationHandler)FacesContext.getCurrentInstance().getApplication().getNavigationHandler();
-		handler.performNavigation("Index?faces-redirect=true");						 														
-		*/
+		handler.performNavigation("MostrarImagenPersona?faces-redirect=true");						 														
+		
 		//ConfigurableNavigationHandler.performNavigation("asignarOngCatastrofe?faces-redirect=true");
 		//return "asignarOngCatastrofe?faces-redirect=true";
 		            

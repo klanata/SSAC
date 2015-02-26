@@ -76,50 +76,7 @@ public class PersonasDesaparecidasBean implements Serializable {
 	}
 	
 	
-	public List<String> getListaMostrar() {
-		/*
-		String idPersonaString = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("idP");
-		
-		System.out.println("idPersonaString: " + idPersonaString); 
-		
-		if (idPersonaString != null) {
-			
-			PersonasDesaparecidasEBR manager = null;		    	
-			Context context = null;			
-			//FacesMessage message = null;
-			
-			try {
-	            // 1. Obtaining Context
-	            context = ClienteUtility.getInitialContext();
-	            // 2. Generate JNDI Lookup name
-	            //String lookupName = getLookupName();
-	            // 3. Lookup and cast
-	            manager = (PersonasDesaparecidasEBR) context.lookup("ejb:Proyecto-EAR/Proyecto-Core//PersonasDesaparecidasEB!com.core.service.negocio.remote.PersonasDesaparecidasEBR");
-	 
-	        } catch (NamingException e) {
-	            e.printStackTrace();
-	        }
-						
-			try{
-				PersonasDesaparecidas persona;
-				Long idPersona = new Long(idPersonaString);
-				persona = manager.buscaPersonaPorId(idPersona);
-				
-				Set<ImagenPersonaDesaparecida> imagenes;
-				imagenes = persona.getImagenes();
-				String path;	
-				
-				for (ImagenPersonaDesaparecida img : imagenes){					
-					path = img.getPath();					
-					listaMostrar.add(path);							
-				}				
-				
-			}catch (Exception excep){
-	    		System.out.println("Excepción al obtener imagnes de las personas: " + excep.getMessage());      		 			       	           	
-	    	} 
-			
-		}		
-		*/				
+	public List<String> getListaMostrar() {				
 		return listaMostrar;
 	}
 

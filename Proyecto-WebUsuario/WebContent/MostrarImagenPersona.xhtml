@@ -52,30 +52,32 @@
    		 <div class="ui-grid-col-1"></div>	
    		  <div class="ui-grid-col-10">
   		<h:form >  
-  		    <h:panelGrid>	 
+  		     
          <br />
-               <h2>Ingrese imágenes</h2>    <br />
-		    <p:fileUpload fileUploadListener="#{fileUploadUsuarioController.upload}" mode="advanced" dragDropSupport="false"
-		    
-		     style="max-height:400px;overflow:auto;width:800px;border: transparent;"  
-			                 label="Seleccionar" uploadLabel="Subir" cancelLabel="Cancelar" 
-		    
-		                  multiple="true" update="messages" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-		 
-		    <p:growl id="messages" showDetail="true" />
-		    
-		    <br/>
-		    <br />
-		    
-	            </h:panelGrid>	
+               <h2>Imágenes de #{imagenesPersonaDesaparecidasBean.nombre}</h2>    <br />
+		 	
+		 	 <p:imageSwitch effect="fade">
+								        <ui:repeat value="#{imagenesPersonaDesaparecidasBean.listaNombreImagenes}" var="imgPersonaDesapBean">
+								            <p:graphicImage value="imagen/#{imgPersonaDesapBean.path}" styleClass="content" width="200px" height="200px"/>
+								        </ui:repeat>
+								    </p:imageSwitch>
 		</h:form>  <br />
 		 <div class="ui-grid-col-1"></div>
   	</div>  
   	</div>   
   	</div>  
   	
+  	
+  	
+  	
+  	
+  	
+  	
 <div id="footer">
-				
+				<ul class="icons">
+					
+			
+				</ul>
 				<ul class="copyright">
 					<li>&copy; Untitled. All rights reserved.</li><li>Grupo 4</li>
 				</ul>
