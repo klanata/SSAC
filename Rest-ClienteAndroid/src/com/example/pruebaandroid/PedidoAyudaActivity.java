@@ -73,7 +73,7 @@ public class PedidoAyudaActivity extends Activity{
 	        Log.i("descripcion",descripcionText.getText().toString());
      	AsyncHttpClient client = new AsyncHttpClient();
          //client.get("http://10.0.2.2:8080/ServicioRest/catastrofe/ayuda/pedirAyuda?catId="+
-     		client.get("http://192.168.1.44:8080/ServicioRest/catastrofe/ayuda/pedirAyuda?catId="+ 
+     		client.get("http://192.168.43.91:8080/ServicioRest/catastrofe/ayuda/pedirAyuda?catId="+ 
          idCat +"&des="+ descripcionText.getText().toString()+ "&coordX="+ coordenadaX
         		 + "&coordY=" + coordenadaY, new AsyncHttpResponseHandler() {
         	 	

@@ -24,6 +24,7 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.google.android.gms.maps.*;
 
 import android.app.Activity;
@@ -34,15 +35,17 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class HelloGoogleMaps extends Activity {
 	
 	private static final long LOCATION_REFRESH_TIME = 0;
-	private final LatLng LOCATION_SURRREY = new LatLng(49.27645, -122.917587);
-	private final LatLng LOCATION_BURNABY = new LatLng(49.27645, -122.917587);
 	private GoogleMap map;
 	public HashMap<String,String> hashCatastrofes = new HashMap() ;
 	@Override
@@ -53,7 +56,8 @@ public class HelloGoogleMaps extends Activity {
 		map = ((MapFragment)getFragmentManager().findFragmentById(R.id.map)).getMap();
 		LocationManager locationManagers = (LocationManager) getSystemService(LOCATION_SERVICE);
 		map.setMyLocationEnabled(true);
-		
+		Location myLocation = map.getMyLocation();
+		LatLng aqui = new LatLng(-34.917826, -56.167063);
 		Criteria cri = new Criteria();
 		String provider = locationManagers.getBestProvider(cri, true);
 		Location posGps = locationManagers.getLastKnownLocation(provider);
@@ -64,15 +68,17 @@ public class HelloGoogleMaps extends Activity {
 				drawMarker(location, "Se encuentra aquí!");
 			}
 		};
-	
-		if(posGps!=null){
+		
+		
+		//if(posGps!=null){
 			//drawMarker(posGps);	
-			CameraUpdate update = CameraUpdateFactory.newLatLngZoom(new LatLng(posGps.getLatitude(),posGps.getLongitude()), 9);
+			
+			CameraUpdate update = CameraUpdateFactory.newLatLngZoom(aqui, 10);
 			map.animateCamera(update);
 		
-		}
+		//}
 		
-		map.addMarker(new MarkerOptions().position(LOCATION_SURRREY).title("Centro de Soporte"));
+		
 		
 		//map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 		map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
@@ -191,12 +197,29 @@ public class HelloGoogleMaps extends Activity {
 		}
 	}
 	
+	
+	/////////////////nuevo para que refresque
+	public void onActualizar(View view){
+		Log.i("3","entre a actualizar mapa");
+		
+		invokeWS();
+		TextView cambiaBoton = (TextView)findViewById(R.id.button1);
+	 	cambiaBoton.setText("Actualizado");
+	 
+		
+	}
+	
+	
+	
+	
+	
+	
 	//***************************************************************************//
 	public void invokeWS(){
 		Log.i("Entro al invoke","Entro al invoke");
         AsyncHttpClient client = new AsyncHttpClient();
        //client.get("http://10.0.2.2:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
-        client.get("http://192.168.1.44:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
+        client.get("http://192.168.43.91:8080/ServicioRest/catastrofe/catastrofes",new AsyncHttpResponseHandler() {//acá hay que cambiar a nuestra url
            
         	// When the response returned by REST has Http response code '200'
             @Override
