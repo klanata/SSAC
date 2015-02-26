@@ -90,9 +90,9 @@ private static final long serialVersionUID = 1L;
 				fechnac = persona.getFechNac();
 				hallada = persona.isHallada();
 				if(hallada==false)
-					encontrada="Encontrada";
-				else
 					encontrada="Buscando";
+				else
+					encontrada="Encontrada";
 				imagenes = persona.getImagenes();
 				
 				Collection<ImagenPersonaDesaparecida> res1 = new ArrayList<ImagenPersonaDesaparecida>();
